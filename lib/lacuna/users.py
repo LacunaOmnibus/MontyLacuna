@@ -1,6 +1,7 @@
 
-import json, pprint, re, requests, time
-from validate_email import validate_email
+import configparser, json, os.path, pprint, re, requests, threading, time
+from configparser import ConfigParser, ExtendedInterpolation
+from my_validate_email import validate_email
 
 import lacuna.alliance
 import lacuna.empire
@@ -8,6 +9,7 @@ import lacuna.inbox
 import lacuna.map
 import lacuna.stats
 from lacuna.exceptions import \
+    BadConfigSectionError, \
     BadCredentialsError, \
     NoSuchEmpireError, \
     ServerError
@@ -16,6 +18,7 @@ defaults = {
     'api_key': 'anonymous',
     'host': 'us1.lacunaexpanse.com',
     'proto': 'http',
+    'api_key': 'anonymous',
 }
 
 pp = pprint.PrettyPrinter( indent = 4 )
@@ -23,9 +26,13 @@ pp = pprint.PrettyPrinter( indent = 4 )
 class Client:
     """Client users are not logged in.
 
-    Accepts:
+    Accepts the following named arguments:
+        config_file - path to your configparser-friendly config file
+        config_section - the section in your config file to read from
         proto - http or https.  Default http.
         host - us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Default us1.
+        api_key - your TLE api_key.  Omitting this is fine; the default 
+            key (the string 'anonymous') will be used.
         sleep_on_call - Integer seconds.  Default 1. 
             Number of seconds to sleep after each call to attempt to avoid 
             using more than the limit of 60 RPCs per minute.  
@@ -33,17 +40,50 @@ class Client:
             If we've used over 60 RPCs in a minute, the server will produce 
             an error.  If sleep_on_error is True, we'll sleep for a minute 
             and then re-try our call.  If false, we'll throw an exception.
+
+    Generally, you'll omit all arguments except for config_file and 
+    config_section, and just fill the appropriate values out in your config.
+
+    If a config file and section are passed in, the values in that config 
+    file take precedence over any other values, including passed-in values.
     """
     def __init__( self,
+            config_file = '',
+            config_section = '',
             host = defaults['host'],
             proto = defaults['proto'],
+            username = '',
+            password = '',
+            api_key = defaults['api_key'],
             sleep_on_call = 1,
             sleep_after_error = True
         ):
-        self.host               = host if host else 'foo'
-        self.proto              = proto if proto else 'foo'
+
+        if config_file and config_section and os.path.isfile(config_file):
+            cp = ConfigParser( interpolation=ExtendedInterpolation() )
+            cp.read(config_file)
+
+            if not config_section in cp:
+                raise BadConfigSectionError("The section '"+config_section+"' does not exist in your config file.")
+
+            host               = cp[config_section]['hostname']
+            proto              = cp[config_section]['protocol']
+            username           = cp[config_section]['username']
+            password           = cp[config_section]['password']
+            api_key            = cp[config_section]['api_key']
+            sleep_on_call      = cp[config_section]['sleep_on_call']
+            sleep_after_error  = cp[config_section]['sleep_after_error']
+
+        self.host               = host
+        self.proto              = proto
+        self.username           = username
+        self.password           = password
+        self.api_key            = api_key
         self.sleep_on_call      = sleep_on_call
         self.sleep_after_error  = sleep_after_error
+
+        ### This always starts out empty.
+        self.session_id = ''
 
     def build_url(self):
         """Returns a base URL composed of the protocol (http or https) and the host.
@@ -124,7 +164,25 @@ class Client:
             "params": params,
         }
         request_json = json.dumps( request )
-        resp = requests.post( url, data = request_json )
+
+        ### Send request to the server in a thread.
+        ### Starting a single thread and then immediately waiting for it to 
+        ### join pretty much obviates the need for threading in the first 
+        ### place, but I like having this here for eg purposes if nothing 
+        ### else.
+        ### It'd make much more sense for our calling code to thread several 
+        ### server requests.
+        class SendRPC(threading.Thread):
+            def __init__(self,url,request):
+                super().__init__()
+                self.url=url
+                self.request=request
+            def run(self):
+                resp = requests.post( self.url, data = self.request )
+                self.response = resp
+        t = SendRPC( url, request_json )
+        t.start()
+        t.join()
 
         ### The imported json dumper will happily return a result when handed 
         ### a raw string instead of json (json.dumps( "foobar" ) works just 
@@ -134,17 +192,15 @@ class Client:
         ### json.loads() to produce a ValueError; it'll just be treated as a 
         ### big-ass string.
         ### 
-        ### Theoretically, an error like that should not have a JSON 
-        ### content-type.  In theory, practice and theory are identical; in 
-        ### practice, they're not.  So I want to confirm that the 
-        ### theoretically JSON string I've received is actually JSON.
+        ### An error like that should not have a JSON content-type, but in the 
+        ### spirit of CYA, I still want to confirm that the supposedly JSON 
+        ### string I've received is actually JSON.
+        if t.response.headers['content-type'] != 'application/json-rpc' or not \
+            self.looks_like_json(t.response.text):
+                raise NotJsonError( "Response from server is not json: " + t.response.text )
 
-        if resp.headers['content-type'] != 'application/json-rpc' or not \
-            self.looks_like_json(resp.text):
-                raise NotJsonError( "Response from server is not json: " + resp.text )
-
-        if resp.status_code != 200:
-            json_error = json.loads( resp.text )
+        if t.response.status_code != 200:
+            json_error = json.loads( t.response.text )
             error = ServerError( json_error['error']['code'], json_error['error']['message'] )
             if error.code == 1010 and re('Slow down', error.text) and self.sleep_after_error:
                 self.depth += 1
@@ -155,10 +211,10 @@ class Client:
             else:
                 raise error
         else:
-            thingy = json.loads( resp.text )
+            thingy = json.loads( t.response.text )
 
         if self.sleep_on_call:
-            time.sleep( self.sleep_on_call )
+            time.sleep( float(self.sleep_on_call) )
 
         ### thingy contains:
         ###     {
@@ -175,35 +231,34 @@ class Member(Client):
     inherits from Client.
     """
     def __init__( self,
-            api_key=defaults['api_key'],
-            host=defaults['host'],
-            proto=defaults['proto'],
-            username='',
-            password=''
+            config_file         = '',
+            config_section      = '',
+            api_key             = defaults['api_key'],
+            host                = defaults['host'],
+            proto               = defaults['proto'],
+            username            = '',
+            password            = '',
+            sleep_on_call       = 1,
+            sleep_after_error   = True
         ):
 
-        super().__init__(host, proto)
+        super().__init__(
+            config_file = config_file,
+            config_section = config_section,
+            host = host, 
+            proto = proto,
+            username = username,
+            password = password,
+            sleep_on_call = sleep_on_call,
+            sleep_after_error = sleep_after_error,
+        )
 
-        if not username or not password:
+        if not self.username or not self.password:
             raise AttributeError("username and password are required.")
 
-        ### The 'else' is required here, but since host and proto already have 
-        ### defaults, they'll never not be set at this point.
-        self.api_key    = host if api_key else 'foo'
-        self.username   = username
-        self.password   = password
-        self.session_id = False
-
-        ### Gotta login before doing anything else.
+        ### These must happen in serial; each depends upon the previous.
         self.login()
-
-        try:
-            self.empire = lacuna.empire.MyEmpire( self )
-        except ServerError as e:
-            print("Member creation is unable to fetch empire:", e)
-            exit()
-
-        ### Initialize our empire object
+        self.empire = lacuna.empire.MyEmpire( self )
         self.empire.get_status()
 
     def get_alliance(self):

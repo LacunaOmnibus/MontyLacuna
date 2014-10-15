@@ -1,3 +1,4 @@
 *.swp
 *.swo
 __pycache__/
+etc/lacuna.cfg

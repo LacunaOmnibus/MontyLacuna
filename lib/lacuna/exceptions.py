@@ -6,6 +6,13 @@ class BadCredentialsError(Exception):
     def __str__(self):
         return repr(self.value)
 
+class BadConfigSectionError(Exception):
+    """User specified a config file section which does not exist."""
+    def __init__(self, section):
+        self.section = section
+    def __str__(self):
+        return repr(self.section)
+
 class GDIError(Exception):
     """The client attempted to access own alliance methods, but is not currently
     in an alliance.

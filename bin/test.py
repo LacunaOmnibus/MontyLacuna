@@ -1,7 +1,10 @@
 
 import os
 import sys
-import pprint, re
+import pprint
+import re
+import threading
+import timeit
 
 bindir = os.path.abspath(os.path.dirname(__file__))
 libdir = bindir + "/../lib"
@@ -10,31 +13,12 @@ sys.path.append(libdir)
 import lacuna as lac
 pp = pprint.PrettyPrinter( indent = 4 )
 
-guest = lac.users.Client(
-    host = 'us1.lacunaexpanse.com',
-)
 glc = lac.users.Member(
-    host = 'us1.lacunaexpanse.com',
-    username='',
-    password='',
+    config_file = bindir + "/../etc/lacuna.cfg",
+    config_section = 'my_sitter',
 )
+print( glc.empire.rpc_count )
 
-stats = glc.get_stats()
-
-### credits() works fine from a guest account.
-guest_stats = guest.get_stats()
-guest_cred = guest_stats.credits()
-pp.pprint( guest_cred )
-
-
-#ranks = stats.alliance_rank()
-#pp.pprint( ranks )
-
-#ranks = stats.find_alliance_rank('influence', 'S.M.A')
-#del( ranks['status'] )
-#pp.pprint( ranks )
-
-
-### CHECK this is where I got tired of doing the same thing over and over and 
-### stopped testing.  I'm a bad person.
+#print( timeit.timeit(my_single, number=1) )
+#print( timeit.timeit(my_thread, number=1) )
 
