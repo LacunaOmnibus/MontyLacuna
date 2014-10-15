@@ -17,11 +17,11 @@ Nothing.
 "working" means that all functionality exists, and quickie scripts appear to 
 work, but it hasn't been fully tested yet.
 
-### Users
+#### Users
 Clients, both logged-in and guest.
-### Empire
-### Inbox
-### Map
-### Stats
+#### Empire
+#### Inbox
+#### Map
+#### Stats
 
 ## Incomplete/Not Started
