@@ -1,0 +1,103 @@
+
+from lacuna.bc import LacunaObject
+
+class Map(LacunaObject):
+    """All Map methods require a session ID, so these can only be used by a
+    Member, not a Client.
+    """
+
+    path = 'map'
+
+    @LacunaObject.set_status
+    @LacunaObject.call_member_named_meth
+    def get_star_map( self, mydict ):
+        """The passed-in dict must contain the keys top, bottom, left, right.  
+        Each must be an integer within the star map (so >= -1500 and <= 1500).
+
+        rv['stars'] contains a list of dicts.
+        Sample dict:
+            {
+                'color': 'red',
+                'id': '15320',
+                'name': 'Oot Yaeplie Oad',
+                'x': '288',
+                'y': '-1118',
+                'zone': '1|-4'
+            }
+        """
+        pass
+
+    @LacunaObject.set_status
+    @LacunaObject.call_member_meth
+    def get_stars( self, x1, x2, y1, y2 ):
+        """ rv is the same as for get_star_map()."""
+        pass
+
+    @LacunaObject.set_status
+    @LacunaObject.call_member_meth
+    def check_star_for_incoming_probe( self, star_id ):
+        """ rv['incoming_probe'] will be 1 for true, 0 for false."""
+        pass
+
+    @LacunaObject.set_status
+    @LacunaObject.call_member_meth
+    def get_star( self, star_id ):
+        """Returns a single dict (NOT a list of dicts like get_star() and get_star_map()!)
+        The single returned dict is the same format as get_star_map().
+        """
+        pass
+
+    @LacunaObject.set_status
+    @LacunaObject.call_member_meth
+    def get_star_by_name( self, star_name ):
+        """star_name must be an exact name, not a partial.  rv is identical to get_star().  """
+        pass
+
+    @LacunaObject.set_status
+    @LacunaObject.call_member_meth
+    def get_star_by_xy( self, x, y ):
+        """x and y must be exact coords, not a range.  rv is identical to get_star().  """
+        pass
+
+    @LacunaObject.set_status
+    @LacunaObject.call_member_meth
+    def search_stars( self, partial_name ):
+        """partial_name must be at least 3 characters.  Matches up to 25 stars whose names
+        START with partial_name (NOT stars whose names just contain partial_name).
+        rv is a list, identical to get_star_map().
+        """
+        pass
+
+    @LacunaObject.call_member_named_meth
+    def probe_summary_fissures( self, mydict ):
+        """ mydict must contain the key 'zone', with a value of the zone you want to check,
+        expressed in standard TLE zone notation (0|0).
+
+        I currently can't find a zone with a fissure in it to test, but the documented value 
+        of 'fissures' when one or more is found is a dict:
+            "fissures" : {
+                    "345" : {
+                        "name"   : "Mercury",
+                        "id"     : 345,
+                        "orbit"  : 1,
+                        "x"      : -40,
+                        "y"      : 29,
+                        "type"   : "habitable planet",
+                        "image"  : "p13",
+                        "size"   : 58,
+                    },
+                    "735" : {
+                    ...
+                    }
+                }
+
+        When there's no fissure existing (or known to you or your allies), rv is documented
+        as being an empty list:
+            "fissures" : None
+
+        BE CAREFUL WITH THIS!  It looks like we're getting back a struct on a positive 
+        response, but an empty list on a negative response.  Sigh.
+        """
+        pass
+
+
