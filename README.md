@@ -25,3 +25,10 @@ Clients, both logged-in and guest.
 #### Stats
 
 ## Incomplete/Not Started
+#### Body
+#### Buildings
+#### Payments
+There's a real good chance this will never be worked on as part of this 
+project.
+#### Announcement
+#### Captcha
