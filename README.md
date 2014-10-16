@@ -23,9 +23,9 @@ Clients, both logged-in and guest.
 #### Inbox
 #### Map
 #### Stats
+#### Body
 
 ## Incomplete/Not Started
-#### Body
 #### Buildings
 #### Payments
 There's a real good chance this will never be worked on as part of this 

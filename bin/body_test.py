@@ -4,8 +4,6 @@ import sys
 import pprint
 pp = pprint.PrettyPrinter( indent = 4 )
 import re
-import threading
-import timeit
 
 bindir = os.path.abspath(os.path.dirname(__file__))
 libdir = bindir + "/../lib"
@@ -19,7 +17,6 @@ glc = lac.users.Member(
     config_section = 'my_sitter',
 )
 
-supp01 = glc.get_body(82651)
 
 
 
@@ -34,10 +31,15 @@ def list_bodies(glc):
 def list_buildings(body):
     pp.pprint( body.buildings_id )
 
+### Call this for a list of your body names and IDs
 #list_bodies(glc)
 #quit()
 
-#list_buildings(supp01)
+
+my_planet = glc.get_body( Some ID you pulled out of the list_bodies() call above )
+
+
+#list_buildings(my_planet)
 #quit()
 
 
@@ -45,9 +47,9 @@ def list_buildings(body):
 
 ### Repair
 #building_ids = []
-#for i in supp01.buildings_name['Shield Against Weapons']:
+#for i in my_planet.buildings_name['Shield Against Weapons']:
 #    building_ids.append( i['id'] )
-#rv = supp01.repair_list( building_ids )
+#rv = my_planet.repair_list( building_ids )
 #pp.pprint( rv )
 
 
@@ -67,22 +69,22 @@ move_back = [{
 }]
 ### If you test this, running it with move_to, please remember to run it with 
 ### move_back afterwards.
-#rv = supp01.rearrange_buildings( move_to )
-#rv = supp01.rearrange_buildings( move_back )
+#rv = my_planet.rearrange_buildings( move_to )
+#rv = my_planet.rearrange_buildings( move_back )
 #pp.pprint( rv['moved'] )
 
 
 ### Get buildable list
-#rv = supp01.get_buildable( 0, 0 )                  # illegal - can't build on the center plot
-#rv = supp01.get_buildable( 0, 1 )                  # legal, returns all
-#rv = supp01.get_buildable( 0, 1, 'Water' )         # legal, returns all with the Water tag
-#rv = supp01.get_buildable( 0, 1, 'Blargle' )       # legal, but returns nothing
+#rv = my_planet.get_buildable( 0, 0 )                  # illegal - can't build on the center plot
+#rv = my_planet.get_buildable( 0, 1 )                  # legal, returns all
+#rv = my_planet.get_buildable( 0, 1, 'Water' )         # legal, returns all with the Water tag
+#rv = my_planet.get_buildable( 0, 1, 'Blargle' )       # legal, but returns nothing
 #pp.pprint( rv['buildable'] )
 
 
 ### Rename
-#rv = supp01.rename( 'bmots support 01' )
-#rv = supp01.rename( 'bmots support 01111' )
+#rv = my_planet.rename( 'bmots support 01' )
+#rv = my_planet.rename( 'bmots support 01111' )
 #pp.pprint( rv )
 
 
