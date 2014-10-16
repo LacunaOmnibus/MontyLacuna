@@ -26,6 +26,22 @@ class Empire(LacunaObject):
         pass
 
 
+
+"""
+TBD
+
+It might be nice to have a class object "station_re" or some such:
+    station_re = '^\wASS'
+
+...and then have a method to separate known stations from planets:
+    def get_planets_not_stations:
+        for id, name in self.planets.items():
+            if re.match(self.station_re, name):
+                continue
+            print( "{} is id {}".format(name, id) )
+
+"""
+
 class MyEmpire( Empire ):
     """The Empire object belonging to the current Member's empire."""
 

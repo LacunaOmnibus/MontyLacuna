@@ -3,11 +3,15 @@
 
 class LacunaObject:
 
-    def __init__(self, client:object):
+    def __init__(self, client:object, *args, **kwargs):
         if not hasattr(self, 'path'):
             raise AttributeError("LacunaObject subclass "+ str(type(self)) +" did not define a 'path' class attribute.")
         self.client = client
 
+    ### CHECK
+    ### I should really rename this to set_empire_status since there are 
+    ### several of these floating around.  I'll have to change all the 
+    ### decorations as well.
     def set_status( func ):
         """Decorator.
         

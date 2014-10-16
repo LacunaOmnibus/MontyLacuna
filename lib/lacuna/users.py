@@ -1,9 +1,10 @@
 
-import configparser, json, os.path, pprint, re, requests, threading, time
+import json, os.path, pprint, re, requests, threading, time
 from configparser import ConfigParser, ExtendedInterpolation
 from my_validate_email import validate_email
 
 import lacuna.alliance
+import lacuna.body
 import lacuna.empire
 import lacuna.inbox
 import lacuna.map
@@ -12,14 +13,8 @@ from lacuna.exceptions import \
     BadConfigSectionError, \
     BadCredentialsError, \
     NoSuchEmpireError, \
+    NotJsonError, \
     ServerError
-
-defaults = {
-    'api_key': 'anonymous',
-    'host': 'us1.lacunaexpanse.com',
-    'proto': 'http',
-    'api_key': 'anonymous',
-}
 
 pp = pprint.PrettyPrinter( indent = 4 )
 
@@ -47,46 +42,44 @@ class Client:
     If a config file and section are passed in, the values in that config 
     file take precedence over any other values, including passed-in values.
     """
+
+    config_list = [
+        'host', 'proto',
+        'username', 'password', 'api_key',
+        'sleep_on_call', 'sleep_after_error',
+    ]
+
     def __init__( self,
-            config_file = '',
-            config_section = '',
-            host = defaults['host'],
-            proto = defaults['proto'],
-            username = '',
-            password = '',
-            api_key = defaults['api_key'],
-            sleep_on_call = 1,
-            sleep_after_error = True
+            config_file = '', config_section = '',
+            proto = 'http', host = 'us1.lacunaexpanse.com',
+            username = '', password = '', api_key = 'anonymous',
+            sleep_on_call = 1, sleep_after_error = True
         ):
 
         if config_file and config_section and os.path.isfile(config_file):
-            cp = ConfigParser( interpolation=ExtendedInterpolation() )
-            cp.read(config_file)
-
-            if not config_section in cp:
-                raise BadConfigSectionError("The section '"+config_section+"' does not exist in your config file.")
-
-            host               = cp[config_section]['hostname']
-            proto              = cp[config_section]['protocol']
-            username           = cp[config_section]['username']
-            password           = cp[config_section]['password']
-            api_key            = cp[config_section]['api_key']
-            sleep_on_call      = cp[config_section]['sleep_on_call']
-            sleep_after_error  = cp[config_section]['sleep_after_error']
-
-        self.host               = host
-        self.proto              = proto
-        self.username           = username
-        self.password           = password
-        self.api_key            = api_key
-        self.sleep_on_call      = sleep_on_call
-        self.sleep_after_error  = sleep_after_error
+            cp = self.read_config_file( config_file )
+            for i in self.config_list:
+                setattr( self, i, cp[config_section][i] )
+        else:
+            for i in self.config_list:
+                setattr( self, i, eval(i) )
 
         ### This always starts out empty.
         self.session_id = ''
 
+    def read_config_file( self, conf, default = 'DEFAULT' ):
+        cp = ConfigParser( interpolation=ExtendedInterpolation() )
+        cp.read( conf )
+        for section in cp:
+            if section == default:
+                continue
+            for i in self.config_list:
+                if i not in cp[section] and i in cp[default]:
+                    cp[section][i] = cp[default][i]
+        return cp
+
     def build_url(self):
-        """Returns a base URL composed of the protocol (http or https) and the host.
+        """Returns a base URL composed of the proto (http or https) and the host.
         The returned URL does NOT end with a slash.
         """
         url = self.proto + "://" +  self.host
@@ -137,7 +130,7 @@ class Client:
 
         Accepts:
             path (str)
-                The path after the hostname (eg empire, building, etc).  Don't 
+                The path after the host (eg empire, building, etc).  Don't 
                 include any directory separators.
             method (str)
                 The name of the method to be run
@@ -164,43 +157,30 @@ class Client:
             "params": params,
         }
         request_json = json.dumps( request )
+        #if method == 'rearrange_buildings':
+        #    print( request_json )
+        #    quit()
+        resp = requests.post( url, request_json )
 
-        ### Send request to the server in a thread.
-        ### Starting a single thread and then immediately waiting for it to 
-        ### join pretty much obviates the need for threading in the first 
-        ### place, but I like having this here for eg purposes if nothing 
-        ### else.
-        ### It'd make much more sense for our calling code to thread several 
-        ### server requests.
-        class SendRPC(threading.Thread):
-            def __init__(self,url,request):
-                super().__init__()
-                self.url=url
-                self.request=request
-            def run(self):
-                resp = requests.post( self.url, data = self.request )
-                self.response = resp
-        t = SendRPC( url, request_json )
-        t.start()
-        t.join()
-
-        ### The imported json dumper will happily return a result when handed 
-        ### a raw string instead of json (json.dumps( "foobar" ) works just 
-        ### fine).  The module is documented to do this.
+        ### The json parser will happily return a result when handed a raw 
+        ### string instead of json (json.dumps("foobar") works just fine).  
+        ### The module is documented to do this.
         ### 
         ### ...so an HTML page containing "server error" will not cause 
         ### json.loads() to produce a ValueError; it'll just be treated as a 
         ### big-ass string.
         ### 
-        ### An error like that should not have a JSON content-type, but in the 
-        ### spirit of CYA, I still want to confirm that the supposedly JSON 
-        ### string I've received is actually JSON.
-        if t.response.headers['content-type'] != 'application/json-rpc' or not \
-            self.looks_like_json(t.response.text):
-                raise NotJsonError( "Response from server is not json: " + t.response.text )
+        ### An error page like that should not have a JSON content-type, so 
+        ### just checking that _should_ be enough.  But in the spirit of CYA, 
+        ### I still want to confirm that the supposedly JSON string I'm 
+        ### receiving when the content type indicates JSON, is actually JSON.  
+        ### Hence the looks_like_json() check.
+        if resp.headers['content-type'] != 'application/json-rpc' or not \
+            self.looks_like_json(resp.text):
+                raise NotJsonError( "Response from server is not json: " + resp.text )
 
-        if t.response.status_code != 200:
-            json_error = json.loads( t.response.text )
+        if resp.status_code != 200:
+            json_error = json.loads( resp.text )
             error = ServerError( json_error['error']['code'], json_error['error']['message'] )
             if error.code == 1010 and re('Slow down', error.text) and self.sleep_after_error:
                 self.depth += 1
@@ -211,7 +191,7 @@ class Client:
             else:
                 raise error
         else:
-            thingy = json.loads( t.response.text )
+            thingy = json.loads( resp.text )
 
         if self.sleep_on_call:
             time.sleep( float(self.sleep_on_call) )
@@ -233,9 +213,9 @@ class Member(Client):
     def __init__( self,
             config_file         = '',
             config_section      = '',
-            api_key             = defaults['api_key'],
-            host                = defaults['host'],
-            proto               = defaults['proto'],
+            api_key             = '',
+            host                = '',
+            proto               = '',
             username            = '',
             password            = '',
             sleep_on_call       = 1,
@@ -256,13 +236,18 @@ class Member(Client):
         if not self.username or not self.password:
             raise AttributeError("username and password are required.")
 
-        ### These must happen in serial; each depends upon the previous.
+        ### These are all server calls, and slow, but they must happen in 
+        ### serial, because each depends upon the previous being complete.  So 
+        ### don't try to thread them.
         self.login()
         self.empire = lacuna.empire.MyEmpire( self )
         self.empire.get_status()
 
     def get_alliance(self):
         return lacuna.alliance.Alliance( self )
+
+    def get_body(self, body_id):
+        return lacuna.body.Body( self, body_id )
 
     def get_inbox(self):
         return lacuna.inbox.Inbox( self )
@@ -272,8 +257,6 @@ class Member(Client):
 
     def get_my_alliance(self):
         return lacuna.alliance.MyAlliance( self )
-
-    ### get_stats() is in Client, as it requires no login.
 
     def login(self):
         try:

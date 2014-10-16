@@ -1,111 +1,380 @@
 
+
+"""
+    A Body object must be passed a body_id upon creation, whether you're 
+    creating it directly:
+        body = lacuna.body.Body( <Member object from users module>, 12345 )
+
+    Or as a Member method (which passes the client argument for you:)
+        body = member.get_body( 12345 )
+
+    All of the data returned by a call to the server's get_status() method 
+    become attributes of the body object.  A complete list of those 
+    attributes:
+
+    BODY OBJECT ATTRIBUTES {#{{{
+
+        "id" : "id-goes-here",
+        "x" : -4,
+        "y" : 10,
+        "star_id" : "id-goes-here",
+        "star_name" : "Sol",
+        "orbit" : 3,
+        "type" : "habitable planet",
+        "name" : "Earth",
+        "image" : "p13",
+        "size" : 67,
+        "water" : 900,
+        "ore" : {
+            "gold" : 3399,
+            "bauxite" : 4000,
+            ...
+        },
+        "empire" : { # this section only exists if an empire occupies it
+            "id" : "id-goes-here",
+            "name" : "Earthlings",
+            "alignment" : "ally",   # can be 'ally','self', or 'hostile'
+            "is_isolationist" : 1
+        },
+        "station" : { # only shows up if this planet is under the influence of a space station
+            "id" : "id-goes-here",
+            "x" : 143,
+            "y" : -27,
+            "name" : "The Death Star"
+        },
+
+        ### The following will only be set if you own the body in question.
+
+        "needs_surface_refresh" : 1, # indicates that the client needs to call get_buildings() because something has changed
+        "building_count" : 7,
+        "plots_available" :60,
+        "happiness" : 3939,
+        "happiness_hour" : 25,
+        "unhappy_date" : "01 13 2014 16:11:21 +0600",  # Only given if happiness is below zero
+        "propaganda_boost" : 20,
+        "food_stored" : 33329,
+        "food_capacity" : 40000,
+        "food_hour" : 229,
+        "energy_stored" : 39931,
+        "energy_capacity" : 43000,
+        "energy_hour" : 391,
+        "ore_hour" 284,
+        "ore_capacity" 35000,
+        "ore_stored" 1901,
+        "waste_hour" : 933,
+        "waste_stored" : 9933,
+        "waste_capacity" : 13000,
+        "water_stored" : 9929,
+        "water_hour" : 295,
+        "water_capacity" : 51050,   
+        "skip_incoming_ships" : 0,   # if set, then the following incoming data is missing.
+        "num_incoming_enemy" : 10,   # total number of incoming foreign ships
+        "num_incoming_ally" : 1,     # total number of incoming allied ships
+        "num_incoming_own : 0,       # total number of incoming own ships from other colonies
+        "incoming_enemy_ships" : [ # will only be included when enemy ships are coming to your planet (only the first 20 will be shown)
+            {
+                "id" : "id-goes-here",
+                "date_arrives" : "01 31 2010 13:09:05 +0600",
+                "is_own" : 1,                                   # is this from one of our own planets
+                "is_ally" : 1                                   # is this from a planet within our alliance
+            },
+            ...
+        ],
+        "incoming_ally_ships" : [ # will only be included when allied ships are coming to your planet (only the first 10 will be shown)
+            ...
+        ],
+        "incoming_own_ships" : [ # will only be included when ships from your other colonies are coming to your planet (only the first 10 will be shown)
+            ...  
+        ],
+        
+        ----- if the body is a station the following information will be included
+        "alliance" : { 
+            "id" : "id-goes-here",
+            "name" : "Imperial Empire" 
+        },
+        "influence" : {
+            "total" : 0,
+            "spent" : 0
+        }
+
+    }#}}}
+
+    Also, upon instantiation, the body's buildings are queried, and they end 
+    up in two other attributes: buildings_id and buildings_name.
+
+    A dict representing a building looks like this: {#{{{
+        {
+            "name" : "Apple Orchard",
+            "x" : 1,
+            "y" : -1,
+            "url" : "/apple",
+            "level" : 3,
+            "image" : "apples3",
+            "efficiency" : 95,
+            "pending_build" : {            # only included when building is building/upgrading
+                "seconds_remaining" : 430,
+                "start" : "01 31 2010 13:09:05 +0600",
+                "end" : "01 31 2010 18:09:05 +0600"
+            },
+            "work" : {                     # only included when building is working (Parks, Waste Recycling, etc)
+                "seconds_remaining" : 49,
+                "start" : "01 31 2010 13:09:05 +0600",
+                "end" : "01 31 2010 18:09:05 +0600"
+            }
+        },
+    }#}}}
+
+    self.buildings_id is keyed off the individual building ID.
+        self.buildings_id = {
+            building_id_1 = { dict like above },
+            building_id_2 = { dict like above },
+            ...
+        }
+
+    self.buildings_name is keyed off the building's human-readable name.  
+    Since most buildings can appear more than once on a given body, the value 
+    is a list of buildings of this name.
+        self.buildings_name = {
+            'Apple Orchard' = [
+                { dict ALMOST like above },
+                { dict ALMOST like above },
+                ...
+            ],
+            'Space Port' = [
+                { dict ALMOST like above },
+                { dict ALMOST like above },
+                ...
+            ],
+            ...
+        }
+
+        The dicts in self.buildings_name are identical to the normal building 
+        dict, except that an 'id' key has been added.
+
+"""
+
+
 from lacuna.bc import LacunaObject
-from lacuna.exceptions import GDIError
 
-### Copied from alliance.py and then untouched from there as I got sidetracked 
-### by fooling with threads.
+class Body(LacunaObject):
 
-class Alliance(LacunaObject):
+    path = 'body'
 
-    path = 'alliance'
+    def __init__( self, client:object, body_id:int ):
+        super().__init__( client )
+        self.body_id = body_id
+
+        ### I want self to start out populated, which would require a call to 
+        ### get_status().  But since all the other methods also require a 
+        ### status block, I can call get_buildings() instead and get both the 
+        ### status data and the building data in a single shot.
+        self.set_buildings()
+
+    def set_body_status( func ):
+        """Decorator.
+        Much like LacunaObject.set_status.  Most of the Body server methods 
+        return both empire status and body status.  So we'll still decorate 
+        with LacunaObject.set_status to get the empire status, but we'll also 
+        decorate with this to set the body status.
+        """
+        def inner(*args, **kwargs):
+            rv = func( *args, **kwargs )
+            self = args[0]
+
+            ### We _must_ check for 'status' before checking for body.
+            ###
+            ### In every case that includes a 'status' key, that's the status 
+            ### dict we're looking for.
+            ###
+            ### But in at least one server method (get_buildings), there's a 
+            ### 'body' key that is NOT the status dict we're looking for.  In 
+            ### other cases (get_status), the 'body' key IS the status dict 
+            ### we're looking for.
+            ### So check 'status' first, then check 'body'.
+            mydict = {}
+            if 'status' in rv:
+                if 'body' in rv['status']:
+                    mydict = rv['status']['body']
+            elif 'body' in rv:
+                mydict = rv['body']
+
+            for n, v in mydict.items():
+                setattr( self, n, v )
+            return rv
+        return inner
+
+    def call_member_meth(func):
+        """Decorator.  
+        Just like LacunaObject.call_member_meth(), except that this version automatically
+        sends the body_id.
+        """
+        def inner(self, *args):
+            myargs = (self.client.session_id, self.body_id) + args
+            rslt = self.client.send( self.path, func.__name__, myargs )
+            func( self, *args )
+            return rslt
+        return inner
 
     @LacunaObject.set_status
-    @LacunaObject.call_member_meth
-    def view_profile( self, alliance_id:int ):
-        """Returns publicly-accessible data about the alliance.
+    @set_body_status
+    @call_member_meth
+    def get_status( self ):
+        pass
 
-        rv['profile'] = {
-            "id" : "id-goes-here",
-            "name" : "Lacuna Expanse Allies",
-            "description" : "Blah blah blah blah...",
-            "leader_id" : "id-goes-here",
-            "date_created" : "01 31 2010 13:09:05 +0600",
-            "members" : [
-                {
-                    "id" : "id-goes-here",
-                    "name" : "Lacuna Expanse Corp"
-                },
-                ...
-            ],
-            "space_stations" : [
-                {
-                    "id" : "id-goes-here",
-                    "name" : "The Life Star",
-                    "x" : -342,
-                    "y" : 128
-                },
-                ...
-            ],
-            "influence" : 0
-        }
+    @LacunaObject.set_status
+    @set_body_status
+    @call_member_meth
+    def get_buildings( self ):
+        pass
+
+    def set_buildings( self ):
+        """ Sets self.buildings_id and self.buildings_name.
+        Called upon instantiation.
+        """
+        rv = self.get_buildings()
+        self.buildings_id = rv['buildings']
+
+        self.buildings_name = {}
+        for id, bldg_dict in self.buildings_id.items():
+            name = bldg_dict['name']
+            if not name in self.buildings_name:
+                self.buildings_name[name] = []
+            ### Since we're causing this new dict to be keyed off name, we 
+            ### have to make sure that the id is part of the dict now (it 
+            ### wasn't before, because it was the key).
+            bldg_dict['id'] = id
+            self.buildings_name[name].append( bldg_dict )
+
+    @LacunaObject.set_status
+    @set_body_status
+    @call_member_meth
+    def repair_list( self, building_ids_to_repair:list ):
+        """ Repairs all buildings indicated by ID in the passed-in list.
+        CHECK on retval here.
+
+        TBD
+        I've called this method, passing the IDs of all of the SAWs on one of 
+        my planets.  Everything seemed to have worked, but nothing actually 
+        needed repairing.  So this hasn't actually been tested in anger.
         """
         pass
 
     @LacunaObject.set_status
-    @LacunaObject.call_member_meth
-    def find( self, partial_name:str ):
-        """partial_name must be at least 3 characters.  Matches alliances whose names
-        START with partial_name (NOT those whose names just contain partial_name).
+    @set_body_status
+    @call_member_meth
+    def rearrange_buildings( self, arrangment_dicts:list ):
+        """ Moves one or more buildings to a new spot on the planet surface.
 
-        TLE documentation does not mention a limit on number of alliances returned.
-        A limit of 25 is common with the TLE API, but the docs don't mention it in
-        this case, and there's currently no three letter string that would match 
-        more than 25 alliances so there's no way to test.
-
-        rv['alliances'] is a list of structs:
+        arrangement_dicts is formatted as:
             [
                 {
-                    "id": "1234",
-                    "name": "Some alliance name"
+                    'id': integer ID of the building to move,
+                    'x':  integer X coordinate to move to,
+                    'y':  integer y coordinate to move to,
                 },
-                ...etc...
+                { another building to move, same format as above },
+                ...
             ]
+
+        Retval includes a key 'moved', which is a list of dicts of buildings 
+        that were moved.  This returned list is identical to the list you 
+        passed in except it also contains a 'name' key containing the 
+        human-readable name of the moved building.
+
+        Attempting to make an illegal move (moving a building out of -5..5 
+        bounds, moving it on top of another building, moving the PCC at all, 
+        etc) results in a 1013 server error and no moves are made, even if 
+        others in the list were legal.
+        """
+        pass
+
+    @LacunaObject.set_status
+    @set_body_status
+    @call_member_meth
+    def get_buildable( self, x:int, y:int, tag:str = '' ):
+        """Returns a list of buildings that can be built on the indicated 
+        coords.
+
+        X and Y coordinate ints are required.
+
+        A single string representing the tag to filter on is optional.  Some 
+        examples of tags are: Now, Later, Happiness, Ore, Resources
+        Sending an invalid tag is not an error, it simply returns zero 
+        results.
+        A complete list of tags can be found at:
+            https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29
+
+        Retval contains the key 'buildable', which is a list of dicts keyed 
+        off the human-readable building name:
+            [
+                'Water Purification Plant': {
+                    'build': {
+                        'can': 1,
+                        'cost': {   'energy': '64',
+                                    'food': '72',
+                                    'ore': '88',
+                                    'time': '15',
+                                    'waste': '16',
+                                    'water': '8'
+                                },
+                        'no_plot_use': '',
+                        'reason': '',
+                        'tags': ['Resources', 'Water', 'Now']
+                    },
+                    'image': 'waterpurification0',
+                    'production': {
+                        'energy_capacity': 0,
+                        'energy_hour': '-3',
+                        'food_capacity': 0,
+                        'food_hour': '-1',
+                        'happiness_hour': '0',
+                        'ore_capacity': 0,
+                        'ore_hour': '-3',
+                        'waste_capacity': 0,
+                        'waste_hour': '5',
+                        'water_capacity': 0,
+                        'water_hour': '31'
+                    },
+                    'url': '/waterpurification'
+                },
+                { another building struct },
+                ...
+            ]
+
+        Throws 1009 if the passed coords are illegal for any reason (already 
+        occupied, out-of-bounds, etc)
+        """
+        pass
+
+    @call_member_meth
+    def rename( self, name:str = '' ):
+        """ Renames the current planet.
+
+        For whatever reason, this returns int 1 on success.  NOT a struct 
+        (like every other method), just a bare int.
+        """
+        pass
+
+    @LacunaObject.set_status
+    @call_member_meth
+    def abandon( self ):
+        """ Abandons the current planet.
+        Retval contains the standard server and empire keys.
+
+        I tested this on three planets on PT.  All three were abandoned 
+        successfully.  However, on the first two, the server returned 
+        something other than JSON.  Unfortunately, my NotJsonError exception 
+        wasn't being imported properly, so it didn't manage to dump out was 
+        _was_ returned.
+
+        On the third test, after fixing the exception import, the server did 
+        return actual JSON.
+
+        I assume that the server was just having issues the first two times, 
+        this is not uncommon on PT.
         """
         pass
 
 
-class MyAlliance(Alliance):
-    """This allows an empire that's part of an alliance to get info on his
-    own alliance without needing to know his own alliance's ID off the top 
-    of his head.
-            my_all = MyAlliance( client )
-    ...etc.  All of the keys returned by Alliance.view_profile() are available.
 
-    The users.Member class has a nice sugar method to make this more OOP-y:
-            my_all = client.get_my_alliance()
-
-    Either way, you've now got access to info on your own alliance:
-            print( my_all.id )
-            print( my_all.name )
-        ...etc...
-    """
-
-    def __init__( self, client:object ):
-        super().__init__(client)
-
-        ### This has always been confusing.
-        ###
-        ### An Empire object does not know its own alliance.  You've got to 
-        ### call the view_public_profile() method, sending the Empire object's 
-        ### ID as argument.
-        ###
-        ### The rv of that view_public_profile() call _will_ contain the 
-        ### alliance ID.
-
-        empire_pub = self.client.empire.view_public_profile( self.client.empire.id )
-        if 'alliance' not in empire_pub['profile']:
-            raise GDIError("Client empire is not in an alliance, so cannot access the MyAlliance class.")
-        ally_id = empire_pub['profile']['alliance']['id']
-
-        ally = Alliance( self.client )
-        ally_profile = ally.view_profile( ally_id )['profile']
-
-        self.id = ally_profile['id']
-        self.name = ally_profile['name']
-        self.description = ally_profile['description']
-        self.leader_id = ally_profile['leader_id']
-        self.date_created = ally_profile['date_created']
-        self.members = ally_profile['members']
-        self.space_stations = ally_profile['space_stations']
-        self.influence = ally_profile['influence']
 
