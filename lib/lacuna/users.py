@@ -12,6 +12,7 @@ import lacuna.stats
 from lacuna.exceptions import \
     BadConfigSectionError, \
     BadCredentialsError, \
+    NoSuchBodyError, \
     NoSuchEmpireError, \
     NotJsonError, \
     ServerError
@@ -157,7 +158,7 @@ class Client:
             "params": params,
         }
         request_json = json.dumps( request )
-        #if method == 'rearrange_buildings':
+        #if method == 'get_status' or method == 'view':
         #    print( request_json )
         #    quit()
         resp = requests.post( url, request_json )
@@ -248,6 +249,13 @@ class Member(Client):
 
     def get_body(self, body_id):
         return lacuna.body.Body( self, body_id )
+
+    def get_body_byname(self, body_name):
+        for bid, name in self.empire.planets.items():
+            if name == body_name:
+                return lacuna.body.Body( self, bid )
+        else:
+            raise NoSuchBodyError("No body with the name '{}' was found.".format(body_name))
 
     def get_inbox(self):
         return lacuna.inbox.Inbox( self )

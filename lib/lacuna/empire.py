@@ -2,6 +2,32 @@
 import pprint, re
 from lacuna.bc import LacunaObject
 
+"""
+    An Empire object is not logged in, and is meant for use only by new users 
+    who need to fetch a captcha or check if a given empire name is available 
+    in the process of creating an account.
+
+    Most of the time, your Empire object will be a MyEmpire object, which will 
+    contain the following attributes:
+
+        "id" : "xxxx",
+        "rpc_count" : 321, # the number of calls made to the server
+        "is_isolationist" : 1, # hasn't sent out probes or colony ships
+        "name" : "The Syndicate",
+        "status_message" : "A spy's work is never done.",
+        "home_planet_id" : "id-goes-here",
+        "has_new_messages" : 4,
+        "latest_message_id" : 1234,
+        "essentia" : 0,
+        "planets" : {
+            "id-goes-here" : "Earth",
+            "id-goes-here" : "Mars
+        },
+        "tech_level"           : 20,  # Highests level university has gotten to.
+        "self_destruct_active" : 0,
+        "self_destruct_date" : ""
+"""
+
 class Empire(LacunaObject):
     """A generic Empire object that can be used with a non-logged-in Guest."""
 

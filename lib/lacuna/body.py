@@ -153,8 +153,11 @@
 
 """
 
-
+import re
+import lacuna.buildings
 from lacuna.bc import LacunaObject
+from lacuna.exceptions import \
+    NoSuchBuildingError
 
 class Body(LacunaObject):
 
@@ -197,7 +200,6 @@ class Body(LacunaObject):
                     mydict = rv['status']['body']
             elif 'body' in rv:
                 mydict = rv['body']
-
             for n, v in mydict.items():
                 setattr( self, n, v )
             return rv
@@ -226,6 +228,26 @@ class Body(LacunaObject):
     @call_member_meth
     def get_buildings( self ):
         pass
+
+    def get_existing_building( self, classname:str, building_id:int ):
+        bldg_str = "lacuna.buildings.{}( self.client, self.body_id, building_id )".format( classname )
+        return eval(bldg_str)
+
+    def get_existing_building_coords( self, x:int, y:int ):
+        for bid, bdict in self.buildings_id.items():
+            if int(bdict['x']) == x and int(bdict['y']) == y:
+                classname = re.sub("^/(\w+)", "\g<1>", bdict['url'] )
+                bldg_str = "lacuna.buildings.{}( self.client, self.body_id, bid )".format( classname )
+                return eval(bldg_str)
+        else:
+            raise NoSuchBuildingError("No building was found at ({},{})".format(x,y))
+
+    def get_new_building( self, classname:str ):
+        """ Returns a building object of the requested classname.
+        This is a Potential building.
+        """
+        bldg_str = "lacuna.buildings.{}( self.client, self.body_id )".format( classname )
+        return eval(bldg_str)
 
     def set_buildings( self ):
         """ Sets self.buildings_id and self.buildings_name.

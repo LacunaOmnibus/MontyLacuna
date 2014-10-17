@@ -27,7 +27,6 @@ def list_bodies(glc):
         if re.match('^\wASS', name):
             continue
         print( "{} has an id of {}".format(name, id) )
-
 def list_buildings(body):
     pp.pprint( body.buildings_id )
 
@@ -36,9 +35,14 @@ def list_buildings(body):
 #quit()
 
 
+### Find your planet
 my_planet = glc.get_body( Some ID you pulled out of the list_bodies() call above )
+### ...or, much nicer...
+my_planet = glc.get_body_byname( 'my planet name' )
 
 
+
+### More on nicer building-finding stuff in building_test.py.
 #list_buildings(my_planet)
 #quit()
 

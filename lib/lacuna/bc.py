@@ -1,7 +1,11 @@
 
 """Module for lacuna base classes."""
 
+import pprint
+
 class LacunaObject:
+
+    pp = pprint.PrettyPrinter( indent = 4 )
 
     def __init__(self, client:object, *args, **kwargs):
         if not hasattr(self, 'path'):
@@ -106,3 +110,6 @@ class LacunaObject:
             return rslt
         return inner
 
+
+    def foobar():
+        print('foobar')
