@@ -1,6 +1,5 @@
 
-import os
-import sys
+import os, sys
 import pprint, re
 
 bindir = os.path.abspath(os.path.dirname(__file__))

@@ -1,5 +1,6 @@
 
 import json, os.path, pprint, re, requests, threading, time
+import configparser
 from configparser import ConfigParser, ExtendedInterpolation
 from my_validate_email import validate_email
 
@@ -78,6 +79,18 @@ class Client:
                 if i not in cp[section] and i in cp[default]:
                     cp[section][i] = cp[default][i]
         return cp
+
+    def write_default_config_file( self, path ):
+        cp = configparser.ConfigParser()
+        cp['DEFAULT'] = {
+            'host': 'us1.lacunaexpanse.com',
+            'proto': 'http',
+            'api_key': 'anonymous',
+            'sleep_on_call': 1,
+            'sleep_after_error': 1
+        }
+        with open(path, 'w') as handle:
+            cp.write(handle)
 
     def build_url(self):
         """Returns a base URL composed of the proto (http or https) and the host.

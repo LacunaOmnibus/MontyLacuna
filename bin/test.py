@@ -32,9 +32,9 @@ my_planet = glc.get_body_byname( 'bmots rof 2.1' )
 #quit()
 ### 
 ### ...OR, much nicer...
-#sp = my_planet.get_existing_building_coords( 1, -3 )
-#print( sp.image )
-#quit()
+sp = my_planet.get_existing_building_coords( 1, -3 )
+print( sp.image )
+quit()
 
 
 ### Build new
