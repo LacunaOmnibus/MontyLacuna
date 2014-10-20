@@ -33,8 +33,8 @@ supposed to do.
 
 ## Incomplete/Not Started
 - Payments
--- There's a real good chance this will never be worked on as part of this 
-project.
+ - There's a real good chance this will never be worked on as part of this 
+   project.
 - Announcement
 - Captcha
 
