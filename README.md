@@ -17,19 +17,23 @@ Nothing.
 "working" means that all functionality exists, and quickie scripts appear to 
 work, but it hasn't been fully tested yet.
 
-#### Users
-Clients, both logged-in and guest.
-#### Empire
-#### Inbox
-#### Map
-#### Stats
-#### Body
-#### Buildings
+- Users
+-- Clients, both logged-in and guest.
+- Empire
+- Inbox
+- Map
+- Stats
+- Body
+- Buildings
+-- "all functionality" is a bit of a stretch here.  The Buildings base class 
+exists, and stub classes exist for all buildings in the game.  I need to work 
+through those building stubs to make them each do whatever-it-is they're each 
+supposed to do.
 
 ## Incomplete/Not Started
-#### Payments
-There's a real good chance this will never be worked on as part of this 
+- Payments
+-- There's a real good chance this will never be worked on as part of this 
 project.
-#### Announcement
-#### Captcha
+- Announcement
+- Captcha
 
