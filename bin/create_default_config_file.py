@@ -13,7 +13,7 @@ if os.path.isfile(filepath):
     print("")
     quit()
 
-guest = lac.users.Client()
+guest = lac.clients.Guest()
 guest.write_default_config_file(filepath)
 print("")
 print("Done - default config file lives in", filepath)

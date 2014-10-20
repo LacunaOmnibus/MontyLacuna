@@ -13,7 +13,7 @@ sys.path.append(libdir)
 
 import lacuna as lac
 
-glc = lac.users.Member(
+glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'my_sitter',
 )
@@ -89,7 +89,7 @@ quit()
 ### new buildings module representing the buildings to fix, as well as add 
 ### that new building module to buildings/__init__.py (or the eval in 
 ### get_existing_building_coords would blow up).
-#test = lac.users.Member(
+#test = lac.clients.Member(
 #    config_file = bindir + "/../etc/lacuna.cfg",
 #    config_section = 'play_test',
 #)

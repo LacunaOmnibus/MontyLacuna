@@ -10,18 +10,16 @@ sys.path.append(libdir)
 import lacuna as lac
 pp = pprint.PrettyPrinter( indent = 4 )
 
-glc = lac.users.Member(
-    host = 'us1.lacunaexpanse.com',
-    username='',
-    password='',
+glc = lac.clients.Member(
+    config_file = bindir + "/../etc/lacuna.cfg",
+    config_section = 'my_sitter',
 )
 
 mail = glc.get_inbox();
 
-
-#msgs = mail.view_inbox( {"tags": "parliament"} )
-#pp.pprint( msgs['message_count'] )
-#pp.pprint( msgs['messages'][0:3] )
+msgs = mail.view_inbox( {"tags": "excavator"} )
+pp.pprint( msgs['message_count'] )
+pp.pprint( msgs['messages'][0:3] )
 
 
 ### Work as expected.  Make sure trash and archived have some parl messages 

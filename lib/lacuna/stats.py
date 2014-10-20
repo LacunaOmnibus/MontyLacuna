@@ -23,7 +23,7 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def alliance_rank( self, sort_by = 'influence desc,population desc', page_number = 1 ):
         """ Returns struct with keys:
@@ -68,7 +68,7 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def find_alliance_rank( self, sort_by = '', alliance_name = '' ):
         """
@@ -92,7 +92,7 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def empire_rank( self, sort_by = 'empire_size_rank', page_number = 1 ):
         """ Returns struct with keys:
@@ -122,7 +122,7 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def find_empire_rank( self, sort_by = '', empire_name = '' ):
         """ Returns struct with keys:
@@ -138,7 +138,7 @@ class Stats(LacunaObject):
             empire_name     standard TLE search value - >= 3 characters, matches front.
         """
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def colony_rank( self, sort_by = 'population_rank' ):
         """ Returns struct with keys:
@@ -160,7 +160,7 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def spy_rank( self, sort_by = 'level_rank' ):
         """ Returns struct with keys:
@@ -183,7 +183,7 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def weekly_medal_winners( self ):
         """ Returns struct with keys:

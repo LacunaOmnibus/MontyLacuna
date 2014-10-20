@@ -12,11 +12,7 @@ class LacunaObject:
             raise AttributeError("LacunaObject subclass "+ str(type(self)) +" did not define a 'path' class attribute.")
         self.client = client
 
-    ### CHECK
-    ### I should really rename this to set_empire_status since there are 
-    ### several of these floating around.  I'll have to change all the 
-    ### decorations as well.
-    def set_status( func ):
+    def set_empire_status( func ):
         """Decorator.
         
         Update the Empire object's attributes with fresh status data with 
@@ -59,11 +55,14 @@ class LacunaObject:
             mydict = {}
             if 'empire' in rv:
                 mydict = rv['empire']
+                del( rv['empire'] )
             elif 'status' in rv:
                 if 'empire' in rv['status']:
                     mydict = rv['status']['empire']
+                    del( rv['status']['empire'] )
                 else:
                     mydict = rv['status']
+                    del( rv['status'] )
 
             for i in mydict:
                 setattr( self.client.empire, i, mydict[i] )
@@ -78,7 +77,7 @@ class LacunaObject:
         """
         def inner(self, *args):
             rslt = self.client.send( self.path, func.__name__, args )
-            func( args )
+            func( self, *args )
             return rslt
         return inner
 
@@ -89,10 +88,10 @@ class LacunaObject:
         Expects positional arguments.  This is the 'old' way of doing things, but
         almost all of the TLE methods work this way.
         """
-        def inner(self, *args):
+        def inner(self, *args, **kwargs):
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
-            func( args )
+            func( self, *args, **kwargs )
             return rslt
         return inner
 
@@ -106,7 +105,7 @@ class LacunaObject:
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
-            func( mydict )
+            func( self, mydict )
             return rslt
         return inner
 

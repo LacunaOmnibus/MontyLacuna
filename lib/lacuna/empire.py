@@ -84,7 +84,7 @@ class MyEmpire( Empire ):
     def logout( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_status( self ):
         """rv['empire'] is a struct with these keys:
@@ -103,13 +103,13 @@ class MyEmpire( Empire ):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_invite_friend_url( self ):
         """See the 'referral_url' key in the returned dict."""
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def invite_friend( self, email, message="" ):
         """Doesn't error, but doesn't send email either.  Since the 'forgot my password' feature
@@ -117,7 +117,7 @@ class MyEmpire( Empire ):
         anymore."""
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def view_profile( self ):
         """Throws 1015 (Sitters cannot modify preferences) if the user is logged in with 
@@ -126,7 +126,7 @@ class MyEmpire( Empire ):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def view_public_profile( self, empire_id:int ):
         """rv['profile'] contains the keys:
@@ -151,7 +151,7 @@ class MyEmpire( Empire ):
     @LacunaObject.call_member_meth
     def edit_profile( self, profile:dict ):
         """The rv does contain a 'status' dict, but it's in a different format from what's 
-        expected, so skip the set_status decorator.
+        expected, so skip the set_empire_status decorator.
 
         Valid keys for profile dict (incoming arg):
             description
@@ -184,12 +184,12 @@ class MyEmpire( Empire ):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def change_password( self, oldpw:str, newpw:str ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def find( self, name_segment:str ):
         """name_segment must be at least three letters long.  All empires that match
@@ -205,53 +205,53 @@ class MyEmpire( Empire ):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def set_status_message( self, message:str ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def view_boosts( self ):
         """See the 'boosts' key in the retval."""
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def boost_storage( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def boost_food( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def boost_water( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def boost_energy( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def boost_ore( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def boost_happiness( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def boost_building( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def spy_training_boost( self ):
         pass
@@ -260,24 +260,24 @@ class MyEmpire( Empire ):
     ### not work, server side.  It's a known problem.  Being able to turn on 
     ### the suicide button but not being able to turn it back off again is a 
     ### tiny bit of a BIG FUCKING PROBLEM.
-    #@LacunaObject.set_status
+    #@LacunaObject.set_empire_status
     #@LacunaObject.call_member_meth
     #def enable_self_destruct( self ):
     #    pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def disable_self_destruct( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def redeem_essentia_code( self, code ):
         ### Untested; I have no E codes to try this out with, and I'm not 
         ### spending money to test.
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def redefine_species_limits( self ):
         """Just returns some info about the current limits on the current user's
@@ -297,7 +297,7 @@ class MyEmpire( Empire ):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def redefine_species( self, params ):
         """Actually does the deed of redefining a player's species.
@@ -307,7 +307,7 @@ class MyEmpire( Empire ):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def view_species_stats( self ):
         """name, description, various affinities"""
@@ -317,7 +317,7 @@ class MyEmpire( Empire ):
     def get_species_templates( self ):
         """Returns the species templates that are presented to a new player upon
         initial species creation (Average, Warmonger, Resilient, Viral, etc)
-        Does not return a status block, so no set_status decorator.
+        Does not return a status block, so no set_empire_status decorator.
         """
         pass
 

@@ -75,10 +75,10 @@ class Building(LacunaObject):
 
     def set_building_status( func ):
         """Decorator.
-        Much like LacunaObject.set_status.  A few of the Building server 
+        Much like LacunaObject.set_empire_status.  A few of the Building server 
         methods return both empire status and building status.  So we'll still 
-        decorate with LacunaObject.set_status to get the empire status, but 
-        we'll also decorate with this to set the body status.
+        decorate with LacunaObject.set_empire_status to get the empire status, 
+        but we'll also decorate with this to set the body status.
         """
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
@@ -90,6 +90,7 @@ class Building(LacunaObject):
     def write_building_status( self, rv:dict ):
         if 'building' in rv:
             mydict = rv['building']
+            del( rv['building'] )
         for n, v in mydict.items():
             setattr( self, n, v )
 
@@ -107,13 +108,13 @@ class Building(LacunaObject):
         self.write_building_status( rv )
         self.view();
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def view( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @call_building_meth
     def demolish( self ):
         ### Since the building no longer exists, make sure that the object is 
@@ -121,7 +122,7 @@ class Building(LacunaObject):
         del( self.body_id )
         del( self.building_id )
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def do_upgrade( self ):
@@ -133,13 +134,13 @@ class Building(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def do_downgrade( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @call_building_meth
     def get_stats_for_level( self, level:int ):
         """ Returns what the stats for this building would be at the requested level.  The
@@ -151,7 +152,7 @@ class Building(LacunaObject):
         ### building's actual stats.
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def repair( self ):

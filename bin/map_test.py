@@ -10,16 +10,14 @@ sys.path.append(libdir)
 import lacuna as lac
 pp = pprint.PrettyPrinter( indent = 4 )
 
-
-glc = lac.users.Member(
-    host = 'us1.lacunaexpanse.com',
-    username='',
-    password='',
+glc = lac.clients.Member(
+    config_file = bindir + "/../etc/lacuna.cfg",
+    config_section = 'my_sitter',
 )
 
 
 mymap = glc.get_map();
-#pp.pprint( mymap.get_stars(285, -1115, 290, -1120) )
+pp.pprint( mymap.get_stars(285, -1115, 290, -1120) )
 
 
 star_dict = {
@@ -57,15 +55,4 @@ star_dict = {
 #zone_dict = { 'zone': '-1|0', }
 #rv = mymap.probe_summary_fissures( zone_dict )
 #pp.pprint( rv )
-
-
-
-
-
-
-
-
-
-
-
 

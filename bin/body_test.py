@@ -12,7 +12,7 @@ sys.path.append(libdir)
 import lacuna as lac
 
 
-glc = lac.users.Member(
+glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'my_sitter',
 )
@@ -36,15 +36,15 @@ def list_buildings(body):
 
 
 ### Find your planet
-my_planet = glc.get_body( Some ID you pulled out of the list_bodies() call above )
+#my_planet = glc.get_body( Some ID you pulled out of the list_bodies() call above )
 ### ...or, much nicer...
-my_planet = glc.get_body_byname( 'my planet name' )
+my_planet = glc.get_body_byname( 'bmots01' )
 
 
 
 ### More on nicer building-finding stuff in building_test.py.
-#list_buildings(my_planet)
-#quit()
+list_buildings(my_planet)
+quit()
 
 
 

@@ -6,7 +6,7 @@ class Alliance(LacunaObject):
 
     path = 'alliance'
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def view_profile( self, alliance_id:int ):
         """Returns publicly-accessible data about the alliance.
@@ -38,7 +38,7 @@ class Alliance(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def find( self, partial_name:str ):
         """partial_name must be at least 3 characters.  Matches alliances whose names

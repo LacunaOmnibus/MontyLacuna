@@ -10,10 +10,9 @@ sys.path.append(libdir)
 import lacuna as lac
 pp = pprint.PrettyPrinter( indent = 4 )
 
-glc = lac.users.Member(
-    host = 'us1.lacunaexpanse.com',
-    username='',
-    password='',
+glc = lac.clients.Member(
+    config_file = bindir + "/../etc/lacuna.cfg",
+    config_section = 'my_sitter',
 )
 
 ### Get info on the alliance of the client's empire.  If the client's empire 
@@ -29,5 +28,5 @@ pp.pprint( my_all.members )
 all = glc.get_alliance();
 
 #pp.pprint( all.view_profile(26)['profile'] )    # Culture 
-#pp.pprint( all.find("S.M.A.") )
+pp.pprint( all.find("S.M.A.") )
 

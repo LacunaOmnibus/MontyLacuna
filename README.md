@@ -24,11 +24,12 @@ Clients, both logged-in and guest.
 #### Map
 #### Stats
 #### Body
+#### Buildings
 
 ## Incomplete/Not Started
-#### Buildings
 #### Payments
 There's a real good chance this will never be worked on as part of this 
 project.
 #### Announcement
 #### Captcha
+

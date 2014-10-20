@@ -8,7 +8,7 @@ class Map(LacunaObject):
 
     path = 'map'
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_named_meth
     def get_star_map( self, mydict ):
         """The passed-in dict must contain the keys top, bottom, left, right.  
@@ -27,19 +27,19 @@ class Map(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_stars( self, x1, x2, y1, y2 ):
         """ rv is the same as for get_star_map()."""
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def check_star_for_incoming_probe( self, star_id ):
         """ rv['incoming_probe'] will be 1 for true, 0 for false."""
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_star( self, star_id ):
         """Returns a single dict (NOT a list of dicts like get_star() and get_star_map()!)
@@ -47,19 +47,19 @@ class Map(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_star_by_name( self, star_name ):
         """star_name must be an exact name, not a partial.  rv is identical to get_star().  """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_star_by_xy( self, x, y ):
         """x and y must be exact coords, not a range.  rv is identical to get_star().  """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def search_stars( self, partial_name ):
         """partial_name must be at least 3 characters.  Matches up to 25 stars whose names

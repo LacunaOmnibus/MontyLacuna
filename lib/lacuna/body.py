@@ -1,16 +1,6 @@
 
 
 """
-    A Body object must be passed a body_id upon creation, whether you're 
-    creating it directly:
-        body = lacuna.body.Body( <Member object from users module>, 12345 )
-
-    Or as a Member method (which passes the client argument for you:)
-        body = member.get_body( 12345 )
-
-    All of the data returned by a call to the server's get_status() method 
-    become attributes of the body object.  A complete list of those 
-    attributes:
 
     BODY OBJECT ATTRIBUTES {#{{{
 
@@ -99,10 +89,10 @@
 
     }#}}}
 
-    Also, upon instantiation, the body's buildings are queried, and they end 
+    Upon instantiation, the body's buildings are queried, and they end 
     up in two other attributes: buildings_id and buildings_name.
 
-    A dict representing a building looks like this: {#{{{
+    A dict representing a building: {#{{{
         {
             "name" : "Apple Orchard",
             "x" : 1,
@@ -175,10 +165,10 @@ class Body(LacunaObject):
 
     def set_body_status( func ):
         """Decorator.
-        Much like LacunaObject.set_status.  Most of the Body server methods 
-        return both empire status and body status.  So we'll still decorate 
-        with LacunaObject.set_status to get the empire status, but we'll also 
-        decorate with this to set the body status.
+        Much like LacunaObject.set_empire_status.  Most of the Body server 
+        methods return both empire status and body status.  So we'll still 
+        decorate with LacunaObject.set_empire_status to get the empire status, 
+        but we'll also decorate with this to set the body status.
         """
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
@@ -217,16 +207,20 @@ class Body(LacunaObject):
             return rslt
         return inner
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
     def get_status( self ):
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
     def get_buildings( self ):
+        """ Returns struct with key 'buildings'.  This struct is keyed off 
+        building IDs.  Values are building structs as documented top of this 
+        doc.
+        """
         pass
 
     def get_existing_building( self, classname:str, building_id:int ):
@@ -267,21 +261,23 @@ class Body(LacunaObject):
             bldg_dict['id'] = id
             self.buildings_name[name].append( bldg_dict )
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
     def repair_list( self, building_ids_to_repair:list ):
         """ Repairs all buildings indicated by ID in the passed-in list.
-        CHECK on retval here.
 
-        TBD
-        I've called this method, passing the IDs of all of the SAWs on one of 
-        my planets.  Everything seemed to have worked, but nothing actually 
-        needed repairing.  So this hasn't actually been tested in anger.
+        Per the API docs, this should return a struct including key 
+        'buildings', itself a struct of building_id => building_struct.  This 
+        'buildings' struct will only contain buildings passed in 
+        building_ids_to_repair.
+
+        CHECK I haven't got any broken buildings handy to actually test this 
+        retval, so I haven't been able to verify the paragraph above yet.
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
     def rearrange_buildings( self, arrangment_dicts:list ):
@@ -310,7 +306,7 @@ class Body(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
     def get_buildable( self, x:int, y:int, tag:str = '' ):
@@ -377,7 +373,7 @@ class Body(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_status
+    @LacunaObject.set_empire_status
     @call_member_meth
     def abandon( self ):
         """ Abandons the current planet.

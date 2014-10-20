@@ -6,5 +6,5 @@ import lacuna.exceptions
 import lacuna.inbox
 import lacuna.map
 import lacuna.stats
-import lacuna.users
+import lacuna.clients
 
