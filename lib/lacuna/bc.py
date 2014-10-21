@@ -109,6 +109,3 @@ class LacunaObject:
             return rslt
         return inner
 
-
-    def foobar():
-        print('foobar')
