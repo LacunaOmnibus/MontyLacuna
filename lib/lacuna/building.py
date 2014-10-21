@@ -5,14 +5,30 @@
     LacunaObject requires a path 'class' variable, but Building does not 
     provide it; any module extending Building must provide that path variable.
 
-    Specific building class names must match the URL needed to access them (eg 
-    the Space Port class must be named 'spaceport').  Having class names that 
-    differ from the published URLs just creates one more thing to have to look 
-    up somewhere.
-    The names of the modules containing those building classes are hardcoded 
-    in buildings/__init__.py, so those module names can be more flexible.  
-    However, I see no need to complicate things by using different names for 
-    the modules, either, so name them "<classname>.py" (eg "spaceport.py").
+    building dict example: {#{{{
+        This is what comes back from a server call to view().  These keys become
+        attributes of the building object.
+
+        {
+            "name" : "Apple Orchard",
+            "x" : 1,
+            "y" : -1,
+            "url" : "/apple",
+            "level" : 3,
+            "image" : "apples3",
+            "efficiency" : 95,
+            "pending_build" : {            # only included when building is building/upgrading
+                "seconds_remaining" : 430,
+                "start" : "01 31 2010 13:09:05 +0600",
+                "end" : "01 31 2010 18:09:05 +0600"
+            },
+            "work" : {                     # only included when building is working (Parks, Waste Recycling, etc)
+                "seconds_remaining" : 49,
+                "start" : "01 31 2010 13:09:05 +0600",
+                "end" : "01 31 2010 18:09:05 +0600"
+            }
+        },
+    }#}}}
 
     There are two types of Building objects:
             - Potential buildings
@@ -21,6 +37,14 @@
     but no building_id.  A Potential building can't do anything but call 
     build().  After calling build(), the Potential building becomes an 
     Existing building.
+
+    do_upgrade(), do_downgrade()
+    The published (server) method names for these are "upgrade()" and 
+    "downgrade()".  However, we've got status attributes by those names, and 
+    attributes overwrite methods of the same name.
+    So these have been renamed, adding the "do_" prefix" to avoid attribute 
+    name collisions.
+
 """
 
 import re
@@ -40,12 +64,15 @@ class Building(LacunaObject):
         """Decorator.
         Calls a server method that requires a building_id, but no body_id.
         This is the decorator that most Building methods will use.
+        Methods using this decorator get the original server result handed 
+        back to them in **kwargs['rslt'].
         """
         def inner(self, *args):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id, self.building_id) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
-            func( self, *args )
+            server_result = {'rslt': rslt}
+            func( self, *args, **server_result )
             return rslt
         return inner
 
@@ -53,11 +80,14 @@ class Building(LacunaObject):
         """Decorator.
         Some building methods require neither a body_id nor a building_id (see 
         spaceport.py for examples).
+        Methods using this decorator get the original server result handed 
+        back to them in **kwargs['rslt'].
         """
         def inner(self, *args):
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
-            func( self, *args )
+            server_result = {'rslt': rslt}
+            func( self, *args, **server_result )
             return rslt
         return inner
 
@@ -88,13 +118,14 @@ class Building(LacunaObject):
         return inner
 
     def write_building_status( self, rv:dict ):
+        mydict = {}
         if 'building' in rv:
             mydict = rv['building']
             del( rv['building'] )
         for n, v in mydict.items():
             setattr( self, n, v )
 
-    def build( self, x:int, y:int ):
+    def build( self, x:int, y:int, **kwargs ):
         """ Actually places a building on the requested coords, assuming the building is
         buildable, the coords are empty, and a plot is available.
         After calling build(), your "new building" object will be be an "existing building"
@@ -111,12 +142,12 @@ class Building(LacunaObject):
     @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
-    def view( self ):
+    def view( self, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @call_building_meth
-    def demolish( self ):
+    def demolish( self, **kwargs ):
         ### Since the building no longer exists, make sure that the object is 
         ### incapable of calling any further Building methods.
         del( self.body_id )
@@ -125,24 +156,19 @@ class Building(LacunaObject):
     @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
-    def do_upgrade( self ):
-        """ Adds the current building to the build queue.
-        The published method name is "upgrade", not "do_upgrade".  But we've got an attribute
-        (set from a status return) named "upgrade", and attributes overwrite methods of the
-        same name.  So this has been renamed "do_upgrade".  The call_building_meth() decorator
-        knows how to deal with methods that =~ /^do_/.
-        """
+    def do_upgrade( self, **kwargs ):
+        """ Adds the current building to the build queue. """
         pass
 
     @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
-    def do_downgrade( self ):
+    def do_downgrade( self, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @call_building_meth
-    def get_stats_for_level( self, level:int ):
+    def get_stats_for_level( self, level:int, **kwargs ):
         """ Returns what the stats for this building would be at the requested level.  The
         hypothetical stats are returned in rv['building'].
         """
@@ -155,7 +181,7 @@ class Building(LacunaObject):
     @LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
-    def repair( self ):
+    def repair( self, **kwargs ):
         """ Repairs a building, provided you have enough resources onsite.
         See the repair_costs building attribute (it's a dict) before calling
         repair to determine how much res the repair will take.

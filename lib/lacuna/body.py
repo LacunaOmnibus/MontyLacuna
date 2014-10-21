@@ -92,32 +92,12 @@
     Upon instantiation, the body's buildings are queried, and they end 
     up in two other attributes: buildings_id and buildings_name.
 
-    A dict representing a building: {#{{{
-        {
-            "name" : "Apple Orchard",
-            "x" : 1,
-            "y" : -1,
-            "url" : "/apple",
-            "level" : 3,
-            "image" : "apples3",
-            "efficiency" : 95,
-            "pending_build" : {            # only included when building is building/upgrading
-                "seconds_remaining" : 430,
-                "start" : "01 31 2010 13:09:05 +0600",
-                "end" : "01 31 2010 18:09:05 +0600"
-            },
-            "work" : {                     # only included when building is working (Parks, Waste Recycling, etc)
-                "seconds_remaining" : 49,
-                "start" : "01 31 2010 13:09:05 +0600",
-                "end" : "01 31 2010 18:09:05 +0600"
-            }
-        },
-    }#}}}
+    "building dict", mentioned below, is documented in building.py.
 
     self.buildings_id is keyed off the individual building ID.
         self.buildings_id = {
-            building_id_1 = { dict like above },
-            building_id_2 = { dict like above },
+            building_id_1 = { building dict },
+            building_id_2 = { building dict },
             ...
         }
 
@@ -126,13 +106,13 @@
     is a list of buildings of this name.
         self.buildings_name = {
             'Apple Orchard' = [
-                { dict ALMOST like above },
-                { dict ALMOST like above },
+                { building dict },
+                { building dict },
                 ...
             ],
             'Space Port' = [
-                { dict ALMOST like above },
-                { dict ALMOST like above },
+                { building dict },
+                { building dict },
                 ...
             ],
             ...
@@ -173,7 +153,6 @@ class Body(LacunaObject):
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
             self = args[0]
-
             ### We _must_ check for 'status' before checking for body.
             ###
             ### In every case that includes a 'status' key, that's the status 
@@ -188,8 +167,10 @@ class Body(LacunaObject):
             if 'status' in rv:
                 if 'body' in rv['status']:
                     mydict = rv['status']['body']
+                    del( rv['status']['body'] )
             elif 'body' in rv:
                 mydict = rv['body']
+                del( rv['body'] )
             for n, v in mydict.items():
                 setattr( self, n, v )
             return rv
@@ -223,11 +204,13 @@ class Body(LacunaObject):
         """
         pass
 
-    def get_existing_building( self, classname:str, building_id:int ):
+    def get_building_id( self, classname:str, building_id:int ):
+        """ Given a building's ID, returns the object for that building."""
         bldg_str = "lacuna.buildings.{}( self.client, self.body_id, building_id )".format( classname )
         return eval(bldg_str)
 
-    def get_existing_building_coords( self, x:int, y:int ):
+    def get_building_coords( self, x:int, y:int ):
+        """ Given a building's coordinates, returns the object for that building."""
         for bid, bdict in self.buildings_id.items():
             if int(bdict['x']) == x and int(bdict['y']) == y:
                 classname = re.sub("^/(\w+)", "\g<1>", bdict['url'] )
