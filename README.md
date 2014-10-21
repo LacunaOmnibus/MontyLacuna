@@ -32,6 +32,7 @@ through those building stubs to make them each do whatever-it-is they're each
 supposed to do.
  - archaeology
  - blackholegenerator
+ - development
 
 ## Incomplete/Not Started
 - Payments
@@ -39,4 +40,14 @@ supposed to do.
    project.
 - Announcement
 - Captcha
+
+## TBD
+- Add another attribute to the client classes - warn_on_sleep.  Default it to true.  If a 
+  call to send() needs to sleep because of the 60 RPC per minute limit, issue a warning 
+  letting the user know that's what's happening and is why their script is taking so long.  
+  Unless this attribute has been specifically set to false, in which case issue no 
+  warning.
+
+
+
 
