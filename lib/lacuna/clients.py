@@ -199,7 +199,8 @@ class Guest:
         if resp.status_code != 200:
             json_error = json.loads( resp.text )
             error = ServerError( json_error['error']['code'], json_error['error']['message'] )
-            if error.code == 1010 and re('Slow down', error.text) and self.sleep_after_error:
+
+            if error.code == 1010 and re.match('Slow down', error.text) and self.sleep_after_error:
                 self.depth += 1
                 if self.depth > 3:
                     raise RuntimeError("Likely infinite recursion detected on "+method+"; bailing!")

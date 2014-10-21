@@ -76,6 +76,20 @@ class Building(LacunaObject):
             return rslt
         return inner
 
+    def call_building_named_meth(func):
+        """Decorator.  
+        Calls a server method that requires a building_id, but no body_id.
+        Expects named arguments.  This is the 'new' way of doing it, but there are
+        fairly few methods that work this way.  See generate_singularity()
+        """
+        def inner( self, mydict:dict ):
+            mydict['session_id'] = self.client.session_id
+            mydict['building_id'] = self.building_id
+            rslt = self.client.send( self.path, func.__name__, (mydict,) )
+            func( self, mydict )
+            return rslt
+        return inner
+
     def call_naked_meth(func):
         """Decorator.
         Some building methods require neither a body_id nor a building_id (see 

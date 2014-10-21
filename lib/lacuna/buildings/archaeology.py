@@ -39,7 +39,8 @@ class archaeology(Building):
         'item_name' is the name of the artifact created.
         'quantity' is the integer number created.
 
-        Raises 1002 if the listed glyphs do not form a valid artifact recipe.
+        Raises ServerError 1002 if the listed glyphs do not form a valid 
+        artifact recipe.
         """
         pass
 

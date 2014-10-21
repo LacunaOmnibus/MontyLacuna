@@ -30,6 +30,8 @@ work, but it hasn't been fully tested yet.
 exists, and stub classes exist for all buildings in the game.  I need to work 
 through those building stubs to make them each do whatever-it-is they're each 
 supposed to do.
+ - archaeology
+ - blackholegenerator
 
 ## Incomplete/Not Started
 - Payments

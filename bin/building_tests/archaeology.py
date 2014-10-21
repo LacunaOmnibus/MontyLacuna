@@ -56,7 +56,7 @@ arch = my_planet.get_building_coords( -5, -5 )
 
 
 ### Abandon existing excavator
-###
-rvg = arch.abandon_excavator(1652388)
-glc.pp.pprint( rvg )
+### BE CAREFUL WITH THIS
+#rvg = arch.abandon_excavator( integer excavator site ID from the view_excavators() call above )
+#glc.pp.pprint( rvg )
 
