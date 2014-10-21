@@ -33,6 +33,7 @@ supposed to do.
  - archaeology
  - blackholegenerator
  - development
+ - distributioncenter
 
 ## Incomplete/Not Started
 - Payments
