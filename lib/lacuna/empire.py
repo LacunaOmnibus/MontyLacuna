@@ -48,6 +48,14 @@ class Empire(LacunaObject):
     def fetch_captcha( self ):
         """Returns dict containing 'guid' and 'url' keys
         DICT not OBJ, so rv['guid'], not rv.guid
+
+        There also exists a Captcha class, which requires the user to already 
+        be logged in.  This fetch_captcha method exists to allow a brand new, 
+        not-yet-logged-in user to get a captcha, the solution to which they 
+        can pass to create().
+
+        If you're looking for a captcha for anything other than new user 
+        creation, go use the Captcha class.
         """
         pass
 
@@ -81,12 +89,12 @@ class MyEmpire( Empire ):
     ###     reset_password()
 
     @LacunaObject.call_member_meth
-    def logout( self ):
+    def logout( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def get_status( self ):
+    def get_status( self, *args, **kwargs ):
         """rv['empire'] is a struct with these keys:
             name
             status_message
@@ -105,13 +113,13 @@ class MyEmpire( Empire ):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def get_invite_friend_url( self ):
+    def get_invite_friend_url( self, *args, **kwargs ):
         """See the 'referral_url' key in the returned dict."""
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def invite_friend( self, email, message="" ):
+    def invite_friend( self, email, message="", *args, **kwargs ):
         """Doesn't error, but doesn't send email either.  Since the 'forgot my password' feature
         is exhibiting the same behavior, I'm going to assume the server just isn't sending mail
         anymore."""
@@ -119,7 +127,7 @@ class MyEmpire( Empire ):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_profile( self ):
+    def view_profile( self, *args, **kwargs ):
         """Throws 1015 (Sitters cannot modify preferences) if the user is logged in with 
         their sitter.
         Yes, I know - 'view' does not imply 'modify'.  That's still the exception thrown.
@@ -128,7 +136,7 @@ class MyEmpire( Empire ):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_public_profile( self, empire_id:int ):
+    def view_public_profile( self, empire_id:int, *args, **kwargs ):
         """rv['profile'] contains the keys:
             description
             country
@@ -149,7 +157,7 @@ class MyEmpire( Empire ):
         pass
 
     @LacunaObject.call_member_meth
-    def edit_profile( self, profile:dict ):
+    def edit_profile( self, profile:dict, *args, **kwargs ):
         """The rv does contain a 'status' dict, but it's in a different format from what's 
         expected, so skip the set_empire_status decorator.
 
@@ -186,12 +194,12 @@ class MyEmpire( Empire ):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def change_password( self, oldpw:str, newpw:str ):
+    def change_password( self, oldpw:str, newpw:str, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def find( self, name_segment:str ):
+    def find( self, name_segment:str, *args, **kwargs ):
         """name_segment must be at least three letters long.  All empires that match
         (where "match" means "whose names start with that string, case-INsensitive")
         will be returned.
@@ -207,53 +215,53 @@ class MyEmpire( Empire ):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def set_status_message( self, message:str ):
+    def set_status_message( self, message:str, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_boosts( self ):
+    def view_boosts( self, *args, **kwargs ):
         """See the 'boosts' key in the retval."""
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def boost_storage( self ):
+    def boost_storage( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def boost_food( self ):
+    def boost_food( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def boost_water( self ):
+    def boost_water( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def boost_energy( self ):
+    def boost_energy( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def boost_ore( self ):
+    def boost_ore( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def boost_happiness( self ):
+    def boost_happiness( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def boost_building( self ):
+    def boost_building( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def spy_training_boost( self ):
+    def spy_training_boost( self, *args, **kwargs ):
         pass
 
     ### Commenting this out because, right now, disable_self_destruct() does 
@@ -262,24 +270,24 @@ class MyEmpire( Empire ):
     ### tiny bit of a BIG FUCKING PROBLEM.
     #@LacunaObject.set_empire_status
     #@LacunaObject.call_member_meth
-    #def enable_self_destruct( self ):
+    #def enable_self_destruct( self, *args, **kwargs ):
     #    pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def disable_self_destruct( self ):
+    def disable_self_destruct( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def redeem_essentia_code( self, code ):
+    def redeem_essentia_code( self, code, *args, **kwargs ):
         ### Untested; I have no E codes to try this out with, and I'm not 
         ### spending money to test.
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def redefine_species_limits( self ):
+    def redefine_species_limits( self, *args, **kwargs ):
         """Just returns some info about the current limits on the current user's
         ability to redefine their species.
 
@@ -299,7 +307,7 @@ class MyEmpire( Empire ):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def redefine_species( self, params ):
+    def redefine_species( self, params, *args, **kwargs ):
         """Actually does the deed of redefining a player's species.
         Costs E, so untested.
 
@@ -309,12 +317,12 @@ class MyEmpire( Empire ):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_species_stats( self ):
+    def view_species_stats( self, *args, **kwargs ):
         """name, description, various affinities"""
         pass
 
     @LacunaObject.call_member_meth
-    def get_species_templates( self ):
+    def get_species_templates( self, *args, **kwargs ):
         """Returns the species templates that are presented to a new player upon
         initial species creation (Average, Warmonger, Resilient, Viral, etc)
         Does not return a status block, so no set_empire_status decorator.

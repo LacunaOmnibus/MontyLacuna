@@ -10,7 +10,7 @@ class Map(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_named_meth
-    def get_star_map( self, mydict ):
+    def get_star_map( self, mydict, *args, **kwargs ):
         """The passed-in dict must contain the keys top, bottom, left, right.  
         Each must be an integer within the star map (so >= -1500 and <= 1500).
 
@@ -29,19 +29,19 @@ class Map(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def get_stars( self, x1, x2, y1, y2 ):
+    def get_stars( self, x1, x2, y1, y2, *args, **kwargs ):
         """ rv is the same as for get_star_map()."""
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def check_star_for_incoming_probe( self, star_id ):
+    def check_star_for_incoming_probe( self, star_id, *args, **kwargs ):
         """ rv['incoming_probe'] will be 1 for true, 0 for false."""
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def get_star( self, star_id ):
+    def get_star( self, star_id, *args, **kwargs ):
         """Returns a single dict (NOT a list of dicts like get_star() and get_star_map()!)
         The single returned dict is the same format as get_star_map().
         """
@@ -49,19 +49,19 @@ class Map(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def get_star_by_name( self, star_name ):
+    def get_star_by_name( self, star_name, *args, **kwargs ):
         """star_name must be an exact name, not a partial.  rv is identical to get_star().  """
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def get_star_by_xy( self, x, y ):
+    def get_star_by_xy( self, x, y, *args, **kwargs ):
         """x and y must be exact coords, not a range.  rv is identical to get_star().  """
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def search_stars( self, partial_name ):
+    def search_stars( self, partial_name, *args, **kwargs ):
         """partial_name must be at least 3 characters.  Matches up to 25 stars whose names
         START with partial_name (NOT stars whose names just contain partial_name).
         rv is a list, identical to get_star_map().
@@ -69,7 +69,7 @@ class Map(LacunaObject):
         pass
 
     @LacunaObject.call_member_named_meth
-    def probe_summary_fissures( self, mydict ):
+    def probe_summary_fissures( self, mydict, *args, **kwargs ):
         """ mydict must contain the key 'zone', with a value of the zone you want to check,
         expressed in standard TLE zone notation (0|0).
 

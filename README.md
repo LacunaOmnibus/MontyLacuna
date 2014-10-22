@@ -10,6 +10,11 @@ to replicate all of the functionality.
 The main goal is to help me learn Python, but I'd like to end up with a fully 
 working package.
 
+## Prerequisites
+- requests
+  - pip install requests
+  - CHECK It might make sense to replace this with urllib, since it's standard.
+
 ## Complete
 Nothing.
 
@@ -45,6 +50,9 @@ account and inviting/rejecting/etc that account.  Currently I'm unable to create
 test account on PT.  I have no reason to believe that these untested methods don't 
 work, they just haven't actually been confirmed to work.
  - energyreserve
+ - entertainment
+   - I started on this, but it requires a captcha which I haven't worked on yet.  I'm 
+going to switch gears to work on that captcha then come back to this.
 
 ## Incomplete/Not Started
 - Payments
@@ -59,6 +67,14 @@ work, they just haven't actually been confirmed to work.
   letting the user know that's what's happening and is why their script is taking so long.  
   Unless this attribute has been specifically set to false, in which case issue no 
   warning.
+
+- Everything needs to be tested on Windows.  In particular:
+ - bin/captcha_test.py
+
+- Save the session_id to the config file (and use it) so captcha solutions persist between 
+  runs.
+ - I tend to think this isn't a huge deal, but GLC does it, and I know there are people 
+   who love it, so add it in.
 
 
 
