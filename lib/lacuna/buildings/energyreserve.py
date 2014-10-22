@@ -1,8 +1,8 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Storage
+from lacuna.building import SingleStorage
 
-class energyreserve(Storage):
+class energyreserve(SingleStorage):
     path = 'energyreserve'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

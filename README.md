@@ -40,8 +40,10 @@ supposed to do.
  - Existing base classes:
    - Building
      - All buildings inherit from this (at some level)
-   - Storage
-     - Base class for the four basic storage buildings
+   - SingleStorage
+     - Base class for storage buildings for single-type resources (energy, water).
+   - MultiStorage
+     - Base class for storage buildings for multi-type resources (food, ore).
  - archaeology
  - blackholegenerator
  - development
@@ -53,6 +55,7 @@ test account on PT.  I have no reason to believe that these untested methods don
 work, they just haven't actually been confirmed to work.
  - energyreserve
  - entertainment
+ - foodreserve
 
 ## Incomplete/Not Started
 - Payments
