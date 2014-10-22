@@ -91,6 +91,7 @@ class LacunaObject:
         def inner(self, *args, **kwargs):
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
+            kwargs['rslt'] = rslt
             func( self, *args, **kwargs )
             return rslt
         return inner

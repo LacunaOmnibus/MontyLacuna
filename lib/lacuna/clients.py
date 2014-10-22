@@ -6,6 +6,7 @@ from my_validate_email import validate_email
 
 import lacuna.alliance
 import lacuna.body
+import lacuna.captcha
 import lacuna.empire
 import lacuna.inbox
 import lacuna.map
@@ -48,30 +49,29 @@ class Guest:
     config_list = [
         'host', 'proto',
         'username', 'password', 'api_key',
-        'sleep_on_call', 'sleep_after_error',
+        'sleep_on_call', 'sleep_after_error', 'session_id'
     ]
 
     def __init__( self,
             config_file = '', config_section = '',
             proto = 'http', host = 'us1.lacunaexpanse.com',
             username = '', password = '', api_key = 'anonymous',
-            sleep_on_call = 1, sleep_after_error = True
+            sleep_on_call = 1, sleep_after_error = True, session_id = ''
         ):
 
-
         if config_file and config_section and os.path.isfile(config_file):
-            cp = self.read_config_file( config_file )
+            self.config_file    = config_file
+            self.config_section = config_section
+            self.config         = self.read_config_file( config_file )
             for i in self.config_list:
-                if i in cp[config_section]:
-                    ### username and password will be missing for guest sections.
-                    setattr( self, i, cp[config_section][i] )
+                if i in self.config[config_section]:
+                    setattr( self, i, self.config[config_section][i] )
+        elif config_file and not os.path.isfile(config_file):
+            raise EnvironmentError("Config file "+config_file+": no such file or directory.")
         else:
             for i in self.config_list:
                 setattr( self, i, eval(i) )
-
-        ### This always starts out empty.
-        self.session_id = ''
-
+        
     def read_config_file( self, conf, default = 'DEFAULT' ):
         cp = ConfigParser( interpolation=ExtendedInterpolation() )
         cp.read( conf )
@@ -200,12 +200,19 @@ class Guest:
             json_error = json.loads( resp.text )
             error = ServerError( json_error['error']['code'], json_error['error']['message'] )
 
+            if depth > 3:
+                raise RuntimeError("Likely infinite recursion detected on "+method+"; bailing!")
+            depth += 1
+
             if error.code == 1010 and re.match('Slow down', error.text) and self.sleep_after_error:
-                self.depth += 1
-                if self.depth > 3:
-                    raise RuntimeError("Likely infinite recursion detected on "+method+"; bailing!")
                 time.sleep( 61 )
-                thingy = self.send( path, method, params, self.depth )
+                thingy = self.send( path, method, params, depth )
+            elif error.code == 1016 and error.text == 'Needs to solve a captcha.':
+                cap = self.get_captcha()
+                cap.showit()
+                cap.prompt_user()
+                cap.solveit()
+                thingy = self.send( path, method, params, depth )
             else:
                 raise error
         else:
@@ -213,14 +220,20 @@ class Guest:
 
         if self.sleep_on_call:
             time.sleep( float(self.sleep_on_call) )
-
+        
         ### thingy contains:
         ###     {
         ###         "id": "1",
         ###         "jsonrpc": "2.0",
         ###         "result": { dict that we're actually interested in }
         ###     }
-        return thingy['result']
+        ### We're only returning 'result', but sometimes we're recursing into 
+        ### ourself (captcha, 60 RPC/min limit) - in those cases, thingy will 
+        ### already be just 'result'.
+        if 'result' in thingy:
+            return thingy['result']
+        else:
+            return thingy
 
 ################################################################
 
@@ -274,6 +287,9 @@ class Member(Guest):
         else:
             raise NoSuchBodyError("No body with the name '{}' was found.".format(body_name))
 
+    def get_captcha(self):
+        return lacuna.captcha.Captcha( self )
+
     def get_inbox(self):
         return lacuna.inbox.Inbox( self )
 
@@ -284,17 +300,55 @@ class Member(Guest):
         return lacuna.alliance.MyAlliance( self )
 
     def login(self):
+        """ Ensures the current client is logged in.
+
+        If self.session_id is set, we'll test it to make sure we can get a 
+        response.  If so, the session_id is valid and we'll continue to use 
+        that session.
+
+        If self.session_id is not set or is found to be invalid, we'll log in 
+        fresh.  The new, now-valid session_id will be written to the config 
+        file.
+        """
+        if hasattr(self,'session_id'):
+            try:
+                rslt = self.send( 'empire', 'get_status', (self.session_id,) )
+                return
+            except ServerError as e:
+                pass
+
         try:
             rslt = self.send( 'empire', 'login', (self.username, self.password, self.api_key) )
         except ServerError as e:
             raise BadCredentialsError("Incorrect credentials (bad username/password)")
         self.session_id = rslt['session_id']
+        if hasattr( self, 'config' ):
+            self.config[self.config_section]['session_id'] = self.session_id
+            self.update_config_file()
+
+    def update_config_file(self):
+        if not hasattr(self, 'config'):
+            return False
+        with open(self.config_file, 'w') as handle:
+            self.config.write(handle)
 
     def logout( self ):
-        """The Empire class actually contains the logout method, which invalidates the current
-        session_id.  Call that method, then delete our empire and session_id attributes."""
+        """ Logs the current session out.
+
+        Saving the session_id in the config file allows users to complete a 
+        captcha in one script and have that captcha's success apply to all 
+        other scripts run, as long as that session_id is valid.
+
+        Calling logout() invalidates that session_id and removes it from the 
+        config file.  Therefore, actually calling logout() is rarely 
+        necessary.
+        """
         rslt = self.empire.logout()
         delattr( self, 'empire' )
         delattr( self, 'session_id' )
+        if hasattr( self, 'config' ) and hasattr( self, 'config_section'):
+            if 'session_id' in self.config[self.config_section]:
+                del( self.config[self.config_section]['session_id'] )
+                self.update_config_file()
         return rslt
 

@@ -49,6 +49,9 @@
 
 import re
 from lacuna.bc import LacunaObject
+from lacuna.exceptions import \
+    CaptchaResponseError, \
+    ServerError
 
 class Building(LacunaObject):
 

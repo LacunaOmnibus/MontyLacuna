@@ -25,7 +25,7 @@ class Stats(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def alliance_rank( self, sort_by = 'influence desc,population desc', page_number = 1 ):
+    def alliance_rank( self, sort_by = 'influence desc,population desc', page_number = 1, *args, **kwargs ):
         """ Returns struct with keys:
                 'total_alliances' - integer count.
                 'page_number' - what page we're displaying (defaults to 1)
@@ -70,7 +70,7 @@ class Stats(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def find_alliance_rank( self, sort_by = '', alliance_name = '' ):
+    def find_alliance_rank( self, sort_by = '', alliance_name = '', *args, **kwargs ):
         """
             sort_by
                 same options as for alliance_rank()
@@ -94,7 +94,7 @@ class Stats(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def empire_rank( self, sort_by = 'empire_size_rank', page_number = 1 ):
+    def empire_rank( self, sort_by = 'empire_size_rank', page_number = 1, *args, **kwargs ):
         """ Returns struct with keys:
                 'empires'           list of structs, one struct per empire
                         {
@@ -124,7 +124,7 @@ class Stats(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def find_empire_rank( self, sort_by = '', empire_name = '' ):
+    def find_empire_rank( self, sort_by = '', empire_name = '', *args, **kwargs ):
         """ Returns struct with keys:
                 'empires'   list of structs, one struct per empire
                                 {
@@ -140,7 +140,7 @@ class Stats(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def colony_rank( self, sort_by = 'population_rank' ):
+    def colony_rank( self, sort_by = 'population_rank', *args, **kwargs ):
         """ Returns struct with keys:
                 status      standard
                 colonies    list of structs
@@ -162,7 +162,7 @@ class Stats(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def spy_rank( self, sort_by = 'level_rank' ):
+    def spy_rank( self, sort_by = 'level_rank', *args, **kwargs ):
         """ Returns struct with keys:
                 status      standard
                 spies    list of structs
@@ -185,7 +185,7 @@ class Stats(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def weekly_medal_winners( self ):
+    def weekly_medal_winners( self, *args, **kwargs ):
         """ Returns struct with keys:
                 status      standard
                 winners    list of structs

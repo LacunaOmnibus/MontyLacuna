@@ -181,23 +181,24 @@ class Body(LacunaObject):
         Just like LacunaObject.call_member_meth(), except that this version automatically
         sends the body_id.
         """
-        def inner(self, *args):
+        def inner(self, *args, **kwargs):
             myargs = (self.client.session_id, self.body_id) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
-            func( self, *args )
+            kwargs['rslt'] = rslt
+            func( self, *args, **kwargs )
             return rslt
         return inner
 
     @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
-    def get_status( self ):
+    def get_status( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
-    def get_buildings( self ):
+    def get_buildings( self, *args, **kwargs ):
         """ Returns struct with key 'buildings'.  This struct is keyed off 
         building IDs.  Values are building structs as documented top of this 
         doc.
@@ -247,7 +248,7 @@ class Body(LacunaObject):
     @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
-    def repair_list( self, building_ids_to_repair:list ):
+    def repair_list( self, building_ids_to_repair:list, *args, **kwargs ):
         """ Repairs all buildings indicated by ID in the passed-in list.
 
         Per the API docs, this should return a struct including key 
@@ -263,7 +264,7 @@ class Body(LacunaObject):
     @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
-    def rearrange_buildings( self, arrangment_dicts:list ):
+    def rearrange_buildings( self, arrangment_dicts:list, *args, **kwargs ):
         """ Moves one or more buildings to a new spot on the planet surface.
 
         arrangement_dicts is formatted as:
@@ -292,7 +293,7 @@ class Body(LacunaObject):
     @LacunaObject.set_empire_status
     @set_body_status
     @call_member_meth
-    def get_buildable( self, x:int, y:int, tag:str = '' ):
+    def get_buildable( self, x:int, y:int, tag:str = '', *args, **kwargs ):
         """Returns a list of buildings that can be built on the indicated 
         coords.
 
@@ -348,7 +349,7 @@ class Body(LacunaObject):
         pass
 
     @call_member_meth
-    def rename( self, name:str = '' ):
+    def rename( self, name:str = '', *args, **kwargs ):
         """ Renames the current planet.
 
         For whatever reason, this returns int 1 on success.  NOT a struct 
@@ -358,7 +359,7 @@ class Body(LacunaObject):
 
     @LacunaObject.set_empire_status
     @call_member_meth
-    def abandon( self ):
+    def abandon( self, *args, **kwargs ):
         """ Abandons the current planet.
         Retval contains the standard server and empire keys.
 

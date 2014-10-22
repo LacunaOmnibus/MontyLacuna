@@ -8,7 +8,7 @@ class Alliance(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_profile( self, alliance_id:int ):
+    def view_profile( self, alliance_id:int, *args, **kwargs ):
         """Returns publicly-accessible data about the alliance.
 
         rv['profile'] = {
@@ -40,7 +40,7 @@ class Alliance(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def find( self, partial_name:str ):
+    def find( self, partial_name:str, *args, **kwargs ):
         """partial_name must be at least 3 characters.  Matches alliances whose names
         START with partial_name (NOT those whose names just contain partial_name).
 

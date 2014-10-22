@@ -22,3 +22,6 @@ print("empire name and password.  For help, see the wiki:")
 print("    https://github.com/tmtowtdi/MontyLacuna/wiki/Config-File")
 print("")
 
+
+self.cp[self.config_section]['session_id'] = self.session_id
+Then go re-write the whole config file with self.cp

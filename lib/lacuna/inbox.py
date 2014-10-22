@@ -7,7 +7,7 @@ class Inbox(LacunaObject):
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_inbox( self, opts: 'struct' = {} ):
+    def view_inbox( self, opts: 'struct' = {}, *args, **kwargs ):
         """ Returns an integer message cont, and a list of messages (list of structs, 
         one message per struct).
 
@@ -56,20 +56,20 @@ class Inbox(LacunaObject):
     """
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_archived( self, opts: 'struct' = {} ):
+    def view_archived( self, opts: 'struct' = {}, *args, **kwargs ):
         pass
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_sent( self, opts: 'struct' = {} ):
+    def view_sent( self, opts: 'struct' = {}, *args, **kwargs ):
         pass
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def view_trashed( self, opts: 'struct' = {} ):
+    def view_trashed( self, opts: 'struct' = {}, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def read_message( self, message_id:int ):
+    def read_message( self, message_id:int, *args, **kwargs ):
         """ Returns all details about a single message, and marks the message
         as read.
 
@@ -144,16 +144,16 @@ class Inbox(LacunaObject):
     """
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def archive_messages( self, messages:list ):
+    def archive_messages( self, messages:list, *args, **kwargs ):
         pass
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def trash__messages( self, messages:list ):
+    def trash__messages( self, messages:list, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
-    def send_message( self, recipients:str, subject:str, body:str, options:'struct' = {} ):
+    def send_message( self, recipients:str, subject:str, body:str, options:'struct' = {}, *args, **kwargs ):
         """
         recipients
             Comma-separated string containing names of empires to receive your message.
