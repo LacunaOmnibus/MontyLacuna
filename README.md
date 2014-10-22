@@ -30,6 +30,11 @@ work, but it hasn't been fully tested yet.
 exists, and stub classes exist for all buildings in the game.  I need to work 
 through those building stubs to make them each do whatever-it-is they're each 
 supposed to do.
+ - Existing base classes:
+   - Building
+     - All buildings inherit from this (at some level)
+   - Storage
+     - Base class for the four basic storage buildings
  - archaeology
  - blackholegenerator
  - development
@@ -39,6 +44,7 @@ supposed to do.
 account and inviting/rejecting/etc that account.  Currently I'm unable to create a 
 test account on PT.  I have no reason to believe that these untested methods don't 
 work, they just haven't actually been confirmed to work.
+ - energyreserve
 
 ## Incomplete/Not Started
 - Payments

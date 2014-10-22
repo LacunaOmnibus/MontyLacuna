@@ -201,3 +201,14 @@ class Building(LacunaObject):
         repair to determine how much res the repair will take.
         """
         pass
+
+class Storage(Building):
+    """ Base class for the four beginning storage buildings."""
+
+    @LacunaObject.set_empire_status
+    @Building.set_building_status
+    @Building.call_building_meth
+    def dump( self, amount, **kwargs ):
+        """ Converts the stored resource into waste """
+        pass
+
