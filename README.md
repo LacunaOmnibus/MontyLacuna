@@ -22,6 +22,8 @@ Nothing.
 "working" means that all functionality exists, and quickie scripts appear to 
 work, but it hasn't been fully tested yet.
 
+- Captcha
+ - Including session persistence between scripts
 - Client
  - Guest
  - Member
@@ -51,8 +53,6 @@ test account on PT.  I have no reason to believe that these untested methods don
 work, they just haven't actually been confirmed to work.
  - energyreserve
  - entertainment
-   - I started on this, but it requires a captcha which I haven't worked on yet.  I'm 
-going to switch gears to work on that captcha then come back to this.
 
 ## Incomplete/Not Started
 - Payments
@@ -70,12 +70,5 @@ going to switch gears to work on that captcha then come back to this.
 
 - Everything needs to be tested on Windows.  In particular:
  - bin/captcha_test.py
-
-- Save the session_id to the config file (and use it) so captcha solutions persist between 
-  runs.
- - I tend to think this isn't a huge deal, but GLC does it, and I know there are people 
-   who love it, so add it in.
-
-
 
 

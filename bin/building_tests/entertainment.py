@@ -15,9 +15,13 @@ my_planet   = glc.get_body_byname( 'bmots rof 2.4' )
 ent         = my_planet.get_building_coords( -2, -5 )
 
 
-### See how many ducks have been quacked
+### Quack!
 ###
-#glc.pp.pprint( ent.view()['ducks_quacked'] )
+print( "There have been", ent.view()['ducks_quacked'], "ducks quacked." )
+for i in range(0,5):
+    print( ent.duck_quack() )
+    print("------------")
+print( "There have now been", ent.view()['ducks_quacked'], "ducks quacked." )
 
 
 
@@ -36,8 +40,13 @@ try:
 except CaptchaResponseError as e:
     print("Your captcha was incorrect.")
     quit()
-
 for mydict in rva['options']:
-    #print( "Vote at {}:\n\t{}".format(mydict['name'], mydict['url']) )
-    print( "Vote at {} (the URLs are long so I'm not printing them.)".format(mydict['name']) )
+    print( "Name:", mydict['name'] )
+    print( "URL:", mydict['url'] )
+    print("------------")
+
+
+
+
+
 

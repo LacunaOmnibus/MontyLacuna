@@ -23,7 +23,13 @@ class entertainment(Building):
                           "url" : "http://www.somesite.com/vote?id=44"   },
                         ...
                     ],
-
         """
         pass
 
+    @Building.call_building_meth
+    def duck_quack( self, **kwargs ):
+        """ Quacks the duck.
+        The reasons for wanting to do this are shrouded in the mysteries of 
+        the ages.  But it's kind of fun.
+        """
+        pass
