@@ -205,13 +205,26 @@ class Building(LacunaObject):
         """
         pass
 
-class Storage(Building):
-    """ Base class for the four beginning storage buildings."""
+class SingleStorage(Building):
+    """ Base class for the storage buildings that store a singular resource 
+    type, eg water or energy.
+    """
 
     @LacunaObject.set_empire_status
     @Building.set_building_status
     @Building.call_building_meth
-    def dump( self, amount, **kwargs ):
+    def dump( self, amount:int = 0, **kwargs ):
         """ Converts the stored resource into waste """
         pass
 
+class MultiStorage(Building):
+    """ Base class for the storage buildings that store a variegated resource 
+    type, eg food or ore.
+    """
+
+    @LacunaObject.set_empire_status
+    @Building.set_building_status
+    @Building.call_building_meth
+    def dump( self, res_type:str = '', amount:int = 0, **kwargs ):
+        """ Converts the stored resource into waste """
+        pass

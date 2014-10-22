@@ -11,13 +11,14 @@ glc = lac.clients.Member(
     config_section = 'my_sitter',
 )
 my_planet = glc.get_body_byname( 'bmots rof 2.1' )
-nrg = my_planet.get_building_coords( -2, 4 )
+food = my_planet.get_building_coords( -5, 4 )
 
-### Dump energy to waste
+### Dump food to waste
 ### CAREFUL WITH THIS - it's actually dumping some of your energy.
 ### Depending on your storage building's level, you may want to dump less of 
 ### the resource.
+res_type = 'algae'
 amount = 1000 * 1000 * 1000
-rva = nrg.dump( amount )
-print( "Done;", amount, "of energy has been dumped.")
+rva = food.dump( res_type, amount )
+print( "Done;", amount, "of", res_type, "has been dumped.")
 
