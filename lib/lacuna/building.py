@@ -70,12 +70,14 @@ class Building(LacunaObject):
         Methods using this decorator get the original server result handed 
         back to them in **kwargs['rslt'].
         """
-        def inner(self, *args):
+        def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id, self.building_id) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
-            server_result = {'rslt': rslt}
-            func( self, *args, **server_result )
+            kwargs['rslt'] = rslt
+            #server_result = {'rslt': rslt}
+            #func( self, *args, **server_result )
+            func( self, *args, **kwargs )
             return rslt
         return inner
 

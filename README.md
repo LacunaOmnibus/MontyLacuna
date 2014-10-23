@@ -44,18 +44,34 @@ supposed to do.
         - Base class for storage buildings for single-type resources (energy, water).
       - MultiStorage
         - Base class for storage buildings for multi-type resources (food, ore).
- - archaeology
- - blackholegenerator
- - development
- - distributioncenter
- - embassy
-   - What I could test works, but testing of several methods would require making a test 
-account and inviting/rejecting/etc that account.  Currently I'm unable to create a 
-test account on PT.  I have no reason to believe that these untested methods don't 
-work, they just haven't actually been confirmed to work.
- - energyreserve
- - entertainment
- - foodreserve
+  - archaeology
+  - blackholegenerator
+  - development
+  - distributioncenter
+  - embassy
+    - What I could test works, but testing of several methods would require making a test 
+      account and inviting/rejecting/etc that account.  Currently I'm unable to create a 
+      test account on PT.  I have no reason to believe that these untested methods don't 
+      work, they just haven't actually been confirmed to work.
+  - energyreserve
+  - entertainment
+  - foodreserve
+  - geneticslab
+  - intelligence
+  - libraryofjith
+  - mercenariesguild
+  - miningministry
+    - I started on this, then realized I need access to ship IDs to be able to add cargo 
+      ships to the fleet.  Went off to work on spaceport so I can get at that information.  
+      CHECK need to come back to this.
+
+  - CHECK ALL OF THE ABOVE FOR CORRECT @Building.set_building_status decorators; I think I 
+    may have missed a bunch.
+
+  - spaceport
+    - Working on this.
+   
+
 
 ## Incomplete/Not Started
 - Payments
