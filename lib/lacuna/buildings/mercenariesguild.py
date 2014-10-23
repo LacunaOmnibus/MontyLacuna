@@ -130,4 +130,14 @@ class mercenariesguild(Building):
         """ Removes one of your trades from the market."""
         pass
 
+    @Building.call_building_meth
+    def report_abuse( self, trade_id:int, *args, **kwargs ):
+        """ Reports a trade for abuse.
+
+        What's done with these reports is not documented.
+
+        The TLE API docu says this retval contains a normal 'status' key, but 
+        in practice, on PT at least, it's returning just an empty string.
+        """
+        pass
 

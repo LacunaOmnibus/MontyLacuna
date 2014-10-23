@@ -90,6 +90,15 @@ mercs       = my_planet.get_building_coords( -2, -2 )
 #print("Trade ID {} has been withdrawn from the market.".format(trade_id) )
 
 
+### Report a trade as abusive
+###
+rvk = mercs.view_my_market()
+trade_id = rvk['trades'][0]['id']
+rvl = mercs.report_abuse( trade_id )
+glc.pp.pprint( rvl )
+print( "Reported trade {} for abuse.".format(trade_id) )
+
+
 ### Logout at the end of each test run so you can see where the captcha prompt 
 ### happens.  Comment this out if you don't care about seeing more than one 
 ### captcha.
