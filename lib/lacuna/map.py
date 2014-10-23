@@ -42,15 +42,44 @@ class Map(LacunaObject):
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_star( self, star_id, *args, **kwargs ):
-        """Returns a single dict (NOT a list of dicts like get_star() and get_star_map()!)
-        The single returned dict is the same format as get_star_map().
+        """ Returns a single dict (NOT a list of dicts like get_star() and 
+        get_star_map()!)
+
+        Retval contains 'star', a dict, which includes:
+
+                'color': 'white',
+                'id': '12345',
+                'name': 'Sol',
+                'station': {   'id': '98765',
+                            'name': 'Seizing Space Station Name',
+                            'x': '0',
+                            'y': '0'},
+                'x': '1',
+                'y': '1',
+                'zone': '0|0',
+
+                'bodies': List of body dicts
+
+            If you or an alliance mate have probed or oracled the star, 'bodies' 
+            will be a list of dicts of the bodies orbiting that star:
+                    {   'id': '12345',
+                        'image': 'p35-4',
+                        'name': 'Sol 1',
+                        'orbit': '1',
+                        'ore': {   'anthracite': 500,
+                                 ...
+                                 'zircon': 1    },
+            This list of bodies is ordered by id, not name or orbit as you might 
+            expect.
         """
         pass
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def get_star_by_name( self, star_name, *args, **kwargs ):
-        """star_name must be an exact name, not a partial.  rv is identical to get_star().  """
+        """ star_name must be an exact name, not a partial.  rv is identical to 
+        get_star().
+        """
         pass
 
     @LacunaObject.set_empire_status
@@ -62,7 +91,7 @@ class Map(LacunaObject):
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
     def search_stars( self, partial_name, *args, **kwargs ):
-        """partial_name must be at least 3 characters.  Matches up to 25 stars whose names
+        """ partial_name must be at least 3 characters.  Matches up to 25 stars whose names
         START with partial_name (NOT stars whose names just contain partial_name).
         rv is a list, identical to get_star_map().
         """

@@ -174,7 +174,7 @@ class Guest:
             "params": params,
         }
         request_json = json.dumps( request )
-        #if method == 'get_status' or method == 'view':
+        #if method == 'get_fleet_for':
         #    print( request_json )
         #    quit()
         resp = requests.post( url, request_json )

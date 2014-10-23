@@ -1,6 +1,7 @@
 
 import lacuna.alliance
 import lacuna.body
+import lacuna.building
 import lacuna.captcha
 import lacuna.empire
 import lacuna.exceptions
