@@ -74,4 +74,3 @@ work, they just haven't actually been confirmed to work.
 - Everything needs to be tested on Windows.  In particular:
  - bin/captcha_test.py
 
-
