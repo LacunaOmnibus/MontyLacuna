@@ -75,8 +75,6 @@ class Building(LacunaObject):
             myargs = (self.client.session_id, self.building_id) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
             kwargs['rslt'] = rslt
-            #server_result = {'rslt': rslt}
-            #func( self, *args, **server_result )
             func( self, *args, **kwargs )
             return rslt
         return inner

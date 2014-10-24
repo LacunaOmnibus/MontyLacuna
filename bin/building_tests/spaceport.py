@@ -15,6 +15,19 @@ my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 sp          = my_planet.get_building_coords( 5, 5 )
 
 
+### CHECK
+### Everything in here worked in testing, but too many of the examples depend 
+### on results from previous examples.
+###
+### Clean up.
+###
+###
+### Also, there are a number of functions defined in here that need to become 
+### methods of one of my classes.  Keep searching for CHECK.
+
+
+
+
 ### View my ships
 ###
 #myfilter    = { 'type': 'barge', }
@@ -32,16 +45,22 @@ sp          = my_planet.get_building_coords( 5, 5 )
 #print( "There are {} incoming foreign ships.".format(rvb['number_of_ships']) )
 
 
+### CHECK this needs to be added to map.py:
+def get_orbiting_planet( glc, star_name:str, planet_name:str ):
+    my_map = glc.get_map();
+    rvc = my_map.get_star_by_name(star_name)
+    target_planet = ''
+    for i in rvc['star']['bodies']:
+        if i['name'] == planet_name:
+            target_planet = i
+    if not target_planet:
+        raise KeyError("Unable to find target planet", planet_name, ".")
+    return target_planet
+
+
 ### Get list of my ships available to send as a fleet to a given target.
-###
-target_star_name   = 'Schu Ize'
-target_planet_name = '--=Tatooine=--'  # must orbit target_star_name
-my_map = glc.get_map();
-rvc = my_map.get_star_by_name(target_star_name)
-target_planet = ''
-for i in rvc['star']['bodies']:
-    if i['name'] == target_planet_name:
-        target_planet = i
+### 
+#target_planet = get_orbiting_planet( glc, 'Schu Ize', '--=Tatooine=--' )   # inhabited, hostile
 #target = { 'body_name': target_planet['name'] }
 #rvd = sp.get_my_fleet_for( target )
 #glc.pp.pprint( rvd['ships'] )
@@ -52,8 +71,7 @@ for i in rvc['star']['bodies']:
 ### above, so make sure it's not commented out.
 ###
 #target = { 'star_name': rvc['star']['name'] }
-target = { 'body_name': target_planet['name'] }
-rvd = sp.get_my_ships_for( target )
+#rvd = sp.get_my_ships_for( target )
 #glc.pp.pprint( rvd['incoming'] )
 
 #glc.pp.pprint( rvd['available'] )
@@ -65,6 +83,231 @@ rvd = sp.get_my_ships_for( target )
 #glc.pp.pprint( rvd['orbiting'] )
 #print( len(rvd['orbiting']) )
 
-glc.pp.pprint( rvd['mining_platforms'] )
-print( len(rvd['mining_platforms']) )
+#glc.pp.pprint( rvd['mining_platforms'] )
+#print( len(rvd['mining_platforms']) )
+
+
+### CHECK - this needs to become a spaceport method
+def get_task_ships_for( sp, target:dict, type:str, task:str = 'available', quantity:int = 1 ):
+    rv = sp.get_my_ships_for( target )
+    ships = [] 
+    cnt = 0
+    for i in rv[task]:
+        if i['type'] == type:
+            ships.append( i )
+            cnt += 1
+            if cnt >= quantity:
+                break
+    if not 'id' in ships[0]:
+        raise KeyError("Unable to find any available", type, "ship.")
+    return ships
+
+def get_available_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
+    return get_task_ships_for( sp, target, type, 'available', quantity )
+
+def get_incoming_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
+    return get_task_ships_for( sp, target, type, 'incoming', quantity )
+
+def get_mining_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
+    return get_task_ships_for( sp, target, type, 'mining_plantforms', quantity )
+
+def get_orbiting_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
+    return get_task_ships_for( sp, target, type, 'orbiting', quantity )
+
+def get_unavailable_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
+    return get_task_ships_for( sp, target, type, 'unavailable', quantity )
+
+
+### Send a ship to the target
+#target_planet = get_orbiting_planet( glc, 'SMA bmots 018', 'Eagiflio 3' )   # roid
+#target = { 'body_name': target_planet['name'] }
+#rve = sp.get_my_ships_for( target )
+#ship = get_available_ships_for( sp, target, 'mining_platform_ship', 1 )[0]
+#rvf = sp.send_ship( ship['id'], target )
+#glc.pp.pprint( rvf['ship'] )
+
+
+### Send ships of a given type to a target.
+###
+#my_map = glc.get_map();
+#target_star = my_map.get_star_by_name('SMA bmots 001')
+### 
+### CHECK - I have to dig through the star's data to find its name.  This is 
+### no good.  The name et al should be an attribute of the returned object.
+###
+#print( target_star['star']['name'] )
+#target = { 'star_name': target_star['star']['name'] }
+#types = [{
+#        'type': 'scow',
+#        'speed': 1800,
+#        'hold_size': 1170000,
+#    }]
+#arrival = {
+#    "day": 24,
+#    "hour": 23,
+#    "minute": 0,
+#    "second": 0,
+#}
+#sp.send_my_ship_types( target, types, arrival )
+
+
+### Send a fleet of ships at a target
+###
+#my_map = glc.get_map();
+#target_star = my_map.get_star_by_name('SMA bmots 001')
+#target = { 'star_name': target_star['star']['name'] }
+#ship_ids = []
+#for i in get_available_ships_for( sp, target, 'scow_mega', 5 ):
+#    ship_ids.append( i['id'] )
+#sp.send_fleet( ship_ids, target, 200 )
+
+
+### Recall a ship orbiting a planet
+###
+#target_planet = get_orbiting_planet( glc, 'Schu Ize', '--=Tatooine=--' )
+#target = { 'body_name': target_planet['name'] }
+#ship = get_orbiting_ships_for( sp, target, 'fighter', 1 )[0]
+#sp.recall_ship( ship['id'] )
+#print( "I just recalled ship", ship['id'] )
+
+
+### Recall all orbiting ships
+###
+#rvg = sp.recall_all()
+#glc.pp.pprint( rvg['ships'] )
+
+
+### Rename a ship
+###
+#paging      = {}
+#myfilter    = { 'type': 'scow', }
+#rvh = sp.view_all_ships( paging, myfilter )
+#sp.name_ship( rvh['ships'][0]['id'], 'My New Ship Name' )
+### These attempts will raise 1005:
+#sp.name_ship( rvh['ships'][0]['id'], 'My New Way-Too-Long Ship Name That Will Simply Not Work' )
+#sp.name_ship( rvh['ships'][0]['id'], 'Shit Fucker' )
+
+
+### Scuttle a ship
+###
+#paging      = {}
+#myfilter    = { 'type': 'scow', }
+#rv = sp.view_all_ships( paging, myfilter )
+#ship = {}
+#for i in rv['ships']:
+#    if i['name'] == 'scuttle_me':
+#        ship = i
+#if not 'id' in ship:
+#    raise KeyError("Unable to find the requested ship.")
+#print( "Scuttling ship", ship['name'] )
+#sp.scuttle_ship( ship['id'] )
+
+
+### Scuttle a bunch of ships
+###
+#paging      = {}
+#myfilter    = { 'type': 'scow', }
+#rv = sp.view_all_ships( paging, myfilter )
+#ship_ids = []
+#for i in rv['ships']:
+#    ship_ids.append( i['id'] )
+#print( "Scuttling {} scows".format(len(ship_ids)) )
+#sp.mass_scuttle_ship( ship_ids )
+
+
+### View ships currently in the air.
+###
+#rv = sp.view_ships_travelling()
+#glc.pp.pprint( rv['ships_travelling'] )
+#print( "There are {} ships in the air right now.".format(rv['number_of_ships_travelling']) )
+
+
+### View ships currently orbiting other planets
+###
+#rv = sp.view_ships_orbiting()
+#glc.pp.pprint( rv['ships'] )
+#print( "There are {} ships orbiting {} right now.".format(rv['number_of_ships'], my_planet.name) )
+#print('---------')
+
+
+### Prepare to send spies to a target
+###
+#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#rv = sp.prepare_send_spies( my_planet.id, target_planet['id'] )
+#glc.pp.pprint( rv['ships'] )
+#print("------------")
+#glc.pp.pprint( rv['spies'] )
+
+
+### Send spies to the target
+###
+#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#rva = sp.prepare_send_spies( my_planet.id, target_planet['id'] )
+#ship_id = rva['ships'][0]['id']
+#spy_ids = [ x['id'] for x in rva['spies'][0:3] ]
+#rvb = sp.send_spies( my_planet.id, target_planet['id'], ship_id, spy_ids )
+#glc.pp.pprint( rvb )
+
+
+### Prepare to fetch spies home again
+#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#rv = sp.prepare_fetch_spies( my_planet.id, target_planet['id'] )
+#glc.pp.pprint( rv['ships'][0] )
+#print("------------")
+#glc.pp.pprint( rv['spies'][0] )
+
+
+### Fetch spies home again
+### 
+### This is the hard way.  See the next block below.
+###
+#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#rva = sp.prepare_fetch_spies( target_planet['id'], my_planet.id )
+#ship_id = rva['ships'][0]['id']
+#spy_ids = []
+#for i in rva['spies']:
+#    if i['based_from']['body_id'] == my_planet.id and i['assigned_to']['body_id'] == target_planet['id']:
+#        spy_ids.append( i['id'] )
+#rvb = sp.fetch_spies( target_planet['id'], my_planet.id, ship_id, spy_ids )
+#glc.pp.pprint( rvb )
+
+
+### Fetch spies home again
+### 
+### And there was much rejoicing.
+### 
+### CHECK get_spies_back() needs to go into spaceport.py.
+def get_spies_back( sp, from_id, ship_name = '' ):
+    prep_rv = sp.prepare_fetch_spies( from_id, sp.body_id )
+
+    ship_id = 0
+    if ship_name:
+        for ship in prep_prep_rv['ships']:
+            if ship['name'] == ship_name:
+                ship_id = ship['id']
+                break
+    else:
+        ship_id = prep_rv['ships'][0]['id']     # No ship name specified.  Use the first one available.
+
+    if int(ship_id) <= 0:
+        raise KeyError("No ships matching your criteria are available to fetch spies.")
+
+    spy_ids = []
+    for i in prep_rv['spies']:
+        if i['based_from']['body_id'] == sp.body_id and i['assigned_to']['body_id'] == from_id:
+            spy_ids.append( i['id'] )
+    fetch_rv = sp.fetch_spies( target_planet['id'], my_planet.id, ship_id, spy_ids )
+    return fetch_rv
+    
+#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#rv = get_spies_back( sp, target_planet['id'] )
+
+
+
+### Check battle logs
+###
+rv = sp.view_battle_logs()
+glc.pp.pprint( rv['battle_log'][0] )
+print( "--", rv['number_of_logs'], "--" )
+
 

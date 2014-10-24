@@ -4,9 +4,6 @@ from lacuna.building import Building
 
 """
 
-LEFT OFF AT SEND_SHIP() - complete from there on (inclusive)
-
-
 Remember that multiple spaceport buildings on a single planet work together as a 
 single unit.  So calling view_all_ships() on one spaceport building will return 
 exactly the same list as calling it on a different spaceport building (on the 
@@ -251,6 +248,306 @@ class spaceport(Building):
                                     empire_name => "The Peeps From Across The Street"   },
         """
         return self.get_ships_for( self.body_id, target )
+
+    @LacunaObject.set_empire_status
+    @Building.call_naked_meth
+    def send_ship( self, ship_id:int, target:dict, *args, **kwargs ):
+        """ Sends a single ship to the indicated target.
+        
+        Requires a captcha if sending attack ships to an inhabited planet.
+
+        Arguments:
+            ship_id:    Integer ID of the ship to send
+            target:     Dict, identical to the one in get_my_fleet_for()
+
+        Retval includes key 'ship' (singular), identical to the 'incoming' key 
+        of get_my_ships_for().
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_naked_meth
+    def send_ship_types( self, from_body_id:int, target:dict, types:list, arrival:dict, *args, **kwargs ):
+        """ See docs for send_my_ship_types.  """
+        pass
+        
+    def send_my_ship_types( self, target:dict, types:list, arrival:dict, *args, **kwargs ):
+        """ Sends ships of the indicated type to the target, to arrive at the 
+        requested time.
+
+        Requires a captcha if sending attack ships to an inhabited planet.
+
+        Sugar method for send_ship_types() - saves you from having to send the 
+        ID of the sending body.
+
+        Arguments:
+            target:     Dict, identical to the one in get_my_fleet_for()
+            types:      List of shiptype dicts
+            arrival:    Dict to specify arrival time
+
+            Specifying types:
+                You can specify ships to send not just by the shiptype, 
+                but also by minimum attributes.  Set only the dict keys 
+                you're interested in.
+                types = [
+                    {   "type" : "sweeper",
+                        "speed" : 10166,
+                        "stealth" : 10948,
+                        "combat" : 33372,
+                        "quantity" : 100        },
+                    {   "type" : "surveyor",
+                        "speed" : 9030,
+                        "stealth" : 9030,
+                        "combat" : 3220,
+                        "quantity" : 10         }
+                        ...
+                ]
+
+            Specifying arrival time:
+                All dict keys must be set.  You likely don't care about 
+                what second the ships arrive, but set it anyway.
+                {   "day" : "23",
+                    "hour" : "12",
+                    "minute" : "01",
+                    "second" : "30"     }
+
+        Retval is identical to that for get_my_fleet_for().
+
+        Raises ServerError 1009 if the specified arrival time is earlier than 
+        the slowest ship in the group can manage at its top speed.
+        """
+        return self.send_ship_types( self.body_id, target, types, arrival )
+
+    @LacunaObject.set_empire_status
+    @Building.call_naked_meth
+    def send_fleet( self, ship_ids:list, target:dict, fleet_speed:int = 0, *args, **kwargs ):
+        """ Sends a fleet of ships at the target.  A fleet travels as a single 
+        unit, so its maximum speed is the highest speed of its slowest ship.
+
+        Arguments:
+            ship_ids:       List of integer IDs of ships to send in the fleet
+            target:         Dict, identical to the one in get_my_fleet_for()
+            fleet_speed:    Optional integer; speed of the fleet.  If omitted 
+                            or 0, the fleet will travel at maximum speed.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def recall_ship( self, ship_id:int, *args, **kwargs ):
+        """ Recalls a single ship that's currently performing either the 
+        'Defend' or 'Orbiting' tasks.
+
+        If the ship being recalled is a Spy Shuttle, it will automatically 
+        pick up as many idle spies from the planet it had been orbiting as it 
+        can hold.
+
+        Requires 'ship_id', the integer ID of the ship to be recalled.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def recall_all( self, *args, **kwargs ):
+        """ Recalls all ships from the current planet that are on 'Defend' or 
+        'Orbiting' tasks.
+        Note there is no 'target' argument here; this is not recalling all 
+        ships orbiting a specific target - this is recalling ALL ships from 
+        this planet that are orbiting anywhere.
+
+        Retval includes 'ships', a list of dicts of ships that have been 
+        recalled.  These ships are identical to the 'incoming' key of 
+        get_my_ships_for(), with the addition of:
+
+            "from" : {  # This is the planet the ships are being recalled from
+               "id" : "id-goes-here",
+               "type" : "body",
+               "name" : "Earth"
+            },
+            "to" : {    # This is the planet you're recalling the ships back to.
+               "id" : "id-goes-here",
+               "type" : "star",
+               "name" : "Sol"
+            }
+
+        Raises NO error if there are no ships currently orbiting, but the 
+        'ships' retval will be an empty list.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def name_ship( self, ship_id:int, name:str, *args, **kwargs ):
+        """ Rename a ship.
+        Up to 30 characters are allowed.  "No profanity or funky characters" 
+        (that's from the API docu - use your head.)
+
+        Raises ServerError 1005 if the ship name violates the rules.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def scuttle_ship( self, ship_id:int, *args, **kwargs ):
+        """ Scuttles (deletes) a ship.  The ship must be docked.
+
+        Raises ServerError 1013 if the ship is not docked.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def mass_scuttle_ship( self, ship_ids:list, *args, **kwargs ):
+        """ Scuttles (deletes) a list of ships.  All ships to be scuttled must 
+        be docked.
+
+        If any ships in the list are not docked, no error is raised.  In that 
+        case, any ships in the list that _were_ docked will be scuttled; the 
+        non-docked ships are simply ignored.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def view_ships_travelling( self, *args, **kwargs ):
+        """ Shows all ships travelling from this planet.
+
+        "Travelling" contains two of the letter "l".
+
+        Retval includes:
+            number_of_ships_travelling: Integer
+            ships_travelling:           List of ship dicts
+        """
+        pass
+
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def view_ships_orbiting( self, *args, **kwargs ):
+        """ Shows all FOREIGN ships currently orbiting THIS planet.
+
+        Any orbiting ships whose stealth level is too high will not be shown.  
+        The formula for determining whether a spaceport can see a ship is:
+            350 * (spaceport level) > (ship's stealth)
+
+        If the orbiting ship is your own (or allied?), you'll be able to see 
+        it regardless of stealth level.
+
+        "Orbiting" contains one of the letter "t".
+
+        Retval includes:
+            number_of_ships:    Integer
+            ships:              List of ship dicts
+
+        Note those retval key names carefully.  It's "number_of_ships", not 
+        "number_of_ships_orbiting" - these key names are inconsistent with 
+        those returned by view_ships_travelling().
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_naked_meth
+    def prepare_send_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
+        """ Gathers the info needed to call send_spies().
+
+        Arguments:
+            on_body_id: Integer ID of the body the spies are currently on
+            to_body_id: Integer ID of the body to which you wish to send the spies
+
+        Retval includes:
+            ships:  List of dicts of ships capable of carrying spies:
+                        {   "id" : "id-goes-here",
+                            "name" : "CS4",
+                            "hold_size" : 1100,
+                            "berth_level" : 1,
+                            "speed" : 400,
+                            "type" : "cargo_ship",
+                            "estimated_travel_time" : 3600, # in seconds    },
+            spies:  List of dicts of spies whose home is the current planet:
+                        {   "id" : "id-goes-here",
+                            "level" : 12,
+                            "name" : "Jack Bauer",
+                            "assigned_to" : {
+                                "body_id" : "id-goes-here",
+                                "name" : "Earth"
+                            },      },
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_naked_meth
+    def send_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
+        """ Sends spies to a target.
+
+        Arguments:
+            on_body_id:         Integer ID of the body the spies are currently 
+                                on.
+            to_body_id:         Integer ID of the body to which you wish to 
+                                send the spies.
+            ship_id:            Integer ID of the ship to carry the spies.
+            spy_ids:            List of integer IDs of spies to send.
+
+        Retval includes:
+            spies_sent:         List of integer IDs of spies sent.
+            spies_not_sent:     List of integer IDs of spies not sent.  This
+                                should only have contents if you're cheating.
+            ship:               Dict describing the transport ship
+
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_naked_meth
+    def prepare_fetch_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
+        """ Fetches spies back home again.
+
+        Arguments:
+            on_body_id:         Integer ID of the body the spies are currently 
+                                on (the foreign planet).
+            to_body_id:         Integer ID of the body to which you wish to 
+                                send the spies (their home planet)
+        
+        Retval is the same as that for prepare_send_spies().
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_naked_meth
+    def fetch_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
+        """ Fetches spies back home again.
+
+        Arguments are the same as for send_spies().  But remember that, like 
+        prepare_fetch_spies(), on_body_id is the body the spies are on now 
+        (foreign), and to_body_id is the body they're being fetched to (your 
+        planet, their home).
+
+        Retval includes 'ship', identical to that for send_spies().
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def view_battle_logs( self, page_number:int = 1, *args, **kwargs ):
+        """ View battle logs.
+
+        Arguments:
+            page_number:    Optional nteger number of page to view.  25 log 
+                            entries displayed per page.  Defaults to 1.
+
+        Retval includes:
+            number_of_logs: Integer total number of entries in the logbook.
+            battle_log:     List of battle log dicts:
+                            {   "date" : "06 21 2011 22:54:37 +0600",
+                                "attacking_body" : "Romulus",
+                                "attacking_empire" : "Romulans",
+                                "attacking_unit" : "Sweeper 21",
+                                "defending_body" : "Kronos",
+                                "defending_empire" : "Klingons",
+                                "defending_unit" : "Shield Against Weapons",
+                                "victory_to" : "defender"       },
+        """
+        pass
+
 
 
 
