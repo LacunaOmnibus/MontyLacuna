@@ -114,9 +114,3 @@ class miningministry(Building):
         pass
 
 
-
-
-
-
-
-
