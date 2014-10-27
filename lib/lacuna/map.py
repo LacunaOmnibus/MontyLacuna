@@ -190,13 +190,17 @@ class Star():
         if 'status' in star_dict:
             del( star_dict['status'] )
 
+
         body_objs = []
         for b in star_dict['bodies']:
             body_objs.append( Body(self, b['id'], b) )
         self.body_objects = body_objs
+        self.bodies = body_objs
+
         if 'bodies' in star_dict:
             del( star_dict['bodies'] )
 
         for k, v in star_dict.items():
             setattr(self, k, v)
+
 

@@ -108,6 +108,21 @@ class Building(LacunaObject):
             return rslt
         return inner
 
+    def call_named_returning_meth(func, *args, **kwargs):
+        """Decorator.  
+        Calls a server method that requires a building_id, but no body_id.
+        Expects named arguments, and returns the value from the locally-called 
+        method rather than the dict returned from the TLE server.
+        """
+        def inner( self, mydict:dict ):
+            mydict['session_id'] = self.client.session_id
+            mydict['building_id'] = self.building_id
+            rslt = self.client.send( self.path, func.__name__, (mydict,) )
+            kwargs['rslt'] = rslt
+            myrslt = func( self, mydict, *args, **kwargs )
+            return myrslt
+        return inner
+
     def call_naked_meth(func):
         """Decorator.
         Some building methods require neither a body_id nor a building_id (see 
