@@ -129,23 +129,27 @@ from lacuna.bc import LacunaObject
 from lacuna.exceptions import \
     NoSuchBuildingError
 
+
+"""
+
+    Body objects are normally constructed in one of two situations.
+
+    1) You have a list of the body IDs of all of your empire's planets, and 
+       want MyBody objects constructed from just the ID.
+
+    2) You have a dict of planet attributes for some planet you can see in 
+       your starmap, and want a Body object created from those attributes.
+
+"""
+
+
 class Body(LacunaObject):
     path = 'body'
 
-    def __init__( self, client:object, body_id:int ):
+    def __init__( self, client:object, body_id:int, attrs:dict = {} ):
         super().__init__( client )
         self.body_id = body_id
-
-class MyBody(Body):
-
-    def __init__( self, client:object, body_id:int ):
-        super().__init__( client )
-        ### I want self to start out populated, which would require a call to 
-        ### get_status().  But since all the other methods also require a 
-        ### status block, I can call set_buildings() instead (which is 
-        ### decorated with get_buildings()) and get both the status data and 
-        ### the building data in a single shot.
-        self.set_buildings()
+        self.set_attrs( attrs )
 
     def set_body_status( func ):
         """Decorator.
@@ -180,6 +184,30 @@ class MyBody(Body):
             return rv
         return inner
 
+    @set_body_status
+    def set_attrs( self, my_attrs:dict = {}, *args, **kwargs ):
+        """ Fake up a status dict in the expected format, so the 
+        set_body_status decorator can properly set our attributes.
+        """
+        status = { 'body': my_attrs }
+        return status
+
+
+
+
+
+class MyBody(Body):
+
+    def __init__( self, client:object, body_id:int, attrs:dict = {} ):
+        super().__init__( client, body_id )
+        ### I want self to start out populated, which would require a call to 
+        ### get_status().  But since all the other methods also require a 
+        ### status block, I can call set_buildings() instead (which is itself 
+        ### calling get_buildings()) and get both the status data and the 
+        ### building data in a single shot.
+        self.set_buildings()
+
+
     def call_member_meth(func):
         """Decorator.  
         Just like LacunaObject.call_member_meth(), except that this version automatically
@@ -194,13 +222,13 @@ class MyBody(Body):
         return inner
 
     @LacunaObject.set_empire_status
-    @set_body_status
+    @Body.set_body_status
     @call_member_meth
     def get_status( self, *args, **kwargs ):
         pass
 
     @LacunaObject.set_empire_status
-    @set_body_status
+    @Body.set_body_status
     @call_member_meth
     def get_buildings( self, *args, **kwargs ):
         """ Returns struct with key 'buildings'.  This struct is keyed off 
@@ -250,7 +278,7 @@ class MyBody(Body):
             self.buildings_name[name].append( bldg_dict )
 
     @LacunaObject.set_empire_status
-    @set_body_status
+    @Body.set_body_status
     @call_member_meth
     def repair_list( self, building_ids_to_repair:list, *args, **kwargs ):
         """ Repairs all buildings indicated by ID in the passed-in list.
@@ -266,7 +294,7 @@ class MyBody(Body):
         pass
 
     @LacunaObject.set_empire_status
-    @set_body_status
+    @Body.set_body_status
     @call_member_meth
     def rearrange_buildings( self, arrangment_dicts:list, *args, **kwargs ):
         """ Moves one or more buildings to a new spot on the planet surface.
@@ -295,7 +323,7 @@ class MyBody(Body):
         pass
 
     @LacunaObject.set_empire_status
-    @set_body_status
+    @Body.set_body_status
     @call_member_meth
     def get_buildable( self, x:int, y:int, tag:str = '', *args, **kwargs ):
         """Returns a list of buildings that can be built on the indicated 

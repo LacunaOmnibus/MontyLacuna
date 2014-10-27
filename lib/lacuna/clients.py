@@ -283,7 +283,7 @@ class Member(Guest):
     def get_body_byname(self, body_name):
         for bid, name in self.empire.planets.items():
             if name == body_name:
-                return lacuna.body.Body( self, bid )
+                return lacuna.body.MyBody( self, bid )
         else:
             raise NoSuchMyBodyError("No body with the name '{}' was found.".format(body_name))
 
