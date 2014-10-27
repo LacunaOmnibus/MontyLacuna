@@ -190,8 +190,6 @@ class Star():
         if 'status' in star_dict:
             del( star_dict['status'] )
 
-        self.client.pp.pprint( star_dict )
-
         body_objs = []
         for b in star_dict['bodies']:
             body_objs.append( Body(self, b['id'], b) )

@@ -66,6 +66,7 @@ supposed to do.
 
   - miningministry
   - missioncommand
+  - network19
 
   - spaceport
    
