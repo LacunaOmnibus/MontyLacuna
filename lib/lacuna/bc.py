@@ -96,6 +96,23 @@ class LacunaObject:
             return rslt
         return inner
 
+    def call_returning_meth(func):
+        """Decorator.  
+        Makes an RPC that _does_ require that the client is logged in.
+        Most RPC calls simply return to the user the data returned from the TLE 
+        servers (after a slight massage).  But some methods need to modify that 
+        data themselves.
+        A method decorated with this can generally not also be decorated with 
+        one of the set_status decorators.
+        """
+        def inner(self, *args, **kwargs):
+            myargs = (self.client.session_id,) + args
+            rslt = self.client.send( self.path, func.__name__, myargs )
+            kwargs['rslt'] = rslt
+            myrslt = func( self, *args, **kwargs )
+            return myrslt
+        return inner
+
     def call_member_named_meth(func):
         """Decorator.  
         Makes an RPC that _does_ require that the client is logged in.

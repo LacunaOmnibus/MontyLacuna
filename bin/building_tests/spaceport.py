@@ -49,7 +49,7 @@ my_map      = glc.get_map();
 ### Get list of my ships available to send as a fleet to a given target.
 ### 
 #target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )   # inhabited, hostile
-#target = { 'body_name': target_planet['name'] }
+#target = { 'body_name': target_planet.name }
 #rvd = sp.get_my_fleet_for( target )
 #glc.pp.pprint( rvd['ships'] )
 
@@ -76,7 +76,7 @@ my_map      = glc.get_map();
 
 ### Send a ship to the target
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 018', 'Eagiflio 3' )   # roid
-#target = { 'body_name': target_planet['name'] }
+#target = { 'body_name': target_planet.name }
 #rve = sp.get_my_ships_for( target )
 #ship = get_available_ships_for( sp, target, 'mining_platform_ship', 1 )[0]
 #rvf = sp.send_ship( ship['id'], target )
@@ -86,8 +86,15 @@ my_map      = glc.get_map();
 ### Send ships of a given type to a target.
 ###
 #my_map = glc.get_map();
-target_star = my_map.get_star_by_name('SMA bmots 001')
-glc.pp.pprint( target_star  )
+target_star = my_map.get_star_by_name('SMA bmots 001') # this whole system is mine
+glc.pp.pprint( target_star.color  )
+
+target_star = my_map.get_star_by_name('Clou Oghofr Oap')    # uninhabited unseized system
+glc.pp.pprint( target_star.body_objects[0].id  )
+quit()
+
+
+
 
 ### 
 ### CHECK - I have to dig through the star's data to find its name.  This is 
@@ -123,7 +130,7 @@ glc.pp.pprint( target_star  )
 ### Recall a ship orbiting a planet
 ###
 #target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )
-#target = { 'body_name': target_planet['name'] }
+#target = { 'body_name': target_planet.name }
 #ship = get_orbiting_ships_for( sp, target, 'fighter', 1 )[0]
 #sp.recall_ship( ship['id'] )
 #print( "I just recalled ship", ship['id'] )
@@ -191,7 +198,7 @@ glc.pp.pprint( target_star  )
 ### Prepare to send spies to a target
 ###
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rv = sp.prepare_send_spies( my_planet.id, target_planet['id'] )
+#rv = sp.prepare_send_spies( my_planet.id, target_planet.id )
 #glc.pp.pprint( rv['ships'] )
 #print("------------")
 #glc.pp.pprint( rv['spies'] )
@@ -200,16 +207,16 @@ glc.pp.pprint( target_star  )
 ### Send spies to the target
 ###
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rva = sp.prepare_send_spies( my_planet.id, target_planet['id'] )
+#rva = sp.prepare_send_spies( my_planet.id, target_planet.id )
 #ship_id = rva['ships'][0]['id']
 #spy_ids = [ x['id'] for x in rva['spies'][0:3] ]
-#rvb = sp.send_spies( my_planet.id, target_planet['id'], ship_id, spy_ids )
+#rvb = sp.send_spies( my_planet.id, target_planet.id, ship_id, spy_ids )
 #glc.pp.pprint( rvb )
 
 
 ### Prepare to fetch spies home again
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rv = sp.prepare_fetch_spies( my_planet.id, target_planet['id'] )
+#rv = sp.prepare_fetch_spies( my_planet.id, target_planet.id )
 #glc.pp.pprint( rv['ships'][0] )
 #print("------------")
 #glc.pp.pprint( rv['spies'][0] )
@@ -220,13 +227,13 @@ glc.pp.pprint( target_star  )
 ### This is the hard way.  See the next block below.
 ###
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rva = sp.prepare_fetch_spies( target_planet['id'], my_planet.id )
+#rva = sp.prepare_fetch_spies( target_planet.id, my_planet.id )
 #ship_id = rva['ships'][0]['id']
 #spy_ids = []
 #for i in rva['spies']:
-#    if i['based_from']['body_id'] == my_planet.id and i['assigned_to']['body_id'] == target_planet['id']:
+#    if i['based_from']['body_id'] == my_planet.id and i['assigned_to']['body_id'] == target_planet.id:
 #        spy_ids.append( i['id'] )
-#rvb = sp.fetch_spies( target_planet['id'], my_planet.id, ship_id, spy_ids )
+#rvb = sp.fetch_spies( target_planet.id, my_planet.id, ship_id, spy_ids )
 #glc.pp.pprint( rvb )
 
 
@@ -254,11 +261,11 @@ def get_spies_back( sp, from_id, ship_name = '' ):
     for i in prep_rv['spies']:
         if i['based_from']['body_id'] == sp.body_id and i['assigned_to']['body_id'] == from_id:
             spy_ids.append( i['id'] )
-    fetch_rv = sp.fetch_spies( target_planet['id'], my_planet.id, ship_id, spy_ids )
+    fetch_rv = sp.fetch_spies( target_planet.id, my_planet.id, ship_id, spy_ids )
     return fetch_rv
     
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rv = get_spies_back( sp, target_planet['id'] )
+#rv = get_spies_back( sp, target_planet.id )
 
 
 

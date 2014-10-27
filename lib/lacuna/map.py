@@ -1,5 +1,6 @@
 
 from lacuna.bc import LacunaObject
+from lacuna.body import Body
 
 class Map(LacunaObject):
     """All Map methods require a session ID, so these can only be used by a
@@ -39,48 +40,23 @@ class Map(LacunaObject):
         """ rv['incoming_probe'] will be 1 for true, 0 for false."""
         pass
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @LacunaObject.call_returning_meth
     def get_star( self, star_id, *args, **kwargs ):
-        """ Returns a single dict (NOT a list of dicts like get_star() and 
-        get_star_map()!)
+        """ Returns a Star object.  """
+        star = Star( self.client, kwargs['rslt']['star'] )
+        return(star)
 
-        Retval contains 'star', a dict, which includes:
-
-                'color': 'white',
-                'id': '12345',
-                'name': 'Sol',
-                'station': {   'id': '98765',
-                            'name': 'Seizing Space Station Name',
-                            'x': '0',
-                            'y': '0'},
-                'x': '1',
-                'y': '1',
-                'zone': '0|0',
-
-                'bodies': List of body dicts
-
-            If you or an alliance mate have probed or oracled the star, 'bodies' 
-            will be a list of dicts of the bodies orbiting that star:
-                    {   'id': '12345',
-                        'image': 'p35-4',
-                        'name': 'Sol 1',
-                        'orbit': '1',
-                        'ore': {   'anthracite': 500,
-                                 ...
-                                 'zircon': 1    },
-            This list of bodies is ordered by id, not name or orbit as you might 
-            expect.
-        """
-        pass
-
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @LacunaObject.call_returning_meth
     def get_star_by_name( self, star_name, *args, **kwargs ):
-        """ star_name must be an exact name, not a partial.  rv is identical to 
+        """ Returns a Star object.  
+
+            star = my_map.get_star_by_name( 'Sol' )
+
+        star_name must be an exact name, not a partial.  rv is identical to 
         get_star().
         """
-        pass
+        star = Star( self.client, kwargs['rslt']['star'] )
+        return star
 
     @LacunaObject.set_empire_status
     @LacunaObject.call_member_meth
@@ -134,50 +110,95 @@ class Map(LacunaObject):
     ###
 
     def get_orbiting_planet( self, star_name:str, planet_name:str ):
-        """ Returns a planet object for a specific planet orbiting a specific 
-        star.  Requires that you can see the system in your starmap.  This means 
-        that you or one of your alliance mates must either have a probe at the 
-        star, or have an oracle in range.
+        """ Returns a Body object for a specific planet orbiting a specific 
+        star.  Requires that you can see the system in your starmap.  This 
+        means that you or one of your alliance mates must either have a probe 
+        at the star, or have an oracle in range.
 
             planet = map.get_orbiting_planet( 'Star name', 'Name of planet orbiting that star' )
         """
         my_map = self.client.get_map()
-        rvc = my_map.get_star_by_name(star_name)
+        star = my_map.get_star_by_name(star_name)
         target_planet = ''
-        for i in rvc['star']['bodies']:
-            if i['name'] == planet_name:
+        for i in star.body_objects:
+            if i.name == planet_name:
                 target_planet = i
         if not target_planet:
             raise KeyError("Unable to find target planet", planet_name, ".")
         return target_planet
 
 
-class Star(LacunaObject):
+class Star():
+    """ Star objects will generally be handed back to you as the result of a 
+    call to Map's get_star() or get_star_by_name().
 
-    def __init__( self, client, star_dict:dict ):
-        super().__init__( client )
+    However, you can instantiate your own Star object if needed, by passing a 
+    dict of Star attributes:
 
-        del( star_dict['status'] )
+        dict = {
+            'color': 'red',
+            'id': '12345',
+            'name': 'Clou Oghofr Oap',
+            'x': '100',
+            'y': '-100',
+            'zone': '0|0',
+            bodies: [
+                {   'id': '90388',
+                    'image': 'p7-8',
+                    'name': 'Clou Oghofr Oap 8',
+                    'orbit': '8',
+                    'size': '38',
+                    'star_id': '12567',
+                    'star_name': 'Clou Oghofr Oap',
+                    'type': 'habitable planet',
+                    'water': 5700,
+                    'x': '994',
+                    'y': '-1186',
+                    'zone': '3|-4',
+                    'ore': { 'anthracite': 1, ..., 'zircon': 1 }       },
+                { another body dict },
+                { ... },
+            ],
+        }
 
+    Each key in that dict will become an attribute of the returned Star 
+    object.  
+    
+    Additionally, each body in the bodies list will be instantiated into a 
+    Body object.  This list of body objects will be set as the returned Star 
+    object's "body_objects" attribute.
+    
+    So:
+            mystar = Star( client, dict )
 
+        ...or...
+            mystar = my_map.get_star_by_name( 'Sol' )
 
-        self.client.pp.pprint(  )
+        ...either way...
+            print( mystar.color )
+            print( mystar.body_objects[0].name )
 
+        ...etc.
+    
+    Not a LacunaObject descendent; we have no path as there is no Star class 
+    in the TLE API.
+    """
 
+    def __init__( self, client, star_dict:dict, *args, **kwargs ):
+        self.client = client
 
+        if 'status' in star_dict:
+            del( star_dict['status'] )
 
+        self.client.pp.pprint( star_dict )
 
+        body_objs = []
+        for b in star_dict['bodies']:
+            body_objs.append( Body(self, b['id'], b) )
+        self.body_objects = body_objs
+        if 'bodies' in star_dict:
+            del( star_dict['bodies'] )
 
-
-
-
-
-
-
-
-
-
-
-
-
+        for k, v in star_dict.items():
+            setattr(self, k, v)
 
