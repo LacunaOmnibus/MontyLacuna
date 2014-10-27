@@ -1,7 +1,8 @@
 
-from lacuna.building import Building
+from lacuna.bc import LacunaObject
+from lacuna.building import MultiStorage
 
-class orestorage(Building):
+class orestorage(MultiStorage):
     path = 'orestorage'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
