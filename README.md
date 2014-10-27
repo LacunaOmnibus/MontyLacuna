@@ -69,6 +69,7 @@ supposed to do.
   - network19
   - observatory
   - oracleofanid
+  - orestorage
 
   - spaceport
    
