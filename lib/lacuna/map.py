@@ -129,4 +129,24 @@ class Map(LacunaObject):
         """
         pass
 
+    ### 
+    ### Non-API methods
+    ###
 
+    def get_orbiting_planet( self, star_name:str, planet_name:str ):
+        """ Returns a planet object for a specific planet orbiting a specific 
+        star.  Requires that you can see the system in your starmap.  This means 
+        that you or one of your alliance mates must either have a probe at the 
+        star, or have an oracle in range.
+
+            planet = map.get_orbiting_planet( 'Star name', 'Name of planet orbiting that star' )
+        """
+        my_map = self.client.get_map()
+        rvc = my_map.get_star_by_name(star_name)
+        target_planet = ''
+        for i in rvc['star']['bodies']:
+            if i['name'] == planet_name:
+                target_planet = i
+        if not target_planet:
+            raise KeyError("Unable to find target planet", planet_name, ".")
+        return target_planet
