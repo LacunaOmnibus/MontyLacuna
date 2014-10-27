@@ -18,7 +18,7 @@ class development(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_named_meth
+    @Building.call_named_meth
     def subsidize_one_build( self, named_args:dict, **kwargs ):
         """ Spends E to immediately finish a single build in the build queue.
 
@@ -35,7 +35,7 @@ class development(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_named_meth
+    @Building.call_named_meth
     def cancel_build( self, named_args:dict, **kwargs ):
         """ Removes a single building upgrade from the build queue.
         Any resources that were spent to start the upgrade are lost.

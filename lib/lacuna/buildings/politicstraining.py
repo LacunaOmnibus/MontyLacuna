@@ -1,6 +1,17 @@
 
 from lacuna.building import Building
 
+"""
+
+    The view() method includes the key 'spies', a dict:
+                {
+                    "max_points" : 2600,
+                    "points_per" : 45,
+                    "in_training" : 4,
+                },
+
+"""
+
 class politicstraining(Building):
     path = 'politicstraining'
 
