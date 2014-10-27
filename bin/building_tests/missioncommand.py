@@ -33,10 +33,10 @@ mcomm       = my_planet.get_building_coords( 4, -2 )
 
 ### Skip a mission.
 ###
-mission_list = mcomm.get_missions()
-for m in mission_list:
-    if m.name == 'Orange Crush':
-        rv = mcomm.skip_mission( m.id )
-        glc.pp.pprint( rv )
-        break
+#mission_list = mcomm.get_missions()
+#for m in mission_list:
+#    if m.name == 'Orange Crush':
+#        rv = mcomm.skip_mission( m.id )
+#        glc.pp.pprint( rv )
+#        break
 
