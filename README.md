@@ -60,16 +60,13 @@ supposed to do.
   - intelligence
   - libraryofjith
   - mercenariesguild
-
-  - CHECK ALL OF THE ABOVE FOR CORRECT @Building.set_building_status decorators; I think I 
-    may have missed a bunch.
-
   - miningministry
   - missioncommand
   - network19
   - observatory
   - oracleofanid
   - orestorage
+  - park
 
   - spaceport
    
