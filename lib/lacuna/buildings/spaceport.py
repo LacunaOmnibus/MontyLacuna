@@ -622,4 +622,46 @@ class spaceport(Building):
     def get_waste_chain_ships_for( self, target:dict, type:str, quantity:int = 1 ):
         return self.get_task_ships_for( target, type, 'waste chain', quantity )
 
+    def get_spies_back( self, from_id, ship_name = '' ):
+        """ Fetches all spies currently posted to a planet back home again.
+
+            on_body_id = 12345
+            sp.get_spies_back( on_body_id )
+
+        Arguments:
+            on_body_id: Integer ID of the body from which you want to retrieve 
+                        your spies.
+            ship_name:  Optional; name of the ship you want to use to retrieve 
+                        your spies.  If not sent, the first available ship will 
+                        be used.
+
+        Retval includes key 'ship':
+                {   "id" : "id-goes-here",
+                    "name" : "CS4",
+                    "hold_size" : 1100,
+                    "berth_level" : 1,
+                    "speed" : 400,
+                    "type" : "cargo_ship",
+                    "date_arrives" : "01 31 2010 13:09:05 +0600", ...    }, 
+        """
+        prep_rv = self.prepare_fetch_spies( from_id, self.body_id )
+
+        ship_id = 0
+        if ship_name:
+            for ship in prep_rv['ships']:
+                if ship['name'] == ship_name:
+                    ship_id = ship['id']
+                    break
+        else:
+            ship_id = prep_rv['ships'][0]['id']     # No ship name specified.  Use the first one available.
+
+        if int(ship_id) <= 0:
+            raise KeyError("No ships matching your criteria are available to fetch spies.")
+
+        spy_ids = []
+        for i in prep_rv['spies']:
+            if i['based_from']['body_id'] == self.body_id and i['assigned_to']['body_id'] == from_id:
+                spy_ids.append( i['id'] )
+        fetch_rv = self.fetch_spies( target_planet.id, my_planet.id, ship_id, spy_ids )
+        return fetch_rv
 

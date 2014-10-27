@@ -55,10 +55,9 @@ my_map      = glc.get_map();
 
 
 ### Get list of my ships available to send to a given target.
-### This is using the target_star and target_planet stuff from the block 
-### above, so make sure it's not commented out.
+### This is using the target from the block above, so make sure it's not 
+### commented out.
 ###
-#target = { 'star_name': rvc['star']['name'] }
 #rvd = sp.get_my_ships_for( target )
 #glc.pp.pprint( rvd['incoming'] )
 
@@ -86,22 +85,9 @@ my_map      = glc.get_map();
 ### Send ships of a given type to a target.
 ###
 #my_map = glc.get_map();
-target_star = my_map.get_star_by_name('SMA bmots 001') # this whole system is mine
-glc.pp.pprint( target_star.color  )
-
-target_star = my_map.get_star_by_name('Clou Oghofr Oap')    # uninhabited unseized system
-glc.pp.pprint( target_star.body_objects[0].id  )
-quit()
-
-
-
-
-### 
-### CHECK - I have to dig through the star's data to find its name.  This is 
-### no good.  The name et al should be an attribute of the returned object.
-###
-#print( target_star['star']['name'] )
-#target = { 'star_name': target_star['star']['name'] }
+#target_star = my_map.get_star_by_name('SMA bmots 001') # this whole system is mine
+#glc.pp.pprint( "Your target star's color is", target_star.color, "." )
+#target = { 'star_name': target_star.name }
 #types = [{
 #        'type': 'scow',
 #        'speed': 1800,
@@ -120,7 +106,7 @@ quit()
 ###
 #my_map = glc.get_map();
 #target_star = my_map.get_star_by_name('SMA bmots 001')
-#target = { 'star_name': target_star['star']['name'] }
+#target = { 'star_name': target_star.name }
 #ship_ids = []
 #for i in get_available_ships_for( sp, target, 'scow_mega', 5 ):
 #    ship_ids.append( i['id'] )
@@ -241,32 +227,8 @@ quit()
 ### 
 ### And there was much rejoicing.
 ### 
-### CHECK get_spies_back() needs to go into spaceport.py.
-def get_spies_back( sp, from_id, ship_name = '' ):
-    prep_rv = sp.prepare_fetch_spies( from_id, sp.body_id )
-
-    ship_id = 0
-    if ship_name:
-        for ship in prep_prep_rv['ships']:
-            if ship['name'] == ship_name:
-                ship_id = ship['id']
-                break
-    else:
-        ship_id = prep_rv['ships'][0]['id']     # No ship name specified.  Use the first one available.
-
-    if int(ship_id) <= 0:
-        raise KeyError("No ships matching your criteria are available to fetch spies.")
-
-    spy_ids = []
-    for i in prep_rv['spies']:
-        if i['based_from']['body_id'] == sp.body_id and i['assigned_to']['body_id'] == from_id:
-            spy_ids.append( i['id'] )
-    fetch_rv = sp.fetch_spies( target_planet.id, my_planet.id, ship_id, spy_ids )
-    return fetch_rv
-    
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rv = get_spies_back( sp, target_planet.id )
-
+#rv = sp.get_spies_back( target_planet.id )
 
 
 ### Check battle logs
