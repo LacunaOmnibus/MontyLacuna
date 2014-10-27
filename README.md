@@ -70,10 +70,7 @@ supposed to do.
   - planetarycommand
   - politicstraining
   - security (left off here - totally un-worked-on)
-
   - spaceport (done)
-   
-
 
 ## Incomplete/Not Started
 - Payments
