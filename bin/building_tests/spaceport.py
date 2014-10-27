@@ -74,7 +74,6 @@ my_map      = glc.get_map();
 #glc.pp.pprint( rvd['mining_platforms'] )
 #print( len(rvd['mining_platforms']) )
 
-
 ### Send a ship to the target
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 018', 'Eagiflio 3' )   # roid
 #target = { 'body_name': target_planet['name'] }
@@ -87,7 +86,9 @@ my_map      = glc.get_map();
 ### Send ships of a given type to a target.
 ###
 #my_map = glc.get_map();
-#target_star = my_map.get_star_by_name('SMA bmots 001')
+target_star = my_map.get_star_by_name('SMA bmots 001')
+glc.pp.pprint( target_star  )
+
 ### 
 ### CHECK - I have to dig through the star's data to find its name.  This is 
 ### no good.  The name et al should be an attribute of the returned object.
@@ -263,8 +264,8 @@ def get_spies_back( sp, from_id, ship_name = '' ):
 
 ### Check battle logs
 ###
-rv = sp.view_battle_logs()
-glc.pp.pprint( rv['battle_log'][0] )
-print( "--", rv['number_of_logs'], "--" )
+#rv = sp.view_battle_logs()
+#glc.pp.pprint( rv['battle_log'][0] )
+#print( "--", rv['number_of_logs'], "--" )
 
 

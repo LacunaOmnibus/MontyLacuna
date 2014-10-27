@@ -14,7 +14,7 @@ import lacuna.stats
 from lacuna.exceptions import \
     BadConfigSectionError, \
     BadCredentialsError, \
-    NoSuchBodyError, \
+    NoSuchMyBodyError, \
     NoSuchEmpireError, \
     NotJsonError, \
     ServerError
@@ -285,7 +285,7 @@ class Member(Guest):
             if name == body_name:
                 return lacuna.body.Body( self, bid )
         else:
-            raise NoSuchBodyError("No body with the name '{}' was found.".format(body_name))
+            raise NoSuchMyBodyError("No body with the name '{}' was found.".format(body_name))
 
     def get_captcha(self):
         return lacuna.captcha.Captcha( self )

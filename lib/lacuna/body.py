@@ -130,17 +130,21 @@ from lacuna.exceptions import \
     NoSuchBuildingError
 
 class Body(LacunaObject):
-
     path = 'body'
 
     def __init__( self, client:object, body_id:int ):
         super().__init__( client )
         self.body_id = body_id
 
+class MyBody(Body):
+
+    def __init__( self, client:object, body_id:int ):
+        super().__init__( client )
         ### I want self to start out populated, which would require a call to 
         ### get_status().  But since all the other methods also require a 
-        ### status block, I can call get_buildings() instead and get both the 
-        ### status data and the building data in a single shot.
+        ### status block, I can call set_buildings() instead (which is 
+        ### decorated with get_buildings()) and get both the status data and 
+        ### the building data in a single shot.
         self.set_buildings()
 
     def set_body_status( func ):
@@ -376,7 +380,4 @@ class Body(LacunaObject):
         this is not uncommon on PT.
         """
         pass
-
-
-
 

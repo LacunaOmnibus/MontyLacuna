@@ -150,3 +150,34 @@ class Map(LacunaObject):
         if not target_planet:
             raise KeyError("Unable to find target planet", planet_name, ".")
         return target_planet
+
+
+class Star(LacunaObject):
+
+    def __init__( self, client, star_dict:dict ):
+        super().__init__( client )
+
+        del( star_dict['status'] )
+
+
+
+        self.client.pp.pprint(  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
