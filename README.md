@@ -86,7 +86,7 @@ supposed to do.
   warning.
 
 - Everything needs to be tested on Windows.  In particular:
- - bin/captcha_test.py
+  - bin/captcha_test.py
 
 - Ack through everything for "CHECK" and fix.
 
