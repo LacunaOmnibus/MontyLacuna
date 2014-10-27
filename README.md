@@ -93,3 +93,16 @@ supposed to do.
 
 - Go back to intelligence.py and see about creating a Spy class.
 
+- call_building_named_meth() decorator is already in the Building class; we don't need the 
+  "building" in there.  change it to just "call_named_meth" and fix all calls.
+
+- map.Star() is currently reading the 'bodies' dict list attribute, keeping it, and also 
+  creating the 'body_objects' object list attribute.  I see no need to keep both of those 
+  attributes, and suddenly switching to the name "body_objects" is confusing.  Get rid of 
+  "body_objects", replace "bodies" with a list of objects instead of the original list of 
+  dicts, and fix all calls.
+    - I've already set the 'bodies' attribute to the same list of objects currently 
+      pointed to by the 'body_objects' attribute; all new code should use that 'bodies' 
+      attribute.  Just need to get rid of existing calls to body_objects, then delete the 
+      attribute.
+
