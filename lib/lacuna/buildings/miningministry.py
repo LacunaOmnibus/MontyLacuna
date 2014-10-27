@@ -54,7 +54,12 @@ class miningministry(Building):
     @LacunaObject.set_empire_status
     @Building.call_building_meth
     def view_ships( self, *args, **kwargs ):
-        """ View list of ships currently mining.
+        """ View list of mining-capable ships.
+
+        All ships that can be used for mining are returned.  If a given ship's 
+        task is 'Mining', it's currently shutting ore to and from your mining 
+        platforms.  If its task is listed as 'Docked', it's available to be 
+        added to your current mining fleet.
 
         Retval includes 'ships', a list of ship dicts:
                 {
@@ -66,5 +71,52 @@ class miningministry(Building):
                 },
         """
         pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def add_cargo_ship_to_fleet( self, ship_id:int, *args, **kwargs ):
+        """ Adds a ship to the mining fleet.
+
+        The "cargo ship" does not have to specifically be of type "cargo_ship", 
+        it just has to be capable of carrying cargo (eg hulk_mega, 
+        smuggler_ship, etc).  
+
+        Requires "ship_id", the integer ID of the ship to add to the fleet.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def remove_cargo_ship_from_fleet( self, ship_id:int, *args, **kwargs ):
+        """ Takes a single ship off mining duty; sends the ship a message to 
+        return to base to perform the "Docked" task.
+
+        After being removed from mining duty, the ship will need to travel 
+        from the mining location back to your space port's planet, so it will 
+        not be available for use immediately.
+
+        Requires "ship_id", the integer ID of the ship to removed from the 
+        fleet.
+        """
+        pass
+
+    @LacunaObject.set_empire_status
+    @Building.call_building_meth
+    def abandon_platform( self, platform_id:int, *args, **kwargs ):
+        """ Abandon one of your mining platforms.
+
+        Requires "platform_id", the integer ID of the platform to abandon.
+
+        Remember that you might have multiple platforms on a single asteroid.  
+        When you abandon, you are abandoning the platform, not the asteroid, so 
+        be careful to send the platform ID, not the ID of the asteroid itself.
+        """
+        pass
+
+
+
+
+
+
 
 

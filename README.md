@@ -60,16 +60,13 @@ supposed to do.
   - intelligence
   - libraryofjith
   - mercenariesguild
-  - miningministry
-    - I started on this, then realized I need access to ship IDs to be able to add cargo 
-      ships to the fleet.  Went off to work on spaceport so I can get at that information.  
-      CHECK need to come back to this.
 
   - CHECK ALL OF THE ABOVE FOR CORRECT @Building.set_building_status decorators; I think I 
     may have missed a bunch.
 
+  - miningministry
+
   - spaceport
-    - Working on this.
    
 
 

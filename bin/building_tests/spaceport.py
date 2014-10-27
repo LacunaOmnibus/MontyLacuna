@@ -16,15 +16,11 @@ sp          = my_planet.get_building_coords( 5, 5 )
 my_map      = glc.get_map();
 
 
-### CHECK
-### Everything in here worked in testing, but too many of the examples depend 
-### on results from previous examples.
-###
-### Clean up.
-###
-###
-### Also, there are a number of functions defined in here that need to become 
-### methods of one of my classes.  Keep searching for CHECK.
+
+### This is far from a test-everything-with-one-run script.  Some of the code 
+### blocks depend on returns from previous code blocks, etc.  It's meant to be 
+### walked through manually, not as a real test script.  So it needs to be 
+### cleaned up.
 
 
 
@@ -231,7 +227,7 @@ my_map      = glc.get_map();
 #rv = sp.get_spies_back( target_planet.id )
 
 
-### Check battle logs
+### Look at battle logs
 ###
 #rv = sp.view_battle_logs()
 #glc.pp.pprint( rv['battle_log'][0] )
