@@ -84,11 +84,8 @@ supposed to do.
   letting the user know that's what's happening and is why their script is taking so long.  
   Unless this attribute has been specifically set to false, in which case issue no 
   warning.
-
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
-
 - Ack through everything for "CHECK" and fix.
-
 - Go back to intelligence.py and see about creating a Spy class.
 
