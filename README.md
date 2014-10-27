@@ -67,8 +67,11 @@ supposed to do.
   - oracleofanid
   - orestorage
   - park
+  - planetarycommand
+  - politicstraining
+  - security (left off here - totally un-worked-on)
 
-  - spaceport
+  - spaceport (done)
    
 
 
@@ -77,7 +80,6 @@ supposed to do.
  - There's a real good chance this will never be worked on as part of this 
    project.
 - Announcement
-- Captcha
 
 ## TBD
 - Add another attribute to the client classes - warn_on_sleep.  Default it to true.  If a 
@@ -92,9 +94,6 @@ supposed to do.
 - Ack through everything for "CHECK" and fix.
 
 - Go back to intelligence.py and see about creating a Spy class.
-
-- call_building_named_meth() decorator is already in the Building class; we don't need the 
-  "building" in there.  change it to just "call_named_meth" and fix all calls.
 
 - map.Star() is currently reading the 'bodies' dict list attribute, keeping it, and also 
   creating the 'body_objects' object list attribute.  I see no need to keep both of those 

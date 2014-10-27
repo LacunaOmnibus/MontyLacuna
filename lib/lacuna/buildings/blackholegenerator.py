@@ -81,7 +81,7 @@ class blackholegenerator(Building):
 
 
     @LacunaObject.set_empire_status
-    @Building.call_building_named_meth
+    @Building.call_named_meth
     def generate_singularity( self, named_args:dict, **kwargs ):
         """ Performs one of the several actions possible via BHG.  See 
         get_actions_for() for a list of legal actions.

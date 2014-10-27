@@ -94,7 +94,7 @@ class Building(LacunaObject):
             return myrslt
         return inner
 
-    def call_building_named_meth(func):
+    def call_named_meth(func):
         """Decorator.  
         Calls a server method that requires a building_id, but no body_id.
         Expects named arguments.  This is the 'new' way of doing it, but there are
