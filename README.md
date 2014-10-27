@@ -65,6 +65,7 @@ supposed to do.
     may have missed a bunch.
 
   - miningministry
+  - missioncommand
 
   - spaceport
    
@@ -88,4 +89,6 @@ supposed to do.
  - bin/captcha_test.py
 
 - Ack through everything for "CHECK" and fix.
+
+- Go back to intelligence.py and see about creating a Spy class.
 
