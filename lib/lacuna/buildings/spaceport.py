@@ -549,8 +549,77 @@ class spaceport(Building):
         pass
 
 
+    ### 
+    ### Non-API methods
+    ###
 
+    def get_task_ships_for( self, target:dict, type:str, task:str = 'available', quantity:int = 1 ):
+        """ Returns a list of ships assigned to a specific task.  
+                target = { 'star_name': 'Sol' }
+                list = get_task_ships_for( target, 'available', 'sweeper', 10 )
 
+        There are sugar methods available for each of the possible tasks; it 
+        should be move convenient to use those.
+                target = { 'star_name': 'Sol' }
+                available_list          = get_available_ships_for( target, 'sweeper', 10 )
+                docked_list             = get_docked_ships_for( target, 'sweeper', 10 )
+                incoming_list           = get_incoming_ships_for( target, 'sweeper', 10 )
+                mining_list             = get_mining_ships_for( target, 'sweeper', 10 )
+                orbiting_list           = get_orbiting_ships_for( target, 'sweeper', 10 )
+                supply_chain_list       = get_supply_chain_ships_for( target, 'sweeper', 10 )
+                unavailable_list        = get_unavailable_ships_for( target, 'sweeper', 10 )
+                waiting_on_trade_list   = get_waiting_on_trade_ships_for( target, 'sweeper', 10 )
+                waste_chain_list        = get_waste_chain_ships_for( target, 'sweeper', 10 )
 
+        In each case, the arguments are:
+            target:     Same as get_my_fleet_for()
+            type:       Type of ship (eg placebo5, smuggler_ship, etc)
+            quantity:   Optional integer number of ships to return.  Defaults to 1.
+        """
+        rv = self.get_my_ships_for( target )
+        ships = [] 
+        cnt = 0
+        for i in rv[task]:
+            if i['type'] == type:
+                ships.append( i )
+                cnt += 1
+                if cnt >= quantity:
+                    break
+        if not 'id' in ships[0]:
+            raise KeyError("Unable to find any available", type, "ship.")
+        return ships
+
+    def get_available_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'available', quantity )
+
+    def get_defend_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'defend', quantity )
+
+    def get_docked_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'docked', quantity )
+
+    def get_incoming_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'incoming', quantity )
+
+    def get_mining_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'mining_plantforms', quantity )
+
+    def get_orbiting_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'orbiting', quantity )
+
+    def get_supply_chain_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'supply chain', quantity )
+
+    def get_travelling_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'travelling', quantity )
+
+    def get_unavailable_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'unavailable', quantity )
+
+    def get_waiting_on_trade_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'waiting on trade', quantity )
+
+    def get_waste_chain_ships_for( self, target:dict, type:str, quantity:int = 1 ):
+        return self.get_task_ships_for( target, type, 'waste chain', quantity )
 
 
