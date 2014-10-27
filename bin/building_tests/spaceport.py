@@ -13,6 +13,7 @@ glc = lac.clients.Member(
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 sp          = my_planet.get_building_coords( 5, 5 )
+my_map      = glc.get_map();
 
 
 ### CHECK
@@ -45,22 +46,9 @@ sp          = my_planet.get_building_coords( 5, 5 )
 #print( "There are {} incoming foreign ships.".format(rvb['number_of_ships']) )
 
 
-### CHECK this needs to be added to map.py:
-def get_orbiting_planet( glc, star_name:str, planet_name:str ):
-    my_map = glc.get_map();
-    rvc = my_map.get_star_by_name(star_name)
-    target_planet = ''
-    for i in rvc['star']['bodies']:
-        if i['name'] == planet_name:
-            target_planet = i
-    if not target_planet:
-        raise KeyError("Unable to find target planet", planet_name, ".")
-    return target_planet
-
-
 ### Get list of my ships available to send as a fleet to a given target.
 ### 
-#target_planet = get_orbiting_planet( glc, 'Schu Ize', '--=Tatooine=--' )   # inhabited, hostile
+#target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )   # inhabited, hostile
 #target = { 'body_name': target_planet['name'] }
 #rvd = sp.get_my_fleet_for( target )
 #glc.pp.pprint( rvd['ships'] )
@@ -87,39 +75,8 @@ def get_orbiting_planet( glc, star_name:str, planet_name:str ):
 #print( len(rvd['mining_platforms']) )
 
 
-### CHECK - this needs to become a spaceport method
-def get_task_ships_for( sp, target:dict, type:str, task:str = 'available', quantity:int = 1 ):
-    rv = sp.get_my_ships_for( target )
-    ships = [] 
-    cnt = 0
-    for i in rv[task]:
-        if i['type'] == type:
-            ships.append( i )
-            cnt += 1
-            if cnt >= quantity:
-                break
-    if not 'id' in ships[0]:
-        raise KeyError("Unable to find any available", type, "ship.")
-    return ships
-
-def get_available_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
-    return get_task_ships_for( sp, target, type, 'available', quantity )
-
-def get_incoming_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
-    return get_task_ships_for( sp, target, type, 'incoming', quantity )
-
-def get_mining_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
-    return get_task_ships_for( sp, target, type, 'mining_plantforms', quantity )
-
-def get_orbiting_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
-    return get_task_ships_for( sp, target, type, 'orbiting', quantity )
-
-def get_unavailable_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
-    return get_task_ships_for( sp, target, type, 'unavailable', quantity )
-
-
 ### Send a ship to the target
-#target_planet = get_orbiting_planet( glc, 'SMA bmots 018', 'Eagiflio 3' )   # roid
+#target_planet = my_map.get_orbiting_planet( 'SMA bmots 018', 'Eagiflio 3' )   # roid
 #target = { 'body_name': target_planet['name'] }
 #rve = sp.get_my_ships_for( target )
 #ship = get_available_ships_for( sp, target, 'mining_platform_ship', 1 )[0]
@@ -164,7 +121,7 @@ def get_unavailable_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
 
 ### Recall a ship orbiting a planet
 ###
-#target_planet = get_orbiting_planet( glc, 'Schu Ize', '--=Tatooine=--' )
+#target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )
 #target = { 'body_name': target_planet['name'] }
 #ship = get_orbiting_ships_for( sp, target, 'fighter', 1 )[0]
 #sp.recall_ship( ship['id'] )
@@ -232,7 +189,7 @@ def get_unavailable_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
 
 ### Prepare to send spies to a target
 ###
-#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
 #rv = sp.prepare_send_spies( my_planet.id, target_planet['id'] )
 #glc.pp.pprint( rv['ships'] )
 #print("------------")
@@ -241,7 +198,7 @@ def get_unavailable_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
 
 ### Send spies to the target
 ###
-#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
 #rva = sp.prepare_send_spies( my_planet.id, target_planet['id'] )
 #ship_id = rva['ships'][0]['id']
 #spy_ids = [ x['id'] for x in rva['spies'][0:3] ]
@@ -250,7 +207,7 @@ def get_unavailable_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
 
 
 ### Prepare to fetch spies home again
-#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
 #rv = sp.prepare_fetch_spies( my_planet.id, target_planet['id'] )
 #glc.pp.pprint( rv['ships'][0] )
 #print("------------")
@@ -261,7 +218,7 @@ def get_unavailable_ships_for( sp, target:dict, type:str, quantity:int = 1 ):
 ### 
 ### This is the hard way.  See the next block below.
 ###
-#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
 #rva = sp.prepare_fetch_spies( target_planet['id'], my_planet.id )
 #ship_id = rva['ships'][0]['id']
 #spy_ids = []
@@ -299,7 +256,7 @@ def get_spies_back( sp, from_id, ship_name = '' ):
     fetch_rv = sp.fetch_spies( target_planet['id'], my_planet.id, ship_id, spy_ids )
     return fetch_rv
     
-#target_planet = get_orbiting_planet( glc, 'SMA bmots 001', 'bmots rof 1.2' )
+#target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
 #rv = get_spies_back( sp, target_planet['id'] )
 
 
