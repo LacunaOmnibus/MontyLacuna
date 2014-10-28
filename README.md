@@ -69,7 +69,8 @@ supposed to do.
   - park
   - planetarycommand
   - politicstraining
-  - security (left off here - totally un-worked-on)
+  - security
+    - Looks fine, but needs testing when foreign spies come in.
   - spaceport (done)
 
 ## Incomplete/Not Started
@@ -88,4 +89,10 @@ supposed to do.
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
 - Go back to intelligence.py and see about creating a Spy class.
-
+- 3 prisoners inc to 1.1.  Use them to test t/bldgs/security.py
+    - view_prisoners()
+    - release_prisoner()
+    - view_foreign_spies()
+    - execute_prisoner()
+- Methods decorated with call_returning_meth() are not updating any statuses.  Figure out 
+  how to fix that.

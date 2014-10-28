@@ -1,4 +1,5 @@
 
+from lacuna.bc import LacunaObject
 from lacuna.building import Building
 
 class shipyard(Building):
