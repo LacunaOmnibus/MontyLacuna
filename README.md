@@ -71,7 +71,10 @@ supposed to do.
   - politicstraining
   - security
     - Looks fine, but needs testing when foreign spies come in.
-  - spaceport (done)
+  - shipyard
+  - spaceport
+    - Still converting this to return lists of Ship objects - search it for where I left 
+      off (marked).
 
 ## Incomplete/Not Started
 - Payments
@@ -96,3 +99,10 @@ supposed to do.
     - execute_prisoner()
 - Methods decorated with call_returning_meth() are not updating any statuses.  Figure out 
   how to fix that.
+- Any method that's returning a list of dicts (ships, spies, whatever) should be fixed to 
+  return instead a list of objects.
+  - I started doing this somewhere around the time I was working on security.py.  
+    Everything listed below that (in the list of completed buildings above) should be 
+    DingTRT.  Everthing listed above that should be looked at.
+
+
