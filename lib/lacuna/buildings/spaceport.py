@@ -450,6 +450,8 @@ class spaceport(Building):
     def prepare_send_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
         """ Gathers the info needed to call send_spies().
 
+                rv = sp.prepare_send_spies( my_planet_id, target_planet_id )
+
         Arguments:
             on_body_id: Integer ID of the body the spies are currently on
             to_body_id: Integer ID of the body to which you wish to send the spies
@@ -478,6 +480,8 @@ class spaceport(Building):
     @Building.call_naked_meth
     def send_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Sends spies to a target.
+
+                rv = sp.send_spies( my_planet_id, target_planet_id, ship_id, spy_ids )
 
         Arguments:
             on_body_id:         Integer ID of the body the spies are currently 
