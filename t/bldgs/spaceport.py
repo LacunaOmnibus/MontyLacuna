@@ -1,4 +1,8 @@
 
+### 
+### Search LEFT OFF HERE
+###
+
 import os, sys
 bindir = os.path.abspath(os.path.dirname(__file__))
 libdir = bindir + "/../../lib"
@@ -11,78 +15,91 @@ glc = lac.clients.Member(
     #config_section = 'my_sitter',
     config_section = 'play_test',
 )
-my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
+### The map on PT is smaller than that on US1, but the US1 data was copied to 
+### PT.  So be sure you're getting one of your bodies that's actually within 
+### the bounds of the PT map or Weird Things can happen.
+my_planet   = glc.get_body_byname( 'bmots01' )
 sp          = my_planet.get_building_coords( 5, 5 )
 my_map      = glc.get_map();
 
 
 
-### This is far from a test-everything-with-one-run script.  Some of the code 
-### blocks depend on returns from previous code blocks, etc.  It's meant to be 
-### walked through manually, not as a real test script.  So it needs to be 
-### cleaned up.
-
-
-
-
 ### View my ships
 ###
-#myfilter    = { 'type': 'barge', }
+#myfilter    = { 'type': 'excavator', }
 #paging      = { 'page_number': 1, "items_per_page": 3 }
 #sort        = 'speed'
-#rva = sp.view_all_ships( paging, myfilter, sort )
-#glc.pp.pprint( rva['ships'] )
-#print( "There are {} of my ships in my filter.".format(rva['number_of_ships']) )
+#ships, number = sp.view_all_ships( paging, myfilter, sort )
+#for i in ships:
+#    print( i.type_human )
+#print( "There are {} of my ships matching my filter.".format(number) )
 
 
 ### View incoming foreign ships
 ###
-#rvb = sp.view_foreign_ships( 1 )
-#glc.pp.pprint( rvb['ships'] )
-#print( "There are {} incoming foreign ships.".format(rvb['number_of_ships']) )
+#ships, number = sp.view_foreign_ships( 1 )
+#for i in ships:
+#    print( i.type_human )
+#print( "There are {} incoming foreign ships.".format(number) )
 
 
 ### Get list of my ships available to send as a fleet to a given target.
 ### 
 #target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )   # inhabited, hostile
-#target = { 'body_name': target_planet.name }
-#rvd = sp.get_my_fleet_for( target )
-#glc.pp.pprint( rvd['ships'] )
+#target = { 'body_id': target_planet.id }
+#ships = sp.get_my_fleet_for( target )
+#for i in ships:
+#    print( i.type_human )
 
 
 ### Get list of my ships available to send to a given target.
-### This is using the target from the block above, so make sure it's not 
-### commented out.
+### The Hard Way
 ###
-#rvd = sp.get_my_ships_for( target )
-#glc.pp.pprint( rvd['incoming'] )
+#target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )   # inhabited, hostile
+#target = { 'body_id': target_planet.id }
+#inc, avail, unavail, orbit, mining, fleet_limit = sp.get_my_ships_for( target )
+#for i in avail[0:2]:
+#    print(i.name, "is available")
+#print("--------------")
+#for i in unavail[0:2]:
+#    print(i.name, "is not available because", i.reason)
+#print("--------------")
+#for i in orbit[0:2]:
+#    print(i.name, "is orbiting ", i.orbiting['name'])
+#print("--------------")
+#for i in mining[0:2]:
+#    print(i.empire_name, "owns this mining platform.")
+#print("--------------")
 
-#glc.pp.pprint( rvd['available'] )
-#print( len(rvd['available']) )
 
-#glc.pp.pprint( rvd['unavailable'] )
-#print( len(rvd['unavailable']) )
+### Get list of my ships available to send to a given target.
+### The Easy Way
+###
+#target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )   # inhabited, hostile
+#target = { 'body_id': target_planet.id }
+#ships = sp.get_available_ships_for( target )
+#for i in ships[0:3]:
+#    print( i.name )
 
-#glc.pp.pprint( rvd['orbiting'] )
-#print( len(rvd['orbiting']) )
-
-#glc.pp.pprint( rvd['mining_platforms'] )
-#print( len(rvd['mining_platforms']) )
 
 ### Send a ship to the target
-#target_planet = my_map.get_orbiting_planet( 'SMA bmots 018', 'Eagiflio 3' )   # roid
+###
+#target_planet = my_map.get_orbiting_planet( 'Cronos', 'Lo Soafrui Slee 8' )   # roid
 #target = { 'body_name': target_planet.name }
-#rve = sp.get_my_ships_for( target )
-#ship = get_available_ships_for( sp, target, 'mining_platform_ship', 1 )[0]
-#rvf = sp.send_ship( ship['id'], target )
-#glc.pp.pprint( rvf['ship'] )
+#ships = sp.get_available_ships_for( target )
+#ship = ''
+#for i in ships:
+#    if i.type == 'mining_platform_ship':
+#        ship = i
+#rv = sp.send_ship( ship.id, target )
+#glc.pp.pprint( rv.name )
 
 
 ### Send ships of a given type to a target.
 ###
 #my_map = glc.get_map();
-#target_star = my_map.get_star_by_name('SMA bmots 001') # this whole system is mine
-#glc.pp.pprint( "Your target star's color is", target_star.color, "." )
+#target_star = my_map.get_star_by_name('Schu Ize')
+#print( "Your target star's color is", target_star.color, "." )
 #target = { 'star_name': target_star.name }
 #types = [{
 #        'type': 'scow',
@@ -90,9 +107,9 @@ my_map      = glc.get_map();
 #        'hold_size': 1170000,
 #    }]
 #arrival = {
-#    "day": 24,
-#    "hour": 23,
-#    "minute": 0,
+#    "day": 28,          # date of arrival
+#    "hour": 23,         # 24-hour server clock hour of arrival
+#    "minute": 59,       # etc
 #    "second": 0,
 #}
 #sp.send_my_ship_types( target, types, arrival )
@@ -101,63 +118,75 @@ my_map      = glc.get_map();
 ### Send a fleet of ships at a target
 ###
 #my_map = glc.get_map();
-#target_star = my_map.get_star_by_name('SMA bmots 001')
-#target = { 'star_name': target_star.name }
+#target_star = my_map.get_star_by_name('Schu Ize')
+#target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )
+#target = { 'body_name': target_planet.name }
 #ship_ids = []
-#for i in get_available_ships_for( sp, target, 'scow_mega', 5 ):
-#    ship_ids.append( i['id'] )
-#sp.send_fleet( ship_ids, target, 200 )
+#for i in sp.get_available_ships_for( target ):
+#    if i.type == 'fighter':
+#        ship_ids.append( i.id )
+#        if len(ship_ids) >= 5:
+#            break
+#sp.send_fleet( ship_ids, target )
 
 
 ### Recall a ship orbiting a planet
 ###
 #target_planet = my_map.get_orbiting_planet( 'Schu Ize', '--=Tatooine=--' )
 #target = { 'body_name': target_planet.name }
-#ship = get_orbiting_ships_for( sp, target, 'fighter', 1 )[0]
-#sp.recall_ship( ship['id'] )
-#print( "I just recalled ship", ship['id'] )
+#ships = sp.get_orbiting_ships_for( target )
+#ship = ships[0]
+#sp.recall_ship( ship.id )
+#print( "I just recalled ship", ship.id )
 
 
 ### Recall all orbiting ships
 ###
-#rvg = sp.recall_all()
-#glc.pp.pprint( rvg['ships'] )
+#sp.client.debugging_method = 'recall_all'
+#recalled = sp.recall_all()
+#for i in recalled:
+#    print("Returning from", i.returning_from['name'], "to", i.to['name'])
+
+
+
+CHECK LEFT OFF HERE
+
 
 
 ### Rename a ship
 ###
 #paging      = {}
 #myfilter    = { 'type': 'scow', }
-#rvh = sp.view_all_ships( paging, myfilter )
-#sp.name_ship( rvh['ships'][0]['id'], 'My New Ship Name' )
+#ships, number = sp.view_all_ships( paging, myfilter )
+#sp.name_ship( ships.id, 'My New Ship Name' )
 ### These attempts will raise 1005:
-#sp.name_ship( rvh['ships'][0]['id'], 'My New Way-Too-Long Ship Name That Will Simply Not Work' )
-#sp.name_ship( rvh['ships'][0]['id'], 'Shit Fucker' )
+#sp.name_ship( ships[0].id, 'My New Way-Too-Long Ship Name That Will Simply Not Work' )
+#sp.name_ship( ships[0].id, 'Shit Fucker' )
 
 
 ### Scuttle a ship
 ###
 #paging      = {}
 #myfilter    = { 'type': 'scow', }
-#rv = sp.view_all_ships( paging, myfilter )
+#ships, number = sp.view_all_ships( paging, myfilter )
 #ship = {}
-#for i in rv['ships']:
-#    if i['name'] == 'scuttle_me':
+#for i in ships:
+#    if i.name == 'scuttle_me':
 #        ship = i
-#if not 'id' in ship:
+#if not hasattr(ship, 'id'):
 #    raise KeyError("Unable to find the requested ship.")
-#print( "Scuttling ship", ship['name'] )
-#sp.scuttle_ship( ship['id'] )
+#print( "Scuttling ship", ship.name )
+#sp.scuttle_ship( ship.id )
 
 
 ### Scuttle a bunch of ships
 ###
 #paging      = {}
 #myfilter    = { 'type': 'scow', }
-#rv = sp.view_all_ships( paging, myfilter )
+#ships, number = sp.view_all_ships( paging, myfilter )
 #ship_ids = []
-#for i in rv['ships']:
-#    ship_ids.append( i['id'] )
+#for i in ships:
+#    ship_ids.append( i.id )
 #print( "Scuttling {} scows".format(len(ship_ids)) )
 #sp.mass_scuttle_ship( ship_ids )
 

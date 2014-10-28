@@ -42,6 +42,15 @@ class Guest:
 
     If a config file and section are passed in, the values in that config 
     file take precedence over any other values, including passed-in values.
+
+    Debugging
+        To take a look at the actual JSON that would be sent to the TLE servers 
+        for a specific method call, in your calling code you can do this:
+            myobject.client.debugging_method = 'some_TLE_method'
+            myobject.some_TLE_method( arg1, arg2, ... )
+
+        The JSON will be dumped to the screen and your script will immediately 
+        quit rather than actually sending that JSON.
     """
 
     pp = pprint.PrettyPrinter( indent = 4 )
@@ -174,9 +183,9 @@ class Guest:
             "params": params,
         }
         request_json = json.dumps( request )
-        #if method == 'get_fleet_for':
-        #    print( request_json )
-        #    quit()
+        if hasattr(self, 'debugging_method') and self.debugging_method == method:
+            print( request_json )
+            quit()
         resp = requests.post( url, request_json )
 
         ### The json parser will happily return a result when handed a raw 

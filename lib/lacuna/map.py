@@ -120,7 +120,7 @@ class Map(LacunaObject):
         my_map = self.client.get_map()
         star = my_map.get_star_by_name(star_name)
         target_planet = ''
-        for i in star.body_objects:
+        for i in star.bodies:
             if i.name == planet_name:
                 target_planet = i
         if not target_planet:
@@ -166,7 +166,7 @@ class Star():
     
     Additionally, each body in the bodies list will be instantiated into a 
     Body object.  This list of body objects will be set as the returned Star 
-    object's "body_objects" attribute.
+    object's "bodies" attribute.
     
     So:
             mystar = Star( client, dict )
@@ -176,7 +176,7 @@ class Star():
 
         ...either way...
             print( mystar.color )
-            print( mystar.body_objects[0].name )
+            print( mystar.bodies[0].name )
 
         ...etc.
     

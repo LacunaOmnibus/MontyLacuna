@@ -1,6 +1,12 @@
 
 from lacuna.bc import LacunaObject
 from lacuna.building import Building
+from lacuna.ship import \
+    ExistingShip, \
+    FleetShip, \
+    IncomingShip, \
+    MiningPlatform, \
+    UnavailableShip
 
 """
 
@@ -16,6 +22,17 @@ view() retval includes:
                     {   "probe": 3
                         "cargo_ship": 0
                         ...     }
+
+
+'target'
+    Several methods require a 'target' argument.  This is always a dict in one 
+    of the following formats:
+        { "body_name" : "Earth" }
+        { "body_id" : "id-goes-here" }
+        { "star_name" : "Sol" }
+        { "star_id" : "id-goes-here" }
+        { "x" : 4, "y" : -3 }
+
 """
 
 class spaceport(Building):
@@ -24,8 +41,7 @@ class spaceport(Building):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @Building.call_returning_meth
     def view_all_ships( self, paging:dict={}, filter:dict={}, sort:str='type', *args, **kwargs ):
         """ Show all ships on the planet.
 
@@ -61,102 +77,53 @@ class spaceport(Building):
                 'type'.  Valid options:
                     combat, name, speed, stealth, task, type
                     
-        Retval contains:
+        Retval is a tuple:
+            "ships":            A list of ExistingShip objects (see ship.py)
             "number_of_ships":  This is the total number that result from 
                                 your filter, ignoring your pagin
-            "ships":             a list of ship dicts:
-                {
-                    "id" : "id-goes-here",
-                    "name" : "CS3",
-                    "type_human" : "Cargo Ship",
-                    "type" : "cargo_ship",
-                    "task" : "Travelling",
-                    "speed" : "400",
-                    "fleet_speed" : "0",
-                    "stealth" : "0",
-                    "hold_size" : "1200",
-                    "berth_level" : "1",
-                    "date_started" : "01 31 2010 13:09:05 +0600",
-                    "date_available" : "02 01 2010 10:08:33 +0600",
-                    "date_arrives" : "02 01 2010 10:08:33 +0600",
-                    "can_recall" : "0",
-                    "can_scuttle" : "1",
-                    "from" : {
-                    "id" : "id-goes-here",
-                    "type" : "body",
-                    "name" : "Earth"
-                    },
-                    "to" : {
-                    "id" : "id-goes-here",
-                    "type" : "body",
-                    "name" : "Mars"
-                    }
-                },
         """
-        pass
 
-    @LacunaObject.set_empire_status
-    @Building.call_building_meth
+        ship_list = []
+        for i in kwargs['rslt']['ships']:
+            ship_list.append( ExistingShip(self.client, i) )
+        return( 
+            ship_list, 
+            kwargs['rslt']['number_of_ships']
+        )
+
+    @Building.call_returning_meth
     def view_foreign_ships( self, page_number:int = 1, *args, **kwargs ):
         """ Shows information on incoming foreign ships.
 
         Shows 25 ships per page.  "page_number" lets you select which page to 
         show.
 
-        Retval includes
+        Retval is a tuple:
+            "ships":            List of IncomingShip objects (see ship.py)
             "number_of_ships":  Integer count of incoming ships
-            "ships":            List of incoming ship dicts
-                The format of the ship dicts depends upon whether your 
-                spaceport is of high enough level to see past the incoming 
-                ship's stealth rating.
-
-                If so:
-                    {   'date_arrives': '24 10 2014 01:56:16 +0000',
-                        'from': {   'empire': {'id': '-9', 'name': 'DeLambert'},
-                                    'id': '71654',
-                                    'name': 'DeLambert-15-71654'},
-                        'id': '15988444',
-                        'name': 'Galleon 26',
-                        'type': 'galleon',
-                        'type_human': 'Galleon'},
-                If not:
-                    {   'date_arrives': '24 10 2014 04:35:39 +0000',
-                        'from': {},
-                        'id': '45549844',
-                        'name': 'Unknown',
-                        'type': 'unknown',
-                        'type_human': 'Unknown'}
-
-                Each ship is evaluated separately, so it's possible that a 
-                given spaceport will be able to see some, but not all, of the 
-                incomings.
         """
-        pass
+        ship_list = []
+        for i in kwargs['rslt']['ships']:
+            ship_list.append( IncomingShip(self.client, i) )
+        return( 
+            ship_list, 
+            kwargs['rslt']['number_of_ships']
+        )
 
-    @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @Building.call_naked_returning_meth
     def get_fleet_for( self, from_body_id:int, target:dict, *args, **kwargs ):
         """ See docs for get_my_fleet_for().  """
-        pass
+        ship_list = []
+        for i in kwargs['rslt']['ships']:
+            ship_list.append( ExistingShip(self.client, i) )
+        return ship_list
 
     def get_my_fleet_for( self, target:dict, *args, **kwargs ):
         """ Gets ships available for fleet action to the target.
 
-        'target' is a dict in one of the following forms:
-                { "body_name" : "Earth" }
-                { "body_id" : "id-goes-here" }
-                { "star_name" : "Sol" }
-                { "star_id" : "id-goes-here" }
-                { "x" : 4, "y" : -3 }
+        'target' is a standard target dict.
 
-        Retval includes 'ships', a list of ship dicts:
-                {   'combat': 0,
-                    'estimated_travel_time': '793',
-                    'quantity': '10',
-                    'speed': 4058,
-                    'stealth': 0,
-                    'type': 'hulk_fast',
-                    'type_human': 'Hulk Fast'},
+        Retval is a list of FleetShip objects (see ship.py)
                     
         This method is syntactic sugar for calling get_fleet_for(), which 
         requires that the sending body ID be passed.  Since that sending 
@@ -167,12 +134,40 @@ class spaceport(Building):
         """
         return self.get_fleet_for( self.body_id, target )
 
-
-    @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @Building.call_naked_returning_meth
     def get_ships_for( self, from_body_id:int, target:dict, *args, **kwargs ):
         """ See docs for get_my_ships_for()."""
-        pass
+
+        inc_list = []
+        for i in kwargs['rslt']['incoming']:
+            inc_list.append( IncomingShip(self.client, i) )
+
+        avail_list = []
+        for i in kwargs['rslt']['available']:
+            avail_list.append( FleetShip(self.client, i) )
+
+        unavail_list = []
+        for i in kwargs['rslt']['unavailable']:
+            unavail_list.append( UnavailableShip(self.client, i['reason'], i['ship']) )
+
+        orbit_list = []
+        if 'orbiting' in kwargs['rslt']:
+            for i in kwargs['rslt']['orbiting']:
+                orbit_list.append( ExistingShip(self.client, i) )
+
+        mining_list = []
+        if 'mining_platforms' in kwargs['rslt']:
+            for i in kwargs['rslt']['mining_platforms']:
+                mining_list.append( MiningPlatform(self.client, i) )
+
+        return(
+            inc_list,
+            avail_list,
+            unavail_list,
+            orbit_list,
+            mining_list,
+            kwargs['rslt']['fleet_send_limit']
+        )
 
     def get_my_ships_for( self, target:dict, *args, **kwargs ):
         """ Gets ships available to send to a target, as well as a list of 
@@ -183,74 +178,18 @@ class spaceport(Building):
         As with get_my_fleet_for(), this method is sugar for the actual API
         method.
 
-        Retval includes a whole bunch of stuff:
-            "fleet_send_limit"  - Always integer 20.
+        Retval is a tuple:
+            "incoming"              List of IncomingShip objects
+            "available"             List of FleetShip objects
+            "unavailable"           List of UnavailableShip objects
+            "orbiting"              List of ExistingShip objects
+            "mining_platforms"      List of MiningPlatform objects
+            "fleet_send_limit"      Always integer 20.
 
-            "incoming" - List of dicts of ships currently travelling from the 
-                          spaceport's planet to the target
-                           {   'berth_level': '25',
-                                'can_recall': 0,
-                                'can_scuttle': 0,
-                                'combat': '0',
-                                'date_arrives': '23 10 2014 22:54:12 +0000',
-                                'date_available': '23 10 2014 22:54:12 +0000',
-                                'date_started': '23 10 2014 22:24:27 +0000',
-                                'fleet_speed': '0',
-                                'from': {'id': '184926', 'name': 'bmots rof 1.1', 'type': 'body'},
-                                'hold_size': '176400000',
-                                'id': '35514278',
-                                'max_occupants': 0,
-                                'name': 'Scow Mega 30',
-                                'payload': ['176,400,000 waste'],
-                                'speed': '451',
-                                'stealth': '0',
-                                'task': 'Travelling',
-                                'to': {'id': '65281', 'name': 'SMA bmots 001', 'type': 'star'},
-                                'type': 'scow_mega',
-                                'type_human': 'Scow Mega' }
-
-            "available" - List of dicts of ships that can be sent to the target.  
-                          Format is the same as 'incoming' EXCEPT:
-                            - date_available and date_started both exist as 
-                              datetime stamps, but they appear to be the dates 
-                              that manufacture was begun and then complete.  
-                              They're often far in the past.
-                            - The date_arrives, from, and to keys are missing
-                            - The payload key exists, but is an empty list.
-                            - Added is a key 'estimated_travel_time', which is 
-                              the integer seconds travel time from here to the
-                              target.
-
-            "unavailable" - List of dicts of ships that cannot be sent to the 
-                            target and the reasons they cannot be sent.  Each 
-                            dict contains:
-                        {
-                            'reason': [   1009,
-                                        'Use the "push" feature in the Trade Ministry to '
-                                        'send this ship to another planet.'     ],
-                            'ship': { dict identical to 'available' }
-                        },
-
-            "orbiting" - list of dicts of ships currently orbiting the target.  
-                         Format is the same as 'available' with the addition of
-                         the key 'orbiting' (yes, 'orbiting' will be in there 
-                         twice), containing info on the target being orbited:
-                         {      'id': '468699',
-                                'name': '--=Tatooine=--',
-                                'type': 'body',
-                                'x': '-301',
-                                'y': '126'}
-
-            "mining_platforms" - list of small dicts with info on local mining 
-                                  platforms.  This does not exist unless the 
-                                  target is an asteroid.
-                                {   empire_id   =>  "id-goes-here",
-                                    empire_name => "The Peeps From Across The Street"   },
         """
         return self.get_ships_for( self.body_id, target )
 
-    @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @Building.call_naked_returning_meth
     def send_ship( self, ship_id:int, target:dict, *args, **kwargs ):
         """ Sends a single ship to the indicated target.
         
@@ -260,10 +199,9 @@ class spaceport(Building):
             ship_id:    Integer ID of the ship to send
             target:     Dict, identical to the one in get_my_fleet_for()
 
-        Retval includes key 'ship' (singular), identical to the 'incoming' key 
-        of get_my_ships_for().
+        Retval is the IncomingShip object for the single sent ship.
         """
-        pass
+        return IncomingShip(self.client, kwargs['rslt']['ship'])
 
     @LacunaObject.set_empire_status
     @Building.call_naked_meth
@@ -346,8 +284,7 @@ class spaceport(Building):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @Building.call_returning_meth
     def recall_all( self, *args, **kwargs ):
         """ Recalls all ships from the current planet that are on 'Defend' or 
         'Orbiting' tasks.
@@ -355,25 +292,49 @@ class spaceport(Building):
         ships orbiting a specific target - this is recalling ALL ships from 
         this planet that are orbiting anywhere.
 
-        Retval includes 'ships', a list of dicts of ships that have been 
-        recalled.  These ships are identical to the 'incoming' key of 
-        get_my_ships_for(), with the addition of:
+        Retval is a list of IncomingShip objects, with the following additional 
+        attributes:
 
-            "from" : {  # This is the planet the ships are being recalled from
-               "id" : "id-goes-here",
-               "type" : "body",
-               "name" : "Earth"
-            },
-            "to" : {    # This is the planet you're recalling the ships back to.
-               "id" : "id-goes-here",
-               "type" : "star",
-               "name" : "Sol"
-            }
+            returning_from:    {  # This is the planet the ships are being recalled from
+                                    "id" : "id-goes-here",
+                                    "type" : "body",
+                                    "name" : "Earth"
+                                },
+            to:                 {    # This is the planet you're recalling the ships back to.
+                                    "id" : "id-goes-here",
+                                    "type" : "star",
+                                    "name" : "Sol"
+                                }
 
         Raises NO error if there are no ships currently orbiting, but the 
         'ships' retval will be an empty list.
         """
-        pass
+        ship_list = []
+        ### At least on PT, the retval from the server here is ridiculous and 
+        ### not as documented.  The ['ships'] key in the retval that we're 
+        ### actually getting is a list of hashrefs:
+        ###
+        ###    ships = [
+        ###     { ship => { the actual ship hashref} },
+        ###     { ship => { the actual ship hashref} },
+        ###     etc
+        ###    ]
+        ###
+        ### The TLE documentation mentions 'ships' as a straight-up list of 
+        ### ship hashrefs, but says nothing about 'ship', but that's what 
+        ### we're getting.
+        ### I don't know if this is a bug in the documentation or a bug in the 
+        ### code, but since it's so utterly ridiculous I'm guessing it's a bug 
+        ### in the code - the docu makes sense.
+        ### In the meantime, deal with what we've actually got.
+        ###
+        ### While we're at it, Python is none to happy about my trying to 
+        ### create an attribute called 'from' - I assume 'from' is a reserved 
+        ### word.  So copy it to 'returning_from'.
+        for i in kwargs['rslt']['ships']:
+            i['ship']['returning_from'] = i['ship']['from'] 
+            ship_list.append( IncomingShip(self.client, i['ship']) )
+        return ship_list
 
     @LacunaObject.set_empire_status
     @Building.call_building_meth
@@ -557,7 +518,7 @@ class spaceport(Building):
     ### Non-API methods
     ###
 
-    def get_task_ships_for( self, target:dict, type:str, task:str = 'available', quantity:int = 1 ):
+    def get_task_ships_for( self, target:dict, task:str = 'available' ):
         """ Returns a list of ships assigned to a specific task.  
                 target = { 'star_name': 'Sol' }
                 list = get_task_ships_for( target, 'available', 'sweeper', 10 )
@@ -566,65 +527,42 @@ class spaceport(Building):
         should be move convenient to use those.
                 target = { 'star_name': 'Sol' }
                 available_list          = get_available_ships_for( target, 'sweeper', 10 )
-                docked_list             = get_docked_ships_for( target, 'sweeper', 10 )
                 incoming_list           = get_incoming_ships_for( target, 'sweeper', 10 )
                 mining_list             = get_mining_ships_for( target, 'sweeper', 10 )
                 orbiting_list           = get_orbiting_ships_for( target, 'sweeper', 10 )
-                supply_chain_list       = get_supply_chain_ships_for( target, 'sweeper', 10 )
                 unavailable_list        = get_unavailable_ships_for( target, 'sweeper', 10 )
-                waiting_on_trade_list   = get_waiting_on_trade_ships_for( target, 'sweeper', 10 )
-                waste_chain_list        = get_waste_chain_ships_for( target, 'sweeper', 10 )
 
         In each case, the arguments are:
             target:     Same as get_my_fleet_for()
-            type:       Type of ship (eg placebo5, smuggler_ship, etc)
-            quantity:   Optional integer number of ships to return.  Defaults to 1.
         """
-        rv = self.get_my_ships_for( target )
-        ships = [] 
-        cnt = 0
-        for i in rv[task]:
-            if i['type'] == type:
-                ships.append( i )
-                cnt += 1
-                if cnt >= quantity:
-                    break
-        if not 'id' in ships[0]:
-            raise KeyError("Unable to find any available", type, "ship.")
-        return ships
+        inc, avail, unavail, orbit, mining, fleet_limit = self.get_my_ships_for( target )
+        if task == 'available':
+            return avail
+        elif task == 'incoming':
+            return inc
+        elif task == 'orbiting':
+            return orbit
+        elif task == 'mining_platforms':
+            return mining
+        elif task == 'unavailable':
+            return unavail
+        else:
+            raise SyntaxError("A valid task must be passed to get_task_ships_for().")
+            
+    def get_available_ships_for( self, target:dict ):
+        return self.get_task_ships_for( target, 'available' )
 
-    def get_available_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'available', quantity )
+    def get_incoming_ships_for( self, target:dict ):
+        return self.get_task_ships_for( target, 'incoming' )
 
-    def get_defend_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'defend', quantity )
+    def get_mining_ships_for( self, target:dict ):
+        return self.get_task_ships_for( target, 'mining_platforms' )
 
-    def get_docked_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'docked', quantity )
+    def get_orbiting_ships_for( self, target:dict ):
+        return self.get_task_ships_for( target, 'orbiting' )
 
-    def get_incoming_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'incoming', quantity )
-
-    def get_mining_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'mining_plantforms', quantity )
-
-    def get_orbiting_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'orbiting', quantity )
-
-    def get_supply_chain_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'supply chain', quantity )
-
-    def get_travelling_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'travelling', quantity )
-
-    def get_unavailable_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'unavailable', quantity )
-
-    def get_waiting_on_trade_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'waiting on trade', quantity )
-
-    def get_waste_chain_ships_for( self, target:dict, type:str, quantity:int = 1 ):
-        return self.get_task_ships_for( target, type, 'waste chain', quantity )
+    def get_unavailable_ships_for( self, target:dict ):
+        return self.get_task_ships_for( target, 'unavailable' )
 
     def get_spies_back( self, from_id, ship_name = '' ):
         """ Fetches all spies currently posted to a planet back home again.
