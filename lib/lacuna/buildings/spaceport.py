@@ -7,6 +7,7 @@ from lacuna.ship import \
     IncomingShip, \
     MiningPlatform, \
     UnavailableShip
+from lacuna.spy import Spy
 
 """
 
@@ -368,46 +369,48 @@ class spaceport(Building):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @Building.call_returning_meth
     def view_ships_travelling( self, *args, **kwargs ):
         """ Shows all ships travelling from this planet.
 
         "Travelling" contains two of the letter "l".
 
-        Retval includes:
-            number_of_ships_travelling: Integer
-            ships_travelling:           List of ship dicts
+        Returns a tuple:
+            ships:  List of TravellingShip objects
+            number: Integer count of ships in the air
         """
-        pass
+        ship_list = []
+        for i in kwargs['rslt']['ships_travelling']:
+            ship_list.append( TravellingShip(self.client, i) )
+        return(
+            ship_list, 
+            kwargs['rslt']['number_of_ships_travelling']
+        )
 
 
-    @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @Building.call_returning_meth
     def view_ships_orbiting( self, *args, **kwargs ):
-        """ Shows all FOREIGN ships currently orbiting THIS planet.
-
-        Any orbiting ships whose stealth level is too high will not be shown.  
-        The formula for determining whether a spaceport can see a ship is:
-            350 * (spaceport level) > (ship's stealth)
-
-        If the orbiting ship is your own (or allied?), you'll be able to see 
-        it regardless of stealth level.
+        """ Shows all FOREIGN ships currently orbiting THIS planet, dependent 
+        upon the stealth levels of those orbiting ships.
 
         "Orbiting" contains one of the letter "t".
 
-        Retval includes:
+        Returns a tuple:
+            ships:              List of ForeignOrbitingShip objects
             number_of_ships:    Integer
-            ships:              List of ship dicts
-
-        Note those retval key names carefully.  It's "number_of_ships", not 
-        "number_of_ships_orbiting" - these key names are inconsistent with 
-        those returned by view_ships_travelling().
         """
-        pass
+        ### Returned keys here are 'ships' and 'number_of_ships' - these names 
+        ### are inconsistent with the names returned from the TLE call to 
+        ### view_ships_travelling.
+        ship_list = []
+        for i in kwargs['rslt']['ships']:
+            ship_list.append( ForeignOrbitingShip(self.client, i) )
+        return(
+            ship_list, 
+            kwargs['rslt']['number_of_ships']
+        )
 
-    @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @Building.call_naked_returning_meth
     def prepare_send_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
         """ Gathers the info needed to call send_spies().
 
@@ -435,7 +438,16 @@ class spaceport(Building):
                                 "name" : "Earth"
                             },      },
         """
-        pass
+        ship_list = []
+        for i in kwargs['rslt']['ships']:
+            ship_list.append( ExistingShip(self.client, i) )
+        spy_list = []
+        for i in kwargs['rslt']['spies']:
+            spy_list.append( Spy(self.client, i) )
+        return(
+            ship_list, 
+            spy_list
+        )
 
     @LacunaObject.set_empire_status
     @Building.call_naked_meth
