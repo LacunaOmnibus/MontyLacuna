@@ -1,11 +1,14 @@
 
 from lacuna.bc import LacunaObject
 from lacuna.building import Building
+from lacuna.exceptions import \
+    NoAvailableShipsError
 from lacuna.ship import \
     ExistingShip, \
     FleetShip, \
     IncomingShip, \
     MiningPlatform, \
+    TravellingShip, \
     UnavailableShip
 from lacuna.spy import Spy
 
@@ -420,23 +423,9 @@ class spaceport(Building):
             on_body_id: Integer ID of the body the spies are currently on
             to_body_id: Integer ID of the body to which you wish to send the spies
 
-        Retval includes:
-            ships:  List of dicts of ships capable of carrying spies:
-                        {   "id" : "id-goes-here",
-                            "name" : "CS4",
-                            "hold_size" : 1100,
-                            "berth_level" : 1,
-                            "speed" : 400,
-                            "type" : "cargo_ship",
-                            "estimated_travel_time" : 3600, # in seconds    },
-            spies:  List of dicts of spies whose home is the current planet:
-                        {   "id" : "id-goes-here",
-                            "level" : 12,
-                            "name" : "Jack Bauer",
-                            "assigned_to" : {
-                                "body_id" : "id-goes-here",
-                                "name" : "Earth"
-                            },      },
+        Returns a tuple:
+            ships   List of ExistingShip objects
+            spies   List of Spy objects
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -449,8 +438,7 @@ class spaceport(Building):
             spy_list
         )
 
-    @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @Building.call_naked_returning_meth
     def send_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Sends spies to a target.
 
@@ -464,17 +452,26 @@ class spaceport(Building):
             ship_id:            Integer ID of the ship to carry the spies.
             spy_ids:            List of integer IDs of spies to send.
 
-        Retval includes:
-            spies_sent:         List of integer IDs of spies sent.
-            spies_not_sent:     List of integer IDs of spies not sent.  This
-                                should only have contents if you're cheating.
-            ship:               Dict describing the transport ship
-
+        Returns a tuple:
+            spies_sent          List of IDs of sent spies (not Spy objects)
+            spies_not_sent      List of IDs of sent spies (not Spy objects)
+                                This should only have contents if you're cheating.
+            ship                TravellingShip object
         """
-        pass
+        sent_list = []
+        for id in kwargs['rslt']['spies_sent']:
+            sent_list.append( id )
+        not_sent_list = []
+        for id in kwargs['rslt']['spies_not_sent']:
+            not_sent_list.append( id )
+        ship = TravellingShip(self.client, kwargs['rslt']['ship'])
+        return(
+            sent_list,
+            not_sent_list,
+            ship
+        )
 
-    @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @Building.call_naked_returning_meth
     def prepare_fetch_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
         """ Fetches spies back home again.
 
@@ -484,12 +481,22 @@ class spaceport(Building):
             to_body_id:         Integer ID of the body to which you wish to 
                                 send the spies (their home planet)
         
-        Retval is the same as that for prepare_send_spies().
+        Returns a tuple:
+            ship_list           List of ExistingShip objects
+            spy_list            List of Spy objects
         """
-        pass
+        ship_list = []
+        for i in kwargs['rslt']['ships']:
+            ship_list.append( ExistingShip(self.client, i) )
+        spy_list = []
+        for i in kwargs['rslt']['spies']:
+            spy_list.append( Spy(self.client, i) )
+        return(
+            ship_list,
+            spy_list
+        )
 
-    @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @Building.call_naked_returning_meth
     def fetch_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Fetches spies back home again.
 
@@ -498,9 +505,9 @@ class spaceport(Building):
         (foreign), and to_body_id is the body they're being fetched to (your 
         planet, their home).
 
-        Retval includes 'ship', identical to that for send_spies().
+        Returns the TravellingShip object of the ship fetching the spies.
         """
-        pass
+        return TravellingShip(self.client, kwargs['rslt']['ship'])
 
     @LacunaObject.set_empire_status
     @Building.call_building_meth
@@ -589,33 +596,32 @@ class spaceport(Building):
                         your spies.  If not sent, the first available ship will 
                         be used.
 
-        Retval includes key 'ship':
-                {   "id" : "id-goes-here",
-                    "name" : "CS4",
-                    "hold_size" : 1100,
-                    "berth_level" : 1,
-                    "speed" : 400,
-                    "type" : "cargo_ship",
-                    "date_arrives" : "01 31 2010 13:09:05 +0600", ...    }, 
+        Returns a tuple:
+            ship        TravellingShip object
+            spy_ids     List of integer IDs of spies being fetched
+                        NOT a list of Spy objects.
         """
-        prep_rv = self.prepare_fetch_spies( from_id, self.body_id )
+        ships, spies = self.prepare_fetch_spies( from_id, self.body_id )
+
+        if len(ships) <= 0:
+            raise NoAvailableShipError("No ships are available to pick up spies.")
 
         ship_id = 0
         if ship_name:
-            for ship in prep_rv['ships']:
-                if ship['name'] == ship_name:
-                    ship_id = ship['id']
+            for ship in ships:
+                if ship.name == ship_name:
+                    ship_id = ship.id
                     break
         else:
-            ship_id = prep_rv['ships'][0]['id']     # No ship name specified.  Use the first one available.
-
-        if int(ship_id) <= 0:
-            raise KeyError("No ships matching your criteria are available to fetch spies.")
+            ship_id = ships[0].id     # No ship name specified.  Use the first one available.
 
         spy_ids = []
-        for i in prep_rv['spies']:
-            if i['based_from']['body_id'] == self.body_id and i['assigned_to']['body_id'] == from_id:
-                spy_ids.append( i['id'] )
-        fetch_rv = self.fetch_spies( target_planet.id, my_planet.id, ship_id, spy_ids )
-        return fetch_rv
+        for i in spies:
+            if i.based_from.body_id == self.body_id and i.assigned_to.body_id == from_id:
+                spy_ids.append( i.id )
+        ship = self.fetch_spies( from_id, self.body_id, ship_id, spy_ids )
+        return(
+            ship,
+            spy_ids
+        )
 

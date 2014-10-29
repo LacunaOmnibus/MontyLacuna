@@ -64,7 +64,7 @@ class Building(LacunaObject):
             self.write_building_status( rv )
 
     def call_building_meth(func):
-        """Decorator.
+        """ Decorator.
         Calls a server method that requires a building_id, but no body_id.
         This is the decorator that most Building methods will use.
         Methods using this decorator get the original server result handed 
@@ -80,37 +80,49 @@ class Building(LacunaObject):
         return inner
 
     def call_returning_meth(func):
-        """Decorator.
+        """ Decorator.
         Calls a server method that requires a building_id, but no body_id.
         Rather than simply passing back the data returned from the TLE server, 
         returns the value from the originally-called method.
+
+        Updates the empire status based on the TLE-returned data, so if you're 
+        using this, there's no need to decorate with 
+        @LacunaObject.set_empire_status (and doing so will fail).
         """
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id, self.building_id) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
+            status_dict = LacunaObject.get_status_dict(self, rslt)
+            LacunaObject.write_empire_status(self, status_dict)
             kwargs['rslt'] = rslt
             myrslt = func( self, *args, **kwargs )
             return myrslt
         return inner
 
     def call_naked_returning_meth(func):
-        """Decorator.
+        """ Decorator.
         Calls a server method that does not require building_id or body_id.
         Rather than simply passing back the data returned from the TLE server, 
         returns the value from the originally-called method.
+
+        Updates the empire status based on the TLE-returned data, so if you're 
+        using this, there's no need to decorate with 
+        @LacunaObject.set_empire_status (and doing so will fail).
         """
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
+            status_dict = LacunaObject.get_status_dict(self, rslt)
+            LacunaObject.write_empire_status(self, status_dict)
             kwargs['rslt'] = rslt
             myrslt = func( self, *args, **kwargs )
             return myrslt
         return inner
 
     def call_named_meth(func):
-        """Decorator.  
+        """ Decorator.  
         Calls a server method that requires a building_id, but no body_id.
         Expects named arguments.  This is the 'new' way of doing it, but there are
         fairly few methods that work this way.  See generate_singularity()
@@ -124,15 +136,20 @@ class Building(LacunaObject):
         return inner
 
     def call_named_returning_meth(func, *args, **kwargs):
-        """Decorator.  
+        """ Decorator.  
         Calls a server method that requires a building_id, but no body_id.
         Expects named arguments, and returns the value from the locally-called 
         method rather than the dict returned from the TLE server.
+
+        Updates the empire status based on the TLE-returned data, so if you're 
+        using this, there's no need to decorate with 
+        @LacunaObject.set_empire_status (and doing so will fail).
         """
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
             mydict['building_id'] = self.building_id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
+            LacunaObject.write_empire_status(self, rslt)
             kwargs['rslt'] = rslt
             myrslt = func( self, mydict, *args, **kwargs )
             return myrslt
