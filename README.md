@@ -74,6 +74,11 @@ supposed to do.
     - Looks fine, but needs testing when foreign spies come in.
   - shipyard
   - spaceport
+  - ssla
+  - subspacesupplydepot
+    - Thoroughly untested.  Unless you're creating a complete game client (in which case 
+      you should have control over a working server), you'll never use this anyway so I'm 
+      OK with leaving this as-is.
 
 ## Incomplete/Not Started
 - Payments
@@ -97,4 +102,6 @@ supposed to do.
   - I started doing this somewhere around the time I was working on security.py.  
     Everything listed below that (in the list of completed buildings above) should be 
     DingTRT.  Everthing listed above that should be looked at.
+- The Building class should be renamed to MyBuilding, so we can use "Building" for a much 
+  more generic building base classname.
 
