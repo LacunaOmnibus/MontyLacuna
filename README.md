@@ -74,8 +74,6 @@ supposed to do.
     - Looks fine, but needs testing when foreign spies come in.
   - shipyard
   - spaceport
-    - Still converting this to return lists of Ship objects - search it for where I left 
-      off (marked).
 
 ## Incomplete/Not Started
 - Payments
@@ -84,15 +82,11 @@ supposed to do.
 - Announcement
 
 ## TBD
-- Add another attribute to the client classes - warn_on_sleep.  Default it to true.  If a 
-  call to send() needs to sleep because of the 60 RPC per minute limit, issue a warning 
-  letting the user know that's what's happening and is why their script is taking so long.  
-  Unless this attribute has been specifically set to false, in which case issue no 
-  warning.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
 - Fix intelligence.py to use the Spy class (and anything else that touches spies).
+- Fix planetarycommand.py to use the Plan class (and anything else that touches plans).
 - 3 prisoners inc to 1.1.  Use them to test t/bldgs/security.py
     - view_prisoners()
     - release_prisoner()
