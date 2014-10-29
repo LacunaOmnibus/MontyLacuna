@@ -58,14 +58,15 @@ class Guest:
     config_list = [
         'host', 'proto',
         'username', 'password', 'api_key',
-        'sleep_on_call', 'sleep_after_error', 'session_id'
+        'sleep_on_call', 'sleep_after_error', 'session_id',
+        'warn_on_sleep'
     ]
 
     def __init__( self,
             config_file = '', config_section = '',
             proto = 'http', host = 'us1.lacunaexpanse.com',
             username = '', password = '', api_key = 'anonymous',
-            sleep_on_call = 1, sleep_after_error = True, session_id = ''
+            sleep_on_call = 1, sleep_after_error = True, session_id = '', warn_on_sleep = True 
         ):
 
         if config_file and config_section and os.path.isfile(config_file):
@@ -214,6 +215,8 @@ class Guest:
             depth += 1
 
             if error.code == 1010 and re.match('Slow down', error.text) and self.sleep_after_error:
+                if self.warn_on_sleep:
+                    print("60 RPC per minute limit exceeded.  I'll sleep for a minute and try again.")
                 time.sleep( 61 )
                 thingy = self.send( path, method, params, depth )
             elif error.code == 1016 and error.text == 'Needs to solve a captcha.':
@@ -259,7 +262,8 @@ class Member(Guest):
             username            = '',
             password            = '',
             sleep_on_call       = 1,
-            sleep_after_error   = True
+            sleep_after_error   = True,
+            warn_on_sleep       = True
         ):
 
         super().__init__(
