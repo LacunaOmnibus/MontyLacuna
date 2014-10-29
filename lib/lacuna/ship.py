@@ -6,6 +6,12 @@ state the ship is in.
 Several of the Ship subclasses are identical in code to the base class, but 
 their attributes will be different, so separate classes exist to avoid 
 confusion.
+
+In some cases, a hostile ship will only be visisble to you if its stealth level 
+is low enough compared to your SpacePort level.  The formula for determining 
+that is:
+        350 * SpacePort Level >= Ship Stealth
+
 """
 
 class Ship():
@@ -26,9 +32,9 @@ class BuildingShip(Ship):
         super().__init__( client, mydict, *args, **kwargs )
 
 class ExistingShip(Ship):
-    """ An existing ship has finished building.  It's taking up dock space in a
-    spaceport, but it does not appear in a build queue.
-
+    """ An existing ship is one of your own ships that has finished building.  
+    It's taking up dock space in a spaceport, but it does not appear in a build 
+    queue.
             id              "id-goes-here",
             name            "CS3",
             type_human      "Cargo Ship",
@@ -81,13 +87,27 @@ class FleetShip(Ship):
 
     """
 
+class ForeignOrbitingShip(Ship):
+    """ A ship NOT owned by your empire, currently orbiting your planet.
+            id              "id-goes-here",
+            name            "SS3",
+            type            "spy_shuttle",
+            type_human      "Spy Shuttle",
+            date_arrived    "02 01 2010 10:08:33 +0600",
+            from {
+                "id" : "id-goes-here",
+                "name" : "Mars",
+                "empire" : {
+                    "id" : "id-goes-here",
+                    "name" : "Martians"
+                }
+            }
+    """
+
 class IncomingShip(Ship):
     """ How much information you can see about an incoming ship depends upon 
     its origin, the level of the spaceport that's looking at the ship, and how 
     high the ship's stealth level is.
-
-    The formula for determining whether a spaceport can see a given ship is:
-        350 * SpacePort Level >= Ship Stealth
 
     If the ship is from a friendly empire, or its stealth level is low enough 
     to be seen by your spaceport:
@@ -150,6 +170,25 @@ class PotentialShip(Ship):
             setattr(self, k, v)
         del mydict['attributes']
         super().__init__( client, mydict, *args, **kwargs )
+
+class TravellingShip(Ship):
+    """ A TravellingShip is a ship owned by your empire, currently in the air
+    between two points.
+            id              "id-goes-here",
+            type            "probe",
+            type_human      "Probe",
+            date_arrives    "01 31 2010 13:09:05 +0600",
+            from : {
+                "id" : "id-goes-here",
+                "type" : "body",
+                "name" : "Earth",
+            },
+            to {
+                "id" : "id-goes-here",
+                "type" : "star",
+                "name" : "Sol",
+            }
+    """
 
 class UnavailableShip(Ship):
     """ An UnavailableShip is an existing docked ship that's not able to be 

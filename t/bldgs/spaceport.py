@@ -148,20 +148,17 @@ my_map      = glc.get_map();
 #    print("Returning from", i.returning_from['name'], "to", i.to['name'])
 
 
-
-CHECK LEFT OFF HERE
-
-
-
 ### Rename a ship
 ###
 #paging      = {}
 #myfilter    = { 'type': 'scow', }
 #ships, number = sp.view_all_ships( paging, myfilter )
-#sp.name_ship( ships.id, 'My New Ship Name' )
-### These attempts will raise 1005:
-#sp.name_ship( ships[0].id, 'My New Way-Too-Long Ship Name That Will Simply Not Work' )
-#sp.name_ship( ships[0].id, 'Shit Fucker' )
+#for i in ships:
+#    print("Renaming", i.name, "to 'My New Ship Name'.")
+#    sp.name_ship( i.id, 'My New Ship Name' )
+    ### These attempts will raise 1005:
+    #sp.name_ship( i.id, 'My New Way-Too-Long Ship Name That Will Simply Not Work' )
+    #sp.name_ship( i.id, 'Shit Fucker' )
 
 
 ### Scuttle a ship
@@ -171,8 +168,9 @@ CHECK LEFT OFF HERE
 #ships, number = sp.view_all_ships( paging, myfilter )
 #ship = {}
 #for i in ships:
-#    if i.name == 'scuttle_me':
+#    if i.name == 'My New Ship Name':
 #        ship = i
+#        break
 #if not hasattr(ship, 'id'):
 #    raise KeyError("Unable to find the requested ship.")
 #print( "Scuttling ship", ship.name )
@@ -193,26 +191,34 @@ CHECK LEFT OFF HERE
 
 ### View ships currently in the air.
 ###
-#rv = sp.view_ships_travelling()
-#glc.pp.pprint( rv['ships_travelling'] )
-#print( "There are {} ships in the air right now.".format(rv['number_of_ships_travelling']) )
+#slist, number = sp.view_ships_travelling()
+#for i in slist:
+#    print( i.name )
+#print( "There are {} ships in the air right now.".format(number) )
 
 
-### View ships currently orbiting other planets
+### View foreign ships currently orbiting this planet
 ###
-#rv = sp.view_ships_orbiting()
-#glc.pp.pprint( rv['ships'] )
-#print( "There are {} ships orbiting {} right now.".format(rv['number_of_ships'], my_planet.name) )
+#ships, number = sp.view_ships_orbiting()
+#for i in ships:
+#    print( i.name )
+#print( "There are {} foreign ships orbiting {} right now.".format(number, my_planet.name) )
 #print('---------')
 
 
 ### Prepare to send spies to a target
 ###
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rv = sp.prepare_send_spies( my_planet.id, target_planet.id )
-#glc.pp.pprint( rv['ships'] )
+#ships, spies = sp.prepare_send_spies( my_planet.id, target_planet.id )
+#print("Available Ships")
+#for i in ships:
+#    print( i.name )
 #print("------------")
-#glc.pp.pprint( rv['spies'] )
+#print("Available Spies")
+#for i in spies:
+#    print( "{} is based on {} and has performed {} off and {} def missions.".format(
+#        i.name, i.based_from.name, i.mission_count.offensive, i.mission_count.defensive
+#    ))
 
 
 ### Send spies to the target
