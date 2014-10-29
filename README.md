@@ -58,6 +58,7 @@ supposed to do.
   - foodreserve
   - geneticslab
   - intelligence
+    - Return to this and change it to use the spy.Spy class.
   - libraryofjith
   - mercenariesguild
   - miningministry
@@ -91,7 +92,7 @@ supposed to do.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
-- Go back to intelligence.py and see about creating a Spy class.
+- Fix intelligence.py to use the Spy class (and anything else that touches spies).
 - 3 prisoners inc to 1.1.  Use them to test t/bldgs/security.py
     - view_prisoners()
     - release_prisoner()

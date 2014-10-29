@@ -25,10 +25,11 @@ class Spy():
     def __init__( self, client, mydict:dict, *args, **kwargs ):
         self.client = client
 
-        assignment_list = []
-        for i in mydict['possible_assignments']:
-            assignment_list.append( Assignment(self.client, i) )
-        del mydict['possible_assignments']
+        if 'possible_assignments' in mydict:
+            assignment_list = []
+            for i in mydict['possible_assignments']:
+                assignment_list.append( Assignment(self.client, i) )
+            del mydict['possible_assignments']
 
         if 'assigned_to' in mydict:
             self.assigned_to = SpyBody(self.client, mydict['assigned_to'])

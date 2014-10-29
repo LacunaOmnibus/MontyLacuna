@@ -51,24 +51,27 @@ class LacunaObject:
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
             self = args[0]
-
-            mydict = {}
-            if 'empire' in rv:
-                mydict = rv['empire']
-                del( rv['empire'] )
-            elif 'status' in rv:
-                if 'empire' in rv['status']:
-                    mydict = rv['status']['empire']
-                    del( rv['status']['empire'] )
-                else:
-                    mydict = rv['status']
-                    del( rv['status'] )
-
-            for i in mydict:
-                setattr( self.client.empire, i, mydict[i] )
-            self.client.empire.planet_names = {name: id for id, name in mydict['planets'].items()}
+            mydict = self.get_status_dict(rv)
+            self.write_empire_status(mydict)
             return rv
         return inner
+
+    def get_status_dict(self, server_response:dict):
+        mydict = {}
+        if 'empire' in server_response:
+            mydict = server_response['empire']
+        elif 'status' in server_response:
+            if 'empire' in server_response['status']:
+                mydict = server_response['status']['empire']
+            else:
+                mydict = server_response['status']
+        return mydict
+
+    def write_empire_status(self, mydict:dict):
+        for i in mydict:
+            print("--", i, "--")
+            setattr( self.client.empire, i, mydict[i] )
+        self.client.empire.planet_names = {name: id for id, name in self.client.empire.planets.items()}
 
     def call_guest_meth(func):
         """Decorator.  
@@ -82,7 +85,7 @@ class LacunaObject:
         return inner
 
     def call_member_meth(func):
-        """Decorator.  
+        """ Decorator.  
         Makes an RPC that _does_ require that the client is logged in.
         The decorated method must be named identically to an existing TLE method.
         Expects positional arguments.  This is the 'old' way of doing things, but
@@ -97,24 +100,28 @@ class LacunaObject:
         return inner
 
     def call_returning_meth(func):
-        """Decorator.  
+        """ Decorator.  
         Makes an RPC that _does_ require that the client is logged in.
         Most RPC calls simply return to the user the data returned from the TLE 
         servers (after a slight massage).  But some methods need to modify that 
         data themselves.
-        A method decorated with this can generally not also be decorated with 
-        one of the set_status decorators.
+
+        Updates the empire status based on the TLE-returned data, so if you're 
+        using this, there's no need to decorate with 
+        @LacunaObject.set_empire_status (and doing so will fail).
         """
         def inner(self, *args, **kwargs):
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
+            status_dict = self.get_status_dict(rslt)
+            self.write_empire_status(status_dict)
             kwargs['rslt'] = rslt
             myrslt = func( self, *args, **kwargs )
             return myrslt
         return inner
 
     def call_member_named_meth(func):
-        """Decorator.  
+        """ Decorator.  
         Makes an RPC that _does_ require that the client is logged in.
         The decorated method must be named identically to an existing TLE method.
         Expects named arguments.  This is the 'new' way of doing it, but there are

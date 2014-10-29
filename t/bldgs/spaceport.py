@@ -209,7 +209,9 @@ my_map      = glc.get_map();
 ### Prepare to send spies to a target
 ###
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
+#print( "RPCs:", sp.client.empire.rpc_count )
 #ships, spies = sp.prepare_send_spies( my_planet.id, target_planet.id )
+#print( "RPCs:", sp.client.empire.rpc_count )
 #print("Available Ships")
 #for i in ships:
 #    print( i.name )
@@ -224,19 +226,34 @@ my_map      = glc.get_map();
 ### Send spies to the target
 ###
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rva = sp.prepare_send_spies( my_planet.id, target_planet.id )
-#ship_id = rva['ships'][0]['id']
-#spy_ids = [ x['id'] for x in rva['spies'][0:3] ]
-#rvb = sp.send_spies( my_planet.id, target_planet.id, ship_id, spy_ids )
-#glc.pp.pprint( rvb )
+#ships, spies = sp.prepare_send_spies( my_planet.id, target_planet.id )
+#ship_id = ships[0].id
+#spy_ids = [ x.id for x in spies[0:3] ]
+#sent, unsent, ship = sp.send_spies( my_planet.id, target_planet.id, ship_id, spy_ids )
+#for i in unsent:
+#    print("At least one spy was unable to be sent - this supposedly means you're cheating.")
+#for i in sent:
+#    print("Spy ID {} has been sent on {} to {}.".format(i, ship.name, target_planet.name))
 
 
 ### Prepare to fetch spies home again
-#target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rv = sp.prepare_fetch_spies( my_planet.id, target_planet.id )
-#glc.pp.pprint( rv['ships'][0] )
+### We want to fetch FROM the target, TO my_planet.
+###
+#ships, spies = sp.prepare_fetch_spies( target_planet.id, my_planet.id )
+#print("Available Ships")
+#for i in ships:
+#    print( i.name )
 #print("------------")
-#glc.pp.pprint( rv['spies'][0] )
+#print("Fetchable Spies")
+#for i in spies:
+#    ### All fetchable spies will be listed here, including the ones that are 
+#    ### owend by target_planet (assuming target_planet is one of your own 
+#    ### planets).  We don't want to fetch spies owned by target_planet, just 
+#    ### spies owned by my_planet that are currently located on target_planet.
+#    if i.based_from.name == my_planet.name:
+#        print( "{} is based on {}, and currently stationed on {}.".format(
+#            i.name, i.based_from.name, i.assigned_to.name
+#        ))
 
 
 ### Fetch spies home again
@@ -244,22 +261,24 @@ my_map      = glc.get_map();
 ### This is the hard way.  See the next block below.
 ###
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rva = sp.prepare_fetch_spies( target_planet.id, my_planet.id )
-#ship_id = rva['ships'][0]['id']
+#ships, spies = sp.prepare_fetch_spies( target_planet.id, my_planet.id )
+#ship_id = ships[0].id
 #spy_ids = []
-#for i in rva['spies']:
-#    if i['based_from']['body_id'] == my_planet.id and i['assigned_to']['body_id'] == target_planet.id:
-#        spy_ids.append( i['id'] )
-#rvb = sp.fetch_spies( target_planet.id, my_planet.id, ship_id, spy_ids )
-#glc.pp.pprint( rvb )
+#for i in spies:
+#    if i.based_from.body_id == my_planet.id and i.assigned_to.body_id == target_planet.id:
+#        spy_ids.append( i.id )
+#spy_ids = spy_ids[0:2]  # only pull back a few so we can test again.
+#ship = sp.fetch_spies( target_planet.id, my_planet.id, ship_id, spy_ids )
+#print( "Fetching", len(spy_ids), "spies home on", ship.name )
 
 
 ### Fetch spies home again
 ### 
-### And there was much rejoicing.
+### ...and there was much rejoicing.
 ### 
 #target_planet = my_map.get_orbiting_planet( 'SMA bmots 001', 'bmots rof 1.2' )
-#rv = sp.get_spies_back( target_planet.id )
+#ship, spy_ids = sp.get_spies_back( target_planet.id )
+#print( "Fetching", len(spy_ids), "spies home on", ship.name )
 
 
 ### Look at battle logs
