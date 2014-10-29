@@ -69,7 +69,6 @@ class LacunaObject:
 
     def write_empire_status(self, mydict:dict):
         for i in mydict:
-            print("--", i, "--")
             setattr( self.client.empire, i, mydict[i] )
         self.client.empire.planet_names = {name: id for id, name in self.client.empire.planets.items()}
 
