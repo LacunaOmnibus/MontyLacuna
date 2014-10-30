@@ -60,7 +60,9 @@ supposed to do.
   - geneticslab
   - intelligence
     - Return to this and change it to use the spy.Spy class.
+  - inteltraining
   - libraryofjith
+  - mayhemtraining
   - mercenariesguild
   - miningministry
   - missioncommand
@@ -81,10 +83,6 @@ supposed to do.
       OK with leaving this as-is.
   - thedillonforge
   - thefttraining
-    - also need
-      - inteltraining (done)
-      - politicstraining (done)
-      - mayhemtraining
 
 ## Incomplete/Not Started
 - Payments
