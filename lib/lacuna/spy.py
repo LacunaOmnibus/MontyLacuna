@@ -126,6 +126,19 @@ class Assignment():
         for k, v in mydict.items():
             setattr(self, k, v)
 
+class ForeignAgent(Spy):
+    """
+        A ForeignAgent object has the following attributes:
+            name                "James Bond",
+            level               "20",
+            task                "Appropriate Technology"
+            next_mission        "01 31 2010 13:09:05 +0600"   
+
+        You have to capture a ForeignSpy to turn him into a Prisoner to be able 
+        to see his ID.
+    """
+
+
 class MissionCount():
     """ The count of missions performed by the spy.
 
@@ -142,6 +155,17 @@ class MissionCount():
         self.client = client
         for k, v in mydict.items():
             setattr(self, k, v)
+
+
+class Prisoner(Spy):
+    """
+        A Prisoner object has the following attributes:
+            id                  "id-goes-here",
+            name                "James Bond",
+            level               "20",
+            task                "Captured" or "Prisoner Transport",
+            sentence_expires    "01 31 2010 13:09:05 +0600"   
+    """
 
 class SpyBody():
     """ A body (planet, space station, etc).  This can be where the spy is 

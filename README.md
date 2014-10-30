@@ -11,6 +11,7 @@ The main goal is to help me learn Python, but I'd like to end up with a fully
 working package.
 
 ## Prerequisites
+- pip
 - requests
   - pip install requests
   - CHECK It might make sense to replace this with urllib, since it's standard.
@@ -71,7 +72,6 @@ supposed to do.
   - planetarycommand
   - politicstraining
   - security
-    - Looks fine, but needs testing when foreign spies come in.
   - shipyard
   - spaceport
   - ssla

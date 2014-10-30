@@ -1,11 +1,9 @@
 
 from lacuna.bc import LacunaObject
 from lacuna.building import Building
-
-""" CHECK
-I've got some prisoners inc to 1.1 on us1 -- I need to test this out using
-those spies.  All looks good, but is untested.
-"""
+from lacuna.spy import \
+    ForeignAgent, \
+    Prisoner
 
 class security(Building):
     path = 'security'
@@ -22,11 +20,11 @@ class security(Building):
         Accepts optional 'page_number', integer number of the page (25 prisoners 
         per page) you want to view.  Defaults to 1.
 
-        Returns a list of ForeignAgent objects.
+        Returns a list of Prisoner objects.
         """
         prisoner_list = []
         for i in kwargs['rslt']['prisoners']:
-            prisoner_list.append( ForeignAgent(self.client, i) )
+            prisoner_list.append( Prisoner(self.client, i) )
         return prisoner_list
 
     @LacunaObject.set_empire_status
@@ -65,17 +63,4 @@ class security(Building):
             foreign_list.append( ForeignAgent(self.client, i) )
         return foreign_list
 
-class ForeignAgent():
-    """
-        A ForeignAgent object has the following attributes:
-            id                  "id-goes-here",
-            name                "James Bond",
-            level               "20",
-            task                "Captured" or "Prisoner Transport",
-            sentence_expires    "01 31 2010 13:09:05 +0600"   
-    """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
 
