@@ -83,6 +83,13 @@ supposed to do.
       OK with leaving this as-is.
   - thedillonforge
   - thefttraining
+  - themepark
+  - trading (base class)
+    - trade
+    - transporter
+    - I purposely skipped some methods in both trade and transporter.  They'll never be 
+      used and I'm getting bored.  Add them if you're feeling productive.  The skipped 
+      methods are noted in comments at the top of both files.
 
 ## Incomplete/Not Started
 - Payments
@@ -96,11 +103,8 @@ supposed to do.
 - Ack through everything for "CHECK" and fix.
 - Fix intelligence.py to use the Spy class (and anything else that touches spies).
 - Fix planetarycommand.py to use the Plan class (and anything else that touches plans).
-- 3 prisoners inc to 1.1.  Use them to test t/bldgs/security.py
-    - view_prisoners()
-    - release_prisoner()
-    - view_foreign_spies()
-    - execute_prisoner()
+- A prisoner or two floating around us1 1.1.  Use them to test trade.py and transporter.py
+    - get_prisoners()
 - Any method that's returning a list of dicts (ships, spies, whatever) should be fixed to 
   return instead a list of objects.
   - I started doing this somewhere around the time I was working on security.py.  

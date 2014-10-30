@@ -28,8 +28,6 @@ class BuildingShip(Ship):
              type_human       "Spy Pod",
              date_completed   "01 31 2010 13:09:05 +0600"
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        super().__init__( client, mydict, *args, **kwargs )
 
 class ExistingShip(Ship):
     """ An existing ship is one of your own ships that has finished building.  
@@ -171,6 +169,25 @@ class PotentialShip(Ship):
         del mydict['attributes']
         super().__init__( client, mydict, *args, **kwargs )
 
+class TradeableShip(Ship):
+    """ A TradeableShip is an existing docked ship that's ready to be added to 
+    a trade as merchandise. (trading.get_ships())
+            id                      1234,
+            type                    "smuggler_ship",
+            name                    "My Trade Smug",
+            estimated_travel_time   "3654",
+    """
+
+class TradeTransportShip(Ship):
+    """ A TradeShip is an existing docked ship that's ready to be used as the 
+    transport vehicle to add a trade to the Trade Ministry.  
+    (trade.get_trade_ships())
+            id                      1234,
+            type                    "smuggler_ship",
+            name                    "My Trade Smug",
+            estimated_travel_time   "3654",
+    """
+
 class TravellingShip(Ship):
     """ A TravellingShip is a ship owned by your empire, currently in the air
     between two points.
@@ -212,5 +229,16 @@ class UnavailableShip(Ship):
         mydict['reason'] = reason
         super().__init__( client, mydict, *args, **kwargs )
 
-
+class ChainShip(Ship):
+    """ A ChainShip is owned by your empire and is either on or capable of 
+    being added to a Waste Chain or a Supply Chain.
+            id              "id-goes-here",
+            type            "scow",
+            task            "Docked", "Supply Chain", or "Waste Chain".  The 
+                            TLE documentation says the task is "Resource Chain", 
+                            but it does return "Supply Chain", not "Resource".
+            name            "My Garbage Scow",
+            speed           600
+            hold_size       1234800
+    """
 
