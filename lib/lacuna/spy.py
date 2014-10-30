@@ -1,4 +1,6 @@
 
+from lacuna.building import Building
+
 class Spy():
     """
     Attributes:
@@ -181,4 +183,27 @@ class SpyBody():
         self.client = client
         for k, v in mydict.items():
             setattr(self, k, v)
+
+class Training(Building):
+    @Building.call_returning_meth
+    def view( self, *args, **kwargs ):
+        """ Returns info on how many points this training building can confer, 
+        and how many spies are currently training.
+
+        Returns a single TrainingView object.
+        """
+        view = TrainingView( self.client, kwargs['rslt']['spies'] )
+        return view
+
+class TrainingView():
+    """
+    Attributes:
+        max_points      2600
+        points_per      45
+        in_training     4
+    """
+    def __init__( self, client, mydict:dict, *args, **kwargs ):
+        self.client = client
+        for k, v in mydict.items():
+            setattr( self, k, v )
 
