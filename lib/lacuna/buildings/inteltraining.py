@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.spy import Training
 
-class inteltraining(Building):
+class inteltraining(Training):
     path = 'inteltraining'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

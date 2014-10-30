@@ -80,6 +80,11 @@ supposed to do.
       you should have control over a working server), you'll never use this anyway so I'm 
       OK with leaving this as-is.
   - thedillonforge
+  - thefttraining
+    - also need
+      - inteltraining (done)
+      - politicstraining (done)
+      - mayhemtraining
 
 ## Incomplete/Not Started
 - Payments

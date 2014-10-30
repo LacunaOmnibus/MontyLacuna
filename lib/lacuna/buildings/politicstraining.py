@@ -1,18 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.spy import Training
 
-"""
-
-    The view() method includes the key 'spies', a dict:
-                {
-                    "max_points" : 2600,
-                    "points_per" : 45,
-                    "in_training" : 4,
-                },
-
-"""
-
-class politicstraining(Building):
+class politicstraining(Training):
     path = 'politicstraining'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
