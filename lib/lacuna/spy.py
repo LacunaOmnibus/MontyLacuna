@@ -192,6 +192,7 @@ class Training(Building):
 
         Returns a single TrainingView object.
         """
+        Building.write_building_status( self, kwargs['rslt'] )
         view = TrainingView( self.client, kwargs['rslt']['spies'] )
         return view
 
