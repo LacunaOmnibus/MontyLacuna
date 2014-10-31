@@ -78,8 +78,6 @@ class intelligence(Building):
         """ Renames an existing spy."""
         pass
 
-    #@LacunaObject.set_empire_status
-    #@Building.call_building_meth
     @Building.call_returning_meth
     def assign_spy( self, spy_id:int, assignment:str, *args, **kwargs ):
         """ Assigns a spy to a task.

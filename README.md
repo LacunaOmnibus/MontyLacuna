@@ -46,6 +46,7 @@ supposed to do.
       - MultiStorage
         - Base class for storage buildings for multi-type resources (food, ore).
   - archaeology
+    - oopified
   - blackholegenerator
   - development
   - distributioncenter
@@ -58,7 +59,8 @@ supposed to do.
   - entertainment
   - foodreserve
   - geneticslab
-  - intelligence (oopified)
+  - intelligence
+    - oopified
   - inteltraining
   - libraryofjith
   - mayhemtraining

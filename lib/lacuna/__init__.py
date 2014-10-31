@@ -8,5 +8,6 @@ import lacuna.empire
 import lacuna.exceptions
 import lacuna.inbox
 import lacuna.map
+import lacuna.ship
 import lacuna.stats
 

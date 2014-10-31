@@ -85,9 +85,8 @@ class Building(LacunaObject):
         Rather than simply passing back the data returned from the TLE server, 
         returns the value from the originally-called method.
 
-        Updates the empire status based on the TLE-returned data, so if you're 
-        using this, there's no need to decorate with 
-        @LacunaObject.set_empire_status (and doing so will fail).
+        Updates the empire status based on the TLE-returned data, as well as 
+        the building status if it was included.
         """
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
@@ -95,6 +94,7 @@ class Building(LacunaObject):
             rslt = self.client.send( self.path, method_to_call, myargs )
             status_dict = LacunaObject.get_status_dict(self, rslt)
             LacunaObject.write_empire_status(self, status_dict)
+            self.write_building_status(rslt)
             kwargs['rslt'] = rslt
             myrslt = func( self, *args, **kwargs )
             return myrslt
