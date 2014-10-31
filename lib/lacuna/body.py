@@ -146,10 +146,12 @@ from lacuna.exceptions import \
 class Body(LacunaObject):
     path = 'body'
 
-    def __init__( self, client:object, body_id:int, attrs:dict = {} ):
+    def __init__( self, client:object, attrs:dict = {} ):
         super().__init__( client )
-        self.body_id = body_id
-        self.set_attrs( attrs )
+        self.body_id = attrs['id']
+        for k, v in attrs.items():
+            setattr(self, k, v)
+        self.set_status_attr( attrs )
 
     def set_body_status( func ):
         """Decorator.
@@ -185,7 +187,7 @@ class Body(LacunaObject):
         return inner
 
     @set_body_status
-    def set_attrs( self, my_attrs:dict = {}, *args, **kwargs ):
+    def set_status_attr( self, my_attrs:dict = {}, *args, **kwargs ):
         """ Fake up a status dict in the expected format, so the 
         set_body_status decorator can properly set our attributes.
         """
@@ -193,13 +195,11 @@ class Body(LacunaObject):
         return status
 
 
-
-
-
 class MyBody(Body):
 
     def __init__( self, client:object, body_id:int, attrs:dict = {} ):
-        super().__init__( client, body_id )
+        attrs['id'] = body_id
+        super().__init__( client, attrs )
         ### I want self to start out populated, which would require a call to 
         ### get_status().  But since all the other methods also require a 
         ### status block, I can call set_buildings() instead (which is itself 

@@ -7,10 +7,16 @@ class Glyph():
             setattr(self, k, v)
 
 class OwnedGlyph(Glyph):
-    """ A glyph available on your planet.
+    """ A single specific glyph on your planet.
 
     Attributes:
+        id          12345,
+        name        "bauxite"
         type        "bauxite"
         quantity    23
+
+    name and type are always the same.  There's no longer such a thing as an 
+    individual glyph, only types of glyphs, which is why we have both an ID 
+    and a quantity.
     """
 

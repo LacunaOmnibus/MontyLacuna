@@ -192,7 +192,7 @@ class Star():
 
         body_objs = []
         for b in star_dict['bodies']:
-            body_objs.append( Body(self, b['id'], b) )
+            body_objs.append( Body(self, b) )
         self.bodies = body_objs
 
         if 'bodies' in star_dict:

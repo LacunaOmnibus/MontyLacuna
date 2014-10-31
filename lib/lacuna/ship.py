@@ -14,6 +14,8 @@ that is:
 
 """
 
+import lacuna.body
+
 class Ship():
     """ Base class """
     def __init__( self, client, mydict:dict, *args, **kwargs ):
@@ -28,6 +30,22 @@ class BuildingShip(Ship):
              type_human       "Spy Pod",
              date_completed   "01 31 2010 13:09:05 +0600"
     """
+
+class Excavator(Ship):
+    """
+    Attributes:
+        id              "id-goes-here",
+        body            Body object
+        artifact        5,
+        glyph           30,
+        plan            7,
+        resource        53
+        date_landed     Date excav started at location
+    """
+    def __init__( self, client, mydict:dict, *args, **kwargs ):
+        mydict['body'] = lacuna.body.Body(client, mydict['body'])
+        super().__init__( client, mydict )
+
 
 class ExistingShip(Ship):
     """ An existing ship is one of your own ships that has finished building.  
