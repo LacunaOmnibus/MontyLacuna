@@ -18,47 +18,54 @@ int         = my_planet.get_building_coords( -5, -2 )
 
 ### Show building status
 ### 
-#rva = int.view()
-#glc.pp.pprint( rva['spies'] )
+#view = int.view()
+#print( "We have {} of a max {} spies, and {} are in training, which takes {} seconds."
+#    .format(view.current, view.maximum, view.in_training, view.training_costs['time'])
+#)
 
 
 ### View spies' details, paginated
 ### 
-#rvb = int.view_spies( 2 )       # look at spies on page 2
-#glc.pp.pprint( rvb['spies'] )
+#spies = int.view_spies( 2 )       # look at spies on page 2
+#spy = spies[0]
+#print( "Your first spy is based from {}, assigned to {}, and is doing task {}."
+#    .format( spy.based_from.name, spy.assigned_to.name, spy.assignment)
+#)
 
 
 ### View all spies' details, non-paginated
 ### 
-#rvc = int.view_all spies()
-#glc.pp.pprint( rvc['spies'] )
+#spies = int.view_all_spies()
+#spy = spies[0]
+#print( "Your first spy is based from {}, assigned to {}, and is doing task {}."
+#    .format( spy.based_from.name, spy.assigned_to.name, spy.assignment)
+#)
 
 
 ### Burn a spy
-### CAREFUL WITH THIS - will burn the last spy listed.
-#rvd = int.view_all_spies()
-#last_spy = rvd['spies'][-1]
-#rvd = int.burn_spy( last_spy['id'] )
-#print("Spy", last_spy['name'], "has been burned.")
+### 
+#spies = int.view_all_spies()
+#last_spy = spies[-1]
+#int.burn_spy( last_spy.id )
+#print("Spy", last_spy.name, "has been burned.")
 
 
 ### Train a new spy to replace the burned one
 ### 
-#rve = int.train_spy( )
-#del( rve['status'] )
-#glc.pp.pprint( rve )
+#rv = int.train_spy( )
+#print( rv['trained'], "new spies are being trained." )
 
 
 ### Subsidize that training
-### CAREFUL WITH THIS - it will spend 1 E per spy in the queue
-#rvf = int.subsidize_training( )
-#glc.pp.pprint( rvf )
+### 
+#int.subsidize_training( )
+#print( "Spy training has been subsidized" )
 
 
 ### Rename the last spy in the list
 ### 
-#rvg = int.view_all_spies()
-#int.name_spy( rvg['spies'][-1]['id'], "FlurbleBlargle" )
+#spies = int.view_all_spies()
+#int.name_spy( spies[-1].id, "FlurbleBlargle" )
 
 
 ### Assign a spy to a task
@@ -66,7 +73,12 @@ int         = my_planet.get_building_coords( -5, -2 )
 ### followed the rest of the tests in here; we just trained him and subsidized 
 ### his training.  Change the "-1" subscript as needed if your last spy is not 
 ### available.
-#rvh = int.view_all_spies()
-#rvi = int.assign_spy( rvh['spies'][-1]['id'], 'Counter Espionage'  )
-#glc.pp.pprint( rvi['mission'] )
+#spies = int.view_all_spies()
+#spy, result = int.assign_spy( spies[-1].id, 'Counter Espionage'  )
+#print( "The result of assigning spy {} to mission {} was {} because {}."
+#    .format(spy.name, spy.assignment, result.result, result.reason )
+#)
 
+
+### So we can see all prompts for captchas on subsequent runs.
+glc.logout()

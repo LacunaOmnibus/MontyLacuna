@@ -58,8 +58,7 @@ supposed to do.
   - entertainment
   - foodreserve
   - geneticslab
-  - intelligence
-    - Return to this and change it to use the spy.Spy class.
+  - intelligence (oopified)
   - inteltraining
   - libraryofjith
   - mayhemtraining

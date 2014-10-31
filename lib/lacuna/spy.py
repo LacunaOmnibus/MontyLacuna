@@ -7,7 +7,7 @@ class Spy():
         id                     "id-goes-here",
         name                   "Jason Bourne",
         assignment             "Idle",
-        possible_assignments   List of SpyAssignment objects
+        possible_assignments   List of Assignment objects
         level                  9,
         politics               0,
         mayhem                 20,
@@ -128,6 +128,7 @@ class Assignment():
         for k, v in mydict.items():
             setattr(self, k, v)
 
+
 class ForeignAgent(Spy):
     """
         A ForeignAgent object has the following attributes:
@@ -141,6 +142,27 @@ class ForeignAgent(Spy):
     """
 
 
+class IntelView():
+    """
+    Attributes:
+        maximum             5,
+        current             1,
+        in_training         1,
+        training_costs      {
+            "food" : 100,
+            "water" : 120,
+            "energy" : 20,
+            "ore" : 5,
+            "waste" : 10,
+            "time" : 60,
+        }
+    """
+    def __init__( self, client, mydict:dict, *args, **kwargs ):
+        self.client = client
+        for k, v in mydict.items():
+            setattr(self, k, v)
+
+
 class MissionCount():
     """ The count of missions performed by the spy.
 
@@ -152,6 +174,31 @@ class MissionCount():
     Attributes:
         offensive   149
         defensive   149
+    """
+    def __init__( self, client, mydict:dict, *args, **kwargs ):
+        self.client = client
+        for k, v in mydict.items():
+            setattr(self, k, v)
+
+
+class MissionResult():
+    """
+    Attributes:
+        result          "Failure",
+        message_id      "id-goes-here",
+        reason          "I'm under heavy fire over here!"
+
+    Possible values for 'result' are:
+        Accepted    Nothing happened as a result of the assignment, as to 
+                    Counter Espionage or Idle.
+        Success     The mission succeeded and your spy won.
+        Bounce      The mission began, but was foiled.  Essentially a draw.  
+        Failure     The mission failed miserably.  Your spy is probably 
+                    knocked out, in jail, or dead.
+
+    The message_id listed is the ID of a message in your inbox 
+    containing details of the result of the mission.  Not all 
+    missions will include a message_id (eg 'Idle').
     """
     def __init__( self, client, mydict:dict, *args, **kwargs ):
         self.client = client
@@ -184,6 +231,7 @@ class SpyBody():
         for k, v in mydict.items():
             setattr(self, k, v)
 
+
 class Training(Building):
     @Building.call_returning_meth
     def view( self, *args, **kwargs ):
@@ -195,6 +243,7 @@ class Training(Building):
         Building.write_building_status( self, kwargs['rslt'] )
         view = TrainingView( self.client, kwargs['rslt']['spies'] )
         return view
+
 
 class TrainingView():
     """
