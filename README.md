@@ -106,15 +106,10 @@ supposed to do.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
-- Fix intelligence.py to use the Spy class (and anything else that touches spies).
-- Fix planetarycommand.py to use the Plan class (and anything else that touches plans).
+- Finish "oopifying" the retvals of all of the building classes.
+  - Everything from security.py on down should be OK.
 - A prisoner or two floating around us1 1.1.  Use them to test trade.py and transporter.py
     - get_prisoners()
-- Any method that's returning a list of dicts (ships, spies, whatever) should be fixed to 
-  return instead a list of objects.
-  - I started doing this somewhere around the time I was working on security.py.  
-    Everything listed below that (in the list of completed buildings above) should be 
-    DingTRT.  Everthing listed above that should be looked at.
 - The Building class should be renamed to MyBuilding, so we can use "Building" for a much 
   more generic building base classname.
 
