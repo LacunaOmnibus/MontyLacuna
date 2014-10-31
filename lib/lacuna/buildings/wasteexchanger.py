@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.recycling import RecycleBldg
 
-class wasteexchanger(Building):
+class wasteexchanger(RecycleBldg):
     path = 'wasteexchanger'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

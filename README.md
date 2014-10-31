@@ -90,6 +90,9 @@ supposed to do.
     - I purposely skipped some methods in both trade and transporter.  They'll never be 
       used and I'm getting bored.  Add them if you're feeling productive.  The skipped 
       methods are noted in comments at the top of both files.
+ - recycler (base class)
+    - wasteexchanger
+    - wasterecycling
 
 ## Incomplete/Not Started
 - Payments
