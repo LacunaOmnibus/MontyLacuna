@@ -133,3 +133,8 @@ class LacunaObject:
             return rslt
         return inner
 
+class SubClass():
+    def __init__(self, client, mydict:dict):
+        self.client = client
+        for k, v in mydict.items():
+            setattr(self, k, v)

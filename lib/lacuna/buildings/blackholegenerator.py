@@ -1,5 +1,5 @@
 
-from lacuna.bc import LacunaObject
+import lacuna.bc
 from lacuna.building import Building
 
 """
@@ -9,14 +9,10 @@ from lacuna.building import Building
         "target":{
             "body_id" : "12345",
             "body_name" : "mars",
-
             "star_id" : "12345",
             "star_name" : "sol",
-
             "zone" : "0|0",
-
-            "x": 0,
-            "y": 0,
+            "x": 0, "y": 0,
         },
 
     You'll only send one of these, except in the case where you're sending 
@@ -26,62 +22,47 @@ from lacuna.building import Building
     eg sending 'star_name' to a call to 'jump_zone' doesn't make any sense.
 """
 
+        
+
 class blackholegenerator(Building):
     path = 'blackholegenerator'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @Building.call_returning_meth
     def get_actions_for( self, target:dict, **kwargs ):
         """ Returns all available BHG actions for the given target.
 
         Actually returns all BHG actions, but any that aren't possible for the 
         current target will have a 'reason' listed.
 
-        Retval contains key 'tasks'.  The example shown is the 'Make Asteroid' 
-        task, given a zone as a target, and displays a non-empty 'reason'.
-                {   'base_fail': 10,
-                    'dist': -1,
-                    'essentia_cost': None,
-                    'min_level': 10,
-                    'name': 'Make Asteroid',
-                    'occupied': 0,
-                    'range': 450,
-                    'reason': 'You can only make an asteroid from a planet.',
-                    'recovery': 259200,
-                    'side_chance': 25,
-                    'subsidy_mult': 0.75,
-                    'success': 0,
-                    'throw': 1009,
-                    'types': ['habitable planet', 'gas giant'],
-                    'waste_cost': 50000000
-                },
+        Returns a list of BHGTask objects.
         """
-        pass
+        mylist = []
+        for i in kwargs['rslt']['tasks']:
+            mylist.append( BHGTask(self.client, i) )
+        return mylist
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @Building.call_building_meth
     def subsidize_cooldown( self, **kwargs ):
         """ Spends 2E to subsidize the BHG's current cooldown period.
 
-        Retval includes keys 'tasks', as documented in get_actions_for(), and 
-        'task_options', a dict:
-            {
-                'asteroid_types': [1, 2, ... 26],
-                'planet_types': [1, 2, .., 40],
-                'zones': ['-1|-1', '-1|-2', ... '5|5']
-            }
-        That's probably not terribly useful, but it's there.
+        Returns a tuple:
+            tasks           List of BHGTask objects
+            task_options    A single BHGTaskOptions object
 
         Raises ServerError 1010 if the BHG is not currently in cooldown mode.
         """
-        pass
+        tasks = []
+        for i in kwargs['rslt']['tasks']:
+            tasks.append( BHGTask(self.client, i) )
+        opts = BHGTaskOptions(self.client, kwargs['rslt']['task_options'])
+        return( tasks, opts )
 
 
-    @LacunaObject.set_empire_status
-    @Building.call_named_meth
+    @Building.call_named_returning_meth
     def generate_singularity( self, named_args:dict, **kwargs ):
         """ Performs one of the several actions possible via BHG.  See 
         get_actions_for() for a list of legal actions.
@@ -102,59 +83,109 @@ class blackholegenerator(Building):
         take the chance that the BHG action will fail, causing catastrophic 
         results up to destroying the BHG and replacing it with a fissure.
 
-        Retval includes a key 'effect':
-                'effect': {
-                    'side': {
-                        'id': '121808',
-                        'message': '2 decor items placed',
-                                    'magnetite': 500,
-                                    'methane': 500,
-                                    'monazite': 500,
-                                    'rutile': 500,
-                                    'sulfur': 500,
-                                    'trona': 500,
-                                    'uraninite': 500,
-                                    'zircon': 500
-                        },
-                    'ore_capacity': 21893730088,
-                    'ore_hour': 2593539143,
-                    'ore_stored': 21893730088,
-                    'plots_available': 0,
-                    'population': 30100000,
-                    'propaganda_boost': '0',
-                    'size': '72',
-                    'star_id': "My Planet's Star's ID",
-                    'star_name': "My Planet's Star's Name",
-                    'station': {   'id': 'Integer SS ID',
-                                    'name': 'Space Station Name',
-                                    'x': 'SS x coord',
-                                    'y': 'SS y coord'},
-                    'surface_version': '2774',
-                    'type': 'habitable planet',
-                    'waste_capacity': 63944937008,
-                    'waste_hour': 117395,
-                    'waste_stored': 16747563792,
-                    'water': 10768,
-                    'water_capacity': 21893730088,
-                    'water_hour': 1348906217,
-                    'water_stored': 21893730088,
-                    'x': 'x coord of planet containing BHG',
-                    'y': 'y coord of planet containing BHG',
-                    'zone': '0|0'
-                },
-
-            The 'side' dict specifies any side effects that occurred as a 
-            result of your BHG use.  The rest of the information in 'effect' 
-            is a little puzzling - it reflects the status of the planet where 
-            the BHG you just used is located.
-            If you, for example, used the BHG to change a foreign planet to a 
-            different planet type, you might expect the information in 
-            'effect' to relate to that target planet; this is not the case.
+        Returns a single BHGEffect object.
 
         Throws ServerError 1002 if the target can't be found, and 1010 if the 
         BHG is currently in cooldown mode.
         """
-        pass
+        return BHGEffect(self.client, kwargs['rslt']['effect'])
 
 
+class BHGTask(lacuna.bc.SubClass):
+    """
+    Attributes:
+        base_fail       10,
+        dist            134.1
+        essentia_cost   None,
+        min_level       10,
+        name            'Make Asteroid',
+        occupied        0,
+        range           450,
+        reason          'You can only make an asteroid from a planet.',
+        recovery        259200,
+        side_chance     25,
+        subsidy_mult    0.75,
+        success         0,
+        throw           1009,
+        types           ['habitable planet', 'gas giant'],
+        waste_cost      50000000
+    """
+
+class BHGTaskOptions(lacuna.bc.SubClass):
+    """
+    Attributes:
+        asteroid_types  [1, 2, ... 26],
+        planet_types    [1, 2, .., 40],
+        zones           ['-1|-1', '-1|-2', ... '5|5']
+    """
+
+
+class BHGEffect(lacuna.bc.SubClass):
+    """
+    Attributes:
+        ore_capacity        21893730088,
+        ore_hour            2593539143,
+        ore_stored          21893730088,
+        plots_available     0,
+        population          30100000,
+        propaganda_boost        '0',
+        size                '72',
+        star_id             "My Planet's Star's ID",
+        star_name           "My Planet's Star's Name",
+        surface_version     '2774',
+        type                'habitable planet',
+        waste_capacity      63944937008,
+        waste_hour          117395,
+        waste_stored        16747563792,
+        water               10768,
+        water_capacity      21893730088,
+        water_hour          1348906217,
+        water_stored        21893730088,
+        x                   'x coord of planet containing BHG',
+        y                   'y coord of planet containing BHG',
+        zone                '0|0',
+
+
+        The 'side' dict specifies any side effects that occurred as a result 
+        of your BHG use.  I believe this will only be set if the BHG usage 
+        produced a side effect.
+            side   {        'id':       '121808',
+                            'message':  '2 decor items placed',
+                            'name:'     'Name of affected planet',  },
+
+        The 'fail' dict is listed in the TLE docu as "fail: { ... }", so I 
+        don't know what it's supposed to contain.  It'll only be set if the 
+        BHG usage failed for some reason.
+            fail    {        who knows?   }
+
+
+        The 'target' dict will contain different keys depending upon what was 
+        done.
+
+        This first example is what's documented in the TLE API docu:
+            target  {        'class' : 'Lacuna::DB::Result::Map::Body::Asteroid::A2',
+                             'id' : 'body id',
+                             'name' : 'name of planet effected',
+                             'old_class' : 'Lacuna::DB::Result::Map::Body::Planet::P9',
+                             'old_size' : Size before change,
+                             'message' : 'Made Asteroid',
+                             'size' : Size of body after effect
+                             'type' : 'asteroid', 'gas giant', 'habitable planet', or 'space station'
+                             'variance' : -1, 0, or 1
+                             'waste' : 'Zero', 'Random', or 'Filled'  }
+
+        This is what I got back after trying to change a p35 into a p35:
+            target  {        'id':       '467277',
+                             'message':  'Fizzle',
+                             'name':     'Opriogee 2'   },
+
+        This is what I got back after changing a p35 into a p33:
+            target  {        'class': 'Lacuna::DB::Result::Map::Body::Planet::P33',
+                             'id': '467277',
+                             'message': 'Changed Type',
+                             'name': 'Opriogee 2',
+                             'old_class': 'Lacuna::DB::Result::Map::Body::Planet::P35'   }
+
+        ...So use your head, and check your keys.
+    """
 
