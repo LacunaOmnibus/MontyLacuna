@@ -108,6 +108,8 @@ supposed to do.
 - Ack through everything for "CHECK" and fix.
 - Finish "oopifying" the retvals of all of the building classes.
   - Everything from security.py on down should be OK.
+- Investigate the main __init_.py.  I don't think it needs all the imports 
+  that are in there.
 - A prisoner or two floating around us1 1.1.  Use them to test trade.py and transporter.py
     - get_prisoners()
 - The Building class should be renamed to MyBuilding, so we can use "Building" for a much 
