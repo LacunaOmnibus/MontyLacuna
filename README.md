@@ -4,8 +4,8 @@ MontyLacuna
 Python Client for The Lacuna Expanse
 
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
-No attempt is being made to preseve the same API used by GLC, but the goal is 
-to replicate all of the functionality.
+No attempt is being made to preseve the same API used by GLC, but I'd like to 
+replicate all of the functionality.
 
 The main goal is to help me learn Python, but I'd like to end up with a fully 
 working package.
