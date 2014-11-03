@@ -1,8 +1,8 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class thedillonforge(Building):
+class thedillonforge(MyBuilding):
     path = 'thedillonforge'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
@@ -47,7 +47,7 @@ class thedillonforge(Building):
             ct, sr, can, wrk, sub
         )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
         """ View plans that can be built and split.
 
@@ -65,7 +65,7 @@ class thedillonforge(Building):
         """
         return self._marshal_view( kwargs['rslt'] )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def make_plan( self, perl_class:str, level:int = 1, *args, **kwargs ):
         """ Starts making a plan in the forge.
 
@@ -78,7 +78,7 @@ class thedillonforge(Building):
         """
         return self._marshal_view( kwargs['rslt'] )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def split_plan( self, perl_class:str, level:int = 1, extra_build_level:int = 0, quantity:int = 1, *args, **kwargs ):
         """ Starts splitting a plan in the forge.
 
@@ -94,7 +94,7 @@ class thedillonforge(Building):
         return self._marshal_view( kwargs['rslt'] )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def subsidize( self, *args, **kwargs ):
         """ Spends 2 E to subsidize the current job.
         

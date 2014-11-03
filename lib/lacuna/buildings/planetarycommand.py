@@ -1,6 +1,6 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
 """
     The TLE API docs claim that the view() method retval contains a 'building' 
@@ -62,14 +62,14 @@ from lacuna.building import Building
                                     }
 """
 
-class planetarycommand(Building):
+class planetarycommand(MyBuilding):
     path = 'planetarycommand'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_plans( self, *args, **kwargs ):
         """ Shows plans stored on the planet.
 
@@ -83,7 +83,7 @@ class planetarycommand(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_incoming_supply_chains( self, *args, **kwargs ):
         """ Shows the supply chains coming in to this planet from elsewhere.
 

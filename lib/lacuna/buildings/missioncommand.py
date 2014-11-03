@@ -1,14 +1,14 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class missioncommand(Building):
+class missioncommand(MyBuilding):
     path = 'missioncommand'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_missions( self, *args, **kwargs ):
         """ Returns a list of available missions.
         
@@ -20,7 +20,7 @@ class missioncommand(Building):
         return m_list
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def complete_mission( self, mission_id:int, *args, **kwargs ):
         """ Completes a mission.  Delivers rewards to your mission command 
         planet immediately, and causes this mission to not show up again for 30 
@@ -37,7 +37,7 @@ class missioncommand(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def skip_mission( self, mission_id:int, *args, **kwargs ):
         """ Skips a mission, removing it from the list and keeping it from 
         showing up again for 30 days.

@@ -1,15 +1,15 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class miningministry(Building):
+class miningministry(MyBuilding):
     path = 'miningministry'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_platforms( self, *args, **kwargs ):
         """ Views your current platform status
 
@@ -52,7 +52,7 @@ class miningministry(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_ships( self, *args, **kwargs ):
         """ View list of mining-capable ships.
 
@@ -73,7 +73,7 @@ class miningministry(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def add_cargo_ship_to_fleet( self, ship_id:int, *args, **kwargs ):
         """ Adds a ship to the mining fleet.
 
@@ -86,7 +86,7 @@ class miningministry(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def remove_cargo_ship_from_fleet( self, ship_id:int, *args, **kwargs ):
         """ Takes a single ship off mining duty; sends the ship a message to 
         return to base to perform the "Docked" task.
@@ -101,7 +101,7 @@ class miningministry(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def abandon_platform( self, platform_id:int, *args, **kwargs ):
         """ Abandon one of your mining platforms.
 

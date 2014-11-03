@@ -1,6 +1,6 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
 """
     The view() method will include the key 'party'.  If there is a party 
@@ -17,14 +17,14 @@ from lacuna.building import Building
 
 """
 
-class park(Building):
+class park(MyBuilding):
     path = 'park'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def throw_a_party( self, *args, **kwargs ):
         """ Throw a party at the park to gain happiness.
 
@@ -48,7 +48,7 @@ class park(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def subsidize_party( self, *args, **kwargs ):
         """
         """

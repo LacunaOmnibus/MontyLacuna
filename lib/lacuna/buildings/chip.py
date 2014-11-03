@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class chip(Building):
+class chip(MyBuilding):
     path = 'chip'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

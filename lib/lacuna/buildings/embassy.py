@@ -1,6 +1,6 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
 """
 Be aware of the ID arguments in these methods.  In some cases, the ID argument 
@@ -13,14 +13,14 @@ itself.
 Invitation IDs can be obtained via get_pending_invites().
 """
 
-class embassy(Building):
+class embassy(MyBuilding):
     path = 'embassy'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def create_alliance( self, alliance_name:str, **kwargs ):
         """ Create a new alliance.
 
@@ -39,7 +39,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def dissolve_alliance( self, **kwargs ):
         """ Dissolves the current alliance.  This can only be called by the 
         alliance leader.  Any Space Stations still held by the alliance will 
@@ -48,7 +48,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def leave_alliance( self, **kwargs ):
         """ Leaves the current alliance.
 
@@ -61,7 +61,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_alliance_status( self, **kwargs ):
         """ Gets status of your alliance.
 
@@ -78,7 +78,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def send_invite( self, invitee_id:int, message:str = '', **kwargs ):
         """ Invites a player, by ID, to your alliance.
         Raises ServerError 1010 if the invitee is already a member of your 
@@ -89,7 +89,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_pending_invites( self, **kwargs ):
         """ Get list of sent, but not yet accepted, invites.
 
@@ -103,13 +103,13 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def withdraw_invite( self, invite_id:int, message:str = '', **kwargs ):
         """ Withdraws a pending alliance invite."""
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_my_invites( self, **kwargs ):
         """ Gets list of alliance invitations received by your empire.
         CHECK untested as I can't create an empire on PT.  Should work.
@@ -117,7 +117,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def accept_invite( self, invite_id:int, message:str = '', **kwargs ):
         """ Accepts an alliance invitation.
         CHECK untested as I can't create an empire on PT.  Should work.
@@ -125,7 +125,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def reject_invite( self, invite_id:int, message:str = '', **kwargs ):
         """ Rejects an alliance invitation.
         CHECK untested as I can't create an empire on PT.  Should work.
@@ -133,7 +133,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def assign_alliance_leader( self, empire_id:int, **kwargs ):
         """ Sets a new empire to be the leader of your alliance.  Can only be 
         called by the current alliance leader.
@@ -142,7 +142,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def update_alliance( self, named_args:dict, **kwargs ):
         """ Updates some settings for your alliance.  Can only be called by the 
         alliance leader.
@@ -157,7 +157,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def expel_member( self, empire_id:int, message:str = '', **kwargs ):
         """ Expels a member from your alliance.  Can only be called by the 
         alliance leader.
@@ -166,7 +166,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_stash( self, **kwargs ):
         """ Shows what resources are in the alliance stash.
 
@@ -181,7 +181,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def donate_to_stash( self, donation:dict, **kwargs ):
         """ Donate items to the alliance stash.
 
@@ -204,7 +204,7 @@ class embassy(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def exchange_with_stash( self, donation:dict, request:dict, **kwargs ):
         """ Exchange equal amounts of your resources with resources currently 
         in the stash.

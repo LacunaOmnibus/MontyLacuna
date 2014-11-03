@@ -1,15 +1,15 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class mercenariesguild(Building):
+class mercenariesguild(MyBuilding):
     path = 'mercenariesguild'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_market( self, page_number:int = 1, *args, **kwargs ):
         """ Displays a page of trades, up to 25 trades per page.
 
@@ -38,7 +38,7 @@ class mercenariesguild(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def accept_from_market( self, trade_id:int, *args, **kwargs ):
         """ Accept (purchase) a trade from the market.
 
@@ -47,7 +47,7 @@ class mercenariesguild(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_spies( self, *args, **kwargs ):
         """ Gets a list of your spies that are available to be added as trades.
 
@@ -64,7 +64,7 @@ class mercenariesguild(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_trade_ships( self, *args, **kwargs ):
         """ Returns a list of ships currently onsite that can be used to add a
         mercenary trade.
@@ -83,7 +83,7 @@ class mercenariesguild(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def add_to_market( self, spy_id:int, ask:float, ship_id:int = 0, *args, **kwargs ):
         """ Adds a spy to the mercs market.
 
@@ -104,7 +104,7 @@ class mercenariesguild(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_my_market( self, page_number:int = 1, *args, **kwargs ):
         """ Shows the trades you have offered.
 
@@ -125,12 +125,12 @@ class mercenariesguild(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def withdraw_from_market( self, trade_id:int, *args, **kwargs ):
         """ Removes one of your trades from the market."""
         pass
 
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def report_abuse( self, trade_id:int, *args, **kwargs ):
         """ Reports a trade for abuse.
 
