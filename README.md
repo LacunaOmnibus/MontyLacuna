@@ -88,6 +88,8 @@ supposed to do.
   - network19
     - oopified
   - observatory
+    - Mostly oopified
+    - CHECK need PT back up to test abandoning all probes
   - oracleofanid
   - orestorage
   - park

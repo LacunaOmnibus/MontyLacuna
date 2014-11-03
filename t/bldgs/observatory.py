@@ -8,8 +8,8 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
-    config_section = 'play_test',
+    config_section = 'my_sitter',
+    #config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 obs         = my_planet.get_building_coords( 5, -3 )
@@ -17,24 +17,29 @@ obs         = my_planet.get_building_coords( 5, -3 )
 
 ### See what stars we have probed
 ###
-#rva = obs.get_probed_stars()
-#glc.pp.pprint( rva['stars'][0].color )
+#stars, out, max, travelling = obs.get_probed_stars()
 #print( "We have {} of a maximum {} stars probed, and {} probes currently on the way"
-#    .format(rva['star_count'], rva['max_probes'], rva['travelling'] )
+#    .format(out, max, travelling )
 #)
+#print( "We have probes at these stars:" )
+#for s in stars[0:3]:
+#    print( "\t{} ({}, {}) is {} and has {} bodies orbiting it."
+#        .format(s.name, s.x, s.y, s.color, len(s.bodies))
+#    )
 
 
 ### Abandon a single probe
 ###
-#rvb = obs.get_probed_stars()
-#for s in rvb['stars']:
-#    if s.name == 'SMA1I 91 New Eagle':
-#        print("abandoning")
-#        obs.abandon_probe( s.id )
-#        break
+#stars, out, max, travelling = obs.get_probed_stars()
+#s = stars[-1]
+#print( "Before abandoning one, we have {} of a maximum {} stars probed." .format(out, max) )
+#obs.abandon_probe( s.id )
+#stars, out, max, travelling = obs.get_probed_stars()
+#print( "After abandoning one, we have {} of a maximum {} stars probed." .format(out, max) )
 
 
 ### Abandon all probes
+### CHECK need PT for this.
 ###
 #obs.abandon_all_probes()
 
