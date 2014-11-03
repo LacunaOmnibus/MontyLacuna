@@ -1,7 +1,7 @@
 
 from lacuna.spy import Training
 
-class thefttraining(Training):
+class thefttraining(lacuna.spy.Training):
     path = 'thefttraining'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

@@ -1,7 +1,7 @@
 
-from lacuna.spy import Training
+import lacuna.spy
 
-class politicstraining(Training):
+class politicstraining(lacuna.spy.Training):
     path = 'politicstraining'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

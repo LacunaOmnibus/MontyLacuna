@@ -12,7 +12,7 @@ glc = lac.clients.Member(
     config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.4' )
-train     = my_planet.get_building_coords( 0, -4 )
+train       = my_planet.get_building_coords( 0, -4 )
 
 
 ### View building details
