@@ -77,10 +77,10 @@ class LacunaObject:
         Makes an RPC not requiring that the client is logged in.
         The decorated method must be named identically to an existing TLE method.
         """
-        def inner(self, *args):
-            rslt = self.client.send( self.path, func.__name__, args )
-            func( self, *args )
-            return rslt
+        def inner(self, *args, **kwargs):
+            kwargs['rslt'] = self.client.send( self.path, func.__name__, args )
+            myrslt = func( self, *args, **kwargs )
+            return myrslt
         return inner
 
     def call_member_meth(func):
@@ -134,8 +134,10 @@ class LacunaObject:
         return inner
 
 class SubClass():
+    """ A very generic base class for turning returned dicts into objects. """
     def __init__(self, client, mydict:dict):
         self.client = client
         for k, v in mydict.items():
             setattr(self, k, v)
+
 

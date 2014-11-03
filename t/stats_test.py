@@ -21,20 +21,32 @@ glc = lac.clients.Member(
 )
 
 ### credits() works fine from a guest account.
+###
 #guest_stats = guest.get_stats()
 #guest_cred = guest_stats.credits()
-#pp.pprint( guest_cred )
-#quit()
+#print( "TLE Play Testers:" )
+#for i in guest_cred['Play Testers']:
+#    print( "\t", i )
 
 
+
+
+### Look at alliance stats by page
+###
+#stats = glc.get_stats()
+#ranks, num, page = stats.alliance_rank()
+#print( "There are", num, "total alliances." )
+#print( "Names of alliances on page number", page, ":" )
+#for i in ranks:
+#    print( "\t", i.alliance_name )
+
+
+### Look at alliance stats for a specific alliance
+###
 stats = glc.get_stats()
-
-
-ranks = stats.alliance_rank()
-pp.pprint( ranks )
-
-#ranks = stats.find_alliance_rank('influence', 'S.M.A')
-#pp.pprint( ranks )
+ranks = stats.find_alliance_rank('influence', 'S.M.A')
+for i in ranks:
+    print( "{} appears on page {}.".format(i.alliance_name, i.page_number) )
 
 
 ### CHECK this is where I got tired of doing the same thing over and over and 
