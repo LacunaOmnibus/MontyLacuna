@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class metaljunkarches(Building):
+class metaljunkarches(MyBuilding):
     path = 'metaljunkarches'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

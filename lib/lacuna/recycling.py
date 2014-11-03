@@ -1,14 +1,14 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class RecycleBldg(Building):
+class RecycleBldg(MyBuilding):
     """ Base class for waste exchanger and recycler buildings.  """
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
         """ Get ships available to be added to a trade as merchandise.
 
@@ -18,7 +18,7 @@ class RecycleBldg(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def recycle( self, water:int = 0, ore:int = 0, energy:int = 0, subsidize:int = 0, *args, **kwargs ):
         """ Convert existing waste into valuable resources.
 
@@ -36,7 +36,7 @@ class RecycleBldg(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def subsidize_recycling( self, *args, **kwargs ):
         """ Spends 2 E to complete the current recycling job now.
         """

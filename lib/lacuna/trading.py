@@ -1,18 +1,18 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 from lacuna.ship import TradeableShip
 from lacuna.spy import Prisoner
 from lacuna.plan import OwnedPlan
 from lacuna.glyph import OwnedGlyph
 
-class TradeBldg(Building):
+class TradeBldg(MyBuilding):
     """ Base class for trade and transporter buildings.  """
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_ships( self, *args, **kwargs ):
         """ Get ships available to be added to a trade as merchandise.
 
@@ -29,7 +29,7 @@ class TradeBldg(Building):
             kwargs['rslt']['cargo_space_used_each']
         )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_prisoners( self, *args, **kwargs ):
         """ Get prisoners available to be added to a trade as merchandise.
 
@@ -46,7 +46,7 @@ class TradeBldg(Building):
             kwargs['rslt']['cargo_space_used_each']
         )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_plan_summary( self, *args, **kwargs ):
         """ Get plans available to be added to a trade as merchandise.
 
@@ -63,7 +63,7 @@ class TradeBldg(Building):
             kwargs['rslt']['cargo_space_used_each']
         )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_glyph_summary( self, *args, **kwargs ):
         """ Get glyphs available to be added to a trade as merchandise.
 
@@ -80,7 +80,7 @@ class TradeBldg(Building):
             kwargs['rslt']['cargo_space_used_each']
         )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_my_market( self, page_number:int = 1, *args, **kwargs ):
         """ Shows the trades you currently have offered.
 
@@ -104,7 +104,7 @@ class TradeBldg(Building):
         )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def withdraw_from_market( self, trade_id:int, *args, **kwargs ):
         """ Withdraws one of your trades from the market.  If the trade had been 
         on the SST market, refunds your 1 E posting cost.
@@ -114,7 +114,7 @@ class TradeBldg(Building):
         """
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_market( self, page_number:int = 1, filter:str = '', *args, **kwargs ):
         """ Shows the trades you currently have offered.
 
@@ -141,7 +141,7 @@ class TradeBldg(Building):
         )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def accept_from_market( self, trade_id:int, *args, **kwargs ):
         """ Accepts a trade from the market.  When buying from the SST market, 
         an additional 1 E processing cost is automatically charged in addition
@@ -154,7 +154,7 @@ class TradeBldg(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_stored_resources( self, *args, **kwargs ):
         """ Returns resources stored onsite and available for trading.
 

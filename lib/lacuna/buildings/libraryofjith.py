@@ -1,8 +1,8 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class libraryofjith(Building):
+class libraryofjith(MyBuilding):
     path = 'libraryofjith'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
@@ -10,7 +10,7 @@ class libraryofjith(Building):
 
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def research_species( self, empire_id:int, *args, **kwargs ):
         """ Returns information on the species of the indicated empire.
 

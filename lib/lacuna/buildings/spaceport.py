@@ -1,6 +1,6 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 from lacuna.exceptions import \
     NoAvailableShipsError
 from lacuna.ship import \
@@ -39,13 +39,13 @@ view() retval includes:
 
 """
 
-class spaceport(Building):
+class spaceport(MyBuilding):
     path = 'spaceport'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_all_ships( self, paging:dict={}, filter:dict={}, sort:str='type', *args, **kwargs ):
         """ Show all ships on the planet.
 
@@ -53,7 +53,7 @@ class spaceport(Building):
             "filter"
                 A dict of filter critera, which can contain the keys 'task', 
                     'type', and/or 'tag'.
-                    "task":     Building, Defend, Docked, Mining, Orbiting, 
+                    "task":     MyBuilding, Defend, Docked, Mining, Orbiting, 
                                 Supply Chain, Travelling, Waiting on Trade, 
                                 Waste Chain
                     "type":     Any of the existing ship types (eg "placebo5", 
@@ -95,7 +95,7 @@ class spaceport(Building):
             kwargs['rslt']['number_of_ships']
         )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_foreign_ships( self, page_number:int = 1, *args, **kwargs ):
         """ Shows information on incoming foreign ships.
 
@@ -114,7 +114,7 @@ class spaceport(Building):
             kwargs['rslt']['number_of_ships']
         )
 
-    @Building.call_naked_returning_meth
+    @MyBuilding.call_naked_returning_meth
     def get_fleet_for( self, from_body_id:int, target:dict, *args, **kwargs ):
         """ See docs for get_my_fleet_for().  """
         ship_list = []
@@ -138,7 +138,7 @@ class spaceport(Building):
         """
         return self.get_fleet_for( self.body_id, target )
 
-    @Building.call_naked_returning_meth
+    @MyBuilding.call_naked_returning_meth
     def get_ships_for( self, from_body_id:int, target:dict, *args, **kwargs ):
         """ See docs for get_my_ships_for()."""
 
@@ -193,7 +193,7 @@ class spaceport(Building):
         """
         return self.get_ships_for( self.body_id, target )
 
-    @Building.call_naked_returning_meth
+    @MyBuilding.call_naked_returning_meth
     def send_ship( self, ship_id:int, target:dict, *args, **kwargs ):
         """ Sends a single ship to the indicated target.
         
@@ -208,7 +208,7 @@ class spaceport(Building):
         return IncomingShip(self.client, kwargs['rslt']['ship'])
 
     @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @MyBuilding.call_naked_meth
     def send_ship_types( self, from_body_id:int, target:dict, types:list, arrival:dict, *args, **kwargs ):
         """ See docs for send_my_ship_types.  """
         pass
@@ -261,7 +261,7 @@ class spaceport(Building):
         return self.send_ship_types( self.body_id, target, types, arrival )
 
     @LacunaObject.set_empire_status
-    @Building.call_naked_meth
+    @MyBuilding.call_naked_meth
     def send_fleet( self, ship_ids:list, target:dict, fleet_speed:int = 0, *args, **kwargs ):
         """ Sends a fleet of ships at the target.  A fleet travels as a single 
         unit, so its maximum speed is the highest speed of its slowest ship.
@@ -275,7 +275,7 @@ class spaceport(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def recall_ship( self, ship_id:int, *args, **kwargs ):
         """ Recalls a single ship that's currently performing either the 
         'Defend' or 'Orbiting' tasks.
@@ -288,7 +288,7 @@ class spaceport(Building):
         """
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def recall_all( self, *args, **kwargs ):
         """ Recalls all ships from the current planet that are on 'Defend' or 
         'Orbiting' tasks.
@@ -341,7 +341,7 @@ class spaceport(Building):
         return ship_list
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def name_ship( self, ship_id:int, name:str, *args, **kwargs ):
         """ Rename a ship.
         Up to 30 characters are allowed.  "No profanity or funky characters" 
@@ -352,7 +352,7 @@ class spaceport(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def scuttle_ship( self, ship_id:int, *args, **kwargs ):
         """ Scuttles (deletes) a ship.  The ship must be docked.
 
@@ -361,7 +361,7 @@ class spaceport(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def mass_scuttle_ship( self, ship_ids:list, *args, **kwargs ):
         """ Scuttles (deletes) a list of ships.  All ships to be scuttled must 
         be docked.
@@ -372,7 +372,7 @@ class spaceport(Building):
         """
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_ships_travelling( self, *args, **kwargs ):
         """ Shows all ships travelling from this planet.
 
@@ -391,7 +391,7 @@ class spaceport(Building):
         )
 
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_ships_orbiting( self, *args, **kwargs ):
         """ Shows all FOREIGN ships currently orbiting THIS planet, dependent 
         upon the stealth levels of those orbiting ships.
@@ -413,7 +413,7 @@ class spaceport(Building):
             kwargs['rslt']['number_of_ships']
         )
 
-    @Building.call_naked_returning_meth
+    @MyBuilding.call_naked_returning_meth
     def prepare_send_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
         """ Gathers the info needed to call send_spies().
 
@@ -438,7 +438,7 @@ class spaceport(Building):
             spy_list
         )
 
-    @Building.call_naked_returning_meth
+    @MyBuilding.call_naked_returning_meth
     def send_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Sends spies to a target.
 
@@ -471,7 +471,7 @@ class spaceport(Building):
             ship
         )
 
-    @Building.call_naked_returning_meth
+    @MyBuilding.call_naked_returning_meth
     def prepare_fetch_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
         """ Fetches spies back home again.
 
@@ -496,7 +496,7 @@ class spaceport(Building):
             spy_list
         )
 
-    @Building.call_naked_returning_meth
+    @MyBuilding.call_naked_returning_meth
     def fetch_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Fetches spies back home again.
 
@@ -510,7 +510,7 @@ class spaceport(Building):
         return TravellingShip(self.client, kwargs['rslt']['ship'])
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_battle_logs( self, page_number:int = 1, *args, **kwargs ):
         """ View battle logs.
 

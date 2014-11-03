@@ -1,15 +1,15 @@
 
 import lacuna
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class observatory(Building):
+class observatory(MyBuilding):
     path = 'observatory'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_probed_stars( self, *args, **kwargs ):
         """ Returns a list of probed stars, as well as stats on how many probes 
         you have out and available.
@@ -32,7 +32,7 @@ class observatory(Building):
         return kwargs['rslt']
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def abandon_probe( self, star_id:int, *args, **kwargs ):
         """ Abandons a single probe.
 
@@ -46,7 +46,7 @@ class observatory(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def abandon_all_probes( self, *args, **kwargs ):
         """ Abandons all of this observatory's probes.  """
         pass
