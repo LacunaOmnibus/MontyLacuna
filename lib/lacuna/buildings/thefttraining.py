@@ -1,5 +1,5 @@
 
-from lacuna.spy import Training
+import lacuna.spy
 
 class thefttraining(lacuna.spy.Training):
     path = 'thefttraining'

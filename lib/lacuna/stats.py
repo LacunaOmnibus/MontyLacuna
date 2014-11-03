@@ -1,40 +1,46 @@
 
-from lacuna.bc import LacunaObject
+import lacuna.bc
 
-class Stats(LacunaObject):
+class Stats(lacuna.bc.LacunaObject):
 
     path = 'stats'
 
-    @LacunaObject.call_guest_meth
-    def credits( self ):
-        """ Returns a list of structs of the game credits.
+    @lacuna.bc.LacunaObject.call_guest_meth
+    def credits( self, *args, **kwargs ):
+        """ Returns the game's credits.
 
-         This example is far from exhaustive but should give you the idea.
-                [
-                    { "Game Server" : ["JT Smith"]},
-                    { "iPhone Client" : ["Kevin Runde"]},
-                    { "Web Client" : ["John Rozeske"]},
-                    { "Play Testers" : ["John Ottinger","Jamie Vrbsky"]},
-                    ...
-                ]
+        This method does not require a logged-in client.
 
-        This method does not require a logged-in client, so it doesn't return a stats
-        block.
+        This method does not require a logged-in client.
+        Returns a dict, with the keys being credit types and the values being a 
+        list of people or entities having that credit:
+            'Game Support'  [   'Plain Black Corporation / plainblack.com',
+                                'Mary Hoerr',
+                                'United Federation' ],
+             'Game Design': [   'JT Smith',
+                                'Jamie Vrbsky'      ],
+
+            ...etc.
         """
-        pass
+        ### Why the retval from TLE is a list of dicts instead of just a 
+        ### single dict is beyond me.  Let's simplify that a bit.
+        mydict = {}
+        for i in kwargs['rslt']:
+            for k,v in i.items():
+                mydict[k] = v
+        return mydict
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.call_returning_meth
     def alliance_rank( self, sort_by = 'influence desc,population desc', page_number = 1, *args, **kwargs ):
-        """ Returns struct with keys:
-                'total_alliances' - integer count.
-                'page_number' - what page we're displaying (defaults to 1)
-                'alliances' - list of structs, one alliance per struct.
-                'status' - standard
+        """ Returns info on current alliance ranks.
 
-            Returns 25 alliances per page.
+        Arguments:
+            sort_by         String.  What to sort the returned list on.  
+                            Defaults to "influence desc, population desc".
+            page_number     Integer page number to return, 25 alliances per page.  
+                            Defaults to 1.
 
-            Allowed values for sort_by:
+            Allowed values for sort_by (but see CAVEAT below):
                 influence
                 population
                 average_empire_size_rank
@@ -42,58 +48,64 @@ class Stats(LacunaObject):
                 defense_success_rate_rank
                 dirtiest_rank
 
-                CAVEAT
-                    The docs for this are flat-out wrong, and appear to be the result
-                    of a copy/paste error from find_alliance_rank.  
+        Return a tuple:
+            alliances           List of AllianceInfo objects
+            total_alliances     Integer count.
+            page_number         What page we're displaying (defaults to 1)
 
-                    The point is that the published docs conflict with these docs.  
-                    These are more righter.  Yeah, you heard me.
+        CAVEAT
+            The docs for this are flat-out wrong, and appear to be the result
+            of a copy/paste error from find_alliance_rank.  
 
-                    The default sort_by value in the server code is 
-                    'influence desc,population desc'.  However, the code is checking
-                    the incoming sort_by value against an array of legal choices, and 
-                    'influenced desc,population desc' is not one of those legal choices.
+            The point is that the published docs conflict with these docs.  
 
-                    Happily, if what you send is not a legal choice, the server code 
-                    defaults to 'influenced desc,population desc'.  So you could send 
-                    'influenced desc,population desc' and get 'influenced desc,population desc', 
-                    but it wouldn't be for the reason you might think (because that's
-                    what you fucking sent).  You could send "baseball" and you'd still
-                    end up with 'influenced desc,population desc'.
+            The default sort_by value in the server code is 'influence 
+            desc,population desc'.  However, the code is checking the incoming 
+            sort_by value against an array of legal choices, and 'influenced 
+            desc,population desc' is not one of those legal choices.
 
-                    Because this is all so confusing and goofy, the default sort_by 
-                    value of this method is 'influenced desc,population desc'.  Again, 
-                    it could be "tingly-wingly" and get the same result, but that might 
-                    lead to a bit of confusion down the road.
+            Happily, if what you send is not a legal choice, the server 
+            defaults to 'influenced desc,population desc'.  So you could send 
+            'influenced desc,population desc' and get 'influenced 
+            desc,population desc', but it wouldn't be for the reason you might 
+            think (because that's what you sent).  You could send "Rajesh 
+            Koothrapalli" and you'd still end up with 'influenced 
+            desc,population desc'.
         """
-        pass
+        mylist = []
+        for i in kwargs['rslt']['alliances']:
+            mylist.append( AllianceInfo(self.client, i) )
+        return(
+            mylist,
+            kwargs['rslt']['total_alliances'],
+            kwargs['rslt']['page_number'],
+        )
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.call_returning_meth
     def find_alliance_rank( self, sort_by = '', alliance_name = '', *args, **kwargs ):
-        """
-            sort_by
-                same options as for alliance_rank()
+        """ Finds stats for a specific alliance.
+
+        Arguments:
+            sort_by         same options as for alliance_rank()
+            alliance_name   Standard TLE search string
+
+        Returns list of limited AllianceInfo objects containing only the 
+        attributes:
+            alliance_id
             alliance_name
-                Standard TLE search string - at least 3 letters.  Alliances whose 
-                names =~ /^this_alliance_name_arg/ are returned.
-
-            Returns struct with keys:
-                alliances
-                    list of structs, one per matching alliances
-                            {
-                                "alliance_id" : "id-goes-here",
-                                "alliance_name" : "Earth Allies",
-                                "page_number" : "54",
-                            },
-                            ...
-                status
-                    standard
+            page_number
+        
+        This list will usually contain 
+        only a single alliance, but occasionally more than one alliance will 
+        match your passed-in alliance_name.
         """
-        pass
+        mylist = []
+        for i in kwargs['rslt']['alliances']:
+            mylist.append( AllianceInfo(self.client, i) )
+        return mylist
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.call_member_meth
     def empire_rank( self, sort_by = 'empire_size_rank', page_number = 1, *args, **kwargs ):
         """ Returns struct with keys:
                 'empires'           list of structs, one struct per empire
@@ -122,24 +134,26 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.call_returning_meth
     def find_empire_rank( self, sort_by = '', empire_name = '', *args, **kwargs ):
-        """ Returns struct with keys:
-                'empires'   list of structs, one struct per empire
-                                {
-                                    "empire_id" : "id-goes-here",
-                                    "empire_name" : "Earthlings",
-                                    "page_number" : "54",
-                                }
-                'status'    standard
+        """ Returns info on a specific empire in the ranks.
 
-            sort_by         legal values same as for empire_rank().
-            empire_name     standard TLE search value - >= 3 characters, matches front.
+        Arguments:
+            sort_by         String.  See empire_rank()
+            empire_name     String.  Standard TLE search value - >= 3 
+                            characters, empires whose name match the front of 
+                            this string are returned.
+        
+        Returns list of EmpireInfo objects.
         """
+        mylist = []
+        self.client.pp.pprint( kwargs['rslt']['empires'] )
+        for i in kwargs['rslt']['empires']:
+            mylist.append( EmpireInfo(self.client, i) )
+        return mylist
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.call_member_meth
     def colony_rank( self, sort_by = 'population_rank', *args, **kwargs ):
         """ Returns struct with keys:
                 status      standard
@@ -160,8 +174,8 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.call_member_meth
     def spy_rank( self, sort_by = 'level_rank', *args, **kwargs ):
         """ Returns struct with keys:
                 status      standard
@@ -183,8 +197,8 @@ class Stats(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.call_member_meth
     def weekly_medal_winners( self, *args, **kwargs ):
         """ Returns struct with keys:
                 status      standard
@@ -199,3 +213,28 @@ class Stats(LacunaObject):
         """
         pass
 
+class EmpireInfo(lacuna.bc.SubClass):
+    """
+    Attributes:
+        empire_id       "id-goes-here",
+        empire_name     "Earthlings",
+        page_number     "54",
+    """
+
+class AllianceInfo(lacuna.bc.SubClass):
+    """
+    Attributes:
+        alliance_id             "id-goes-here",
+        alliance_name           "Earthlings",
+        member_count            "1",
+        space_station_count     0,
+        influence               0,
+        colony_count            "1",
+        population              "7000000000",       # number of citizens on all planets in the alliance
+        average_empire_size     "7000000000",
+        building_count          "50",               # number of buildings across all colonies 
+        average_building_level  "20",               # average level of all buildings across all colonies
+        offense_success_rate    "0.793",            # the offense rate of success of spies at all colonies
+        defense_success_rate    "0.49312",          # the defense rate of success of spies at all colonies
+        dirtiest                "7941"              # the number of times a spy has attempted to hurt another empire
+    """

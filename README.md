@@ -32,6 +32,8 @@ work, but it hasn't been fully tested yet.
 - Inbox
 - Map
 - Stats
+  - Mostly oopified.  I didn't fully test (and therefore didn't fully oopify) this just 
+    because I don't see it being too useful.  Still, it should be completed.
 - Body
 - Buildings
   - "all functionality" is a bit of a stretch here.  The Buildings base class 
@@ -73,6 +75,7 @@ supposed to do.
   - inteltraining
     - oopified
   - libraryofjith
+    - oopified
   - mayhemtraining
     - oopified
   - mercenariesguild
@@ -123,6 +126,9 @@ supposed to do.
   - PT is down right now, and I'm not willing to destroy my US1 empire in the name of 
     testing.  So find CHECK marks in the building list above once PT comes back and 
     finish.
+- I'm describing the "standard TLE search string" in multiple places, with slightly 
+  different verbiage each time.  Define that somewhere more common.
+    - ack for "standard TLE" and ">= 3" etc
 - Investigate the main __init_.py.  I don't think it needs all the imports 
   that are in there.
 - A prisoner or two floating around us1 1.1.  Use them to test trade.py and transporter.py
