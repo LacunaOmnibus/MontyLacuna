@@ -14,14 +14,11 @@ that is:
 
 """
 
+import lacuna.bc
 import lacuna.body
 
-class Ship():
+class Ship(lacuna.bc.SubClass):
     """ Base class """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
 
 class BuildingShip(Ship):
     """ A ship being built (currently in the shipyard queue):
@@ -193,8 +190,16 @@ class TradeableShip(Ship):
             id                      1234,
             type                    "smuggler_ship",
             name                    "My Trade Smug",
-            estimated_travel_time   "3654",
+            estimated_travel_time   "3654" (or 'unknown'),
+
+    Several get_trade_ships()-type methods include an optional target argument.  
+    If that argument is passed in, we can know the estimated travel time to the 
+    target.  Without that argument, 'estimated_travel_time' will be 'unknown'.
     """
+    def __init__( self, client, mydict:dict, *args, **kwargs ):
+        super().__init__( client, mydict, *args, **kwargs )
+        if not hasattr(self, 'estimated_travel_time'):
+            self.estimated_travel_time = 'unknown'
 
 class TradeTransportShip(Ship):
     """ A TradeShip is an existing docked ship that's ready to be used as the 

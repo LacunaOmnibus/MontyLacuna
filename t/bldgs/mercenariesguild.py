@@ -8,26 +8,34 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
-    config_section = 'play_test',
+    config_section = 'my_sitter',
+    #config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 mercs       = my_planet.get_building_coords( -2, -2 )
 
 
+### Any of the test blocks in here without CHECK marks _have_ been oopified 
+### and tested.
+
+
 ### See what's available for sale from other empires
 ###
-#rva = mercs.view_market()
-#print( "There are currently", rva['trade_count'], "total trades available.")
-#print( "We're viewing trade page number {}.".format(rva['page_number']) )
-#glc.pp.pprint( rva['trades'] )
+#trades, num, page = mercs.view_market()
+#print( "There are currently", num, "total trades available.")
+#print( "We're viewing trade page number {}.".format(page) )
+#for i in trades[0:3]:
+#    print( "'{}' (trade id {} from body id {}) was offered on {} for {} E."
+#        .format(i.offer_summary, i.id, i.body_id, i.date_offered, i.ask)
+#    )
 
 
 ### Find the cheapest available merc and buy him
+### CHECK need PT back to test this.
 ### 
-### CAREFUL WITH THIS - it will buy the cheapest merc trade on page 1.  
-### "cheapest merc trade" may well be more than you're willing to spend on a 
-### test.
+### buys the cheapest merc trade on page 1.  "cheapest merc trade" may well be 
+### more than you're willing to spend on a test.
+###
 #rvb = mercs.view_market()
 #min_cost = 9999
 #buy_this = {}
@@ -44,59 +52,71 @@ mercs       = my_planet.get_building_coords( -2, -2 )
 
 ### Find which of my spies are available for adding as trades
 ###
-#rvd = mercs.get_spies()
-#glc.pp.pprint( rvd['spies'] )
+#spies = mercs.get_spies()
+#print( "Spies take up 350 units of cargo each.  These spies are available for trade:" )
+#for s in spies:
+#    print( "\t", s.name )
 
 
 ### Find out what trade ships you have available
 ### "trade ships" here means "spy pods" - nothing else will work.
 ###
-#rve = mercs.get_trade_ships()
-#glc.pp.pprint( rve['ships'] )
+# This can be done either with an unknown target...
+#ships = mercs.get_trade_ships()
+
+# ...or with a known target...
+#target_planet = glc.get_body_byname( 'bmots rof 2.1' )
+#ships = mercs.get_trade_ships( target_planet.id )
+
+# ...either way:
+#for i in ships:
+#    print( "Ship {} (of type {}) is ready for trade.  Travel time is estimated at '{}'.".format(i.name, i.type, i.estimated_travel_time) )
 
 
 ### Add one of your spies to the trade market
+### CHECK need PT back up again
 ###
 #name_to_sell = '1.1 spy 90'
-#asking_price = 10.5
+#asking_price = 99.5
 ### Optional - get a ship to send the merc
-#rvf = mercs.get_trade_ships()
-#ship_id = rvf['ships'][0]['id']
+#ships = mercs.get_trade_ships()
+#ship_id = ships[0].id
 ### Find the correctly-named spy, add him as a trade.
-#spies = mercs.get_spies()['spies']
+#spies = mercs.get_spies()
 #spy_to_sell = {}
 #for i in spies:
-#    if i['name'] == name_to_sell:
+#    if i.name == name_to_sell:
 #        spy_to_sell = i
 #        break
-#if not 'name' in spy_to_sell:
+#if not spy_to_sell:
 #    raise KeyError("Could not find the requested spy by name.")
-#rvg = mercs.add_to_market( spy_to_sell['id'], asking_price, ship_id )
-#print( "Trade is up; its ID is", rvg['trade_id'] )
+#trade_id = mercs.add_to_market( spy_to_sell.id, asking_price )
+###trade_id = mercs.add_to_market( spy_to_sell.id, asking_price, ship_id )
+#print( "Trade is up; its ID is", trade_id )
 
 
 ### Check on trades I've offered
 ###
-#rvh = mercs.view_my_market()
-#del( rvh['status'] )
-#glc.pp.pprint( rvh )
+#trades, count, page = mercs.view_my_market()
+#print( "I have {} trades up on page {}".format(count, page) )
+#for i in trades:
+#    print( "'{}' was offered at {}.".format(i.offer, i.date_offered) )
 
 
 ### Withdraw the first trade I have listed
 ###
-#rvi = mercs.view_my_market()
-#trade_id = rvi['trades'][0]['id']
-#rvj = mercs.withdraw_from_market( trade_id )
+#trades, count, page = mercs.view_my_market()
+#trade_id = trades[0].id
+#mercs.withdraw_from_market( trade_id )
 #print("Trade ID {} has been withdrawn from the market.".format(trade_id) )
 
 
 ### Report a trade as abusive
 ###
-rvk = mercs.view_my_market()
-trade_id = rvk['trades'][0]['id']
-rvl = mercs.report_abuse( trade_id )
-glc.pp.pprint( rvl )
-print( "Reported trade {} for abuse.".format(trade_id) )
+#trades, count, page = mercs.view_my_market()
+#trade_id = trades['trades'][0].id
+#mercs.report_abuse( trade_id )
+#print( "Reported trade {} for abuse.".format(trade_id) )
 
 
 ### Logout at the end of each test run so you can see where the captcha prompt 
