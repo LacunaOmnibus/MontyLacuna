@@ -1,7 +1,7 @@
 
-from lacuna.spy import Training
+import lacuna.spy
 
-class mayhemtraining(Training):
+class mayhemtraining(lacuna.spy.Training):
     path = 'mayhemtraining'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

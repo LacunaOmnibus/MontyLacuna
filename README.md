@@ -67,11 +67,14 @@ supposed to do.
   - foodreserve
     - oopified
   - geneticslab
+    - CHECK need PT back up to oopify this
   - intelligence
     - oopified
   - inteltraining
+    - oopified
   - libraryofjith
   - mayhemtraining
+    - oopified
   - mercenariesguild
   - miningministry
   - missioncommand
@@ -82,6 +85,7 @@ supposed to do.
   - park
   - planetarycommand
   - politicstraining
+    - oopified
   - security
   - shipyard
   - spaceport
@@ -92,6 +96,7 @@ supposed to do.
       OK with leaving this as-is.
   - thedillonforge
   - thefttraining
+    - oopified
   - themepark
   - trading (base class)
     - trade

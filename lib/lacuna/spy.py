@@ -1,5 +1,5 @@
 
-from lacuna.building import MyBuilding
+import lacuna.building
 
 class Spy():
     """
@@ -232,15 +232,15 @@ class SpyBody():
             setattr(self, k, v)
 
 
-class Training(MyBuilding):
-    @MyBuilding.call_returning_meth
+class Training(lacuna.building.MyBuilding):
+    @lacuna.building.MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
         """ Returns info on how many points this training building can confer, 
         and how many spies are currently training.
 
         Returns a single TrainingView object.
         """
-        MyBuilding.write_building_status( self, kwargs['rslt'] )
+        lacuna.building.MyBuilding.write_building_status( self, kwargs['rslt'] )
         view = TrainingView( self.client, kwargs['rslt']['spies'] )
         return view
 
