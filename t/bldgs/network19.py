@@ -8,8 +8,8 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
-    config_section = 'play_test',
+    config_section = 'my_sitter',
+    #config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.4' )
 net19       = my_planet.get_building_coords( 1, -2 )
@@ -30,8 +30,11 @@ net19       = my_planet.get_building_coords( 1, -2 )
 
 
 ### View news.
-#rva = net19.view_news()
-#glc.pp.pprint( rva['news'])
-#print("-------------")
-#glc.pp.pprint( rva['feeds'] )
+#stories, feeds = net19.view_news()
+#for s in stories[0:3]:
+#    print( "Headline '{}' -- dateline {}".format(s.headline, s.date) )
+#
+#print( "This Network 19 can view the following feeds:" )
+#for z in feeds[0:3]:
+#    print( "In zone {} -- {}".format(z.zone, z.url) )
 

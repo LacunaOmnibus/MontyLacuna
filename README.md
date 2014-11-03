@@ -84,7 +84,9 @@ supposed to do.
   - miningministry
     - oopified
   - missioncommand
+    - oopified
   - network19
+    - oopified
   - observatory
   - oracleofanid
   - orestorage
