@@ -142,6 +142,16 @@ class ForeignAgent(Spy):
     """
 
 
+class Merc(Spy):
+    """ A spy who's ready to be added as a trade on the Merc's Guild.
+
+        Attributes
+            id      12345
+            name    "James Bond",
+            level   "20",
+    """
+
+
 class IntelView():
     """
     Attributes:
@@ -230,7 +240,6 @@ class SpyBody():
         self.client = client
         for k, v in mydict.items():
             setattr(self, k, v)
-
 
 class Training(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_returning_meth

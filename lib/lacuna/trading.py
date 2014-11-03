@@ -1,5 +1,5 @@
 
-from lacuna.bc import LacunaObject
+import lacuna.bc
 from lacuna.building import MyBuilding
 from lacuna.ship import TradeableShip
 from lacuna.spy import Prisoner
@@ -103,7 +103,7 @@ class TradeBldg(MyBuilding):
             kwargs['rslt']['page_number'],
         )
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @MyBuilding.call_building_meth
     def withdraw_from_market( self, trade_id:int, *args, **kwargs ):
         """ Withdraws one of your trades from the market.  If the trade had been 
@@ -140,7 +140,7 @@ class TradeBldg(MyBuilding):
             kwargs['rslt']['page_number'],
         )
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @MyBuilding.call_building_meth
     def accept_from_market( self, trade_id:int, *args, **kwargs ):
         """ Accepts a trade from the market.  When buying from the SST market, 
@@ -153,7 +153,7 @@ class TradeBldg(MyBuilding):
         """
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @MyBuilding.call_building_meth
     def get_stored_resources( self, *args, **kwargs ):
         """ Returns resources stored onsite and available for trading.
@@ -166,7 +166,7 @@ class TradeBldg(MyBuilding):
         """
         pass
 
-class ExistingTrade():
+class ExistingTrade(lacuna.bc.SubClass):
     """ These are trades that exist on either the Trade or SST market, either 
     posted by you or another empire.
 
@@ -193,12 +193,31 @@ class ExistingTrade():
                             {   "duration" : "4600" }
                                     
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
+
+class MercenariesTrade(lacuna.bc.SubClass):
+    """ These are trades that exist on the Mercenaries Guild.
+
+    Attributes:
+        id              "id-goes-here",
+        date_offered    "01 31 2010 13:09:05 +0600",
+        ask             25,     # essentia
+        offer           "Level 9 spy named Jack Bauer (Mercenary Transport) Offense: 875, Defense: 875, Intel: 2, Mayhem: 0, Politics: 0, Theft: 0, Mission Count Offensive: 0 Defensive: 2)",
+        offer_summary   "Level 9 spy named Jack Bauer (M..."    # first 32 characters of 'offer' plus '...'
+        body_id         "id-goes-here"
+        empire          {
+                            "id" : "id-goes-here",
+                            "name" : "Earthlings"
+                        }
+    """
+    def __init__(self, client, mydict:dict):
         self.client = client
+
+        self.offer = mydict['offer'][0]
+        self.offer_summary = self.offer[0:32] + '...'
+        del mydict['offer']
+
+        self.body_id = mydict['body']['id']
+        del mydict['body']
+
         for k, v in mydict.items():
             setattr(self, k, v)
-
-
-
-
-

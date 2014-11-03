@@ -79,6 +79,8 @@ supposed to do.
   - mayhemtraining
     - oopified
   - mercenariesguild
+    - About halfway oopified
+    - CHECK need PT back up to oopify this
   - miningministry
   - missioncommand
   - network19
