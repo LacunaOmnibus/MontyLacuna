@@ -1,38 +1,41 @@
 
 import lacuna
-from lacuna.bc import LacunaObject
-from lacuna.building import MyBuilding
+import lacuna.bc
+import lacuna.building
 
-class observatory(MyBuilding):
+class observatory(lacuna.building.MyBuilding):
     path = 'observatory'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_probed_stars( self, *args, **kwargs ):
         """ Returns a list of probed stars, as well as stats on how many probes 
         you have out and available.
 
-        Retval includes:
-            star_count:     Integer number of stars you have probed.
-            max_probes:     Integer number of the maximum probes you can have 
-                            out from this observatory.
-            travelling:     Integer number of how many probes are currently 
-                            travelling from your planet to a star.
-            stars:
-                            List of lacuna.map.Star objects.  These are the 
+        Returns a tuple:
+            stars           List of lacuna.map.Star objects.  These are the 
                             stars at which your observatory currently has 
                             probes.
+            star_count      Integer number of stars you have probed.
+            max_probes      Integer number of the maximum probes you can have 
+                            out from this observatory.
+            travelling      Integer number of how many probes are currently 
+                            travelling from your planet to a star.
         """
         star_list = []
         for s in kwargs['rslt']['stars']:
             star_list.append( lacuna.map.Star(self.client, s) )
-        kwargs['rslt']['stars'] = star_list
-        return kwargs['rslt']
+        return(
+            star_list,
+            kwargs['rslt']['star_count'],
+            kwargs['rslt']['max_probes'],
+            kwargs['rslt']['travelling'],
+        )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def abandon_probe( self, star_id:int, *args, **kwargs ):
         """ Abandons a single probe.
 
@@ -45,8 +48,8 @@ class observatory(MyBuilding):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def abandon_all_probes( self, *args, **kwargs ):
         """ Abandons all of this observatory's probes.  """
         pass
