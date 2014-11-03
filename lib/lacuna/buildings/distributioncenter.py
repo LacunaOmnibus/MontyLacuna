@@ -1,15 +1,15 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class distributioncenter(Building):
+class distributioncenter(MyBuilding):
     path = 'distributioncenter'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def reserve( self, resources:list, **kwargs ):
         """ Reserves some resources for a set period of time.
 
@@ -45,7 +45,7 @@ class distributioncenter(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_stored_resources( self, **kwargs ):
         """ Returns a list of resources you currently have on this planet.
 
@@ -67,7 +67,7 @@ class distributioncenter(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def release_reserve( self, **kwargs ):
         """ Releases any resources currently being reserved.
 

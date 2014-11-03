@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class spacejunkpark(Building):
+class spacejunkpark(MyBuilding):
     path = 'spacejunkpark'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

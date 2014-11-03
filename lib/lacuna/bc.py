@@ -138,3 +138,4 @@ class SubClass():
         self.client = client
         for k, v in mydict.items():
             setattr(self, k, v)
+

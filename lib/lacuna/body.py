@@ -248,7 +248,8 @@ class MyBody(Body):
             if int(bdict['x']) == x and int(bdict['y']) == y:
                 classname = re.sub("^/(\w+)", "\g<1>", bdict['url'] )
                 bldg_str = "lacuna.buildings.{}( self.client, self.body_id, bid )".format( classname )
-                return eval(bldg_str)
+                mybldg =  eval(bldg_str)
+                return mybldg
         else:
             raise NoSuchBuildingError("No building was found at ({},{})".format(x,y))
 

@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class beach11(Building):
+class beach11(MyBuilding):
     path = 'beach11'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

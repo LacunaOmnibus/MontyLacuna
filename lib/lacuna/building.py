@@ -1,8 +1,17 @@
 
 """
-    Building is a base class, extending LacunaObject.
+    Building is a base class representing generic buildings.  A "generic 
+    building" is usually one that's handed back to you from the server as a 
+    dict, often in a list of dicts, from such things as checking on the 
+    Development Ministry's build queue via its view() method.
 
-    LacunaObject requires a path 'class' variable, but Building does not 
+    A Building object will probably, but not necessarily, have a building ID, 
+    and may or may not belong to the current empire.
+
+    MyBuilding represents a building owned by your empire, and most building 
+    objects you encounter will inherit from MyBuilding.
+
+    LacunaObject requires a class variable name 'path', but MyBuilding does not 
     provide it; any module extending Building must provide that path variable.
 
     building dict example: {#{{{
@@ -53,9 +62,27 @@ from lacuna.exceptions import \
     CaptchaResponseError, \
     ServerError
 
-class Building(LacunaObject):
+class Building():
+    def __init__( self, mydict:dict ):
+        for k, v in mydict.items():
+            setattr(self, k, v)
 
+class InBuildQueue(Building):
+    """
+    Attributes:
+        building_id         "building-id-goes-here",
+        name                "Planetary Commmand",
+        to_level            8,
+        seconds_remaining   537,
+        x                   0,
+        y                   0,
+        subsidy_cost        3 # the essentia cost to subsidize just this building
+    """
+
+class MyBuilding(LacunaObject):
     def __init__( self, client, body_id:int, building_id:int = 0 ):
+        ### Inheritance starts with LacunaObject, so super()__init__() calls 
+        ### LacunaObject's __init__().
         super().__init__( client )
         self.body_id = body_id
         if building_id:
@@ -66,7 +93,7 @@ class Building(LacunaObject):
     def call_building_meth(func):
         """ Decorator.
         Calls a server method that requires a building_id, but no body_id.
-        This is the decorator that most Building methods will use.
+        This is the decorator that most MyBuilding methods will use.
         Methods using this decorator get the original server result handed 
         back to them in **kwargs['rslt'].
         """
@@ -228,7 +255,7 @@ class Building(LacunaObject):
     @call_building_meth
     def demolish( self, **kwargs ):
         ### Since the building no longer exists, make sure that the object is 
-        ### incapable of calling any further Building methods.
+        ### incapable of calling any further MyBuilding methods.
         del( self.body_id )
         del( self.building_id )
 
@@ -267,26 +294,26 @@ class Building(LacunaObject):
         """
         pass
 
-class SingleStorage(Building):
+class SingleStorage(MyBuilding):
     """ Base class for the storage buildings that store a singular resource 
     type, eg water or energy.
     """
 
     @LacunaObject.set_empire_status
-    @Building.set_building_status
-    @Building.call_building_meth
+    @MyBuilding.set_building_status
+    @MyBuilding.call_building_meth
     def dump( self, amount:int = 0, **kwargs ):
         """ Converts the stored resource into waste """
         pass
 
-class MultiStorage(Building):
+class MultiStorage(MyBuilding):
     """ Base class for the storage buildings that store a variegated resource 
     type, eg food or ore.
     """
 
     @LacunaObject.set_empire_status
-    @Building.set_building_status
-    @Building.call_building_meth
+    @MyBuilding.set_building_status
+    @MyBuilding.call_building_meth
     def dump( self, res_type:str = '', amount:int = 0, **kwargs ):
         """ Converts the stored resource into waste """
         pass

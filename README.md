@@ -50,6 +50,8 @@ supposed to do.
   - blackholegenerator
     - oopified
   - development
+    - cancel oopified
+    - CHECK The two subsidize methods still need to be oopified
   - distributioncenter
   - embassy
     - What I could test works, but testing of several methods would require making a test 
@@ -108,10 +110,14 @@ supposed to do.
 - Ack through everything for "CHECK" and fix.
 - Finish "oopifying" the retvals of all of the building classes.
   - Everything from security.py on down should be OK.
+  - PT is down right now, and I'm not willing to destroy my US1 empire in the name of 
+    testing.  So find CHECK marks in the building list above once PT comes back and 
+    finish.
 - Investigate the main __init_.py.  I don't think it needs all the imports 
   that are in there.
 - A prisoner or two floating around us1 1.1.  Use them to test trade.py and transporter.py
-    - get_prisoners()
-- The Building class should be renamed to MyBuilding, so we can use "Building" for a much 
-  more generic building base classname.
+    - get__prisoners()
+- Whenever we instantiate a MyBuilding object, we're calling view() on that building 
+  automatically - I'm not convinced that's what should be happening.  At the very least, 
+  we should be caching the results.
 

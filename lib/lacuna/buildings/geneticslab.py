@@ -1,15 +1,15 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class geneticslab(Building):
+class geneticslab(MyBuilding):
     path = 'geneticslab'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def prepare_experiment( self, *args, **kwargs ):
         """ Returns information needed to set up a genetics experiment.
 
@@ -47,7 +47,7 @@ class geneticslab(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def run_experiment( self, spy_id:int, affinity:str, *args, **kwargs ):
         """ Runs a genetics experiment on a spy in an attempt to graft one of 
         his affinities onto your species.
@@ -63,7 +63,7 @@ class geneticslab(Building):
         """
         pass
 
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def rename_species( self, named_args:dict, *args, **kwargs ):
         """ Allows you to change your species name and description.
 

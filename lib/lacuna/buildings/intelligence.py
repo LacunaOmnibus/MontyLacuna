@@ -1,15 +1,15 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 from lacuna.spy import IntelView, MissionResult, Spy
 
-class intelligence(Building):
+class intelligence(MyBuilding):
     path = 'intelligence'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
         """ View stats on current spy numbers, as well as costs to train new 
         spies.
@@ -20,7 +20,7 @@ class intelligence(Building):
 
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def train_spy( self, *args, quantity:int = 1, **kwargs ):
         """ Trains one or more spies.  "Train", in this case, means "create".
         The "quantity" argument defaults to 1.
@@ -40,7 +40,7 @@ class intelligence(Building):
         """
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_spies( self, page_number:int = 1, *args, **kwargs ):
         """ Returns info on one page (up to 30) spies.  There are a maximum of 
         three pages of spy data.  
@@ -54,7 +54,7 @@ class intelligence(Building):
             spy_list.append( Spy(self.client, i) )
         return spy_list
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_all_spies( self, *args, **kwargs ):
         """ Returns information on all of the spies controlled from this 
         planet.
@@ -67,18 +67,18 @@ class intelligence(Building):
         return spy_list
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def burn_spy( self, spy_id:int, *args, **kwargs ):
         """ Burns (deletes) an existing spy. """
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def name_spy( self, spy_id:int, name:str, *args, **kwargs ):
         """ Renames an existing spy."""
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def assign_spy( self, spy_id:int, assignment:str, *args, **kwargs ):
         """ Assigns a spy to a task.
         
@@ -97,7 +97,7 @@ class intelligence(Building):
         return( spy, rslt )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def subsidize_training( self, *args, **kwargs ):
         """ Subsidizes training of all spies currently in the queue.
 

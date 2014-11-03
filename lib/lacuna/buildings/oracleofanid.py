@@ -1,15 +1,15 @@
 
 import lacuna
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class oracleofanid(Building):
+class oracleofanid(MyBuilding):
     path = 'oracleofanid'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_named_returning_meth
+    @MyBuilding.call_named_returning_meth
     def get_probed_stars( self, named_args:dict = {'page_number': 1}, *args, **kwargs ):
         """ Returns a list of stars viewable by the Oracle.
 
@@ -24,7 +24,7 @@ class oracleofanid(Building):
             star_list.append( lacuna.map.Star(self.client, s) )
         return star_list
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_star( self, star_id:int, *args, **kwargs ):
         """
         """

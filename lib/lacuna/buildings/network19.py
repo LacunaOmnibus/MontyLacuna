@@ -1,6 +1,6 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
 """
     The view() retval includes 'restrict_coverage'.  This is a boolean 
@@ -9,7 +9,7 @@ from lacuna.building import Building
         '1' == coverage is restricted
 """
 
-class network19(Building):
+class network19(MyBuilding):
     path = 'network19'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
@@ -17,7 +17,7 @@ class network19(Building):
 
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def restrict_coverage( self, toggle:int, *args, **kwargs ):
         """ Toggles news coverage restriction on and off.
 
@@ -31,7 +31,7 @@ class network19(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_news( self, *args, **kwargs ):
         """ Shows the news stories and feeds available.
 
