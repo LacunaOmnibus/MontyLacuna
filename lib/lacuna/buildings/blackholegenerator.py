@@ -1,6 +1,6 @@
 
 import lacuna.bc
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
 """
     Several BHG methods include a 'target' argument.  This is a dict, 
@@ -24,13 +24,13 @@ from lacuna.building import Building
 
         
 
-class blackholegenerator(Building):
+class blackholegenerator(MyBuilding):
     path = 'blackholegenerator'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_actions_for( self, target:dict, **kwargs ):
         """ Returns all available BHG actions for the given target.
 
@@ -45,7 +45,7 @@ class blackholegenerator(Building):
         return mylist
 
     @lacuna.bc.LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def subsidize_cooldown( self, **kwargs ):
         """ Spends 2E to subsidize the BHG's current cooldown period.
 
@@ -62,7 +62,7 @@ class blackholegenerator(Building):
         return( tasks, opts )
 
 
-    @Building.call_named_returning_meth
+    @MyBuilding.call_named_returning_meth
     def generate_singularity( self, named_args:dict, **kwargs ):
         """ Performs one of the several actions possible via BHG.  See 
         get_actions_for() for a list of legal actions.

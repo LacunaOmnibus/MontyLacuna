@@ -1,28 +1,28 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
-from lacuna.ship import BuildingShip, PotentialShip
+from lacuna.building import MyBuilding
+import lacuna.ship
 
-class shipyard(Building):
+class shipyard(MyBuilding):
     path = 'shipyard'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_build_queue( self, *args, **kwargs ):
         """ Returns a list of ships currently building, how many there are, and 
         how much E it'll cost to subsidize them.
             ships, number, cost = sy.view_build_queue()
 
         Returns a tuple consisting of:
-            ships   List of BuildingShip objects (see ship.py)
+            ships   List of MyBuildingShip objects (see ship.py)
             number  Integer number of ships currently building
             cost    Integer cost in E to subsidize the whole queue
         """
         ship_list = []
         for i in kwargs['rslt']['ships_building']:
-            ship_list.append( BuildingShip(self.client, i) )
+            ship_list.append( lacuna.ship.MyBuildingShip(self.client, i) )
         return( 
             ship_list, 
             kwargs['rslt']['number_of_ships_building'], 
@@ -30,8 +30,8 @@ class shipyard(Building):
         )
 
     @LacunaObject.set_empire_status
-    @Building.set_building_status
-    @Building.call_building_meth
+    @MyBuilding.set_building_status
+    @MyBuilding.call_building_meth
     def subsidize_build_queue( self, *args, **kwargs ):
         """ Spends E to subsidize the current build queue.
 
@@ -42,14 +42,14 @@ class shipyard(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.set_building_status
-    @Building.call_named_meth
+    @MyBuilding.set_building_status
+    @MyBuilding.call_named_meth
     def subsidize_ship( self, named_arguments:dict, *args, **kwargs ):
         """ Spends E to subsidize a single ship in the build queue.
         """
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_buildable( self, tag:str = '', *args, **kwargs ):
         """ Gets information on what ships are available to be built.
                 ships, docks, q_max, q_used = sy.get_buildable()
@@ -74,7 +74,7 @@ class shipyard(Building):
         ship_list = []
         for name, mydict in kwargs['rslt']['buildable'].items():
             mydict['type'] = name
-            ship_list.append( PotentialShip(self.client, mydict) )
+            ship_list.append( lacuna.ship.PotentialShip(self.client, mydict) )
         return( 
             ship_list, 
             kwargs['rslt']['docks_available'], 
@@ -82,7 +82,7 @@ class shipyard(Building):
             kwargs['rslt']['build_queue_used']
         )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def build_ship( self, type:str, quantity:int = 1, *args, **kwargs ):
         """ Adds one or more ships of a given type to the build queue.
 
@@ -93,13 +93,13 @@ class shipyard(Building):
             quantity    Integer number of ships to build.  Defaults to 1.
 
         Retval is the same tuple as returned by view_build_queue():
-            ships   List of BuildingShip objects (see ship.py)
+            ships   List of MyBuildingShip objects (see ship.py)
             number  Integer number of ships currently building
             cost    Integer cost in E to subsidize the whole queue
         """
         ship_list = []
         for i in kwargs['rslt']['ships_building']:
-            ship_list.append( BuildingShip(self.client, i) )
+            ship_list.append( lacuna.ship.MyBuildingShip(self.client, i) )
         return( 
             ship_list, 
             kwargs['rslt']['number_of_ships_building'], 

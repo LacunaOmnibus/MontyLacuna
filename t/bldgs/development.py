@@ -16,9 +16,6 @@ my_planet = glc.get_body_byname( 'bmots rof 2.1' )
 dev = my_planet.get_building_coords( -2, -4 )
 
 
-### BE CAREFUL IN HERE.
-### The subsidize_*() methods will spend your E
-
 
 ### Subsidize entire build queue
 ###
@@ -27,6 +24,7 @@ dev = my_planet.get_building_coords( -2, -4 )
 
 
 ### Subsidize a single build
+###
 #sp = my_planet.get_building_coords( -1, -2 )
 #one_build = { 'scheduled_id': sp.id }
 #rvb = dev.subsidize_one_build( one_build )
@@ -34,8 +32,12 @@ dev = my_planet.get_building_coords( -2, -4 )
 
 
 ### Cancel a single build
-sp = my_planet.get_building_coords( -1, 5 )
-one_cancel = { 'scheduled_id': sp.id }
-rvc = dev.cancel_build( one_cancel )
-glc.pp.pprint( rvc )
+###
+#bldg = my_planet.get_building_coords( -1, 5 )    # some currently upgrading building
+#one_cancel = { 'scheduled_id': bldg.id }
+#queue, cost = dev.cancel_build( one_cancel )
+#print( "Now that we've canceled a building, the remaining queue will cost", cost, "E to subsidize." )
+#print( "Remaining in the build queue are:" )
+#for i in queue:
+#    print( "\t", i.name )
 

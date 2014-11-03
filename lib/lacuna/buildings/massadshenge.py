@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class massadshenge(Building):
+class massadshenge(MyBuilding):
     path = 'massadshenge'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

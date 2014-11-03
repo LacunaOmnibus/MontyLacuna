@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class lcotb(Building):
+class lcotb(MyBuilding):
     path = 'lcotb'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

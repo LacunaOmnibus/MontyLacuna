@@ -1,6 +1,6 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 import lacuna.glyph
 import lacuna.ship
 
@@ -22,7 +22,7 @@ import warnings
                 # NOT searching now
 """
 
-class archaeology(Building):
+class archaeology(MyBuilding):
     path = 'archaeology'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
@@ -30,12 +30,12 @@ class archaeology(Building):
 
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_glyphs( self, **kwargs ):
         """get_glyphs() is deprecated.  Prefer get_glyph_summary() instead."""
         warnings.warn("get_glyphs() is deprecated - please use get_glyph_summary instead.")
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def get_glyph_summary( self, **kwargs ):
         """ Returns summary of glyphs that may be assembled in this arch min.
 
@@ -47,7 +47,7 @@ class archaeology(Building):
         return mylist
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def assemble_glyphs( self, glyphs:list, quantity:int = 1, **kwargs ):
         """ Attempts to assemble the listed glyphs into something useful.  
         Quantity defaults to 1.
@@ -62,7 +62,7 @@ class archaeology(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_ores_available_for_processing( self, **kwargs ):
         """ Returns list of all ores that are of sufficient quantity onsite to 
         perform glyph searches on.
@@ -76,7 +76,7 @@ class archaeology(Building):
         """
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_excavators( self, **kwargs ):
         """ Gets info on working excavators.
 
@@ -96,7 +96,7 @@ class archaeology(Building):
         )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def abandon_excavator( self, site_id:int, **kwargs ):
         """ Abandons the excavator located at site_id.
         Be sure you understand the difference between an excavator site ID and 

@@ -1,7 +1,7 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class hydrocarbon(Building):
+class hydrocarbon(MyBuilding):
     path = 'hydrocarbon'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):

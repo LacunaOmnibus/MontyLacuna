@@ -1,15 +1,15 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class entertainment(Building):
+class entertainment(MyBuilding):
     path = 'entertainment'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def get_lottery_voting_options( self, *args, **kwargs ):
         """ Returns a list of external sites that the user can visit.  Each
         visit affords the user a single lottery ticket.
@@ -26,7 +26,7 @@ class entertainment(Building):
         """
         pass
 
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def duck_quack( self, **kwargs ):
         """ Quacks the duck.
         The reasons for wanting to do this are shrouded in the mysteries of 

@@ -1,20 +1,20 @@
 
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class themepark(Building):
+class themepark(MyBuilding):
     path = 'themepark'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
         """ Returns a ParkView object for this Theme Park.  """
-        Building.write_building_status( self, kwargs['rslt'] )
+        MyBuilding.write_building_status( self, kwargs['rslt'] )
         view = ParkView( self.client, kwargs['rslt']['themepark'] )
         return view
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def operate( self, *args, **kwargs ):
         """ Runs the theme park.
 
@@ -33,7 +33,7 @@ class themepark(Building):
 
         Returns a ParkView object.
         """
-        Building.write_building_status( self, kwargs['rslt'] )
+        MyBuilding.write_building_status( self, kwargs['rslt'] )
         view = ParkView( self.client, kwargs['rslt']['themepark'] )
         return view
 

@@ -1,15 +1,15 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 
-class templeofthedrajilites(Building):
+class templeofthedrajilites(MyBuilding):
     path = 'templeofthedrajilites'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def list_planets( self, star_id:int = 0, *args, **kwargs ):
         """ List planets around a given star.
 
@@ -23,7 +23,7 @@ class templeofthedrajilites(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def view_planet( self, planet_id:int, *args, **kwargs ):
         """ View the surface of a specific planet.
 

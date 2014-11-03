@@ -1,17 +1,17 @@
 
 from lacuna.bc import LacunaObject
-from lacuna.building import Building
+from lacuna.building import MyBuilding
 from lacuna.spy import \
     ForeignAgent, \
     Prisoner
 
-class security(Building):
+class security(MyBuilding):
     path = 'security'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_prisoners( self, page_number:int = 1, *args, **kwargs ):
         """ Lists prisoners currently in jail.
                 pris = sec.view_prisoners()
@@ -28,7 +28,7 @@ class security(Building):
         return prisoner_list
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def release_prisoner( self, prisoner_id:int, *args, **kwargs ):
         """ Releases a prisoner from jail.
                 sec.release_prisoner( prisoner_id )
@@ -36,14 +36,14 @@ class security(Building):
         pass
 
     @LacunaObject.set_empire_status
-    @Building.call_building_meth
+    @MyBuilding.call_building_meth
     def execute_prisoner( self, prisoner_id:int, *args, **kwargs ):
         """ Executes a captured prisoner.
                 sec.execute_prisoner( prisoner_id )
         """
         pass
 
-    @Building.call_returning_meth
+    @MyBuilding.call_returning_meth
     def view_foreign_spies( self, page_number:int = 1, *args, **kwargs ):
         """ Lists uncaptured foreign spies.
                 pris = sec.view_foreign_spies()
