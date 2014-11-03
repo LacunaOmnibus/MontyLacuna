@@ -18,6 +18,6 @@ nrg = my_planet.get_building_coords( -2, 4 )
 ### Depending on your storage building's level, you may want to dump less of 
 ### the resource.
 amount = 1000 * 1000 * 1000
-rva = nrg.dump( amount )
+nrg.dump( amount )
 print( "Done;", amount, "of energy has been dumped.")
 

@@ -53,14 +53,19 @@ supposed to do.
     - cancel oopified
     - CHECK The two subsidize methods still need to be oopified
   - distributioncenter
+    - CHECK I haven't got one of these on US1.
   - embassy
     - What I could test works, but testing of several methods would require making a test 
       account and inviting/rejecting/etc that account.  Currently I'm unable to create a 
       test account on PT.  I have no reason to believe that these untested methods don't 
       work, they just haven't actually been confirmed to work.
+    - CHECK so along with testing, this still needs oopificiation
   - energyreserve
+    - oopified
   - entertainment
+    - oopified
   - foodreserve
+    - oopified
   - geneticslab
   - intelligence
     - oopified
