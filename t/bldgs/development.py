@@ -8,7 +8,8 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'play_test',
+    #config_section = 'play_test',
+    config_section = 'my_sitter',
 )
 
 my_planet = glc.get_body_byname( 'bmots rof 2.1' )
@@ -33,8 +34,8 @@ dev = my_planet.get_building_coords( -2, -4 )
 
 
 ### Cancel a single build
-#sp = my_planet.get_building_coords( -1, -2 )
-#one_cancel = { 'scheduled_id': sp.id }
-#rvc = dev.cancel_build( one_cancel )
-#glc.pp.pprint( rvc )
+sp = my_planet.get_building_coords( -1, 5 )
+one_cancel = { 'scheduled_id': sp.id }
+rvc = dev.cancel_build( one_cancel )
+glc.pp.pprint( rvc )
 
