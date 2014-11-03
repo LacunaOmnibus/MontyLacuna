@@ -82,6 +82,7 @@ supposed to do.
     - About halfway oopified
     - CHECK need PT back up to oopify this
   - miningministry
+    - oopified
   - missioncommand
   - network19
   - observatory
