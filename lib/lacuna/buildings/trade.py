@@ -19,20 +19,17 @@
         report_abuse()
 """
 
-from lacuna.bc import LacunaObject
-from lacuna.trading import TradeBldg
-from lacuna.ship import \
-    TradeTransportShip, \
-    TravellingShip, \
-    ChainShip
+import lacuna.bc
+import lacuna.trading
+import lacuna.ship
 
-class trade(TradeBldg):
+class trade(lacuna.trading.TradeBldg):
     path = 'trade'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def add_to_market( self, offer:dict, ask:int, options:dict = {}, *args, **kwargs ):
         """ Adds a trade to the market.
 
@@ -79,7 +76,7 @@ class trade(TradeBldg):
         """
         return kwargs['rslt']['trade_id']
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def get_trade_ships( self, target_id:int = 0, *args, **kwargs ):
         """ Returns a list of ships available to be used as trade transports.
 
@@ -88,38 +85,38 @@ class trade(TradeBldg):
                         included, the ships' estimated_travel_time attribute
                         will be set.
 
-        Returns a list of TradeTransportShip objects.
+        Returns a list of lacuna.ship.TradeTransportShip objects.
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
-            ship_list.append( TradeTransportShip(self.client, i) )
+            ship_list.append( lacuna.ship.TradeTransportShip(self.client, i) )
         return ship_list
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def get_waste_ships( self, target_id:int = 0, *args, **kwargs ):
         """ Returns a list of waste ships either currently on or available for 
         waste disposal duty.
 
-        Returns a list of ChainShip objects.
+        Returns a list of lacuna.ship.ChainShip objects.
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
-            ship_list.append( ChainShip(self.client, i) )
+            ship_list.append( lacuna.ship.ChainShip(self.client, i) )
         return ship_list
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def get_supply_ships( self, target_id:int = 0, *args, **kwargs ):
         """ Returns a list of supply ships either currently on or available for 
         supply disposal duty.
 
-        Returns a list of ChainShip objects.
+        Returns a list of lacuna.ship.ChainShip objects.
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
-            ship_list.append( ChainShip(self.client, i) )
+            ship_list.append( lacuna.ship.ChainShip(self.client, i) )
         return ship_list
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def view_supply_chains( self, *args, **kwargs ):
         """ Returns a list of SupplyChain objects """
         mylist = []
@@ -130,7 +127,7 @@ class trade(TradeBldg):
             kwargs['rslt']['max_supply_chains']
         )
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def view_waste_chains( self, *args, **kwargs ):
         """ Returns a list of WasteChain objects """
         mylist = []
@@ -145,7 +142,7 @@ class trade(TradeBldg):
         """
         return self.view_waste_chains()
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def push_items( self, target_id:int, items:list, options:dict, *args, **kwargs ):
         """ Pushes items to another of your planets.
 
@@ -154,19 +151,17 @@ class trade(TradeBldg):
             items       List of item dicts.  See add_to_market().
             options     Required (not optional) dict.  See add_to_market().
 
-        Returns a single TravellingShip object.
+        Returns a single lacuna.ship.TravellingShip object.
         """
-        return TravellingShip(self.client, kwargs['rslt']['ship'])
+        return lacuna.ship.TravellingShip(self.client, kwargs['rslt']['ship'])
 
 
 
 
 
-class Chain():
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
+class Chain(lacuna.bc.SubClass):
+    """ Chain base class """
+    pass
 
 class SupplyChain(Chain):
     """
