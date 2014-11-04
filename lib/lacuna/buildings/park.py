@@ -1,6 +1,6 @@
 
-from lacuna.bc import LacunaObject
-from lacuna.building import MyBuilding
+import lacuna.bc
+import lacuna.building
 
 """
     The view() method will include the key 'party'.  If there is a party 
@@ -17,14 +17,18 @@ from lacuna.building import MyBuilding
 
 """
 
-class park(MyBuilding):
+class park(lacuna.building.MyBuilding):
     path = 'park'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
+    def view( self, *args, **kwargs ):
+        """ Returns a Party object """
+        return Party(self.client, kwargs['rslt']['party'])
+
+    @lacuna.building.MyBuilding.call_returning_meth
     def throw_a_party( self, *args, **kwargs ):
         """ Throw a party at the park to gain happiness.
 
@@ -45,14 +49,37 @@ class park(MyBuilding):
 
         Raises ServerError 1010 if there's already a party going on.
         """
-        pass
+        return Party(self.client, kwargs['rslt']['party'])
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def subsidize_party( self, *args, **kwargs ):
-        """
+        """ Spends 2 E to subsidize the currently-ongoing party.
+
+        Raises ServerError 1010 if no party is currently happening.
         """
         pass
 
+
+class Party(lacuna.bc.SubClass):
+    """
+    Attributes:
+        seconds_remaining   397,
+        happiness           10000,
+        can_throw           0
+
+    If no party is currently ongoing, "can_throw" attribute will be set to 1 and 
+    the other two will be set to 0.
+    """
+    def __init__(self, client, mydict:dict):
+        super().__init__( client, mydict )
+
+        ### If can_throw comes exists, the other two attributes won't, and 
+        ### vice-versa.  Create all attributes and set default values.
+        if 'can_throw' in mydict:
+            self.seconds_remaining = 0
+            self.happiness = 0
+        else:
+            self.can_throw = 0
 
 

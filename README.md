@@ -91,8 +91,11 @@ supposed to do.
     - Mostly oopified
     - CHECK need PT back up to test abandoning all probes
   - oracleofanid
+    - oopified
   - orestorage
+    - oopified
   - park
+    - oopified
   - planetarycommand
   - politicstraining
     - oopified
@@ -128,6 +131,8 @@ supposed to do.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
+- Add a logger option to the Member class
+    - If on, it should specify a file.  All TLE server requests should get logged.
 - Finish "oopifying" the retvals of all of the building classes.
   - Everything from security.py on down should be OK.
   - PT is down right now, and I'm not willing to destroy my US1 empire in the name of 

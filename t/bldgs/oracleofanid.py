@@ -8,8 +8,8 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
-    config_section = 'play_test',
+    config_section = 'my_sitter',
+    #config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 ora         = my_planet.get_building_coords( -3, -2 )
