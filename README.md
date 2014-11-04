@@ -97,6 +97,7 @@ supposed to do.
   - park
     - oopified
   - planetarycommand
+    - oopified
   - politicstraining
     - oopified
   - security

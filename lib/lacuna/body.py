@@ -125,7 +125,7 @@
 
 import re
 import lacuna.buildings
-from lacuna.bc import LacunaObject
+import lacuna.bc
 from lacuna.exceptions import \
     NoSuchBuildingError
 
@@ -143,7 +143,7 @@ from lacuna.exceptions import \
 """
 
 
-class Body(LacunaObject):
+class Body(lacuna.bc.LacunaObject):
     path = 'body'
 
     def __init__( self, client:object, attrs:dict = {} ):
@@ -221,13 +221,13 @@ class MyBody(Body):
             return rslt
         return inner
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @Body.set_body_status
     @call_member_meth
     def get_status( self, *args, **kwargs ):
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @Body.set_body_status
     @call_member_meth
     def get_buildings( self, *args, **kwargs ):
@@ -278,7 +278,7 @@ class MyBody(Body):
             bldg_dict['id'] = id
             self.buildings_name[name].append( bldg_dict )
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @Body.set_body_status
     @call_member_meth
     def repair_list( self, building_ids_to_repair:list, *args, **kwargs ):
@@ -294,7 +294,7 @@ class MyBody(Body):
         """
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @Body.set_body_status
     @call_member_meth
     def rearrange_buildings( self, arrangment_dicts:list, *args, **kwargs ):
@@ -323,7 +323,7 @@ class MyBody(Body):
         """
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @Body.set_body_status
     @call_member_meth
     def get_buildable( self, x:int, y:int, tag:str = '', *args, **kwargs ):
@@ -390,7 +390,7 @@ class MyBody(Body):
         """
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @call_member_meth
     def abandon( self, *args, **kwargs ):
         """ Abandons the current planet.
@@ -409,4 +409,42 @@ class MyBody(Body):
         this is not uncommon on PT.
         """
         pass
+
+class Planet(lacuna.bc.SubClass):
+    """
+    Attributes:
+        id                  "id-goes-here",
+        x                   -4,
+        y                    10,
+        z                   6,
+        star_id             "id-goes-here",
+        orbit               3,
+        type                "habitable planet",
+        name                "Earth",
+        image               "p13",
+        size                67,
+        water               900,
+        ore                 {   "gold" : 3399,
+                                "bauxite" : 4000,
+                                ...      },
+        building_count      7,
+        population          470000,
+        happiness           3939,
+        happiness_hour      25,
+        food_stored         33329,
+        food_capacity       40000,
+        food_hour           229,
+        energy_stored       39931,
+        energy_capacity     43000,
+        energy_hour         391,
+        ore_hour            284,
+        ore_capacity        35000,
+        ore_stored          1901,
+        waste_hour          933,
+        waste_stored        9933,
+        waste_capacity      13000,
+        water_stored        9929,
+        water_hour          295,
+        water_capacity      51050
+    """
 
