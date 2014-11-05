@@ -1,12 +1,12 @@
 
-import lacuna.bc
+from lacuna.bc import LacunaObject
 
-class Inbox(lacuna.bc.LacunaObject):
+class Inbox(LacunaObject):
 
     path = 'inbox'
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def view_inbox( self, opts: 'struct' = {}, *args, **kwargs ):
         """ Returns an integer message cont, and a list of messages (list of structs, 
         one message per struct).
@@ -54,21 +54,21 @@ class Inbox(lacuna.bc.LacunaObject):
     """The arguments to and return values from each of view_archived(), view_sent(),
     and view_trashed() are all identical to those to/from view_inbox().
     """
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def view_archived( self, opts: 'struct' = {}, *args, **kwargs ):
         pass
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def view_sent( self, opts: 'struct' = {}, *args, **kwargs ):
         pass
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def view_trashed( self, opts: 'struct' = {}, *args, **kwargs ):
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def read_message( self, message_id:int, *args, **kwargs ):
         """ Returns all details about a single message, and marks the message
         as read.
@@ -142,17 +142,17 @@ class Inbox(lacuna.bc.LacunaObject):
         There's no indication why any given message movement succeeded or failed, just
         that they did.
     """
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def archive_messages( self, messages:list, *args, **kwargs ):
         pass
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def trash__messages( self, messages:list, *args, **kwargs ):
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
+    @LacunaObject.set_empire_status
+    @LacunaObject.call_member_meth
     def send_message( self, recipients:str, subject:str, body:str, options:'struct' = {}, *args, **kwargs ):
         """
         recipients
