@@ -82,7 +82,7 @@ class MyEmpire( Empire ):
 
     pp = pprint.PrettyPrinter( indent = 4 )
 
-    ### These appear in users.py, not here:
+    ### These appear in clients.py, not here:
     ###     login()
     ###     send_password_reset_message()
     ###

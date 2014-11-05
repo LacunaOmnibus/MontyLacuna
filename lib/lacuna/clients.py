@@ -1,10 +1,11 @@
 
-import json, os.path, pprint, re, requests, threading, time
+import json, logging, os.path, pprint, re, requests, threading, time, uuid
 import configparser
 from configparser import ConfigParser, ExtendedInterpolation
 from my_validate_email import validate_email
 
 import lacuna.alliance
+import lacuna.bc
 import lacuna.body
 import lacuna.captcha
 import lacuna.empire
@@ -23,12 +24,16 @@ class Guest:
     """ Guest users are not logged in.
 
     Accepts the following named arguments:
+        ### Setting these two obviates the need to set anything else.
         config_file - path to your configparser-friendly config file
         config_section - the section in your config file to read from
-        proto - http or https.  Default http.
-        host - us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Default us1.
+
         api_key - your TLE api_key.  Omitting this is fine; the default 
             key (the string 'anonymous') will be used.
+        logfile - path to your logfile.  Defaults to no logfile; only WARNING 
+            or higher log events will display to the terminal.
+        proto - http or https.  Default http.
+        host - us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Default us1.
         sleep_on_call - Integer seconds.  Default 1. 
             Number of seconds to sleep after each call to attempt to avoid 
             using more than the limit of 60 RPCs per minute.  
@@ -59,7 +64,7 @@ class Guest:
         'host', 'proto',
         'username', 'password', 'api_key',
         'sleep_on_call', 'sleep_after_error', 'session_id',
-        'warn_on_sleep', 'show_captcha'
+        'warn_on_sleep', 'show_captcha', 'logfile'
     ]
 
     def __init__( self,
@@ -67,7 +72,8 @@ class Guest:
             proto = 'http', host = 'us1.lacunaexpanse.com',
             username = '', password = '', api_key = 'anonymous',
             sleep_on_call = 1, sleep_after_error = True, session_id = '', 
-            warn_on_sleep = True, show_captcha = True
+            warn_on_sleep = True, show_captcha = True,
+            logfile = ''
         ):
 
         if config_file and config_section and os.path.isfile(config_file):
@@ -82,7 +88,61 @@ class Guest:
         else:
             for i in self.config_list:
                 setattr( self, i, eval(i) )
-        
+
+        self.create_request_logger()
+        emp_name = self.determine_empname()
+        log_opts = {
+            'empire': emp_name,
+            'path': 'empty',
+            'method': 'empty',
+        }
+        self.request_logger.info('Creating a new client',extra=log_opts)
+
+    def create_request_logger(self):
+        """
+        Don't use logging.getLogger() to get at the logger.  Instead, use the 
+        client.request_logger attribute.
+        """
+        ### logging.getLogger( 'logger_name' ) returns a singleton, but we're 
+        ### calling this logger creator once for each client.  There will 
+        ### definitely be scripts with multiple clients.
+        ###
+        ### Originally, the 'logger_name' being used here was static 
+        ### ("tle_request").  What was happening was that the second client 
+        ### created was producing 2 log entries per call to log.LEVEL(msg), 
+        ### and the third client created was producing 3 log entries, etc.  
+        ###
+        ### So each client needs to have his own distinctly-named logger.  And 
+        ### since doing this every time I want a logger is tedious and 
+        ### fraught:
+        ###    emp_name = self.determine_empname()
+        ###    l = logging.getLogger( emp_name + '_tle_request' )
+        ### ...we're adding the logger as a client attribute instead.
+        ### 
+        ### Since getLogger() is right out, the logger's name doesn't have to 
+        ### be anything recognizable, just unique per client, so we're just 
+        ### using a uuid as the logger name.
+
+        s_format = '%(levelname)s -- %(empire)s - %(path)s::%(method)s - %(message)s'
+        f_format = '[%(asctime)s] (%(levelname)s) - %(empire)s - %(path)s::%(method)s - %(message)s'
+        d_format = '%Y-%m-%d %H:%M:%S'
+
+        l = logging.getLogger( str(uuid.uuid1()) )
+        l.setLevel(logging.DEBUG)
+
+        sh = logging.StreamHandler()
+        sh.setLevel(logging.WARNING)
+        sh.setFormatter(logging.Formatter(s_format, d_format))
+        l.addHandler(sh)
+
+        if( self.logfile ):
+            fh = logging.FileHandler( os.path.normpath(self.logfile) )
+            fh.setLevel(logging.DEBUG)
+            fh.setFormatter(logging.Formatter(f_format, d_format))
+            l.addHandler(fh)
+
+        self.request_logger = l
+
     def read_config_file( self, conf, default = 'DEFAULT' ):
         cp = ConfigParser( interpolation=ExtendedInterpolation() )
         cp.read( conf )
@@ -131,6 +191,14 @@ class Guest:
 
     def looks_like_json( self, json_candidate:str ):
         return True if re.match("^{.*}$", json_candidate) else False
+
+    def determine_empname(self):
+        empname = 'UNKNOWN'
+        if hasattr(self, 'username') and self.username:
+            empname = self.username
+        #if hasattr(self, 'empire' ) and hasattr(self.empire, 'name'):
+        #    empname = self.empire.name
+        return empname
 
     def send_password_reset_message(self, email='', **kwargs):
         if 'empire_id' not in kwargs and 'empire_name' not in kwargs:
@@ -188,6 +256,15 @@ class Guest:
         if hasattr(self, 'debugging_method') and self.debugging_method == method:
             print( request_json )
             quit()
+
+        emp_name = self.determine_empname()
+        log_opts = {
+            'empire': emp_name,
+            'path': path,
+            'method': method,
+        }
+        emp_name = self.determine_empname()
+        l = self.request_logger
         resp = requests.post( url, request_json )
 
         ### The json parser will happily return a result when handed a raw 
@@ -205,6 +282,7 @@ class Guest:
         ### Hence the looks_like_json() check.
         if resp.headers['content-type'] != 'application/json-rpc' or not \
             self.looks_like_json(resp.text):
+                self.request_logger.error('Response is not JSON', extra=log_opts)
                 raise NotJsonError( "Response from server is not json: " + resp.text )
 
         if resp.status_code != 200:
@@ -212,12 +290,13 @@ class Guest:
             error = ServerError( json_error['error']['code'], json_error['error']['message'] )
 
             if depth > 3:
-                raise RuntimeError("Likely infinite recursion detected on "+method+"; bailing!")
+                self.request_logger.error('Likely recursion detected', extra=log_opts)
+                raise RuntimeError("Likely infinite recursion detected; bailing!")
             depth += 1
 
             if error.code == 1010 and re.match('Slow down', error.text) and self.sleep_after_error:
                 if self.warn_on_sleep:
-                    print("60 RPC per minute limit exceeded.  I'll sleep for a minute and try again.")
+                    self.request_logger.warning("60 RPC per minute limit exceeded.  Sleeping for one minute.", extra=log_opts)
                 time.sleep( 61 )
                 thingy = self.send( path, method, params, depth )
             elif error.code == 1016 and error.text == 'Needs to solve a captcha.' and self.show_captcha:
@@ -227,8 +306,10 @@ class Guest:
                 cap.solveit()
                 thingy = self.send( path, method, params, depth )
             else:
+                self.request_logger.error(error.text, extra=log_opts)
                 raise error
         else:
+            self.request_logger.info('Success', extra=log_opts)
             thingy = json.loads( resp.text )
 
         if self.sleep_on_call:
@@ -251,14 +332,13 @@ class Guest:
 ################################################################
 
 class Member(Guest):
-    """Members are logged in; username and password are required.  Member 
-    inherits from Client.
-    """
+    """Members are logged in; username and password are required.  """
     def __init__( self,
             config_file         = '',
             config_section      = '',
             api_key             = '',
             host                = '',
+            logfile             = '',
             proto               = '',
             username            = '',
             password            = '',
@@ -272,6 +352,7 @@ class Member(Guest):
             config_file = config_file,
             config_section = config_section,
             host = host, 
+            logfile = logfile, 
             proto = proto,
             username = username,
             password = password,
@@ -284,12 +365,7 @@ class Member(Guest):
         if not self.username or not self.password:
             raise AttributeError("username and password are required.")
 
-        ### These are all server calls, and slow, but they must happen in 
-        ### serial, because each depends upon the previous being complete.  So 
-        ### don't try to thread them.
         self.login()
-        self.empire = lacuna.empire.MyEmpire( self )
-        self.empire.get_status()
 
     def get_alliance(self):
         return lacuna.alliance.Alliance( self )
@@ -330,6 +406,9 @@ class Member(Guest):
         if hasattr(self,'session_id'):
             try:
                 rslt = self.send( 'empire', 'get_status', (self.session_id,) )
+                self.empire = lacuna.empire.MyEmpire( self )
+                mydict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
+                self.write_empire_status(mydict)
                 return
             except ServerError as e:
                 pass
@@ -339,9 +418,21 @@ class Member(Guest):
         except ServerError as e:
             raise BadCredentialsError("Incorrect credentials (bad username/password)")
         self.session_id = rslt['session_id']
+        self.empire = lacuna.empire.MyEmpire( self )
+        mydict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
+        self.write_empire_status(mydict)
+
         if hasattr( self, 'config' ):
             self.config[self.config_section]['session_id'] = self.session_id
             self.update_config_file()
+
+    def write_empire_status(self, mydict:dict):
+        """ This is almost, but not quite the same, as 
+        lacuna.bc.LacunaObject.write_empire_status().
+        """
+        for i in mydict:
+            setattr( self.empire, i, mydict[i] )
+        self.empire.planet_names = {name: id for id, name in self.empire.planets.items()}
 
     def update_config_file(self):
         if not hasattr(self, 'config'):
