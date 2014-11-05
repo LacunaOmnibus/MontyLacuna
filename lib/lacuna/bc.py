@@ -4,7 +4,6 @@
 import pprint
 
 class LacunaObject:
-
     pp = pprint.PrettyPrinter( indent = 4 )
 
     def __init__(self, client:object, *args, **kwargs):
@@ -30,23 +29,26 @@ class LacunaObject:
                 empire: { or even here }
             }
 
-        'essentia': 8462.5,
-        'has_new_messages': '1769',
-        'home_planet_id': '108756',
-        'id': '23598',
-        'is_isolationist': '0',
-        'latest_message_id': '67512585',
-        'name': 'tmtowtdi',
-        'rpc_count': 485,
-        'self_destruct_active': '0',
-        'self_destruct_date': '14 07 2011 21:38:22 +0000',
-        'status_message': 'Making Lacuna a better Expanse.',
-        'tech_level': '30'
-        'planets': { id: name },
-
-        ### This does not get returned from the server this way, but it's 
-        ### needed often enough that we'll set it here.
-        'planet_names': { name: id },
+        essentia                8462.5,
+        has_new_messages        '1769',
+        home_planet_id          '108756',
+        id                      '23598',
+        is_isolationist         '0',
+        latest_message_id       '67512585',
+        name                    'tmtowtdi',
+        rpc_count               485,
+        self_destruct_active    '0',
+        self_destruct_date      '14 07 2011 21:38:22 +0000',
+        status_message          'Making Lacuna a better Expanse.',
+        tech_level              '30'
+        planets                 Dict:
+                                    {   12345: "Mercury",
+                                        12346: "Venus",
+                                        ...         },
+        planet_names            Dict:
+                                    {   "Mercury": 12345,
+                                        "Venus": 12346,
+                                        ...         },
         """
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
