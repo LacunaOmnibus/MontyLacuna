@@ -3,5 +3,5 @@
 *.swo
 __pycache__/
 etc/lacuna.cfg
-var/cache
-var/cachelck
+var/cache/
+var/cachelck/
