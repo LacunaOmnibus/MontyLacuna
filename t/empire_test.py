@@ -14,13 +14,12 @@ glc = lac.clients.Member(
     config_section = 'my_sitter',
 )
 
-
 ### Example of connecting with a non-logged-in guest account
-for n in ['tmtowtdi', 'fake_name']:
-    if guest.is_name_available(n):
-        print(n, "is available for use.")
-    else:
-        print(n, "is taken, and is not available for use.")
+#for n in ['tmtowtdi', 'fake_name']:
+#    if guest.is_name_available(n):
+#        print(n, "is available for use.")
+#    else:
+#        print(n, "is taken, and is not available for use.")
 
 
 ### Almost everything else requires a logged-in account.
