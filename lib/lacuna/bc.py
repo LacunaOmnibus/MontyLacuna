@@ -70,11 +70,6 @@ class LacunaObject:
         return mydict
 
     def write_empire_status(self, mydict:dict):
-        if 'rpc_count' in mydict and hasattr(self.client.empire, 'rpc_count'):
-            if mydict['rpc_count'] <= self.client.empire.rpc_count:
-                ### Our result came from the cache rather than a fresh request 
-                ### to the server, so don't update anything.
-                return
         for i in mydict:
             setattr( self.client.empire, i, mydict[i] )
         self.client.empire.planet_names = {name: id for id, name in self.client.empire.planets.items()}
