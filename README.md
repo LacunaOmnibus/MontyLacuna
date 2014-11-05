@@ -14,7 +14,10 @@ working package.
 - pip
 - requests
   - pip install requests
-  - CHECK It might make sense to replace this with urllib, since it's standard.
+  - CHECK It might make sense to replace this with urllib, since it's standard - one less 
+    thing for the user to have to install
+- beaker
+  - pip install beaker
 
 ## Complete
 Nothing.
@@ -115,18 +118,11 @@ supposed to do.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
-- Add a logger option to clients.Member
-    - If on, it should specify a file.  All TLE server requests should get logged.
-- Finish "oopifying" the retvals of all of the building classes.
-  - Everything from security.py on down should be OK.
-  - PT is down right now, and I'm not willing to destroy my US1 empire in the name of 
-    testing.  So find CHECK marks in the building list above once PT comes back and 
-    finish.
 - I'm describing the "standard TLE search string" in multiple places, with slightly 
   different verbiage each time.  Define that somewhere more common.
     - ack for "standard TLE" and ">= 3" etc
-- Investigate the main __init_.py.  I don't think it needs all the imports 
-  that are in there.
+- Investigate the main __init__.py.  I don't think it needs all the imports that are in 
+  there.
 - A prisoner or two floating around us1 1.1.  Use them to test trade.py and transporter.py
     - get__prisoners()
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 

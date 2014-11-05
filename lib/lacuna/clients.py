@@ -1,7 +1,7 @@
 
-import json, logging, os.path, pprint, re, requests, threading, time, uuid
+import json, logging, os, os.path, pprint, re, requests, threading, time, uuid
 import configparser
-from configparser import ConfigParser, ExtendedInterpolation
+import beaker.cache, beaker.util
 from my_validate_email import validate_email
 
 import lacuna.alliance
@@ -67,6 +67,10 @@ class Guest:
         'warn_on_sleep', 'show_captcha', 'logfile'
     ]
 
+    def __del__( self ):
+        req_cache = self.cache.get_cache('request_cache')
+        req_cache.clear()
+
     def __init__( self,
             config_file = '', config_section = '',
             proto = 'http', host = 'us1.lacunaexpanse.com',
@@ -97,6 +101,28 @@ class Guest:
             'method': 'empty',
         }
         self.request_logger.info('Creating a new client',extra=log_opts)
+
+        self.set_up_cache()
+
+    def set_up_cache(self):
+        libdir      = os.path.abspath(os.path.dirname(__file__))
+        vardir      = libdir + "/../../var"
+        cachedir    = vardir + "/cache"
+        lockdir     = vardir + "/cachelck"
+        if os.path.isdir(vardir):
+            if not os.path.isdir(cachedir):
+                os.mkdir(cachedir)
+            if not os.path.isdir(lockdir):
+                os.mkdir(lockdir)
+        else:
+            raise EnvironmentError("You're missing var/ off your installation directory.  Fix your install.")
+        cache_opts = {
+            'cache.type':       'file',
+            'cache.data_dir':   cachedir,
+            'cache.lock_dir':   lockdir,
+            'expire':           3600
+        }
+        self.cache = beaker.cache.CacheManager(**beaker.util.parse_cache_config_options(cache_opts))
 
     def create_request_logger(self):
         """
@@ -144,7 +170,7 @@ class Guest:
         self.request_logger = l
 
     def read_config_file( self, conf, default = 'DEFAULT' ):
-        cp = ConfigParser( interpolation=ExtendedInterpolation() )
+        cp = configparser.ConfigParser( interpolation=configparser.ExtendedInterpolation() )
         cp.read( conf )
         for section in cp:
             if section == default:
@@ -265,7 +291,13 @@ class Guest:
         }
         emp_name = self.determine_empname()
         l = self.request_logger
-        resp = requests.post( url, request_json )
+
+        def get_req():
+            resp = requests.post( url, request_json )
+            return resp
+        req_cache = self.cache.get_cache('request_cache')
+        cache_key = method + repr(params)
+        resp = req_cache.get( key = cache_key, createfunc = get_req )
 
         ### The json parser will happily return a result when handed a raw 
         ### string instead of json (json.dumps("foobar") works just fine).  
