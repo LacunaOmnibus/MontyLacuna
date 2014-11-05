@@ -115,7 +115,7 @@ supposed to do.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
-- Add a logger option to the Member class
+- Add a logger option to clients.Member
     - If on, it should specify a file.  All TLE server requests should get logged.
 - Finish "oopifying" the retvals of all of the building classes.
   - Everything from security.py on down should be OK.
