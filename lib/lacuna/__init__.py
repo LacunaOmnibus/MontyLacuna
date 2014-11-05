@@ -1,4 +1,7 @@
 
+import lacuna.version
+version = lacuna.version.__version__
+
 import lacuna.alliance
 import lacuna.body
 import lacuna.building
