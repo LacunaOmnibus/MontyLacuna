@@ -59,14 +59,15 @@ class Guest:
         'host', 'proto',
         'username', 'password', 'api_key',
         'sleep_on_call', 'sleep_after_error', 'session_id',
-        'warn_on_sleep'
+        'warn_on_sleep', 'show_captcha'
     ]
 
     def __init__( self,
             config_file = '', config_section = '',
             proto = 'http', host = 'us1.lacunaexpanse.com',
             username = '', password = '', api_key = 'anonymous',
-            sleep_on_call = 1, sleep_after_error = True, session_id = '', warn_on_sleep = True 
+            sleep_on_call = 1, sleep_after_error = True, session_id = '', 
+            warn_on_sleep = True, show_captcha = True
         ):
 
         if config_file and config_section and os.path.isfile(config_file):
@@ -219,7 +220,7 @@ class Guest:
                     print("60 RPC per minute limit exceeded.  I'll sleep for a minute and try again.")
                 time.sleep( 61 )
                 thingy = self.send( path, method, params, depth )
-            elif error.code == 1016 and error.text == 'Needs to solve a captcha.':
+            elif error.code == 1016 and error.text == 'Needs to solve a captcha.' and self.show_captcha:
                 cap = self.get_captcha()
                 cap.showit()
                 cap.prompt_user()
@@ -263,6 +264,7 @@ class Member(Guest):
             password            = '',
             sleep_on_call       = 1,
             sleep_after_error   = True,
+            show_captcha        = True,
             warn_on_sleep       = True
         ):
 
@@ -275,6 +277,8 @@ class Member(Guest):
             password = password,
             sleep_on_call = sleep_on_call,
             sleep_after_error = sleep_after_error,
+            show_captcha = show_captcha,
+            warn_on_sleep = warn_on_sleep,
         )
 
         if not self.username or not self.password:
