@@ -12,48 +12,50 @@ pp = pprint.PrettyPrinter( indent = 4 )
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'my_sitter',
+    config_section = 'play_test',
 )
 
 mail = glc.get_inbox();
 
-msgs, ttl = mail.view_inbox( {"tags": "excavator"} )
-print( "There are", ttl, "messages in my inbox.  Here are the first few:")
-for i in msgs[0:3]:
-    print( "{} from {} (preview: {})".format(i.subject, i.from, i.body_preview) )
+
+### See messages in your inbox
+###
+#msgs, ttl = mail.view_inbox( {"tags": ["excavator", "correspondence"]} )
+#print( "There are", ttl, "excavator/correspondence messages in my inbox.  Here are the first few:")
+#for i in msgs[0:3]:
+#    print( "{} from {} (preview: {})".format(i.subject, i.from_name, i.body_preview) )
+#    print( "The full body of the message follows:" )
+#    print( mail.read_message( i.id ).body )
+#    print( "----------------------" )
 
 
-### Work as expected.  Make sure trash and archived have some parl messages 
-### for this to work as-is.
-#msgs = mail.view_archived( {"tags": "parliament"} )
-#msgs = mail.view_trashed( {"tags": "parliament"} )
-#msgs = mail.view_sent( {"tags": "parliament"} )
-#pp.pprint( msgs['message_count'] )
+### See messages in one of the mailbox's sub-tabs
+### 
+#msgs, ttl = mail.view_trashed()
+#msgs, ttl = mail.view_sent()
+#msgs, ttl = mail.view_archived()
+#print( "There are", ttl, "messages in this tab.  Here are the first few:")
+#for i in msgs[0:3]:
+#    print( "\t{} from {} (preview: {})".format(i.subject, i.from_name, i.body_preview) )
 
 
-### Works, but the sample message ID won't exist anymore.  Grab one at random 
-### out of the output of view_inbox() above.
-#msg = mail.read_message( 68029602 )
-#pp.pprint( msg['message'] )
+### Archive the first two excavator messages in your inbox.
+### 
+#msgs, ttl = mail.view_inbox( {"tags": ["excavator"]} )
+#msg = mail.archive_messages([ msgs[0].id, msgs[1].id ])
 
 
-### Same as before - this works, but you'll need new message IDs to test in 
-### the future.
-### The before/after displays of message_count show that the number of inbox 
-### messages has dropped.
-#msgs = mail.view_inbox( {"tags": "parliament"} )
-#pp.pprint( msgs['message_count'] )
-#msg = mail.archive_messages( [68029602, 68029554, 68029504] )
-#msgs = mail.view_inbox( {"tags": "parliament"} )
-#pp.pprint( msgs['message_count'] )
+### Trash the next two excavator messages in your inbox.
+### 
+#msgs, ttl = mail.view_inbox( {"tags": ["excavator"]} )
+#msg = mail.trash_messages([ msgs[0].id, msgs[1].id ])
 
 
-### Works.
-#rv = mail.send_message(
+### Send mail to one or more players.
+###
+#mail.send_message(
 #    'tmtowtdi,tmt_testing,no_such_player',
 #    'python test',
 #    'This is a test of the python message system.'
 #)
-#pp.pprint( rv['message'] )
-#
 
