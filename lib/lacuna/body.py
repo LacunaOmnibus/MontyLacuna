@@ -131,7 +131,6 @@ from lacuna.exceptions import \
 
 
 """
-
     Body objects are normally constructed in one of two situations.
 
     1) You have a list of the body IDs of all of your empire's planets, and 
@@ -139,22 +138,73 @@ from lacuna.exceptions import \
 
     2) You have a dict of planet attributes for some planet you can see in 
        your starmap, and want a Body object created from those attributes.
-
 """
 
 
 class Body(lacuna.bc.LacunaObject):
+    """
+    Attributes:
+        id              '432810',
+        image           'p16-1',
+        surface_type    'p16',
+        name            'Cho Iarnowy Ipr 1',
+        orbit           '1',
+        ore             {   'anthracite': 3300,
+                            'bauxite': 1,
+                            'beryl': 1,
+                            'chalcopyrite': 1,
+                            'chromite': 400,
+                            'fluorite': 1,
+                            'galena': 200,
+                            'goethite': 300,
+                            'gold': 1,
+                            'gypsum': 1,
+                            'halite': 700,
+                            'kerogen': 2700,
+                            'magnetite': 1,
+                            'methane': 1,
+                            'monazite': 1,
+                            'rutile': 600,
+                            'sulfur': 100,
+                            'trona': 900,
+                            'uraninite': 800,
+                            'zircon': 1         },
+        size            '48',
+        star_id         '60099',
+        star_name       'Cho Iarnowy Ipr',
+        station         {   'id': '150995',
+                            'name': 'ZZ Siege',
+                            'x': '-34', 
+                            'y': '-14'      },
+        type            'habitable planet',
+        water           5000,
+        x               '-26',
+        y               '6',
+        zone            '0|0'
+    """
+
+
     path = 'body'
 
     def __init__( self, client:object, attrs:dict = {} ):
         super().__init__( client )
         self.body_id = attrs['id']
+
+        ### 'image' == 'p16-1' or so.  The "-1" indicates the size of the 
+        ### image, which will depend on the size of the planet, and we don't 
+        ### care about that at all.  Just get the planet type, the "p16", out 
+        ### of that.
+        if 'image' in attrs:
+            mymatch = re.match( "^(p\d+)", attrs['image'] )
+            if mymatch:
+                attrs['surface_type'] = mymatch.group(1)
+
         for k, v in attrs.items():
             setattr(self, k, v)
         self.set_status_attr( attrs )
 
     def set_body_status( func ):
-        """Decorator.
+        """ Decorator.
         Much like LacunaObject.set_empire_status.  Most of the Body server 
         methods return both empire status and body status.  So we'll still 
         decorate with LacunaObject.set_empire_status to get the empire status, 
@@ -196,6 +246,96 @@ class Body(lacuna.bc.LacunaObject):
 
 
 class MyBody(Body):
+
+    """ A MyBody object is a planet or space station owned by the current 
+    empire.
+
+    Attributes:
+        id                  "id-goes-here",
+        x                   -4,
+        y                   10,
+        star_id             "id-goes-here",
+        star_name           "Sol",
+        orbit               3,
+        type                "habitable planet",
+        name                "Earth",
+        image               "p13",
+        size                67,
+        water               900,
+        ore                 {
+                                "gold" : 3399,
+                                "bauxite" : 4000,
+                                ...
+                            },
+        empire                  {
+                                    "id" : "id-goes-here",
+                                    "name" : "Earthlings",
+                                    "alignment" : "ally",   # can be 'ally','self', or 'hostile'
+                                    "is_isolationist" : 1
+                                },
+        station                 { # only shows up if this planet is under the influence of a space station
+                                    "id" : "id-goes-here",
+                                    "x" : 143,
+                                    "y" : -27,
+                                    "name" : "The Death Star"
+                                },
+        needs_surface_refresh   1, # indicates that the client needs to call get_buildings() because something has changed
+        building_count          7,
+        plots_available         0,
+        happiness               3939,
+        happiness_hour          25,
+        unhappy_date            "01 13 2014 16:11:21 +0600",  # Only given if happiness is below zero
+        propaganda_boost        20,
+        food_stored             33329,
+        food_capacity           40000,
+        food_hour               229,
+        energy_stored           39931,
+        energy_capacity         43000,
+        energy_hour             391,
+        ore_hour                284,
+        ore_capacity            35000,
+        ore_stored              1901,
+        waste_hour              ,
+        waste_stored            9933,
+        waste_capacity          13000,
+        water_stored            9929,
+        water_hour              295,
+        water_capacity          51050,   
+        skip_incoming_ships     0,   # if set, then the following incoming data is missing.
+        num_incoming_enemy      10,   # total number of incoming foreign ships
+        num_incoming_ally       1,     # total number of incoming allied ships
+        num_incoming_own : 0,   # total number of incoming own ships from other colonies
+        incoming_enemy_ships    [ # will only be included when enemy ships are coming to your planet (only the first 20 will be shown)
+                                    {
+                                        "id" : "id-goes-here",
+                                        "date_arrives" : "01 31 2010 13:09:05 +0600",
+                                        "is_own" : 1,   # is this from one of our own planets
+                                        "is_ally" : 1   # is this from a planet within our alliance
+                                    },
+                                    ...
+                                ],
+        incoming_ally_ships     [ # will only be included when allied ships are coming to your planet (only the first 10 will be shown)
+                                    ...
+                                ],
+        incoming_own_ships      [ # will only be included when ships from your other colonies are coming to your planet (only the first 10 will be shown)
+                                    ...  
+                                ],
+                                
+        ----- if the body is a station the follwing information will be included
+        alliance                { 
+                                    "id" : "id-goes-here",
+                                    "name" : "Imperial Empire" 
+                                },
+        influence               {
+                                    "total" : 0,
+                                    "spent" : 0
+                                }
+    }
+
+
+
+
+    """
 
     def __init__( self, client:object, body_id:int, attrs:dict = {} ):
         attrs['id'] = body_id

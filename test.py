@@ -1,5 +1,10 @@
 
-mytup = (1, 2, 3)
-newtup = mytup[1:]
-print( newtup )
+import re
+
+str = 'p16-1'
+
+mymatch = re.match("^(p\d+)", str)
+if mymatch:
+    print( mymatch.group(1) )
+
 

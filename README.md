@@ -33,6 +33,9 @@ Nothing.
 
     These methods return *lists*, not single objects.  You often really want a single 
     object; just remember that you're getting a list.
+- TLE date format
+  - Many methods include dates as part of their returns.  TLE dates are in the format:
+    "01 31 2010 13:09:05 +0000"
 
 ## Working
 "working" means that all functionality exists, and quickie scripts appear to 
@@ -46,6 +49,7 @@ work, but it hasn't been fully tested yet.
 - Empire
   - oopified
 - Inbox
+  - oopified
 - Map
 - Stats
   - Mostly oopified.  I didn't fully test (and therefore didn't fully oopify) this just 
@@ -144,4 +148,9 @@ supposed to do.
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 
   automatically - I'm not convinced that's what should be happening.  At the very least, 
   we should be caching the results.
+- I'm going to want a "convert_date()" method, which'll probably mean I'll want a TZ 
+  attribute of clients.Member.  And I'll need to learn about python date handling.
+- For some stupid reason I keep referring to dicts as "structs".  Ack for "struct" and fix 
+  that.
+
 

@@ -134,6 +134,27 @@ class LacunaObject:
             return myrslt
         return inner
 
+    def call_named_returning_meth(func):
+        """ Decorator.  
+        Makes an RPC that _does_ require that the client is logged in.
+        Most RPC calls simply return to the user the data returned from the TLE 
+        servers (after a slight massage).  But some methods need to modify that 
+        data themselves.
+
+        Updates the empire status based on the TLE-returned data, so if you're 
+        using this, there's no need to decorate with 
+        @LacunaObject.set_empire_status (and doing so will fail).
+        """
+        def inner(self, mydict:dict, *args, **kwargs):
+            mydict['session_id'] = self.client.session_id
+            rslt = self.client.send( self.path, func.__name__, (mydict,) )
+            status_dict = self.get_status_dict(rslt)
+            self.write_empire_status(status_dict)
+            kwargs['rslt'] = rslt
+            myrslt = func( self, mydict, *args, **kwargs )
+            return myrslt
+        return inner
+
     def call_member_named_meth(func):
         """ Decorator.  
         Makes an RPC that _does_ require that the client is logged in.
