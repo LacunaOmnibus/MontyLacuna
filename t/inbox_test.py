@@ -17,9 +17,10 @@ glc = lac.clients.Member(
 
 mail = glc.get_inbox();
 
-msgs = mail.view_inbox( {"tags": "excavator"} )
-pp.pprint( msgs['message_count'] )
-pp.pprint( msgs['messages'][0:3] )
+msgs, ttl = mail.view_inbox( {"tags": "excavator"} )
+print( "There are", ttl, "messages in my inbox.  Here are the first few:")
+for i in msgs[0:3]:
+    print( "{} from {} (preview: {})".format(i.subject, i.from, i.body_preview) )
 
 
 ### Work as expected.  Make sure trash and archived have some parl messages 
