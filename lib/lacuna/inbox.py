@@ -5,51 +5,38 @@ class Inbox(lacuna.bc.LacunaObject):
 
     path = 'inbox'
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
-    def view_inbox( self, opts: 'struct' = {}, *args, **kwargs ):
-        """ Returns an integer message cont, and a list of messages (list of structs, 
-        one message per struct).
-
-        The 'opts' argument is optional.  Allowed members are:
-            'page_number'
-                Which 25 messages should be returned?  25 per page, this 
-                defaults to '1'.
-            'tags'
-                Only messages containing these tags will be returned or included in 
-                the message_count.  Allowed tags:
-                    Tutorial, Correspondence, Medal, Intelligence, Alert, Attack, 
-                    Colonization, Complaint, Excavator, Mission, Parliament, Probe, 
-                    Spies, Trade
-                Sending an invalid tag will not throw an exception, it'll merely 
-                return 0 messages.
-
-
-        Only returns 25 messages at a time.  You cannot change this, but you can
-        control which 25 messages you'll get.
+    #@lacuna.bc.LacunaObject.set_empire_status
+    #@lacuna.bc.LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.call_returning_meth
+    def view_inbox( self, opts:dict = {}, *args, **kwargs ):
+        """ View the messages in your empire's inbox, 25 messages per page.
         
-        rv['message_count'] is message count.  This is the total number of messages
-        that satisfy your current filter.
-            eg You have 1000 total messages.  200 of them are 'attack' messages.  A
-            call to view_inbox() filtered by 'attack' will only return 25 messages, 
-            but the 'message_count' will be 200.
+        Arguments:
+            opts    Dict (optional)
+                        page_number     Integer page number to return.  
+                                        Defaults to 1.
+                        tags            List of tags to filter by.
 
-        rv['messages'] is the list of message structs.  Each struct follows this format:
-                    {
-                        'body_preview': 'Our defensive forces were able',
-                        'date': '14 10 2014 11:26:49 +0000',
-                        'from': 'tmtowtdi',
-                        'from_id': '23598',
-                        'has_read': '0',
-                        'has_replied': '0',
-                        'id': '68002437',
-                        'subject': 'Target Neutralized',
-                        'tags': ['Attack'],
-                        'to': 'tmtowtdi',
-                        'to_id': '23598'
-                    },
+        Valid message tags:
+            Tutorial, Correspondence, Medal, Intelligence, Alert, Attack, 
+            Colonization, Complaint, Excavator, Mission, Parliament, Probe, 
+            Spies, Trade
+
+        Sending an invalid tag will not throw an exception, it'll merely 
+        return 0 messages.
+
+        Returns:
+            messages    List of inbox.Message objects
+            count       Integer total number of messages in the inbox
         """
         pass
+        mylist = []
+        for i in kwargs['rslt']['messages']:
+            mylist.append( Message(self.client, i) )
+        return (
+            mylist,
+            kwargs['rslt']['message_count']:
+        )
 
     """The arguments to and return values from each of view_archived(), view_sent(),
     and view_trashed() are all identical to those to/from view_inbox().
@@ -198,5 +185,22 @@ class Inbox(lacuna.bc.LacunaObject):
         pass
 
 
+class Message(lacuna.bc.LacunaObject):
+    """
+    Attributes:
+        id              "id-goes-here",
+        subject         "Vaxaslim",
+        date            "01 31 2010 13:09:05 +0600",
+        from            "Dr. Stephen T. Colbert DFA",
+        from_id         "id-goes-here",
+        to              "Jon Stewart",
+        to_id           "id-goes-here",
+        has_read        1,
+        has_replied     0,
+        body_preview    "Just a reminder that Vaxaslim ",
+        tags            "Correspondence" 
+
+
+    """
 
 

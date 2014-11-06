@@ -22,6 +22,18 @@ working package.
 ## Complete
 Nothing.
 
+## Glossary
+- Standard search string
+  - Several methods allow you to search for an item by name (a star, an empire, etc).  
+    Some of these methods allow a "search string" instead of a full name.  A search string 
+    must be at least three characters long.  All objects whose names match that string 
+    will be returned:
+        Search string: "Ear"
+        Returns: [ "Earth", "Ears is a strange name for a planet", "Earp, Wyatt" ]
+
+    These methods return *lists*, not single objects.  You often really want a single 
+    object; just remember that you're getting a list.
+
 ## Working
 "working" means that all functionality exists, and quickie scripts appear to 
 work, but it hasn't been fully tested yet.
@@ -32,6 +44,7 @@ work, but it hasn't been fully tested yet.
   - Guest
   - Member
 - Empire
+  - oopified
 - Inbox
 - Map
 - Stats
@@ -115,6 +128,9 @@ supposed to do.
 - Announcement
 
 ## TBD
+- The caching right now is very naive - every call sent to the server is curried.  The 
+  cache actually needs to be cleared periodically (when we see "needs_surface_refresh" 
+  maybe)
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.

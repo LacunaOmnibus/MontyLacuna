@@ -98,7 +98,15 @@ class LacunaObject:
         almost all of the TLE methods work this way.
         """
         def inner(self, *args, **kwargs):
-            myargs = (self.client.session_id,) + args
+            ### Most of our callers will have self.client, except when self 
+            ### is, itself, a client.
+            session_id = ''
+            if hasattr( self.client, 'session_id' ):
+                session_id = self.client.session_id
+            elif hasattr( self, 'session_id' ):
+                session_id = self.session_id
+
+            myargs = (session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
             kwargs['rslt'] = rslt
             func( self, *args, **kwargs )

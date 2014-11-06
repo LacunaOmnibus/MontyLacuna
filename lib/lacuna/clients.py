@@ -9,16 +9,10 @@ import lacuna.bc
 import lacuna.body
 import lacuna.captcha
 import lacuna.empire
+import lacuna.exceptions
 import lacuna.inbox
 import lacuna.map
 import lacuna.stats
-from lacuna.exceptions import \
-    BadConfigSectionError, \
-    BadCredentialsError, \
-    NoSuchMyBodyError, \
-    NoSuchEmpireError, \
-    NotJsonError, \
-    ServerError
 
 class Guest:
     """ Guest users are not logged in.
@@ -187,14 +181,17 @@ class Guest:
             'proto': 'http',
             'api_key': 'anonymous',
             'sleep_on_call': 1,
-            'sleep_after_error': 1
+            'sleep_after_error': 1,
+            'warn_on_sleep': 1,
+            'show_captcha': 1,
+            'logfile': 'var/tle.log',
         }
         with open(path, 'w') as handle:
             cp.write(handle)
 
     def build_url(self):
-        """Returns a base URL composed of the proto (http or https) and the host.
-        The returned URL does NOT end with a slash.
+        """ Returns a base URL composed of the proto (http or https) and the 
+        host.  The returned URL does NOT end with a slash.
         """
         url = self.proto + "://" +  self.host
         return url
@@ -205,7 +202,7 @@ class Guest:
     def is_name_available(self, name):
         try:
             rslt = self.send( 'empire', 'is_name_available', (name,) )
-        except ServerError as e:
+        except lacuna.exceptions.ServerError as e:
             if e.code == 1000 and e.text == 'Empire name is in use by another player.':
                 return False
             else:
@@ -219,14 +216,19 @@ class Guest:
         return True if re.match("^{.*}$", json_candidate) else False
 
     def determine_empname(self):
+        """ Used for logging.  A guest empire name will be returned as 
+        "UNKNOWN".
+        """
         empname = 'UNKNOWN'
         if hasattr(self, 'username') and self.username:
             empname = self.username
-        #if hasattr(self, 'empire' ) and hasattr(self.empire, 'name'):
-        #    empname = self.empire.name
         return empname
 
     def send_password_reset_message(self, email='', **kwargs):
+        """ This is meant to send a password reset email to the user's 
+        registered email address.  However, it seems that the TLE server is not 
+        sending any emails at all, via this method or the browser.
+        """ 
         if 'empire_id' not in kwargs and 'empire_name' not in kwargs:
             raise AttributeError("Either empire_name or empire_id must be sent.")
 
@@ -238,8 +240,8 @@ class Guest:
 
         try:
             rslt = self.send( 'empire', 'send_password_reset_message', (kwargs) )
-        except ServerError as e:
-            raise NoSuchEmpireError("Cannot recover password; no such empire exists.")
+        except lacuna.exceptions.ServerError as e:
+            raise lacuna.exceptions.NoSuchEmpireError("Cannot recover password; no such empire exists.")
 
         if rslt['sent']:
             print( "The server says it sent a message, but sending mail seems to be broken server-side, so you may get nothing." )
@@ -247,8 +249,8 @@ class Guest:
             raise RuntimeError( "The server says it has not sent the message, but gives no indication as to why not." )
 
     def send( self,  path="", method="", params=(), depth=1 ):
-        """Marshals a request and actually sends it to the server, collecting and 
-        json-decoding the response.
+        """ Marshals a request and actually sends it to the server, collecting 
+        and json-decoding the response.
 
         Accepts:
             path (str)
@@ -315,11 +317,11 @@ class Guest:
         if resp.headers['content-type'] != 'application/json-rpc' or not \
             self.looks_like_json(resp.text):
                 self.request_logger.error('Response is not JSON', extra=log_opts)
-                raise NotJsonError( "Response from server is not json: " + resp.text )
+                raise lacuna.exceptions.NotJsonError( "Response from server is not json: " + resp.text )
 
         if resp.status_code != 200:
             json_error = json.loads( resp.text )
-            error = ServerError( json_error['error']['code'], json_error['error']['message'] )
+            error = lacuna.exceptions.ServerError( json_error['error']['code'], json_error['error']['message'] )
 
             if depth > 3:
                 self.request_logger.error('Likely recursion detected', extra=log_opts)
@@ -327,18 +329,31 @@ class Guest:
             depth += 1
 
             if error.code == 1010 and re.match('Slow down', error.text) and self.sleep_after_error:
+                self.request_logger.warning("60 RPC per minute limit exceeded.", extra=log_opts)
                 if self.warn_on_sleep:
-                    self.request_logger.warning("60 RPC per minute limit exceeded.  Sleeping for one minute.", extra=log_opts)
+                    self.request_logger.info("Sleeping for one minute.", extra=log_opts)
                 time.sleep( 61 )
                 thingy = self.send( path, method, params, depth )
+            elif error.code == 1006 and error.text == 'Session expired.':
+                ### Probably the user's config file had a session_id recorded, 
+                ### but it's grown old.  Delete the old session_id, re-login, 
+                ### and fix the params we're passing (session_id is the first 
+                ### param).  Then re-send.
+                self.request_logger.info('Stale session_id found; re-logging in.', extra=log_opts)
+                if hasattr(self, 'session_id'):
+                    delattr(self, 'session_id')
+                self.login()
+                fixed_params = (self.session_id, params[1:])
+                thingy = self.send( path, method, fixed_params, depth )
             elif error.code == 1016 and error.text == 'Needs to solve a captcha.' and self.show_captcha:
+                self.request_logger.info("Displaying required captcha.", extra=log_opts)
                 cap = self.get_captcha()
                 cap.showit()
                 cap.prompt_user()
                 cap.solveit()
                 thingy = self.send( path, method, params, depth )
             else:
-                self.request_logger.error(error.text, extra=log_opts)
+                self.request_logger.error("("+str(error.code)+") "+error.text, extra=log_opts)
                 raise error
         else:
             self.request_logger.info('Success', extra=log_opts)
@@ -364,7 +379,7 @@ class Guest:
 ################################################################
 
 class Member(Guest):
-    """Members are logged in; username and password are required.  """
+    """ Members are logged in; username and password are required.  """
     def __init__( self,
             config_file         = '',
             config_section      = '',
@@ -410,7 +425,7 @@ class Member(Guest):
             if name == body_name:
                 return lacuna.body.MyBody( self, bid )
         else:
-            raise NoSuchMyBodyError("No body with the name '{}' was found.".format(body_name))
+            raise lacuna.exceptions.NoSuchMyBodyError("No body with the name '{}' was found.".format(body_name))
 
     def get_captcha(self):
         return lacuna.captcha.Captcha( self )
@@ -442,13 +457,13 @@ class Member(Guest):
                 mydict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
                 self.write_empire_status(mydict)
                 return
-            except ServerError as e:
+            except lacuna.exceptions.ServerError as e:
                 pass
 
         try:
             rslt = self.send( 'empire', 'login', (self.username, self.password, self.api_key) )
-        except ServerError as e:
-            raise BadCredentialsError("Incorrect credentials (bad username/password)")
+        except lacuna.exceptions.ServerError as e:
+            raise lacuna.exceptions.BadCredentialsError("Incorrect credentials (bad username/password)")
         self.session_id = rslt['session_id']
         self.empire = lacuna.empire.MyEmpire( self )
         mydict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
@@ -483,9 +498,12 @@ class Member(Guest):
         config file.  Therefore, actually calling logout() is rarely 
         necessary.
         """
-        rslt = self.empire.logout()
-        delattr( self, 'empire' )
-        delattr( self, 'session_id' )
+        rslt = {}
+        if hasattr(self, 'empire'):
+            rslt = self.empire.logout()
+            delattr( self, 'empire' )
+        if hasattr(self, 'session_id'):
+            delattr( self, 'session_id' )
         if hasattr( self, 'config' ) and hasattr( self, 'config_section'):
             if 'session_id' in self.config[self.config_section]:
                 del( self.config[self.config_section]['session_id'] )
