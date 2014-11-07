@@ -1,6 +1,4 @@
 
-from lacuna.bc import LacunaObject
-#from lacuna.building import MyBuilding
 import lacuna.building
 
 class development(lacuna.building.MyBuilding):
@@ -9,17 +7,21 @@ class development(lacuna.building.MyBuilding):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def subsidize_build_queue( self, **kwargs ):
         """ Spends E to immediately finish all buildings currently in the 
         build queue.
-        Retval contains key 'essentia_spent' - integer cost of the subsidy.
-        """
-        pass
 
-    @LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_named_meth
+        Unlike subsidize_one_build() below, this method will ALWAYS spend at 
+        least 1 E.  Even if your build queue is empty, 1 E will be spent.  So 
+        be careful.
+
+        Returns
+            essentia_spent      Integer cost of subsidy
+        """
+        return kwargs['rslt']['essentia_spent']
+
+    @lacuna.building.MyBuilding.call_named_returning_meth
     def subsidize_one_build( self, named_args:dict, **kwargs ):
         """ Spends E to immediately finish a single build in the build queue.
 
@@ -28,12 +30,16 @@ class development(lacuna.building.MyBuilding):
         contains a single building being upgraded, call build_queue() instead 
         of subsidize_one_build().
 
-        named_args must contain 'scheduled_id', the integer ID of the building 
-        whose upgrade is scheduled to be subsidized.
+        Requires a single dict argument:
+            scheduled_id        Integer ID of the building to subsidize
 
-        Retval contains key 'essentia_spent' - integer cost of the subsidy.
+        Returns
+            essentia_spent      Integer cost of subsidy
+
+        Raises ServerError 1000 if the specified building is not currently being 
+        built or upgraded.
         """
-        pass
+        return kwargs['rslt']['essentia_spent']
 
     @lacuna.building.MyBuilding.call_named_returning_meth
     def cancel_build( self, named_args:dict, **kwargs ):

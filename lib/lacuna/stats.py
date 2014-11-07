@@ -147,9 +147,7 @@ class Stats(lacuna.bc.LacunaObject):
 
         Arguments:
             sort_by         String.  See empire_rank()
-            empire_name     String.  Standard TLE search value - >= 3 
-                            characters, empires whose name match the front of 
-                            this string are returned.
+            empire_name     Standard TLE search string.
         
         Returns list of stats.EmpireInfo objects.
         """

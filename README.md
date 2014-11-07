@@ -51,6 +51,7 @@ work, but it hasn't been fully tested yet.
 - Inbox
   - oopified
 - Map
+  - oopified
 - Stats
   - Mostly oopified.  I didn't fully test (and therefore didn't fully oopify) this just 
     because I don't see it being too useful.  Still, it should be completed.
@@ -70,8 +71,6 @@ supposed to do.
   - archaeology
   - blackholegenerator
   - development
-    - cancel oopified
-    - CHECK The two subsidize methods still need to be oopified
   - distributioncenter
     - CHECK I haven't got one of these on US1.
   - embassy
@@ -133,18 +132,12 @@ supposed to do.
 
 ## TBD
 - The caching right now is very naive - every call sent to the server is curried.  The 
-  cache actually needs to be cleared periodically (when we see "needs_surface_refresh" 
-  maybe)
+  cache actually needs to be cleared periodically
+  - What's there now probably won't hurt any short quickie scripts, though it probably 
+    won't help those much either.  But it would hurt a long-running program, eg LacunaWaX.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
-- I'm describing the "standard TLE search string" in multiple places, with slightly 
-  different verbiage each time.  Define that somewhere more common.
-    - ack for "standard TLE" and ">= 3" etc
-- Investigate the main __init__.py.  I don't think it needs all the imports that are in 
-  there.
-- A prisoner or two floating around us1 1.1.  Use them to test trade.py and transporter.py
-    - get__prisoners()
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 
   automatically - I'm not convinced that's what should be happening.  At the very least, 
   we should be caching the results.

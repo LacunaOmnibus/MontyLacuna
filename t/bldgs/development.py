@@ -8,8 +8,8 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'play_test',
-    config_section = 'my_sitter',
+    config_section = 'play_test',
+    #config_section = 'my_sitter',
 )
 
 my_planet = glc.get_body_byname( 'bmots rof 2.1' )
@@ -19,16 +19,16 @@ dev = my_planet.get_building_coords( -2, -4 )
 
 ### Subsidize entire build queue
 ###
-#rva = dev.subsidize_build_queue()
-#glc.pp.pprint( rva['essentia_spent'] )
+#cost = dev.subsidize_build_queue()
+#print( "I spent {} E to subsidize my whole build queue.".format(cost) )
 
 
 ### Subsidize a single build
 ###
-#sp = my_planet.get_building_coords( -1, -2 )
-#one_build = { 'scheduled_id': sp.id }
-#rvb = dev.subsidize_one_build( one_build )
-#glc.pp.pprint( rvb )
+#bldg = my_planet.get_building_coords( 5, 4 )   # coords of a building that's upgrading now.
+#one_build = { 'scheduled_id': bldg.id }
+#cost = dev.subsidize_one_build( one_build )
+#print( "I spent {} E to subsidize a single building.".format(cost) )
 
 
 ### Cancel a single build

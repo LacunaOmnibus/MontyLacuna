@@ -16,8 +16,9 @@ dist = my_planet.get_building_coords( -1, -3 )
 
 ### List resources onsite to see what can be reserved
 ###
-#rva = dist.get_stored_resources( )
-#glc.pp.pprint( rva['resources'] )
+res, space = dist.get_stored_resources( )
+print( "I have {} water stored".format(res.water) )
+print( "I have {} anthracite stored".format(res.anthracite) )
 
 
 ### Reserve specific resources
