@@ -8,8 +8,9 @@ class geneticslab(lacuna.building.MyBuilding):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    #@lacuna.bc.LacunaObject.set_empire_status
+    #@lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def prepare_experiment( self, *args, **kwargs ):
         """ Returns information needed to set up a genetics experiment.
 
@@ -44,7 +45,12 @@ class geneticslab(lacuna.building.MyBuilding):
                 ...
             ],
         """
-        pass
+        ### the "..." are copypasta from the TLE docs, and I haven't got any 
+        ### prisoners lying around to test this with.  So for now, this method 
+        ### does nothing.  I've asked for help, and TT says he'll look into 
+        ### it.
+        self.client.pp.pprint( kwargs['rslt']['grafts'] )
+        quit()
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
@@ -86,3 +92,9 @@ class geneticslab(lacuna.building.MyBuilding):
         Raises ServerError 1005 for bad description.
         """
         pass
+
+
+class Grafts(lacuna.bc.SubClass):
+    pass
+
+

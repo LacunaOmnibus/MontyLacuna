@@ -17,7 +17,8 @@ gen         = my_planet.get_building_coords( 2, -5 )
 
 ### Prepare for experimentation
 ### 
-#rva = gen.prepare_experiment()
+rva = gen.prepare_experiment()
+quit()
 #del( rva['status'] )
 #glc.pp.pprint( rva )
 
