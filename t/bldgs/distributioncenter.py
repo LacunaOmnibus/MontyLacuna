@@ -14,11 +14,27 @@ my_planet = glc.get_body_byname( 'bmots rof 2.1' )
 dist = my_planet.get_building_coords( -1, -3 )
 
 
+### View the dist ctr
+###
+#view = dist.view( )
+#if view.can:
+#    print( "I can reserve a max of {:,} resources for {:,} seconds."
+#        .format(view.max_reserve_size, view.max_reserve_duration)
+#    )
+#else:
+#    print( "I can't reserve anything right now because there's already stuff being reserved." )
+#print( "" )
+#for r in view.resources.all_resources:
+#    quan = eval("view.resources."+r)
+#    print( "I currently have {:,} {} reserved".format(quan, r) )
+
+
 ### List resources onsite to see what can be reserved
 ###
-res, space = dist.get_stored_resources( )
-print( "I have {} water stored".format(res.water) )
-print( "I have {} anthracite stored".format(res.anthracite) )
+#res, space = dist.get_stored_resources( )
+#print( "Each resource unit takes up {} cargo space units.".format(space) )
+#print( "I have {:,} water stored".format(res.water) )
+#print( "I have {:,} anthracite stored".format(res.anthracite) )
 
 
 ### Reserve specific resources
@@ -37,18 +53,18 @@ res = [
         'quantity': 12
     },
 ]
-#rvb = dist.reserve( res )
-#glc.pp.pprint( rvb['reserve'] )
+#view = dist.reserve( res )
+#for r in view.resources.all_resources:
+#    quan = eval("view.resources."+r)
+#    if quan:
+#        print( "I currently have {:,} {} reserved".format(quan, r) )
 
-
-### Check to see what's currently in the reserve
-###
-#glc.pp.pprint( dist.view()['reserve'] )
 
 
 ### Release all reserved resources
 ###
-#rvc = dist.release_reserve( )
-#glc.pp.pprint( rvc )
+#view = dist.release_reserve( )
+#if view.can:
+#    print( "I can now store more resources because I just released what I'd had in there." )
 
 

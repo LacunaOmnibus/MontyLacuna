@@ -72,7 +72,6 @@ supposed to do.
   - blackholegenerator
   - development
   - distributioncenter
-    - CHECK I haven't got one of these on US1.
   - embassy
     - What I could test works, but testing of several methods would require making a test 
       account and inviting/rejecting/etc that account.  Currently I'm unable to create a 
