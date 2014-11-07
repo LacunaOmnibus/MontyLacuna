@@ -23,6 +23,8 @@ working package.
 Nothing.
 
 ## Glossary
+This should all end up somewhere more reasonable than this file eventually.
+
 - Standard search string
   - Several methods allow you to search for an item by name (a star, an empire, etc).  
     Some of these methods allow a "search string" instead of a full name.  A search string 
@@ -82,7 +84,10 @@ supposed to do.
   - entertainment
   - foodreserve
   - geneticslab
-    - CHECK need PT back up to oopify this
+    - CHECK PT is back up, but I need prisoners to test the gen lab on.  I created 
+      "tmtowtdi_testone" and "tmtowtdi_testtwo".  two is further along - I'm working on 
+      getting it up to the point of being able to make smugs to send to my actual account 
+      so I can send spies to test on.
   - intelligence
   - inteltraining
   - libraryofjith
