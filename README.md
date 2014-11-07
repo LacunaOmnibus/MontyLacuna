@@ -109,11 +109,9 @@ supposed to do.
   - security
   - shipyard
   - spaceport
+    - This appears not to be finished yet; check back on it again.
   - ssla
   - subspacesupplydepot
-    - Thoroughly untested.  Unless you're creating a complete game client (in which case 
-      you should have control over a working server), you'll never use this anyway so I'm 
-      OK with leaving this as-is.
   - thedillonforge
   - thefttraining
     - oopified
