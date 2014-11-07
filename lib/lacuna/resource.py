@@ -41,3 +41,16 @@ class PlanetaryOre(PlanetaryResource):
                         [ anthracite, bauxite, ... ]
     """
 
+class StoredResources(PlanetaryResource):
+    """ The resources stored on this planet.
+
+    Attributes:
+        water:      100,
+        anthracite: 200,
+        bauxite:    300,
+        ...
+    """
+
+
+
+

@@ -8,8 +8,8 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
-    config_section = 'play_test',
+    config_section = 'my_sitter',
+    #config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 trade       = my_planet.get_building_coords( 5, -5 )
@@ -22,7 +22,6 @@ trade       = my_planet.get_building_coords( 5, -5 )
 #    print(i.name)
 
 ### View prisoners available for trading
-### UNTESTED (though should be fine); still need prisoners
 ###
 #pris, space_used = trade.get_prisoners()
 #for i in pris[0:3]:
@@ -146,7 +145,7 @@ if False:
 
 ### Push items to another of your colonies
 ###
-if false:
+if False:
     tradeable_ships, space_each = trade.get_ships()
     target_planet = glc.get_body_byname( 'bmots rof 1.2' )
     items = [

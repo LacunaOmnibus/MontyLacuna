@@ -8,8 +8,8 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
-    config_section = 'play_test',
+    config_section = 'my_sitter',
+    #config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 trade       = my_planet.get_building_coords( 5, -4 )
@@ -19,6 +19,13 @@ trade       = my_planet.get_building_coords( 5, -4 )
 ###
 #trade_max = trade.view()
 #print( "This SST can trade a max of", trade_max, "units per trade." )
+
+
+### View prisoners available for trading
+###
+#pris, space_used = trade.get_prisoners()
+#for i in pris[0:3]:
+#   print(i.name)
 
 
 ### Add a trade
@@ -50,6 +57,7 @@ trade       = my_planet.get_building_coords( 5, -4 )
 #plans, space_used = trade.get_plan_summary()
 #for i in plans[0:3]:
 #    print("plan:", i.name)
+
 
 ### View glyphs available for trading
 ###

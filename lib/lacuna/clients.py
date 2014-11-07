@@ -98,6 +98,10 @@ class Guest:
 
         self.set_up_cache()
 
+    def clear_cache(self):
+        req_cache = self.cache.get_cache('request_cache')
+        req_cache.clear()
+
     def set_up_cache(self):
         libdir      = os.path.abspath(os.path.dirname(__file__))
         vardir      = libdir + "/../../var"

@@ -1,15 +1,16 @@
 
-from lacuna.bc import LacunaObject
-from lacuna.building import MyBuilding
+import lacuna.bc
+import lacuna.building
+import lacuna.resource
 
-class distributioncenter(MyBuilding):
+class distributioncenter(lacuna.building.MyBuilding):
     path = 'distributioncenter'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def reserve( self, resources:list, **kwargs ):
         """ Reserves some resources for a set period of time.
 
@@ -44,8 +45,9 @@ class distributioncenter(MyBuilding):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    #@lacuna.bc.LacunaObject.set_empire_status
+    #@lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_stored_resources( self, **kwargs ):
         """ Returns a list of resources you currently have on this planet.
 
@@ -54,20 +56,18 @@ class distributioncenter(MyBuilding):
         these resources are available to be reserved in the distribution 
         center.
 
-        Retval contains:
-            'cargo_space_used_each' - Looks like this is always '1'.  I assume 
-            there was at some point the idea that a single unit of certain 
-            resources would require more than a single unit of cargo space.
-            'resources' - a dict of resources and quantities:
-                    {   'algae': 18963435782,
-                        'anthracite': 1287942,
-                        'apple': '16410860',
-                        ...         }
+        Returns a tuple:
+            resources       A single resources.StoredResources object
+            cargo_space     Amount of cargo space units occupied by each 
+                            individual resource.  Always '1'.
         """
-        pass
+        return (
+            lacuna.resources.StoredResources(self.client, kwargs['rslt']['resources']),
+            kwargs['rslt']['cargo_space_used_each']
+        )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def release_reserve( self, **kwargs ):
         """ Releases any resources currently being reserved.
 

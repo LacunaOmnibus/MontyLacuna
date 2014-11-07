@@ -31,14 +31,14 @@ tmt = lac.clients.Member(
 ### View my own empire's profile.
 ### This only works if you're logged in with your real, not sitter, password.
 ###
-#pro = tmt.empire.view_profile()
-#print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
-#    .format(pro.city, pro.country, pro.player_name, len(pro.medals.keys()))
-#)
+pro = tmt.empire.view_profile()
+print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
+    .format(pro.city, pro.country, pro.player_name, len(pro.medals.keys()))
+)
+
 
 ### See how many RPCs you've used so far.
-### This does not, itself, use any RPCs, so you can check it as often as you 
-### like.
+### This does not use any RPCs, so you can check it as often as you'd like.
 ###
 #print( "Number of RPCs used today by {} is {}". format(tmt.empire.name, tmt.empire.rpc_count) )
 
@@ -86,9 +86,9 @@ tmt = lac.clients.Member(
 
 ### See the initial species templates
 ###
-tmpls = tmt.empire.get_species_templates()
-for i in tmpls:
-    print( "{} is described as {}" .format(i.name, i.description) )
+#tmpls = tmt.empire.get_species_templates()
+#for i in tmpls:
+#    print( "{} is described as {}" .format(i.name, i.description) )
 
 
 ### 
