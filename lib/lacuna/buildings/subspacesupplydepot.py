@@ -1,53 +1,68 @@
 
-from lacuna.bc import LacunaObject
-from lacuna.building import MyBuilding
+import lacuna.bc
+import lacuna.building
 
 """
-    This entire module is untested; I haven't got an SSD to fool with.
+    The TLE docs claim that the transmit_*() methods will return the same 
+    ['building']['work'] block that complete_build_queue() does.
 
-    Since a utility script to run an SSD wouldn't have much utility, I'm not 
-    going to stress over this too much.
+    On PT, that simply isn't happening.  The resources are being transmitted, 
+    but I'm not getting a 'work' key back.  Those methods do successfully 
+    transmit the resource they're meant to, they're just not returning the 
+    right data.
 
-
-    Each method in here should return the same thing, a retval containing the 
-    key 'building':
-            {
-                "work" : {
-                    "seconds_remaining" : 99,
-                    "start" : "01 31 2010 13:09:05 +0600",
-                    "end" : "01 31 2010 13:09:05 +0600"
-                }
-            },
-
+    Screw it.  Nobody's ever going to script this building anyway; the fact 
+    that the methods at least transmit is close enough.
 """
 
-class subspacesupplydepot(MyBuilding):
+class subspacesupplydepot(lacuna.building.MyBuilding):
     path = 'subspacesupplydepot'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def transmit_food( self, *args, **kwargs ):
         pass
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def transmit_energy( self, *args, **kwargs ):
         pass
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def transmit_ore( self, *args, **kwargs ):
         pass
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def transmit_water( self, *args, **kwargs ):
         pass
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def complete_build_queue( self, *args, **kwargs ):
-        pass
+        """ Spends the SSD to complete the current build queue.
+
+        Returns a dict:
+                {
+                    "seconds_remaining" : 99,
+                    "start" : "01 31 2010 13:09:05 +0600",
+                    "end" : "01 31 2010 13:09:05 +0600"
+                }
+
+        Raises ServerError 1011 if there's not enough time on the SSD to 
+        complete the queue.
+        """
+        return kwargs['building']['work']
+
+
+class WorkOrder(lacuna.bc.SubClass):
+    """
+    Attributes:
+        seconds_remaining   99,
+        start               "01 31 2010 13:09:05 +0600",
+        end                 "01 31 2010 13:09:05 +0600"
+    """
+
