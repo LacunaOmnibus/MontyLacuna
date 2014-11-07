@@ -9,44 +9,33 @@ class distributioncenter(lacuna.building.MyBuilding):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
+    def view(self, *args, **kwargs):
+        """ Returns a single Reserve object.  """
+        return Reserve( self.client, kwargs['rslt']['reserve'] )
+
+    @lacuna.building.MyBuilding.call_returning_meth
     def reserve( self, resources:list, **kwargs ):
         """ Reserves some resources for a set period of time.
 
-        resources is a list of dicts of resources to reserve:
-                res = [
-                    { 'type': 'water', 'quantity': 100 },
-                    { 'type': 'energy', 'quantity': 200 },
-                ]
+        Once resources are reserved, you can't just add more resources to the 
+        existing reserve; each call to reserve() must specify all the resources 
+        to be reserved.  So this...
+                dist.reserve( [{'type':'apple', quantity:300}] )
+                dist.reserve( [{'type':'bean',  quantity:100}] )
+        ...would result in only 100 bean being reserved.
 
-        Once resources are reserved, you can't just add more resources.  A 
-        second call to reseve, eg:
-                res = [
-                    { 'type': 'apple', 'quantity': 300 },
-                ]
-        ...will result in ONLY the 300 apple being stored.
+        Arguments:
+            resources       List of dicts specifying what to reserve:
+                            [
+                                { 'type': 'water', 'quantity': 100 },
+                                { 'type': 'energy', 'quantity': 200 },
+                            ]
 
-        So each call to reserve() must contain the complete list of all 
-        resources you wish to reserve.
-
-        Retval includes key 'reserve':
-            {   'can': 0,
-                'max_reserve_duration': 7200,
-                'max_reserve_size': 125892,
-                'resources': [   {'quantity': 100, 'type': 'water'},
-                                {'quantity': 200, 'type': 'energy'}   ],
-                'seconds_remaining': 7200   }
-
-            'can' being set to false means that the dist center currently 
-            cannot reserve resources.  This is misleading, it certainly can.  
-            But again, re-calling reserve() will REPLACE the 
-            currently-reserved resources with the new list.
+        Returns a single Reserve object.
         """
-        pass
+        return Reserve( self.client, kwargs['rslt']['reserve'] )
 
-    #@lacuna.bc.LacunaObject.set_empire_status
-    #@lacuna.building.MyBuilding.call_building_meth
     @lacuna.building.MyBuilding.call_returning_meth
     def get_stored_resources( self, **kwargs ):
         """ Returns a list of resources you currently have on this planet.
@@ -62,22 +51,52 @@ class distributioncenter(lacuna.building.MyBuilding):
                             individual resource.  Always '1'.
         """
         return (
-            lacuna.resources.StoredResources(self.client, kwargs['rslt']['resources']),
+            lacuna.resource.StoredResources(self.client, kwargs['rslt']['resources']),
             kwargs['rslt']['cargo_space_used_each']
         )
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def release_reserve( self, **kwargs ):
         """ Releases any resources currently being reserved.
 
-        Retval contains key 'reserve':
-                {   'can': 1,
-                    'max_reserve_duration': 7200,
-                    'max_reserve_size': 125892      },
+        Returns a single Reserve object.
 
         Raises ServerError 1010 if there are currently no resources being 
         reserved.
         """
-        pass
+        return Reserve( self.client, kwargs['rslt']['reserve'] )
+
+class Reserve(lacuna.bc.SubClass):
+    """
+    Attributes:
+        seconds_remaining       0, # time until reserved resources will automatically be released
+        can                     1,
+        max_reserve_duration    "7200", # max length resources can be kept in reserve
+        max_reserve_size        100000, # max amount of resources that can be reserved
+        resources               A resource.StoredResources object.
+    """
+    ### mydict['resources'] is coming to us as:
+        # [       # resources currently in reserve
+        #     {
+        #         "type" : "water",
+        #         "quanity" : 2000
+        #     },
+        #     {
+        #         "type" : "apples",
+        #         "quanity" : 2000
+        #     }
+        #     ...
+        # ]
+
+    def __init__(self, client, mydict:dict):
+        resdict = {}
+        if 'resources' in mydict:
+            for i in mydict['resources']:
+                resdict[ i['type'] ] = i['quantity']
+        mydict['resources'] = lacuna.resource.StoredResources(client, resdict)
+        super().__init__(client, mydict)
+
+
+
+
 

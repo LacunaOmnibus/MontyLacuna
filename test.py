@@ -1,10 +1,10 @@
 
 import re
 
-str = 'p16-1'
+l1 = [ "foo", "bar", "baz" ]
+l2 = [ "one", "two", "three" ]
 
-mymatch = re.match("^(p\d+)", str)
-if mymatch:
-    print( mymatch.group(1) )
+l3 = l1 + l2 + [ "extra", "stuff" ]
 
+print( l3 )
 
