@@ -76,14 +76,14 @@ supposed to do.
   - distributioncenter
   - embassy
     - CHECK this needs to be fixed up and tested with my test accounts on PT.
+    - Invite tmtowtdi_testone and -two; use them for testing this.
   - energyreserve
   - entertainment
   - foodreserve
   - geneticslab
-    - CHECK PT is back up, but I need prisoners to test the gen lab on.  I created 
-      "tmtowtdi_testone" and "tmtowtdi_testtwo".  two is further along - I'm working on 
-      getting it up to the point of being able to make smugs to send to my actual account 
-      so I can send spies to test on.
+    - CHECK PT is back up, but I need prisoners to test the gen lab on.  The 
+      tmtowtdi account has prisoners on bmots01 from tmtowtdi_testtwo right 
+      now - use those for testing this.
   - intelligence
   - inteltraining
   - libraryofjith
