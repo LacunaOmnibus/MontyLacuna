@@ -18,23 +18,34 @@ class Guest:
     """ Guest users are not logged in.
 
     Accepts the following named arguments:
-        ### Setting these two obviates the need to set anything else.
-        config_file - path to your configparser-friendly config file
-        config_section - the section in your config file to read from
+        ### Setting the first two obviates the need to set anything else.
 
-        api_key - your TLE api_key.  Omitting this is fine; the default 
-            key (the string 'anonymous') will be used.
-        logfile - path to your logfile.  Defaults to no logfile; only WARNING 
-            or higher log events will display to the terminal.
-        proto - http or https.  Default http.
-        host - us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Default us1.
-        sleep_on_call - Integer seconds.  Default 1. 
-            Number of seconds to sleep after each call to attempt to avoid 
-            using more than the limit of 60 RPCs per minute.  
-        sleep_on_error - Boolean.  Default True.
-            If we've used over 60 RPCs in a minute, the server will produce 
-            an error.  If sleep_on_error is True, we'll sleep for a minute 
-            and then re-try our call.  If false, we'll throw an exception.
+        config_file     path to your configparser-friendly config file
+
+        config_section  the section in your config file to read from
+
+        api_key         your TLE api_key.  Omitting this is fine; the default
+                        key (the string 'anonymous') will be used.
+
+        logfile         path to your logfile.  Defaults to no logfile; only
+                        WARNING or higher log events will display to the 
+                        terminal.
+
+        proto           http or https.  Defaults to http.
+
+        host            us1.lacunaexpanse.com or pt.lacunaexpanse.com.
+                        Defaults to us1.
+                        
+        sleep_on_call   Integer seconds.  Defaults to 1.  Number of seconds to
+                        sleep after each call to attempt to avoid using more 
+                        than the limit of 60 RPCs per minute.
+        
+        sleep_on_error  Boolean.  Defaults to True.  If we've used over 60
+                        RPCs in a minute, the server will produce an error, 
+                        and if this setting is True, when we get that server 
+                        error we'll sleep for a minute and then re-try our 
+                        call.  If this setting is false, we'll throw an 
+                        exception.
 
     Generally, you'll omit all arguments except for config_file and 
     config_section, and just fill the appropriate values out in your config.
@@ -43,13 +54,16 @@ class Guest:
     file take precedence over any other values, including passed-in values.
 
     Debugging
-        To take a look at the actual JSON that would be sent to the TLE servers 
-        for a specific method call, in your calling code you can do this:
-            myobject.client.debugging_method = 'some_TLE_method'
-            myobject.some_TLE_method( arg1, arg2, ... )
+        To take a look at the actual JSON that would be sent to the TLE 
+        servers for a specific method call, in your calling code you can set a 
+        debugging method on your client, eg:
 
-        The JSON will be dumped to the screen and your script will immediately 
-        quit rather than actually sending that JSON.
+            empire.client.debugging_method = 'view_profile'
+            empire.view_profile()
+
+        In this case, the call to view_profile() will cause the JSON that 
+        would normally be sent to the server to instead be dumped to your 
+        screen, after which the script will quit.
     """
 
     pp = pprint.PrettyPrinter( indent = 4 )
