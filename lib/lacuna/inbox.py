@@ -74,7 +74,7 @@ class Inbox(lacuna.bc.LacunaObject):
     """archive_messages() and trash_messages() work identically.
     They both take a list of message IDs to either archive or trash.
 
-    Both return a struct containing:
+    Both return a dict containing:
                 {
                     success : [id, id, id, ...]
                     failure : [id, id, id, ...]

@@ -371,8 +371,8 @@ class MyBody(Body):
     @Body.set_body_status
     @call_member_meth
     def get_buildings( self, *args, **kwargs ):
-        """ Returns struct with key 'buildings'.  This struct is keyed off 
-        building IDs.  Values are building structs as documented top of this 
+        """ Returns dict with key 'buildings'.  This dict is keyed off 
+        building IDs.  Values are building dicts as documented top of this 
         doc.
         """
         pass
@@ -424,9 +424,9 @@ class MyBody(Body):
     def repair_list( self, building_ids_to_repair:list, *args, **kwargs ):
         """ Repairs all buildings indicated by ID in the passed-in list.
 
-        Per the API docs, this should return a struct including key 
-        'buildings', itself a struct of building_id => building_struct.  This 
-        'buildings' struct will only contain buildings passed in 
+        Per the API docs, this should return a dict including key 
+        'buildings', itself a dict of building_id => building_dict.  This 
+        'buildings' dict will only contain buildings passed in 
         building_ids_to_repair.
 
         CHECK I haven't got any broken buildings handy to actually test this 
@@ -512,7 +512,7 @@ class MyBody(Body):
                     },
                     'url': '/waterpurification'
                 },
-                { another building struct },
+                { another building dict },
                 ...
             ]
 
@@ -525,7 +525,7 @@ class MyBody(Body):
     def rename( self, name:str = '', *args, **kwargs ):
         """ Renames the current planet.
 
-        For whatever reason, this returns int 1 on success.  NOT a struct 
+        For whatever reason, this returns int 1 on success.  NOT a dict 
         (like every other method), just a bare int.
         """
         pass

@@ -49,7 +49,7 @@ class Alliance(lacuna.bc.LacunaObject):
         this case, and there's currently no three letter string that would match 
         more than 25 alliances so there's no way to test.
 
-        rv['alliances'] is a list of structs:
+        rv['alliances'] is a list of dicts:
             [
                 {
                     "id": "1234",
