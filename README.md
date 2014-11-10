@@ -44,7 +44,6 @@ This should all end up somewhere more reasonable than this file eventually.
 work, but it hasn't been fully tested yet.
 
 - Captcha
-  - Including session persistence between scripts
 - Client
   - Guest
   - Member
@@ -63,20 +62,11 @@ work, but it hasn't been fully tested yet.
 exists, and stub classes exist for all buildings in the game.  I need to work 
 through those building stubs to make them each do whatever-it-is they're each 
 supposed to do.
-  - Existing base classes:
-    - Building
-      - All buildings inherit from this
-      - SingleStorage
-        - Base class for storage buildings for single-type resources (energy, water).
-      - MultiStorage
-        - Base class for storage buildings for multi-type resources (food, ore).
   - archaeology
   - blackholegenerator
   - development
   - distributioncenter
   - embassy
-    - CHECK this needs to be fixed up and tested with my test accounts on PT.
-    - Invite tmtowtdi_testone and -two; use them for testing this.
   - energyreserve
   - entertainment
   - foodreserve

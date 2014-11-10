@@ -1,13 +1,13 @@
 
-from lacuna.bc import LacunaObject
+import lacuna.bc
 from lacuna.exceptions import GDIError
 
-class Alliance(LacunaObject):
+class Alliance(lacuna.bc.LacunaObject):
 
     path = 'alliance'
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.call_member_meth
     def view_profile( self, alliance_id:int, *args, **kwargs ):
         """Returns publicly-accessible data about the alliance.
 
@@ -38,8 +38,8 @@ class Alliance(LacunaObject):
         """
         pass
 
-    @LacunaObject.set_empire_status
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.call_member_meth
     def find( self, partial_name:str, *args, **kwargs ):
         """partial_name must be at least 3 characters.  Matches alliances whose names
         START with partial_name (NOT those whose names just contain partial_name).
@@ -62,19 +62,21 @@ class Alliance(LacunaObject):
 
 
 class MyAlliance(Alliance):
-    """This allows an empire that's part of an alliance to get info on his
-    own alliance without needing to know his own alliance's ID off the top 
-    of his head.
-            my_all = MyAlliance( client )
-    ...etc.  All of the keys returned by Alliance.view_profile() are available.
+    """ This is the alliance of which the current empire is a member.
 
-    The users.Member class has a nice sugar method to make this more OOP-y:
-            my_all = client.get_my_alliance()
+    You'll normally get at this via the clients.Member's get_my_alliance() 
+    method:
+            my_alliance = my_client.get_my_alliance()
 
-    Either way, you've now got access to info on your own alliance:
-            print( my_all.id )
-            print( my_all.name )
-        ...etc...
+    Attributes:
+        id              12345
+        name            United Union of Federated Allied Groups
+        description     We're an alliance.
+        leader_id       67890
+        date_created    "01 31 2010 13:09:05 +0000",
+        influence       0
+        members         List of alliance.Member objects
+        space_stations  List of alliance.SpaceStation objects
     """
 
     def __init__( self, client:object ):
@@ -83,26 +85,50 @@ class MyAlliance(Alliance):
         ### This has always been confusing.
         ###
         ### An Empire object does not know its own alliance.  You've got to 
-        ### call the view_public_profile() method, sending the Empire object's 
-        ### ID as argument.
+        ### call Empire.view_public_profile() method, sending the Empire 
+        ### object's ID as argument.
         ###
         ### The rv of that view_public_profile() call _will_ contain the 
         ### alliance ID.
 
         empire_pub = self.client.empire.view_public_profile( self.client.empire.id )
-        if 'alliance' not in empire_pub['profile']:
+        if not hasattr(empire_pub, 'alliance'):
             raise GDIError("Client empire is not in an alliance, so cannot access the MyAlliance class.")
-        ally_id = empire_pub['profile']['alliance']['id']
+        ally_id = empire_pub.alliance['id']
 
         ally = Alliance( self.client )
         ally_profile = ally.view_profile( ally_id )['profile']
 
-        self.id = ally_profile['id']
-        self.name = ally_profile['name']
-        self.description = ally_profile['description']
-        self.leader_id = ally_profile['leader_id']
-        self.date_created = ally_profile['date_created']
-        self.members = ally_profile['members']
-        self.space_stations = ally_profile['space_stations']
-        self.influence = ally_profile['influence']
+        for i in ['id', 'name', 'description', 'leader_id', 'date_created', 'influence' ]:
+            setattr(self, i, ally_profile[i])
+
+        member_list = []
+        for i in ally_profile['members']:
+            member_list.append( Member(self.client, i) )
+        self.members = member_list
+
+        ss_list = []
+        for i in ally_profile['space_stations']:
+            ss_list.append( SpaceStation(self.client, i) )
+        self.space_stations = ss_list
+
+class Member(lacuna.bc.SubClass):
+    """ An alliance member.
+
+    Attributes:
+        id          5810
+        name        Invitee One
+    """
+
+class SpaceStation(lacuna.bc.SubClass):
+    """ An alliance-owned space station.
+
+    Attributes:
+        id          12345
+        name        Satellite of Love
+        x           10
+        y           -10
+    """
+
+
 
