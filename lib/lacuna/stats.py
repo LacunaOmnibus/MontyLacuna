@@ -107,8 +107,8 @@ class Stats(lacuna.bc.LacunaObject):
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def empire_rank( self, sort_by = 'empire_size_rank', page_number = 1, *args, **kwargs ):
-        """ Returns struct with keys:
-                'empires'           list of structs, one struct per empire
+        """ Returns dict with keys:
+                'empires'           list of dict, one dict per empire
                         {
                             "empire_id" : "id-goes-here",                   # unique id
                             "empire_name" : "Earthlings",                   # empire name
@@ -166,9 +166,9 @@ class Stats(lacuna.bc.LacunaObject):
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def colony_rank( self, sort_by = 'population_rank', *args, **kwargs ):
-        """ Returns struct with keys:
+        """ Returns dict with keys:
                 status      standard
-                colonies    list of structs
+                colonies    list of dict
                         {
                             "empire_id" : "id-goes-here",                   # unique id
                             "empire_name" : "Earthlings",                   # empire name
@@ -188,9 +188,9 @@ class Stats(lacuna.bc.LacunaObject):
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def spy_rank( self, sort_by = 'level_rank', *args, **kwargs ):
-        """ Returns struct with keys:
+        """ Returns dict with keys:
                 status      standard
-                spies    list of structs
+                spies    list of dict
                         {
                             "empire_id" : "id-goes-here",                   # unique id
                             "empire_name" : "Earthlings",                   # empire name
@@ -211,9 +211,9 @@ class Stats(lacuna.bc.LacunaObject):
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def weekly_medal_winners( self, *args, **kwargs ):
-        """ Returns struct with keys:
+        """ Returns dict with keys:
                 status      standard
-                winners    list of structs
+                winners    list of dict
                         {
                             "empire_id" : "id-goes-here",
                             "empire_name" : "Earthlings",

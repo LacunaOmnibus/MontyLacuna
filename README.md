@@ -43,10 +43,14 @@ This should all end up somewhere more reasonable than this file eventually.
 "working" means that all functionality exists, and quickie scripts appear to 
 work, but it hasn't been fully tested yet.
 
+- Body
+  - May be oopified, may not.  CHECK.
+- Alliance
+  - May be oopified, may not.  CHECK.
 - Captcha
-- Client
-  - Guest
-  - Member
+  - May be oopified, may not.  CHECK.
+- Clients
+  - May be oopified, may not.  CHECK.
 - Empire
   - oopified
 - Inbox
@@ -56,7 +60,7 @@ work, but it hasn't been fully tested yet.
 - Stats
   - Mostly oopified.  I didn't fully test (and therefore didn't fully oopify) this just 
     because I don't see it being too useful.  Still, it should be completed.
-- Body
+
 - Buildings
   - "all functionality" is a bit of a stretch here.  The Buildings base class 
 exists, and stub classes exist for all buildings in the game.  I need to work 
@@ -95,16 +99,15 @@ supposed to do.
   - security
   - shipyard
   - spaceport
-    - This appears not to be finished yet; check back on it again.
+    - This appears not to be finished yet; CHECK back on it again.
   - ssla
   - subspacesupplydepot
   - thedillonforge
   - thefttraining
-    - oopified
   - themepark
   - trading (base class)
-    - trade
-    - transporter
+    - trade (trade ministry)
+    - transporter (sst)
     - I purposely skipped some methods in both trade and transporter.  They'll never be 
       used and I'm getting bored.  Add them if you're feeling productive.  The skipped 
       methods are noted in comments at the top of both files.
@@ -123,6 +126,9 @@ supposed to do.
   cache actually needs to be cleared periodically
   - What's there now probably won't hurt any short quickie scripts, though it probably 
     won't help those much either.  But it would hurt a long-running program, eg LacunaWaX.
+  - The more I look at what's there, the more I think it exists as an example of how 
+    beaker (the caching module) works.  I don't think the cache-every-call that I've got 
+    in there now is sensible at all.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
@@ -131,7 +137,4 @@ supposed to do.
   we should be caching the results.
 - I'm going to want a "convert_date()" method, which'll probably mean I'll want a TZ 
   attribute of clients.Member.  And I'll need to learn about python date handling.
-- For some stupid reason I keep referring to dicts as "structs".  Ack for "struct" and fix 
-  that.
-
 
