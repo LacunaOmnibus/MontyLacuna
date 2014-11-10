@@ -138,17 +138,24 @@ class Stats(lacuna.bc.LacunaObject):
     def find_empire_rank( self, sort_by = '', empire_name = '', *args, **kwargs ):
         """ Returns info on specific empires in the ranks.
 
-        Usually you're just looking for info on a single empire, but keep in 
-        mind that this method has the potential of returning multiple empires; 
-        an empire_name argument of "inf" will return both "Infinate Ones" and 
-        "Infinitus Imperium".
-
-        So remember that this is returning is list, not a single object.
-
         Arguments:
             sort_by         String.  See empire_rank()
             empire_name     Standard TLE search string.
-        
+
+        READ THAT AGAIN
+        You need to pass that sort_by argument.  You're probably looking for a 
+        single empire's info, so you don't really care how it's sorted, but you 
+        still need to pass that in.  The most common way of calling this is 
+        going to be:
+
+                empire = stats.find_empire_rank( '', 'Some Empire Name' )[0]
+
+        Keep in mind that this method has the potential of returning multiple 
+        empires; an empire_name argument of "inf" will return both "Infinate 
+        Ones" and "Infinitus Imperium".
+
+        So remember that this is returning is list, not a single object.
+
         Returns list of stats.EmpireInfo objects.
         """
         mylist = []

@@ -19,24 +19,13 @@ class embassy(lacuna.building.MyBuilding):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def create_alliance( self, alliance_name:str, **kwargs ):
         """ Create a new alliance.
 
-        Retval contains key 'alliance':
-            {       'announcements': None,
-                    'date_created': '21 10 2014 21:56:34 +0000',
-                    'description': None,
-                    'forum_uri': None,
-                    'id': '1606',
-                    'leader_id': '23598',
-                    'members': [{'empire_id': '23598', 'name': 'tmtowtdi'}],
-                    'name': 'Test Alliance'     },
-
-        Raises ServerError 1010 if you're already in an alliance.
+        Returns an embassy.AllianceData object.
         """
-        pass
+        return AllianceData(self.client, kwargs['rslt']['alliance'])
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
@@ -60,22 +49,13 @@ class embassy(lacuna.building.MyBuilding):
         """
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_alliance_status( self, **kwargs ):
         """ Gets status of your alliance.
 
-        Retval includes key 'alliance':
-                {   'announcements': None,
-                    'date_created': '21 10 2014 22:01:02 +0000',
-                    'description': None,
-                    'forum_uri': '',
-                    'id': '1607',
-                    'leader_id': '23598',
-                    'members': [{'empire_id': '23598', 'name': 'tmtowtdi'}],
-                    'name': 'My Test Alliance'  },
+        Returns an empire.AllianceData object.
         """
-        pass
+        return AllianceData(self.client, kwargs['rslt']['alliance'])
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
@@ -88,19 +68,16 @@ class embassy(lacuna.building.MyBuilding):
         """
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_pending_invites( self, **kwargs ):
         """ Get list of sent, but not yet accepted, invites.
 
-        Retval contains key 'invites':
-                [   {'empire_id': '1234', 'id': '5810', 'name': 'Invitee One'},
-                    {'empire_id': '5678', 'id': '5811', 'name': 'Invitee Two'}   ]
-
-            'id' is the ID of the invite itself, and is what must be passed to 
-            withdraw_invite().
+        Returns a list of InvitedGuest objects.
         """
-        pass
+        mylist = []
+        for i in kwargs['rslt']['invites']:
+            mylist.append( InvitedGuest(self.client, i) )
+        return mylist
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
@@ -108,53 +85,56 @@ class embassy(lacuna.building.MyBuilding):
         """ Withdraws a pending alliance invite."""
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_my_invites( self, **kwargs ):
         """ Gets list of alliance invitations received by your empire.
-        CHECK untested as I can't create an empire on PT.  Should work.
-        """
-        pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+        Returns a list of AllianceInvited objects.
+        """
+        mylist = []
+        for i in kwargs['rslt']['invites']:
+            mylist.append( AllianceInvited(self.client, i) )
+        return mylist
+
+    @lacuna.building.MyBuilding.call_returning_meth
     def accept_invite( self, invite_id:int, message:str = '', **kwargs ):
         """ Accepts an alliance invitation.
-        CHECK untested as I can't create an empire on PT.  Should work.
+
+        Returns an embassy.AllianceData object.
         """
-        pass
+        return AllianceData(self.client, kwargs['rslt']['alliance'])
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
     def reject_invite( self, invite_id:int, message:str = '', **kwargs ):
         """ Rejects an alliance invitation.
-        CHECK untested as I can't create an empire on PT.  Should work.
+        This sends a mail back to the inviting empire letting them know that 
+        you're not interested.
         """
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def assign_alliance_leader( self, empire_id:int, **kwargs ):
         """ Sets a new empire to be the leader of your alliance.  Can only be 
         called by the current alliance leader.
-        CHECK untested as I can't create an empire on PT.  Should work.
-        """
-        pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+        Returns an embassy.AllianceData object.
+        """
+        return AllianceData(self.client, kwargs['rslt']['alliance'])
+
+    @lacuna.building.MyBuilding.call_returning_meth
     def update_alliance( self, named_args:dict, **kwargs ):
         """ Updates some settings for your alliance.  Can only be called by the 
         alliance leader.
 
-        named_args is a dict:
-                {
-                    'forum_uri': 'http://www.example.com',
-                    'description': 'This is a public description',
-                    'announcements': 'This is only visible to alliance members',
-                }
+        Requires a single dict of arguments:
+            'forum_uri': 'http://www.example.com',
+            'description': 'This is a public description',
+            'announcements': 'This is only visible to alliance members',
+
+        Returns an embassy.AllianceData object.
         """
-        pass
+        return AllianceData(self.client, kwargs['rslt']['alliance'])
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
@@ -165,29 +145,22 @@ class embassy(lacuna.building.MyBuilding):
         """
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def view_stash( self, **kwargs ):
         """ Shows what resources are in the alliance stash.
 
-        Retval contains:
-            'stash' - dict of resources in the stash now.
-                { energy: 1000,
-                    water: 2000,
-                    ...     }
-            'stored' - dict of resources currently on the planet where your 
-            embassy is; these resources are available to be added to the stash.
+        Returns an embassy.Stash object.
         """
-        pass
+        return Stash(self.client, kwargs['rslt'])
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def donate_to_stash( self, donation:dict, **kwargs ):
         """ Donate items to the alliance stash.
 
-        donation is a struct of resource: quantity:
-                donation = { 'apple': 10, 'burger': 20, ... }
-
+        Requires a dictionary of items to donate:
+                {   'apple': 10,
+                    'burger': 20, 
+                    ...     }
         Waste cannot be donated.
 
         An alliance stash can hold a maximum of 500,000 units of resources,
@@ -195,16 +168,14 @@ class embassy(lacuna.building.MyBuilding):
         donation is no longer possible.  At that point, all additions to and 
         removals from the stash must be done by exchange_with_stash().
 
-        Retval contains 'stash', as documented in view_stash().  The returned 
-        stash includes your donation.
+        Returns an embassy.Stash object.
 
         Raises ServerError 1009 if the donation would increase the stash to
         more than 500,000 resource units.
         """
-        pass
+        return Stash(self.client, kwargs['rslt'])
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def exchange_with_stash( self, donation:dict, request:dict, **kwargs ):
         """ Exchange equal amounts of your resources with resources currently 
         in the stash.
@@ -220,16 +191,18 @@ class embassy(lacuna.building.MyBuilding):
             donation = { 'apple': 10, 'burger': 10 }
             request  = { 'bean': 19 }
 
+        Returns an embassy.Stash object.
+
         Raises ServerError 1009 if the donation and request quantities do not 
         match, or if you do not have enough resources on hand to cover your 
         specified donation.
 
         Raises ServerError 1010 if the stash does not contain the requested res.
         """
-        pass
+        return Stash(self.client, kwargs['rslt'])
 
 
-class CreatedAlliance(lacuna.bc.SubClass):
+class AllianceData(lacuna.bc.SubClass):
     """
     Attributes:
         announcements   None,
@@ -242,6 +215,46 @@ class CreatedAlliance(lacuna.bc.SubClass):
         name            'Test Alliance'     },
     """
 
+class InvitedGuest(lacuna.bc.SubClass):
+    """ This is an invite your alliance sends out to an empire.
+    Attributes:
+        id          5810                ID of the invite itself
+        empire_id   1234                ID of the invited empire
+        name        Invitee One         Name of the invited empire
+    """
 
+class AllianceInvited(lacuna.bc.SubClass):
+    """ This is an invitation your empire has received from an alliance.
+    Attributes:
+        id              5810                ID of the invite itself
+        alliance_id     1234                ID of the invited empire
+        name            United Alliance     Name of the inviting alliance
+    """
+
+class Stash():
+    """ The current contents of the alliance stash.
+
+    Attributes:
+        stash                       Dict of items currently in the stash
+                                        {   "gold" : 4500,
+                                            "water" : 1000,
+                                            ...     }
+        stored                      Dict of items currently stored on your planet; these
+                                        items can be exchanged with the stash
+                                            {   "bauxite" : 5500,
+                                                "energy" : 9000,
+                                    ...     }
+        max_exchange_size           Integer limit you may include in a single 
+                                    exchange
+        exchanges_remaining_today   Integer number of exchanges you have left 
+                                    for the day.
+    """
+
+    def __init__( self, client:object, mydict:dict ):
+        self.client                     = client
+        self.stash                      = mydict['stash']
+        self.stored                     = mydict['stored']
+        self.max_exchange_size          = mydict['max_exchange_size']
+        self.exchanges_remaining_today  = mydict['exchanges_remaining_today']
 
 

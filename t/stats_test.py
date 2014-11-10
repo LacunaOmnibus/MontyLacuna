@@ -49,6 +49,13 @@ for i in guest_cred['Play Testers']:
 #    print( "{} appears on page {}.".format(i.alliance_name, i.page_number) )
 
 
+### Get info on a single player empire
+###
+#player = stats.find_empire_rank( 'empire_size_rank', 'tmtowtdi_test' )[0]
+#print( "{} has ID {}.".format(player.empire_name, player.empire_id) )
+
+
+
 ### CHECK this is where I got tired of doing the same thing over and over and 
 ### stopped testing.  I'm a bad person.
 
