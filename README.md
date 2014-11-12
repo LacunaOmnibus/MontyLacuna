@@ -81,14 +81,10 @@ supposed to do.
   - libraryofjith
   - mayhemtraining
   - mercenariesguild
-    - About halfway oopified
-    - CHECK need PT back up to oopify this
   - miningministry
   - missioncommand
   - network19
   - observatory
-    - Mostly oopified
-    - CHECK need PT back up to test abandoning all probes
   - oracleofanid
   - orestorage
   - park
@@ -138,4 +134,8 @@ supposed to do.
   we should be caching the results.
 - I'm going to want a "convert_date()" method, which'll probably mean I'll want a TZ 
   attribute of clients.Member.  And I'll need to learn about python date handling.
+- lacuna.bc.SubClass is idiotically named.  It's meant as a full-coverage superclass, not 
+  a subclass.  Do something about that name.
+
+
 
