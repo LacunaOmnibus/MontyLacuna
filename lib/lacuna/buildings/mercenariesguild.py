@@ -137,4 +137,3 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """
         pass
 
-
