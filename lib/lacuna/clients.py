@@ -76,8 +76,10 @@ class Guest:
     ]
 
     def __del__( self ):
-        req_cache = self.cache.get_cache('request_cache')
-        req_cache.clear()
+        #print( "This is the client's __del__ method." )
+        #req_cache = self.cache.get_cache('request_cache')
+        #req_cache.clear()
+        pass
 
     def __init__( self,
             config_file = '', config_section = '',
@@ -312,12 +314,15 @@ class Guest:
         emp_name = self.determine_empname()
         l = self.request_logger
 
-        def get_req():
-            resp = requests.post( url, request_json )
-            return resp
-        req_cache = self.cache.get_cache('request_cache')
-        cache_key = method + repr(params)
-        resp = req_cache.get( key = cache_key, createfunc = get_req )
+        #def get_req():
+        #    resp = requests.post( url, request_json )
+        #    return resp
+        #req_cache = self.cache.get_cache('request_cache')
+        #cache_key = method + repr(params)
+        #resp = req_cache.get( key = cache_key, createfunc = get_req )
+
+        ### Skip the cache altogether
+        resp = requests.post( url, request_json )
 
         ### The json parser will happily return a result when handed a raw 
         ### string instead of json (json.dumps("foobar") works just fine).  

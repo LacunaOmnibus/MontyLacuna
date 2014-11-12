@@ -76,9 +76,6 @@ supposed to do.
   - entertainment
   - foodreserve
   - geneticslab
-    - CHECK PT is back up, but I need prisoners to test the gen lab on.  The 
-      tmtowtdi account has prisoners on bmots01 from tmtowtdi_testtwo right 
-      now - use those for testing this.
   - intelligence
   - inteltraining
   - libraryofjith
@@ -130,6 +127,9 @@ supposed to do.
   - The more I look at what's there, the more I think it exists as an example of how 
     beaker (the caching module) works.  I don't think the cache-every-call that I've got 
     in there now is sensible at all.
+  - CHECK the caching problem is way worse than I thought - the cache is _not_ being 
+    cleared after each run; I apparently do not understand how __del__ works.  For now, 
+    I've commented the caching out entirely.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
