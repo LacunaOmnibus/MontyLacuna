@@ -122,19 +122,20 @@ supposed to do.
   - The more I look at what's there, the more I think it exists as an example of how 
     beaker (the caching module) works.  I don't think the cache-every-call that I've got 
     in there now is sensible at all.
-  - CHECK the caching problem is way worse than I thought - the cache is _not_ being 
+  - CHECK the caching problem is way worse than I thought - the cache is _not_ always being 
     cleared after each run; I apparently do not understand how __del__ works.  For now, 
     I've commented the caching out entirely.
+    - Instead of caching every request, I'm going to need to be more selective.  Which is 
+      more work, but makes more sense.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 
   automatically - I'm not convinced that's what should be happening.  At the very least, 
   we should be caching the results.
-- I'm going to want a "convert_date()" method, which'll probably mean I'll want a TZ 
-  attribute of clients.Member.  And I'll need to learn about python date handling.
 - lacuna.bc.SubClass is idiotically named.  It's meant as a full-coverage superclass, not 
   a subclass.  Do something about that name.
-
+- Figure out how to generate HTML documentation from my docstrings.
+- Figure out how to install this puppy (setup.py?)
 
 
