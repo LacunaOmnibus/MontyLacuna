@@ -14,31 +14,16 @@ class mercenariesguild(lacuna.building.MyBuilding):
     def view_market( self, page_number:int = 1, *args, **kwargs ):
         """ Displays a page of trades, up to 25 trades per page.
 
-        Retval includes:
-            "trade_count":  Integer total number of trades.  This is not the
+        Returns a tuple:
+            trades          List of lacuna.trading.MercTrade objects
+            trade_count     Integer total number of trades.  This is not the
                             number of trades on the current page; this is the
-                            TOTAL number of trades available across all pages.
-            "page_number":  Integer number of the page you're currently viewing.
-            "trades":       List of trade dicts:
-                    {
-                        "date_offered" : "01 31 2010 13:09:05 +0600",
-                        "id" : "id-goes-here",
-                        "ask" : 25,     # essentia
-                        "offer" : [
-                            "Level 9 spy named Jack Bauer (Mercenary Transport) Offense: 875, Defense: 875, Intel: 2, Mayhem: 0, Politics: 0, Theft: 0, Mission Count Offensive: 0 Defensive: 2)",
-                        ],
-                        "body" : {
-                            "id" : "id-goes-here"         # use with get_trade_ships() to determine travel time
-                        },
-                        "empire" : {
-                            "id" : "id-goes-here",
-                            "name" : "Earthlings"
-                        }
-                    },
+                            total number of trades available across all pages.
+            page_number     Integer number of the page you're currently viewing.
         """
         mylist = []
         for i in kwargs['rslt']['trades']:
-            mylist.append( lacuna.trading.MercenariesTrade(self.client, i) )
+            mylist.append( lacuna.trading.MercTrade(self.client, i) )
         return(
             mylist,
             kwargs['rslt']['trade_count'],
@@ -52,6 +37,9 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """ Accept (purchase) a trade from the market.
 
         Requires captcha.
+
+        Raises ServerError 1009 if your Intelligence Ministry already has the 
+        maximum number of spies it can hold.
         """
         pass
 
@@ -74,17 +62,25 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """ Returns a list of ships currently onsite that can be used to add a
         mercenary trade.
 
-        The only ship type acceptable for adding mercenary trades is a spy pod.
+        Arguments:
+            target_body_id      Optional.  The integer ID of the body we want to 
+                                send to.
+                                If this is included, the trade ships returned 
+                                will include estimated_travel_time, the number 
+                                of seconds the trip will take.
+                                If this is omitted, the ships returned will not 
+                                include that estimated_travel_time attribute.
 
-        Returns a list of lacuna.ship.TradeableShip objects
+        Returns a list of lacuna.ship.TradeableShip objects.
+
+        The only ship type acceptable for adding mercenary trades is a spy pod, 
+        so those are the only ships that will be included in the returned list.
         """
         mylist = []
         for i in kwargs['rslt']['ships']:
             mylist.append( lacuna.ship.TradeableShip(self.client, i) )
         return mylist
 
-    #@lacuna.bc.LacunaObject.set_empire_status
-    #@lacuna.building.MyBuilding.call_building_meth
     @lacuna.building.MyBuilding.call_returning_meth
     def add_to_market( self, spy_id:int, ask:float, ship_id:int = 0, *args, **kwargs ):
         """ Adds a spy to the mercs market.
@@ -109,7 +105,7 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """ Shows the trades you have offered.
 
         Returns a tuple:
-            trades          List of ExistingTrade objects
+            trades          List of lacuna.trading.ExistingTrade objects
             trade_count     Integer total number of trades you have on the market.
             page_number     Integer page number you're looking at.  Will only be 
                             greater than 1 if you have more than 25 trades.
@@ -140,4 +136,5 @@ class mercenariesguild(lacuna.building.MyBuilding):
         in practice, on PT at least, it's returning just an empty string.
         """
         pass
+
 
