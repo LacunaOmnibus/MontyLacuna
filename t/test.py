@@ -15,7 +15,7 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'my_sitter',
+    config_section = 'my_real',
 )
 
 my_planet = glc.get_body_byname( 'bmots rof 2.1' )
