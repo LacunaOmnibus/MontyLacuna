@@ -194,30 +194,49 @@ class ExistingTrade(lacuna.bc.SubClass):
                                     
     """
 
-class MercenariesTrade(lacuna.bc.SubClass):
-    """ These are trades that exist on the Mercenaries Guild.
-
+class MercTrade(lacuna.bc.SubClass):
+    """
     Attributes:
-        id              "id-goes-here",
+        origin          mercenariesguild.MercTradeOrigin object
         date_offered    "01 31 2010 13:09:05 +0600",
-        ask             25,     # essentia
-        offer           "Level 9 spy named Jack Bauer (Mercenary Transport) Offense: 875, Defense: 875, Intel: 2, Mayhem: 0, Politics: 0, Theft: 0, Mission Count Offensive: 0 Defensive: 2)",
-        offer_summary   "Level 9 spy named Jack Bauer (M..."    # first 32 characters of 'offer' plus '...'
-        body_id         "id-goes-here"
-        empire          {
-                            "id" : "id-goes-here",
-                            "name" : "Earthlings"
-                        }
+        id              "id-goes-here",
+        ask             25,                         # essentia cost
+        offer           "Level 9 spy named Jack Bauer (Mercenary Transport) 
+                        Offense: 875, Defense: 875, Intel: 2, Mayhem: 0, 
+                        Politics: 0, Theft: 0, Mission Count Offensive: 0 
+                        Defensive: 2)",
+        offer_summary   The first 32 characters of self.offer, plus "..."
+                        eg "Level 9 spy named Jack Bauer (Me..."
     """
     def __init__(self, client, mydict:dict):
         self.client = client
 
-        self.offer = mydict['offer'][0]
+        self.origin = MercTradeOrigin( self.client, mydict )
+        del mydict['body']
+        del mydict['empire']
+
+        ### offer is documented as being a list with a single string element.  
+        ### I have no idea why it'd be a list with only a single string.  If 
+        ### that's really what it is, the join is meaningless, but if it's 
+        ### ever more than a single element, the join deals with it.
+        self.offer = " ".join(mydict['offer'])
         self.offer_summary = self.offer[0:32] + '...'
         del mydict['offer']
 
-        self.body_id = mydict['body']['id']
-        del mydict['body']
-
         for k, v in mydict.items():
             setattr(self, k, v)
+
+
+class MercTradeOrigin(lacuna.bc.SubClass):
+    """
+    Attributes:
+        body_id         ID of the sending body
+        empire_id       ID of the sending empire
+        empire_name     Name of the sending empire
+    """
+    def __init__(self, client, mydict:dict):
+        self.client         = client
+        self.body_id        = mydict['body']['id']
+        self.empire_id      = mydict['empire']['id']
+        self.empire_name    = mydict['empire']['name']
+

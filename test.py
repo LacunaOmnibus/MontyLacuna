@@ -1,10 +1,8 @@
 
-mydict = {
-    'foo':  'bar',
-    'baz':  'blarg',
-    'blargle':  'flurble',
-}
+mydict = {}
 
-for i in mydict.keys()[0:1]:
-    print( i )
+if mydict:
+    print( "empty but true" )
+else:
+    print( "empty and false" )
 

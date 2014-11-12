@@ -1,7 +1,8 @@
 
+import lacuna.bc
 import lacuna.building
 
-class Spy():
+class Spy(lacuna.bc.SubClass):
     """
     Attributes:
         id                     "id-goes-here",
@@ -48,7 +49,7 @@ class Spy():
         for k, v in mydict.items():
             setattr(self, k, v)
 
-class Assignment():
+class Assignment(lacuna.bc.SubClass):
     """ A task that a spy can be assigned to.
 
     Attributes:
@@ -152,7 +153,7 @@ class Merc(Spy):
     """
 
 
-class IntelView():
+class IntelView(lacuna.bc.SubClass):
     """
     Attributes:
         maximum             5,
@@ -173,7 +174,7 @@ class IntelView():
             setattr(self, k, v)
 
 
-class MissionCount():
+class MissionCount(lacuna.bc.SubClass):
     """ The count of missions performed by the spy.
 
     A spy is forcefully retired after performing 150 of either type of mission 
@@ -191,7 +192,7 @@ class MissionCount():
             setattr(self, k, v)
 
 
-class MissionResult():
+class MissionResult(lacuna.bc.SubClass):
     """
     Attributes:
         result          "Failure",
@@ -226,7 +227,7 @@ class Prisoner(Spy):
             sentence_expires    "01 31 2010 13:09:05 +0600"   
     """
 
-class SpyBody():
+class SpyBody(lacuna.bc.SubClass):
     """ A body (planet, space station, etc).  This can be where the spy is 
     currently located or his home base (from which he is controlled).
 
@@ -253,7 +254,7 @@ class Training(lacuna.building.MyBuilding):
         view = TrainingView( self.client, kwargs['rslt']['spies'] )
         return view
 
-class TrainingView():
+class TrainingView(lacuna.bc.SubClass):
     """
     Attributes:
         max_points      2600

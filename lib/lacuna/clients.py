@@ -14,7 +14,7 @@ import lacuna.inbox
 import lacuna.map
 import lacuna.stats
 
-class Guest:
+class Guest(lacuna.bc.SubClass):
     """ Guest users are not logged in.
 
     Accepts the following named arguments:
