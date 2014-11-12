@@ -1,6 +1,8 @@
 
 import lacuna.bc
 import lacuna.building
+import lacuna.empire
+import lacuna.spy
 
 class geneticslab(lacuna.building.MyBuilding):
     path = 'geneticslab'
@@ -8,93 +10,82 @@ class geneticslab(lacuna.building.MyBuilding):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    #@lacuna.bc.LacunaObject.set_empire_status
-    #@lacuna.building.MyBuilding.call_building_meth
     @lacuna.building.MyBuilding.call_returning_meth
     def prepare_experiment( self, *args, **kwargs ):
         """ Returns information needed to set up a genetics experiment.
 
-        CHECK - My affinities are maxed, so I can't test this.  I get a false 
-        value for "can_experiment", and "grafts" as an empty list, so much of 
-        the docu below is just taken from the TLE API docu, not from testing.
+        Returns a tuple:
+            grafts_list         List of dicts
+            survival_odds       Integer percent odds of the victim surviving
+            graft_odds          Integer percent odds of the graft working
+            essentia_cost       Integer cost per experiment attempt
+            can_experiment      Boolean; whether the lab can be used or not.
 
-        Retval includes:
-            "survival_odds" : 31,   # Integer percent odds of the victim surviving
-            "graft_odds" : 11,      # Integer percent odds of the graft working
-            "essentia_cost" : 2,    # Integer cost per experiment attempt
-            "can_experiment" : 1    # Boolean; whether the lab can be used or not.
-
-            "grafts" : [
-                {
-                    "spy" : {
-                        "id" : "id-goes-here",
-                        "name" : "James Bond",
-                        ...
-                    },
-                    "species" : {
-                        "min_orbit" : 3,
-                        "max_orbit" : 4,
-                        "science_affinity" : 4,
-                        ...
-                    },
-                    graftable_affinities : [
-                        "min_orbit",
-                        "management_affinity"
-                    ]
-                },
-                ...
-            ],
+        The dicts in grafts_list each describe one prisoner who's available to 
+        do experiments on:
+            spy                     spy.Spy object
+            species                 empire.Species object
+            graftable_affinities    List of affinity names; these are affinities 
+                                    of the prisoner's that are higher than your 
+                                    own, eg ["min_orbit", "management_affinity", 
+                                    ... ]
         """
-        ### the "..." are copypasta from the TLE docs, and I haven't got any 
-        ### prisoners lying around to test this with.  So for now, this method 
-        ### does nothing.  I've asked for help, and TT says he'll look into 
-        ### it.
-        self.client.pp.pprint( kwargs['rslt']['grafts'] )
-        quit()
+        grafts_list = []
+        for i in kwargs['rslt']['grafts']:
+            grafts_list.append({
+                'spy':                  lacuna.spy.Spy( self.client, i['spy'] ),
+                'species':              lacuna.empire.Species( self.client, i['species'] ),
+                'graftable_affinities': i['graftable_affinities'],
+            })
+        return (
+            grafts_list,
+            kwargs['rslt']['survival_odds'],
+            kwargs['rslt']['graft_odds'],
+            kwargs['rslt']['essentia_cost'],
+            kwargs['rslt']['can_experiment'],
+        )
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def run_experiment( self, spy_id:int, affinity:str, *args, **kwargs ):
         """ Runs a genetics experiment on a spy in an attempt to graft one of 
         his affinities onto your species.
 
-        CHECK - My affinities are maxed, so I can't test this.
-
-        Retval contains 'experiment', a dict containing:
-            "graft": 1          # Boolean; did the graft attempt succeed?
-            "survive": 1        # Boolean; did the victim survive?
-            "message": "yay!"   # String
-            
-        The retval also includes the same keys as returned by prepare_experiment().
+        Returns a single geneticslab.ExperimentResults object.
         """
-        pass
+        return ExperimentResults( self.client, kwargs['rslt']['experiment'] )
 
-    @lacuna.building.MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def rename_species( self, named_args:dict, *args, **kwargs ):
         """ Allows you to change your species name and description.
 
-        Accepts a dict:
-            "name": "My New Species Name",
-            "description": "My New Species Description"
+        Argument is a single dict:
+            name            "My New Species Name",
+            description     "My New Species Description"
 
-        Name:
-            - 30 characters or fewer
-            - Not blank
-            - @, & <, >, ; are prohibited.
+            name requirements:
+                - 30 characters or fewer
+                - Not blank
+                - @, & <, >, ; are prohibited.
 
-        Description:
-            - 1024 characters or fewer
-            - <, > are prohibited.
+            description requirements:
+                - 1024 characters or fewer
+                - <, > are prohibited.
 
         Retval contains only 'success', set to 1.  No status is returned.
 
         Raises ServerError 1000 for bad species name.
         Raises ServerError 1005 for bad description.
         """
-        pass
+        return kwargs['rslt']['success']
 
 
-class Grafts(lacuna.bc.SubClass):
+class ExperimentResults(lacuna.bc.SubClass):
+    """
+    Attributes:
+        graft       Integer.  1 for success, 0 for failure
+        survive     Integer.  1 for success, 0 for failure
+        message     String.   eg "The graft was a success, and the prisoner did not survive the experiment."
+    """
     pass
 
 

@@ -253,7 +253,6 @@ class Training(lacuna.building.MyBuilding):
         view = TrainingView( self.client, kwargs['rslt']['spies'] )
         return view
 
-
 class TrainingView():
     """
     Attributes:
