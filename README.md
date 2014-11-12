@@ -93,7 +93,6 @@ supposed to do.
   - security
   - shipyard
   - spaceport
-    - This appears not to be finished yet; CHECK back on it again.
   - ssla
   - subspacesupplydepot
   - thedillonforge

@@ -27,10 +27,11 @@ class SubClass():
 
         year    Four-digit year
         month   The month number, not zero-offset, so January is 1.  You can 
-                get the month name via:
+                get the month name or abbreviation via:
                     import calendar
                     d = tle2time( "30 11 2014 21:40:31 +0000" )
-                    print( calendar.month_name(d.month) )           # November
+                    print( calendar.month_name[d.month] )           # November
+                    print( calendar.month_abbr[d.month] )           # Nov
         day
         hour
         minute

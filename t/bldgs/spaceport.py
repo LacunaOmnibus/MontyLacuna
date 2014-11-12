@@ -1,9 +1,5 @@
 
-### 
-### Search LEFT OFF HERE
-###
-
-import os, sys
+import calendar, os, sys
 bindir = os.path.abspath(os.path.dirname(__file__))
 libdir = bindir + "/../../lib"
 sys.path.append(libdir)
@@ -12,7 +8,6 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
     config_section = 'play_test',
 )
 ### The map on PT is smaller than that on US1, but the US1 data was copied to 
@@ -22,6 +17,15 @@ my_planet   = glc.get_body_byname( 'bmots01' )
 sp          = my_planet.get_building_coords( 5, 5 )
 my_map      = glc.get_map();
 
+
+
+
+### View the spaceport, including a count of each type of Docked ship.
+###
+#docked_ships, docks_free, docks_max = sp.view()
+#print( "I have {} usable (free) of a total {} docks.".format(docks_free, docks_max) )
+#for name, count in docked_ships.items():
+#    print( "I have {} {}s docked and ready to go.".format(count, name) )
 
 
 ### View my ships
@@ -156,9 +160,10 @@ my_map      = glc.get_map();
 #for i in ships:
 #    print("Renaming", i.name, "to 'My New Ship Name'.")
 #    sp.name_ship( i.id, 'My New Ship Name' )
-    ### These attempts will raise 1005:
-    #sp.name_ship( i.id, 'My New Way-Too-Long Ship Name That Will Simply Not Work' )
-    #sp.name_ship( i.id, 'Shit Fucker' )
+### These attempts will raise 1005:
+###
+###sp.name_ship( i.id, 'My New Way-Too-Long Ship Name That Will Simply Not Work' )  # too long
+###sp.name_ship( i.id, 'Shit Fucker' )                                              # profanity
 
 
 ### Scuttle a ship
@@ -283,8 +288,12 @@ my_map      = glc.get_map();
 
 ### Look at battle logs
 ###
-#rv = sp.view_battle_logs()
-#glc.pp.pprint( rv['battle_log'][0] )
-#print( "--", rv['number_of_logs'], "--" )
+#log, num = sp.view_battle_logs()
+#print( "There are", num, "entries in my battle logbook." )
+#for i in log[0:5]:
+#    d = i.tle2time( i.date )
+#    print( "On {} {}, {}, I was attacked by a {} sent from {} by {}."
+#        .format(calendar.month_abbr[d.month], d.day, d.year, i.attacking_unit, i.attacking_body, i.attacking_empire)
+#    )
 
 
