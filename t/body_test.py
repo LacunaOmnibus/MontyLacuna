@@ -30,21 +30,26 @@ def list_bodies(glc):
 def list_buildings(body):
     pp.pprint( body.buildings_id )
 
+
 ### Call this for a list of your body names and IDs
+###
 #list_bodies(glc)
 #quit()
 
 
 ### Find your planet
+###
 #my_planet = glc.get_body( Some ID you pulled out of the list_bodies() call above )
 ### ...or, much nicer...
+###
 my_planet = glc.get_body_byname( 'bmots01' )
+print( "Planet {} has ID {}.".format(my_planet.name, my_planet.id) )
 
 
 
 ### More on nicer building-finding stuff in building_test.py.
-list_buildings(my_planet)
-quit()
+###
+#list_buildings(my_planet)
 
 
 

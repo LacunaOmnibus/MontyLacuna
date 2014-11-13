@@ -119,6 +119,7 @@ class LacunaObject(SubClass):
                                         "Venus": 12346,
                                         ...         },
         """
+        @functools.wraps(func)
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
             self = args[0]
@@ -153,6 +154,7 @@ class LacunaObject(SubClass):
         Makes an RPC not requiring that the client is logged in.
         The decorated method must be named identically to an existing TLE method.
         """
+        @functools.wraps(func)
         def inner(self, *args, **kwargs):
             kwargs['rslt'] = self.client.send( self.path, func.__name__, args )
             myrslt = func( self, *args, **kwargs )
@@ -166,6 +168,7 @@ class LacunaObject(SubClass):
         Expects positional arguments.  This is the 'old' way of doing things, but
         almost all of the TLE methods work this way.
         """
+        @functools.wraps(func)
         def inner(self, *args, **kwargs):
             ### Most of our callers will have self.client, except when self 
             ### is, itself, a client.
@@ -193,6 +196,7 @@ class LacunaObject(SubClass):
         using this, there's no need to decorate with 
         @LacunaObject.set_empire_status (and doing so will fail).
         """
+        @functools.wraps(func)
         def inner(self, *args, **kwargs):
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
@@ -214,6 +218,7 @@ class LacunaObject(SubClass):
         using this, there's no need to decorate with 
         @LacunaObject.set_empire_status (and doing so will fail).
         """
+        @functools.wraps(func)
         def inner(self, mydict:dict, *args, **kwargs):
             mydict['session_id'] = self.client.session_id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
@@ -231,25 +236,11 @@ class LacunaObject(SubClass):
         Expects named arguments.  This is the 'new' way of doing it, but there are
         fairly few methods that work this way.  See map.get_star_map()
         """
+        @functools.wraps(func)
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
             func( self, mydict )
-            return rslt
-        return inner
-
-    def call_body_meth_orig(func):
-        """ Decorator.  
-        Just like call_member_meth(), except that this version includes the 
-        body_id in the args passed to the server.
-        """
-        def inner(self, *args, **kwargs):
-            myargs = (self.client.session_id, self.body_id) + args
-            rslt = self.client.send( self.path, func.__name__, myargs )
-            status_dict = self.get_status_dict(rslt)
-            self.write_empire_status(status_dict)
-            kwargs['rslt'] = rslt
-            func( self, *args, **kwargs )
             return rslt
         return inner
 
@@ -274,6 +265,7 @@ class LacunaObject(SubClass):
         Just like call_returning_meth(), except that this version includes the 
         body_id in the args passed to the server.
         """
+        @functools.wraps(func)
         def inner(self, *args, **kwargs):
             myargs = (self.client.session_id, self.body_id) + args
             rslt = self.client.send( self.path, func.__name__, myargs )

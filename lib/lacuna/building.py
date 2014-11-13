@@ -31,7 +31,7 @@
     name collisions.
 """
 
-import re
+import functools, re
 from lacuna.bc import LacunaObject
 from lacuna.exceptions import \
     CaptchaResponseError, \
@@ -99,6 +99,7 @@ class MyBuilding(LacunaObject):
         Methods using this decorator get the original server result handed 
         back to them in kwargs['rslt'].
         """
+        @functools.wraps(func)
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id, self.id) + args
@@ -117,6 +118,7 @@ class MyBuilding(LacunaObject):
         Updates the empire status based on the TLE-returned data, as well as 
         the building status if it was included.
         """
+        @functools.wraps(func)
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id, self.id) + args
@@ -139,6 +141,7 @@ class MyBuilding(LacunaObject):
         using this, there's no need to decorate with 
         @LacunaObject.set_empire_status (and doing so will fail).
         """
+        @functools.wraps(func)
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id,) + args
@@ -156,6 +159,7 @@ class MyBuilding(LacunaObject):
         Expects named arguments.  This is the 'new' way of doing it, but there are
         fairly few methods that work this way.  See generate_singularity()
         """
+        @functools.wraps(func)
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
             mydict['id'] = self.id
@@ -174,6 +178,7 @@ class MyBuilding(LacunaObject):
         using this, there's no need to decorate with 
         @LacunaObject.set_empire_status (and doing so will fail).
         """
+        @functools.wraps(func)
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
             mydict['id'] = self.id
@@ -191,6 +196,7 @@ class MyBuilding(LacunaObject):
         Methods using this decorator get the original server result handed 
         back to them in kwargs['rslt'].
         """
+        @functools.wraps(func)
         def inner(self, *args):
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
@@ -204,6 +210,7 @@ class MyBuilding(LacunaObject):
         Many building methods only make sense to be called on a building that 
         actually already exists.  Add this decorator to those methods.
         """
+        @functools.wraps(func)
         def inner(self, *args):
             if not self.id:
                 raise AttributeError( "{} requires an already-existing building.".format(func.__name__) )
@@ -218,6 +225,7 @@ class MyBuilding(LacunaObject):
         decorate with LacunaObject.set_empire_status to get the empire status, 
         but we'll also decorate with this to set the body status.
         """
+        @functools.wraps(func)
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
             self = args[0]
