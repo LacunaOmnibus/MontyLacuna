@@ -4,6 +4,8 @@
 test.py
 test.txt
 __pycache__/
+doc/
 etc/lacuna.cfg
 var/cache/
 var/cachelck/
+Python3/
