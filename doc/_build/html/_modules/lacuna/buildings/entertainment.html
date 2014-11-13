@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.entertainment &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.entertainment</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">from</span> <span class="nn">lacuna.building</span> <span class="kn">import</span> <span class="n">MyBuilding</span>
+
+<span class="k">class</span> <span class="nc">entertainment</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">building</span><span class="o">.</span><span class="n">MyBuilding</span><span class="p">):</span>
+<div class="viewcode-block" id="entertainment"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.entertainment.entertainment">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;entertainment&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">get_lottery_voting_options</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="entertainment.get_lottery_voting_options"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.entertainment.entertainment.get_lottery_voting_options">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns a list of external sites that the user can visit.  Each</span>
+<span class="sd">        visit affords the user a single lottery ticket.</span>
+
+<span class="sd">        Requires a captcha.  If you have not solved one yet with the current </span>
+<span class="sd">        session_id, one will be displayed for you.</span>
+
+<span class="sd">        Retval includes &#39;options&#39;, a list of dicts:</span>
+<span class="sd">                    [</span>
+<span class="sd">                        { &quot;name&quot; : &quot;Some Site&quot;,</span>
+<span class="sd">                          &quot;url&quot; : &quot;http://www.somesite.com/vote?id=44&quot;   },</span>
+<span class="sd">                        ...</span>
+<span class="sd">                    ],</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;options&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">LotteryOptions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mylist</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_building_meth</span></div>
+    <span class="k">def</span> <span class="nf">duck_quack</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="entertainment.duck_quack"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.entertainment.entertainment.duck_quack">[docs]</a>        <span class="sd">&quot;&quot;&quot; Quacks the duck.</span>
+<span class="sd">        The reasons for wanting to do this are shrouded in the mysteries of </span>
+<span class="sd">        the ages.  But it&#39;s kind of fun.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">LotteryOptions</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="LotteryOptions"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.entertainment.LotteryOptions">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        name    Name of the gaming/voting website</span>
+<span class="sd">        url     URL to vote on TLE at the website</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

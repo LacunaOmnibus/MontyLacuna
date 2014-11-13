@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.trade &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.trade</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    I&#39;m getting to the point were replicating every single TLE method is </span>
+<span class="sd">    getting boring.</span>
+
+<span class="sd">    I&#39;m really doing this to learn Python.  On top of that, I can&#39;t see </span>
+<span class="sd">    anybody ever wanting to script some of the methods in here, so I&#39;m just </span>
+<span class="sd">    not bothering with them.</span>
+
+<span class="sd">        create_supply_chain()</span>
+<span class="sd">        delete_supply_chain()</span>
+<span class="sd">        update_supply_chain()</span>
+<span class="sd">        update_waste_chain()</span>
+<span class="sd">        add_supply_ship_to_fleet()</span>
+<span class="sd">        add_waste_ship_to_fleet()</span>
+<span class="sd">        remove_supply_ship_from_fleet()</span>
+<span class="sd">        remove_waste_ship_from_fleet()</span>
+<span class="sd">        report_abuse()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.trading</span>
+<span class="kn">import</span> <span class="nn">lacuna.ship</span>
+
+<span class="k">class</span> <span class="nc">trade</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">trading</span><span class="o">.</span><span class="n">TradeBldg</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;trade&#39;</span>
+<div class="viewcode-block" id="trade"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade">[docs]</a>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.trading.TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">add_to_market</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">offer</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="n">ask</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds a trade to the market.</span>
+<div class="viewcode-block" id="trade.add_to_market"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.add_to_market">[docs]</a>
+<span class="sd">        Arguments:</span>
+<span class="sd">            offer       List of dicts of items to offer for trade.  See below for</span>
+<span class="sd">                        more details.</span>
+<span class="sd">                            {   &#39;type&#39;:         &#39;bauxite&#39;,</span>
+<span class="sd">                                &#39;quantity&#39;:     10000   },</span>
+
+<span class="sd">            ask         Integer price in E you&#39;re asking for this trade, between </span>
+<span class="sd">                        0.1 and 100.</span>
+
+<span class="sd">            options     Dict of &#39;options&#39; to modify the trade.  The only option, </span>
+<span class="sd">                        which is not an option at all since it&#39;s required, is </span>
+<span class="sd">                        the ID of the ship you want to use to transport your </span>
+<span class="sd">                        trade.</span>
+<span class="sd">                            { &#39;ship_id&#39;:    12345   }</span>
+<span class="sd">                        Use get_trade_ships() to find appropriate ship IDs.</span>
+
+<span class="sd">        &quot;offer&quot;</span>
+<span class="sd">            There are five types of items you can offer for trade, each with </span>
+<span class="sd">            their own required keys for their offer dicts.</span>
+<span class="sd">                resources</span>
+<span class="sd">                    {   &#39;type&#39;:         &#39;bauxite&#39;,</span>
+<span class="sd">                        &#39;quantity&#39;:     10000   },</span>
+<span class="sd">                glyphs</span>
+<span class="sd">                    {   &#39;type&#39;:         &#39;glyph&#39;,</span>
+<span class="sd">                        &#39;name&#39;:         &#39;bauxite&#39;,</span>
+<span class="sd">                        &#39;quantity&#39;:     10000   },</span>
+<span class="sd">                plans</span>
+<span class="sd">                    {   &#39;type&#39;:                 &#39;plan&#39;,</span>
+<span class="sd">                        &#39;plan_type&#39;:            &#39;Permanent_AlgaePond&#39;,  # see get_plan_summary()</span>
+<span class="sd">                        &#39;level&#39;:                1,</span>
+<span class="sd">                        &#39;extra_build_level&#39;:    3,                      # If &gt; 1, &#39;level&#39; must be 1.</span>
+<span class="sd">                        &#39;quantity&#39;:             10000   },</span>
+<span class="sd">                prisoners</span>
+<span class="sd">                    {   &#39;type&#39;:         &#39;prisoner&#39;,</span>
+<span class="sd">                        &#39;prisoner_id&#39;:  12345   },</span>
+<span class="sd">                ships</span>
+<span class="sd">                    {   &#39;type&#39;:     &#39;ship&#39;,</span>
+<span class="sd">                        &#39;ship_id&#39;:  12345   },</span>
+
+<span class="sd">        Returns the ID of the trade just added.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;trade_id&#39;</span><span class="p">]</span>
+
+    <span class="nd">@lacuna.trading.TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">get_trade_ships</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">target_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span></div>
+        <span class="sd">&quot;&quot;&quot; Returns a list of ships available to be used as trade transports.</span>
+<div class="viewcode-block" id="trade.get_trade_ships"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.get_trade_ships">[docs]</a>
+<span class="sd">        Arguments</span>
+<span class="sd">            target_id   Optional ID of the target receiving the trade.  If </span>
+<span class="sd">                        included, the ships&#39; estimated_travel_time attribute</span>
+<span class="sd">                        will be set.</span>
+
+<span class="sd">        Returns a list of lacuna.ship.TradeTransportShip objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ship_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;ships&#39;</span><span class="p">]:</span>
+            <span class="n">ship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">ship</span><span class="o">.</span><span class="n">TradeTransportShip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">ship_list</span>
+
+    <span class="nd">@lacuna.trading.TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">get_waste_ships</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">target_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span></div>
+        <span class="sd">&quot;&quot;&quot; Returns a list of waste ships either currently on or available for </span>
+<div class="viewcode-block" id="trade.get_waste_ships"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.get_waste_ships">[docs]</a><span class="sd">        waste disposal duty.</span>
+
+<span class="sd">        Returns a list of lacuna.ship.ChainShip objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ship_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;ships&#39;</span><span class="p">]:</span>
+            <span class="n">ship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">ship</span><span class="o">.</span><span class="n">ChainShip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">ship_list</span>
+
+    <span class="nd">@lacuna.trading.TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">get_supply_ships</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">target_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span></div>
+        <span class="sd">&quot;&quot;&quot; Returns a list of supply ships either currently on or available for </span>
+<div class="viewcode-block" id="trade.get_supply_ships"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.get_supply_ships">[docs]</a><span class="sd">        supply disposal duty.</span>
+
+<span class="sd">        Returns a list of lacuna.ship.ChainShip objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ship_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;ships&#39;</span><span class="p">]:</span>
+            <span class="n">ship_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">ship</span><span class="o">.</span><span class="n">ChainShip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">ship_list</span>
+
+    <span class="nd">@lacuna.trading.TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view_supply_chains</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span></div>
+        <span class="sd">&quot;&quot;&quot; Returns a list of SupplyChain objects &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="trade.view_supply_chains"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.view_supply_chains">[docs]</a>        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;supply_chains&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">WasteChain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="n">mylist</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;max_supply_chains&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="nd">@lacuna.trading.TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view_waste_chains</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span></div>
+        <span class="sd">&quot;&quot;&quot; Returns a list of WasteChain objects &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="trade.view_waste_chains"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.view_waste_chains">[docs]</a>        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;waste_chain&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">WasteChain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mylist</span>
+
+    <span class="k">def</span> <span class="nf">view_waste_chain</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; The actual TLE method is plural, but there&#39;s only one waste chain </span></div>
+<div class="viewcode-block" id="trade.view_waste_chain"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.view_waste_chain">[docs]</a><span class="sd">        per planet, and the key returned is singular.  So give the user a </span>
+<span class="sd">        break and let them call this method with or without the s.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_waste_chains</span><span class="p">()</span>
+
+    <span class="nd">@lacuna.trading.TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">push_items</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">target_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span></div>
+        <span class="sd">&quot;&quot;&quot; Pushes items to another of your planets.</span>
+<div class="viewcode-block" id="trade.push_items"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.trade.push_items">[docs]</a>
+<span class="sd">        Arguments:</span>
+<span class="sd">            target_id   Integer ID of the body to send resources to.</span>
+<span class="sd">            items       List of item dicts.  See add_to_market().</span>
+<span class="sd">            options     Required (not optional) dict.  See add_to_market().</span>
+
+<span class="sd">        Returns a single lacuna.ship.TravellingShip object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">ship</span><span class="o">.</span><span class="n">TravellingShip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;ship&#39;</span><span class="p">])</span>
+
+
+
+
+
+<span class="k">class</span> <span class="nc">Chain</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Chain base class &quot;&quot;&quot;</span></div></div>
+<div class="viewcode-block" id="Chain"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.Chain">[docs]</a>    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">SupplyChain</span><span class="p">(</span><span class="n">Chain</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span></div>
+<div class="viewcode-block" id="SupplyChain"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.SupplyChain">[docs]</a><span class="sd">    Attributes:</span>
+<span class="sd">        id                      &quot;id-goes-here&quot;,</span>
+<span class="sd">        body                    {   &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="sd">                                    &quot;name&quot; : &quot;Mars&quot;,</span>
+<span class="sd">                                    &quot;x&quot; : 0,</span>
+<span class="sd">                                    &quot;y&quot; : -123,</span>
+<span class="sd">                                    ...      },</span>
+<span class="sd">        building_id             1234567,        # ID of the Trade Min.  Yeah I dunno either.</span>
+<span class="sd">        resource_hour           10000000,</span>
+<span class="sd">        resource_type           &#39;water&#39;,</span>
+<span class="sd">        percent_transferred     95,</span>
+<span class="sd">        stalled                 0,</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">WasteChain</span><span class="p">(</span><span class="n">Chain</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span></div>
+<div class="viewcode-block" id="WasteChain"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.trade.WasteChain">[docs]</a><span class="sd">    Attributes:</span>
+<span class="sd">        id                      &quot;id-goes-here&quot;,</span>
+<span class="sd">        star                    {   &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="sd">                                    &quot;name&quot; : &quot;Mars&quot;,</span>
+<span class="sd">                                    &quot;x&quot; : 0,</span>
+<span class="sd">                                    &quot;y&quot; : -123,</span>
+<span class="sd">                                    ...     },</span>
+<span class="sd">        waste_hour              10000000,</span>
+<span class="sd">        percent_transferred     95,</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

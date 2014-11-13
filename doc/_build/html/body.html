@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>body &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="building" href="building.html" />
+    <link rel="prev" title="alliance" href="alliance.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="building.html" title="building"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="alliance.html" title="alliance"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lacuna.body">
+<span id="body"></span><h1>body<a class="headerlink" href="#module-lacuna.body" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.body.Body">
+<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Body</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#Body"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.Body" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">id                          &quot;id-goes-here&quot;,</span>
+<span class="go">x                           -4,</span>
+<span class="go">y                           10,</span>
+<span class="go">star_id                     &quot;id-goes-here&quot;,</span>
+<span class="go">star_name                   &quot;Sol&quot;,</span>
+<span class="go">orbit                       3,</span>
+<span class="go">type                        &quot;habitable planet&quot;,</span>
+<span class="go">name                        &quot;Earth&quot;,</span>
+<span class="go">image                       &quot;p13&quot;,</span>
+<span class="go">size                        67,</span>
+<span class="go">water                       900,</span>
+<span class="go">ore                         {   &quot;gold&quot; : 3399,</span>
+<span class="go">                                &quot;bauxite&quot; : 4000,</span>
+<span class="go">                                etc</span>
+<span class="go">                            },</span>
+<span class="go">empire                      { # only exists if the body is inhabited</span>
+<span class="go">                                &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                                &quot;name&quot; : &quot;Earthlings&quot;,</span>
+<span class="go">                                &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;</span>
+<span class="go">                                &quot;is_isolationist&quot; : 1</span>
+<span class="go">                            },</span>
+<span class="go">station                     { # only shows up if this planet is under the influence of a space station</span>
+<span class="go">                                &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                                &quot;x&quot; : 143,</span>
+<span class="go">                                &quot;y&quot; : -27,</span>
+<span class="go">                                &quot;name&quot; : &quot;The Death Star&quot;</span>
+<span class="go">                            },</span>
+<span class="go">### The following will only be set if you own the body in question.</span>
+<span class="go">### </span>
+<span class="go">needs_surface_refresh       1,  # indicates that the client needs to call get_buildings() because something has changed</span>
+<span class="go">building_count              7,</span>
+<span class="go">plots_available             60,</span>
+<span class="go">happiness                   3939,</span>
+<span class="go">happiness_hour              25,</span>
+<span class="go">unhappy_date                &quot;01 13 2014 16:11:21 +0600&quot;,  # Only given if happiness is below zero</span>
+<span class="go">propaganda_boost            20,</span>
+<span class="go">food_stored                 33329,</span>
+<span class="go">food_capacity               40000,</span>
+<span class="go">food_hour                   229,</span>
+<span class="go">energy_stored               39931,</span>
+<span class="go">energy_capacity             43000,</span>
+<span class="go">energy_hour                 391,</span>
+<span class="go">ore_hour                    284,</span>
+<span class="go">ore_capacity                35000,</span>
+<span class="go">ore_stored                  1901,</span>
+<span class="go">waste_hour                  933,</span>
+<span class="go">waste_stored                9933,</span>
+<span class="go">waste_capacity              13000,</span>
+<span class="go">water_stored                9929,</span>
+<span class="go">water_hour                  295,</span>
+<span class="go">water_capacity              51050,   </span>
+<span class="go">skip_incoming_ships         0,      # if set, then the following incoming data is missing.</span>
+<span class="go">num_incoming_enemy          10,     # total number of incoming foreign ships</span>
+<span class="go">num_incoming_ally           1,      # total number of incoming allied ships</span>
+<span class="go">num_incoming_own            0,      # total number of incoming own ships from other colonies</span>
+<span class="go">incoming_enemy_ships         [</span>
+<span class="go">                                # will only be included when enemy ships are coming to </span>
+<span class="go">                                # your planet (only the first 20 will be shown)</span>
+<span class="go">                                {</span>
+<span class="go">                                    &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                                    &quot;date_arrives&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">                                    &quot;is_own&quot; : 1,                                   # is this from one of our own planets</span>
+<span class="go">                                    &quot;is_ally&quot; : 1                                   # is this from a planet within our alliance</span>
+<span class="go">                                },</span>
+<span class="go">                                etc</span>
+<span class="go">                            ],</span>
+<span class="go">incoming_ally_ships         [</span>
+<span class="go">                                # will only be included when allied ships are coming to </span>
+<span class="go">                                # your planet (only the first 10 will be shown)</span>
+<span class="go">                                etc</span>
+<span class="go">                            ],</span>
+<span class="go">incoming_own_ships          [</span>
+<span class="go">                                # will only be included when ships from your other </span>
+<span class="go">                                # colonies are coming to your planet (only the first </span>
+<span class="go">                                # 10 will be shown)</span>
+<span class="go">                                etc  </span>
+<span class="go">                            ],</span>
+<span class="go">### The following will only be set if the body is a space station.</span>
+<span class="go">### </span>
+<span class="go">alliance                    { </span>
+<span class="go">                                &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                                &quot;name&quot; : &quot;Imperial Empire&quot; </span>
+<span class="go">                            },</span>
+<span class="go">influence                   {</span>
+<span class="go">                                &quot;total&quot; : 0,</span>
+<span class="go">                                &quot;spent&quot; : 0</span>
+<span class="go">                            }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.body.MyBody">
+<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">MyBody</tt><big>(</big><em>client: object</em>, <em>body_id: int</em>, <em>attrs: dict={}</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>A MyBody object is a planet or space station owned by the current 
+empire.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">id                  &quot;id-goes-here&quot;,</span>
+<span class="go">x                   -4,</span>
+<span class="go">y                   10,</span>
+<span class="go">star_id             &quot;id-goes-here&quot;,</span>
+<span class="go">star_name           &quot;Sol&quot;,</span>
+<span class="go">orbit               3,</span>
+<span class="go">type                &quot;habitable planet&quot;,</span>
+<span class="go">name                &quot;Earth&quot;,</span>
+<span class="go">image               &quot;p13&quot;,</span>
+<span class="go">size                67,</span>
+<span class="go">water               900,</span>
+<span class="go">ore                 {</span>
+<span class="go">                        &quot;gold&quot; : 3399,</span>
+<span class="go">                        &quot;bauxite&quot; : 4000,</span>
+<span class="go">                        etc</span>
+<span class="go">                    },</span>
+<span class="go">empire                  {</span>
+<span class="go">                            &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                            &quot;name&quot; : &quot;Earthlings&quot;,</span>
+<span class="go">                            &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;</span>
+<span class="go">                            &quot;is_isolationist&quot; : 1</span>
+<span class="go">                        },</span>
+<span class="go">station                 { # only shows up if this planet is under the influence of a space station</span>
+<span class="go">                            &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                            &quot;x&quot; : 143,</span>
+<span class="go">                            &quot;y&quot; : -27,</span>
+<span class="go">                            &quot;name&quot; : &quot;The Death Star&quot;</span>
+<span class="go">                        },</span>
+<span class="go">needs_surface_refresh   1, # indicates that the client needs to call get_buildings() because something has changed</span>
+<span class="go">building_count          7,</span>
+<span class="go">plots_available         0,</span>
+<span class="go">happiness               3939,</span>
+<span class="go">happiness_hour          25,</span>
+<span class="go">unhappy_date            &quot;01 13 2014 16:11:21 +0600&quot;,  # Only given if happiness is below zero</span>
+<span class="go">propaganda_boost        20,</span>
+<span class="go">food_stored             33329,</span>
+<span class="go">food_capacity           40000,</span>
+<span class="go">food_hour               229,</span>
+<span class="go">energy_stored           39931,</span>
+<span class="go">energy_capacity         43000,</span>
+<span class="go">energy_hour             391,</span>
+<span class="go">ore_hour                284,</span>
+<span class="go">ore_capacity            35000,</span>
+<span class="go">ore_stored              1901,</span>
+<span class="go">waste_hour              ,</span>
+<span class="go">waste_stored            9933,</span>
+<span class="go">waste_capacity          13000,</span>
+<span class="go">water_stored            9929,</span>
+<span class="go">water_hour              295,</span>
+<span class="go">water_capacity          51050,   </span>
+<span class="go">skip_incoming_ships     0,   # if set, then the following incoming data is missing.</span>
+<span class="go">num_incoming_enemy      10,   # total number of incoming foreign ships</span>
+<span class="go">num_incoming_ally       1,     # total number of incoming allied ships</span>
+<span class="go">num_incoming_own : 0,   # total number of incoming own ships from other colonies</span>
+<span class="go">incoming_enemy_ships    [ # will only be included when enemy ships are coming to your planet (only the first 20 will be shown)</span>
+<span class="go">                            {</span>
+<span class="go">                                &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                                &quot;date_arrives&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">                                &quot;is_own&quot; : 1,   # is this from one of our own planets</span>
+<span class="go">                                &quot;is_ally&quot; : 1   # is this from a planet within our alliance</span>
+<span class="go">                            },</span>
+<span class="go">                            etc</span>
+<span class="go">                        ],</span>
+<span class="go">incoming_ally_ships     [ # will only be included when allied ships are coming to your planet (only the first 10 will be shown)</span>
+<span class="go">                            etc</span>
+<span class="go">                        ],</span>
+<span class="go">incoming_own_ships      [ # will only be included when ships from your other colonies are coming to your planet (only the first 10 will be shown)</span>
+<span class="go">                            etc  </span>
+<span class="go">                        ],</span>
+<span class="go">### The following will only be set if the body is a space station.</span>
+<span class="go">### </span>
+<span class="go">alliance                { </span>
+<span class="go">                            &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                            &quot;name&quot; : &quot;Imperial Empire&quot; </span>
+<span class="go">                        },</span>
+<span class="go">influence               {</span>
+<span class="go">                            &quot;total&quot; : 0,</span>
+<span class="go">                            &quot;spent&quot; : 0</span>
+<span class="go">                        }</span>
+<span class="go">### The *building dict*s mentioned below are dicts containing the </span>
+<span class="go">### information represented by a building.MyBuilding&#39;s attributes.</span>
+<span class="go">buildings_id            {</span>
+<span class="go">                            building_id_1 = { building dict },</span>
+<span class="go">                            building_id_2 = { building dict },</span>
+<span class="go">                            etc,</span>
+<span class="go">                        }</span>
+<span class="go">buildings_name          {</span>
+<span class="go">                            &#39;Apple Orchard&#39; = [</span>
+<span class="go">                                ### These are lists, as we&#39;re going to </span>
+<span class="go">                                ### have multiple instances of certain </span>
+<span class="go">                                ### building types.</span>
+<span class="go">                                { building dict },</span>
+<span class="go">                                { building dict },</span>
+<span class="go">                                etc</span>
+<span class="go">                            ],</span>
+<span class="go">                            &#39;Space Port&#39; = [</span>
+<span class="go">                                { building dict },</span>
+<span class="go">                                { building dict },</span>
+<span class="go">                                etc</span>
+<span class="go">                            ],</span>
+<span class="go">                            etc</span>
+<span class="go">                        }</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lacuna.body.MyBody.abandon">
+<tt class="descname">abandon</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.abandon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.abandon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abandons the current planet.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.get_buildable">
+<tt class="descname">get_buildable</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>tag: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.get_buildable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.get_buildable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of buildings that can be built on the indicated 
+coords.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>x &#8211; Required integer X coordinate where you want to place the building</li>
+<li>y &#8211; Required integer Y coordinate where you want to place the building</li>
+<li>tag &#8211; Optional string to limit what gets returned.</li>
+</ul>
+</dd>
+</dl>
+<p>Tags are analogous to the buttons and drop-down box that appear in the 
+build menu in the browser client, such as Now, Later, Happiness, Ore, 
+Resources, etc.</p>
+<dl class="docutils">
+<dt>A complete list of tags can be found at:</dt>
+<dd><a class="reference external" href="https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29">https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29</a></dd>
+</dl>
+<p>Sending an invalid tag is not an error, it simply returns zero 
+results.</p>
+<p>Returns a dict that includes the key &#8216;buildable&#8217;, which is a list of 
+dicts keyed off the human-readable building name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">[</span>
+<span class="go">    &#39;Water Purification Plant&#39;: {</span>
+<span class="go">        &#39;build&#39;: {</span>
+<span class="go">            &#39;can&#39;: 1,</span>
+<span class="go">            &#39;cost&#39;: {   &#39;energy&#39;: &#39;64&#39;,</span>
+<span class="go">                        &#39;food&#39;: &#39;72&#39;,</span>
+<span class="go">                        &#39;ore&#39;: &#39;88&#39;,</span>
+<span class="go">                        &#39;time&#39;: &#39;15&#39;,</span>
+<span class="go">                        &#39;waste&#39;: &#39;16&#39;,</span>
+<span class="go">                        &#39;water&#39;: &#39;8&#39;</span>
+<span class="go">                    },</span>
+<span class="go">            &#39;no_plot_use&#39;: &#39;&#39;,</span>
+<span class="go">            &#39;reason&#39;: &#39;&#39;,</span>
+<span class="go">            &#39;tags&#39;: [&#39;Resources&#39;, &#39;Water&#39;, &#39;Now&#39;]</span>
+<span class="go">        },</span>
+<span class="go">        &#39;image&#39;: &#39;waterpurification0&#39;,</span>
+<span class="go">        &#39;production&#39;: {</span>
+<span class="go">            &#39;energy_capacity&#39;: 0,</span>
+<span class="go">            &#39;energy_hour&#39;: &#39;-3&#39;,</span>
+<span class="go">            &#39;food_capacity&#39;: 0,</span>
+<span class="go">            &#39;food_hour&#39;: &#39;-1&#39;,</span>
+<span class="go">            &#39;happiness_hour&#39;: &#39;0&#39;,</span>
+<span class="go">            &#39;ore_capacity&#39;: 0,</span>
+<span class="go">            &#39;ore_hour&#39;: &#39;-3&#39;,</span>
+<span class="go">            &#39;waste_capacity&#39;: 0,</span>
+<span class="go">            &#39;waste_hour&#39;: &#39;5&#39;,</span>
+<span class="go">            &#39;water_capacity&#39;: 0,</span>
+<span class="go">            &#39;water_hour&#39;: &#39;31&#39;</span>
+<span class="go">        },</span>
+<span class="go">        &#39;url&#39;: &#39;/waterpurification&#39;</span>
+<span class="go">    },</span>
+<span class="go">    { another building dict },</span>
+<span class="go">    etc</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>Raises ServerError 1009 if the passed coords are illegal for any reason (already 
+occupied, out-of-bounds, etc)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.get_building_coords">
+<tt class="descname">get_building_coords</tt><big>(</big><em>x: int</em>, <em>y: int</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.get_building_coords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.get_building_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a building&#8217;s coordinates, returns the object for that building.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.get_building_id">
+<tt class="descname">get_building_id</tt><big>(</big><em>classname: str</em>, <em>id: int</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.get_building_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.get_building_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a building&#8217;s ID, returns the object for that building.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.get_buildings">
+<tt class="descname">get_buildings</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.get_buildings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.get_buildings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns dict with key &#8216;buildings&#8217;.  This dict is keyed off 
+building IDs.  Values are building dicts as documented by 
+get_buildable().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.get_new_building">
+<tt class="descname">get_new_building</tt><big>(</big><em>classname: str</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.get_new_building"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.get_new_building" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a building object of the requested classname.
+This is a Potential building.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.get_status">
+<tt class="descname">get_status</tt><big>(</big><em>blarg: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.get_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets status of the current body.
+This both returns a dict of status information, and sets the MyBody 
+object&#8217;s using that dict.  Since every call to every method in this 
+class also sets those attributes, there should never be a need to call 
+this method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.rearrange_buildings">
+<tt class="descname">rearrange_buildings</tt><big>(</big><em>arrangement: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.rearrange_buildings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.rearrange_buildings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves one or more buildings to a new spot on the planet surface.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><p class="first">arrangement &#8211; A list of dicts describing your new surface arrangement</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">[</span>
+<span class="go">    {</span>
+<span class="go">        &#39;id&#39;: integer ID of the building to move,</span>
+<span class="go">        &#39;x&#39;:  integer X coordinate to move to,</span>
+<span class="go">        &#39;y&#39;:  integer y coordinate to move to,</span>
+<span class="go">    },</span>
+<span class="go">    { another building to move, same format as above },</span>
+<span class="go">    etc</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a dict including the key &#8216;moved&#8217;, which is a list of dicts of 
+buildings that were moved.  This returned list is identical to the 
+list you passed in except it also contains a &#8216;name&#8217; key containing the 
+human-readable name of the moved building.</p>
+<p>Attempting to make an illegal move (moving a building out of -5..5 
+bounds, moving it on top of another building, moving the PCC at all, 
+etc) raises ServerError 1013 and no moves are made, even if others in 
+the list were legal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.rename">
+<tt class="descname">rename</tt><big>(</big><em>name: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.rename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renames the current planet.</p>
+<p>For whatever reason, this returns int 1 on success.  Not a dict (like 
+every other method), just a bare int.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.repair_list">
+<tt class="descname">repair_list</tt><big>(</big><em>building_ids_to_repair: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#MyBody.repair_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.MyBody.repair_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Repairs all buildings indicated by ID in the passed-in list.</p>
+<p>CHECK</p>
+<p>Per the API docs, this should return a dict including key &#8216;buildings&#8217;, 
+itself a dict of id -&gt; building_dict.  This &#8216;buildings&#8217; dict will only 
+contain buildings passed in building_ids_to_repair.</p>
+<p>I haven&#8217;t got any broken buildings handy to actually test this retval, 
+so I haven&#8217;t been able to verify the paragraph above yet.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.body.Planet">
+<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Planet</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/body.html#Planet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.body.Planet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">id                  &quot;id-goes-here&quot;,</span>
+<span class="go">x                   -4,</span>
+<span class="go">y                    10,</span>
+<span class="go">z                   6,</span>
+<span class="go">star_id             &quot;id-goes-here&quot;,</span>
+<span class="go">orbit               3,</span>
+<span class="go">type                &quot;habitable planet&quot;,</span>
+<span class="go">name                &quot;Earth&quot;,</span>
+<span class="go">image               &quot;p13&quot;,</span>
+<span class="go">size                67,</span>
+<span class="go">water               900,</span>
+<span class="go">ore                 {</span>
+<span class="go">                        &quot;gold&quot; : 3399,</span>
+<span class="go">                        &quot;bauxite&quot; : 4000,</span>
+<span class="go">                        etc,</span>
+<span class="go">                    },</span>
+<span class="go">building_count      7,</span>
+<span class="go">population          470000,</span>
+<span class="go">happiness           3939,</span>
+<span class="go">happiness_hour      25,</span>
+<span class="go">food_stored         33329,</span>
+<span class="go">food_capacity       40000,</span>
+<span class="go">food_hour           229,</span>
+<span class="go">energy_stored       39931,</span>
+<span class="go">energy_capacity     43000,</span>
+<span class="go">energy_hour         391,</span>
+<span class="go">ore_hour            284,</span>
+<span class="go">ore_capacity        35000,</span>
+<span class="go">ore_stored          1901,</span>
+<span class="go">waste_hour          933,</span>
+<span class="go">waste_stored        9933,</span>
+<span class="go">waste_capacity      13000,</span>
+<span class="go">water_stored        9929,</span>
+<span class="go">water_hour          295,</span>
+<span class="go">water_capacity      51050</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="alliance.html"
+                        title="previous chapter">alliance</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="building.html"
+                        title="next chapter">building</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/body.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="building.html" title="building"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="alliance.html" title="alliance"
+             >previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Config File &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="bc" href="bc.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bc.html" title="bc"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="config-file">
+<h1>Config File<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h1>
+<p>When creating a Guest or Member object (from the clients module), you can send
+all of your credentials manually (host, username, password, protocol, etc), or
+you can just send a config filename and the section of that config file to
+use.</p>
+<p>The config file is preferred because you can add it to your .gitignore file to
+be sure not to accidentally check in your passwords.</p>
+<p>The DEFAULT section isn&#8217;t strictly required, but having it allows you to add
+as many other sections as you&#8217;d like, and only include the information in
+those sections that differ from what appears in DEFAULT.</p>
+<p>An example config file:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[DEFAULT]</span>
+    <span class="na">proto</span> <span class="o">=</span> <span class="s">https</span>
+<span class="s">    host = us1.lacunaexpanse.com</span>
+<span class="s">    testhost = pt.lacunaexpanse.com</span>
+<span class="s">    api_key = anonymous</span>
+<span class="s">    show_captcha = True</span>
+<span class="s">    sleep_on_call = 1</span>
+<span class="s">    sleep_after_error = True</span>
+<span class="s">    warn_on_sleep = True</span>
+<span class="s">    logfile = var/tle.log</span>
+
+<span class="k">[my_account]</span>
+    <span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
+<span class="s">    password = My Real Password</span>
+
+<span class="k">[my_sitter]</span>
+    <span class="na">password</span> <span class="o">=</span> <span class="s">My Sitter Password</span>
+
+<span class="k">[some_alliance_mate]</span>
+    <span class="na">username</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Empire Name</span>
+<span class="s">    password = My Alliance Mate&#39;s Sitter Password</span>
+<span class="s">    logfile = var/ally_mate.log</span>
+
+<span class="k">[playtest]</span>
+    <span class="na">host</span> <span class="o">=</span> <span class="s">${DEFAULT:testhost}</span>
+<span class="s">    username = My PT Empire Name</span>
+<span class="s">    password = My PT Password</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>proto</dt>
+<dd><ul class="first last simple">
+<li>The protocol to connect with.  Either <tt class="docutils literal"><span class="pre">http</span></tt> or <tt class="docutils literal"><span class="pre">https</span></tt>.  https is
+more secure, but slower, and may cause connection problems in some rare
+cases.  It&#8217;s recommended you use https, and only switch to http if
+there&#8217;s a problem.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>host</dt>
+<dd><ul class="first last simple">
+<li>The hostname to connect to.  Either <tt class="docutils literal"><span class="pre">us1.lacunaexpanse.com</span></tt> or
+<tt class="docutils literal"><span class="pre">pt.lacunaexpanse.com</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">testhost</span></tt> is included in my example config file, but it&#8217;s not used by
+the connection library.  Instead, I&#8217;m using it later in the example
+config file itself under the <tt class="docutils literal"><span class="pre">playtest</span></tt> section.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>api_key</dt>
+<dd><ul class="first last simple">
+<li>Just leave this as <tt class="docutils literal"><span class="pre">anonymous</span></tt>.  A key is required, and you can sign
+up for your own key if you want to, but it seems to be largely unused.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>show_captcha</dt>
+<dd><ul class="first last simple">
+<li>Boolean.  Defaults to True.</li>
+<li>When True, if anything is done that requires a captcha be solved, the
+captcha image will be fetched and displayed to the user in a browser,
+and the user will be prompted to enter the solution.  This is usually
+what you want.  However, if you&#8217;re using MontyLacuna to create something
+other than a terminal application (eg a web app), you&#8217;ll need to manage
+the captcha display yourself, and should set this to False.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sleep_on_call</dt>
+<dd><ul class="first last simple">
+<li>Integer.  Defaults to 1.</li>
+<li>Number of seconds to sleep after each request is made to the TLE server.
+This is meant to keep you from hitting the 60 RPC per minute limit.
+Setting it to 0 to not sleep at all will speed up your scripts, but you
+run a much greater risk of hitting that limit.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sleep_after_error</dt>
+<dd><ul class="first last simple">
+<li>Boolean.  Defaults to True.</li>
+<li>If you do hit the 60 RPC per minute limit error and this is set to True,
+your script will go to sleep for a minute, then pick up where it left
+off.  If this is set to False and you hit that limit, your script will
+raise a ServerError exception.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>warn_on_sleep</dt>
+<dd><ul class="first last simple">
+<li>True or False.  Defaults to True.</li>
+<li>If the script sleeps because of the 60 RPC per minute limit, and this is
+True, a message will be printed to the screen (STDOUT) letting you know
+the script is pausing.  Not knowing why your script is suddenly taking
+so long is frustrating.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Those other sections (&#8220;other&#8221; meaning &#8220;everything but DEFAULT&#8221;) can be named
+whatever makes sense to you.</p>
+<p><em>Note</em> that the <cite>[playtest]</cite> section interpolates the <cite>testhost</cite> value from
+the <cite>DEFAULT</cite> section, and uses that value as its own <cite>host</cite> value.  That
+interpolation format will work for any other setting as well.  Or, you could
+certainly just type <cite>pt.lacunaexpanse.com</cite> there instead of using the variable
+interpolation.</p>
+<p>To connect:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">lacuna</span> <span class="kn">as</span> <span class="nn">lac</span>
+
+<span class="n">my_real_connection</span> <span class="o">=</span> <span class="n">lac</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
+    <span class="n">config_file</span>    <span class="o">=</span> <span class="s">&quot;etc/lacuna.cfg&quot;</span><span class="p">,</span>
+    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;my_account&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">my_sitter_connection</span> <span class="o">=</span> <span class="n">lac</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
+    <span class="n">config_file</span>    <span class="o">=</span> <span class="s">&quot;etc/lacuna.cfg&quot;</span><span class="p">,</span>
+    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;my_sitter&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">my_friends_connection</span> <span class="o">=</span> <span class="n">lac</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
+    <span class="n">config_file</span>    <span class="o">=</span> <span class="s">&quot;etc/lacuna.cfg&quot;</span><span class="p">,</span>
+    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;some_alliance_mate&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This should make it easy, especially for those who run scripts for multiple
+friends, to keep all credentials in a single file and just change the
+<cite>config_section</cite> value in your script depending on the account you want to
+run.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="getting_started.html"
+                        title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bc.html"
+                        title="next chapter">bc</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/config_file.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bc.html" title="bc"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             >previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

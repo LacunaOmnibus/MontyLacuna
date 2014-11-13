@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.miningministry &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.miningministry</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.building</span>
+<span class="kn">import</span> <span class="nn">lacuna.ship</span>
+
+<span class="k">class</span> <span class="nc">miningministry</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">building</span><span class="o">.</span><span class="n">MyBuilding</span><span class="p">):</span>
+<div class="viewcode-block" id="miningministry"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.miningministry.miningministry">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;miningministry&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view_platforms</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="miningministry.view_platforms"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.miningministry.miningministry.view_platforms">[docs]</a>        <span class="sd">&quot;&quot;&quot; Views your current platform status</span>
+
+<span class="sd">        Returns a tuple:</span>
+<span class="sd">            platforms       List of MiningPlatform objects</span>
+<span class="sd">            max_platforms   Integer max platforms this min min can support</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;platforms&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">MiningPlatform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">mylist</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;max_platforms&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">view_ships</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="miningministry.view_ships"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.miningministry.miningministry.view_ships">[docs]</a>        <span class="sd">&quot;&quot;&quot; View list of mining-capable ships.</span>
+
+<span class="sd">        All ships that can be used for mining are returned.  If a given ship&#39;s </span>
+<span class="sd">        task is &#39;Mining&#39;, it&#39;s currently shutting ore to and from your mining </span>
+<span class="sd">        platforms.  If its task is listed as &#39;Docked&#39;, it&#39;s available to be </span>
+<span class="sd">        added to your current mining fleet.</span>
+
+<span class="sd">        Retval includes &#39;ships&#39;, a list of ship dicts:</span>
+<span class="sd">                {</span>
+<span class="sd">                    &quot;name&quot; : &quot;CS4&quot;,</span>
+<span class="sd">                    &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="sd">                    &quot;task&quot; : &quot;Mining&quot;,</span>
+<span class="sd">                    &quot;speed&quot; : 350,</span>
+<span class="sd">                    &quot;hold_size&quot; : 5600</span>
+<span class="sd">                },</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;ships&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">ship</span><span class="o">.</span><span class="n">ChainShip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mylist</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.building.MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">add_cargo_ship_to_fleet</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">ship_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="miningministry.add_cargo_ship_to_fleet"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.miningministry.miningministry.add_cargo_ship_to_fleet">[docs]</a>        <span class="sd">&quot;&quot;&quot; Adds a ship to the mining fleet.</span>
+
+<span class="sd">        The &quot;cargo ship&quot; does not have to specifically be of type &quot;cargo_ship&quot;, </span>
+<span class="sd">        it just has to be capable of carrying cargo (eg hulk_mega, </span>
+<span class="sd">        smuggler_ship, etc).  </span>
+
+<span class="sd">        Requires &quot;ship_id&quot;, the integer ID of the ship to add to the fleet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.building.MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">remove_cargo_ship_from_fleet</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">ship_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="miningministry.remove_cargo_ship_from_fleet"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.miningministry.miningministry.remove_cargo_ship_from_fleet">[docs]</a>        <span class="sd">&quot;&quot;&quot; Takes a single ship off mining duty; sends the ship a message to </span>
+<span class="sd">        return to base to perform the &quot;Docked&quot; task.</span>
+
+<span class="sd">        After being removed from mining duty, the ship will need to travel </span>
+<span class="sd">        from the mining location back to your space port&#39;s planet, so it will </span>
+<span class="sd">        not be available for use immediately.</span>
+
+<span class="sd">        Requires &quot;ship_id&quot;, the integer ID of the ship to removed from the </span>
+<span class="sd">        fleet.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.building.MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">abandon_platform</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="miningministry.abandon_platform"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.miningministry.miningministry.abandon_platform">[docs]</a>        <span class="sd">&quot;&quot;&quot; Abandon one of your mining platforms.</span>
+
+<span class="sd">        Requires &quot;platform_id&quot;, the integer ID of the platform to abandon.</span>
+
+<span class="sd">        Remember that you might have multiple platforms on a single asteroid.  </span>
+<span class="sd">        When you abandon, you are abandoning the platform, not the asteroid, so </span>
+<span class="sd">        be careful to send the platform ID, not the ID of the asteroid itself.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">MiningPlatform</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="MiningPlatform"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.miningministry.MiningPlatform">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">            &quot;platforms&quot;:        List of platform dicts</span>
+<span class="sd">                        {</span>
+<span class="sd">                            &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="sd">                            &quot;asteroid&quot; : {</span>
+<span class="sd">                                &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="sd">                                &quot;name&quot; : &quot;Kuiper&quot;,</span>
+<span class="sd">                                &quot;x&quot; : 0,</span>
+<span class="sd">                                &quot;y&quot; : -444,</span>
+<span class="sd">                                &quot;image&quot; : &quot;a1-5&quot;,</span>
+<span class="sd">                                ...</span>
+<span class="sd">                            },</span>
+<span class="sd">                            &quot;rutile_hour&quot; : 10,</span>
+<span class="sd">                            &quot;chromite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;chalcopyrite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;galena_hour&quot; : 10,</span>
+<span class="sd">                            &quot;gold_hour&quot; : 10,</span>
+<span class="sd">                            &quot;uraninite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;bauxite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;goethite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;halite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;gypsum_hour&quot; : 10,</span>
+<span class="sd">                            &quot;trona_hour&quot; : 10,</span>
+<span class="sd">                            &quot;kerogen_hour&quot; : 10,</span>
+<span class="sd">                            &quot;methane_hour&quot; : 10,</span>
+<span class="sd">                            &quot;anthracite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;sulfur_hour&quot; : 10,</span>
+<span class="sd">                            &quot;zircon_hour&quot; : 10,</span>
+<span class="sd">                            &quot;monazite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;fluorite_hour&quot; : 10,</span>
+<span class="sd">                            &quot;beryl_hour&quot; : 10,</span>
+<span class="sd">                            &quot;magnetite_hour&quot; : 10,  </span>
+<span class="sd">                            &quot;shipping_capacity&quot; : 51 </span>
+<span class="sd">                        },</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
