@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.resource &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.resource</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+
+<span class="k">class</span> <span class="nc">PlanetaryResource</span><span class="p">():</span>
+<div class="viewcode-block" id="PlanetaryResource"><a class="viewcode-back" href="../../lacuna.html#lacuna.resource.PlanetaryResource">[docs]</a>    <span class="sd">&quot;&quot;&quot; Base class for resource classes.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        all_foods       List of all foods in the game</span>
+<span class="sd">        all_ores        List of all ores in the game</span>
+<span class="sd">        all_resources   List of all resources in the game</span>
+<span class="sd">                        This is a join of all_foods and all_ores, along with </span>
+<span class="sd">                        &quot;water&quot; and &quot;energy&quot;.</span>
+<span class="sd">        RES             Amount of RES we have stored up.</span>
+<span class="sd">        RES_hour        Amount of RES we&#39;re producing per hour</span>
+<span class="sd">                        &quot;anthracite_hour&quot;, &quot;wheat_hour&quot;, etc</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_foods</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s">&quot;algae&quot;</span><span class="p">,</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;bean&quot;</span><span class="p">,</span> <span class="s">&quot;beetle&quot;</span><span class="p">,</span> <span class="s">&quot;burger&quot;</span><span class="p">,</span> <span class="s">&quot;bread&quot;</span><span class="p">,</span> <span class="s">&quot;cheese&quot;</span><span class="p">,</span> 
+            <span class="s">&quot;chip&quot;</span><span class="p">,</span> <span class="s">&quot;cider&quot;</span><span class="p">,</span> <span class="s">&quot;corn&quot;</span><span class="p">,</span> <span class="s">&quot;fungus&quot;</span><span class="p">,</span> <span class="s">&quot;lapis&quot;</span><span class="p">,</span> <span class="s">&quot;meal&quot;</span><span class="p">,</span> <span class="s">&quot;milk&quot;</span><span class="p">,</span> 
+            <span class="s">&quot;pancake&quot;</span><span class="p">,</span> <span class="s">&quot;pie&quot;</span><span class="p">,</span> <span class="s">&quot;potato&quot;</span><span class="p">,</span> <span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="s">&quot;shake&quot;</span><span class="p">,</span> <span class="s">&quot;soup&quot;</span><span class="p">,</span> <span class="s">&quot;syrup&quot;</span><span class="p">,</span>
+            <span class="s">&quot;wheat&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_ores</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s">&quot;anthracite&quot;</span><span class="p">,</span> <span class="s">&quot;bauxite&quot;</span><span class="p">,</span> <span class="s">&quot;beryl&quot;</span><span class="p">,</span> <span class="s">&quot;chromite&quot;</span><span class="p">,</span> <span class="s">&quot;chalcopyrite&quot;</span><span class="p">,</span>
+            <span class="s">&quot;fluorite&quot;</span><span class="p">,</span> <span class="s">&quot;galena&quot;</span><span class="p">,</span> <span class="s">&quot;goethite&quot;</span><span class="p">,</span> <span class="s">&quot;gold&quot;</span><span class="p">,</span> <span class="s">&quot;gypsum&quot;</span><span class="p">,</span> <span class="s">&quot;halite&quot;</span><span class="p">,</span>
+            <span class="s">&quot;kerogen&quot;</span><span class="p">,</span> <span class="s">&quot;magnetite&quot;</span><span class="p">,</span> <span class="s">&quot;methane&quot;</span><span class="p">,</span> <span class="s">&quot;monazite&quot;</span><span class="p">,</span> <span class="s">&quot;rutile&quot;</span><span class="p">,</span> <span class="s">&quot;sulfur&quot;</span><span class="p">,</span>
+            <span class="s">&quot;trona&quot;</span><span class="p">,</span> <span class="s">&quot;uraninite&quot;</span><span class="p">,</span> <span class="s">&quot;zircon&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_resources</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_foods</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_ores</span> <span class="o">+</span> <span class="p">[</span> <span class="s">&quot;water&quot;</span><span class="p">,</span> <span class="s">&quot;energy&quot;</span> <span class="p">]</span>
+
+        <span class="c">### Iterate through our exhaustive list of all resources instead of </span>
+        <span class="c">### iterating through mydict, which only lists resources &gt; 0.  This </span>
+        <span class="c">### way, everything is listed, even if its value is 0.</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_resources</span><span class="p">:</span>
+            <span class="c">### Sometimes we get &quot;water&quot;, and sometimes we get &quot;water_stored&quot;.  </span>
+            <span class="c">### It&#39;s confusing and inconsistent.  Strip the &quot;_stored&quot;.</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mydict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">i</span><span class="o">+</span><span class="s">&quot;_stored&quot;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">mydict</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="s">&quot;_stored&quot;</span><span class="p">])</span> <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="s">&quot;_hour&quot;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="s">&quot;_hour&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">mydict</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="s">&quot;_hour&quot;</span><span class="p">])</span> <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="s">&quot;_hour&quot;</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">PlanetaryFood</span><span class="p">(</span><span class="n">PlanetaryResource</span><span class="p">):</span></div>
+<div class="viewcode-block" id="PlanetaryFood"><a class="viewcode-back" href="../../lacuna.html#lacuna.resource.PlanetaryFood">[docs]</a>    <span class="sd">&quot;&quot;&quot; The food being produced and currently stored.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        algae_hour      24,     # amount being produced</span>
+<span class="sd">        algae           322,    # amount being stored</span>
+<span class="sd">        bean_hour       1,</span>
+<span class="sd">        bean            2,</span>
+<span class="sd">        ...</span>
+<span class="sd">        avail_list      List (sorted) of all available foods on the planet:</span>
+<span class="sd">                        [ algae, bean, ... ]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">PlanetaryOre</span><span class="p">(</span><span class="n">PlanetaryResource</span><span class="p">):</span></div>
+<div class="viewcode-block" id="PlanetaryOre"><a class="viewcode-back" href="../../lacuna.html#lacuna.resource.PlanetaryOre">[docs]</a>    <span class="sd">&quot;&quot;&quot; The ore being produced and currently stored.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        anthracite_hour     24,</span>
+<span class="sd">        anthracite          322,</span>
+<span class="sd">        bauxite_hour        1,</span>
+<span class="sd">        bauxite             2,</span>
+<span class="sd">        ...</span>
+<span class="sd">        avail_list      List (sorted) of all available ores on the planet:</span>
+<span class="sd">                        [ anthracite, bauxite, ... ]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">StoredResources</span><span class="p">(</span><span class="n">PlanetaryResource</span><span class="p">):</span></div>
+<div class="viewcode-block" id="StoredResources"><a class="viewcode-back" href="../../lacuna.html#lacuna.resource.StoredResources">[docs]</a>    <span class="sd">&quot;&quot;&quot; The resources stored on this planet.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        water:      100,</span>
+<span class="sd">        anthracite: 200,</span>
+<span class="sd">        bauxite:    300,</span>
+<span class="sd">        ...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

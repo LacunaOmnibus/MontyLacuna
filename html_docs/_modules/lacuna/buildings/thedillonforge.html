@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.thedillonforge &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.thedillonforge</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">lacuna.bc</span> <span class="kn">import</span> <span class="n">LacunaObject</span>
+<span class="kn">from</span> <span class="nn">lacuna.building</span> <span class="kn">import</span> <span class="n">MyBuilding</span>
+
+<span class="k">class</span> <span class="nc">thedillonforge</span><span class="p">(</span><span class="n">MyBuilding</span><span class="p">):</span>
+<div class="viewcode-block" id="thedillonforge"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.thedillonforge">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;thedillonforge&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_marshal_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rv</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Multiple methods return the same data. &quot;&quot;&quot;</span>
+
+        <span class="n">make_plans_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s">&#39;make_plan&#39;</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">][</span><span class="s">&#39;make_plan&#39;</span><span class="p">]:</span>
+                <span class="n">make_plans_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">MakePlan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="n">split_plans_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s">&#39;split_plan&#39;</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">][</span><span class="s">&#39;split_plan&#39;</span><span class="p">]:</span>
+                <span class="n">split_plans_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">SplitPlan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="n">ct</span> <span class="o">=</span> <span class="s">&#39;None&#39;</span>
+        <span class="k">if</span> <span class="s">&#39;current_task&#39;</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">]:</span>
+            <span class="n">ct</span> <span class="o">=</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">][</span><span class="s">&#39;current_task&#39;</span><span class="p">]</span>
+
+        <span class="n">can</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="s">&#39;can&#39;</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">]:</span>
+            <span class="n">can</span> <span class="o">=</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">][</span><span class="s">&#39;can&#39;</span><span class="p">]</span>
+
+        <span class="n">sr</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="s">&#39;seconds_remaining&#39;</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">]:</span>
+            <span class="n">sr</span> <span class="o">=</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">][</span><span class="s">&#39;seconds_remaining&#39;</span><span class="p">]</span>
+
+        <span class="n">wrk</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="s">&#39;working&#39;</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">]:</span>
+            <span class="n">wrk</span> <span class="o">=</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">][</span><span class="s">&#39;working&#39;</span><span class="p">]</span>
+
+        <span class="n">sub</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="s">&#39;subsidy_cost&#39;</span> <span class="ow">in</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">]:</span>
+            <span class="n">sub</span> <span class="o">=</span> <span class="n">rv</span><span class="p">[</span><span class="s">&#39;tasks&#39;</span><span class="p">][</span><span class="s">&#39;subsidy_cost&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span><span class="p">(</span>
+            <span class="n">make_plans_list</span><span class="p">,</span> <span class="n">split_plans_list</span><span class="p">,</span>
+            <span class="n">ct</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">can</span><span class="p">,</span> <span class="n">wrk</span><span class="p">,</span> <span class="n">sub</span>
+        <span class="p">)</span>
+
+    <span class="nd">@MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="thedillonforge.view"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.thedillonforge.view">[docs]</a>        <span class="sd">&quot;&quot;&quot; View plans that can be built and split.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            make_list           List of MakePlan objects</span>
+<span class="sd">            split_list          List of SplitPlan objects</span>
+<span class="sd">            current_task        &quot;make_plan&quot;, &quot;split_plan&quot;, or &quot;None&quot;</span>
+<span class="sd">            seconds_remaining   How many seconds left on the current task.  0 if </span>
+<span class="sd">                                the forge isn&#39;t doing anything.</span>
+<span class="sd">            can                 1 if the forge is available, 0 if it&#39;s working.</span>
+<span class="sd">            working             Human-readable description of the task the forge </span>
+<span class="sd">                                is working on right now.</span>
+<span class="sd">                                &quot;Making Crater 6.0&quot;</span>
+<span class="sd">            subsidy_cost        Always 2, whether the forge is working or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_marshal_view</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="nd">@MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">make_plan</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">perl_class</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="thedillonforge.make_plan"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.thedillonforge.make_plan">[docs]</a>        <span class="sd">&quot;&quot;&quot; Starts making a plan in the forge.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            perl_class      As displayed in MakeClass.perl_class</span>
+<span class="sd">            level           Optional integer level to build.  Defaults to 1.</span>
+
+<span class="sd">        Returns a tuple is the same as for view().  make_list and split_list are </span>
+<span class="sd">        included included in the tuple, but they will both be empty lists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_marshal_view</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="nd">@MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">split_plan</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">perl_class</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">extra_build_level</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="thedillonforge.split_plan"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.thedillonforge.split_plan">[docs]</a>        <span class="sd">&quot;&quot;&quot; Starts splitting a plan in the forge.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            perl_class          As displayed in MakeClass.perl_class</span>
+<span class="sd">            level               Optional integer level to build.  Defaults to 1.</span>
+<span class="sd">            extra_build_level   Optional integer additional build level.  Defaults to 0.</span>
+<span class="sd">            quantity            Optional integer number to build.  Defaults to 1.</span>
+
+<span class="sd">        Returns a tuple is the same as for view().  make_list and split_list are </span>
+<span class="sd">        included included in the tuple, but they will both be empty lists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_marshal_view</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="nd">@LacunaObject.set_empire_status</span></div>
+    <span class="nd">@MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">subsidize</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="thedillonforge.subsidize"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.thedillonforge.subsidize">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 2 E to subsidize the current job.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises ServerError 1010 if the forge isn&#39;t doing anything right now.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+
+
+<span class="k">class</span> <span class="nc">Plan</span><span class="p">():</span></div></div>
+<div class="viewcode-block" id="Plan"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.Plan">[docs]</a>    <span class="sd">&quot;&quot;&quot; Plan base class &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+
+        <span class="k">if</span> <span class="s">&#39;class&#39;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;perl_class&#39;</span><span class="p">,</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;class&#39;</span><span class="p">])</span>
+            <span class="k">del</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;class&#39;</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MakePlan</span><span class="p">(</span><span class="n">Plan</span><span class="p">):</span></div>
+<div class="viewcode-block" id="MakePlan"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.MakePlan">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        name                    &quot;Algae&quot;,</span>
+<span class="sd">        max_level               10,</span>
+<span class="sd">        perl_class              &quot;Food::Algae&quot;,</span>
+<span class="sd">        reset_sec_per_level     5000,</span>
+
+<span class="sd">    &quot;perl_class&quot; is named &quot;class&quot; in the return from TLE, but &quot;class&quot; is a </span>
+<span class="sd">    reserved word in Python so I can&#39;t make an attribute with that name.</span>
+
+<span class="sd">    &quot;reset_sec_per_level&quot; is the number of seconds it&#39;ll take to build the plan </span>
+<span class="sd">        (reset_sec_per_level * (level you&#39;re building) == total seconds)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">SplitPlan</span><span class="p">(</span><span class="n">Plan</span><span class="p">):</span></div>
+<div class="viewcode-block" id="SplitPlan"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.thedillonforge.SplitPlan">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        name                &quot;Beach [10]&quot;,</span>
+<span class="sd">        perl_class          &quot;Permanent::Beach10&quot;,</span>
+<span class="sd">        level               1,</span>
+<span class="sd">        extra_build_level   6,</span>
+<span class="sd">        fail_chance         50,</span>
+<span class="sd">        reset_seconds       50400</span>
+
+<span class="sd">    &quot;perl_class&quot; is named &quot;class&quot; in the return from TLE, but &quot;class&quot; is a </span>
+<span class="sd">    reserved word in Python so I can&#39;t make an attribute with that name.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;reset_seconds&quot; is the number of seconds it&#39;ll take to split this plan.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

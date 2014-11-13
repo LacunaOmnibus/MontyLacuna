@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.spy &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.spy</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.building</span>
+
+<span class="k">class</span> <span class="nc">Spy</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span>
+<div class="viewcode-block" id="Spy"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.Spy">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        id                     &quot;id-goes-here&quot;,</span>
+<span class="sd">        name                   &quot;Jason Bourne&quot;,</span>
+<span class="sd">        assignment             &quot;Idle&quot;,</span>
+<span class="sd">        possible_assignments   List of Assignment objects</span>
+<span class="sd">        level                  9,</span>
+<span class="sd">        politics               0,</span>
+<span class="sd">        mayhem                 20,</span>
+<span class="sd">        theft                  40,</span>
+<span class="sd">        intel                  33,</span>
+<span class="sd">        offense_rating         570,</span>
+<span class="sd">        defense_rating         150,</span>
+<span class="sd">        is_available           1,</span>
+<span class="sd">        available_on           &quot;01 31 2010 13:09:05 +0600&quot;, # if can&#39;t be reassigned, this </span>
+<span class="sd">                                                            # is when will be available</span>
+<span class="sd">        started_assignment     &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="sd">        seconds_remaining      45,</span>
+<span class="sd">        assigned_to            SpyBody object</span>
+<span class="sd">        based_from             SpyBody object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+
+        <span class="k">if</span> <span class="s">&#39;possible_assignments&#39;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+            <span class="n">assignment_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;possible_assignments&#39;</span><span class="p">]:</span>
+                <span class="n">assignment_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Assignment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+            <span class="k">del</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;possible_assignments&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s">&#39;assigned_to&#39;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assigned_to</span> <span class="o">=</span> <span class="n">SpyBody</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;assigned_to&#39;</span><span class="p">])</span>
+            <span class="k">del</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;assigned_to&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s">&#39;based_from&#39;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">based_from</span> <span class="o">=</span> <span class="n">SpyBody</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;based_from&#39;</span><span class="p">])</span>
+            <span class="k">del</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;based_from&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="s">&#39;mission_count&#39;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mission_count</span> <span class="o">=</span> <span class="n">MissionCount</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;mission_count&#39;</span><span class="p">])</span>
+            <span class="k">del</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;mission_count&#39;</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Assignment</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Assignment"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.Assignment">[docs]</a>    <span class="sd">&quot;&quot;&quot; A task that a spy can be assigned to.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">            task        &quot;Idle&quot;,</span>
+<span class="sd">            recovery    0,          # in seconds</span>
+<span class="sd">            skill       &quot;none&quot;</span>
+
+<span class="sd">    Tasks:</span>
+<span class="sd">        Idle</span>
+<span class="sd">            Don&#39;t do anything.</span>
+<span class="sd">        Counter Espionage.</span>
+<span class="sd">            Passively defend against all attackers.</span>
+<span class="sd">        Security Sweep</span>
+<span class="sd">            Round up attackers.</span>
+<span class="sd">        Intel Training</span>
+<span class="sd">            Train in Intelligence skill</span>
+<span class="sd">        Mayhem Training</span>
+<span class="sd">            Train in Mayhem skill</span>
+<span class="sd">        Politics Training</span>
+<span class="sd">            Train in Politics skill</span>
+<span class="sd">        Theft Training</span>
+<span class="sd">            Train in Theft skill</span>
+<span class="sd">        Political Propaganda</span>
+<span class="sd">            Give happiness generation a boost. Especially effective on unhappy </span>
+<span class="sd">            colonies, but hastens an agent toward retirement.</span>
+<span class="sd">        Gather Resource Intelligence</span>
+<span class="sd">            Find out what&#39;s up for trade, what ships are available, what ships </span>
+<span class="sd">            are being built, where ships are travelling to, etc.</span>
+<span class="sd">        Gather Empire Intelligence</span>
+<span class="sd">            Find out what is built on this planet, the resources of the </span>
+<span class="sd">            planet, what other colonies this Empire has, etc.</span>
+<span class="sd">        Gather Operative Intelligence</span>
+<span class="sd">            Find out what spies are on this planet, where they are from, what </span>
+<span class="sd">            they are doing, etc.</span>
+<span class="sd">        Hack Network 19</span>
+<span class="sd">            Attempts to besmirch the good name of the empire controlling this </span>
+<span class="sd">            planet, and deprive them of a small amount of happiness.</span>
+<span class="sd">        Sabotage Probes</span>
+<span class="sd">            Destroy probes controlled by this empire.</span>
+<span class="sd">        Rescue Comrades</span>
+<span class="sd">            Break spies out of prison.</span>
+<span class="sd">        Sabotage Resources</span>
+<span class="sd">            Destroy ships being built, docked, en route to mining platforms, </span>
+<span class="sd">            etc.</span>
+<span class="sd">        Appropriate Resources</span>
+<span class="sd">            Steal empty ships, ships full of resources, ships full of trade </span>
+<span class="sd">            goods, etc.</span>
+<span class="sd">        Assassinate Operatives</span>
+<span class="sd">            Kill spies.</span>
+<span class="sd">        Sabotage Infrastructure</span>
+<span class="sd">            Destroy buildings.</span>
+<span class="sd">        Sabotage BHG</span>
+<span class="sd">            Prevent enemy planet from using Black Hole Generator.</span>
+<span class="sd">        Incite Mutiny</span>
+<span class="sd">            Turn spies. If successful they come work for you.</span>
+<span class="sd">        Abduct Operatives</span>
+<span class="sd">            Kidnap a spy and bring him back home.</span>
+<span class="sd">        Appropriate Technology</span>
+<span class="sd">            Steal plans for buildings that this empire has built, or has in </span>
+<span class="sd">            inventory.</span>
+<span class="sd">        Incite Rebellion</span>
+<span class="sd">            Obliterate the happiness of a planet. If done long enough, it can </span>
+<span class="sd">            shut down a planet.</span>
+<span class="sd">        Incite Insurrection</span>
+<span class="sd">            Steal a planet.</span>
+
+<span class="sd">    Recovery:</span>
+<span class="sd">        The spy is currently recovering from running his previous task.  This </span>
+<span class="sd">        is the time remaining, in seconds, of that recovery period.  After </span>
+<span class="sd">        that time expires, the spy will be available for another task.</span>
+
+<span class="sd">    Skill:</span>
+<span class="sd">        Which of the spy&#39;s skills will be used to calculate success.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ForeignAgent</span><span class="p">(</span><span class="n">Spy</span><span class="p">):</span></div>
+<div class="viewcode-block" id="ForeignAgent"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.ForeignAgent">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A ForeignAgent object has the following attributes:</span>
+<span class="sd">            name                &quot;James Bond&quot;,</span>
+<span class="sd">            level               &quot;20&quot;,</span>
+<span class="sd">            task                &quot;Appropriate Technology&quot;</span>
+<span class="sd">            next_mission        &quot;01 31 2010 13:09:05 +0600&quot;   </span>
+
+<span class="sd">        You have to capture a ForeignSpy to turn him into a Prisoner to be able </span>
+<span class="sd">        to see his ID.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Merc</span><span class="p">(</span><span class="n">Spy</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Merc"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.Merc">[docs]</a>    <span class="sd">&quot;&quot;&quot; A spy who&#39;s ready to be added as a trade on the Merc&#39;s Guild.</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">            id      12345</span>
+<span class="sd">            name    &quot;James Bond&quot;,</span>
+<span class="sd">            level   &quot;20&quot;,</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">IntelView</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div>
+<div class="viewcode-block" id="IntelView"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.IntelView">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        maximum             5,</span>
+<span class="sd">        current             1,</span>
+<span class="sd">        in_training         1,</span>
+<span class="sd">        training_costs      {</span>
+<span class="sd">            &quot;food&quot; : 100,</span>
+<span class="sd">            &quot;water&quot; : 120,</span>
+<span class="sd">            &quot;energy&quot; : 20,</span>
+<span class="sd">            &quot;ore&quot; : 5,</span>
+<span class="sd">            &quot;waste&quot; : 10,</span>
+<span class="sd">            &quot;time&quot; : 60,</span>
+<span class="sd">        }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MissionCount</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div>
+<div class="viewcode-block" id="MissionCount"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.MissionCount">[docs]</a>    <span class="sd">&quot;&quot;&quot; The count of missions performed by the spy.</span>
+
+<span class="sd">    A spy is forcefully retired after performing 150 of either type of mission </span>
+<span class="sd">    (offensive or defensive).  So to get the most life out of a spy, once he </span>
+<span class="sd">    gets to 149 of one type of mission, you should only use him for the other </span>
+<span class="sd">    type from then on.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        offensive   149</span>
+<span class="sd">        defensive   149</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MissionResult</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div>
+<div class="viewcode-block" id="MissionResult"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.MissionResult">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        result          &quot;Failure&quot;,</span>
+<span class="sd">        message_id      &quot;id-goes-here&quot;,</span>
+<span class="sd">        reason          &quot;I&#39;m under heavy fire over here!&quot;</span>
+
+<span class="sd">    Possible values for &#39;result&#39; are:</span>
+<span class="sd">        Accepted    Nothing happened as a result of the assignment, as to </span>
+<span class="sd">                    Counter Espionage or Idle.</span>
+<span class="sd">        Success     The mission succeeded and your spy won.</span>
+<span class="sd">        Bounce      The mission began, but was foiled.  Essentially a draw.  </span>
+<span class="sd">        Failure     The mission failed miserably.  Your spy is probably </span>
+<span class="sd">                    knocked out, in jail, or dead.</span>
+
+<span class="sd">    The message_id listed is the ID of a message in your inbox </span>
+<span class="sd">    containing details of the result of the mission.  Not all </span>
+<span class="sd">    missions will include a message_id (eg &#39;Idle&#39;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Prisoner</span><span class="p">(</span><span class="n">Spy</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Prisoner"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.Prisoner">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A Prisoner object has the following attributes:</span>
+<span class="sd">            id                  &quot;id-goes-here&quot;,</span>
+<span class="sd">            name                &quot;James Bond&quot;,</span>
+<span class="sd">            level               &quot;20&quot;,</span>
+<span class="sd">            task                &quot;Captured&quot; or &quot;Prisoner Transport&quot;,</span>
+<span class="sd">            sentence_expires    &quot;01 31 2010 13:09:05 +0600&quot;   </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">SpyBody</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div>
+<div class="viewcode-block" id="SpyBody"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.SpyBody">[docs]</a>    <span class="sd">&quot;&quot;&quot; A body (planet, space station, etc).  This can be where the spy is </span>
+<span class="sd">    currently located or his home base (from which he is controlled).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        body_id     id-goes-here&quot;,</span>
+<span class="sd">        name        Earth&quot;,</span>
+<span class="sd">        x           40,</span>
+<span class="sd">        y           -71</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Training</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">building</span><span class="o">.</span><span class="n">MyBuilding</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Training"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.Training">[docs]</a>    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Training.view"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.Training.view">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns info on how many points this training building can confer, </span>
+<span class="sd">        and how many spies are currently training.</span>
+
+<span class="sd">        Returns a single TrainingView object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lacuna</span><span class="o">.</span><span class="n">building</span><span class="o">.</span><span class="n">MyBuilding</span><span class="o">.</span><span class="n">write_building_status</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="n">TrainingView</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;spies&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">view</span>
+
+<span class="k">class</span> <span class="nc">TrainingView</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="TrainingView"><a class="viewcode-back" href="../../lacuna.html#lacuna.spy.TrainingView">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        max_points      2600</span>
+<span class="sd">        points_per      45</span>
+<span class="sd">        in_training     4</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mydict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="p">)</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

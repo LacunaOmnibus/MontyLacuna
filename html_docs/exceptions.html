@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>exceptions &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="inbox" href="inbox.html" />
+    <link rel="prev" title="empire" href="empire.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="inbox.html" title="inbox"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="empire.html" title="empire"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lacuna.exceptions">
+<span id="exceptions"></span><h1>exceptions<a class="headerlink" href="#module-lacuna.exceptions" title="Permalink to this headline">¶</a></h1>
+<dl class="exception">
+<dt id="lacuna.exceptions.BadConfigSectionError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">BadConfigSectionError</tt><big>(</big><em>section</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#BadConfigSectionError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.BadConfigSectionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>User specified a config file section which does not exist.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.BadCredentialsError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">BadCredentialsError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#BadCredentialsError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.BadCredentialsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>One or both of username and/or password is bad.  We&#8217;re not sure which.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.CaptchaResponseError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">CaptchaResponseError</tt><big>(</big><em>section</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#CaptchaResponseError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.CaptchaResponseError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user&#8217;s response to a captcha puzzle was incorrect.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.GDIError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">GDIError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#GDIError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.GDIError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The client attempted to access own alliance methods, but is not currently
+in an alliance.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.NoAvailableShipsError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoAvailableShipsError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#NoAvailableShipsError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.NoAvailableShipsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>We attempted to do something that requires one or more ships (eg fetch 
+spies), but no ships were available.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.NoSuchBuildingError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoSuchBuildingError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#NoSuchBuildingError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.NoSuchBuildingError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The building requested does not exist</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.NoSuchEmpireError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoSuchEmpireError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#NoSuchEmpireError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.NoSuchEmpireError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The empire name used does not exist</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.NoSuchMyBodyError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoSuchMyBodyError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#NoSuchMyBodyError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.NoSuchMyBodyError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The body requested does not exist in my empire.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.NotJsonError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NotJsonError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#NotJsonError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.NotJsonError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The server responded, but handed back something other than JSON</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.RequestError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">RequestError</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#RequestError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.RequestError" title="Permalink to this definition">¶</a></dt>
+<dd><p>A network request is not responding properly.  Generally this means that 
+response.status_code is other than 200.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="lacuna.exceptions.ServerError">
+<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">ServerError</tt><big>(</big><em>code: int</em>, <em>message: str</em><big>)</big><a class="reference internal" href="_modules/lacuna/exceptions.html#ServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.exceptions.ServerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The TLE server returned a 500 and a JSON error string</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="empire.html"
+                        title="previous chapter">empire</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="inbox.html"
+                        title="next chapter">inbox</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/exceptions.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="inbox.html" title="inbox"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="empire.html" title="empire"
+             >previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

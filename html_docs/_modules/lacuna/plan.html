@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.plan &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.plan</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+
+<span class="k">class</span> <span class="nc">Plan</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span>
+<div class="viewcode-block" id="Plan"><a class="viewcode-back" href="../../lacuna.html#lacuna.plan.Plan">[docs]</a>    <span class="sd">&quot;&quot;&quot; Plan base class &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">OwnedPlan</span><span class="p">(</span><span class="n">Plan</span><span class="p">):</span></div>
+<div class="viewcode-block" id="OwnedPlan"><a class="viewcode-back" href="../../lacuna.html#lacuna.plan.OwnedPlan">[docs]</a>    <span class="sd">&quot;&quot;&quot; Returned from viewing plans you currently own, as in your PCC.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name                &quot;Interstellar Broadcast System&quot;</span>
+<span class="sd">        level               1</span>
+<span class="sd">        extra_build_level   5</span>
+<span class="sd">        quantity            23</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">PotentialSSPlan</span><span class="p">(</span><span class="n">Plan</span><span class="p">):</span></div>
+<div class="viewcode-block" id="PotentialSSPlan"><a class="viewcode-back" href="../../lacuna.html#lacuna.plan.PotentialSSPlan">[docs]</a>    <span class="sd">&quot;&quot;&quot; Returned from viewing plans you can build, as in your Space Station Lab</span>
+<span class="sd">    (A).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name                &quot;Interstellar Broadcast System&quot;</span>
+<span class="sd">        type                &quot;ibs&quot;</span>
+<span class="sd">        image               &quot;ibs&quot;</span>
+<span class="sd">        url                 &quot;/ibs&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">LevelCosts</span><span class="p">(</span><span class="n">Plan</span><span class="p">):</span></div>
+<div class="viewcode-block" id="LevelCosts"><a class="viewcode-back" href="../../lacuna.html#lacuna.plan.LevelCosts">[docs]</a>    <span class="sd">&quot;&quot;&quot; Not a plan at all, but the costs associated with creating a plan at your </span>
+<span class="sd">    SS Lab.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        level   1,</span>
+<span class="sd">        food    10000</span>
+<span class="sd">        ore     10000</span>
+<span class="sd">        water   10000</span>
+<span class="sd">        energy  10000</span>
+<span class="sd">        waste   2500</span>
+<span class="sd">        time    1200 (in seconds)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

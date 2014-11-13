@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>alliance &mdash; MontyLacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="lacuna.body" href="body.html" />
+    <link rel="prev" title="Welcome to MontyLacuna’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="body.html" title="lacuna.body"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MontyLacuna’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lacuna.alliance">
+<span id="alliance"></span><h1>alliance<a class="headerlink" href="#module-lacuna.alliance" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.alliance.Member">
+<em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">Member</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/alliance.html#Member"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.alliance.Member" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alliance member.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>id          5810
+name        Invitee One</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.alliance.MyAlliance">
+<em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">MyAlliance</tt><big>(</big><em>client: object</em><big>)</big><a class="reference internal" href="_modules/lacuna/alliance.html#MyAlliance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.alliance.MyAlliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the alliance of which the current empire is a member.</p>
+<p>You&#8217;ll normally get at this via the clients.Member&#8217;s get_my_alliance() 
+method:</p>
+<blockquote>
+<div>my_alliance = my_client.get_my_alliance()</div></blockquote>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>id              12345
+name            United Union of Federated Allied Groups
+description     We&#8217;re an alliance.
+leader_id       67890
+date_created    &#8220;01 31 2010 13:09:05 +0000&#8221;,
+influence       0
+members         List of alliance.Member objects
+space_stations  List of alliance.SpaceStation objects</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.alliance.SpaceStation">
+<em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">SpaceStation</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/alliance.html#SpaceStation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.alliance.SpaceStation" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alliance-owned space station.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>id          12345
+name        Satellite of Love
+x           10
+y           -10</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">Member</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/alliance.html#Member"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>An alliance member.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>id          5810
+name        Invitee One</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to MontyLacuna&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="body.html"
+                        title="next chapter">lacuna.body</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/alliance.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="body.html" title="lacuna.body"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MontyLacuna’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
