@@ -1,5 +1,5 @@
 
-import re
+import functools, re
 import lacuna.buildings
 import lacuna.bc
 from lacuna.exceptions import \
@@ -8,7 +8,7 @@ from lacuna.exceptions import \
 class Body(lacuna.bc.LacunaObject):
     """
     Attributes:
-        >>> ########################################
+        >>> 
         id                          "id-goes-here",
         x                           -4,
         y                           10,
@@ -115,15 +115,16 @@ class Body(lacuna.bc.LacunaObject):
 
         for k, v in attrs.items():
             setattr(self, k, v)
-        self.set_status_attr( attrs )
+        self._set_status_attr( attrs )
 
-    def set_body_status( func ):
+    def _set_body_status( func ):
         """ Decorator.
         Much like LacunaObject.set_empire_status.  Most of the Body server 
         methods return both empire status and body status.  So we'll still 
         decorate with LacunaObject.set_empire_status to get the empire status, 
         but we'll also decorate with this to set the body status.
         """
+        @functools.wraps(func)
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
             self = args[0]
@@ -150,10 +151,10 @@ class Body(lacuna.bc.LacunaObject):
             return rv
         return inner
 
-    @set_body_status
-    def set_status_attr( self, my_attrs:dict = {}, *args, **kwargs ):
+    @_set_body_status
+    def _set_status_attr( self, my_attrs:dict = {}, *args, **kwargs ):
         """ Fake up a status dict in the expected format, so the 
-        set_body_status decorator can properly set our attributes.
+        _set_body_status decorator can properly set our attributes.
         """
         status = { 'body': my_attrs }
         return status
@@ -280,7 +281,7 @@ class MyBody(Body):
         ### building data in a single shot.
         self.set_buildings()
 
-    @Body.set_body_status
+    @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
     def get_status( self, blarg:int, *args, **kwargs ):
         """ Gets status of the current body.
@@ -291,12 +292,12 @@ class MyBody(Body):
         """
         pass
 
-    @Body.set_body_status
+    @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
     def get_buildings( self, *args, **kwargs ):
         """ Returns dict with key 'buildings'.  This dict is keyed off 
-        building IDs.  Values are building dicts as documented top of this 
-        doc.
+        building IDs.  Values are building dicts as documented by 
+        get_buildable().
         """
         pass
 
@@ -346,7 +347,7 @@ class MyBody(Body):
             bldg_dict['id'] = id
             self.buildings_name[name].append( bldg_dict )
 
-    @Body.set_body_status
+    @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
     def repair_list( self, building_ids_to_repair:list, *args, **kwargs ):
         """ Repairs all buildings indicated by ID in the passed-in list.
@@ -361,7 +362,7 @@ class MyBody(Body):
         """
         pass
 
-    @Body.set_body_status
+    @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
     def rearrange_buildings( self, arrangment_dicts:list, *args, **kwargs ):
         """ Moves one or more buildings to a new spot on the planet surface.
@@ -389,23 +390,29 @@ class MyBody(Body):
         """
         pass
 
-    @Body.set_body_status
+    @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
     def get_buildable( self, x:int, y:int, tag:str = '', *args, **kwargs ):
-        """Returns a list of buildings that can be built on the indicated 
+        """ Get a list of buildings that can be built on the indicated 
         coords.
 
-        X and Y coordinate ints are required.
+        Arguments:
+            - x -- Required integer X coordinate where you want to place the building
+            - y -- Required integer Y coordinate where you want to place the building
+            - tag -- Optional string to limit what gets returned.
 
-        A single string representing the tag to filter on is optional.  Some 
-        examples of tags are: Now, Later, Happiness, Ore, Resources
-        Sending an invalid tag is not an error, it simply returns zero 
-        results.
+        Tags are analogous to the buttons and drop-down box that appear in the 
+        build menu in the browser client, such as Now, Later, Happiness, Ore, 
+        Resources, etc.
+
         A complete list of tags can be found at:
             https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29
 
-        Retval contains the key 'buildable', which is a list of dicts keyed 
-        off the human-readable building name:
+        Sending an invalid tag is not an error, it simply returns zero 
+        results.
+
+        Returns a dict that includes the key 'buildable', which is a list of 
+        dicts keyed off the human-readable building name:
             >>> 
             [
                 'Water Purification Plant': {
@@ -442,7 +449,7 @@ class MyBody(Body):
                 etc
             ]
 
-        Throws 1009 if the passed coords are illegal for any reason (already 
+        Raises ServerError 1009 if the passed coords are illegal for any reason (already 
         occupied, out-of-bounds, etc)
         """
         pass
@@ -458,21 +465,7 @@ class MyBody(Body):
 
     @lacuna.bc.LacunaObject.call_body_meth
     def abandon( self, *args, **kwargs ):
-        """ Abandons the current planet.
-        Retval contains the standard server and empire keys.
-
-        I tested this on three planets on PT.  All three were abandoned 
-        successfully.  However, on the first two, the server returned 
-        something other than JSON.  Unfortunately, my NotJsonError exception 
-        wasn't being imported properly, so it didn't manage to dump out was 
-        _was_ returned.
-
-        On the third test, after fixing the exception import, the server did 
-        return actual JSON.
-
-        I assume that the server was just having issues the first two times, 
-        this is not uncommon on PT.
-        """
+        """ Abandons the current planet. """
         pass
 
 class Planet(lacuna.bc.SubClass):
