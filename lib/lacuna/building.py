@@ -14,36 +14,12 @@
     LacunaObject requires a class variable name 'path', but MyBuilding does not 
     provide it; any module extending Building must provide that path variable.
 
-    building dict example: {#{{{
-        This is what comes back from a server call to view().  These keys become
-        attributes of the building object.
-
-        {
-            "name" : "Apple Orchard",
-            "x" : 1,
-            "y" : -1,
-            "url" : "/apple",
-            "level" : 3,
-            "image" : "apples3",
-            "efficiency" : 95,
-            "pending_build" : {            # only included when building is building/upgrading
-                "seconds_remaining" : 430,
-                "start" : "01 31 2010 13:09:05 +0600",
-                "end" : "01 31 2010 18:09:05 +0600"
-            },
-            "work" : {                     # only included when building is working (Parks, Waste Recycling, etc)
-                "seconds_remaining" : 49,
-                "start" : "01 31 2010 13:09:05 +0600",
-                "end" : "01 31 2010 18:09:05 +0600"
-            }
-        },
-    }#}}}
-
     There are two types of Building objects:
-            - Potential buildings
-            - Existing buildings
+        - Potential buildings
+        - Existing buildings
+
     A Potential building doesn't exist yet.  Its constuctor requires a body_id 
-    but no building_id.  A Potential building can't do anything but call 
+    but no id.  A Potential building can't do anything but call 
     build().  After calling build(), the Potential building becomes an 
     Existing building.
 
@@ -53,7 +29,6 @@
     attributes overwrite methods of the same name.
     So these have been renamed, adding the "do_" prefix" to avoid attribute 
     name collisions.
-
 """
 
 import re
@@ -70,7 +45,8 @@ class Building():
 class InBuildQueue(Building):
     """
     Attributes:
-        building_id         "building-id-goes-here",
+        >>> 
+        id                  "building-id-goes-here",
         name                "Planetary Commmand",
         to_level            8,
         seconds_remaining   537,
@@ -80,26 +56,52 @@ class InBuildQueue(Building):
     """
 
 class MyBuilding(LacunaObject):
-    def __init__( self, client, body_id:int, building_id:int = 0 ):
+    """ 
+    Attributes:
+        >>> 
+        id              Integer ID of the building itself
+        body_id         Integer ID of the body this building is sitting on,
+        name            "Apple Orchard",
+        x               1,
+        y               -1,
+        url             "/apple",
+        level           3,
+        image           "apples3",
+        efficiency      95,
+        pending_build   {
+                            # only included when building is building/upgrading
+                            "seconds_remaining" : 430,
+                            "start" : "01 31 2010 13:09:05 +0600",
+                            "end" : "01 31 2010 18:09:05 +0600"
+                        },
+        work            {
+                            # only included when building is working (Parks, Waste Recycling, etc)
+                            "seconds_remaining" : 49,
+                            "start" : "01 31 2010 13:09:05 +0600",
+                            "end" : "01 31 2010 18:09:05 +0600"
+                        }
+    """
+
+    def __init__( self, client, body_id:int, id:int = 0 ):
         ### Inheritance starts with LacunaObject, so super()__init__() calls 
         ### LacunaObject's __init__().
         super().__init__( client )
         self.body_id = body_id
-        if building_id:
-            self.building_id = building_id
-            rv = self.client.send( self.path, 'view', (self.client.session_id, building_id) )
+        if id:
+            self.id = id
+            rv = self.client.send( self.path, 'view', (self.client.session_id, id) )
             self.write_building_status( rv )
 
     def call_building_meth(func):
         """ Decorator.
-        Calls a server method that requires a building_id, but no body_id.
+        Calls a server method that requires a id, but no body_id.
         This is the decorator that most MyBuilding methods will use.
         Methods using this decorator get the original server result handed 
-        back to them in **kwargs['rslt'].
+        back to them in kwargs['rslt'].
         """
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
-            myargs = (self.client.session_id, self.building_id) + args
+            myargs = (self.client.session_id, self.id) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
             kwargs['rslt'] = rslt
             func( self, *args, **kwargs )
@@ -108,7 +110,7 @@ class MyBuilding(LacunaObject):
 
     def call_returning_meth(func):
         """ Decorator.
-        Calls a server method that requires a building_id, but no body_id.
+        Calls a server method that requires a id, but no body_id.
         Rather than simply passing back the data returned from the TLE server, 
         returns the value from the originally-called method.
 
@@ -117,7 +119,7 @@ class MyBuilding(LacunaObject):
         """
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
-            myargs = (self.client.session_id, self.building_id) + args
+            myargs = (self.client.session_id, self.id) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
             status_dict = LacunaObject.get_status_dict(self, rslt)
             LacunaObject.write_empire_status(self, status_dict)
@@ -129,7 +131,7 @@ class MyBuilding(LacunaObject):
 
     def call_naked_returning_meth(func):
         """ Decorator.
-        Calls a server method that does not require building_id or body_id.
+        Calls a server method that does not require id or body_id.
         Rather than simply passing back the data returned from the TLE server, 
         returns the value from the originally-called method.
 
@@ -150,13 +152,13 @@ class MyBuilding(LacunaObject):
 
     def call_named_meth(func):
         """ Decorator.  
-        Calls a server method that requires a building_id, but no body_id.
+        Calls a server method that requires a id, but no body_id.
         Expects named arguments.  This is the 'new' way of doing it, but there are
         fairly few methods that work this way.  See generate_singularity()
         """
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
-            mydict['building_id'] = self.building_id
+            mydict['id'] = self.id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
             func( self, mydict )
             return rslt
@@ -164,7 +166,7 @@ class MyBuilding(LacunaObject):
 
     def call_named_returning_meth(func, *args, **kwargs):
         """ Decorator.  
-        Calls a server method that requires a building_id, but no body_id.
+        Calls a server method that requires a id, but no body_id.
         Expects named arguments, and returns the value from the locally-called 
         method rather than the dict returned from the TLE server.
 
@@ -174,7 +176,7 @@ class MyBuilding(LacunaObject):
         """
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
-            mydict['building_id'] = self.building_id
+            mydict['id'] = self.id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
             LacunaObject.write_empire_status(self, rslt)
             kwargs['rslt'] = rslt
@@ -184,10 +186,10 @@ class MyBuilding(LacunaObject):
 
     def call_naked_meth(func):
         """Decorator.
-        Some building methods require neither a body_id nor a building_id (see 
+        Some building methods require neither a body_id nor a id (see 
         spaceport.py for examples).
         Methods using this decorator get the original server result handed 
-        back to them in **kwargs['rslt'].
+        back to them in kwargs['rslt'].
         """
         def inner(self, *args):
             myargs = (self.client.session_id,) + args
@@ -203,14 +205,14 @@ class MyBuilding(LacunaObject):
         actually already exists.  Add this decorator to those methods.
         """
         def inner(self, *args):
-            if not self.building_id:
+            if not self.id:
                 raise AttributeError( "{} requires an already-existing building.".format(func.__name__) )
             func(self, args)
             return rslt
         return inner
 
     def set_building_status( func ):
-        """Decorator.
+        """ Decorator.
         Much like LacunaObject.set_empire_status.  A few of the Building server 
         methods return both empire status and building status.  So we'll still 
         decorate with LacunaObject.set_empire_status to get the empire status, 
@@ -237,11 +239,11 @@ class MyBuilding(LacunaObject):
         After calling build(), your "new building" object will be be an "existing building"
         object, capable of calling the rest of the building methods.
         """
-        ### build() is unique, as it requires a body_id but no building_id, 
-        ### since the building doesn't exist yet.  No decorators here; the 
-        ### call to view() after the building is placed will handle that.
+        ### build() is unique, as it requires a body_id but no id, since the 
+        ### building doesn't exist yet.  No decorators here; the call to 
+        ### view() after the building is placed will handle that.
         rv = self.client.send( self.path, 'build', (self.client.session_id, self.body_id, x, y) )
-        rv['building']['building_id'] = rv['building']['id']
+        rv['building']['id'] = rv['building']['id']
         self.write_building_status( rv )
         self.view();
 
@@ -257,7 +259,7 @@ class MyBuilding(LacunaObject):
         ### Since the building no longer exists, make sure that the object is 
         ### incapable of calling any further MyBuilding methods.
         del( self.body_id )
-        del( self.building_id )
+        del( self.id )
 
     @LacunaObject.set_empire_status
     @set_building_status

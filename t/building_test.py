@@ -51,11 +51,11 @@ quit()
 ### Run the "Build new" block above first, then copy the building ID from its 
 ### output and paste it as the second arg to get_building_id() below.
 #sp = my_planet.get_building_id( 'spaceport', 4734912 )
-#print( "Before demo:", sp.building_id )
+#print( "Before demo:", sp.id )
 #sp.demolish()
-### This would throw an AttributeError - the building_id no longer exists 
-### after demolition (this is as it should be).
-###     print( "After demo:", sp.building_id )
+### This would throw an AttributeError - the id no longer exists after 
+### demolition (this is as it should be).
+###     print( "After demo:", sp.id )
 
 ### Upgrade
 ### 

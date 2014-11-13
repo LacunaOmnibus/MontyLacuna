@@ -11,6 +11,16 @@ The main goal is to help me learn Python, but I'd like to end up with a fully
 working package.
 
 ## Prerequisites
+- virtualenv
+  - You want to do this before any other installing, so the module installs will install 
+    to your virtual environment.
+  - $ sudo apt-get install python-virtualenv
+  - Again, this probably doesn't count as a true prereq, but it's something I did.
+  - After installing virtualenv, I created one for this project with:
+    - $ virtualenv -p /usr/bin/python Python3
+    - $ source Python3/bin/activate
+      - Now "python script.py" will call Python3/bin/python.
+    - You can turn that virtualenv off with just $ deactivate
 - pip
 - requests
   - pip install requests
@@ -48,9 +58,9 @@ This should all end up somewhere more reasonable than this file eventually.
 work, but it hasn't been fully tested yet.
 
 - Body
-  - May be oopified, may not.  CHECK.
+  - CHECK this definitely still needs work.
 - Alliance
-  - May be oopified, may not.  CHECK.
+  - CHECK this definitely still needs work.
 - Captcha
   - May be oopified, may not.  CHECK.
 - Clients
@@ -143,19 +153,62 @@ supposed to do.
 - Figure out how to install this puppy (setup.py?)
 
 ## Documentation
-After installing Sphinx, in the root directory:
-  - sphinx-quickstart
-    - root path: ./lib/lacuna
-        - This results in all of the docu files being placed in the same directory with 
-          the source files.  I don't think I like that.
-    - I entered my name, the name of the project, and version 0.1.
-    - I chose 'y' for the question about autodoc.
-    - All else I accepted the defaults.
-  - From the root:
-    - sphinx-build -b html lib/lacuna html/
-    - This produced some output in html/, but none of it contains any actual docu.
-
-I think the problem is that my code isn't in Python's search path.  Need to keep working 
-on this.
-
 http://sphinx-doc.org/tutorial.html
+https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
+
+- First run only:
+  - Create ROOT/doc/
+  - In ROOT:
+    - sphinx-quickstart (this starts a question-and-answer section):
+      - root path: ./doc
+      - I entered my name, the name of the project, and version 0.1.
+      - I chose 'y' for the questions about autodoc and viewcode.
+      - All else I accepted the defaults.
+  - in ROOT/doc/:
+    - Edit conf.py (which was just created):
+      - Line 21 (ish):
+        - sys.path.insert(0, os.path.abspath('../lib'))
+      - That should tell Sphinx where my code lives
+- To generate docu based on docstrings:
+  - in ROOT:
+    - sphinx-apidoc -o doc/ lib/ lacuna
+      - http://sphinx-doc.org/invocation.html#invocation-apidoc
+      - Re-run that anytime you update docstrings in the modules.
+      - This creates several more .rst files in doc/
+        - lacuna.rst
+        - lacuna.buildings.rst
+        - modules.rst
+        - my_validate_email.rst
+    - edit doc/index.rst:
+      - Add these lines under the toctree:: directive:
+        - lacuna
+        - my_validate_email
+    - Now, when you generate the HTML docu, links to your API docs will be included.
+- Each time you want to update the generated documentation:
+  - in ROOT/doc:
+    - make html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
