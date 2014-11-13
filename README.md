@@ -142,4 +142,20 @@ supposed to do.
 - Figure out how to generate HTML documentation from my docstrings.
 - Figure out how to install this puppy (setup.py?)
 
+## Documentation
+After installing Sphinx, in the root directory:
+  - sphinx-quickstart
+    - root path: ./lib/lacuna
+        - This results in all of the docu files being placed in the same directory with 
+          the source files.  I don't think I like that.
+    - I entered my name, the name of the project, and version 0.1.
+    - I chose 'y' for the question about autodoc.
+    - All else I accepted the defaults.
+  - From the root:
+    - sphinx-build -b html lib/lacuna html/
+    - This produced some output in html/, but none of it contains any actual docu.
 
+I think the problem is that my code isn't in Python's search path.  Need to keep working 
+on this.
+
+http://sphinx-doc.org/tutorial.html
