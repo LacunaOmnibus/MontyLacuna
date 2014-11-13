@@ -1,7 +1,7 @@
 
 """Module for lacuna base classes."""
 
-import datetime, math, pprint, re
+import datetime, functools, math, pprint, re
 
 class SubClass():
     """ A generic base class for turning returned dicts into objects, and 
@@ -174,13 +174,13 @@ class LacunaObject(SubClass):
                 session_id = self.client.session_id
             elif hasattr( self, 'session_id' ):
                 session_id = self.session_id
-
             myargs = (session_id,) + args
             rslt = self.client.send( self.path, func.__name__, myargs )
             kwargs['rslt'] = rslt
             func( self, *args, **kwargs )
             return rslt
         return inner
+
 
     def call_returning_meth(func):
         """ Decorator.  
@@ -236,6 +236,52 @@ class LacunaObject(SubClass):
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
             func( self, mydict )
             return rslt
+        return inner
+
+    def call_body_meth_orig(func):
+        """ Decorator.  
+        Just like call_member_meth(), except that this version includes the 
+        body_id in the args passed to the server.
+        """
+        def inner(self, *args, **kwargs):
+            myargs = (self.client.session_id, self.body_id) + args
+            rslt = self.client.send( self.path, func.__name__, myargs )
+            status_dict = self.get_status_dict(rslt)
+            self.write_empire_status(status_dict)
+            kwargs['rslt'] = rslt
+            func( self, *args, **kwargs )
+            return rslt
+        return inner
+
+    def call_body_meth(func):
+        """ Decorator.  
+        Just like call_member_meth(), except that this version includes the 
+        body_id in the args passed to the server.
+        """
+        @functools.wraps(func)
+        def inner(self, *args, **kwargs):
+            myargs = (self.client.session_id, self.body_id) + args
+            rslt = self.client.send( self.path, func.__name__, myargs )
+            status_dict = self.get_status_dict(rslt)
+            self.write_empire_status(status_dict)
+            kwargs['rslt'] = rslt
+            func( self, *args, **kwargs )
+            return rslt
+        return inner
+
+    def call_returning_body_meth(func):
+        """ Decorator.  
+        Just like call_returning_meth(), except that this version includes the 
+        body_id in the args passed to the server.
+        """
+        def inner(self, *args, **kwargs):
+            myargs = (self.client.session_id, self.body_id) + args
+            rslt = self.client.send( self.path, func.__name__, myargs )
+            status_dict = self.get_status_dict(rslt)
+            self.write_empire_status(status_dict)
+            kwargs['rslt'] = rslt
+            myrslt = func( self, *args, **kwargs )
+            return myrslt
         return inner
 
 class ElapsedTime():

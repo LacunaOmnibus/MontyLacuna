@@ -4,7 +4,7 @@
 test.py
 test.txt
 __pycache__/
-doc/
+doc/_build/
 etc/lacuna.cfg
 var/cache/
 var/cachelck/
