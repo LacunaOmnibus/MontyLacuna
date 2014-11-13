@@ -59,6 +59,7 @@ work, but it hasn't been fully tested yet.
 
 - Body
   - CHECK this definitely still needs work.
+  - And repair_list() needs to be tested; I need to snark myself on PT I guess.
 - Alliance
   - CHECK this definitely still needs work.
 - Captcha
@@ -149,6 +150,9 @@ supposed to do.
   we should be caching the results.
 - lacuna.bc.SubClass is idiotically named.  It's meant as a full-coverage superclass, not 
   a subclass.  Do something about that name.
+- The logfile attribute of clients is meant to be optional, but ISTR getting an explosion 
+  on a test at some point where I didn't have a logfile set.  Confirm that setting a 
+  logfile is optional.
 - Figure out how to generate HTML documentation from my docstrings.
 - Figure out how to install this puppy (setup.py?)
 
@@ -169,9 +173,22 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
       - Line 21 (ish):
         - sys.path.insert(0, os.path.abspath('../lib'))
       - That should tell Sphinx where my code lives
+  - I created these by hand:
+    - bc.rst
+    - body.rst
+    - building.rst
+    - captcha.rst
+    - clients.rst
+    - config_file.rst
+    - empire.rst
+    - getting_started.rst
+    - inbox.rst
+    - map.rst
+    - stats.rst
 - To generate docu based on docstrings:
   - in ROOT:
     - sphinx-apidoc -o doc/ lib/ lacuna
+      - However, I don't think I'm using this at this point.  CHECK I need to clean up and 
       - http://sphinx-doc.org/invocation.html#invocation-apidoc
       - Re-run that anytime you update docstrings in the modules.
       - This creates several more .rst files in doc/
@@ -179,7 +196,9 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
         - lacuna.buildings.rst
         - modules.rst
         - my_validate_email.rst
-    - edit doc/index.rst:
+    - Of those generated files, the only one I'm explicitly adding to the main toctree is 
+      "my_validate_email".  I don't want lacuna or modules listed there at all.  I've 
+      added lacuna.buildings to the toctree of buildings.rst.
       - Add these lines under the toctree:: directive:
         - lacuna
         - my_validate_email
@@ -187,26 +206,6 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 - Each time you want to update the generated documentation:
   - in ROOT/doc:
     - make html
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

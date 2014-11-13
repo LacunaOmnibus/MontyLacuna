@@ -276,10 +276,10 @@ class MyBody(Body):
         super().__init__( client, attrs )
         ### I want self to start out populated, which would require a call to 
         ### get_status().  But since all the other methods also require a 
-        ### status block, I can call set_buildings() instead (which is itself 
+        ### status block, I can call _set_buildings() instead (which is itself 
         ### calling get_buildings()) and get both the status data and the 
         ### building data in a single shot.
-        self.set_buildings()
+        self._set_buildings()
 
     @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
@@ -324,7 +324,7 @@ class MyBody(Body):
         bldg_str = "lacuna.buildings.{}( self.client, self.body_id )".format( classname )
         return eval(bldg_str)
 
-    def set_buildings( self ):
+    def _set_buildings( self ):
         """ Sets self.buildings_id and self.buildings_name.
         Called upon instantiation.
         """
@@ -352,41 +352,45 @@ class MyBody(Body):
     def repair_list( self, building_ids_to_repair:list, *args, **kwargs ):
         """ Repairs all buildings indicated by ID in the passed-in list.
 
-        Per the API docs, this should return a dict including key 
-        'buildings', itself a dict of id => building_dict.  This 
-        'buildings' dict will only contain buildings passed in 
-        building_ids_to_repair.
+        CHECK
 
-        CHECK I haven't got any broken buildings handy to actually test this 
-        retval, so I haven't been able to verify the paragraph above yet.
+        Per the API docs, this should return a dict including key 'buildings', 
+        itself a dict of id -> building_dict.  This 'buildings' dict will only 
+        contain buildings passed in building_ids_to_repair.
+
+        I haven't got any broken buildings handy to actually test this retval, 
+        so I haven't been able to verify the paragraph above yet.
         """
         pass
 
     @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
-    def rearrange_buildings( self, arrangment_dicts:list, *args, **kwargs ):
+    def rearrange_buildings( self, arrangement:list, *args, **kwargs ):
         """ Moves one or more buildings to a new spot on the planet surface.
 
-        arrangement_dicts is formatted as:
-            [
-                {
-                    'id': integer ID of the building to move,
-                    'x':  integer X coordinate to move to,
-                    'y':  integer y coordinate to move to,
-                },
-                { another building to move, same format as above },
-                etc
-            ]
+        Arguments:
+            - arrangement -- A list of dicts describing your new surface arrangement
 
-        Retval includes a key 'moved', which is a list of dicts of buildings 
-        that were moved.  This returned list is identical to the list you 
-        passed in except it also contains a 'name' key containing the 
+                >>> 
+                [
+                    {
+                        'id': integer ID of the building to move,
+                        'x':  integer X coordinate to move to,
+                        'y':  integer y coordinate to move to,
+                    },
+                    { another building to move, same format as above },
+                    etc
+                ]
+
+        Returns a dict including the key 'moved', which is a list of dicts of 
+        buildings that were moved.  This returned list is identical to the 
+        list you passed in except it also contains a 'name' key containing the 
         human-readable name of the moved building.
 
         Attempting to make an illegal move (moving a building out of -5..5 
         bounds, moving it on top of another building, moving the PCC at all, 
-        etc) results in a 1013 server error and no moves are made, even if 
-        others in the list were legal.
+        etc) raises ServerError 1013 and no moves are made, even if others in 
+        the list were legal.
         """
         pass
 
@@ -458,8 +462,8 @@ class MyBody(Body):
     def rename( self, name:str = '', *args, **kwargs ):
         """ Renames the current planet.
 
-        For whatever reason, this returns int 1 on success.  NOT a dict 
-        (like every other method), just a bare int.
+        For whatever reason, this returns int 1 on success.  Not a dict (like 
+        every other method), just a bare int.
         """
         pass
 
