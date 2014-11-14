@@ -6,59 +6,28 @@ class Alliance(lacuna.bc.LacunaObject):
 
     path = 'alliance'
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
-    def view_profile( self, alliance_id:int, *args, **kwargs ):
-        """Returns publicly-accessible data about the alliance.
+    @lacuna.bc.LacunaObject.call_returning_meth
+    def view_profile( self, alliance_id: int, *args, **kwargs ):
+        """ Get publicly-available information on an alliance.
 
-        rv['profile'] = {
-            "id" : "id-goes-here",
-            "name" : "Lacuna Expanse Allies",
-            "description" : "Blah blah blah blah...",
-            "leader_id" : "id-goes-here",
-            "date_created" : "01 31 2010 13:09:05 +0600",
-            "members" : [
-                {
-                    "id" : "id-goes-here",
-                    "name" : "Lacuna Expanse Corp"
-                },
-                ...
-            ],
-            "space_stations" : [
-                {
-                    "id" : "id-goes-here",
-                    "name" : "The Life Star",
-                    "x" : -342,
-                    "y" : 128
-                },
-                ...
-            ],
-            "influence" : 0
-        }
+        Requires an integer alliance ID.
+
+        Returns an alliance.Profile object.
         """
-        pass
+        return Profile(self.client, kwargs['rslt']['profile'])
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.bc.LacunaObject.call_member_meth
-    def find( self, partial_name:str, *args, **kwargs ):
-        """partial_name must be at least 3 characters.  Matches alliances whose names
-        START with partial_name (NOT those whose names just contain partial_name).
+    @lacuna.bc.LacunaObject.call_returning_meth
+    def find( self, partial_name: str, *args, **kwargs ):
+        """ Find a alliances by name.
 
-        TLE documentation does not mention a limit on number of alliances returned.
-        A limit of 25 is common with the TLE API, but the docs don't mention it in
-        this case, and there's currently no three letter string that would match 
-        more than 25 alliances so there's no way to test.
+        Requires a standard TLE search string.
 
-        rv['alliances'] is a list of dicts:
-            [
-                {
-                    "id": "1234",
-                    "name": "Some alliance name"
-                },
-                ...etc...
-            ]
+        Returns a list of alliance.FoundAlliance objects.
         """
-        pass
+        mylist = []
+        for i in kwargs['rslt']['alliances']:
+            mylist.append( FoundAlliance(self.client, i) )
+        return mylist
 
 
 class MyAlliance(Alliance):
@@ -77,7 +46,7 @@ class MyAlliance(Alliance):
         date_created    "01 31 2010 13:09:05 +0000",
         influence       0
         members         List of alliance.Member objects
-        space_stations  List of alliance.SpaceStation objects
+        space_stations  List of lacuna.body.SpaceStation objects
     """
 
     def __init__( self, client:object ):
@@ -98,21 +67,19 @@ class MyAlliance(Alliance):
         ally_id = empire_pub.alliance['id']
 
         ally = Alliance( self.client )
-        ally_profile = ally.view_profile( ally_id )['profile']
+        ally_profile = ally.view_profile( ally_id )
 
-        for i in ['id', 'name', 'description', 'leader_id', 'date_created', 'influence' ]:
-            setattr(self, i, ally_profile[i])
+        for i in ['id', 'name', 'description', 'leader_id', 'date_created', 'influence', 'members', 'space_stations' ]:
+            setattr(self, i, eval('ally_profile.'+i) )
 
-        member_list = []
-        for i in ally_profile['members']:
-            member_list.append( Member(self.client, i) )
-        self.members = member_list
+class FoundAlliance(lacuna.bc.SubClass):
+    """ An alliance as returned by find().
 
-        ss_list = []
-        for i in ally_profile['space_stations']:
-            ss_list.append( SpaceStation(self.client, i) )
-        self.space_stations = ss_list
-
+    Attributes:
+        >>> 
+        id          1234
+        name        United Federation of Unionized Togetherness
+    """
 class Member(lacuna.bc.SubClass):
     """ An alliance member.
 
@@ -122,16 +89,29 @@ class Member(lacuna.bc.SubClass):
         name        Invitee One
     """
 
-class SpaceStation(lacuna.bc.SubClass):
-    """ An alliance-owned space station.
-
+class Profile(lacuna.bc.SubClass):
+    """
     Attributes:
         >>> 
-        id          12345
-        name        Satellite of Love
-        x           10
-        y           -10
+        id              "id-goes-here",
+        name            "Lacuna Expanse Allies",
+        description     "Blah blah blah blah...",
+        leader_id       "id-goes-here",
+        date_created    "01 31 2010 13:09:05 +0600",
+        members         List of alliance.Member objects,
+        space_stations  List of ship.SpaceStation objects,
+        influence       0
     """
+    def __init__(self, client, mydict:dict):
+        member_list = []
+        for i in mydict['members']:
+            member_list.append( Member(client, i) )
+        mydict['members'] = member_list
 
+        ss_list = []
+        for i in mydict['space_stations']:
+            ss_list.append( lacuna.body.SpaceStation(client, i) )
+        mydict['space_stations'] = ss_list
 
+        super().__init__(client, mydict)
 

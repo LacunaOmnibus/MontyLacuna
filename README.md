@@ -37,33 +37,14 @@ working package.
 ## Complete
 Nothing.
 
-## Glossary
-This should all end up somewhere more reasonable than this file eventually.  
-CHECK add this to an .rst file.
-
-- Standard search string
-  - Several methods allow you to search for an item by name (a star, an empire, etc).  
-    Some of these methods allow a "search string" instead of a full name.  A search string 
-    must be at least three characters long.  All objects whose names match that string 
-    will be returned:
-        Search string: "Ear"
-        Returns: [ "Earth", "Ears is a strange name for a planet", "Earp, Wyatt" ]
-    These methods return *lists*, not single objects.  You often really want a single 
-    object; just remember that you're getting a list.
-
-- TLE date format
-  - Many methods include dates as part of their returns.  TLE dates are in the format:
-    "01 31 2010 13:09:05 +0000"
-
 ## Working
 "working" means that all functionality exists, and quickie scripts appear to 
 work, but it hasn't been fully tested yet.
 
+- Alliance
 - Body
   - CHECK this definitely still needs work.
   - And repair_list() needs to be tested; I need to snark myself on PT I guess.
-- Alliance
-  - CHECK this definitely still needs work.
 - Captcha
   - May be oopified, may not.  CHECK.
 - Clients

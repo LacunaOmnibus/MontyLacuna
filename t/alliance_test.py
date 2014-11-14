@@ -15,21 +15,22 @@ glc = lac.clients.Member(
     config_section = 'my_sitter',
 )
 
-### Get info on the alliance of the client's empire.  If the client's empire 
-### is not in an alliance, this will raise a GDIError.
+ally = glc.get_alliance()
+
+### Find an alliance by name
 ###
-my_all = glc.get_my_alliance();
-print( "My alliance is named '{}'; here are some of the members:".format(my_all.name) )
-for i in my_all.members[0:10]:
-    print( "\t", i.name )
+#allies = ally.find( 'S.M.A' )
+#for i in allies:
+#    print( "The alliance named {} has an ID of {}."
+#        .format(i.name, i.id)
+#    )
 
 
-### get_alliance() returns a vanilla Alliance object.  This gives you access 
-### to the documented Alliance methods, but the Alliance object itself DOES 
-### NOT ACTUALLY REPRESENT AN ALLIANCE.
+### Get info on the alliance your logged-in client is a member of.  If that 
+### client is not in an alliance, this will raise a GDIError.
 ###
-all = glc.get_alliance();
-
-#pp.pprint( all.view_profile(26)['profile'] )    # Culture 
-#pp.pprint( all.find("S.M.A.") )
+#my_all = glc.get_my_alliance();
+#print( "My alliance is named '{}'; here are some of the members:".format(my_all.name) )
+#for i in my_all.members[0:10]:
+#    print( "\t", i.name )
 
