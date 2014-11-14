@@ -22,6 +22,7 @@ working package.
       - Now "python script.py" will call Python3/bin/python.
     - You can turn that virtualenv off with just $ deactivate
 - pip
+  - This gets installed by virtualenv, so if you're using that, you're good.
 - requests
   - pip install requests
   - CHECK It might make sense to replace this with urllib, since it's standard - one less 
