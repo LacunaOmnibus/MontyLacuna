@@ -280,13 +280,19 @@ class MyEmpire( Empire ):
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
-    def redeem_essentia_code( self, code:str, *args, **kwargs ):
-        ### CHECK - pester RO or somebody for a non-publicized code or five to 
-        ### test with.
+    def redeem_essentia_code( self, code: str, *args, **kwargs ):
         """ Redeems an essentia code.
 
-        I see no reason why this wouldn't work, but I haven't got an essentia 
-        code to test with.
+        Requires an essentia code, which is a uuid (eg 
+        '56cc359e-8ba7-4db7-b608-8cb861c65510').
+
+        Essentia codes can be obtained by purchasing essentia, or sometimes by 
+        admins during contests.  Each code can only be used once, so if you have 
+        one, don't share it with anybody; if they use it, the E represented by 
+        that code will be gone.
+
+        Yes, the example code above was a real E code, worth 10,000 E.  But only 
+        on PT, and it's been used already.
         """
         pass
 
@@ -313,9 +319,8 @@ class MyEmpire( Empire ):
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
-    def redefine_species( self, params, *args, **kwargs ):
+    def redefine_species( self, params: dict, *args, **kwargs ):
         """ Actually does the deed of redefining a player's species.
-        CHECK test this on PT
 
         Arguments:
             - params -- Dict of species settings:

@@ -44,15 +44,11 @@ work, but it hasn't been fully tested yet.
 - Alliance
 - Body
 - Captcha
-  - May be oopified, may not.  CHECK.
 - Clients
-  - May be oopified, may not.  CHECK.
 - Empire
-  - oopified, but still needs testing in a couple methods - see CHECK.
+  - There's still a CHECK in here, but it's feature-creep-y.  Worry about it later.
 - Inbox
-  - oopified
 - Map
-  - oopified
 - Stats
   - Mostly oopified.  I didn't fully test (and therefore didn't fully oopify) 
     this just because I don't see it being too useful.  Still, it should be 
