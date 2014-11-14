@@ -10,9 +10,7 @@ guest = lac.clients.Guest()
 
 tmt = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
-    #config_section = 'my_real',
-    config_section = 'play_test',
+    config_section = 'play_test_one',
 )
 
 ### Using a non-logged-in guest account
@@ -22,19 +20,17 @@ tmt = lac.clients.Member(
 #        print(n, "is available for use.")
 #    else:
 #        print(n, "is taken, and is not available for use.")
-
-
 ###
 ### Almost everything else requires a logged-in account.
-###
+
 
 ### View my own empire's profile.
 ### This only works if you're logged in with your real, not sitter, password.
 ###
-pro = tmt.empire.view_profile()
-print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
-    .format(pro.city, pro.country, pro.player_name, len(pro.medals.keys()))
-)
+#pro = tmt.empire.view_profile()
+#print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
+#    .format(pro.city, pro.country, pro.player_name, len(pro.medals.keys()))
+#)
 
 
 ### See how many RPCs you've used so far.
@@ -89,6 +85,36 @@ print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
 #tmpls = tmt.empire.get_species_templates()
 #for i in tmpls:
 #    print( "{} is described as {}" .format(i.name, i.description) )
+
+
+### Redefine your species
+### CAREFUL this is going to spend 100 E.  Make sure you're logged in using a 
+### test account!
+###
+#new_species = {
+#    'name':                     "My new name",
+#    'description':              "My new description",
+#    'min_orbit':                1,
+#    'max_orbit':                7,
+#    'manufacturing_affinity':   7,
+#    'deception_affinity':       7,
+#    'research_affinity':        1,
+#    'management_affinity':      1,
+#    'farming_affinity':         1,
+#    'mining_affinity':          1,
+#    'science_affinity':         7,
+#    'environmental_affinity':   1,
+#    'political_affinity':       4,
+#    'trade_affinity':           1,
+#    'growth_affinity':          7,
+#}
+#raise KeyError("This is really going to spend 100 E - make real sure you're on a test account!")
+#tmt.empire.redefine_species( new_species )
+
+
+### Redeem an essentia code
+### 9907
+tmt.empire.redeem_essentia_code( '56cc359e-8ba7-4db7-b608-8cb861c65510' )
 
 
 ### 
