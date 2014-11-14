@@ -95,29 +95,3 @@ interpolation format will work for any other setting as well.  Or, you could
 certainly just type `pt.lacunaexpanse.com` there instead of using the variable 
 interpolation.
 
-To connect:
-
-::
-
-    import lacuna as lac
-
-    my_real_connection = lac.users.Member(
-        config_file    = "etc/lacuna.cfg",
-        config_section = 'my_account',
-    )
-
-    my_sitter_connection = lac.users.Member(
-        config_file    = "etc/lacuna.cfg",
-        config_section = 'my_sitter',
-    )
-
-    my_friends_connection = lac.users.Member(
-        config_file    = "etc/lacuna.cfg",
-        config_section = 'some_alliance_mate',
-    )
-
-This should make it easy, especially for those who run scripts for multiple 
-friends, to keep all credentials in a single file and just change the 
-`config_section` value in your script depending on the account you want to 
-run.
-

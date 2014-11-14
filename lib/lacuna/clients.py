@@ -18,39 +18,19 @@ class Guest(lacuna.bc.SubClass):
     """ Guest users are not logged in.
 
     Accepts the following named arguments:
-        ### Setting the first two obviates the need to set anything else.
-
-        config_file     path to your configparser-friendly config file
-
-        config_section  the section in your config file to read from
-
-        api_key         your TLE api_key.  Omitting this is fine; the default
-                        key (the string 'anonymous') will be used.
-
-        logfile         path to your logfile.  Defaults to no logfile; only
-                        WARNING or higher log events will display to the 
-                        terminal.
-
-        proto           http or https.  Defaults to http.
-
-        host            us1.lacunaexpanse.com or pt.lacunaexpanse.com.
-                        Defaults to us1.
-                        
-        sleep_on_call   Integer seconds.  Defaults to 1.  Number of seconds to
-                        sleep after each call to attempt to avoid using more 
-                        than the limit of 60 RPCs per minute.
-        
-        sleep_on_error  Boolean.  Defaults to True.  If we've used over 60
-                        RPCs in a minute, the server will produce an error, 
-                        and if this setting is True, when we get that server 
-                        error we'll sleep for a minute and then re-try our 
-                        call.  If this setting is false, we'll throw an 
-                        exception.
+        - config_file --  path to your configparser-friendly config file
+        - config_section -- the section in your config file to read from
+        - api_key -- your TLE api_key.  Omitting this is fine; the default key (the string 'anonymous') will be used.
+        - logfile -- path to your logfile.  Defaults to no logfile; only WARNING or higher log events will display to the terminal.
+        - proto -- http or https.  Defaults to http.
+        - host -- us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to us1.
+        - sleep_on_call -- Integer seconds.  Defaults to 1.  Number of seconds to sleep after each call to attempt to avoid using more than the limit of 60 RPCs per minute.
+        - sleep_on_error -- Boolean.  Defaults to True.  If we've used over 60 RPCs in a minute, the server will produce an error, and if this setting is True, when we get that server error we'll sleep for a minute and then re-try our call.  If this setting is false, we'll throw an exception.
 
     Generally, you'll omit all arguments except for config_file and 
     config_section, and just fill the appropriate values out in your config.
 
-    If a config file and section are passed in, the values in that config 
+    If a config_file and config_section are passed in, the values in that config 
     file take precedence over any other values, including passed-in values.
 
     Debugging
@@ -58,6 +38,7 @@ class Guest(lacuna.bc.SubClass):
         servers for a specific method call, in your calling code you can set a 
         debugging method on your client, eg:
 
+            >>> 
             empire.client.debugging_method = 'view_profile'
             empire.view_profile()
 
@@ -75,19 +56,20 @@ class Guest(lacuna.bc.SubClass):
         'warn_on_sleep', 'show_captcha', 'logfile'
     ]
 
-    def __del__( self ):
-        #print( "This is the client's __del__ method." )
-        #req_cache = self.cache.get_cache('request_cache')
-        #req_cache.clear()
-        pass
-
     def __init__( self,
-            config_file = '', config_section = '',
-            proto = 'http', host = 'us1.lacunaexpanse.com',
-            username = '', password = '', api_key = 'anonymous',
-            sleep_on_call = 1, sleep_after_error = True, session_id = '', 
-            warn_on_sleep = True, show_captcha = True,
-            logfile = ''
+            api_key:str             = 'anonymous',
+            config_file:str         = '', 
+            config_section:str      = '',
+            host:str                = 'us1.lacunaexpanse.com',
+            logfile:str             = '',
+            password:str            = '', 
+            proto:str               = 'http', 
+            session_id:str          = '', 
+            show_captcha:bool       = True,
+            sleep_after_error:bool  = True, 
+            sleep_on_call:int       = 1, 
+            username:str            = '', 
+            warn_on_sleep:bool      = True, 
         ):
 
         if config_file and config_section and os.path.isfile(config_file):
@@ -103,8 +85,8 @@ class Guest(lacuna.bc.SubClass):
             for i in self.config_list:
                 setattr( self, i, eval(i) )
 
-        self.create_request_logger()
-        emp_name = self.determine_empname()
+        self._create_request_logger()
+        emp_name = self._determine_empname()
         log_opts = {
             'empire': emp_name,
             'path': 'empty',
@@ -138,7 +120,7 @@ class Guest(lacuna.bc.SubClass):
         }
         self.cache = beaker.cache.CacheManager(**beaker.util.parse_cache_config_options(cache_opts))
 
-    def create_request_logger(self):
+    def _create_request_logger(self):
         """
         Don't use logging.getLogger() to get at the logger.  Instead, use the 
         client.request_logger attribute.
@@ -155,7 +137,7 @@ class Guest(lacuna.bc.SubClass):
         ### So each client needs to have his own distinctly-named logger.  And 
         ### since doing this every time I want a logger is tedious and 
         ### fraught:
-        ###    emp_name = self.determine_empname()
+        ###    emp_name = self._determine_empname()
         ###    l = logging.getLogger( emp_name + '_tle_request' )
         ### ...we're adding the logger as a client attribute instead.
         ### 
@@ -209,7 +191,7 @@ class Guest(lacuna.bc.SubClass):
         with open(path, 'w') as handle:
             cp.write(handle)
 
-    def build_url(self):
+    def _build_url(self):
         """ Returns a base URL composed of the proto (http or https) and the 
         host.  The returned URL does NOT end with a slash.
         """
@@ -235,7 +217,7 @@ class Guest(lacuna.bc.SubClass):
     def looks_like_json( self, json_candidate:str ):
         return True if re.match("^{.*}$", json_candidate) else False
 
-    def determine_empname(self):
+    def _determine_empname(self):
         """ Used for logging.  A guest empire name will be returned as 
         "UNKNOWN".
         """
@@ -268,29 +250,25 @@ class Guest(lacuna.bc.SubClass):
         else:
             raise RuntimeError( "The server says it has not sent the message, but gives no indication as to why not." )
 
-    def send( self,  path="", method="", params=(), depth=1 ):
+    def send( self,  path:str="", method:str="", params:tuple=(), depth:int=1 ):
         """ Marshals a request and actually sends it to the server, collecting 
         and json-decoding the response.
 
         Accepts:
-            path (str)
-                The path after the host (eg empire, building, etc).  Don't 
-                include any directory separators.
-            method (str)
-                The name of the method to be run
-            params (tuple)
-                Tuple of arguments/parameters to be passed to the method.
+            - path -- The path after the host (eg empire, building, etc).  Don't include any directory separators.
+            - method -- The name of the method to be run
+            - params -- Tuple of arguments/parameters to be passed to the method.
 
         Returns:
             A dictionary; the json-decoded response from the server.
 
-        Throws:
+        Raises:
             - NotJsonError if the server response is not a JSON string
             - ServerError if the server responds with anything other than 
               a 200, along with a JSON string
         """
 
-        url = self.build_url()
+        url = self._build_url()
         if path:
             url = '/'.join( (url, path) )
 
@@ -305,13 +283,13 @@ class Guest(lacuna.bc.SubClass):
             print( request_json )
             quit()
 
-        emp_name = self.determine_empname()
+        emp_name = self._determine_empname()
         log_opts = {
             'empire': emp_name,
             'path': path,
             'method': method,
         }
-        emp_name = self.determine_empname()
+        emp_name = self._determine_empname()
         l = self.request_logger
 
         #def get_req():
@@ -404,18 +382,18 @@ class Guest(lacuna.bc.SubClass):
 class Member(Guest):
     """ Members are logged in; username and password are required.  """
     def __init__( self,
-            config_file         = '',
-            config_section      = '',
-            api_key             = '',
-            host                = '',
-            logfile             = '',
-            proto               = '',
-            username            = '',
-            password            = '',
-            sleep_on_call       = 1,
-            sleep_after_error   = True,
-            show_captcha        = True,
-            warn_on_sleep       = True
+            config_file:str         = '',
+            config_section:str      = '',
+            api_key:str             = '',
+            host:str                = '',
+            logfile:str             = '',
+            proto:str               = '',
+            username:str            = '',
+            password:str            = '',
+            sleep_on_call:int       = 1,
+            sleep_after_error:bool  = True,
+            show_captcha:bool       = True,
+            warn_on_sleep:bool      = True
         ):
 
         super().__init__(
@@ -478,7 +456,7 @@ class Member(Guest):
                 rslt = self.send( 'empire', 'get_status', (self.session_id,) )
                 self.empire = lacuna.empire.MyEmpire( self )
                 mydict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
-                self.write_empire_status(mydict)
+                self._write_empire_status(mydict)
                 return
             except lacuna.exceptions.ServerError as e:
                 pass
@@ -490,13 +468,13 @@ class Member(Guest):
         self.session_id = rslt['session_id']
         self.empire = lacuna.empire.MyEmpire( self )
         mydict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
-        self.write_empire_status(mydict)
+        self._write_empire_status(mydict)
 
         if hasattr( self, 'config' ):
             self.config[self.config_section]['session_id'] = self.session_id
             self.update_config_file()
 
-    def write_empire_status(self, mydict:dict):
+    def _write_empire_status(self, mydict:dict):
         """ This is almost, but not quite the same, as 
         lacuna.bc.LacunaObject.write_empire_status().
         """

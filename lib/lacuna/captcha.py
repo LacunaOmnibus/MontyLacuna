@@ -1,28 +1,10 @@
 
 import os, requests, tempfile, time, webbrowser
-from lacuna.bc import LacunaObject
+import lacuna.bc
 from lacuna.exceptions import \
     CaptchaResponseError, \
     RequestError, \
     ServerError
-
-
-""" Displays a captcha image and attempts to discover if the user's response 
-to that captcha was accurate.
-
-        cap = Captcha( <client object> )
-    ...or, more often...
-        cap = client.get_captcha()
-
-    cap.showit()        # Displays the captcha image in a browser
-    cap.prompt_user()   # Asks the user to answer the captcha
-
-    if cap.solveit():
-        print( "The user's response was correct" )
-    else:
-        print( "The user's response was NOT correct" )
-
-"""
 
 ### Dev notes:
 ### The tempfile containing the captcha image is not deleted until solveit() 
@@ -41,10 +23,21 @@ to that captcha was accurate.
 ### clever and replace the unlink() in solveit() with some form of tempfile 
 ### autodeletion without a lot of testing.
 
-class Captcha(LacunaObject):
+class Captcha(lacuna.bc.LacunaObject):
+    """ Fetches, displays, and solves graphical captchas.  
+
+    General usage will be:
+
+    >>> 
+    cap = my_client.get_captcha()
+    cap.showit()            # display the captcha image
+    cap.prompt_user()       # ask the user for a solution
+    cap.solveit()           # check the user's solution 
+    """
+
     path = 'captcha'
 
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.call_member_meth
     def fetch( self, **kwargs ):
         """ Fetches a captcha for the user to solve from the server.
 
@@ -55,8 +48,8 @@ class Captcha(LacunaObject):
         (which lives at url) itself.
 
         Retval includes:
-            'guid' - a hashed CHECK captcha ID,
-            'url' - The URL to the image
+            - guid - a hashed CHECK captcha ID,
+            - url - The URL to the image
         """
         self.url  = kwargs['rslt']['url']
         self.guid = kwargs['rslt']['guid']
@@ -121,7 +114,7 @@ class Captcha(LacunaObject):
                 os.unlink( self.tempfile )
         return True
 
-    @LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.call_member_meth
     def solve( self, guid:str, solution:str, **kwargs ):
         """ Mirrors the TLE Captcha::solve() method, but unless you really 
         need this and you really know why, use solveit() instead.

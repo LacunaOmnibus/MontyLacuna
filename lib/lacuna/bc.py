@@ -16,15 +16,16 @@ class SubClass():
         """ Converts a TLE datetime string into a datetime.datetime object.
 
         Arguments:
-            tle_datetime    A TLE datetime string
+            - tle_datetime -- A TLE datetime string
                             eg "30 11 2014 21:40:31 +0000"
                             The "+0000" is meant to be the timezone, but in TLE 
                             datetime strings this is always "+0000" (UTC), so 
                             this method is ignoring it, and it could actually 
                             be omitted from the passed-in string.
 
-        Returns a datetime.datetime object.
+        Returns a datetime.datetime object, with the attributes:
 
+        >>> 
         year    Four-digit year
         month   The month number, not zero-offset, so January is 1.  You can 
                 get the month name or abbreviation via:
@@ -35,7 +36,7 @@ class SubClass():
         day
         hour
         minute
-        second  Each of these always consists of two digits.:w
+        second  Each of these always consists of two digits.
         """
         m = re.match("^(\d\d) (\d\d) (\d{4}) (\d\d):(\d\d):(\d\d)", tle_time)
         if m:
@@ -54,11 +55,13 @@ class SubClass():
         """ Converts seconds into days, hours, minutes, and seconds.
 
         Arguments:
-            seconds     Integer seconds to convert
+            - seconds -- Integer seconds to convert
 
         Returns an ElapsedTime object.
 
         Example:
+            
+            >>> 
             time = i.sec2time( 86400 )
             print( "That's {} days, {} hours, {} minutes, and {} seconds."
                 .format(time.days, time.hours, time.minutes, time.seconds)
@@ -284,15 +287,16 @@ class ElapsedTime():
               one, and he's going to forget to do that 90% of the time.
 
     Attributes:
-        days
-        hours
-        minutes
-        seconds
+        - days
+        - hours
+        - minutes
+        - seconds
 
-    CAUTION
-    This is slightly hokey - if the number of seconds passed in is greater 
-    than the number of seconds in the current month (2678400 for a 31-day 
+    *CAUTION* - This is slightly hokey - if the number of seconds passed in is 
+    greater than the number of seconds in the current month (2678400 for a 31-day 
     month), then all returns will be reset:
+
+        >>> 
         time = i.sec2time( 2678400 )
         print( "That's {} days, {} hours, {} minutes, and {} seconds."
             .format(time.days, time.hours, time.minutes, time.seconds)

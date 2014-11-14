@@ -1,3 +1,12 @@
+
+""" The validate_email module in PyPI was written for python 2, but the only 
+things keeping it from being valid python 3 were three non-parenthesized 
+print() statements.
+
+This is that module with the print statements fixed.  Otherwise, the module is 
+unmolested from the original (version 1.2).
+"""
+
 # RFC 2822 - style email validation for Python
 # (c) 2012 Syrus Akbary <me@syrusakbary.com>
 # Extended from (c) 2011 Noel Bush <noel@aitools.org>
@@ -17,15 +26,6 @@
 # exception of a circular definition (see comments below), and
 # with the omission of the pattern components marked as "obsolete".
 
-### JDB
-###
-### There are 3 print statements down around line 180.  The original module 
-### neglected to parenthesize those print statements, so this module should 
-### work fine for python 2, but blows up under python 3.
-###
-### I added parens to those print statements, so now everything is fine.  
-### Those parens and this comment are the only differences between this and 
-### what's on PyPI.
 
 import re
 import smtplib

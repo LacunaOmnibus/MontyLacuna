@@ -38,7 +38,8 @@ working package.
 Nothing.
 
 ## Glossary
-This should all end up somewhere more reasonable than this file eventually.
+This should all end up somewhere more reasonable than this file eventually.  
+CHECK add this to an .rst file.
 
 - Standard search string
   - Several methods allow you to search for an item by name (a star, an empire, etc).  
@@ -68,7 +69,7 @@ work, but it hasn't been fully tested yet.
 - Clients
   - May be oopified, may not.  CHECK.
 - Empire
-  - oopified
+  - oopified, but still needs testing in a couple methods - see CHECK.
 - Inbox
   - oopified
 - Map
