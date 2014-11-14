@@ -48,9 +48,9 @@ CHECK add this to an .rst file.
     will be returned:
         Search string: "Ear"
         Returns: [ "Earth", "Ears is a strange name for a planet", "Earp, Wyatt" ]
-
     These methods return *lists*, not single objects.  You often really want a single 
     object; just remember that you're getting a list.
+
 - TLE date format
   - Many methods include dates as part of their returns.  TLE dates are in the format:
     "01 31 2010 13:09:05 +0000"
@@ -78,7 +78,6 @@ work, but it hasn't been fully tested yet.
   - Mostly oopified.  I didn't fully test (and therefore didn't fully oopify) 
     this just because I don't see it being too useful.  Still, it should be 
     completed.
-
 - Buildings
   - "all functionality" is a bit of a stretch here.  The Buildings base class 
 exists, and stub classes exist for all buildings in the game.  I need to work 
@@ -168,7 +167,7 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - sphinx-quickstart (this starts a question-and-answer section):
       - root path: ./doc
       - I entered my name, the name of the project, and version 0.1.
-      - I chose 'y' for the questions about autodoc and viewcode.
+      - I chose 'y' for the question about autodoc.
       - All else I accepted the defaults.
   - in ROOT/doc/:
     - Edit conf.py (which was just created):
@@ -202,17 +201,13 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 - Each time you want to update the generated documentation:
   - in ROOT/doc:
     - make html
-  - The generated HTML ends up in {underscore}build/html/.  Those HTML files 
-    reference CSS and JS files that get produced in _static/.
-    - For whatever reason, github pages does not like the underscore on that front of 
-      directory names - it refuses to host files from there.
-    - So before publishing to gh-pages:
-      - Rename _static to static
-      - Rename _static to static
-      - Change all references in all .html files (recursively) from _static to 
-        static.
-        - CHECK I don't have a decent tool for doing this yet.
-  - To publish to gh-pages:
+- To publish the docs generated on the master branch to gh-pages:
+  - The HTML pages produced by "make html" in the previous step end up in 
+    {underscore}build/html/.  Those HTML files contain links to both _static/ and 
+    _modules.  For whatever reason, github pages does not like the underscore on the front 
+    of directory names - it refuses to host files from there.
+    - To fix the whole underscore problem, run fix_underscores.pl (in doc/).
+  - Now that everything is ready for gh-pages:
     - $ cp -Rip doc/{underscore}build/html ~/Desktop
     - $ git co gh-pages
     - $ rm -rf html_docs
@@ -220,9 +215,4 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - $ git add -A html_docs
     - $ git commit -m "docs!"
     - $ git push origin gh-pages
-
-
-
-
-
 
