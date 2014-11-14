@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>map &mdash; MontyLacuna 0.1 documentation</title>
+    <title>map &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="next" title="stats" href="stats.html" />
     <link rel="prev" title="inbox" href="inbox.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="inbox.html" title="inbox"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -59,34 +59,39 @@
 <em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Fissure</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Fissure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Fissure" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Attributes:</dt>
-<dd>name     &#8220;Mercury&#8221;,
-id       345,
-orbit    1,
-x        -40,
-y        29,
-type     &#8220;habitable planet&#8221;,
-image    &#8220;p13&#8221;,
-size     58,</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name     &quot;Mercury&quot;,</span>
+<span class="go">id       345,</span>
+<span class="go">orbit    1,</span>
+<span class="go">x        -40,</span>
+<span class="go">y        29,</span>
+<span class="go">type     &quot;habitable planet&quot;,</span>
+<span class="go">image    &quot;p13&quot;,</span>
+<span class="go">size     58,</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.map.Map">
 <em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Map</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map" title="Permalink to this definition">¶</a></dt>
-<dd><p>All Map methods require a session ID, so these can only be used by a
-Member, not a Client.</p>
+<dd><p>Provides access to the starmap.</p>
 <dl class="method">
 <dt id="lacuna.map.Map.check_star_for_incoming_probe">
 <tt class="descname">check_star_for_incoming_probe</tt><big>(</big><em>star_id</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.check_star_for_incoming_probe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.check_star_for_incoming_probe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if you have a probe en route to a star.</p>
 <dl class="docutils">
 <dt>Arguments</dt>
-<dd>star_id         Integer ID of the star to check</dd>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star to check</li>
+</ul>
+</dd>
 <dt>Returns</dt>
-<dd><dl class="first last docutils">
-<dt>incoming_probe  This will be the date of arrival of the incoming </dt>
-<dd>probe, or 0 if no probe is on its way.</dd>
-</dl>
+<dd><ul class="first last simple">
+<li>incoming_probe &#8211; This will be the date of arrival of the incoming probe, or 0 if no probe is on its way.</li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -97,8 +102,11 @@ Member, not a Client.</p>
 <dd><p>Get the info of any planet you can see in your star map.</p>
 <dl class="docutils">
 <dt>Arguments</dt>
-<dd>star_name       String name of a star
-planet_name     String name of a planet orbiting that star</dd>
+<dd><ul class="first last simple">
+<li>star_name &#8211; String name of a star</li>
+<li>planet_name &#8211; String name of a planet orbiting that star</li>
+</ul>
+</dd>
 </dl>
 <p>Returns a body.Body object</p>
 </dd></dl>
@@ -109,7 +117,10 @@ planet_name     String name of a planet orbiting that star</dd>
 <dd><p>Find a star by its ID.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd>star_id     Integer ID of the star</dd>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star</li>
+</ul>
+</dd>
 </dl>
 <p>Returns a Star object.</p>
 </dd></dl>
@@ -120,10 +131,9 @@ planet_name     String name of a planet orbiting that star</dd>
 <dd><p>Find a star by its name.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd><dl class="first last docutils">
-<dt>star_name   String name of the star.  This is NOT a &#8220;standard TLE</dt>
-<dd>search string&#8221;, but the full name of the star.</dd>
-</dl>
+<dd><ul class="first last simple">
+<li>star_name &#8211; String name of the star.  This is NOT a &#8220;standard TLE search string&#8221;, but the full name of the star.</li>
+</ul>
 </dd>
 </dl>
 <p>Returns a Star object.</p>
@@ -135,8 +145,11 @@ planet_name     String name of a planet orbiting that star</dd>
 <dd><p>Find a star by its x, y coordinates.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd>x   Integer X coordinate
-y   Integer Y coordinate</dd>
+<dd><ul class="first last simple">
+<li>x &#8211; Integer X coordinate</li>
+<li>y &#8211; Integer Y coordinate</li>
+</ul>
+</dd>
 </dl>
 <p>Returns a Star object.</p>
 </dd></dl>
@@ -147,10 +160,14 @@ y   Integer Y coordinate</dd>
 <dd><p>Get a list of stars occupying a region of space.</p>
 <dl class="docutils">
 <dt>Accepts a single dict of arguments:</dt>
-<dd>left        Coordinate
-top         Coordinate
-right       Coordinate
-bottom      Coordinate</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">left        Coordinate</span>
+<span class="go">top         Coordinate</span>
+<span class="go">right       Coordinate</span>
+<span class="go">bottom      Coordinate</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 <p>Each coordinate must be an integer within the star map (so &gt;= -1500 and 
 &lt;= 1500).  The total area covered by these coordinates must be &lt;= 3001 
@@ -171,10 +188,14 @@ positional arguments calling method, and allows a range of only 900
 units.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd>left        Coordinate
-top         Coordinate
-right       Coordinate
-bottom      Coordinate</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">left        Coordinate</span>
+<span class="go">top         Coordinate</span>
+<span class="go">right       Coordinate</span>
+<span class="go">bottom      Coordinate</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 <p>Returns a list of map.Star objects.</p>
 <p>Raises ServerError 1003 if your selected area is too large.</p>
@@ -186,7 +207,10 @@ bottom      Coordinate</dd>
 <dd><p>Provides info on fissures in a zone.</p>
 <dl class="docutils">
 <dt>Requires a single dict argument:</dt>
-<dd>zone    &#8216;0|0&#8217;</dd>
+<dd><ul class="first last simple">
+<li>zone &#8211; &#8216;0|0&#8217;</li>
+</ul>
+</dd>
 </dl>
 <p>Returns a list of map.Fissure objects.</p>
 </dd></dl>
@@ -197,7 +221,10 @@ bottom      Coordinate</dd>
 <dd><p>Return a list of stars matching a string.</p>
 <dl class="docutils">
 <dt>Arguments</dt>
-<dd>search_string   A standard TLE search string.</dd>
+<dd><ul class="first last simple">
+<li>search_string &#8211; A standard TLE search string.</li>
+</ul>
+</dd>
 </dl>
 <p>Returns a list of Star objects.
 partial_name must be at least 3 characters.  Matches up to 25 stars whose names
@@ -212,15 +239,17 @@ rv is a list, identical to get_star_map().</p>
 <em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Star</tt><big>(</big><em>client</em>, <em>star_dict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Star"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Star" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Attributes:</dt>
-<dd><p class="first">color       &#8216;red&#8217;,
-id          &#8216;12345&#8217;,
-name        &#8216;Clou Oghofr Oap&#8217;,
-x           &#8216;100&#8217;,
-y           &#8216;-100&#8217;,
-zone        &#8216;0|0&#8217;,
-bodies:     List of body.Body objects.  If you don&#8217;t have the star</p>
-<blockquote class="last">
-<div>probed or oracled, this list will be empty.</div></blockquote>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">color       &#39;red&#39;,</span>
+<span class="go">id          &#39;12345&#39;,</span>
+<span class="go">name        &#39;Clou Oghofr Oap&#39;,</span>
+<span class="go">x           &#39;100&#39;,</span>
+<span class="go">y           &#39;-100&#39;,</span>
+<span class="go">zone        &#39;0|0&#39;,</span>
+<span class="go">bodies:     List of body.Body objects.  If you don&#39;t have the star </span>
+<span class="go">            probed or oracled, this list will be empty.</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </dd></dl>
@@ -276,7 +305,7 @@ bodies:     List of body.Body objects.  If you don&#8217;t have the star</p>
         <li class="right" >
           <a href="inbox.html" title="inbox"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

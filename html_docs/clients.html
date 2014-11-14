@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>clients &mdash; MontyLacuna 0.1 documentation</title>
+    <title>clients &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="next" title="empire" href="empire.html" />
     <link rel="prev" title="captcha" href="captcha.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="captcha.html" title="captcha"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -56,94 +56,57 @@
 <span id="clients"></span><h1>clients<a class="headerlink" href="#module-lacuna.clients" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.clients.Guest">
-<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Guest</tt><big>(</big><em>config_file=''</em>, <em>config_section=''</em>, <em>proto='http'</em>, <em>host='us1.lacunaexpanse.com'</em>, <em>username=''</em>, <em>password=''</em>, <em>api_key='anonymous'</em>, <em>sleep_on_call=1</em>, <em>sleep_after_error=True</em>, <em>session_id=''</em>, <em>warn_on_sleep=True</em>, <em>show_captcha=True</em>, <em>logfile=''</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Guest</tt><big>(</big><em>api_key: str='anonymous'</em>, <em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>host: str='us1.lacunaexpanse.com'</em>, <em>logfile: str=''</em>, <em>password: str=''</em>, <em>proto: str='http'</em>, <em>session_id: str=''</em>, <em>show_captcha: bool=True</em>, <em>sleep_after_error: bool=True</em>, <em>sleep_on_call: int=1</em>, <em>username: str=''</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Guest users are not logged in.</p>
 <dl class="docutils">
 <dt>Accepts the following named arguments:</dt>
-<dd><p class="first">### Setting the first two obviates the need to set anything else.</p>
-<p>config_file     path to your configparser-friendly config file</p>
-<p>config_section  the section in your config file to read from</p>
-<dl class="docutils">
-<dt>api_key         your TLE api_key.  Omitting this is fine; the default</dt>
-<dd>key (the string &#8216;anonymous&#8217;) will be used.</dd>
-<dt>logfile         path to your logfile.  Defaults to no logfile; only</dt>
-<dd>WARNING or higher log events will display to the 
-terminal.</dd>
-</dl>
-<p>proto           http or https.  Defaults to http.</p>
-<dl class="last docutils">
-<dt>host            us1.lacunaexpanse.com or pt.lacunaexpanse.com.</dt>
-<dd>Defaults to us1.</dd>
-<dt>sleep_on_call   Integer seconds.  Defaults to 1.  Number of seconds to</dt>
-<dd>sleep after each call to attempt to avoid using more 
-than the limit of 60 RPCs per minute.</dd>
-<dt>sleep_on_error  Boolean.  Defaults to True.  If we&#8217;ve used over 60</dt>
-<dd>RPCs in a minute, the server will produce an error, 
-and if this setting is True, when we get that server 
-error we&#8217;ll sleep for a minute and then re-try our 
-call.  If this setting is false, we&#8217;ll throw an 
-exception.</dd>
-</dl>
+<dd><ul class="first last simple">
+<li>config_file &#8211;  path to your configparser-friendly config file</li>
+<li>config_section &#8211; the section in your config file to read from</li>
+<li>api_key &#8211; your TLE api_key.  Omitting this is fine; the default key (the string &#8216;anonymous&#8217;) will be used.</li>
+<li>logfile &#8211; path to your logfile.  Defaults to no logfile; only WARNING or higher log events will display to the terminal.</li>
+<li>proto &#8211; http or https.  Defaults to http.</li>
+<li>host &#8211; us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to us1.</li>
+<li>sleep_on_call &#8211; Integer seconds.  Defaults to 1.  Number of seconds to sleep after each call to attempt to avoid using more than the limit of 60 RPCs per minute.</li>
+<li>sleep_on_error &#8211; Boolean.  Defaults to True.  If we&#8217;ve used over 60 RPCs in a minute, the server will produce an error, and if this setting is True, when we get that server error we&#8217;ll sleep for a minute and then re-try our call.  If this setting is false, we&#8217;ll throw an exception.</li>
+</ul>
 </dd>
 </dl>
 <p>Generally, you&#8217;ll omit all arguments except for config_file and 
 config_section, and just fill the appropriate values out in your config.</p>
-<p>If a config file and section are passed in, the values in that config 
+<p>If a config_file and config_section are passed in, the values in that config 
 file take precedence over any other values, including passed-in values.</p>
 <dl class="docutils">
 <dt>Debugging</dt>
 <dd><p class="first">To take a look at the actual JSON that would be sent to the TLE 
 servers for a specific method call, in your calling code you can set a 
 debugging method on your client, eg:</p>
-<blockquote>
-<div>empire.client.debugging_method = &#8216;view_profile&#8217;
-empire.view_profile()</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">empire.client.debugging_method = &#39;view_profile&#39;</span>
+<span class="go">empire.view_profile()</span>
+</pre></div>
+</div>
 <p class="last">In this case, the call to view_profile() will cause the JSON that 
 would normally be sent to the server to instead be dumped to your 
 screen, after which the script will quit.</p>
 </dd>
 </dl>
 <dl class="method">
-<dt id="lacuna.clients.Guest.build_url">
-<tt class="descname">build_url</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest.build_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest.build_url" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a base URL composed of the proto (http or https) and the 
-host.  The returned URL does NOT end with a slash.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lacuna.clients.Guest.create_request_logger">
-<tt class="descname">create_request_logger</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest.create_request_logger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest.create_request_logger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Don&#8217;t use logging.getLogger() to get at the logger.  Instead, use the 
-client.request_logger attribute.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lacuna.clients.Guest.determine_empname">
-<tt class="descname">determine_empname</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest.determine_empname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest.determine_empname" title="Permalink to this definition">¶</a></dt>
-<dd><p>Used for logging.  A guest empire name will be returned as 
-&#8220;UNKNOWN&#8221;.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="lacuna.clients.Guest.send">
-<tt class="descname">send</tt><big>(</big><em>path=''</em>, <em>method=''</em>, <em>params=()</em>, <em>depth=1</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">send</tt><big>(</big><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Marshals a request and actually sends it to the server, collecting 
 and json-decoding the response.</p>
 <dl class="docutils">
 <dt>Accepts:</dt>
-<dd><dl class="first last docutils">
-<dt>path (str)</dt>
-<dd>The path after the host (eg empire, building, etc).  Don&#8217;t 
-include any directory separators.</dd>
-<dt>method (str)</dt>
-<dd>The name of the method to be run</dd>
-<dt>params (tuple)</dt>
-<dd>Tuple of arguments/parameters to be passed to the method.</dd>
-</dl>
+<dd><ul class="first last simple">
+<li>path &#8211; The path after the host (eg empire, building, etc).  Don&#8217;t include any directory separators.</li>
+<li>method &#8211; The name of the method to be run</li>
+<li>params &#8211; Tuple of arguments/parameters to be passed to the method.</li>
+</ul>
 </dd>
 <dt>Returns:</dt>
 <dd>A dictionary; the json-decoded response from the server.</dd>
-<dt>Throws:</dt>
+<dt>Raises:</dt>
 <dd><ul class="first last simple">
 <li>NotJsonError if the server response is not a JSON string</li>
 <li>ServerError if the server responds with anything other than 
@@ -165,7 +128,7 @@ sending any emails at all, via this method or the browser.</p>
 
 <dl class="class">
 <dt id="lacuna.clients.Member">
-<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Member</tt><big>(</big><em>config_file=''</em>, <em>config_section=''</em>, <em>api_key=''</em>, <em>host=''</em>, <em>logfile=''</em>, <em>proto=''</em>, <em>username=''</em>, <em>password=''</em>, <em>sleep_on_call=1</em>, <em>sleep_after_error=True</em>, <em>show_captcha=True</em>, <em>warn_on_sleep=True</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Member"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Member</tt><big>(</big><em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>api_key: str=''</em>, <em>host: str=''</em>, <em>logfile: str=''</em>, <em>proto: str=''</em>, <em>username: str=''</em>, <em>password: str=''</em>, <em>sleep_on_call: int=1</em>, <em>sleep_after_error: bool=True</em>, <em>show_captcha: bool=True</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Member"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
 <dd><p>Members are logged in; username and password are required.</p>
 <dl class="method">
 <dt id="lacuna.clients.Member.login">
@@ -189,13 +152,6 @@ other scripts run, as long as that session_id is valid.</p>
 <p>Calling logout() invalidates that session_id and removes it from the 
 config file.  Therefore, actually calling logout() is rarely 
 necessary.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lacuna.clients.Member.write_empire_status">
-<tt class="descname">write_empire_status</tt><big>(</big><em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Member.write_empire_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Member.write_empire_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is almost, but not quite the same, as 
-lacuna.bc.LacunaObject.write_empire_status().</p>
 </dd></dl>
 
 </dd></dl>
@@ -251,7 +207,7 @@ lacuna.bc.LacunaObject.write_empire_status().</p>
         <li class="right" >
           <a href="captcha.html" title="captcha"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

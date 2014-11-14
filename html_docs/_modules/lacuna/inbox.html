@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lacuna.inbox &mdash; MontyLacuna 0.1 documentation</title>
+    <title>lacuna.inbox &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
@@ -50,6 +50,7 @@
 <span class="kn">import</span> <span class="nn">lacuna.bc</span>
 
 <span class="k">class</span> <span class="nc">Inbox</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Inbox"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox">[docs]</a>    <span class="sd">&quot;&quot;&quot; Class representing your mailbox.  &quot;&quot;&quot;</span>
 
     <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;inbox&#39;</span>
 
@@ -67,16 +68,16 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">view_inbox</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; View the messages in your empire&#39;s inbox, 25 messages per page.</span>
+<div class="viewcode-block" id="Inbox.view_inbox"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.view_inbox">[docs]</a>        <span class="sd">&quot;&quot;&quot; View the messages in your empire&#39;s inbox, 25 messages per page.</span>
 <span class="sd">        </span>
 <span class="sd">        Arguments:</span>
-<span class="sd">            opts    Dict (optional)</span>
-<span class="sd">                        page_number     Integer page number to return.  </span>
-<span class="sd">                                        Defaults to 1.</span>
-<span class="sd">                        tags            List of tags to filter by.</span>
+<span class="sd">            - opts -- Dict (optional)</span>
+<span class="sd">                - page_number -- Integer page number to return.  Defaults to 1.</span>
+<span class="sd">                - tags -- List of tags to filter by.</span>
 
 <span class="sd">        The tags you passed in are joined with &#39;or&#39;.  So for this call, you&#39;ll </span>
 <span class="sd">        get back BOTH excavator and correspondence messages:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
 <span class="sd">            msgs, ttl = mail.view_inbox({</span>
 <span class="sd">                &quot;tags&quot;: [&quot;excavator&quot;, &quot;correspondence&quot;]</span>
 <span class="sd">            })</span>
@@ -90,96 +91,107 @@
 <span class="sd">        return 0 messages.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            messages    List of inbox.MessageSummary objects</span>
-<span class="sd">            count       Integer total number of messages in the inbox</span>
+<span class="sd">            - messages -- List of inbox.MessageSummary objects</span>
+<span class="sd">            - count -- Integer total number of messages in the inbox</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">view_archived</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;  View archived messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Inbox.view_archived"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.view_archived">[docs]</a>        <span class="sd">&quot;&quot;&quot;  View archived messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">view_sent</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;  View sent messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Inbox.view_sent"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.view_sent">[docs]</a>        <span class="sd">&quot;&quot;&quot;  View sent messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">view_trashed</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;  View trashed messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Inbox.view_trashed"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.view_trashed">[docs]</a>        <span class="sd">&quot;&quot;&quot;  View trashed messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">read_message</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Returns a single message by ID.</span>
+<div class="viewcode-block" id="Inbox.read_message"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.read_message">[docs]</a>        <span class="sd">&quot;&quot;&quot; Reads a message.</span>
+
+<span class="sd">        Requires a single integer message ID.</span>
 <span class="sd">        </span>
 <span class="sd">        Returns an inbox.Message object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;message&#39;</span><span class="p">])</span>
 
-    <span class="sd">&quot;&quot;&quot;archive_messages() and trash_messages() work identically.</span>
-<span class="sd">    They both take a list of message IDs to either archive or trash.</span>
-
-<span class="sd">    Both return a dict containing:</span>
-<span class="sd">                {</span>
-<span class="sd">                    success : [id, id, id, ...]</span>
-<span class="sd">                    failure : [id, id, id, ...]</span>
-<span class="sd">                    status : { ... }</span>
-<span class="sd">                }</span>
-<span class="sd">        There&#39;s no indication why any given message movement succeeded or failed, just</span>
-<span class="sd">        that they did.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">archive_messages</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="k">pass</span>
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
-    <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
-    <span class="k">def</span> <span class="nf">trash_messages</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
-    <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
-    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">recipients</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">subject</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Sends an in-game mail message.</span>
+<div class="viewcode-block" id="Inbox.archive_messages"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.archive_messages">[docs]</a>        <span class="sd">&quot;&quot;&quot; Archives one or more messages.</span>
 
 <span class="sd">        Arguments:</span>
-<span class="sd">            recipients  Comma-separated string containing names of empires to </span>
-<span class="sd">                        receive your message.  NOT A LIST, a comma-separated </span>
-<span class="sd">                        string.</span>
-<span class="sd">            subject     &lt; 100 chars in length.  Cannot contain any of &amp;, @, ;, </span>
-<span class="sd">                        &lt;, or &gt;</span>
-<span class="sd">                        Unicode is OK (I&#39;ve mailed myself a snowman).</span>
-<span class="sd">            body        Limit of 200,000 characters.  &lt; and &gt; are disallowed.</span>
-<span class="sd">                        Also, anything that Regexp::Common::profanity registers </span>
-<span class="sd">                        as profane disallows the entire message.  This profanity </span>
-<span class="sd">                        filter can be irritating - it&#39;s very sensitive, and </span>
-<span class="sd">                        you&#39;re not informed what word it&#39;s triggering on.  </span>
-<span class="sd">                        &quot;crap&quot; (along with other pretty mild language) is </span>
-<span class="sd">                        considered profane.</span>
-<span class="sd">            options     Dict:</span>
-<span class="sd">                            &#39;in_reply_to&#39;   A message ID to reply to.</span>
-<span class="sd">                            &#39;forward&#39;       A message ID to forward.</span>
+<span class="sd">            - messages -- a list of message IDs</span>
+
+<span class="sd">        Returns a dict containing:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            {</span>
+<span class="sd">                success : [id, id, id, ...]</span>
+<span class="sd">                failure : [id, id, id, ...]</span>
+<span class="sd">                status : { ... }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        There&#39;s no indication why any given message movement succeeded or failed, just that they did.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
+    <span class="k">def</span> <span class="nf">trash_messages</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Inbox.trash_messages"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.trash_messages">[docs]</a>        <span class="sd">&quot;&quot;&quot; Trashes (deletes) one or more messages.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            - messages -- a list of message IDs</span>
+
+<span class="sd">        Returns a dict containing:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            {</span>
+<span class="sd">                success : [id, id, id, ...]</span>
+<span class="sd">                failure : [id, id, id, ...]</span>
+<span class="sd">                status : { ... }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        There&#39;s no indication why any given message movement succeeded or failed, just that they did.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
+    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">recipients</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">subject</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Inbox.send_message"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.Inbox.send_message">[docs]</a>        <span class="sd">&quot;&quot;&quot; Sends an in-game mail message.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            - recipients -- Comma-separated string containing names of empires to receive your message.  NOT A LIST, a comma-separated string.</span>
+<span class="sd">            - subject -- &lt; 100 chars in length.  Cannot contain any of &amp;, @, ;, &lt;, or &gt; Unicode is OK (I&#39;ve mailed myself a snowman).</span>
+<span class="sd">            - body -- Limit of 200,000 characters.  &lt; and &gt; are disallowed.  Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it&#39;s very sensitive, and you&#39;re not informed what word it&#39;s triggering on.  &quot;crap&quot; (along with other pretty mild language) is considered profane.</span>
+<span class="sd">            - options -- Dict:</span>
+<span class="sd">                - &#39;in_reply_to&#39;   A message ID to reply to.</span>
+<span class="sd">                - &#39;forward&#39;       A message ID to forward.</span>
 
 <span class="sd">        When forwarding a message, any attachments from the message ID we&#39;re </span>
 <span class="sd">        forwarding are automatically attached to our current message.  However, </span>
 <span class="sd">        the body of the forwarded message is NOT included in the current </span>
 <span class="sd">        message.  If you want that to happen, you&#39;ll need to do it yourself.</span>
 
-<span class="sd">        Return Value</span>
-<span class="sd">            Returns a dict with (afaict) two keys (the rv is not documented, so </span>
-<span class="sd">            I&#39;m just reporting the results of a few tests here).</span>
+<span class="sd">        Returns a dict with (afaict) two keys (the rv is not documented, so </span>
+<span class="sd">        I&#39;m just reporting the results of a few tests here).</span>
 
-<span class="sd">            For a message sent to recipients </span>
-<span class="sd">                &quot;tmtowtdi,Infinate Ones,no_such_player&quot;:</span>
-<span class="sd">                            {</span>
-<span class="sd">                                &#39;sent&#39;: [&#39;tmtowtdi&#39;, &#39;Infinate Ones&#39;],</span>
-<span class="sd">                                &#39;unknown&#39;: [&#39;no_such_player&#39;]</span>
-<span class="sd">                            }</span>
+<span class="sd">        For a message sent to recipients &quot;tmtowtdi,Infinate Ones,no_such_player&quot;:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">                {</span>
+<span class="sd">                    &#39;sent&#39;: [&#39;tmtowtdi&#39;, &#39;Infinate Ones&#39;],</span>
+<span class="sd">                    &#39;unknown&#39;: [&#39;no_such_player&#39;]</span>
+<span class="sd">                }</span>
 
-<span class="sd">        Message Formatting</span>
+<span class="sd">        **Message Formatting**</span>
 <span class="sd">            This is rarely-enough used and the docs are wordy enough that it&#39;s not worth</span>
 <span class="sd">            repeating it all here.  See</span>
 <span class="sd">                https://us1.lacunaexpanse.com/api/Inbox.html#Message_Formatting</span>
@@ -188,13 +200,14 @@
 
 
 
-<span class="k">class</span> <span class="nc">MessageSummary</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MessageSummary</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
 <div class="viewcode-block" id="MessageSummary"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.MessageSummary">[docs]</a>    <span class="sd">&quot;&quot;&quot; This is the message summary you get when viewing a list of messages.</span>
 
 <span class="sd">    Note that the sender&#39;s name is listed in the TLE documentation using the </span>
 <span class="sd">    key &quot;from&quot;, but we&#39;re instead using &quot;from_name&quot;.</span>
 
 <span class="sd">    Attributes:</span>
+<span class="sd">        &gt;&gt;&gt; </span>
 <span class="sd">        id              &quot;id-goes-here&quot;,</span>
 <span class="sd">        subject         &quot;Vaxaslim&quot;,</span>
 <span class="sd">        date            &quot;01 31 2010 13:09:05 +0600&quot;,</span>
@@ -222,6 +235,7 @@
 <span class="sd">    key &quot;from&quot;, but we&#39;re instead using &quot;from_name&quot;.</span>
 
 <span class="sd">    Attributes:</span>
+<span class="sd">        &gt;&gt;&gt; </span>
 <span class="sd">        id              &quot;id-goes-here&quot;,</span>
 <span class="sd">        from_name       &quot;Dr. Stephen T. Colbert DFA&quot;,</span>
 <span class="sd">        from_id         &quot;id-goes-here&quot;,</span>
@@ -301,7 +315,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>

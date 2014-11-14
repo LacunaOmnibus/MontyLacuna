@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>empire &mdash; MontyLacuna 0.1 documentation</title>
+    <title>empire &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="next" title="exceptions" href="exceptions.html" />
     <link rel="prev" title="clients" href="clients.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="clients.html" title="clients"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -59,15 +59,17 @@
 <em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">Boosts</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#Boosts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.Boosts" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Attributes:</dt>
-<dd><p class="first">Each pair is the name of the boost and the date it expires.</p>
-<p class="last">food            &#8220;01 31 2010 13:09:05 +0600&#8221;,
-ore             &#8220;01 31 2010 13:09:05 +0600&#8221;,
-energy          &#8220;01 31 2010 13:09:05 +0600&#8221;,
-water           &#8220;01 31 2010 13:09:05 +0600&#8221;,
-happiness       &#8220;01 31 2010 13:09:05 +0600&#8221;,
-storage         &#8220;01 31 2010 13:09:05 +0600&#8221;,
-building        &#8220;01 31 2010 13:09:05 +0600&#8221;,
-spy_training    &#8220;01 31 2010 13:09:05 +0600&#8221;</p>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">food            &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">ore             &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">energy          &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">water           &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">happiness       &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">storage         &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">building        &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">spy_training    &quot;01 31 2010 13:09:05 +0600&quot;</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </dd></dl>
@@ -79,8 +81,7 @@ spy_training    &#8220;01 31 2010 13:09:05 +0600&#8221;</p>
 <dl class="method">
 <dt id="lacuna.empire.Empire.fetch_captcha">
 <tt class="descname">fetch_captcha</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#Empire.fetch_captcha"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.Empire.fetch_captcha" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns dict containing &#8216;guid&#8217; and &#8216;url&#8217; keys
-DICT not OBJ, so rv[&#8216;guid&#8217;], not rv.guid</p>
+<dd><p>Returns dict containing &#8216;guid&#8217; and &#8216;url&#8217; keys.</p>
 <p>There also exists a Captcha class, which requires the user to already 
 be logged in.  This fetch_captcha method exists to allow a brand new, 
 not-yet-logged-in user to get a captcha, the solution to which they 
@@ -96,8 +97,11 @@ creation, go use the Captcha class.</p>
 <em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">FoundEmpire</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#FoundEmpire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.FoundEmpire" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Attributes:</dt>
-<dd>id      Integer ID of the empire
-name    String name of the empire</dd>
+<dd><ul class="first last simple">
+<li>id &#8211; Integer ID of the empire</li>
+<li>name &#8211; String name of the empire</li>
+</ul>
+</dd>
 </dl>
 </dd></dl>
 
@@ -107,25 +111,25 @@ name    String name of the empire</dd>
 <dd><p>The Empire object belonging to the current Member&#8217;s empire.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
-<dd><p class="first">id                      &#8220;xxxx&#8221;,
-rpc_count               321, # the number of calls made to the server
-is_isolationist         1, # hasn&#8217;t sent out probes or colony ships
-name                    &#8220;The Syndicate&#8221;,
-status_message          &#8220;A spy&#8217;s work is never done.&#8221;,
-home_planet_id          &#8220;id-goes-here&#8221;,
-has_new_messages        4,
-latest_message_id       1234,
-essentia                0,
-planets                 {</p>
-<blockquote>
-<div><blockquote>
-<div>&#8220;id-goes-here&#8221; : &#8220;Earth&#8221;,
-&#8220;id-goes-here&#8221; : &#8220;Mars</div></blockquote>
-<p>},</p>
-</div></blockquote>
-<p class="last">tech_level&#8221;             20,  # Highests level university has gotten to.
-self_destruct_active    0,
-self_destruct_date      &#8220;&#8221;</p>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">id                      &quot;xxxx&quot;,</span>
+<span class="go">rpc_count               321, # the number of calls made to the server</span>
+<span class="go">is_isolationist         1, # hasn&#39;t sent out probes or colony ships</span>
+<span class="go">name                    &quot;The Syndicate&quot;,</span>
+<span class="go">status_message          &quot;A spy&#39;s work is never done.&quot;,</span>
+<span class="go">home_planet_id          &quot;id-goes-here&quot;,</span>
+<span class="go">has_new_messages        4,</span>
+<span class="go">latest_message_id       1234,</span>
+<span class="go">essentia                0,</span>
+<span class="go">planets                 {</span>
+<span class="go">                            &quot;id-goes-here&quot; : &quot;Earth&quot;,</span>
+<span class="go">                            &quot;id-goes-here&quot; : &quot;Mars</span>
+<span class="go">                        },</span>
+<span class="go">tech_level&quot;             20,  # Highests level university has gotten to.</span>
+<span class="go">self_destruct_active    0,</span>
+<span class="go">self_destruct_date      &quot;&quot;</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 <dl class="method">
@@ -175,10 +179,20 @@ self_destruct_date      &#8220;&#8221;</p>
 <tt class="descname">change_password</tt><big>(</big><em>oldpw: str</em>, <em>newpw: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.change_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.change_password" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes your full password.</p>
 <dl class="docutils">
-<dt>Arguments</dt>
-<dd>password        String; the desired new password
-confirmation    Must be the same string as &#8216;password&#8217;</dd>
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>password &#8211; String; the desired new password</li>
+<li>confirmation &#8211; Must be the same string as &#8216;password&#8217;</li>
+</ul>
+</dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.disable_self_destruct">
+<tt class="descname">disable_self_destruct</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.disable_self_destruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.disable_self_destruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simply does not work on the server side.  This is a known problem, 
+and the reason enable_self_destruct() has been disabled.</p>
 </dd></dl>
 
 <dl class="method">
@@ -188,39 +202,44 @@ confirmation    Must be the same string as &#8216;password&#8217;</dd>
 your real, not sitter, password.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd><dl class="first last docutils">
-<dt>profile     Dict of profile settings:</dt>
-<dd><blockquote class="first">
-<div>description
-email
-sitter_password
-status_message
-city
-country
-notes
-skype
-player_name
-public_medals (list of medal IDs to display)</div></blockquote>
-<p>The following are all booleans, indicating whether to 
-skip a given warning or game-generated mail.</p>
+<dd><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">profile     Dict of profile settings with the keys:</span>
+<span class="go">                description</span>
+<span class="go">                email</span>
+<span class="go">                sitter_password</span>
+<span class="go">                status_message</span>
+<span class="go">                city</span>
+<span class="go">                country</span>
+<span class="go">                notes</span>
+<span class="go">                skype</span>
+<span class="go">                player_name</span>
+<span class="go">                public_medals (list of medal IDs to display)</span>
+<span class="go">                skip_happiness_warnings</span>
+<span class="go">                skip_resource_warnings</span>
+<span class="go">                skip_pollution_warnings</span>
+<span class="go">                skip_medal_messages</span>
+<span class="go">                skip_facebook_wall_posts</span>
+<span class="go">                skip_found_nothing</span>
+<span class="go">                skip_excavator_resources</span>
+<span class="go">                skip_excavator_glyph</span>
+<span class="go">                skip_excavator_plan</span>
+<span class="go">                skip_spy_recovery</span>
+<span class="go">                skip_probe_detected</span>
+<span class="go">                skip_attack_messages</span>
+<span class="go">                skip_incoming_ships</span>
+</pre></div>
+</div>
 <blockquote class="last">
-<div>skip_happiness_warnings
-skip_resource_warnings
-skip_pollution_warnings
-skip_medal_messages
-skip_facebook_wall_posts
-skip_found_nothing
-skip_excavator_resources
-skip_excavator_glyph
-skip_excavator_plan
-skip_spy_recovery
-skip_probe_detected
-skip_attack_messages
-skip_incoming_ships</div></blockquote>
+<div>The skip_* keys all require 1 for &#8220;on&#8221; or 0 for &#8220;off&#8221;.</div></blockquote>
 </dd>
 </dl>
-</dd>
-</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.enable_self_destruct">
+<tt class="descname">enable_self_destruct</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.enable_self_destruct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.enable_self_destruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Immediately quits.  The server call is badly broken, and you should 
+never call this.</p>
 </dd></dl>
 
 <dl class="method">
@@ -229,7 +248,10 @@ skip_incoming_ships</div></blockquote>
 <dd><p>Find an empire by name.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd>name    Standard TLE search string</dd>
+<dd><ul class="first last simple">
+<li>name &#8211; Standard TLE search string</li>
+</ul>
+</dd>
 </dl>
 <p>Returns a list of empire.FoundEmpire objects.</p>
 </dd></dl>
@@ -266,30 +288,44 @@ assume the server just isn&#8217;t configured to send mail anymore.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="lacuna.empire.MyEmpire.redeem_essentia_code">
+<tt class="descname">redeem_essentia_code</tt><big>(</big><em>code: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.redeem_essentia_code"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.redeem_essentia_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redeems an essentia code.</p>
+<p>I see no reason why this wouldn&#8217;t work, but I haven&#8217;t got an essentia 
+code to test with.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="lacuna.empire.MyEmpire.redefine_species">
 <tt class="descname">redefine_species</tt><big>(</big><em>params</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.redefine_species"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.redefine_species" title="Permalink to this definition">¶</a></dt>
 <dd><p>Actually does the deed of redefining a player&#8217;s species.
-Costs E, so untested.</p>
+CHECK test this on PT</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd><dl class="first last docutils">
-<dt>params  Dict of species settings:</dt>
-<dd>name                    String name of the species (required)
-description             String
-min_orbit               Integer 1-7 inclusive
-max_orbit               Integer 1-7 inclusive.  Must be &gt;= min_orbit.
-manufacturing_affinity  Integer 1-7 inclusive.
-deception_affinity      Integer 1-7 inclusive.
-research_affinity       Integer 1-7 inclusive.
-management_affinity     Integer 1-7 inclusive.
-farming_affinity        Integer 1-7 inclusive.
-mining_affinity         Integer 1-7 inclusive.
-science_affinity        Integer 1-7 inclusive.
-environmental_affinity  Integer 1-7 inclusive.
-political_affinity      Integer 1-7 inclusive.
-trade_affinity          Integer 1-7 inclusive.
-growth_affinity         Integer 1-7 inclusive.</dd>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>params &#8211; Dict of species settings:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String name of the species (required)</li>
+<li>description &#8211; String</li>
+<li>min_orbit &#8211; Integer 1-7 inclusive</li>
+<li>max_orbit &#8211; Integer 1-7 inclusive.  Must be &gt;= min_orbit.</li>
+<li>manufacturing_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>deception_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>research_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>management_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>farming_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>mining_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>science_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>environmental_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>political_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>trade_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>growth_affinity &#8211; Integer 1-7 inclusive.</li>
+</ul>
+</dd>
 </dl>
+</li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -300,12 +336,16 @@ growth_affinity         Integer 1-7 inclusive.</dd>
 <dd><p>Returns the limits to be imposed if you redefine your species.</p>
 <dl class="docutils">
 <dt>Returns a dict:</dt>
-<dd>&#8216;can&#8217;:              1,
-&#8216;essentia_cost&#8217;:    100,
-&#8216;max_orbit&#8217;:        3,
-&#8216;min_growth&#8217;:       1,
-&#8216;min_orbit&#8217;:        3,
-&#8216;reason&#8217;:           None,</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&#39;can&#39;:              1,</span>
+<span class="go">&#39;essentia_cost&#39;:    100,</span>
+<span class="go">&#39;max_orbit&#39;:        3,</span>
+<span class="go">&#39;min_growth&#39;:       1,</span>
+<span class="go">&#39;min_orbit&#39;:        3,</span>
+<span class="go">&#39;reason&#39;:           None,</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 <p>&#8216;can&#8217; will be 0 if the user currently cannot redefine.
 I do not understand why the min/max settings exist.
@@ -348,7 +388,10 @@ logged in with their sitter.</p>
 <dd><p>View public profile info on any empire.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd>empire_id   Integer ID of the empire to view.</dd>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to view.</li>
+</ul>
+</dd>
 </dl>
 <p>Returns an empire.PublicProfile object.</p>
 </dd></dl>
@@ -369,42 +412,39 @@ logged in with their sitter.</p>
 will contain less data.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
-<dd><p class="first">description                  &#8220;description goes here&#8221;,
-status_message               &#8220;status message goes here&#8221;,
-medals                       Dict:</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>{   &#8220;Integer Medal ID&#8221; <span class="classifier-delimiter">:</span> <span class="classifier">{</span></dt>
-<dd><blockquote class="first">
-<div>&#8220;name&#8221; : &#8220;Built Level 1 Building&#8221;,
-&#8220;image&#8221; : &#8220;building1&#8221;,
-&#8220;date&#8221; : &#8220;01 31 2010 13:09:05 +0600&#8221;,
-&#8220;public&#8221; : 1,
-&#8220;times_earned&#8221; : 4       },</div></blockquote>
-<p class="last">...       },</p>
-</dd>
-</dl>
-</div></blockquote>
-<p class="last">city                         &#8220;Madison&#8221;,
-country                      &#8220;USA&#8221;,
-notes                        &#8220;notes go here&#8221;,
-skype                        &#8220;joeuser47&#8221;,
-player_name                  &#8220;Joe User&#8221;,
-skip_happiness_warnings      0,
-skip_resource_warnings       0,
-skip_pollution_warnings      0,
-skip_medal_messages          0,
-skip_facebook_wall_posts     0,
-skip_found_nothing           0,
-skip_excavator_resources     0,
-skip_excavator_glyph         0,
-skip_excavator_plan          0,
-skip_spy_recovery            0,
-skip_probe_detected          0,
-skip_attack_messages         0,
-skip_incoming_ships          0,
-email                        &#8220;<a class="reference external" href="mailto:joe&#37;&#52;&#48;example&#46;com">joe<span>&#64;</span>example<span>&#46;</span>com</a>&#8221;,
-sitter_password              &#8220;abcdefgh&#8221;</p>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">description                  &quot;description goes here&quot;,</span>
+<span class="go">status_message               &quot;status message goes here&quot;,</span>
+<span class="go">medals                       Dict:</span>
+<span class="go">                                {   &quot;Integer Medal ID&quot; : {</span>
+<span class="go">                                        &quot;name&quot; : &quot;Built Level 1 Building&quot;,</span>
+<span class="go">                                        &quot;image&quot; : &quot;building1&quot;,</span>
+<span class="go">                                        &quot;date&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">                                        &quot;public&quot; : 1,</span>
+<span class="go">                                        &quot;times_earned&quot; : 4       },</span>
+<span class="go">                                    ...       },</span>
+<span class="go">city                         &quot;Madison&quot;,</span>
+<span class="go">country                      &quot;USA&quot;,</span>
+<span class="go">notes                        &quot;notes go here&quot;,</span>
+<span class="go">skype                        &quot;joeuser47&quot;,</span>
+<span class="go">player_name                  &quot;Joe User&quot;,</span>
+<span class="go">skip_happiness_warnings      0,</span>
+<span class="go">skip_resource_warnings       0,</span>
+<span class="go">skip_pollution_warnings      0,</span>
+<span class="go">skip_medal_messages          0,</span>
+<span class="go">skip_facebook_wall_posts     0,</span>
+<span class="go">skip_found_nothing           0,</span>
+<span class="go">skip_excavator_resources     0,</span>
+<span class="go">skip_excavator_glyph         0,</span>
+<span class="go">skip_excavator_plan          0,</span>
+<span class="go">skip_spy_recovery            0,</span>
+<span class="go">skip_probe_detected          0,</span>
+<span class="go">skip_attack_messages         0,</span>
+<span class="go">skip_incoming_ships          0,</span>
+<span class="go">email                        &quot;joe@example.com&quot;,</span>
+<span class="go">sitter_password              &quot;abcdefgh&quot;    </span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </dd></dl>
@@ -415,55 +455,44 @@ sitter_password              &#8220;abcdefgh&#8221;</p>
 <dd><p>This is the public profile of any empire.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
-<dd><p class="first">id                      &#8220;empire-id-goes-here&#8221;,
-name                    &#8220;Lacuna Expanse Corp&#8221;,
-colony_count            1,
-status_message          &#8220;Looking for Essentia.&#8221;
-description             &#8220;We are the original inhabitants of the Lacuna Expanse.&#8221;,
-city                    &#8220;Madison&#8221;,
-country                 &#8220;USA&#8221;,
-skype                   &#8220;joeuser47&#8221;,
-player_name             &#8220;Joe User&#8221;,
-medals                  {</p>
-<blockquote>
-<div><blockquote>
-<div><dl class="docutils">
-<dt>&#8220;id-goes-here&#8221; <span class="classifier-delimiter">:</span> <span class="classifier">{</span></dt>
-<dd>&#8220;name&#8221; : &#8220;Built Level 1 Building&#8221;,
-&#8220;image&#8221; : &#8220;building1&#8221;,
-&#8220;date&#8221; : &#8220;01 31 2010 13:09:05 +0600&#8221;,</dd>
-</dl>
-<p>&#8220;times_earned&#8221; : 4
-},
-...</p>
-</div></blockquote>
-<p>},</p>
-</div></blockquote>
-<p>last_login              &#8220;01 31 2010 13:09:05 +0600&#8221;,
-date_founded            &#8220;01 31 2010 13:09:05 +0600&#8221;,
-species                 &#8220;Lacunan&#8221;,
-alliance                {</p>
-<blockquote>
-<div><blockquote>
-<div>&#8220;id&#8221; : &#8220;id-goes-here&#8221;,
-&#8220;name&#8221; : &#8220;The Confederacy&#8221;</div></blockquote>
-<p>},</p>
-</div></blockquote>
-<dl class="last docutils">
-<dt>known_colonies          [</dt>
-<dd><blockquote class="first">
-<div><dl class="docutils">
-<dt>{</dt>
-<dd>&#8220;id&#8221; : &#8220;id-goes-here&#8221;,
-&#8220;x&#8221; : &#8220;1&#8221;,
-&#8220;y&#8221; : &#8220;-543&#8221;,
-&#8220;name&#8221; : &#8220;Earth&#8221;,
-&#8220;image&#8221; : &#8220;p12-3&#8221;</dd>
-</dl>
-</div></blockquote>
-<p class="last">]</p>
-</dd>
-</dl>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">id                      &quot;empire-id-goes-here&quot;,</span>
+<span class="go">name                    &quot;Lacuna Expanse Corp&quot;,</span>
+<span class="go">colony_count            1,</span>
+<span class="go">status_message          &quot;Looking for Essentia.&quot;</span>
+<span class="go">description             &quot;We are the original inhabitants of the Lacuna Expanse.&quot;,</span>
+<span class="go">city                    &quot;Madison&quot;,</span>
+<span class="go">country                 &quot;USA&quot;,</span>
+<span class="go">skype                   &quot;joeuser47&quot;,</span>
+<span class="go">player_name             &quot;Joe User&quot;,</span>
+<span class="go">medals                  {</span>
+<span class="go">                            &quot;id-goes-here&quot; : {</span>
+<span class="go">                                &quot;name&quot; : &quot;Built Level 1 Building&quot;,</span>
+<span class="go">                                &quot;image&quot; : &quot;building1&quot;,</span>
+<span class="go">                                &quot;date&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">                            &quot;times_earned&quot; : 4</span>
+<span class="go">                            },</span>
+<span class="go">                            ...</span>
+<span class="go">                        },</span>
+<span class="go">last_login              &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">date_founded            &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">species                 &quot;Lacunan&quot;,</span>
+<span class="go">alliance                {</span>
+<span class="go">                            &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                            &quot;name&quot; : &quot;The Confederacy&quot;</span>
+<span class="go">                        },</span>
+<span class="go">known_colonies          [</span>
+<span class="go">                            {</span>
+<span class="go">                                &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                                &quot;x&quot; : &quot;1&quot;,</span>
+<span class="go">                                &quot;y&quot; : &quot;-543&quot;,</span>
+<span class="go">                                &quot;name&quot; : &quot;Earth&quot;,</span>
+<span class="go">                                &quot;image&quot; : &quot;p12-3&quot;</span>
+<span class="go">                            },</span>
+<span class="go">                            ...</span>
+<span class="go">                        ]</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </dd></dl>
@@ -474,21 +503,25 @@ alliance                {</p>
 <dd><p>The attributes associated with an empire&#8217;s species.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
-<dd>name                     &#8220;Human&#8221;,
-description              &#8220;The descendants of Earth.&#8221;,
-min_orbit                3,
-max_orbit                3,
-manufacturing_affinity   4,
-deception_affinity       4,
-research_affinity        4,
-management_affinity      4,
-farming_affinity         4,
-mining_affinity          4,
-science_affinity         4,
-environmental_affinity   4,
-political_affinity       4,
-trade_affinity           4,
-growth_affinity          4</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name                     &quot;Human&quot;,</span>
+<span class="go">description              &quot;The descendants of Earth.&quot;,</span>
+<span class="go">min_orbit                3,</span>
+<span class="go">max_orbit                3,</span>
+<span class="go">manufacturing_affinity   4,</span>
+<span class="go">deception_affinity       4,</span>
+<span class="go">research_affinity        4,</span>
+<span class="go">management_affinity      4,</span>
+<span class="go">farming_affinity         4,</span>
+<span class="go">mining_affinity          4,</span>
+<span class="go">science_affinity         4,</span>
+<span class="go">environmental_affinity   4,</span>
+<span class="go">political_affinity       4,</span>
+<span class="go">trade_affinity           4,</span>
+<span class="go">growth_affinity          4</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 </dd></dl>
 
@@ -499,21 +532,25 @@ growth_affinity          4</dd>
 up a new empire.</p>
 <dl class="docutils">
 <dt>Attributes:</dt>
-<dd>name                        &#8220;Average&#8221;, 
-description                 &#8220;A race of average intellect, and weak constitution.&#8217;,
-min_orbit                   3,
-max_orbit                   3,
-manufacturing_affinity      4,
-deception_affinity          4,
-research_affinity           4,
-management_affinity         4,
-farming_affinity            4,
-mining_affinity             4,
-science_affinity            4,
-environmental_affinity      4,
-political_affinity          4,
-trade_affinity              4,
-growth_affinity             4</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name                        &quot;Average&quot;, </span>
+<span class="go">description                 &quot;A race of average intellect, and weak constitution.&#39;,</span>
+<span class="go">min_orbit                   3,</span>
+<span class="go">max_orbit                   3,</span>
+<span class="go">manufacturing_affinity      4,</span>
+<span class="go">deception_affinity          4,</span>
+<span class="go">research_affinity           4,</span>
+<span class="go">management_affinity         4,</span>
+<span class="go">farming_affinity            4,</span>
+<span class="go">mining_affinity             4,</span>
+<span class="go">science_affinity            4,</span>
+<span class="go">environmental_affinity      4,</span>
+<span class="go">political_affinity          4,</span>
+<span class="go">trade_affinity              4,</span>
+<span class="go">growth_affinity             4</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 </dd></dl>
 
@@ -568,7 +605,7 @@ growth_affinity             4</dd>
         <li class="right" >
           <a href="clients.html" title="clients"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

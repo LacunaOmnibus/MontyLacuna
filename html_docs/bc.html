@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>bc &mdash; MontyLacuna 0.1 documentation</title>
+    <title>bc &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -23,9 +23,9 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="next" title="alliance" href="alliance.html" />
-    <link rel="prev" title="Config File" href="config_file.html" /> 
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,9 +41,9 @@
           <a href="alliance.html" title="alliance"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="config_file.html" title="Config File"
+          <a href="getting_started.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -68,25 +68,25 @@ one, and he&#8217;s going to forget to do that 90% of the time.</li>
 </ul>
 </dd>
 <dt>Attributes:</dt>
-<dd>days
-hours
-minutes
-seconds</dd>
+<dd><ul class="first last simple">
+<li>days</li>
+<li>hours</li>
+<li>minutes</li>
+<li>seconds</li>
+</ul>
+</dd>
 </dl>
-<p>CAUTION
-This is slightly hokey - if the number of seconds passed in is greater 
-than the number of seconds in the current month (2678400 for a 31-day 
+<p><em>CAUTION</em> - This is slightly hokey - if the number of seconds passed in is 
+greater than the number of seconds in the current month (2678400 for a 31-day 
 month), then all returns will be reset:</p>
-<blockquote>
-<div><p>time = i.sec2time( 2678400 )
-print( &#8220;That&#8217;s {} days, {} hours, {} minutes, and {} seconds.&#8221;</p>
-<blockquote>
-<div>.format(time.days, time.hours, time.minutes, time.seconds)</div></blockquote>
-<dl class="docutils">
-<dt>)</dt>
-<dd>&#8220;That&#8217;s 0 days, 0 hours, 0 minutes, and 0 seconds.&#8221;</dd>
-</dl>
-</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">time = i.sec2time( 2678400 )</span>
+<span class="go">print( &quot;That&#39;s {} days, {} hours, {} minutes, and {} seconds.&quot;</span>
+<span class="go">    .format(time.days, time.hours, time.minutes, time.seconds)</span>
+<span class="go">)</span>
+<span class="go">    &quot;That&#39;s 0 days, 0 hours, 0 minutes, and 0 seconds.&quot;</span>
+</pre></div>
+</div>
 <p>Since very few TLE-related activities will take more than a month, this 
 is usually not a problem.  But a ship sent at speed 1 from one corner of 
 the expanse to the other won&#8217;t be able to make reasonable use of this 
@@ -104,18 +104,20 @@ for providing utility methods.</p>
 <dd><p>Converts seconds into days, hours, minutes, and seconds.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd>seconds     Integer seconds to convert</dd>
-</dl>
-<p>Returns an ElapsedTime object.</p>
-<dl class="docutils">
-<dt>Example:</dt>
-<dd><p class="first">time = i.sec2time( 86400 )
-print( &#8220;That&#8217;s {} days, {} hours, {} minutes, and {} seconds.&#8221;</p>
-<blockquote>
-<div>.format(time.days, time.hours, time.minutes, time.seconds)</div></blockquote>
-<p class="last">)</p>
+<dd><ul class="first last simple">
+<li>seconds &#8211; Integer seconds to convert</li>
+</ul>
 </dd>
 </dl>
+<p>Returns an ElapsedTime object.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">time = i.sec2time( 86400 )</span>
+<span class="go">print( &quot;That&#39;s {} days, {} hours, {} minutes, and {} seconds.&quot;</span>
+<span class="go">    .format(time.days, time.hours, time.minutes, time.seconds)</span>
+<span class="go">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -124,32 +126,35 @@ print( &#8220;That&#8217;s {} days, {} hours, {} minutes, and {} seconds.&#8221;
 <dd><p>Converts a TLE datetime string into a datetime.datetime object.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd><dl class="first last docutils">
-<dt>tle_datetime    A TLE datetime string</dt>
-<dd>eg &#8220;30 11 2014 21:40:31 +0000&#8221;
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>tle_datetime &#8211; A TLE datetime string</dt>
+<dd><p class="first last">eg &#8220;30 11 2014 21:40:31 +0000&#8221;
 The &#8220;+0000&#8221; is meant to be the timezone, but in TLE 
 datetime strings this is always &#8220;+0000&#8221; (UTC), so 
 this method is ignoring it, and it could actually 
-be omitted from the passed-in string.</dd>
-</dl>
+be omitted from the passed-in string.</p>
 </dd>
 </dl>
-<p>Returns a datetime.datetime object.</p>
-<p>year    Four-digit year
-month   The month number, not zero-offset, so January is 1.  You can</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>get the month name or abbreviation via:</dt>
-<dd>import calendar
-d = tle2time( &#8220;30 11 2014 21:40:31 +0000&#8221; )
-print( calendar.month_name[d.month] )           # November
-print( calendar.month_abbr[d.month] )           # Nov</dd>
+</li>
+</ul>
+</dd>
 </dl>
-</div></blockquote>
-<p>day
-hour
-minute
-second  Each of these always consists of two digits.:w</p>
+<p>Returns a datetime.datetime object, with the attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">year    Four-digit year</span>
+<span class="go">month   The month number, not zero-offset, so January is 1.  You can </span>
+<span class="go">        get the month name or abbreviation via:</span>
+<span class="go">            import calendar</span>
+<span class="go">            d = tle2time( &quot;30 11 2014 21:40:31 +0000&quot; )</span>
+<span class="go">            print( calendar.month_name[d.month] )           # November</span>
+<span class="go">            print( calendar.month_abbr[d.month] )           # Nov</span>
+<span class="go">day</span>
+<span class="go">hour</span>
+<span class="go">minute</span>
+<span class="go">second  Each of these always consists of two digits.</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -163,8 +168,8 @@ second  Each of these always consists of two digits.:w</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="config_file.html"
-                        title="previous chapter">Config File</a></p>
+  <p class="topless"><a href="getting_started.html"
+                        title="previous chapter">Getting Started</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="alliance.html"
                         title="next chapter">alliance</a></p>
@@ -203,9 +208,9 @@ second  Each of these always consists of two digits.:w</p>
           <a href="alliance.html" title="alliance"
              >next</a> |</li>
         <li class="right" >
-          <a href="config_file.html" title="Config File"
+          <a href="getting_started.html" title="Getting Started"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

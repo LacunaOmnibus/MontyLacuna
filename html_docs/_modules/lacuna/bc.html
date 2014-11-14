@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lacuna.bc &mdash; MontyLacuna 0.1 documentation</title>
+    <title>lacuna.bc &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
@@ -64,15 +64,16 @@
 <div class="viewcode-block" id="SubClass.tle2time"><a class="viewcode-back" href="../../bc.html#lacuna.bc.SubClass.tle2time">[docs]</a>        <span class="sd">&quot;&quot;&quot; Converts a TLE datetime string into a datetime.datetime object.</span>
 
 <span class="sd">        Arguments:</span>
-<span class="sd">            tle_datetime    A TLE datetime string</span>
+<span class="sd">            - tle_datetime -- A TLE datetime string</span>
 <span class="sd">                            eg &quot;30 11 2014 21:40:31 +0000&quot;</span>
 <span class="sd">                            The &quot;+0000&quot; is meant to be the timezone, but in TLE </span>
 <span class="sd">                            datetime strings this is always &quot;+0000&quot; (UTC), so </span>
 <span class="sd">                            this method is ignoring it, and it could actually </span>
 <span class="sd">                            be omitted from the passed-in string.</span>
 
-<span class="sd">        Returns a datetime.datetime object.</span>
+<span class="sd">        Returns a datetime.datetime object, with the attributes:</span>
 
+<span class="sd">        &gt;&gt;&gt; </span>
 <span class="sd">        year    Four-digit year</span>
 <span class="sd">        month   The month number, not zero-offset, so January is 1.  You can </span>
 <span class="sd">                get the month name or abbreviation via:</span>
@@ -83,7 +84,7 @@
 <span class="sd">        day</span>
 <span class="sd">        hour</span>
 <span class="sd">        minute</span>
-<span class="sd">        second  Each of these always consists of two digits.:w</span>
+<span class="sd">        second  Each of these always consists of two digits.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&quot;^(\d\d) (\d\d) (\d{4}) (\d\d):(\d\d):(\d\d)&quot;</span><span class="p">,</span> <span class="n">tle_time</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
@@ -102,11 +103,13 @@
 <div class="viewcode-block" id="SubClass.sec2time"><a class="viewcode-back" href="../../bc.html#lacuna.bc.SubClass.sec2time">[docs]</a>        <span class="sd">&quot;&quot;&quot; Converts seconds into days, hours, minutes, and seconds.</span>
 
 <span class="sd">        Arguments:</span>
-<span class="sd">            seconds     Integer seconds to convert</span>
+<span class="sd">            - seconds -- Integer seconds to convert</span>
 
 <span class="sd">        Returns an ElapsedTime object.</span>
 
 <span class="sd">        Example:</span>
+<span class="sd">            </span>
+<span class="sd">            &gt;&gt;&gt; </span>
 <span class="sd">            time = i.sec2time( 86400 )</span>
 <span class="sd">            print( &quot;That&#39;s {} days, {} hours, {} minutes, and {} seconds.&quot;</span>
 <span class="sd">                .format(time.days, time.hours, time.minutes, time.seconds)</span>
@@ -332,15 +335,16 @@
 <span class="sd">              one, and he&#39;s going to forget to do that 90% of the time.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        days</span>
-<span class="sd">        hours</span>
-<span class="sd">        minutes</span>
-<span class="sd">        seconds</span>
+<span class="sd">        - days</span>
+<span class="sd">        - hours</span>
+<span class="sd">        - minutes</span>
+<span class="sd">        - seconds</span>
 
-<span class="sd">    CAUTION</span>
-<span class="sd">    This is slightly hokey - if the number of seconds passed in is greater </span>
-<span class="sd">    than the number of seconds in the current month (2678400 for a 31-day </span>
+<span class="sd">    *CAUTION* - This is slightly hokey - if the number of seconds passed in is </span>
+<span class="sd">    greater than the number of seconds in the current month (2678400 for a 31-day </span>
 <span class="sd">    month), then all returns will be reset:</span>
+
+<span class="sd">        &gt;&gt;&gt; </span>
 <span class="sd">        time = i.sec2time( 2678400 )</span>
 <span class="sd">        print( &quot;That&#39;s {} days, {} hours, {} minutes, and {} seconds.&quot;</span>
 <span class="sd">            .format(time.days, time.hours, time.minutes, time.seconds)</span>
@@ -390,7 +394,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>

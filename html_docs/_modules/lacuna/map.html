@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>lacuna.map &mdash; MontyLacuna 0.1 documentation</title>
+    <title>lacuna.map &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="../../index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
     </div>  
@@ -51,9 +51,7 @@
 <span class="kn">import</span> <span class="nn">lacuna.body</span>
 
 <span class="k">class</span> <span class="nc">Map</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="p">):</span>
-<div class="viewcode-block" id="Map"><a class="viewcode-back" href="../../map.html#lacuna.map.Map">[docs]</a>    <span class="sd">&quot;&quot;&quot;All Map methods require a session ID, so these can only be used by a</span>
-<span class="sd">    Member, not a Client.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Map"><a class="viewcode-back" href="../../map.html#lacuna.map.Map">[docs]</a>    <span class="sd">&quot;&quot;&quot; Provides access to the starmap.  &quot;&quot;&quot;</span>
 
     <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;map&#39;</span>
 
@@ -62,6 +60,7 @@
 <div class="viewcode-block" id="Map.get_star_map"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star_map">[docs]</a>        <span class="sd">&quot;&quot;&quot; Get a list of stars occupying a region of space.</span>
 <span class="sd">        </span>
 <span class="sd">        Accepts a single dict of arguments:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
 <span class="sd">            left        Coordinate</span>
 <span class="sd">            top         Coordinate</span>
 <span class="sd">            right       Coordinate</span>
@@ -92,6 +91,7 @@
 <span class="sd">        units.</span>
 
 <span class="sd">        Arguments:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
 <span class="sd">            left        Coordinate</span>
 <span class="sd">            top         Coordinate</span>
 <span class="sd">            right       Coordinate</span>
@@ -111,11 +111,10 @@
 <div class="viewcode-block" id="Map.check_star_for_incoming_probe"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.check_star_for_incoming_probe">[docs]</a>        <span class="sd">&quot;&quot;&quot; Check if you have a probe en route to a star.</span>
 
 <span class="sd">        Arguments</span>
-<span class="sd">            star_id         Integer ID of the star to check</span>
+<span class="sd">            - star_id -- Integer ID of the star to check</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">            incoming_probe  This will be the date of arrival of the incoming </span>
-<span class="sd">                            probe, or 0 if no probe is on its way.</span>
+<span class="sd">            - incoming_probe -- This will be the date of arrival of the incoming probe, or 0 if no probe is on its way.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;incoming_probe&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;incoming_probe&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
 
@@ -124,7 +123,7 @@
 <div class="viewcode-block" id="Map.get_star"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find a star by its ID.</span>
 
 <span class="sd">        Arguments:</span>
-<span class="sd">            star_id     Integer ID of the star</span>
+<span class="sd">            - star_id -- Integer ID of the star</span>
 
 <span class="sd">        Returns a Star object.  </span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -136,8 +135,7 @@
 <div class="viewcode-block" id="Map.get_star_by_name"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star_by_name">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find a star by its name.</span>
 
 <span class="sd">        Arguments:</span>
-<span class="sd">            star_name   String name of the star.  This is NOT a &quot;standard TLE</span>
-<span class="sd">                        search string&quot;, but the full name of the star.</span>
+<span class="sd">            - star_name -- String name of the star.  This is NOT a &quot;standard TLE search string&quot;, but the full name of the star.</span>
 
 <span class="sd">        Returns a Star object.  </span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -149,8 +147,8 @@
 <div class="viewcode-block" id="Map.get_star_by_xy"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star_by_xy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find a star by its x, y coordinates.</span>
 
 <span class="sd">        Arguments:</span>
-<span class="sd">            x   Integer X coordinate</span>
-<span class="sd">            y   Integer Y coordinate</span>
+<span class="sd">            - x -- Integer X coordinate</span>
+<span class="sd">            - y -- Integer Y coordinate</span>
 
 <span class="sd">        Returns a Star object.  </span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -162,7 +160,7 @@
 <div class="viewcode-block" id="Map.search_stars"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.search_stars">[docs]</a>        <span class="sd">&quot;&quot;&quot; Return a list of stars matching a string.</span>
 
 <span class="sd">        Arguments</span>
-<span class="sd">            search_string   A standard TLE search string.</span>
+<span class="sd">            - search_string -- A standard TLE search string.</span>
 
 <span class="sd">        Returns a list of Star objects.</span>
 <span class="sd">        partial_name must be at least 3 characters.  Matches up to 25 stars whose names</span>
@@ -179,7 +177,7 @@
 <div class="viewcode-block" id="Map.probe_summary_fissures"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.probe_summary_fissures">[docs]</a>        <span class="sd">&quot;&quot;&quot; Provides info on fissures in a zone.</span>
 
 <span class="sd">        Requires a single dict argument:</span>
-<span class="sd">            zone    &#39;0|0&#39;</span>
+<span class="sd">            - zone -- &#39;0|0&#39;</span>
 
 <span class="sd">        Returns a list of map.Fissure objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -201,8 +199,8 @@
 <div class="viewcode-block" id="Map.get_orbiting_planet"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_orbiting_planet">[docs]</a>        <span class="sd">&quot;&quot;&quot; Get the info of any planet you can see in your star map.</span>
 
 <span class="sd">        Arguments</span>
-<span class="sd">            star_name       String name of a star</span>
-<span class="sd">            planet_name     String name of a planet orbiting that star</span>
+<span class="sd">            - star_name -- String name of a star</span>
+<span class="sd">            - planet_name -- String name of a planet orbiting that star</span>
 
 <span class="sd">        Returns a body.Body object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -220,6 +218,7 @@
 <span class="k">class</span> <span class="nc">Star</span><span class="p">():</span></div></div>
 <div class="viewcode-block" id="Star"><a class="viewcode-back" href="../../map.html#lacuna.map.Star">[docs]</a>    <span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">    Attributes:</span>
+<span class="sd">        &gt;&gt;&gt; </span>
 <span class="sd">        color       &#39;red&#39;,</span>
 <span class="sd">        id          &#39;12345&#39;,</span>
 <span class="sd">        name        &#39;Clou Oghofr Oap&#39;,</span>
@@ -248,14 +247,15 @@
 <span class="k">class</span> <span class="nc">Fissure</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div>
 <div class="viewcode-block" id="Fissure"><a class="viewcode-back" href="../../map.html#lacuna.map.Fissure">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Attributes:</span>
-<span class="sd">       name     &quot;Mercury&quot;,</span>
-<span class="sd">       id       345,</span>
-<span class="sd">       orbit    1,</span>
-<span class="sd">       x        -40,</span>
-<span class="sd">       y        29,</span>
-<span class="sd">       type     &quot;habitable planet&quot;,</span>
-<span class="sd">       image    &quot;p13&quot;,</span>
-<span class="sd">       size     58,</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        name     &quot;Mercury&quot;,</span>
+<span class="sd">        id       345,</span>
+<span class="sd">        orbit    1,</span>
+<span class="sd">        x        -40,</span>
+<span class="sd">        y        29,</span>
+<span class="sd">        type     &quot;habitable planet&quot;,</span>
+<span class="sd">        image    &quot;p13&quot;,</span>
+<span class="sd">        size     58,</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </pre></div></div>
 
@@ -290,7 +290,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="../../index.html">MontyLacuna 0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
           <li><a href="../index.html" >Module code</a> &raquo;</li> 
       </ul>
     </div>

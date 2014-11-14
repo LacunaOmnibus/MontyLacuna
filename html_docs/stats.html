@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>stats &mdash; MontyLacuna 0.1 documentation</title>
+    <title>stats &mdash; Monty Lacuna 0.1 documentation</title>
     
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="next" title="my_validate_email module" href="my_validate_email.html" />
     <link rel="prev" title="map" href="map.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="map.html" title="map"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -59,19 +59,23 @@
 <em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">AllianceInfo</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#AllianceInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.AllianceInfo" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Attributes:</dt>
-<dd>alliance_id             &#8220;id-goes-here&#8221;,
-alliance_name           &#8220;Earthlings&#8221;,
-member_count            &#8220;1&#8221;,
-space_station_count     0,
-influence               0,
-colony_count            &#8220;1&#8221;,
-population              &#8220;7000000000&#8221;,       # number of citizens on all planets in the alliance
-average_empire_size     &#8220;7000000000&#8221;,
-building_count          &#8220;50&#8221;,               # number of buildings across all colonies 
-average_building_level  &#8220;20&#8221;,               # average level of all buildings across all colonies
-offense_success_rate    &#8220;0.793&#8221;,            # the offense rate of success of spies at all colonies
-defense_success_rate    &#8220;0.49312&#8221;,          # the defense rate of success of spies at all colonies
-dirtiest                &#8220;7941&#8221;              # the number of times a spy has attempted to hurt another empire</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">alliance_id             &quot;id-goes-here&quot;,</span>
+<span class="go">alliance_name           &quot;Earthlings&quot;,</span>
+<span class="go">member_count            &quot;1&quot;,</span>
+<span class="go">space_station_count     0,</span>
+<span class="go">influence               0,</span>
+<span class="go">colony_count            &quot;1&quot;,</span>
+<span class="go">population              &quot;7000000000&quot;,       # number of citizens on all planets in the alliance</span>
+<span class="go">average_empire_size     &quot;7000000000&quot;,</span>
+<span class="go">building_count          &quot;50&quot;,               # number of buildings across all colonies </span>
+<span class="go">average_building_level  &quot;20&quot;,               # average level of all buildings across all colonies</span>
+<span class="go">offense_success_rate    &quot;0.793&quot;,            # the offense rate of success of spies at all colonies</span>
+<span class="go">defense_success_rate    &quot;0.49312&quot;,          # the defense rate of success of spies at all colonies</span>
+<span class="go">dirtiest                &quot;7941&quot;              # the number of times a spy has attempted to hurt another empire</span>
+</pre></div>
+</div>
+</dd>
 </dl>
 </dd></dl>
 
@@ -80,10 +84,268 @@ dirtiest                &#8220;7941&#8221;              # the number of times a 
 <em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">EmpireInfo</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#EmpireInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.EmpireInfo" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>Attributes:</dt>
-<dd>empire_id       &#8220;id-goes-here&#8221;,
-empire_name     &#8220;Earthlings&#8221;,
-page_number     &#8220;54&#8221;,</dd>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">empire_id       &quot;id-goes-here&quot;,</span>
+<span class="go">empire_name     &quot;Earthlings&quot;,</span>
+<span class="go">page_number     &quot;54&quot;,</span>
+</pre></div>
+</div>
+</dd>
 </dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.stats.Stats">
+<em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">Stats</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides access to game stats and rankings.</p>
+<dl class="method">
+<dt id="lacuna.stats.Stats.alliance_rank">
+<tt class="descname">alliance_rank</tt><big>(</big><em>sort_by='influence desc</em>, <em>population desc'</em>, <em>page_number=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.alliance_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.alliance_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns info on current alliance ranks.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first simple">
+<li>sort_by &#8211; String.  What to sort the returned list on.  Defaults to &#8220;influence desc, population desc&#8221;.</li>
+<li>page_number &#8211; Integer page number to return, 25 alliances per page.  Defaults to 1.</li>
+</ul>
+<dl class="last docutils">
+<dt>Allowed values for sort_by (but see CAVEAT below):</dt>
+<dd><ul class="first last simple">
+<li>influence</li>
+<li>population</li>
+<li>average_empire_size_rank</li>
+<li>offense_success_rate_rank</li>
+<li>defense_success_rate_rank</li>
+<li>dirtiest_rank</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Return a tuple:</dt>
+<dd><ul class="first last simple">
+<li>alliances &#8211; List of AllianceInfo objects</li>
+<li>total_alliances &#8211; Integer count.</li>
+<li>page_number &#8211; What page we&#8217;re displaying (defaults to 1)</li>
+</ul>
+</dd>
+<dt>CAVEAT</dt>
+<dd><p class="first">The docs for this are flat-out wrong, and appear to be the result
+of a copy/paste error from find_alliance_rank.</p>
+<p>The point is that the published docs conflict with these docs.</p>
+<p>The default sort_by value in the server code is &#8216;influence 
+desc,population desc&#8217;.  However, the code is checking the incoming 
+sort_by value against an array of legal choices, and &#8216;influenced 
+desc,population desc&#8217; is not one of those legal choices.</p>
+<p class="last">Happily, if what you send is not a legal choice, the server 
+defaults to &#8216;influenced desc,population desc&#8217;.  So you could send 
+&#8216;influenced desc,population desc&#8217; and get &#8216;influenced 
+desc,population desc&#8217;, but it wouldn&#8217;t be for the reason you might 
+think (because that&#8217;s what you sent).  You could send &#8220;Rajesh 
+Koothrapalli&#8221; and you&#8217;d still end up with &#8216;influenced 
+desc,population desc&#8217;.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.stats.Stats.colony_rank">
+<tt class="descname">colony_rank</tt><big>(</big><em>sort_by='population_rank'</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.colony_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.colony_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find planets sorted by various options.</p>
+<p>Accepts optional argument &#8216;sort_by&#8217;, which defaults to 
+&#8216;population_rank&#8217;.  &#8216;population_rank&#8217; is also the only legal value for 
+this argument.  No, I dunno either.</p>
+<dl class="docutils">
+<dt>Returns dict with keys:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">colonies    list of dicts</span>
+<span class="go">    [</span>
+<span class="go">        {</span>
+<span class="go">            &quot;empire_id&quot; : &quot;id-goes-here&quot;,                   # unique id</span>
+<span class="go">            &quot;empire_name&quot; : &quot;Earthlings&quot;,                   # empire name</span>
+<span class="go">            &quot;planet_id&quot; : &quot;id-goes-here&quot;,                   # unique id</span>
+<span class="go">            &quot;planet_name&quot; : &quot;Earth&quot;,                        # name of the planet</span>
+<span class="go">            &quot;population&quot; : &quot;7000000000&quot;,                    # number of citizens on planet</span>
+<span class="go">            &quot;building_count&quot; : &quot;50&quot;,                        # number of buildings at this colony</span>
+<span class="go">            &quot;average_building_level&quot; : &quot;20&quot;,                # average level of all buildings at this colony</span>
+<span class="go">            &quot;highest_building_level&quot; : &quot;26&quot;                 # highest building at this colony</span>
+<span class="go">        },</span>
+<span class="go">        { more of the same }</span>
+<span class="go">    ]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.stats.Stats.credits">
+<tt class="descname">credits</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.credits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.credits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the game&#8217;s credits.</p>
+<p>This method does not require a logged-in client.</p>
+<dl class="docutils">
+<dt>Returns a dict, with the keys being credit types and the values being a list of people or entities having that credit:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&#39;Game Support&#39;  [   </span>
+<span class="go">                    &#39;Plain Black Corporation / plainblack.com&#39;,</span>
+<span class="go">                    &#39;Mary Hoerr&#39;,</span>
+<span class="go">                    &#39;United Federation&#39; </span>
+<span class="go">                ],</span>
+<span class="go">&#39;Game Design&#39;:  [</span>
+<span class="go">                    &#39;JT Smith&#39;,</span>
+<span class="go">                    &#39;Jamie Vrbsky&#39;</span>
+<span class="go">                ],</span>
+<span class="go">etc</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.stats.Stats.empire_rank">
+<tt class="descname">empire_rank</tt><big>(</big><em>sort_by='empire_size_rank'</em>, <em>page_number=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.empire_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.empire_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find empires sorted by various options.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first simple">
+<li>sort_by &#8211; how the empires should be sorted.  Defaults to &#8216;empire_size_rank&#8217;.</li>
+<li>page_number &#8211; which page to return.  Defaults to 1.</li>
+</ul>
+<dl class="last docutils">
+<dt>sort_by legal values:</dt>
+<dd><ul class="first last simple">
+<li>empire_size_rank (default)</li>
+<li>offense_success_rate_rank</li>
+<li>defense_success_rate_rank</li>
+<li>dirtiest_rank</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Returned dict contains:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">    &#39;total_empires&#39;     int</span>
+<span class="go">    &#39;page_number&#39;       int</span>
+<span class="go">    &#39;status&#39;            standard</span>
+<span class="go">    &#39;empires&#39;           list of dicts:</span>
+<span class="go">                        [</span>
+<span class="go">                            {</span>
+<span class="go">                                &quot;empire_id&quot; : &quot;id-goes-here&quot;,                   # unique id</span>
+<span class="go">                                &quot;empire_name&quot; : &quot;Earthlings&quot;,                   # empire name</span>
+<span class="go">                                &quot;alliance_id&quot; : &quot;id-goes-here&quot;,                 # unique id</span>
+<span class="go">                                &quot;alliance_name&quot; : &quot;Earthlings Allied&quot;,          # alliance name</span>
+<span class="go">                                &quot;colony_count&quot; : &quot;1&quot;,                           # number of planets colonized</span>
+<span class="go">                                &quot;population&quot; : &quot;7000000000&quot;,                    # number of citizens on all planets in the empire</span>
+<span class="go">                                &quot;empire_size&quot; : &quot;7000000000&quot;,                   # size of entire empire</span>
+<span class="go">                                &quot;building_count&quot; : &quot;50&quot;,                        # number of buildings across all colonies</span>
+<span class="go">                                &quot;average_building_level&quot; : &quot;20&quot;,                # average level of all buildings across all colonies</span>
+<span class="go">                                &quot;offense_success_rate&quot; : &quot;0.793&quot;,               # the offense rate of success of spies at all colonies</span>
+<span class="go">                                &quot;defense_success_rate&quot; : &quot;0.49312&quot;,             # the defense rate of success of spies at all colonies</span>
+<span class="go">                                &quot;dirtiest&quot; : &quot;7941&quot;                            # the number of times a spy has attempted to hurt another empire</span>
+<span class="go">                            },</span>
+<span class="go">                            { more of the same },</span>
+<span class="go">                        ]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.stats.Stats.find_alliance_rank">
+<tt class="descname">find_alliance_rank</tt><big>(</big><em>sort_by=''</em>, <em>alliance_name=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.find_alliance_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.find_alliance_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds stats for a specific alliance.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>sort_by &#8211; same options as for alliance_rank()</li>
+<li>alliance_name &#8211; Standard TLE search string</li>
+</ul>
+</dd>
+<dt>Returns list of limited AllianceInfo objects containing only the attributes:</dt>
+<dd><ul class="first last simple">
+<li>alliance_id</li>
+<li>alliance_name</li>
+<li>page_number</li>
+</ul>
+</dd>
+</dl>
+<p>This list will usually contain only a single alliance, but occasionally more than one alliance will match your passed-in alliance_name.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.stats.Stats.find_empire_rank">
+<tt class="descname">find_empire_rank</tt><big>(</big><em>sort_by=''</em>, <em>empire_name=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.find_empire_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.find_empire_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns info on specific empires in the ranks.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>sort_by &#8211; String.  See empire_rank()</li>
+<li>empire_name &#8211; Standard TLE search string.</li>
+</ul>
+</dd>
+</dl>
+<p>Keep in mind that this method has the potential of returning multiple 
+empires; an empire_name argument of &#8220;inf&#8221; will return both &#8220;Infinate 
+Ones&#8221; and &#8220;Infinitus Imperium&#8221;.</p>
+<p>So remember that this is returning is list, not a single object.</p>
+<p>Returns list of stats.EmpireInfo objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.stats.Stats.spy_rank">
+<tt class="descname">spy_rank</tt><big>(</big><em>sort_by='level_rank'</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.spy_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.spy_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>List spies by various options</p>
+<dl class="docutils">
+<dt>Accepts optional &#8216;sort_by&#8217; argument.  Legal values are:</dt>
+<dd><ul class="first last simple">
+<li>level_rank</li>
+<li>success_rate_rank</li>
+<li>dirtiest_rank</li>
+</ul>
+</dd>
+<dt>Returns dict with keys:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">    &#39;spies&#39;:  [</span>
+<span class="go">            {</span>
+<span class="go">                &quot;empire_id&quot; : &quot;id-goes-here&quot;,                   # unique id</span>
+<span class="go">                &quot;empire_name&quot; : &quot;Earthlings&quot;,                   # empire name</span>
+<span class="go">                &quot;spy_id&quot; : &quot;id-goes-here&quot;,                      # unique id</span>
+<span class="go">                &quot;spy_name&quot; : &quot;Agent Null&quot;,                      # the name of this spy</span>
+<span class="go">                &quot;age&quot; : &quot;3693&quot;,                                 # how old is this guy in seconds</span>
+<span class="go">                &quot;level&quot; : &quot;18&quot;,                                 # the level of this spy</span>
+<span class="go">                &quot;success_rate&quot; : &quot;0.731&quot;,                       # the rate of success this spy has had for both offense and defensive tasks</span>
+<span class="go">                &quot;dirtiest&quot; : &quot;7941&quot;,                            # the number of times a spy has attempted to hurt another empire</span>
+<span class="go">            },</span>
+<span class="go">        ]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.stats.Stats.weekly_medal_winners">
+<tt class="descname">weekly_medal_winners</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/stats.html#Stats.weekly_medal_winners"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.stats.Stats.weekly_medal_winners" title="Permalink to this definition">¶</a></dt>
+<dd><p>View medal winners</p>
+<dl class="docutils">
+<dt>Returned dict includes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&#39;winners&#39;: [</span>
+<span class="go">            {</span>
+<span class="go">                &quot;empire_id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                &quot;empire_name&quot; : &quot;Earthlings&quot;,</span>
+<span class="go">                &quot;medal_name&quot; : &quot;Dirtiest Player In The Game&quot;,</span>
+<span class="go">                &quot;medal_image&quot; : &quot;dirtiest1&quot;,</span>
+<span class="go">                &quot;times_earned&quot; : 4,</span>
+<span class="go">            },</span>
+<span class="go">        ]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -137,7 +399,7 @@ page_number     &#8220;54&#8221;,</dd>
         <li class="right" >
           <a href="map.html" title="map"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
