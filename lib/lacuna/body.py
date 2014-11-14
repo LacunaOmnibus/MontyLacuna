@@ -352,14 +352,11 @@ class MyBody(Body):
     def repair_list( self, building_ids_to_repair:list, *args, **kwargs ):
         """ Repairs all buildings indicated by ID in the passed-in list.
 
-        CHECK
+        Requires a list of building IDs to be repaired.
 
-        Per the API docs, this should return a dict including key 'buildings', 
-        itself a dict of id -> building_dict.  This 'buildings' dict will only 
-        contain buildings passed in building_ids_to_repair.
-
-        I haven't got any broken buildings handy to actually test this retval, 
-        so I haven't been able to verify the paragraph above yet.
+        Returns a dict including the key 'buildings', containing:
+            >>> 
+            id  -- building dict
         """
         pass
 
@@ -417,41 +414,41 @@ class MyBody(Body):
 
         Returns a dict that includes the key 'buildable', which is a list of 
         dicts keyed off the human-readable building name:
-            >>> 
-            [
-                'Water Purification Plant': {
-                    'build': {
-                        'can': 1,
-                        'cost': {   'energy': '64',
-                                    'food': '72',
-                                    'ore': '88',
-                                    'time': '15',
-                                    'waste': '16',
-                                    'water': '8'
-                                },
-                        'no_plot_use': '',
-                        'reason': '',
-                        'tags': ['Resources', 'Water', 'Now']
-                    },
-                    'image': 'waterpurification0',
-                    'production': {
-                        'energy_capacity': 0,
-                        'energy_hour': '-3',
-                        'food_capacity': 0,
-                        'food_hour': '-1',
-                        'happiness_hour': '0',
-                        'ore_capacity': 0,
-                        'ore_hour': '-3',
-                        'waste_capacity': 0,
-                        'waste_hour': '5',
-                        'water_capacity': 0,
-                        'water_hour': '31'
-                    },
-                    'url': '/waterpurification'
+        >>> 
+        [
+            'Water Purification Plant': {
+                'build': {
+                    'can': 1,
+                    'cost': {   'energy': '64',
+                                'food': '72',
+                                'ore': '88',
+                                'time': '15',
+                                'waste': '16',
+                                'water': '8'
+                            },
+                    'no_plot_use': '',
+                    'reason': '',
+                    'tags': ['Resources', 'Water', 'Now']
                 },
-                { another building dict },
-                etc
-            ]
+                'image': 'waterpurification0',
+                'production': {
+                    'energy_capacity': 0,
+                    'energy_hour': '-3',
+                    'food_capacity': 0,
+                    'food_hour': '-1',
+                    'happiness_hour': '0',
+                    'ore_capacity': 0,
+                    'ore_hour': '-3',
+                    'waste_capacity': 0,
+                    'waste_hour': '5',
+                    'water_capacity': 0,
+                    'water_hour': '31'
+                },
+                'url': '/waterpurification'
+            },
+            { another building dict },
+            etc
+        ]
 
         Raises ServerError 1009 if the passed coords are illegal for any reason (already 
         occupied, out-of-bounds, etc)
