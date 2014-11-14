@@ -43,8 +43,6 @@ work, but it hasn't been fully tested yet.
 
 - Alliance
 - Body
-  - CHECK this definitely still needs work.
-  - And repair_list() needs to be tested; I need to snark myself on PT I guess.
 - Captcha
   - May be oopified, may not.  CHECK.
 - Clients

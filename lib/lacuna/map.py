@@ -36,6 +36,8 @@ class Map(lacuna.bc.LacunaObject):
     def get_stars( self, x1, x2, y1, y2, *args, **kwargs ):
         """ Get a list of stars occupying a region of space.
 
+        More or less Deprecated.
+
         This is not officially deprecated, but there's no good reason to use it.  
         get_star_map() is using the newer named arguments calling method, and it 
         allows you a range of 3001 units, whereas this method uses the old 
@@ -209,7 +211,4 @@ class Fissure(lacuna.bc.SubClass):
         image    "p13",
         size     58,
     """
-
-
-
 
