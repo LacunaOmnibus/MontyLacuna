@@ -513,3 +513,15 @@ class Planet(lacuna.bc.SubClass):
         water_capacity      51050
     """
 
+class SpaceStation(lacuna.bc.SubClass):
+    """
+    Attributes:
+        >>> 
+        id                  "id-goes-here",
+        name                "ISS",
+        x                   -4,
+        y                    10,
+    """
+
+
+
