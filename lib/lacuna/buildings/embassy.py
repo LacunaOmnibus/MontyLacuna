@@ -2,17 +2,6 @@
 import lacuna.bc
 import lacuna.building
 
-"""
-Be aware of the ID arguments in these methods.  In some cases, the ID argument 
-must be the ID of an empire (eg send_invite()), but in other cases, the ID 
-argument is the ID of the invitation itself (eg withdraw_invite()).
-
-"invitee_id" == the ID of an empire.  "invite_id" == the ID of an invitation 
-itself.  
-
-Invitation IDs can be obtained via get_pending_invites().
-"""
-
 class embassy(lacuna.building.MyBuilding):
     path = 'embassy'
 
@@ -128,9 +117,9 @@ class embassy(lacuna.building.MyBuilding):
         alliance leader.
 
         Requires a single dict of arguments:
-            'forum_uri': 'http://www.example.com',
-            'description': 'This is a public description',
-            'announcements': 'This is only visible to alliance members',
+            - forum_uri -- 'http://www.example.com',
+            - description -- 'This is a public description',
+            - announcements -- 'This is only visible to alliance members',
 
         Returns an embassy.AllianceData object.
         """
@@ -158,9 +147,13 @@ class embassy(lacuna.building.MyBuilding):
         """ Donate items to the alliance stash.
 
         Requires a dictionary of items to donate:
+
+::
+
                 {   'apple': 10,
                     'burger': 20, 
                     ...     }
+
         Waste cannot be donated.
 
         An alliance stash can hold a maximum of 500,000 units of resources,
@@ -183,13 +176,13 @@ class embassy(lacuna.building.MyBuilding):
         The total quantity of resources you wish to donate much exactly match the 
         number of resources you request:
 
-            ### Fine
-            donation = { 'apple': 10, 'burger': 10 }
-            request  = { 'bean': 20 }
+        This is fine:
+        - donation = { 'apple': 10, 'burger': 10 }
+        - request  = { 'bean': 20 }
 
-            ### Not Fine
-            donation = { 'apple': 10, 'burger': 10 }
-            request  = { 'bean': 19 }
+        This is not fine:
+        - donation = { 'apple': 10, 'burger': 10 }
+        - request  = { 'bean': 19 }
 
         Returns an embassy.Stash object.
 
@@ -205,6 +198,7 @@ class embassy(lacuna.building.MyBuilding):
 class AllianceData(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         announcements   None,
         date_created    '21 10 2014 21:56:34 +0000',
         description     None,
@@ -217,7 +211,9 @@ class AllianceData(lacuna.bc.SubClass):
 
 class InvitedGuest(lacuna.bc.SubClass):
     """ This is an invite your alliance sends out to an empire.
+
     Attributes:
+        >>> 
         id          5810                ID of the invite itself
         empire_id   1234                ID of the invited empire
         name        Invitee One         Name of the invited empire
@@ -225,7 +221,9 @@ class InvitedGuest(lacuna.bc.SubClass):
 
 class AllianceInvited(lacuna.bc.SubClass):
     """ This is an invitation your empire has received from an alliance.
+
     Attributes:
+        >>> 
         id              5810                ID of the invite itself
         alliance_id     1234                ID of the invited empire
         name            United Alliance     Name of the inviting alliance
@@ -235,6 +233,7 @@ class Stash():
     """ The current contents of the alliance stash.
 
     Attributes:
+        >>> 
         stash                       Dict of items currently in the stash
                                         {   "gold" : 4500,
                                             "water" : 1000,

@@ -1,28 +1,24 @@
 
-import lacuna.bc
-from lacuna.building import MyBuilding
-
 """
-    Several BHG methods include a 'target' argument.  This is a dict, 
-    formatted as:
+    Several BHG methods include a 'target' argument.  This is the same target 
+    argument used by the Space Port.  It's a dict that can contain:
+    - body_id -- "12345",
+    - body_name -- "mars",
+    - star_id -- "12345",
+    - star_name -- "sol",
+    - zone -- "0|0",
+    - x -- 0,
+    - y -- 0,
 
-        "target":{
-            "body_id" : "12345",
-            "body_name" : "mars",
-            "star_id" : "12345",
-            "star_name" : "sol",
-            "zone" : "0|0",
-            "x": 0, "y": 0,
-        },
-
-    You'll only send one of these, except in the case where you're sending 
+    You'll only send one of those keys, except in the case where you're sending 
     coordinates, in which case you'll send both 'x' and 'y'.
 
     Not all of the target keys listed above will be appropriate for all calls; 
     eg sending 'star_name' to a call to 'jump_zone' doesn't make any sense.
 """
 
-        
+import lacuna.bc
+from lacuna.building import MyBuilding
 
 class blackholegenerator(MyBuilding):
     path = 'blackholegenerator'
@@ -50,8 +46,8 @@ class blackholegenerator(MyBuilding):
         """ Spends 2E to subsidize the BHG's current cooldown period.
 
         Returns a tuple:
-            tasks           List of BHGTask objects
-            task_options    A single BHGTaskOptions object
+            - tasks -- List of BHGTask objects
+            - task_options -- A single BHGTaskOptions object
 
         Raises ServerError 1010 if the BHG is not currently in cooldown mode.
         """
@@ -73,6 +69,9 @@ class blackholegenerator(MyBuilding):
         supporting positional arguments at all.
 
         Format for named_args:
+
+::
+
             {   "target"        : { "body_name" : "mars" },
                 "task_name"     : "Change Type",
                 "params"        : { "newtype" : 33 },
@@ -94,6 +93,7 @@ class blackholegenerator(MyBuilding):
 class BHGTask(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         base_fail       10,
         dist            134.1
         essentia_cost   None,
@@ -114,6 +114,7 @@ class BHGTask(lacuna.bc.SubClass):
 class BHGTaskOptions(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         asteroid_types  [1, 2, ... 26],
         planet_types    [1, 2, .., 40],
         zones           ['-1|-1', '-1|-2', ... '5|5']
@@ -123,6 +124,7 @@ class BHGTaskOptions(lacuna.bc.SubClass):
 class BHGEffect(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         ore_capacity        21893730088,
         ore_hour            2593539143,
         ore_stored          21893730088,
@@ -145,47 +147,44 @@ class BHGEffect(lacuna.bc.SubClass):
         y                   'y coord of planet containing BHG',
         zone                '0|0',
 
+    The 'side' dict specifies any side effects that occurred as a result 
+    of your BHG use.  I believe this will only be set if the BHG usage 
+    produced a side effect.
+    - id -- '121808',
+    - message -- '2 decor items placed',
+    - name -- 'Name of affected planet',  },
 
-        The 'side' dict specifies any side effects that occurred as a result 
-        of your BHG use.  I believe this will only be set if the BHG usage 
-        produced a side effect.
-            side   {        'id':       '121808',
-                            'message':  '2 decor items placed',
-                            'name:'     'Name of affected planet',  },
+    The 'fail' dict is listed in the TLE docu as "fail: { ... }", so I 
+    don't know what it's supposed to contain.  It'll only be set if the 
+    BHG usage failed for some reason.
 
-        The 'fail' dict is listed in the TLE docu as "fail: { ... }", so I 
-        don't know what it's supposed to contain.  It'll only be set if the 
-        BHG usage failed for some reason.
-            fail    {        who knows?   }
+    The 'target' dict will contain different keys depending upon what was 
+    done.
 
+    This first example is what's documented in the TLE API docu:
+        - class -- 'Lacuna::DB::Result::Map::Body::Asteroid::A2',
+        - id -- 'body id',
+        - name -- 'name of planet effected',
+        - old_class -- 'Lacuna::DB::Result::Map::Body::Planet::P9',
+        - old_size -- Size before change,
+        - message -- 'Made Asteroid',
+        - size -- Size of body after effect
+        - type -- 'asteroid', 'gas giant', 'habitable planet', or 'space station'
+        - variance -- -1, 0, or 1
+        - waste -- 'Zero', 'Random', or 'Filled'
 
-        The 'target' dict will contain different keys depending upon what was 
-        done.
+    This is what I got back after trying to change a p35 into a p35:
+        - id -- '467277',
+        - message -- 'Fizzle',
+        - name -- 'Opriogee 2'
 
-        This first example is what's documented in the TLE API docu:
-            target  {        'class' : 'Lacuna::DB::Result::Map::Body::Asteroid::A2',
-                             'id' : 'body id',
-                             'name' : 'name of planet effected',
-                             'old_class' : 'Lacuna::DB::Result::Map::Body::Planet::P9',
-                             'old_size' : Size before change,
-                             'message' : 'Made Asteroid',
-                             'size' : Size of body after effect
-                             'type' : 'asteroid', 'gas giant', 'habitable planet', or 'space station'
-                             'variance' : -1, 0, or 1
-                             'waste' : 'Zero', 'Random', or 'Filled'  }
+    This is what I got back after changing a p35 into a p33:
+        - class -- 'Lacuna::DB::Result::Map::Body::Planet::P33',
+        - id -- '467277',
+        - message -- 'Changed Type',
+        - name -- 'Opriogee 2',
+        - old_class -- 'Lacuna::DB::Result::Map::Body::Planet::P35'
 
-        This is what I got back after trying to change a p35 into a p35:
-            target  {        'id':       '467277',
-                             'message':  'Fizzle',
-                             'name':     'Opriogee 2'   },
-
-        This is what I got back after changing a p35 into a p33:
-            target  {        'class': 'Lacuna::DB::Result::Map::Body::Planet::P33',
-                             'id': '467277',
-                             'message': 'Changed Type',
-                             'name': 'Opriogee 2',
-                             'old_class': 'Lacuna::DB::Result::Map::Body::Planet::P35'   }
-
-        ...So use your head, and check your keys.
+    ...So use your head, and check your keys.
     """
 

@@ -12,11 +12,11 @@ class missioncommand(lacuna.building.MyBuilding):
     def get_missions( self, *args, **kwargs ):
         """ Returns a list of available missions.
         
-        Retval is a list of Mission objects.
+        Returns a list of Mission objects.
         """
         m_list = []
         for m in kwargs['rslt']['missions']:
-            m_list.append( Mission(m) )
+            m_list.append( Mission(self.client, m) )
         return m_list
 
     @lacuna.bc.LacunaObject.set_empire_status
@@ -49,22 +49,21 @@ class missioncommand(lacuna.building.MyBuilding):
         pass
 
 
-class Mission():
-    """ A mission has the attributes:
-            id                      Integer ID of the mission.
-            name                    String.
-            description             String.
-            date_posted             Datetime string 
-                                    eg '24 10 2014 20:03:27 +0000'
-            max_university_level    Integer.  Empires with a higher uni level 
-                                    cannot complete this mission.
-            objectives              List of string descriptions of all tasks 
-                                    that must be completed.
-            rewards
-                                    List of string descriptions of the rewards 
-                                    for completing the mission
-    """
-    def __init__( self, miss:dict ):
-        for n, v in miss.items():
-            setattr(self, n, v)
+class Mission(lacuna.bc.SubClass):
+    """ 
+    Attributes:
+        >>> 
+        id                      Integer ID of the mission.
+        name                    String.
+        description             String.
+        date_posted             Datetime string 
+                                eg '24 10 2014 20:03:27 +0000'
+        max_university_level    Integer.  Empires with a higher uni level 
+                                cannot complete this mission.
+        objectives              List of string descriptions of all tasks 
+                                that must be completed.
+        rewards
+                                List of string descriptions of the rewards 
+                                for completing the mission
 
+    """

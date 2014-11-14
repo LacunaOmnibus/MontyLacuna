@@ -1,36 +1,26 @@
 
-import lacuna.bc
-import lacuna.building
-import lacuna.exceptions
-import lacuna.ship
-import lacuna.spy
-
 """
-
 Multiple spaceport buildings on a single planet work together as a single 
 unit.  So calling view_all_ships() on one spaceport building will return 
 exactly the same list as calling it on a different spaceport building (on the 
 same planet).
 
-view() retval includes:
-    "max_ships":        Integer maximum ships that can be stored
-    "docks_available":  Integer; how many more ships can be stored
-    "docked_ships":     Dict; summary of counts of ships currently at dock:
-                    {   "probe": 3
-                        "cargo_ship": 0
-                        ...     }
+**target**
 
-
-'target'
-    Several methods require a 'target' argument.  This is always a dict in one 
-    of the following formats:
-        { "body_name" : "Earth" }
-        { "body_id" : "id-goes-here" }
-        { "star_name" : "Sol" }
-        { "star_id" : "id-goes-here" }
-        { "x" : 4, "y" : -3 }
-
+Several methods require a 'target' argument.  This is always a dict in one of the following formats:
+    >>> 
+    { "body_name" : "Earth" }
+    { "body_id" : "id-goes-here" }
+    { "star_name" : "Sol" }
+    { "star_id" : "id-goes-here" }
+    { "x" : 4, "y" : -3 }
 """
+
+import lacuna.bc
+import lacuna.building
+import lacuna.exceptions
+import lacuna.ship
+import lacuna.spy
 
 class spaceport(lacuna.building.MyBuilding):
     path = 'spaceport'
@@ -41,6 +31,21 @@ class spaceport(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
+        """ View the spaceport.
+
+        Returns a tuple:
+            - max_ships -- Integer maximum ships that can be stored
+            - docks_available -- Integer; how many more ships can be stored
+            - docked_ships -- Dict; summary of counts of ships currently at dock:
+                >>> 
+                {
+                    "probe": 3,
+                    "cargo_ship": 0,
+                    etc     
+                }
+
+        """
+
         return (
             kwargs['rslt']['docked_ships'],
             kwargs['rslt']['docks_available'],
@@ -52,41 +57,40 @@ class spaceport(lacuna.building.MyBuilding):
         """ Show all ships on the planet.
 
         All three arguments are optional.  If sent, they are:
-            "filter"
-                A dict of filter critera, which can contain the keys 'task', 
-                    'type', and/or 'tag'.
-                    "task":     Building, Defend, Docked, Mining, Orbiting, 
-                                Supply Chain, Travelling, Waiting on Trade, 
-                                Waste Chain
-                    "type":     Any of the existing ship types (eg "placebo5", 
-                                "scow_fast", etc)
-                    "tag":      Colonization, Exploration, Intelligence, Mining, 
-                                Trade, War
-                Filter critera are joined with 'or', not 'and'.
-                So this filter dict may not be what you really mean:
-                    {   'type': 'supply_pod3',
-                        'task': 'Docked'    }
-                Instead of telling you about just the Supply Pod IIIs that are 
-                currently docked, it's going to tell you about all your Supply
-                Pod IIIs, as well as all of the other ships that are currently 
-                Docked, which may be more than you were expecting.
+            - filter -- A dict of filter critera, which can contain the keys 'task', 'type', and/or 'tag'.
+                - task -- Building, Defend, Docked, Mining, Orbiting, Supply Chain, Travelling, Waiting on Trade, Waste Chain
+                - type -- Any of the existing ship types (eg "placebo5", "scow_fast", etc)
+                - tag -- Colonization, Exploration, Intelligence, Mining, Trade, War
+            - paging -- A dict of paging criteria
+                - no_paging -- true, all ships will be returned, and all other paging options will be ignored.
+                - page_number -- page number to view
+                - items_per_page -- number of items per page
+            - sort -- A string to specify what to sort the results on.  Defaults to 'type'.  Valid options:
+                - combat
+                - name
+                - speed
+                - stealth
+                - task
+                - type
 
-            "paging"
-                A dict of paging criteria
-                    "no_paging":        If true, all ships will be returned, and 
-                                        all other paging options will be ignored.
-                    "page_number":      Integer page number to view
-                    "items_per_page":   Integer number of items per page
+        Filter critera are joined with 'or', not 'and'.  So this filter dict may 
+        not be what you really mean:
 
-            "sort"
-                A string to specify what to sort the results on.  Defaults to 
-                'type'.  Valid options:
-                    combat, name, speed, stealth, task, type
-                    
-        Retval is a tuple:
-            "ships":            A list of lacuna.ship.ExistingShip objects.
-            "number_of_ships":  This is the total number that result from 
-                                your filter, ignoring your pagin
+::
+
+            {
+                'type': 'supply_pod3',
+                'task': 'Docked'
+            }
+
+        Instead of telling you about just the Supply Pod IIIs that are 
+        currently docked, it's going to tell you about all your Supply Pod 
+        IIIs, as well as all of the other ships that are currently Docked, 
+        which may be more than you were expecting.
+
+        Returns a tuple:
+            - ships -- list of lacuna.ship.ExistingShip objects.
+            - number_of_ships -- is the total number that result from your filter, ignoring your pagin
         """
 
         ship_list = []
@@ -104,9 +108,9 @@ class spaceport(lacuna.building.MyBuilding):
         Shows 25 ships per page.  "page_number" lets you select which page to 
         show.
 
-        Retval is a tuple:
-            "ships":            List of lacuna.ship.IncomingShip objects
-            "number_of_ships":  Integer count of incoming ships
+        Returns a tuple:
+            - ships -- List of lacuna.ship.IncomingShip objects
+            - number_of_ships -- Integer count of incoming ships
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -129,7 +133,7 @@ class spaceport(lacuna.building.MyBuilding):
 
         'target' is a standard target dict.
 
-        Retval is a list of lacuna.ship.FleetShip objects.
+        Returns a list of lacuna.ship.FleetShip objects.
                     
         This method is syntactic sugar for calling get_fleet_for(), which 
         requires that the sending body ID be passed.  Since that sending 
@@ -184,13 +188,13 @@ class spaceport(lacuna.building.MyBuilding):
         As with get_my_fleet_for(), this method is sugar for the actual API
         method.
 
-        Retval is a tuple:
-            "incoming"              List of lacuna.ship.IncomingShip objects
-            "available"             List of lacuna.ship.FleetShip objects
-            "unavailable"           List of lacuna.ship.UnavailableShip objects
-            "orbiting"              List of lacuna.ship.ExistingShip objects
-            "mining_platforms"      List of lacuna.ship.MiningPlatform objects
-            "fleet_send_limit"      Always integer 20.
+        Returns a tuple:
+            - incoming -- List of lacuna.ship.IncomingShip objects
+            - available -- List of lacuna.ship.FleetShip objects
+            - unavailable -- List of lacuna.ship.UnavailableShip objects
+            - orbiting -- List of lacuna.ship.ExistingShip objects
+            - mining_platforms -- List of lacuna.ship.MiningPlatform objects
+            - fleet_send_limit -- Always integer 20.
 
         """
         return self.get_ships_for( self.body_id, target )
@@ -202,8 +206,8 @@ class spaceport(lacuna.building.MyBuilding):
         Requires a captcha if sending attack ships to an inhabited planet.
 
         Arguments:
-            ship_id:    Integer ID of the ship to send
-            target:     Dict, identical to the one in get_my_fleet_for()
+            - ship_id -- Integer ID of the ship to send
+            - target -- Dict, identical to the one in get_my_fleet_for()
 
         Returns a lacuna.ship.IncomingShip object for the single sent ship.
         """
@@ -225,37 +229,49 @@ class spaceport(lacuna.building.MyBuilding):
         ID of the sending body.
 
         Arguments:
-            target:     Dict, identical to the one in get_my_fleet_for()
-            types:      List of shiptype dicts
-            arrival:    Dict to specify arrival time
+            - target -- Dict, identical to the one in get_my_fleet_for()
+            - types -- List of shiptype dicts
+            - arrival -- Dict to specify arrival time
 
-            Specifying types:
-                You can specify ships to send not just by the shiptype, 
-                but also by minimum attributes.  Set only the dict keys 
-                you're interested in.
-                types = [
-                    {   "type" : "sweeper",
-                        "speed" : 10166,
-                        "stealth" : 10948,
-                        "combat" : 33372,
-                        "quantity" : 100        },
-                    {   "type" : "surveyor",
-                        "speed" : 9030,
-                        "stealth" : 9030,
-                        "combat" : 3220,
-                        "quantity" : 10         }
-                        ...
-                ]
+        Shiptype dicts
+            You can specify ships to send not just by the shiptype, 
+            but also by minimum attributes.  Set only the dict keys 
+            you're interested in.
 
-            Specifying arrival time:
-                All dict keys must be set.  You likely don't care about 
-                what second the ships arrive, but set it anyway.
-                {   "day" : "23",
-                    "hour" : "12",
-                    "minute" : "01",
-                    "second" : "30"     }
+::
 
-        Retval is identical to that for get_my_fleet_for().
+            types = [
+                {   
+                    "type" : "sweeper",
+                    "speed" : 10166,
+                    "stealth" : 10948,
+                    "combat" : 33372,
+                    "quantity" : 100        
+                },
+                {   
+                    "type" : "surveyor",
+                    "speed" : 9030,
+                    "stealth" : 9030,
+                    "combat" : 3220,
+                    "quantity" : 10         
+                }
+                etc
+            ]
+
+        Arrival time dicts
+            All dict keys must be set.  You likely don't care about 
+            what second the ships arrive, but set it anyway.
+
+::
+
+            {   
+                "day" : "23",
+                "hour" : "12",
+                "minute" : "01",
+                "second" : "30"     
+            }
+
+        Return is identical to that for get_my_fleet_for().
 
         Raises ServerError 1009 if the specified arrival time is earlier than 
         the slowest ship in the group can manage at its top speed.
@@ -269,10 +285,9 @@ class spaceport(lacuna.building.MyBuilding):
         unit, so its maximum speed is the highest speed of its slowest ship.
 
         Arguments:
-            ship_ids:       List of integer IDs of ships to send in the fleet
-            target:         Dict, identical to the one in get_my_fleet_for()
-            fleet_speed:    Optional integer; speed of the fleet.  If omitted 
-                            or 0, the fleet will travel at maximum speed.
+            - ship_ids -- List of integer IDs of ships to send in the fleet
+            - target -- Dict, identical to the one in get_my_fleet_for()
+            - fleet_speed -- Optional integer; speed of the fleet.  If omitted or 0, the fleet will travel at maximum speed.
         """
         pass
 
@@ -301,16 +316,18 @@ class spaceport(lacuna.building.MyBuilding):
         Returns a list of lacuna.ship.IncomingShip objects, with the following additional 
         attributes:
 
-            returning_from:    {  # This is the planet the ships are being recalled from
-                                    "id" : "id-goes-here",
-                                    "type" : "body",
-                                    "name" : "Earth"
-                                },
-            to:                 {    # This is the planet you're recalling the ships back to.
-                                    "id" : "id-goes-here",
-                                    "type" : "star",
-                                    "name" : "Sol"
-                                }
+::
+
+        returning_from:    {  # This is the planet the ships are being recalled from
+                                "id" : "id-goes-here",
+                                "type" : "body",
+                                "name" : "Earth"
+                            },
+        to:                 {    # This is the planet you're recalling the ships back to.
+                                "id" : "id-goes-here",
+                                "type" : "star",
+                                "name" : "Sol"
+                            }
 
         Raises NO error if there are no ships currently orbiting, but the 
         'ships' retval will be an empty list.
@@ -381,8 +398,8 @@ class spaceport(lacuna.building.MyBuilding):
         "Travelling" contains two of the letter "l".
 
         Returns a tuple:
-            ships:  List of lacuna.ship.TravellingShip objects
-            number: Integer count of ships in the air
+            - ships -- List of lacuna.ship.TravellingShip objects
+            - number -- Integer count of ships in the air
         """
         ship_list = []
         for i in kwargs['rslt']['ships_travelling']:
@@ -401,8 +418,8 @@ class spaceport(lacuna.building.MyBuilding):
         "Orbiting" contains one of the letter "t".
 
         Returns a tuple:
-            ships:              List of ForeignOrbitingShip objects
-            number_of_ships:    Integer
+            - ships -- List of ForeignOrbitingShip objects
+            - number_of_ships -- Integer
         """
         ### Returned keys here are 'ships' and 'number_of_ships' - these names 
         ### are inconsistent with the names returned from the TLE call to 
@@ -422,12 +439,12 @@ class spaceport(lacuna.building.MyBuilding):
                 rv = sp.prepare_send_spies( my_planet_id, target_planet_id )
 
         Arguments:
-            on_body_id: Integer ID of the body the spies are currently on
-            to_body_id: Integer ID of the body to which you wish to send the spies
+            - on_body_id -- Integer ID of the body the spies are currently on
+            - to_body_id -- Integer ID of the body to which you wish to send the spies
 
         Returns a tuple:
-            ships   List of lacuna.ship.ExistingShip objects
-            spies   List of lacuna.spy.Spy objects
+            - ships -- List of lacuna.ship.ExistingShip objects
+            - spies -- List of lacuna.spy.Spy objects
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -444,21 +461,18 @@ class spaceport(lacuna.building.MyBuilding):
     def send_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Sends spies to a target.
 
-                rv = sp.send_spies( my_planet_id, target_planet_id, ship_id, spy_ids )
+        ``rv = sp.send_spies( my_planet_id, target_planet_id, ship_id, spy_ids )``
 
         Arguments:
-            on_body_id:         Integer ID of the body the spies are currently 
-                                on.
-            to_body_id:         Integer ID of the body to which you wish to 
-                                send the spies.
-            ship_id:            Integer ID of the ship to carry the spies.
-            spy_ids:            List of integer IDs of spies to send.
+            - on_body_id -- Integer ID of the body the spies are currently on.
+            - to_body_id -- Integer ID of the body to which you wish to send the spies.
+            - ship_id -- Integer ID of the ship to carry the spies.
+            - spy_ids -- List of integer IDs of spies to send.
 
         Returns a tuple:
-            spies_sent          List of IDs of sent spies (not Spy objects)
-            spies_not_sent      List of IDs of sent spies (not Spy objects)
-                                This should only have contents if you're cheating.
-            ship                lacuna.ship.TravellingShip object
+            - spies_sent -- List of IDs of sent spies (not Spy objects)
+            - spies_not_sent -- List of IDs of sent spies (not Spy objects) This should only have contents if you're cheating.
+            - ship -- lacuna.ship.TravellingShip object
         """
         sent_list = []
         for id in kwargs['rslt']['spies_sent']:
@@ -478,14 +492,12 @@ class spaceport(lacuna.building.MyBuilding):
         """ Fetches spies back home again.
 
         Arguments:
-            on_body_id:         Integer ID of the body the spies are currently 
-                                on (the foreign planet).
-            to_body_id:         Integer ID of the body to which you wish to 
-                                send the spies (their home planet)
+            - on_body_id -- Integer ID of the body the spies are currently on (the foreign planet).
+            - to_body_id -- Integer ID of the body to which you wish to send the spies (their home planet)
         
         Returns a tuple:
-            ship_list           List of lacuna.ship.ExistingShip objects
-            spy_list            List of lacuna.spy.Spy objects
+            - ship_list -- List of lacuna.ship.ExistingShip objects
+            - spy_list -- List of lacuna.spy.Spy objects
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -517,13 +529,11 @@ class spaceport(lacuna.building.MyBuilding):
         """ View battle logs.
 
         Arguments:
-            page_number:    Optional nteger number of page to view.  25 log 
-                            entries displayed per page.  Defaults to 1.
+            - page_number -- Optional nteger number of page to view.  25 log entries displayed per page.  Defaults to 1.
 
-        Retval includes:
-            battle_log      List of spaceport.BattleLog objects
-            number_of_logs  Integer total number of entries in the logbook.
-
+        Returns a tuple:
+            - battle_log -- List of spaceport.BattleLog objects
+            - number_of_log -- Integer total number of entries in the logbook.
         """
         mylist = []
         for i in kwargs['rslt']['battle_log']:
@@ -537,20 +547,18 @@ class spaceport(lacuna.building.MyBuilding):
 
     def get_task_ships_for( self, target:dict, task:str = 'available' ):
         """ Returns a list of ships assigned to a specific task.  
-                target = { 'star_name': 'Sol' }
-                list = get_task_ships_for( target, 'available', 'sweeper', 10 )
 
         There are sugar methods available for each of the possible tasks; it 
         should be move convenient to use those.
-                target = { 'star_name': 'Sol' }
-                available_list          = get_available_ships_for( target )
-                incoming_list           = get_incoming_ships_for( target )
-                mining_list             = get_mining_ships_for( target )
-                orbiting_list           = get_orbiting_ships_for( target )
-                unavailable_list        = get_unavailable_ships_for( target )
+        >>> 
+        target = { 'star_name': 'Sol' }
+        available_list          = get_available_ships_for( target )
+        incoming_list           = get_incoming_ships_for( target )
+        mining_list             = get_mining_ships_for( target )
+        orbiting_list           = get_orbiting_ships_for( target )
+        unavailable_list        = get_unavailable_ships_for( target )
 
-        In each case, the arguments are:
-            target:     Same as get_my_fleet_for()
+        Each one requires a standard target dict.
         """
         inc, avail, unavail, orbit, mining, fleet_limit = self.get_my_ships_for( target )
         if task == 'available':
@@ -581,23 +589,16 @@ class spaceport(lacuna.building.MyBuilding):
     def get_unavailable_ships_for( self, target:dict ):
         return self.get_task_ships_for( target, 'unavailable' )
 
-    def get_spies_back( self, from_id, ship_name = '' ):
+    def get_spies_back( self, from_id:int, ship_name:str = '' ):
         """ Fetches all spies currently posted to a planet back home again.
 
-            on_body_id = 12345
-            sp.get_spies_back( on_body_id )
-
         Arguments:
-            on_body_id: Integer ID of the body from which you want to retrieve 
-                        your spies.
-            ship_name:  Optional; name of the ship you want to use to retrieve 
-                        your spies.  If not sent, the first available ship will 
-                        be used.
+            - on_body_id -- Integer ID of the body from which you want to retrieve your spies.
+            - ship_name -- Optional; name of the ship you want to use to retrieve your spies.  If not sent, the first available ship will be used.
 
         Returns a tuple:
-            ship        lacuna.ship.TravellingShip object
-            spy_ids     List of integer IDs of spies being fetched
-                        NOT a list of Spy objects.
+            - ship -- lacuna.ship.TravellingShip object
+            - spy_ids -- List of integer IDs of spies being fetched NOT a list of Spy objects.
         """
         ships, spies = self.prepare_fetch_spies( from_id, self.body_id )
 
@@ -626,6 +627,7 @@ class spaceport(lacuna.building.MyBuilding):
 class BattleLog(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         date                "06 21 2011 22:54:37 +0600",
         attacking_body      "Romulus",
         attacking_empire    "Romulans",

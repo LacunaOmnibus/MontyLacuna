@@ -52,16 +52,13 @@ class thedillonforge(MyBuilding):
         """ View plans that can be built and split.
 
         Returns:
-            make_list           List of MakePlan objects
-            split_list          List of SplitPlan objects
-            current_task        "make_plan", "split_plan", or "None"
-            seconds_remaining   How many seconds left on the current task.  0 if 
-                                the forge isn't doing anything.
-            can                 1 if the forge is available, 0 if it's working.
-            working             Human-readable description of the task the forge 
-                                is working on right now.
-                                "Making Crater 6.0"
-            subsidy_cost        Always 2, whether the forge is working or not.
+            - make_list -- List of MakePlan objects
+            - split_list -- List of SplitPlan objects
+            - current_task -- "make_plan", "split_plan", or "None"
+            - seconds_remaining -- How many seconds left on the current task.  0 if the forge isn't doing anything.
+            - can -- 1 if the forge is available, 0 if it's working.
+            - working -- Human-readable description of the task the forge is working on right now.  "Making Crater 6.0"
+            - subsidy_cost -- Always 2, whether the forge is working or not.
         """
         return self._marshal_view( kwargs['rslt'] )
 
@@ -70,8 +67,8 @@ class thedillonforge(MyBuilding):
         """ Starts making a plan in the forge.
 
         Arguments:
-            perl_class      As displayed in MakeClass.perl_class
-            level           Optional integer level to build.  Defaults to 1.
+            - perl_class -- As displayed in MakeClass.perl_class
+            - level -- Optional integer level to build.  Defaults to 1.
 
         Returns a tuple is the same as for view().  make_list and split_list are 
         included included in the tuple, but they will both be empty lists.
@@ -83,10 +80,10 @@ class thedillonforge(MyBuilding):
         """ Starts splitting a plan in the forge.
 
         Arguments:
-            perl_class          As displayed in MakeClass.perl_class
-            level               Optional integer level to build.  Defaults to 1.
-            extra_build_level   Optional integer additional build level.  Defaults to 0.
-            quantity            Optional integer number to build.  Defaults to 1.
+            - perl_class -- As displayed in MakeClass.perl_class
+            - level -- Optional integer level to build.  Defaults to 1.
+            - extra_build_level -- Optional integer additional build level.  Defaults to 0.
+            - quantity -- Optional integer number to build.  Defaults to 1.
 
         Returns a tuple is the same as for view().  make_list and split_list are 
         included included in the tuple, but they will both be empty lists.
@@ -119,6 +116,7 @@ class Plan():
 class MakePlan(Plan):
     """
     Attributes:
+        >>> 
         name                    "Algae",
         max_level               10,
         perl_class              "Food::Algae",
@@ -134,6 +132,7 @@ class MakePlan(Plan):
 class SplitPlan(Plan):
     """
     Attributes:
+        >>> 
         name                "Beach [10]",
         perl_class          "Permanent::Beach10",
         level               1,

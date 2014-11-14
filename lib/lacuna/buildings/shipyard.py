@@ -13,12 +13,11 @@ class shipyard(MyBuilding):
     def view_build_queue( self, *args, **kwargs ):
         """ Returns a list of ships currently building, how many there are, and 
         how much E it'll cost to subsidize them.
-            ships, number, cost = sy.view_build_queue()
 
         Returns a tuple consisting of:
-            ships   List of MyBuildingShip objects (see ship.py)
-            number  Integer number of ships currently building
-            cost    Integer cost in E to subsidize the whole queue
+            - ships -- List of MyBuildingShip objects (see ship.py)
+            - number -- Integer number of ships currently building
+            - cost -- Integer cost in E to subsidize the whole queue
         """
         ship_list = []
         for i in kwargs['rslt']['ships_building']:
@@ -54,22 +53,21 @@ class shipyard(MyBuilding):
         """ Gets information on what ships are available to be built.
                 ships, docks, q_max, q_used = sy.get_buildable()
 
-        Accepts an optional 'tag' string to limit the shiptypes returned.  
-        Valid values:
-            Colonization, Exploration, Intelligence, Mining, Trade, War
-        Defaults to no tag, returning all buildable ships.
+        Accepts an optional 'tag' string to limit the shiptypes returned, and defaults to no tag, returning all buildable ships.
 
-        Retval is a tuple:
-            ships               list of PotentialShip objects (see ship.py)
-            docks_available     Integer count of spaceport docks available for new 
-                                ships
-            build_queue_max     Maximum number of ships that can be added to the 
-                                build queue across all shipyards on this planet.  
-                                However, no matter how big this number gets, a 
-                                single shipyard can only ever queue a maximum of 
-                                50 ships.
-            build_queue_used    Number of ships currently in build queues across 
-                                all shipyards on this planet.
+        Valid 'tag 'values:
+            - Colonization
+            - Exploration
+            - Intelligence
+            - Mining
+            - Trade
+            - War
+
+        Returns a tuple:
+            - ships -- list of PotentialShip objects (see ship.py)
+            - docks_available -- Integer count of spaceport docks available for new ships
+            - build_queue_max -- Maximum number of ships that can be added to the build queue across all shipyards on this planet.  However, no matter how big this number gets, a single shipyard can only ever queue a maximum of 50 ships.
+            - build_queue_used -- Number of ships currently in build queues across all shipyards on this planet.
         """
         ship_list = []
         for name, mydict in kwargs['rslt']['buildable'].items():
@@ -87,15 +85,10 @@ class shipyard(MyBuilding):
         """ Adds one or more ships of a given type to the build queue.
 
         Arguments:
-            type        String, type of ship to build.  Available ship types 
-                        can be found by calling get_buildable() and checking 
-                        the 'type' attribute of the returned list of ships.
-            quantity    Integer number of ships to build.  Defaults to 1.
+            - type -- String, type of ship to build.  Available ship types can be found by calling get_buildable() and checking the 'type' attribute of the returned list of ships.
+            - quantity -- Integer number of ships to build.  Defaults to 1.
 
-        Retval is the same tuple as returned by view_build_queue():
-            ships   List of MyBuildingShip objects (see ship.py)
-            number  Integer number of ships currently building
-            cost    Integer cost in E to subsidize the whole queue
+        Returns the same tuple as returned by view_build_queue.
         """
         ship_list = []
         for i in kwargs['rslt']['ships_building']:

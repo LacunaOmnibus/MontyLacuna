@@ -17,7 +17,7 @@ class development(lacuna.building.MyBuilding):
         be careful.
 
         Returns
-            essentia_spent      Integer cost of subsidy
+            - essentia_spent -- Integer cost of subsidy
         """
         return kwargs['rslt']['essentia_spent']
 
@@ -31,10 +31,10 @@ class development(lacuna.building.MyBuilding):
         of subsidize_one_build().
 
         Requires a single dict argument:
-            scheduled_id        Integer ID of the building to subsidize
+            - scheduled_id -- Integer ID of the building to subsidize
 
         Returns
-            essentia_spent      Integer cost of subsidy
+            - essentia_spent -- Integer cost of subsidy
 
         Raises ServerError 1000 if the specified building is not currently being 
         built or upgraded.
@@ -49,11 +49,9 @@ class development(lacuna.building.MyBuilding):
         named_args must contain 'scheduled_id', the integer ID of the building 
         whose upgrade is scheduled to be subsidized.
 
-        Returns:
-            build_queue     list of lacuna.building.InBuildQueue objects
-            subsidy_cost    integer cost to subsidize the entire remaining 
-                            build queue, now that this building's upgrade has 
-                            been cancelled.
+        Returns a tuple:
+            - build_queue -- list of lacuna.building.InBuildQueue objects
+            - subsidy_cost -- integer cost to subsidize the entire remaining build queue, now that this building's upgrade has been cancelled.
         """
         mylist = []
         for i in kwargs['rslt']['build_queue']:

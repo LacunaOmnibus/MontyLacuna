@@ -40,6 +40,7 @@ class themepark(MyBuilding):
 class ParkView():
     """
     Attributes:
+        >>> 
         can_operate         1 or 0
         reason              [
                                 1011,

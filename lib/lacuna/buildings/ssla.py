@@ -39,11 +39,10 @@ class ssla(MyBuilding):
         """ Returns info on plans that can be built and their costs.
 
         Returns a tuple:
-            plans       List of PotentialSSPlan objects
-            costs       List of LevelCosts objects
-            sub_cost    Integer cost to subsidize a plan (always 2)
-            making      Name of plan currently being made.  "None" if no plan
-                        is in the works.
+            - plans -- List of PotentialSSPlan objects
+            - costs -- List of LevelCosts objects
+            - sub_cost -- Integer cost to subsidize a plan (always 2)
+            - making -- Name of plan currently being made.  "None" if no plan is in the works.
         """
         return self._marshal_view( kwargs['rslt'] )
 

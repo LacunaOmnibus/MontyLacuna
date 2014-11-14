@@ -15,11 +15,9 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """ Displays a page of trades, up to 25 trades per page.
 
         Returns a tuple:
-            trades          List of lacuna.trading.MercTrade objects
-            trade_count     Integer total number of trades.  This is not the
-                            number of trades on the current page; this is the
-                            total number of trades available across all pages.
-            page_number     Integer number of the page you're currently viewing.
+            - trades -- List of lacuna.trading.MercTrade objects
+            - trade_count -- Integer total number of trades.  This is not the number of trades on the current page; this is the total number of trades available across all pages.
+            - page_number -- Integer number of the page you're currently viewing.
         """
         mylist = []
         for i in kwargs['rslt']['trades']:
@@ -62,14 +60,9 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """ Returns a list of ships currently onsite that can be used to add a
         mercenary trade.
 
-        Arguments:
-            target_body_id      Optional.  The integer ID of the body we want to 
-                                send to.
-                                If this is included, the trade ships returned 
-                                will include estimated_travel_time, the number 
-                                of seconds the trip will take.
-                                If this is omitted, the ships returned will not 
-                                include that estimated_travel_time attribute.
+        Accepts an optional integer; the ID of the body we're planning to send our 
+        trade to.  If this is included, the trade ships returned will include 
+        ``estimated_travel_time``, the number of seconds the trip will take.
 
         Returns a list of lacuna.ship.TradeableShip objects.
 
@@ -86,13 +79,9 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """ Adds a spy to the mercs market.
 
         Arguments:
-            spy_id  - Required  - Integer ID of the spy to add.
-            ask     - Required  - Integer amount of E to charge.  Between 1-99
-            ship_id - Optional  - Integer ID of the ship to use for the trade.
-                                  Obtainable via get_trade_ships().  If not 
-                                  sent, a trade ship will be chosen for you if 
-                                  one is available.
-                                  This must be the ID of a spy pod.
+            - spy_id  -- Required  - Integer ID of the spy to add.
+            - ask     -- Required  - Integer amount of E to charge.  Between 1-99
+            - ship_id -- Optional  - Integer ID of the ship to use for the trade.  Obtainable via get_trade_ships().  If not sent, a trade ship will be chosen for you if one is available.  This must be the ID of a spy pod.
 
         Returns the integer ID of the trade you just created.
 
@@ -105,10 +94,9 @@ class mercenariesguild(lacuna.building.MyBuilding):
         """ Shows the trades you have offered.
 
         Returns a tuple:
-            trades          List of lacuna.trading.ExistingTrade objects
-            trade_count     Integer total number of trades you have on the market.
-            page_number     Integer page number you're looking at.  Will only be 
-                            greater than 1 if you have more than 25 trades.
+            - trades -- List of lacuna.trading.ExistingTrade objects
+            - trade_count -- Integer total number of trades you have on the market.
+            - page_number -- Integer page number you're looking at.  Will only be greater than 1 if you have more than 25 trades.
         """
         mylist = []
         for i in kwargs['rslt']['trades']:

@@ -8,15 +8,15 @@
     anybody ever wanting to script some of the methods in here, so I'm just 
     not bothering with them.
 
-        create_supply_chain()
-        delete_supply_chain()
-        update_supply_chain()
-        update_waste_chain()
-        add_supply_ship_to_fleet()
-        add_waste_ship_to_fleet()
-        remove_supply_ship_from_fleet()
-        remove_waste_ship_from_fleet()
-        report_abuse()
+    - create_supply_chain()
+    - delete_supply_chain()
+    - update_supply_chain()
+    - update_waste_chain()
+    - add_supply_ship_to_fleet()
+    - add_waste_ship_to_fleet()
+    - remove_supply_ship_from_fleet()
+    - remove_waste_ship_from_fleet()
+    - report_abuse()
 """
 
 import lacuna.bc
@@ -34,14 +34,13 @@ class trade(lacuna.trading.TradeBldg):
         """ Adds a trade to the market.
 
         Arguments:
+            >>> 
             offer       List of dicts of items to offer for trade.  See below for
                         more details.
                             {   'type':         'bauxite',
                                 'quantity':     10000   },
-
             ask         Integer price in E you're asking for this trade, between 
                         0.1 and 100.
-
             options     Dict of 'options' to modify the trade.  The only option, 
                         which is not an option at all since it's required, is 
                         the ID of the ship you want to use to transport your 
@@ -49,28 +48,31 @@ class trade(lacuna.trading.TradeBldg):
                             { 'ship_id':    12345   }
                         Use get_trade_ships() to find appropriate ship IDs.
 
-        "offer"
-            There are five types of items you can offer for trade, each with 
-            their own required keys for their offer dicts.
-                resources
-                    {   'type':         'bauxite',
-                        'quantity':     10000   },
-                glyphs
-                    {   'type':         'glyph',
-                        'name':         'bauxite',
-                        'quantity':     10000   },
-                plans
-                    {   'type':                 'plan',
-                        'plan_type':            'Permanent_AlgaePond',  # see get_plan_summary()
-                        'level':                1,
-                        'extra_build_level':    3,                      # If > 1, 'level' must be 1.
-                        'quantity':             10000   },
-                prisoners
-                    {   'type':         'prisoner',
-                        'prisoner_id':  12345   },
-                ships
-                    {   'type':     'ship',
-                        'ship_id':  12345   },
+        *offer*
+
+        There are five types of items you can offer for trade, each with 
+        their own required keys for their offer dicts.
+
+        >>> 
+        resources
+            {   'type':         'bauxite',
+                'quantity':     10000   },
+        glyphs
+            {   'type':         'glyph',
+                'name':         'bauxite',
+                'quantity':     10000   },
+        plans
+            {   'type':                 'plan',
+                'plan_type':            'Permanent_AlgaePond',  # see get_plan_summary()
+                'level':                1,
+                'extra_build_level':    3,                      # If > 1, 'level' must be 1.
+                'quantity':             10000   },
+        prisoners
+            {   'type':         'prisoner',
+                'prisoner_id':  12345   },
+        ships
+            {   'type':     'ship',
+                'ship_id':  12345   },
 
         Returns the ID of the trade just added.
         """
@@ -81,9 +83,7 @@ class trade(lacuna.trading.TradeBldg):
         """ Returns a list of ships available to be used as trade transports.
 
         Arguments
-            target_id   Optional ID of the target receiving the trade.  If 
-                        included, the ships' estimated_travel_time attribute
-                        will be set.
+            - target_id -- Optional ID of the target receiving the trade.  If included, the ships' estimated_travel_time attribute will be set.
 
         Returns a list of lacuna.ship.TradeTransportShip objects.
         """
@@ -147,9 +147,9 @@ class trade(lacuna.trading.TradeBldg):
         """ Pushes items to another of your planets.
 
         Arguments:
-            target_id   Integer ID of the body to send resources to.
-            items       List of item dicts.  See add_to_market().
-            options     Required (not optional) dict.  See add_to_market().
+            - target_id -- Integer ID of the body to send resources to.
+            - items -- List of item dicts.  See add_to_market().
+            - options -- Required (not optional) dict.  See add_to_market().
 
         Returns a single lacuna.ship.TravellingShip object.
         """
@@ -166,6 +166,7 @@ class Chain(lacuna.bc.SubClass):
 class SupplyChain(Chain):
     """
     Attributes:
+        >>> 
         id                      "id-goes-here",
         body                    {   "id" : "id-goes-here",
                                     "name" : "Mars",
@@ -182,6 +183,7 @@ class SupplyChain(Chain):
 class WasteChain(Chain):
     """
     Attributes:
+        >>> 
         id                      "id-goes-here",
         star                    {   "id" : "id-goes-here",
                                     "name" : "Mars",

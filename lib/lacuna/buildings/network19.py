@@ -12,10 +12,10 @@ class network19(lacuna.building.MyBuilding):
     def view( self, *args, **kwargs ):
         """ Indicates whether news coverage is restricted or flowing freely.
 
-        Returns 'restrict_coverage'.  This is a boolean integer indicating 
-        whether or not coverage is currently restricted.
-            '0' == coverage is flowing freely
-            '1' == coverage is restricted
+        Returns 'restrict_coverage'.  This is an integer indicating 
+        whether or not coverage is currently restricted:
+        - 0 -- coverage is flowing freely
+        - 1 -- coverage is restricted
         """
         return kwargs['rslt']['restrict_coverage']
 
@@ -24,13 +24,8 @@ class network19(lacuna.building.MyBuilding):
     def restrict_coverage( self, toggle:int = 0, *args, **kwargs ):
         """ Toggles news coverage restriction on and off.
 
-        Arguments:
-            toggle  Integer 0 or 1.  0 to allow news to flow, or 1 to restrict 
-                    coverage.  Defaults to 0.
-
-                    NOTE that value _is_ an int, not a boolean.  This will blow 
-                    up:
-                        net19.restrict_coverage( True )
+        Accepts a single optional argument, 'toggle'.  0 to allow news to flow, 
+        or 1 to restrict coverage.  Defaults to 0.
         """
         pass
 
@@ -39,14 +34,9 @@ class network19(lacuna.building.MyBuilding):
     def view_news( self, *args, **kwargs ):
         """ Shows the news stories and feeds available.
 
-        Retval includes:
-            news:   List of news story dicts:
-                 {      'date': '27 10 2014 14:03:19 +0000',
-                        'headline': 'Chapel demolished, wedding postponed.'     },
-            feeds:  Dict, keyed off the zones whose feeds your Net19 can see:
-                    {   '-1|-1': 'URL to feed for zone -1|-1',
-                        '-1|0': 'URL to feed for zone -1|0',
-                        ...         }
+        Returns:
+            - news:   List of Story objects
+            - feeds:  List of Feed objects
 
         The actual meanings of the news headlines are somewhat obscure, and may 
         require some study by the user.
@@ -73,6 +63,7 @@ class NewsItem():
 class Story(NewsItem):
     """
     Attributes:
+        >>> 
         headline    "HCorp founded a new colony on Rigel 4.", 
         date        "01 31 2010 13:09:05 +0600" 
     """
@@ -80,8 +71,9 @@ class Story(NewsItem):
 class Feed():
     """
     Attributes:
-           zone     0|0
-           url      'http://feeds.game.lacunaexpanse.com/78d5e7b2-b8d7-317c-b244-3f774264be57.rss'
+        >>> 
+        zone     0|0
+        url      'http://feeds.game.lacunaexpanse.com/78d5e7b2-b8d7-317c-b244-3f774264be57.rss'
     """
     def __init__(self, zone, url):
         self.zone = zone

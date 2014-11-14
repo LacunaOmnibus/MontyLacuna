@@ -14,11 +14,14 @@ class templeofthedrajilites(MyBuilding):
         """ List planets around a given star.
 
         Arguments:
-            star_id     Optional integer ID of a star.  Defaults to the star 
-                        that the temple is orbiting.
+            - star_id -- Optional integer ID of a star.  Defaults to the star that the temple is orbiting.
 
         Retval includes key 'planets', a list of planet dicts:
-            {'id': '12345', 'name': 'Earth'}
+            >>> 
+            {
+                'id': '12345',
+                'name': 'Earth'
+            }
         """
         pass
 
@@ -28,9 +31,10 @@ class templeofthedrajilites(MyBuilding):
         """ View the surface of a specific planet.
 
         Arguments:
-            planet_id   Required integer ID of a planet to view.
+            - planet_id -- Required integer ID of a planet to view.
 
         Retval includes key 'map':
+            >>> 
             'surface_image':    "surface-p12",
             'buildings':        List of building dicts:
                                 {   "x":        1,

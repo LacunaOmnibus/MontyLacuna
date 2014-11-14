@@ -163,7 +163,7 @@ http://sphinx-doc.org/tutorial.html
 https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 
 - First run only:
-  - Create ROOT/doc/
+  - Create ROOT/doc/ if ! exist
   - In ROOT:
     - sphinx-quickstart (this starts a question-and-answer section):
       - root path: ./doc
@@ -174,8 +174,8 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - Edit conf.py (which was just created):
       - Line 21 (ish):
         - sys.path.insert(0, os.path.abspath('../lib'))
-      - That should tell Sphinx where my code lives
-  - I created these by hand:
+      - That should tell Sphinx where the code lives
+  - I created these by hand in doc/:
     - bc.rst
     - body.rst
     - building.rst
@@ -190,9 +190,7 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 - To generate docu based on docstrings:
   - in ROOT:
     - sphinx-apidoc -o doc/ lib/ lacuna
-      - However, I don't think I'm using this at this point.  CHECK I need to clean up and 
       - http://sphinx-doc.org/invocation.html#invocation-apidoc
-      - Re-run that anytime you update docstrings in the modules.
       - This creates several more .rst files in doc/
         - lacuna.rst
         - lacuna.buildings.rst
@@ -201,18 +199,15 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - Of those generated files, the only one I'm explicitly adding to the main toctree is 
       "my_validate_email".  I don't want lacuna or modules listed there at all.  I've 
       added lacuna.buildings to the toctree of buildings.rst.
-      - Add these lines under the toctree:: directive:
-        - lacuna
-        - my_validate_email
-    - Now, when you generate the HTML docu, links to your API docs will be included.
 - Each time you want to update the generated documentation:
   - in ROOT/doc:
     - make html
   - The generated HTML ends up in {underscore}build/html/.  Those HTML files 
     reference CSS and JS files that get produced in _static/.
-    - For whatever reason, github pages does not like the underscore on that 
-      _static/ directory - it refuses to host files from there.
+    - For whatever reason, github pages does not like the underscore on that front of 
+      directory names - it refuses to host files from there.
     - So before publishing to gh-pages:
+      - Rename _static to static
       - Rename _static to static
       - Change all references in all .html files (recursively) from _static to 
         static.
