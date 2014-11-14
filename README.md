@@ -207,6 +207,24 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 - Each time you want to update the generated documentation:
   - in ROOT/doc:
     - make html
+  - The generated HTML ends up in {underscore}build/html/.  Those HTML files 
+    reference CSS and JS files that get produced in _static/.
+    - For whatever reason, github pages does not like the underscore on that 
+      _static/ directory - it refuses to host files from there.
+    - So before publishing to gh-pages:
+      - Rename _static to static
+      - Change all references in all .html files (recursively) from _static to 
+        static.
+        - CHECK I don't have a decent tool for doing this yet.
+  - To publish to gh-pages:
+    - $ cp -Rip doc/{underscore}build/html ~/Desktop
+    - $ git co gh-pages
+    - $ rm -rf html_docs
+    - $ mv ~/Desktop/html ./html_docs
+    - $ git add -A html_docs
+    - $ git commit -m "docs!"
+    - $ git push origin gh-pages
+
 
 
 
