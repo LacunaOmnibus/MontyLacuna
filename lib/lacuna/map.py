@@ -3,9 +3,7 @@ import lacuna.bc
 import lacuna.body
 
 class Map(lacuna.bc.LacunaObject):
-    """All Map methods require a session ID, so these can only be used by a
-    Member, not a Client.
-    """
+    """ Provides access to the starmap.  """
 
     path = 'map'
 
@@ -14,6 +12,7 @@ class Map(lacuna.bc.LacunaObject):
         """ Get a list of stars occupying a region of space.
         
         Accepts a single dict of arguments:
+            >>> 
             left        Coordinate
             top         Coordinate
             right       Coordinate
@@ -44,6 +43,7 @@ class Map(lacuna.bc.LacunaObject):
         units.
 
         Arguments:
+            >>> 
             left        Coordinate
             top         Coordinate
             right       Coordinate
@@ -63,11 +63,10 @@ class Map(lacuna.bc.LacunaObject):
         """ Check if you have a probe en route to a star.
 
         Arguments
-            star_id         Integer ID of the star to check
+            - star_id -- Integer ID of the star to check
 
         Returns
-            incoming_probe  This will be the date of arrival of the incoming 
-                            probe, or 0 if no probe is on its way.
+            - incoming_probe -- This will be the date of arrival of the incoming probe, or 0 if no probe is on its way.
         """
         return kwargs['rslt']['incoming_probe'] if 'incoming_probe' in kwargs['rslt'] else 0
 
@@ -76,7 +75,7 @@ class Map(lacuna.bc.LacunaObject):
         """ Find a star by its ID.
 
         Arguments:
-            star_id     Integer ID of the star
+            - star_id -- Integer ID of the star
 
         Returns a Star object.  
         """
@@ -88,8 +87,7 @@ class Map(lacuna.bc.LacunaObject):
         """ Find a star by its name.
 
         Arguments:
-            star_name   String name of the star.  This is NOT a "standard TLE
-                        search string", but the full name of the star.
+            - star_name -- String name of the star.  This is NOT a "standard TLE search string", but the full name of the star.
 
         Returns a Star object.  
         """
@@ -101,8 +99,8 @@ class Map(lacuna.bc.LacunaObject):
         """ Find a star by its x, y coordinates.
 
         Arguments:
-            x   Integer X coordinate
-            y   Integer Y coordinate
+            - x -- Integer X coordinate
+            - y -- Integer Y coordinate
 
         Returns a Star object.  
         """
@@ -114,7 +112,7 @@ class Map(lacuna.bc.LacunaObject):
         """ Return a list of stars matching a string.
 
         Arguments
-            search_string   A standard TLE search string.
+            - search_string -- A standard TLE search string.
 
         Returns a list of Star objects.
         partial_name must be at least 3 characters.  Matches up to 25 stars whose names
@@ -131,7 +129,7 @@ class Map(lacuna.bc.LacunaObject):
         """ Provides info on fissures in a zone.
 
         Requires a single dict argument:
-            zone    '0|0'
+            - zone -- '0|0'
 
         Returns a list of map.Fissure objects.
         """
@@ -153,8 +151,8 @@ class Map(lacuna.bc.LacunaObject):
         """ Get the info of any planet you can see in your star map.
 
         Arguments
-            star_name       String name of a star
-            planet_name     String name of a planet orbiting that star
+            - star_name -- String name of a star
+            - planet_name -- String name of a planet orbiting that star
 
         Returns a body.Body object
         """
@@ -172,6 +170,7 @@ class Map(lacuna.bc.LacunaObject):
 class Star():
     """ 
     Attributes:
+        >>> 
         color       'red',
         id          '12345',
         name        'Clou Oghofr Oap',
@@ -200,14 +199,15 @@ class Star():
 class Fissure(lacuna.bc.SubClass):
     """
     Attributes:
-       name     "Mercury",
-       id       345,
-       orbit    1,
-       x        -40,
-       y        29,
-       type     "habitable planet",
-       image    "p13",
-       size     58,
+        >>> 
+        name     "Mercury",
+        id       345,
+        orbit    1,
+        x        -40,
+        y        29,
+        type     "habitable planet",
+        image    "p13",
+        size     58,
     """
 
 

@@ -47,7 +47,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'MontyLacuna'
+project = 'Monty Lacuna'
 copyright = '2014, Jonathan Barton'
 
 # The version info for the project you're documenting, acts as replacement for

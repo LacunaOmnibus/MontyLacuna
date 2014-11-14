@@ -69,6 +69,7 @@ class MyAlliance(Alliance):
             my_alliance = my_client.get_my_alliance()
 
     Attributes:
+        >>> 
         id              12345
         name            United Union of Federated Allied Groups
         description     We're an alliance.
@@ -116,6 +117,7 @@ class Member(lacuna.bc.SubClass):
     """ An alliance member.
 
     Attributes:
+        >>> 
         id          5810
         name        Invitee One
     """
@@ -124,6 +126,7 @@ class SpaceStation(lacuna.bc.SubClass):
     """ An alliance-owned space station.
 
     Attributes:
+        >>> 
         id          12345
         name        Satellite of Love
         x           10

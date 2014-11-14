@@ -2,14 +2,6 @@
 import pprint, re
 import lacuna.bc
 
-"""
-    An Empire object is not logged in, and is meant for use only by new users 
-    who need to fetch a captcha or check if a given empire name is available 
-    in the process of creating an account.
-
-    Most of the time, your Empire object will be a MyEmpire object
-"""
-
 class Empire(lacuna.bc.LacunaObject):
     """ A generic Empire object that can be used with a non-logged-in Guest."""
 
@@ -28,8 +20,7 @@ class Empire(lacuna.bc.LacunaObject):
 
     @lacuna.bc.LacunaObject.call_guest_meth
     def fetch_captcha( self ):
-        """ Returns dict containing 'guid' and 'url' keys
-        DICT not OBJ, so rv['guid'], not rv.guid
+        """ Returns dict containing 'guid' and 'url' keys.
 
         There also exists a Captcha class, which requires the user to already 
         be logged in.  This fetch_captcha method exists to allow a brand new, 
@@ -61,6 +52,7 @@ class MyEmpire( Empire ):
     """ The Empire object belonging to the current Member's empire.
     
     Attributes:
+        >>> 
         id                      "xxxx",
         rpc_count               321, # the number of calls made to the server
         is_isolationist         1, # hasn't sent out probes or colony ships
@@ -133,7 +125,7 @@ class MyEmpire( Empire ):
         """ View public profile info on any empire.
 
         Arguments:
-            empire_id   Integer ID of the empire to view.
+            - empire_id -- Integer ID of the empire to view.
 
         Returns an empire.PublicProfile object.
         """
@@ -148,7 +140,8 @@ class MyEmpire( Empire ):
         your real, not sitter, password.
 
         Arguments:
-            profile     Dict of profile settings:
+            >>> 
+            profile     Dict of profile settings with the keys:
                             description
                             email
                             sitter_password
@@ -159,9 +152,6 @@ class MyEmpire( Empire ):
                             skype
                             player_name
                             public_medals (list of medal IDs to display)
-
-                        The following are all booleans, indicating whether to 
-                        skip a given warning or game-generated mail.
                             skip_happiness_warnings
                             skip_resource_warnings
                             skip_pollution_warnings
@@ -175,6 +165,8 @@ class MyEmpire( Empire ):
                             skip_probe_detected
                             skip_attack_messages
                             skip_incoming_ships
+
+                The skip_* keys all require 1 for "on" or 0 for "off".
         """
         pass
 
@@ -183,9 +175,9 @@ class MyEmpire( Empire ):
     def change_password( self, oldpw:str, newpw:str, *args, **kwargs ):
         """ Changes your full password.
 
-        Arguments
-            password        String; the desired new password
-            confirmation    Must be the same string as 'password'
+        Arguments:
+            - password -- String; the desired new password
+            - confirmation -- Must be the same string as 'password'
         """
         pass
 
@@ -194,7 +186,7 @@ class MyEmpire( Empire ):
         """ Find an empire by name.
 
         Arguments:
-            name    Standard TLE search string
+            - name -- Standard TLE search string
 
         Returns a list of empire.FoundEmpire objects.
         """
@@ -271,19 +263,31 @@ class MyEmpire( Empire ):
     ### fraught.
     #@lacuna.bc.LacunaObject.set_empire_status
     #@lacuna.bc.LacunaObject.call_member_meth
-    #def enable_self_destruct( self, *args, **kwargs ):
-    #    pass
+    def enable_self_destruct( self, *args, **kwargs ):
+        """ Immediately quits.  The server call is badly broken, and you should 
+        never call this.
+        """
+        print( "Please don't ever call this." )
+        quit()
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def disable_self_destruct( self, *args, **kwargs ):
+        """ Simply does not work on the server side.  This is a known problem, 
+        and the reason enable_self_destruct() has been disabled.
+        """
         pass
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
-    def redeem_essentia_code( self, code, *args, **kwargs ):
-        ### Untested; I have no E codes to try this out with, and I'm not 
-        ### spending money to test.
+    def redeem_essentia_code( self, code:str, *args, **kwargs ):
+        ### CHECK - pester RO or somebody for a non-publicized code or five to 
+        ### test with.
+        """ Redeems an essentia code.
+
+        I see no reason why this wouldn't work, but I haven't got an essentia 
+        code to test with.
+        """
         pass
 
     @lacuna.bc.LacunaObject.set_empire_status
@@ -292,6 +296,7 @@ class MyEmpire( Empire ):
         """ Returns the limits to be imposed if you redefine your species.
 
         Returns a dict:
+            >>> 
             'can':              1,
             'essentia_cost':    100,
             'max_orbit':        3,
@@ -310,25 +315,25 @@ class MyEmpire( Empire ):
     @lacuna.bc.LacunaObject.call_member_meth
     def redefine_species( self, params, *args, **kwargs ):
         """ Actually does the deed of redefining a player's species.
-        Costs E, so untested.
+        CHECK test this on PT
 
         Arguments:
-            params  Dict of species settings:
-                    name                    String name of the species (required)
-                    description             String
-                    min_orbit               Integer 1-7 inclusive
-                    max_orbit               Integer 1-7 inclusive.  Must be >= min_orbit.
-                    manufacturing_affinity  Integer 1-7 inclusive.
-                    deception_affinity      Integer 1-7 inclusive.
-                    research_affinity       Integer 1-7 inclusive.
-                    management_affinity     Integer 1-7 inclusive.
-                    farming_affinity        Integer 1-7 inclusive.
-                    mining_affinity         Integer 1-7 inclusive.
-                    science_affinity        Integer 1-7 inclusive.
-                    environmental_affinity  Integer 1-7 inclusive.
-                    political_affinity      Integer 1-7 inclusive.
-                    trade_affinity          Integer 1-7 inclusive.
-                    growth_affinity         Integer 1-7 inclusive.
+            - params -- Dict of species settings:
+                - name -- String name of the species (required)
+                - description -- String
+                - min_orbit -- Integer 1-7 inclusive
+                - max_orbit -- Integer 1-7 inclusive.  Must be >= min_orbit.
+                - manufacturing_affinity -- Integer 1-7 inclusive.
+                - deception_affinity -- Integer 1-7 inclusive.
+                - research_affinity -- Integer 1-7 inclusive.
+                - management_affinity -- Integer 1-7 inclusive.
+                - farming_affinity -- Integer 1-7 inclusive.
+                - mining_affinity -- Integer 1-7 inclusive.
+                - science_affinity -- Integer 1-7 inclusive.
+                - environmental_affinity -- Integer 1-7 inclusive.
+                - political_affinity -- Integer 1-7 inclusive.
+                - trade_affinity -- Integer 1-7 inclusive.
+                - growth_affinity -- Integer 1-7 inclusive.
         """
         pass
 
@@ -357,21 +362,22 @@ class Species(lacuna.bc.SubClass):
     """ The attributes associated with an empire's species.
 
     Attributes:
-       name                     "Human",
-       description              "The descendants of Earth.",
-       min_orbit                3,
-       max_orbit                3,
-       manufacturing_affinity   4,
-       deception_affinity       4,
-       research_affinity        4,
-       management_affinity      4,
-       farming_affinity         4,
-       mining_affinity          4,
-       science_affinity         4,
-       environmental_affinity   4,
-       political_affinity       4,
-       trade_affinity           4,
-       growth_affinity          4
+        >>> 
+        name                     "Human",
+        description              "The descendants of Earth.",
+        min_orbit                3,
+        max_orbit                3,
+        manufacturing_affinity   4,
+        deception_affinity       4,
+        research_affinity        4,
+        management_affinity      4,
+        farming_affinity         4,
+        mining_affinity          4,
+        science_affinity         4,
+        environmental_affinity   4,
+        political_affinity       4,
+        trade_affinity           4,
+        growth_affinity          4
     """
     ### This will usually be accessed from something like the Library of 
     ### Jith's research_species() method, but it's closely-enough related to 
@@ -384,6 +390,7 @@ class SpeciesTemplate(lacuna.bc.SubClass):
     up a new empire.
 
     Attributes:
+        >>> 
         name                        "Average", 
         description                 "A race of average intellect, and weak constitution.',
         min_orbit                   3,
@@ -408,42 +415,44 @@ class OwnProfile(lacuna.bc.SubClass):
     will contain less data.
 
     Attributes:
-       description                  "description goes here",
-       status_message               "status message goes here",
-       medals                       Dict:
-                                    {   "Integer Medal ID" : {
-                                            "name" : "Built Level 1 Building",
-                                            "image" : "building1",
-                                            "date" : "01 31 2010 13:09:05 +0600",
-                                            "public" : 1,
-                                            "times_earned" : 4       },
-                                        ...       },
-       city                         "Madison",
-       country                      "USA",
-       notes                        "notes go here",
-       skype                        "joeuser47",
-       player_name                  "Joe User",
-       skip_happiness_warnings      0,
-       skip_resource_warnings       0,
-       skip_pollution_warnings      0,
-       skip_medal_messages          0,
-       skip_facebook_wall_posts     0,
-       skip_found_nothing           0,
-       skip_excavator_resources     0,
-       skip_excavator_glyph         0,
-       skip_excavator_plan          0,
-       skip_spy_recovery            0,
-       skip_probe_detected          0,
-       skip_attack_messages         0,
-       skip_incoming_ships          0,
-       email                        "joe@example.com",
-       sitter_password              "abcdefgh"    
+        >>> 
+        description                  "description goes here",
+        status_message               "status message goes here",
+        medals                       Dict:
+                                        {   "Integer Medal ID" : {
+                                                "name" : "Built Level 1 Building",
+                                                "image" : "building1",
+                                                "date" : "01 31 2010 13:09:05 +0600",
+                                                "public" : 1,
+                                                "times_earned" : 4       },
+                                            ...       },
+        city                         "Madison",
+        country                      "USA",
+        notes                        "notes go here",
+        skype                        "joeuser47",
+        player_name                  "Joe User",
+        skip_happiness_warnings      0,
+        skip_resource_warnings       0,
+        skip_pollution_warnings      0,
+        skip_medal_messages          0,
+        skip_facebook_wall_posts     0,
+        skip_found_nothing           0,
+        skip_excavator_resources     0,
+        skip_excavator_glyph         0,
+        skip_excavator_plan          0,
+        skip_spy_recovery            0,
+        skip_probe_detected          0,
+        skip_attack_messages         0,
+        skip_incoming_ships          0,
+        email                        "joe@example.com",
+        sitter_password              "abcdefgh"    
     """
 
 class PublicProfile(lacuna.bc.SubClass):
     """ This is the public profile of any empire.
 
     Attributes:
+        >>> 
         id                      "empire-id-goes-here",
         name                    "Lacuna Expanse Corp",
         colony_count            1,
@@ -484,15 +493,14 @@ class PublicProfile(lacuna.bc.SubClass):
 class FoundEmpire(lacuna.bc.SubClass):
     """ 
     Attributes:
-        id      Integer ID of the empire
-        name    String name of the empire
+        - id -- Integer ID of the empire
+        - name -- String name of the empire
     """
 
 class Boosts(lacuna.bc.SubClass):
     """ 
     Attributes:
-        Each pair is the name of the boost and the date it expires.
-
+        >>> 
         food            "01 31 2010 13:09:05 +0600",
         ore             "01 31 2010 13:09:05 +0600",
         energy          "01 31 2010 13:09:05 +0600",
