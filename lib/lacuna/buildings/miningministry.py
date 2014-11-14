@@ -14,8 +14,8 @@ class miningministry(lacuna.building.MyBuilding):
         """ Views your current platform status
 
         Returns a tuple:
-            platforms       List of MiningPlatform objects
-            max_platforms   Integer max platforms this min min can support
+            - platforms -- List of MiningPlatform objects
+            - max_platforms -- Integer max platforms this min min can support
         """
         mylist = []
         for i in kwargs['rslt']['platforms']:
@@ -35,6 +35,9 @@ class miningministry(lacuna.building.MyBuilding):
         added to your current mining fleet.
 
         Retval includes 'ships', a list of ship dicts:
+
+::
+
                 {
                     "name" : "CS4",
                     "id" : "id-goes-here",
@@ -92,40 +95,37 @@ class miningministry(lacuna.building.MyBuilding):
 
 class MiningPlatform(lacuna.bc.SubClass):
     """
-
-            "platforms":        List of platform dicts
-                        {
-                            "id" : "id-goes-here",
-                            "asteroid" : {
+    Attributes:
+        >>> 
+        id                  "id-goes-here",
+        asteroid            {
                                 "id" : "id-goes-here",
                                 "name" : "Kuiper",
                                 "x" : 0,
                                 "y" : -444,
                                 "image" : "a1-5",
-                                ...
                             },
-                            "rutile_hour" : 10,
-                            "chromite_hour" : 10,
-                            "chalcopyrite_hour" : 10,
-                            "galena_hour" : 10,
-                            "gold_hour" : 10,
-                            "uraninite_hour" : 10,
-                            "bauxite_hour" : 10,
-                            "goethite_hour" : 10,
-                            "halite_hour" : 10,
-                            "gypsum_hour" : 10,
-                            "trona_hour" : 10,
-                            "kerogen_hour" : 10,
-                            "methane_hour" : 10,
-                            "anthracite_hour" : 10,
-                            "sulfur_hour" : 10,
-                            "zircon_hour" : 10,
-                            "monazite_hour" : 10,
-                            "fluorite_hour" : 10,
-                            "beryl_hour" : 10,
-                            "magnetite_hour" : 10,  
-                            "shipping_capacity" : 51 
-                        },
+        rutile_hour         10,
+        chromite_hour       10,
+        chalcopyrite_hour   10,
+        galena_hour         10,
+        gold_hour           10,
+        uraninite_hour      10,
+        bauxite_hour        10,
+        goethite_hour       10,
+        halite_hour         10,
+        gypsum_hour         10,
+        trona_hour          10,
+        kerogen_hour        10,
+        methane_hour        10,
+        anthracite_hour     10,
+        sulfur_hour         10,
+        zircon_hour         10,
+        monazite_hour       10,
+        fluorite_hour       10,
+        beryl_hour          10,
+        magnetite_hour      10,  
+        shipping_capacity   51 
 
     """
 

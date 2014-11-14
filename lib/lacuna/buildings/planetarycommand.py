@@ -20,10 +20,10 @@ class planetarycommand(lacuna.building.MyBuilding):
     def view( self, *args, **kwargs ):
         """
         Returns a tuple:
-            food    List of lacuna.resource.PlanetaryFood objects
-            ore     List of lacuna.resource.PlanetaryOre objects
-            planet  Single lacuna.body.Planet object
-            cost    Cost of your next colony, in happiness
+            - food -- List of lacuna.resource.PlanetaryFood objects
+            - ore -- List of lacuna.resource.PlanetaryOre objects
+            - planet -- Single lacuna.body.Planet object
+            - cost -- Cost of your next colony, in happiness
         """
         food    = lacuna.resource.PlanetaryFood(self.client, kwargs['rslt']['food'])
         ore     = lacuna.resource.PlanetaryOre(self.client, kwargs['rslt']['ore'])
@@ -41,6 +41,9 @@ class planetarycommand(lacuna.building.MyBuilding):
         """ Shows plans stored on the planet.
 
         Retval includes 'plans', a list of plan dicts:
+
+::
+
                 {       'extra_build_level': 0,
                         'level': 6,
                         'name': 'Warehouse',
@@ -66,6 +69,7 @@ class planetarycommand(lacuna.building.MyBuilding):
 class SupplyChain(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         id                      "id-goes-here",
         from_body               {   "id" : "id-goes-here",
                                     "name" : "Mars",

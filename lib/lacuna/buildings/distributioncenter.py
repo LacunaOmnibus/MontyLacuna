@@ -21,16 +21,14 @@ class distributioncenter(lacuna.building.MyBuilding):
         Once resources are reserved, you can't just add more resources to the 
         existing reserve; each call to reserve() must specify all the resources 
         to be reserved.  So this...
-                dist.reserve( [{'type':'apple', quantity:300}] )
-                dist.reserve( [{'type':'bean',  quantity:100}] )
+        >>> dist.reserve( [{'type':'apple', quantity:300}] )
+        >>> dist.reserve( [{'type':'bean',  quantity:100}] )
+
         ...would result in only 100 bean being reserved.
 
-        Arguments:
-            resources       List of dicts specifying what to reserve:
-                            [
-                                { 'type': 'water', 'quantity': 100 },
-                                { 'type': 'energy', 'quantity': 200 },
-                            ]
+        Requires a list of dicts of resources to reserve.  Each dict requires:
+            - type -- The type of res to reserve, eg 'water'
+            - quantity -- Integer quantity to reserve, eg 100
 
         Returns a single Reserve object.
         """
@@ -46,9 +44,8 @@ class distributioncenter(lacuna.building.MyBuilding):
         center.
 
         Returns a tuple:
-            resources       A single resources.StoredResources object
-            cargo_space     Amount of cargo space units occupied by each 
-                            individual resource.  Always '1'.
+            - resources -- A single resources.StoredResources object
+            - cargo_space -- Amount of cargo space units occupied by each individual resource.  Always '1'.
         """
         return (
             lacuna.resource.StoredResources(self.client, kwargs['rslt']['resources']),
@@ -69,6 +66,7 @@ class distributioncenter(lacuna.building.MyBuilding):
 class Reserve(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         seconds_remaining       0, # time until reserved resources will automatically be released
         can                     1,
         max_reserve_duration    "7200", # max length resources can be kept in reserve
@@ -95,8 +93,4 @@ class Reserve(lacuna.bc.SubClass):
                 resdict[ i['type'] ] = i['quantity']
         mydict['resources'] = lacuna.resource.StoredResources(client, resdict)
         super().__init__(client, mydict)
-
-
-
-
 

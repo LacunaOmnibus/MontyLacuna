@@ -15,14 +15,10 @@ class observatory(lacuna.building.MyBuilding):
         you have out and available.
 
         Returns a tuple:
-            stars           List of lacuna.map.Star objects.  These are the 
-                            stars at which your observatory currently has 
-                            probes.
-            star_count      Integer number of stars you have probed.
-            max_probes      Integer number of the maximum probes you can have 
-                            out from this observatory.
-            travelling      Integer number of how many probes are currently 
-                            travelling from your planet to a star.
+            - stars -- List of lacuna.map.Star objects.  These are the stars at which your observatory currently has probes.
+            - star_count -- Integer number of stars you have probed.
+            - max_probes -- Integer number of the maximum probes you can have out from this observatory.
+            - travelling -- Integer number of how many probes are currently travelling from your planet to a star.
         """
         star_list = []
         for s in kwargs['rslt']['stars']:

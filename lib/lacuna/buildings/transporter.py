@@ -2,8 +2,9 @@
 """
     As noted in trade.py, copying every method that's never going to be used 
     is getting old, so I'm skipping the following:
-        trade_one_for_one()
-        report_abuse()
+
+    - trade_one_for_one()
+    - report_abuse()
 """
 
 from lacuna.bc import LacunaObject
@@ -35,36 +36,39 @@ class transporter(TradeBldg):
         has no 'options' argument.
 
         Arguments:
+            >>> 
             offer       List of dicts of items to offer for trade.  See below for
                         more details.
                             {   'type':         'bauxite',
                                 'quantity':     10000   },
-
             ask         Integer price in E you're asking for this trade, between 
                         0.1 and 100.
 
-        "offer"
-            There are five types of items you can offer for trade, each with 
-            their own required keys for their offer dicts.
-                resources
-                    {   'type':         'bauxite',
-                        'quantity':     10000   },
-                glyphs
-                    {   'type':         'glyph',
-                        'name':         'bauxite',
-                        'quantity':     10000   },
-                plans
-                    {   'type':                 'plan',
-                        'plan_type':            'Permanent_AlgaePond',  # see get_plan_summary()
-                        'level':                1,
-                        'extra_build_level':    3,                      # If > 1, 'level' must be 1.
-                        'quantity':             10000   },
-                prisoners
-                    {   'type':         'prisoner',
-                        'prisoner_id':  12345   },
-                ships
-                    {   'type':     'ship',
-                        'ship_id':  12345   },
+        *offer*
+
+        There are five types of items you can offer for trade, each with 
+        their own required keys for their offer dicts.
+
+        >>> 
+        resources
+            {   'type':         'bauxite',
+                'quantity':     10000   },
+        glyphs
+            {   'type':         'glyph',
+                'name':         'bauxite',
+                'quantity':     10000   },
+        plans
+            {   'type':                 'plan',
+                'plan_type':            'Permanent_AlgaePond',  # see get_plan_summary()
+                'level':                1,
+                'extra_build_level':    3,                      # If > 1, 'level' must be 1.
+                'quantity':             10000   },
+        prisoners
+            {   'type':         'prisoner',
+                'prisoner_id':  12345   },
+        ships
+            {   'type':     'ship',
+                'ship_id':  12345   },
 
         Returns the ID of the trade just added.
         """
@@ -77,8 +81,8 @@ class transporter(TradeBldg):
         also have an SST built (though its level doesn't matter).
 
         Arguments:
-            target_id   Integer ID of the body to send resources to.
-            items       List of item dicts.  See add_to_market().
+            - target_id -- Integer ID of the body to send resources to.
+            - items -- List of item dicts.  See add_to_market().
 
         Returns a single TravellingShip object.
         """

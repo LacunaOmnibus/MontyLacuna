@@ -15,20 +15,17 @@ class geneticslab(lacuna.building.MyBuilding):
         """ Returns information needed to set up a genetics experiment.
 
         Returns a tuple:
-            grafts_list         List of dicts
-            survival_odds       Integer percent odds of the victim surviving
-            graft_odds          Integer percent odds of the graft working
-            essentia_cost       Integer cost per experiment attempt
-            can_experiment      Boolean; whether the lab can be used or not.
+            - grafts_list -- List of dicts
+            - survival_odds -- Integer percent odds of the victim surviving
+            - graft_odds -- Integer percent odds of the graft working
+            - essentia_cost -- Integer cost per experiment attempt
+            - can_experiment -- Boolean; whether the lab can be used or not.
 
         The dicts in grafts_list each describe one prisoner who's available to 
         do experiments on:
-            spy                     spy.Spy object
-            species                 empire.Species object
-            graftable_affinities    List of affinity names; these are affinities 
-                                    of the prisoner's that are higher than your 
-                                    own, eg ["min_orbit", "management_affinity", 
-                                    ... ]
+        - spy -- spy.Spy object
+        - species -- empire.Species object
+        - graftable_affinities -- List of affinity names; these are affinities of the prisoner's that are higher than your own, eg ["min_orbit", "management_affinity", ... ]
         """
         grafts_list = []
         for i in kwargs['rslt']['grafts']:
@@ -59,17 +56,17 @@ class geneticslab(lacuna.building.MyBuilding):
         """ Allows you to change your species name and description.
 
         Argument is a single dict:
-            name            "My New Species Name",
-            description     "My New Species Description"
+            - name -- "My New Species Name",
+            - description -- "My New Species Description"
 
             name requirements:
-                - 30 characters or fewer
-                - Not blank
-                - @, & <, >, ; are prohibited.
+            - 30 characters or fewer
+            - Not blank
+            - @, & <, >, ; are prohibited.
 
             description requirements:
-                - 1024 characters or fewer
-                - <, > are prohibited.
+            - 1024 characters or fewer
+            - <, > are prohibited.
 
         Retval contains only 'success', set to 1.  No status is returned.
 
@@ -82,6 +79,7 @@ class geneticslab(lacuna.building.MyBuilding):
 class ExperimentResults(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         graft       Integer.  1 for success, 0 for failure
         survive     Integer.  1 for success, 0 for failure
         message     String.   eg "The graft was a success, and the prisoner did not survive the experiment."

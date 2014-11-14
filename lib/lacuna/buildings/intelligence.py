@@ -25,18 +25,12 @@ class intelligence(MyBuilding):
         """ Trains one or more spies.  "Train", in this case, means "create".
         The "quantity" argument defaults to 1.
 
-        Retval includes:
-            "trained" - Integer number added to the training queue.  Always 
-            included in retval, but may be set to 0.
-
-            "not_trained" - Integer number not added to the training queue.  
-            Only appears in retval if its value is non-zero.
-
-            "reason_not_trained" - Dict containing the reason that 
-            "not_trained" is set.  Only appears in retval if "not_trained" 
-            appears.
-                        {   "code" : 1011,
-                            "message" : "Not enough food to train a spy.",  },
+        Returns a dict including the keys:
+            - trained -- Integer number added to the training queue.  Always included in retval, but may be set to 0.
+            - not_trained -- Integer number not added to the training queue.  Only appears in retval if its value is non-zero.
+            - reason_not_trained -- Dict containing the reason that "not_trained" is set.  Only appears in retval if "not_trained" appears.  Includes:
+                - code -- 1011,
+                - message -- "Not enough food to train a spy."
         """
         pass
 
@@ -83,14 +77,14 @@ class intelligence(MyBuilding):
         """ Assigns a spy to a task.
         
         Possible assignments for each spy can be found by calling view_spies() 
-        or view_all_spies().  A full list of all assignments can be found at:
-            https://us1.lacunaexpanse.com/api/Intelligence.html#assignment
+        or view_all_spies().  A full list of all assignments can be found at 
+        https://us1.lacunaexpanse.com/api/Intelligence.html#assignment
 
         Requires captcha.
 
         Returns a tuple:
-            spy             Spy object
-            mission_result  MissionResult object
+            - spy -- Spy object
+            - mission_result -- MissionResult object
         """
         spy     = Spy( self.client, kwargs['rslt']['spy'] )
         rslt    = MissionResult( self.client, kwargs['rslt']['mission'] )

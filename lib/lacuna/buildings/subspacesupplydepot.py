@@ -2,18 +2,16 @@
 import lacuna.bc
 import lacuna.building
 
-"""
-    The TLE docs claim that the transmit_*() methods will return the same 
-    ['building']['work'] block that complete_build_queue() does.
-
-    On PT, that simply isn't happening.  The resources are being transmitted, 
-    but I'm not getting a 'work' key back.  Those methods do successfully 
-    transmit the resource they're meant to, they're just not returning the 
-    right data.
-
-    Screw it.  Nobody's ever going to script this building anyway; the fact 
-    that the methods at least transmit is close enough.
-"""
+### The TLE docs claim that the transmit_*() methods will return the same 
+### ['building']['work'] block that complete_build_queue() does.
+###
+### On PT, that simply isn't happening.  The resources are being transmitted, 
+### but I'm not getting a 'work' key back.  Those methods do successfully 
+### transmit the resource they're meant to, they're just not returning the 
+### right data.
+### 
+### Screw it.  Nobody's ever going to script this building anyway; the fact 
+### that the methods at least transmit is close enough.
 
 class subspacesupplydepot(lacuna.building.MyBuilding):
     path = 'subspacesupplydepot'
@@ -46,11 +44,12 @@ class subspacesupplydepot(lacuna.building.MyBuilding):
         """ Spends the SSD to complete the current build queue.
 
         Returns a dict:
-                {
-                    "seconds_remaining" : 99,
-                    "start" : "01 31 2010 13:09:05 +0600",
-                    "end" : "01 31 2010 13:09:05 +0600"
-                }
+            >>> 
+            {
+                "seconds_remaining" : 99,
+                "start" : "01 31 2010 13:09:05 +0600",
+                "end" : "01 31 2010 13:09:05 +0600"
+            }
 
         Raises ServerError 1011 if there's not enough time on the SSD to 
         complete the queue.
@@ -61,6 +60,7 @@ class subspacesupplydepot(lacuna.building.MyBuilding):
 class WorkOrder(lacuna.bc.SubClass):
     """
     Attributes:
+        >>> 
         seconds_remaining   99,
         start               "01 31 2010 13:09:05 +0600",
         end                 "01 31 2010 13:09:05 +0600"

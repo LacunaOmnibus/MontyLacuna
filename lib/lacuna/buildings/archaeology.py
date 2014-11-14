@@ -1,26 +1,22 @@
 
+"""
+    The archaeology building will contain an attribute 'work' if and only if it 
+    is currently searching for an ore.  That attribute is a dict containing:
+    - searching -- "anthracite",
+    - start -- '31 10 2014 18:45:34 +0000',
+    - end -- '01 11 2014 00:45:34 +0000',
+    - seconds_remaining -- 21574,
+
+    ...But that 'work' attribute will not exist at all if the arch min is not 
+    searching right now, so you'll have to do a hasattr() check to see.
+"""
+
 from lacuna.bc import LacunaObject
 from lacuna.building import MyBuilding
 import lacuna.glyph
 import lacuna.ship
 
 import warnings
-
-"""
-    The archaeology building will contain an attribute 'work' if and only if it 
-    is currently searching for an ore.  That attribute is a dict containing:
-            "searching":            "anthracite",
-            "start":                '31 10 2014 18:45:34 +0000',
-            "end":                  '01 11 2014 00:45:34 +0000',
-            "seconds_remaining":    21574,
-
-    ...But that 'work' attribute will not exist at all if the arch min is not 
-    searching right now, so you'll have to do a hasattr() check to see:
-            if hasattr( arch, 'work' ):
-                # searching now
-            else:
-                # NOT searching now
-"""
 
 class archaeology(MyBuilding):
     path = 'archaeology'
@@ -67,12 +63,15 @@ class archaeology(MyBuilding):
         """ Returns list of all ores that are of sufficient quantity onsite to 
         perform glyph searches on.
 
-        Retval contains key 'ore', a dict keyed off ore names, with the ore 
+        Returns a dict containing the key 'ore', a dict keyed off ore names, with the ore 
         quantities as values:
-            'ore': {   'anthracite': 99294156,
-                        'bauxite': 210171773,
-                        ...
-            }
+
+::
+
+        'ore': {   'anthracite': 99294156,
+                    'bauxite': 210171773,
+                    ...
+        }
         """
         pass
 
@@ -81,10 +80,9 @@ class archaeology(MyBuilding):
         """ Gets info on working excavators.
 
         Returns a tuple:
-            excavators      List of Excavator objects
-            max             Integer max excavators this arch min can support
-            travelling      Integer number of excavators currently in the air 
-                            on the way to a body to begin work.
+            - excavators -- List of Excavator objects
+            - max -- Integer max excavators this arch min can support
+            - travelling -- Integer number of excavators currently in the air on the way to a body to begin work.
         """
         mylist = []
         for i in kwargs['rslt']['excavators']:
