@@ -76,6 +76,19 @@ spy_training    &#8220;01 31 2010 13:09:05 +0600&#8221;</p>
 <dt id="lacuna.empire.Empire">
 <em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">Empire</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#Empire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.Empire" title="Permalink to this definition">¶</a></dt>
 <dd><p>A generic Empire object that can be used with a non-logged-in Guest.</p>
+<dl class="method">
+<dt id="lacuna.empire.Empire.fetch_captcha">
+<tt class="descname">fetch_captcha</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#Empire.fetch_captcha"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.Empire.fetch_captcha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns dict containing &#8216;guid&#8217; and &#8216;url&#8217; keys
+DICT not OBJ, so rv[&#8216;guid&#8217;], not rv.guid</p>
+<p>There also exists a Captcha class, which requires the user to already 
+be logged in.  This fetch_captcha method exists to allow a brand new, 
+not-yet-logged-in user to get a captcha, the solution to which they 
+can pass to create().</p>
+<p>If you&#8217;re looking for a captcha for anything other than new user 
+creation, go use the Captcha class.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -115,6 +128,238 @@ self_destruct_active    0,
 self_destruct_date      &#8220;&#8221;</p>
 </dd>
 </dl>
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_building">
+<tt class="descname">boost_building</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.boost_building"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_building" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% building speed boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_energy">
+<tt class="descname">boost_energy</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.boost_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% energy boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_food">
+<tt class="descname">boost_food</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.boost_food"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_food" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% food boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_happiness">
+<tt class="descname">boost_happiness</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.boost_happiness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_happiness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% happiness boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_ore">
+<tt class="descname">boost_ore</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.boost_ore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_ore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% ore boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_storage">
+<tt class="descname">boost_storage</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.boost_storage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% storage boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_water">
+<tt class="descname">boost_water</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.boost_water"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_water" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% water boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.change_password">
+<tt class="descname">change_password</tt><big>(</big><em>oldpw: str</em>, <em>newpw: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.change_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.change_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes your full password.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd>password        String; the desired new password
+confirmation    Must be the same string as &#8216;password&#8217;</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.edit_profile">
+<tt class="descname">edit_profile</tt><big>(</big><em>profile: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.edit_profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.edit_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit your empire&#8217;s profile.  Requires that you&#8217;re logged in with 
+your real, not sitter, password.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><dl class="first last docutils">
+<dt>profile     Dict of profile settings:</dt>
+<dd><blockquote class="first">
+<div>description
+email
+sitter_password
+status_message
+city
+country
+notes
+skype
+player_name
+public_medals (list of medal IDs to display)</div></blockquote>
+<p>The following are all booleans, indicating whether to 
+skip a given warning or game-generated mail.</p>
+<blockquote class="last">
+<div>skip_happiness_warnings
+skip_resource_warnings
+skip_pollution_warnings
+skip_medal_messages
+skip_facebook_wall_posts
+skip_found_nothing
+skip_excavator_resources
+skip_excavator_glyph
+skip_excavator_plan
+skip_spy_recovery
+skip_probe_detected
+skip_attack_messages
+skip_incoming_ships</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.find">
+<tt class="descname">find</tt><big>(</big><em>name_segment: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.find"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an empire by name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>name    Standard TLE search string</dd>
+</dl>
+<p>Returns a list of empire.FoundEmpire objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.get_invite_friend_url">
+<tt class="descname">get_invite_friend_url</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.get_invite_friend_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.get_invite_friend_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>See the &#8216;referral_url&#8217; key in the returned dict.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.get_species_templates">
+<tt class="descname">get_species_templates</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.get_species_templates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.get_species_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the species templates that are presented to a new player 
+upon initial species creation (Average, Warmonger, Resilient, Viral, 
+etc).</p>
+<p>Returns a list of empire.SpeciesTemplate objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.get_status">
+<tt class="descname">get_status</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.get_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>There shouldn&#8217;t ever be a need to call this.  An empire status 
+block gets returned with every call, and the MyEmpire object&#8217;s 
+attributes get set each time as a result.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.invite_friend">
+<tt class="descname">invite_friend</tt><big>(</big><em>email</em>, <em>message=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.invite_friend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.invite_friend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Doesn&#8217;t error, but doesn&#8217;t send email either.  Since the &#8216;forgot 
+my password&#8217; feature is exhibiting the same behavior, I&#8217;m going to 
+assume the server just isn&#8217;t configured to send mail anymore.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.redefine_species">
+<tt class="descname">redefine_species</tt><big>(</big><em>params</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.redefine_species"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.redefine_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actually does the deed of redefining a player&#8217;s species.
+Costs E, so untested.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><dl class="first last docutils">
+<dt>params  Dict of species settings:</dt>
+<dd>name                    String name of the species (required)
+description             String
+min_orbit               Integer 1-7 inclusive
+max_orbit               Integer 1-7 inclusive.  Must be &gt;= min_orbit.
+manufacturing_affinity  Integer 1-7 inclusive.
+deception_affinity      Integer 1-7 inclusive.
+research_affinity       Integer 1-7 inclusive.
+management_affinity     Integer 1-7 inclusive.
+farming_affinity        Integer 1-7 inclusive.
+mining_affinity         Integer 1-7 inclusive.
+science_affinity        Integer 1-7 inclusive.
+environmental_affinity  Integer 1-7 inclusive.
+political_affinity      Integer 1-7 inclusive.
+trade_affinity          Integer 1-7 inclusive.
+growth_affinity         Integer 1-7 inclusive.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.redefine_species_limits">
+<tt class="descname">redefine_species_limits</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.redefine_species_limits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.redefine_species_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the limits to be imposed if you redefine your species.</p>
+<dl class="docutils">
+<dt>Returns a dict:</dt>
+<dd>&#8216;can&#8217;:              1,
+&#8216;essentia_cost&#8217;:    100,
+&#8216;max_orbit&#8217;:        3,
+&#8216;min_growth&#8217;:       1,
+&#8216;min_orbit&#8217;:        3,
+&#8216;reason&#8217;:           None,</dd>
+</dl>
+<p>&#8216;can&#8217; will be 0 if the user currently cannot redefine.
+I do not understand why the min/max settings exist.
+If &#8216;can&#8217; is false, &#8216;reason&#8217; will contain a string explaining why 
+not.  eg &#8220;You have already redefined in the past 30 days&#8221;, etc.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.set_status_message">
+<tt class="descname">set_status_message</tt><big>(</big><em>message: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.set_status_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.set_status_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets your empire status message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.spy_training_boost">
+<tt class="descname">spy_training_boost</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.spy_training_boost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.spy_training_boost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +50% spy training boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_boosts">
+<tt class="descname">view_boosts</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.view_boosts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.view_boosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows your current boosts and their expiration dates.</p>
+<p>Returns an empire. Boosts object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_profile">
+<tt class="descname">view_profile</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.view_profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.view_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>View your own empire&#8217;s profile.  Requires login with your real, not 
+sitter, password,</p>
+<p>Returns an empire.OwnProfile object.</p>
+<p>Throws 1015 (Sitters cannot modify preferences) if the user is 
+logged in with their sitter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_public_profile">
+<tt class="descname">view_public_profile</tt><big>(</big><em>empire_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.view_public_profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.view_public_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>View public profile info on any empire.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>empire_id   Integer ID of the empire to view.</dd>
+</dl>
+<p>Returns an empire.PublicProfile object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_species_stats">
+<tt class="descname">view_species_stats</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/empire.html#MyEmpire.view_species_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.empire.MyEmpire.view_species_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns information about your empire&#8217;s species.</p>
+<p>Returns a single empire.Species object.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">

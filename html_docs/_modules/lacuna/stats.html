@@ -50,12 +50,12 @@
 <span class="kn">import</span> <span class="nn">lacuna.bc</span>
 
 <span class="k">class</span> <span class="nc">Stats</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="p">):</span>
-<div class="viewcode-block" id="Stats"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats">[docs]</a>
+
     <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;stats&#39;</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.call_guest_meth</span>
     <span class="k">def</span> <span class="nf">credits</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.credits"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.credits">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns the game&#39;s credits.</span>
+        <span class="sd">&quot;&quot;&quot; Returns the game&#39;s credits.</span>
 
 <span class="sd">        This method does not require a logged-in client.</span>
 
@@ -78,9 +78,9 @@
                 <span class="n">mydict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
         <span class="k">return</span> <span class="n">mydict</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">alliance_rank</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sort_by</span> <span class="o">=</span> <span class="s">&#39;influence desc,population desc&#39;</span><span class="p">,</span> <span class="n">page_number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.alliance_rank"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.alliance_rank">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns info on current alliance ranks.</span>
+        <span class="sd">&quot;&quot;&quot; Returns info on current alliance ranks.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            sort_by         String.  What to sort the returned list on.  </span>
@@ -129,9 +129,9 @@
             <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;page_number&#39;</span><span class="p">],</span>
         <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">find_alliance_rank</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sort_by</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">alliance_name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.find_alliance_rank"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.find_alliance_rank">[docs]</a>        <span class="sd">&quot;&quot;&quot; Finds stats for a specific alliance.</span>
+        <span class="sd">&quot;&quot;&quot; Finds stats for a specific alliance.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            sort_by         same options as for alliance_rank()</span>
@@ -152,10 +152,10 @@
             <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">AllianceInfo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
         <span class="k">return</span> <span class="n">mylist</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">empire_rank</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sort_by</span> <span class="o">=</span> <span class="s">&#39;empire_size_rank&#39;</span><span class="p">,</span> <span class="n">page_number</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.empire_rank"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.empire_rank">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
+        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
 <span class="sd">                &#39;empires&#39;           list of dict, one dict per empire</span>
 <span class="sd">                        {</span>
 <span class="sd">                            &quot;empire_id&quot; : &quot;id-goes-here&quot;,                   # unique id</span>
@@ -182,9 +182,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">find_empire_rank</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sort_by</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">empire_name</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.find_empire_rank"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.find_empire_rank">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns info on specific empires in the ranks.</span>
+        <span class="sd">&quot;&quot;&quot; Returns info on specific empires in the ranks.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            sort_by         String.  See empire_rank()</span>
@@ -211,10 +211,10 @@
             <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">EmpireInfo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
         <span class="k">return</span> <span class="n">mylist</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">colony_rank</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sort_by</span> <span class="o">=</span> <span class="s">&#39;population_rank&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.colony_rank"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.colony_rank">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
+        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
 <span class="sd">                status      standard</span>
 <span class="sd">                colonies    list of dict</span>
 <span class="sd">                        {</span>
@@ -233,10 +233,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">spy_rank</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sort_by</span> <span class="o">=</span> <span class="s">&#39;level_rank&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.spy_rank"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.spy_rank">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
+        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
 <span class="sd">                status      standard</span>
 <span class="sd">                spies    list of dict</span>
 <span class="sd">                        {</span>
@@ -256,10 +256,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">weekly_medal_winners</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Stats.weekly_medal_winners"><a class="viewcode-back" href="../../lacuna.html#lacuna.stats.Stats.weekly_medal_winners">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
+        <span class="sd">&quot;&quot;&quot; Returns dict with keys:</span>
 <span class="sd">                status      standard</span>
 <span class="sd">                winners    list of dict</span>
 <span class="sd">                        {</span>
@@ -272,7 +272,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
-<span class="k">class</span> <span class="nc">EmpireInfo</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
+<span class="k">class</span> <span class="nc">EmpireInfo</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span>
 <div class="viewcode-block" id="EmpireInfo"><a class="viewcode-back" href="../../stats.html#lacuna.stats.EmpireInfo">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Attributes:</span>
 <span class="sd">        empire_id       &quot;id-goes-here&quot;,</span>

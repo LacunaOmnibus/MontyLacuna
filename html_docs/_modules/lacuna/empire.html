@@ -68,15 +68,15 @@
     <span class="c">### this out by creating a bunch of new empires is making me sad.  So I&#39;m </span>
     <span class="c">### punting.</span>
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="viewcode-block" id="Empire.create"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.Empire.create">[docs]</a>        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span> <span class="s">&quot;Creating an empire is not implemented.&quot;</span> <span class="p">)</span>
-    <span class="k">def</span> <span class="nf">found</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Empire.found"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.Empire.found">[docs]</a>        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span> <span class="s">&quot;Founding an empire is not implemented.&quot;</span> <span class="p">)</span>
-    <span class="k">def</span> <span class="nf">update_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Empire.update_species"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.Empire.update_species">[docs]</a>        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span> <span class="s">&quot;Updating a species is not implemented.&quot;</span> <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span> <span class="s">&quot;Creating an empire is not implemented.&quot;</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">found</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span> <span class="s">&quot;Founding an empire is not implemented.&quot;</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">update_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span> <span class="s">&quot;Updating a species is not implemented.&quot;</span> <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_guest_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_guest_meth</span>
     <span class="k">def</span> <span class="nf">fetch_captcha</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-<div class="viewcode-block" id="Empire.fetch_captcha"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.Empire.fetch_captcha">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns dict containing &#39;guid&#39; and &#39;url&#39; keys</span>
+<div class="viewcode-block" id="Empire.fetch_captcha"><a class="viewcode-back" href="../../empire.html#lacuna.empire.Empire.fetch_captcha">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns dict containing &#39;guid&#39; and &#39;url&#39; keys</span>
 <span class="sd">        DICT not OBJ, so rv[&#39;guid&#39;], not rv.guid</span>
 
 <span class="sd">        There also exists a Captcha class, which requires the user to already </span>
@@ -138,12 +138,12 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.logout"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.logout">[docs]</a>        <span class="k">pass</span>
+        <span class="k">pass</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.get_status"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.get_status">[docs]</a>        <span class="sd">&quot;&quot;&quot; There shouldn&#39;t ever be a need to call this.  An empire status </span>
+<div class="viewcode-block" id="MyEmpire.get_status"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.get_status">[docs]</a>        <span class="sd">&quot;&quot;&quot; There shouldn&#39;t ever be a need to call this.  An empire status </span>
 <span class="sd">        block gets returned with every call, and the MyEmpire object&#39;s </span>
 <span class="sd">        attributes get set each time as a result.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -152,13 +152,13 @@
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">get_invite_friend_url</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.get_invite_friend_url"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.get_invite_friend_url">[docs]</a>        <span class="sd">&quot;&quot;&quot; See the &#39;referral_url&#39; key in the returned dict. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.get_invite_friend_url"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.get_invite_friend_url">[docs]</a>        <span class="sd">&quot;&quot;&quot; See the &#39;referral_url&#39; key in the returned dict. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">invite_friend</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.invite_friend"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.invite_friend">[docs]</a>        <span class="sd">&quot;&quot;&quot; Doesn&#39;t error, but doesn&#39;t send email either.  Since the &#39;forgot </span>
+<div class="viewcode-block" id="MyEmpire.invite_friend"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.invite_friend">[docs]</a>        <span class="sd">&quot;&quot;&quot; Doesn&#39;t error, but doesn&#39;t send email either.  Since the &#39;forgot </span>
 <span class="sd">        my password&#39; feature is exhibiting the same behavior, I&#39;m going to </span>
 <span class="sd">        assume the server just isn&#39;t configured to send mail anymore.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -166,7 +166,7 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">view_profile</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.view_profile"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.view_profile">[docs]</a>        <span class="sd">&quot;&quot;&quot; View your own empire&#39;s profile.  Requires login with your real, not </span>
+<div class="viewcode-block" id="MyEmpire.view_profile"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.view_profile">[docs]</a>        <span class="sd">&quot;&quot;&quot; View your own empire&#39;s profile.  Requires login with your real, not </span>
 <span class="sd">        sitter, password,</span>
 
 <span class="sd">        Returns an empire.OwnProfile object.</span>
@@ -178,7 +178,7 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">view_public_profile</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">empire_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.view_public_profile"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.view_public_profile">[docs]</a>        <span class="sd">&quot;&quot;&quot; View public profile info on any empire.</span>
+<div class="viewcode-block" id="MyEmpire.view_public_profile"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.view_public_profile">[docs]</a>        <span class="sd">&quot;&quot;&quot; View public profile info on any empire.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            empire_id   Integer ID of the empire to view.</span>
@@ -189,7 +189,7 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span></div>
     <span class="k">def</span> <span class="nf">edit_profile</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">profile</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.edit_profile"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.edit_profile">[docs]</a>        <span class="c">### The rv does contain a &#39;status&#39; dict, but it&#39;s in a different </span>
+<div class="viewcode-block" id="MyEmpire.edit_profile"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.edit_profile">[docs]</a>        <span class="c">### The rv does contain a &#39;status&#39; dict, but it&#39;s in a different </span>
         <span class="c">### format from what&#39;s expected, so skip the set_empire_status </span>
         <span class="c">### decorator.</span>
         <span class="sd">&quot;&quot;&quot; Edit your empire&#39;s profile.  Requires that you&#39;re logged in with </span>
@@ -229,7 +229,7 @@
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">change_password</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">oldpw</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">newpw</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.change_password"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.change_password">[docs]</a>        <span class="sd">&quot;&quot;&quot; Changes your full password.</span>
+<div class="viewcode-block" id="MyEmpire.change_password"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.change_password">[docs]</a>        <span class="sd">&quot;&quot;&quot; Changes your full password.</span>
 
 <span class="sd">        Arguments</span>
 <span class="sd">            password        String; the desired new password</span>
@@ -239,7 +239,7 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">find</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">name_segment</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.find"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.find">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find an empire by name.</span>
+<div class="viewcode-block" id="MyEmpire.find"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.find">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find an empire by name.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            name    Standard TLE search string</span>
@@ -254,12 +254,12 @@
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">set_status_message</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.set_status_message"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.set_status_message">[docs]</a>        <span class="sd">&quot;&quot;&quot; Sets your empire status message.  &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.set_status_message"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.set_status_message">[docs]</a>        <span class="sd">&quot;&quot;&quot; Sets your empire status message.  &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">view_boosts</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.view_boosts"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.view_boosts">[docs]</a>        <span class="sd">&quot;&quot;&quot; Shows your current boosts and their expiration dates.</span>
+<div class="viewcode-block" id="MyEmpire.view_boosts"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.view_boosts">[docs]</a>        <span class="sd">&quot;&quot;&quot; Shows your current boosts and their expiration dates.</span>
 <span class="sd">        </span>
 <span class="sd">        Returns an empire. Boosts object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -268,49 +268,49 @@
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">boost_storage</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.boost_storage"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.boost_storage">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% storage boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.boost_storage"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.boost_storage">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% storage boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">boost_food</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.boost_food"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.boost_food">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% food boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.boost_food"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.boost_food">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% food boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">boost_water</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.boost_water"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.boost_water">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% water boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.boost_water"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.boost_water">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% water boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">boost_energy</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.boost_energy"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.boost_energy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% energy boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.boost_energy"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.boost_energy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% energy boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">boost_ore</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.boost_ore"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.boost_ore">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% ore boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.boost_ore"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.boost_ore">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% ore boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">boost_happiness</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.boost_happiness"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.boost_happiness">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% happiness boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.boost_happiness"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.boost_happiness">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% happiness boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">boost_building</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.boost_building"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.boost_building">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% building speed boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.boost_building"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.boost_building">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +25% building speed boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">spy_training_boost</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.spy_training_boost"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.spy_training_boost">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +50% spy training boost for one week. &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MyEmpire.spy_training_boost"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.spy_training_boost">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 5 E to set a +50% spy training boost for one week. &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
     <span class="c">### Commenting this out because, right now, disable_self_destruct() does </span>
@@ -325,19 +325,19 @@
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">disable_self_destruct</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.disable_self_destruct"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.disable_self_destruct">[docs]</a>        <span class="k">pass</span>
+        <span class="k">pass</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">redeem_essentia_code</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.redeem_essentia_code"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.redeem_essentia_code">[docs]</a>        <span class="c">### Untested; I have no E codes to try this out with, and I&#39;m not </span>
+        <span class="c">### Untested; I have no E codes to try this out with, and I&#39;m not </span>
         <span class="c">### spending money to test.</span>
         <span class="k">pass</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">redefine_species_limits</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.redefine_species_limits"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.redefine_species_limits">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns the limits to be imposed if you redefine your species.</span>
+<div class="viewcode-block" id="MyEmpire.redefine_species_limits"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.redefine_species_limits">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns the limits to be imposed if you redefine your species.</span>
 
 <span class="sd">        Returns a dict:</span>
 <span class="sd">            &#39;can&#39;:              1,</span>
@@ -357,7 +357,7 @@
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">redefine_species</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.redefine_species"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.redefine_species">[docs]</a>        <span class="sd">&quot;&quot;&quot; Actually does the deed of redefining a player&#39;s species.</span>
+<div class="viewcode-block" id="MyEmpire.redefine_species"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.redefine_species">[docs]</a>        <span class="sd">&quot;&quot;&quot; Actually does the deed of redefining a player&#39;s species.</span>
 <span class="sd">        Costs E, so untested.</span>
 
 <span class="sd">        Arguments:</span>
@@ -382,7 +382,7 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">view_species_stats</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.view_species_stats"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.view_species_stats">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns information about your empire&#39;s species.</span>
+<div class="viewcode-block" id="MyEmpire.view_species_stats"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.view_species_stats">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns information about your empire&#39;s species.</span>
 <span class="sd">        </span>
 <span class="sd">        Returns a single empire.Species object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -390,7 +390,7 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
     <span class="k">def</span> <span class="nf">get_species_templates</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="MyEmpire.get_species_templates"><a class="viewcode-back" href="../../lacuna.html#lacuna.empire.MyEmpire.get_species_templates">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns the species templates that are presented to a new player </span>
+<div class="viewcode-block" id="MyEmpire.get_species_templates"><a class="viewcode-back" href="../../empire.html#lacuna.empire.MyEmpire.get_species_templates">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns the species templates that are presented to a new player </span>
 <span class="sd">        upon initial species creation (Average, Warmonger, Resilient, Viral, </span>
 <span class="sd">        etc).</span>
 <span class="sd">        </span>

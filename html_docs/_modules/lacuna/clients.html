@@ -163,11 +163,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_up_cache</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="viewcode-block" id="Guest.clear_cache"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Guest.clear_cache">[docs]</a>        <span class="n">req_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get_cache</span><span class="p">(</span><span class="s">&#39;request_cache&#39;</span><span class="p">)</span>
+        <span class="n">req_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get_cache</span><span class="p">(</span><span class="s">&#39;request_cache&#39;</span><span class="p">)</span>
         <span class="n">req_cache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">set_up_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Guest.set_up_cache"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Guest.set_up_cache">[docs]</a>        <span class="n">libdir</span>      <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">set_up_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">libdir</span>      <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
         <span class="n">vardir</span>      <span class="o">=</span> <span class="n">libdir</span> <span class="o">+</span> <span class="s">&quot;/../../var&quot;</span>
         <span class="n">cachedir</span>    <span class="o">=</span> <span class="n">vardir</span> <span class="o">+</span> <span class="s">&quot;/cache&quot;</span>
         <span class="n">lockdir</span>     <span class="o">=</span> <span class="n">vardir</span> <span class="o">+</span> <span class="s">&quot;/cachelck&quot;</span>
@@ -186,7 +186,7 @@
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">beaker</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">CacheManager</span><span class="p">(</span><span class="o">**</span><span class="n">beaker</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">parse_cache_config_options</span><span class="p">(</span><span class="n">cache_opts</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">create_request_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+    <span class="k">def</span> <span class="nf">create_request_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="viewcode-block" id="Guest.create_request_logger"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Guest.create_request_logger">[docs]</a>        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Don&#39;t use logging.getLogger() to get at the logger.  Instead, use the </span>
 <span class="sd">        client.request_logger attribute.</span>
@@ -232,7 +232,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span> <span class="o">=</span> <span class="n">l</span>
 
     <span class="k">def</span> <span class="nf">read_config_file</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">conf</span><span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="s">&#39;DEFAULT&#39;</span> <span class="p">):</span></div>
-<div class="viewcode-block" id="Guest.read_config_file"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Guest.read_config_file">[docs]</a>        <span class="n">cp</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">(</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">configparser</span><span class="o">.</span><span class="n">ExtendedInterpolation</span><span class="p">()</span> <span class="p">)</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">(</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">configparser</span><span class="o">.</span><span class="n">ExtendedInterpolation</span><span class="p">()</span> <span class="p">)</span>
         <span class="n">cp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span> <span class="n">conf</span> <span class="p">)</span>
         <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">cp</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">section</span> <span class="o">==</span> <span class="n">default</span><span class="p">:</span>
@@ -242,8 +242,8 @@
                     <span class="n">cp</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cp</span><span class="p">[</span><span class="n">default</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">cp</span>
 
-    <span class="k">def</span> <span class="nf">write_default_config_file</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">path</span> <span class="p">):</span></div>
-<div class="viewcode-block" id="Guest.write_default_config_file"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Guest.write_default_config_file">[docs]</a>        <span class="n">cp</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">write_default_config_file</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">path</span> <span class="p">):</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
         <span class="n">cp</span><span class="p">[</span><span class="s">&#39;DEFAULT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s">&#39;host&#39;</span><span class="p">:</span> <span class="s">&#39;us1.lacunaexpanse.com&#39;</span><span class="p">,</span>
             <span class="s">&#39;proto&#39;</span><span class="p">:</span> <span class="s">&#39;http&#39;</span><span class="p">,</span>
@@ -257,7 +257,7 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
             <span class="n">cp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">build_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+    <span class="k">def</span> <span class="nf">build_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="viewcode-block" id="Guest.build_url"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Guest.build_url">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns a base URL composed of the proto (http or https) and the </span>
 <span class="sd">        host.  The returned URL does NOT end with a slash.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -265,10 +265,10 @@
         <span class="k">return</span> <span class="n">url</span>
 
     <span class="k">def</span> <span class="nf">get_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Guest.get_stats"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Guest.get_stats">[docs]</a>        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">is_name_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Guest.is_name_available"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Guest.is_name_available">[docs]</a>        <span class="k">try</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">is_name_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
             <span class="n">rslt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="s">&#39;empire&#39;</span><span class="p">,</span> <span class="s">&#39;is_name_available&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,)</span> <span class="p">)</span>
         <span class="k">except</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">1000</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s">&#39;Empire name is in use by another player.&#39;</span><span class="p">:</span>
@@ -280,10 +280,10 @@
                 <span class="nb">exit</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">True</span>
 
-    <span class="k">def</span> <span class="nf">looks_like_json</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">json_candidate</span><span class="p">:</span><span class="nb">str</span> <span class="p">):</span></div>
-<div class="viewcode-block" id="Guest.looks_like_json"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Guest.looks_like_json">[docs]</a>        <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&quot;^{.*}$&quot;</span><span class="p">,</span> <span class="n">json_candidate</span><span class="p">)</span> <span class="k">else</span> <span class="bp">False</span>
+    <span class="k">def</span> <span class="nf">looks_like_json</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">json_candidate</span><span class="p">:</span><span class="nb">str</span> <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&quot;^{.*}$&quot;</span><span class="p">,</span> <span class="n">json_candidate</span><span class="p">)</span> <span class="k">else</span> <span class="bp">False</span>
 
-    <span class="k">def</span> <span class="nf">determine_empname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+    <span class="k">def</span> <span class="nf">determine_empname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="viewcode-block" id="Guest.determine_empname"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Guest.determine_empname">[docs]</a>        <span class="sd">&quot;&quot;&quot; Used for logging.  A guest empire name will be returned as </span>
 <span class="sd">        &quot;UNKNOWN&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -486,31 +486,31 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">get_alliance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<div class="viewcode-block" id="Member.get_alliance"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.get_alliance">[docs]</a>        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">alliance</span><span class="o">.</span><span class="n">Alliance</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">alliance</span><span class="o">.</span><span class="n">Alliance</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Member.get_body"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.get_body">[docs]</a>        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">body_id</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">body_id</span> <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_body_byname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_name</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Member.get_body_byname"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.get_body_byname">[docs]</a>        <span class="k">for</span> <span class="n">bid</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">get_body_byname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_name</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">bid</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">body_name</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">MyBody</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">bid</span> <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">NoSuchMyBodyError</span><span class="p">(</span><span class="s">&quot;No body with the name &#39;{}&#39; was found.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">body_name</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">get_captcha</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Member.get_captcha"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.get_captcha">[docs]</a>        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">captcha</span><span class="o">.</span><span class="n">Captcha</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_captcha</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">captcha</span><span class="o">.</span><span class="n">Captcha</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_inbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Member.get_inbox"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.get_inbox">[docs]</a>        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">inbox</span><span class="o">.</span><span class="n">Inbox</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_inbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">inbox</span><span class="o">.</span><span class="n">Inbox</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Member.get_map"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.get_map">[docs]</a>        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_my_alliance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Member.get_my_alliance"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.get_my_alliance">[docs]</a>        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">alliance</span><span class="o">.</span><span class="n">MyAlliance</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_my_alliance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">alliance</span><span class="o">.</span><span class="n">MyAlliance</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <div class="viewcode-block" id="Member.login"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Member.login">[docs]</a>        <span class="sd">&quot;&quot;&quot; Ensures the current client is logged in.</span>
 
 <span class="sd">        If self.session_id is set, we&#39;ll test it to make sure we can get a </span>
@@ -553,12 +553,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">planet_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="nb">id</span> <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
     <span class="k">def</span> <span class="nf">update_config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
-<div class="viewcode-block" id="Member.update_config_file"><a class="viewcode-back" href="../../lacuna.html#lacuna.clients.Member.update_config_file">[docs]</a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;config&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;config&#39;</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_file</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span></div>
+    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
 <div class="viewcode-block" id="Member.logout"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Member.logout">[docs]</a>        <span class="sd">&quot;&quot;&quot; Logs the current session out.</span>
 
 <span class="sd">        Saving the session_id in the config file allows users to complete a </span>

@@ -50,7 +50,7 @@
 <span class="kn">import</span> <span class="nn">lacuna.bc</span>
 
 <span class="k">class</span> <span class="nc">Inbox</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="p">):</span>
-<div class="viewcode-block" id="Inbox"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox">[docs]</a>
+
     <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;inbox&#39;</span>
 
     <span class="k">def</span> <span class="nf">_set_mail_return</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
@@ -67,7 +67,7 @@
 
     <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">view_inbox</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.view_inbox"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.view_inbox">[docs]</a>        <span class="sd">&quot;&quot;&quot; View the messages in your empire&#39;s inbox, 25 messages per page.</span>
+        <span class="sd">&quot;&quot;&quot; View the messages in your empire&#39;s inbox, 25 messages per page.</span>
 <span class="sd">        </span>
 <span class="sd">        Arguments:</span>
 <span class="sd">            opts    Dict (optional)</span>
@@ -96,30 +96,30 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">view_archived</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.view_archived"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.view_archived">[docs]</a>        <span class="sd">&quot;&quot;&quot;  View archived messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;  View archived messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">view_sent</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.view_sent"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.view_sent">[docs]</a>        <span class="sd">&quot;&quot;&quot;  View sent messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;  View sent messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">view_trashed</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.view_trashed"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.view_trashed">[docs]</a>        <span class="sd">&quot;&quot;&quot;  View trashed messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;  View trashed messages.  Returns the same as view_inbox().  &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_mail_return</span><span class="p">(</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span>
     <span class="k">def</span> <span class="nf">read_message</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.read_message"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.read_message">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns a single message by ID.</span>
+        <span class="sd">&quot;&quot;&quot; Returns a single message by ID.</span>
 <span class="sd">        </span>
 <span class="sd">        Returns an inbox.Message object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;message&#39;</span><span class="p">])</span>
 
-    <span class="sd">&quot;&quot;&quot;archive_messages() and trash_messages() work identically.</span></div>
+    <span class="sd">&quot;&quot;&quot;archive_messages() and trash_messages() work identically.</span>
 <span class="sd">    They both take a list of message IDs to either archive or trash.</span>
 
 <span class="sd">    Both return a dict containing:</span>
@@ -134,16 +134,16 @@
     <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">archive_messages</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.archive_messages"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.archive_messages">[docs]</a>        <span class="k">pass</span>
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+        <span class="k">pass</span>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">trash_messages</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.trash_messages"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.trash_messages">[docs]</a>        <span class="k">pass</span>
+        <span class="k">pass</span>
 
-    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span>
     <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
     <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">recipients</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">subject</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
-<div class="viewcode-block" id="Inbox.send_message"><a class="viewcode-back" href="../../lacuna.html#lacuna.inbox.Inbox.send_message">[docs]</a>        <span class="sd">&quot;&quot;&quot; Sends an in-game mail message.</span>
+        <span class="sd">&quot;&quot;&quot; Sends an in-game mail message.</span>
 
 <span class="sd">        Arguments:</span>
 <span class="sd">            recipients  Comma-separated string containing names of empires to </span>
@@ -188,7 +188,7 @@
 
 
 
-<span class="k">class</span> <span class="nc">MessageSummary</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
+<span class="k">class</span> <span class="nc">MessageSummary</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span>
 <div class="viewcode-block" id="MessageSummary"><a class="viewcode-back" href="../../inbox.html#lacuna.inbox.MessageSummary">[docs]</a>    <span class="sd">&quot;&quot;&quot; This is the message summary you get when viewing a list of messages.</span>
 
 <span class="sd">    Note that the sender&#39;s name is listed in the TLE documentation using the </span>

@@ -76,6 +76,22 @@ size     58,</dd>
 <dd><p>All Map methods require a session ID, so these can only be used by a
 Member, not a Client.</p>
 <dl class="method">
+<dt id="lacuna.map.Map.check_star_for_incoming_probe">
+<tt class="descname">check_star_for_incoming_probe</tt><big>(</big><em>star_id</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.check_star_for_incoming_probe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.check_star_for_incoming_probe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if you have a probe en route to a star.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd>star_id         Integer ID of the star to check</dd>
+<dt>Returns</dt>
+<dd><dl class="first last docutils">
+<dt>incoming_probe  This will be the date of arrival of the incoming </dt>
+<dd>probe, or 0 if no probe is on its way.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="lacuna.map.Map.get_orbiting_planet">
 <tt class="descname">get_orbiting_planet</tt><big>(</big><em>star_name: str</em>, <em>planet_name: str</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.get_orbiting_planet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.get_orbiting_planet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the info of any planet you can see in your star map.</p>
@@ -85,6 +101,108 @@ Member, not a Client.</p>
 planet_name     String name of a planet orbiting that star</dd>
 </dl>
 <p>Returns a body.Body object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star">
+<tt class="descname">get_star</tt><big>(</big><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.get_star"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.get_star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a star by its ID.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>star_id     Integer ID of the star</dd>
+</dl>
+<p>Returns a Star object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star_by_name">
+<tt class="descname">get_star_by_name</tt><big>(</big><em>star_name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.get_star_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.get_star_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a star by its name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><dl class="first last docutils">
+<dt>star_name   String name of the star.  This is NOT a &#8220;standard TLE</dt>
+<dd>search string&#8221;, but the full name of the star.</dd>
+</dl>
+</dd>
+</dl>
+<p>Returns a Star object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star_by_xy">
+<tt class="descname">get_star_by_xy</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.get_star_by_xy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.get_star_by_xy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a star by its x, y coordinates.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>x   Integer X coordinate
+y   Integer Y coordinate</dd>
+</dl>
+<p>Returns a Star object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star_map">
+<tt class="descname">get_star_map</tt><big>(</big><em>stars: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.get_star_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.get_star_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of stars occupying a region of space.</p>
+<dl class="docutils">
+<dt>Accepts a single dict of arguments:</dt>
+<dd>left        Coordinate
+top         Coordinate
+right       Coordinate
+bottom      Coordinate</dd>
+</dl>
+<p>Each coordinate must be an integer within the star map (so &gt;= -1500 and 
+&lt;= 1500).  The total area covered by these coordinates must be &lt;= 3001 
+units.  The TLE documentation states 1001 units, but thats old 
+information; the limit has been raised to 3001 units.</p>
+<p>Returns a list of map.Star objects.</p>
+<p>Raises ServerError 1003 if your selected area is too large.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_stars">
+<tt class="descname">get_stars</tt><big>(</big><em>x1</em>, <em>x2</em>, <em>y1</em>, <em>y2</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.get_stars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.get_stars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of stars occupying a region of space.</p>
+<p>This is not officially deprecated, but there&#8217;s no good reason to use it.  
+get_star_map() is using the newer named arguments calling method, and it 
+allows you a range of 3001 units, whereas this method uses the old 
+positional arguments calling method, and allows a range of only 900 
+units.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>left        Coordinate
+top         Coordinate
+right       Coordinate
+bottom      Coordinate</dd>
+</dl>
+<p>Returns a list of map.Star objects.</p>
+<p>Raises ServerError 1003 if your selected area is too large.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.probe_summary_fissures">
+<tt class="descname">probe_summary_fissures</tt><big>(</big><em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.probe_summary_fissures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.probe_summary_fissures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides info on fissures in a zone.</p>
+<dl class="docutils">
+<dt>Requires a single dict argument:</dt>
+<dd>zone    &#8216;0|0&#8217;</dd>
+</dl>
+<p>Returns a list of map.Fissure objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.search_stars">
+<tt class="descname">search_stars</tt><big>(</big><em>partial_name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/map.html#Map.search_stars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.map.Map.search_stars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of stars matching a string.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd>search_string   A standard TLE search string.</dd>
+</dl>
+<p>Returns a list of Star objects.
+partial_name must be at least 3 characters.  Matches up to 25 stars whose names
+START with partial_name (NOT stars whose names just contain partial_name).
+rv is a list, identical to get_star_map().</p>
 </dd></dl>
 
 </dd></dl>
