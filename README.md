@@ -106,18 +106,9 @@ supposed to do.
 - Announcement
 
 ## TBD
-- The caching right now is very naive - every call sent to the server is curried.  The 
-  cache actually needs to be cleared periodically
-  - What's there now probably won't hurt any short quickie scripts, though it probably 
-    won't help those much either.  But it would hurt a long-running program, eg LacunaWaX.
-  - The more I look at what's there, the more I think it exists as an example of how 
-    beaker (the caching module) works.  I don't think the cache-every-call that I've got 
-    in there now is sensible at all.
-  - CHECK the caching problem is way worse than I thought - the cache is _not_ always being 
-    cleared after each run; I apparently do not understand how __del__ works.  For now, 
-    I've commented the caching out entirely.
-    - Instead of caching every request, I'm going to need to be more selective.  Which is 
-      more work, but makes more sense.
+- The client isn't doing any caching on its own (as it should be), but I'm starting to 
+  think about providing an interface for scripts so they can request caching.  See 
+  t/cache_test.py.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
