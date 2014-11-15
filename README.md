@@ -105,10 +105,20 @@ supposed to do.
    project.
 - Announcement
 
+## CACHING
+The client isn't doing any caching on its own (this is as it should be).
+
+But leaving caching completely up to the user isn't ideal either, since some 
+objects look like they can't be serialized and cached.  However, the straight 
+JSON strings we get back from the server certainly can be cached, and server 
+comms is the bottleneck.
+
+So I'm leaning towards some sort of user-settable flag that tells the client 
+that it should cache specific calls.
+
+See t/cache_test.py for what I'm working towards.
+
 ## TBD
-- The client isn't doing any caching on its own (as it should be), but I'm starting to 
-  think about providing an interface for scripts so they can request caching.  See 
-  t/cache_test.py.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
 - Ack through everything for "CHECK" and fix.
