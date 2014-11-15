@@ -113,8 +113,8 @@ tmt = lac.clients.Member(
 
 
 ### Redeem an essentia code
-### 9907
-tmt.empire.redeem_essentia_code( '56cc359e-8ba7-4db7-b608-8cb861c65510' )
+### 
+#tmt.empire.redeem_essentia_code( '56cc359e-8ba7-4db7-b608-8cb861c65510' )
 
 
 ### 

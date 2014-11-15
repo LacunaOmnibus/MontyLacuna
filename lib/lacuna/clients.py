@@ -33,7 +33,25 @@ class Guest(lacuna.bc.SubClass):
     If a config_file and config_section are passed in, the values in that config 
     file take precedence over any other values, including passed-in values.
 
-    Debugging
+    **Caching**
+    None of the MontyLacuna modules are performing any caching for you.  
+    However, if your script performs some selective caching, it could well run 
+    (much) faster, so there is a 'cache' attribute you can use in your 
+    scripts.
+
+    The 'cache' attribute is a beaker CacheManager object, with a file-based 
+    cache already set up for you.
+
+
+
+        #def get_req():
+        #    resp = requests.post( url, request_json )
+        #    return resp
+        #req_cache = self.cache.get_cache('request_cache')
+        #cache_key = method + repr(params)
+        #resp = req_cache.get( key = cache_key, createfunc = get_req )
+
+    **Debugging**
         To take a look at the actual JSON that would be sent to the TLE 
         servers for a specific method call, in your calling code you can set a 
         debugging method on your client, eg:
@@ -95,10 +113,6 @@ class Guest(lacuna.bc.SubClass):
         self.request_logger.info('Creating a new client',extra=log_opts)
 
         self.set_up_cache()
-
-    def clear_cache(self):
-        req_cache = self.cache.get_cache('request_cache')
-        req_cache.clear()
 
     def set_up_cache(self):
         libdir      = os.path.abspath(os.path.dirname(__file__))
