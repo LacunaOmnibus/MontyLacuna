@@ -2,6 +2,11 @@
 Getting Started
 ===============
 
+.. toctree::
+   :maxdepth: 2
+
+   config_file
+
 Install
 -------
 Info on how to install the package.

@@ -7,31 +7,26 @@ sys.path.append(libdir)
 
 import lacuna as lac
 
-
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'play_test',
 )
 
 
-### 
-### How about leaving out the my_key_name?
-###
-### The key then gets created by client.send() as a join of send()'s args -- 
-### every send() call gets cached as long as cacheon is turned on.  The user 
-### just specifies the cache name.  He can later clear the entire cache by 
-### name.
-###
-### I think that's the way to go.
-###
-### Forcing the user to cacheon and then immediately cacheoff for every call 
-### is going to get tedious quick.
-###
-glc.cacheon( 'my_cache_name', 'my_key_name', 3600 )     # doesn't exist
+print( "START TIME", datetime.datetime.now() )
+print( "----------------------" )
 
-my_planet = glc.get_body_byname( pname )
-glc.cacheoff(  )                                # doesn't exist
+glc.cache_on( 'my_cache_name', 3600 )
+my_planet_one = glc.get_body_byname("bmots01")
+print( datetime.datetime.now() )
+my_planet_one = glc.get_body_byname("bmots01")
+print( datetime.datetime.now() )
 
-    ...later, optionally...
-glc.clear_cache( 'my_cache_name', my_key_name )
+glc.cache_clear()
+print( "----------------------" )
+
+my_planet_one = glc.get_body_byname("bmots01")
+print( datetime.datetime.now() )
+my_planet_one = glc.get_body_byname("bmots01")
+print( datetime.datetime.now() )
 

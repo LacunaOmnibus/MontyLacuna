@@ -42,15 +42,6 @@ class Guest(lacuna.bc.SubClass):
     The 'cache' attribute is a beaker CacheManager object, with a file-based 
     cache already set up for you.
 
-
-
-        #def get_req():
-        #    resp = requests.post( url, request_json )
-        #    return resp
-        #req_cache = self.cache.get_cache('request_cache')
-        #cache_key = method + repr(params)
-        #resp = req_cache.get( key = cache_key, createfunc = get_req )
-
     **Debugging**
         To take a look at the actual JSON that would be sent to the TLE 
         servers for a specific method call, in your calling code you can set a 
@@ -112,9 +103,9 @@ class Guest(lacuna.bc.SubClass):
         }
         self.request_logger.info('Creating a new client',extra=log_opts)
 
-        self.set_up_cache()
+        self._set_up_cache()
 
-    def set_up_cache(self):
+    def _set_up_cache(self):
         libdir      = os.path.abspath(os.path.dirname(__file__))
         vardir      = libdir + "/../../var"
         cachedir    = vardir + "/cache"
@@ -306,15 +297,20 @@ class Guest(lacuna.bc.SubClass):
         emp_name = self._determine_empname()
         l = self.request_logger
 
-        #def get_req():
-        #    resp = requests.post( url, request_json )
-        #    return resp
-        #req_cache = self.cache.get_cache('request_cache')
-        #cache_key = method + repr(params)
-        #resp = req_cache.get( key = cache_key, createfunc = get_req )
+        def get_req():
+            self._from_cache = False
+            resp = requests.post( url, request_json )
+            return resp
 
-        ### Skip the cache altogether
-        resp = requests.post( url, request_json )
+        resp = ''
+        self._from_cache = False
+        if self._cache_on:
+            cache = self.cache.get_cache(self._cache_name, type='file', expire=self._cache_exp)
+            cache_key = method + repr(params)
+            self._from_cache = True
+            resp = cache.get( key = cache_key, createfunc = get_req )
+        else:
+            resp = requests.post( url, request_json )
 
         ### The json parser will happily return a result when handed a raw 
         ### string instead of json (json.dumps("foobar") works just fine).  
@@ -371,10 +367,11 @@ class Guest(lacuna.bc.SubClass):
                 self.request_logger.error("("+str(error.code)+") "+error.text, extra=log_opts)
                 raise error
         else:
-            self.request_logger.info('Success', extra=log_opts)
+            cache_text = "cache" if self._from_cache else "server call"
+            self.request_logger.info('Success - origin '+cache_text, extra=log_opts)
             thingy = json.loads( resp.text )
 
-        if self.sleep_on_call:
+        if self.sleep_on_call and not self._from_cache:
             time.sleep( float(self.sleep_on_call) )
         
         ### thingy contains:
@@ -394,7 +391,34 @@ class Guest(lacuna.bc.SubClass):
 ################################################################
 
 class Member(Guest):
-    """ Members are logged in; username and password are required.  """
+    """ Members are logged in; username and password are required.  
+
+    Attributes:
+        >>> 
+        config_file
+        config_section
+        host
+        logfile
+        proto
+        username
+        password
+        sleep_on_call
+        sleep_after_error
+        show_captcha
+        warn_on_sleep
+    """
+
+    ### These attributes can not be passed in as constructor arguments:
+    ### _cache_exp      Integer seconds for cache entry expiration
+    ### _cache_name     Name of the cache namespace.  Not an individual cache
+    ###                 entry key.
+    ### _cache_on       Boolean.  If true, JSON responses are cached, using
+    ###                 the joined parameters as the cache entry key.
+    ### _from_cache     Boolean.  Hard set to False on each call to send(),
+    ###                 it's then set to True if caching is on AND if we 
+    ###                 actually pulled our data from the cache.  In that 
+    ###                 case, we won't perform our standard per-call sleep.
+
     def __init__( self,
             config_file:str         = '',
             config_section:str      = '',
@@ -427,7 +451,52 @@ class Member(Guest):
         if not self.username or not self.password:
             raise AttributeError("username and password are required.")
 
+        self._cache_on = False
         self.login()
+
+    def cache_on(self, name:str, expiry:int=3600):
+        """ Turn the cache on.
+
+        Arguments:
+            - name -- String namespace to use for caching data
+            - expiry -- Integer seconds after which cached data is no longer valid.  Defaults to 3600 (one hour).
+        """
+        self._cache_exp = expiry
+        self._cache_name = name
+        self._cache_on = True
+
+    def cache_off(self):
+        """ Turn caching off.
+        Does not clear any existing caches, only stops pulling data from them.
+        """
+        self._cache_on = False
+
+    def cache_clear(self, name:str = ''):
+        """ Clears a named cache.  If a cache name is not mentioned, clears the most-recently used cache.
+
+        Arguments:
+            - name -- String; name of the cache to clear.  Defaults to the cache most recently used.
+
+        ::
+
+            client.cache_on('cache_one' )
+            client.cache_on('cache_two' )
+
+            client.cache_clear()                # clear cache_two implicitly
+            client.cache_clear( 'cache_one' )   # clear cache_one explicitly
+
+        Returns True if a cache was cleared, false if no name was passed in and 
+        no cache has yet been used by this client (so there's no 
+        "most-recently-used" cache name to clear).
+        """
+        if not name:
+            if self._cache_name:
+                name = self._cache_name
+            else:
+                return False
+        cache = self.cache.get_cache(name)
+        cache.clear()
+        return True
 
     def get_alliance(self):
         return lacuna.alliance.Alliance( self )

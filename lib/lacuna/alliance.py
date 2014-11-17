@@ -35,7 +35,7 @@ class MyAlliance(Alliance):
 
     You'll normally get at this via the clients.Member's get_my_alliance() 
     method:
-            my_alliance = my_client.get_my_alliance()
+    ``my_alliance = my_client.get_my_alliance()``
 
     Attributes:
         >>> 

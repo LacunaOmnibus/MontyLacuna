@@ -8,7 +8,9 @@ from lacuna.exceptions import \
 class Body(lacuna.bc.LacunaObject):
     """
     Attributes:
-        >>> 
+
+    ::
+
         id                          "id-goes-here",
         x                           -4,
         y                           10,
@@ -96,6 +98,7 @@ class Body(lacuna.bc.LacunaObject):
                                         "total" : 0,
                                         "spent" : 0
                                     }
+
     """
 
     path = 'body'
@@ -166,7 +169,9 @@ class MyBody(Body):
     empire.
 
     Attributes:
-        >>> 
+
+    ::
+
         id                  "id-goes-here",
         x                   -4,
         y                   10,
@@ -355,8 +360,7 @@ class MyBody(Body):
         Requires a list of building IDs to be repaired.
 
         Returns a dict including the key 'buildings', containing:
-            >>> 
-            id  -- building dict
+            - id -- building dict
         """
         pass
 
@@ -368,16 +372,17 @@ class MyBody(Body):
         Arguments:
             - arrangement -- A list of dicts describing your new surface arrangement
 
-                >>> 
-                [
-                    {
-                        'id': integer ID of the building to move,
-                        'x':  integer X coordinate to move to,
-                        'y':  integer y coordinate to move to,
-                    },
-                    { another building to move, same format as above },
-                    etc
-                ]
+                ::
+
+                    [
+                        {
+                            'id': integer ID of the building to move,
+                            'x':  integer X coordinate to move to,
+                            'y':  integer y coordinate to move to,
+                        },
+                        { another building to move, same format as above },
+                        etc
+                    ]
 
         Returns a dict including the key 'moved', which is a list of dicts of 
         buildings that were moved.  This returned list is identical to the 
@@ -394,8 +399,8 @@ class MyBody(Body):
     @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
     def get_buildable( self, x:int, y:int, tag:str = '', *args, **kwargs ):
-        """ Get a list of buildings that can be built on the indicated 
-        coords.
+        """ 
+        Get a list of buildings that can be built on the indicated coords.
 
         Arguments:
             - x -- Required integer X coordinate where you want to place the building
@@ -407,53 +412,58 @@ class MyBody(Body):
         Resources, etc.
 
         A complete list of tags can be found at:
-            https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29
+        https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29
 
         Sending an invalid tag is not an error, it simply returns zero 
         results.
 
         Returns a dict that includes the key 'buildable', which is a list of 
         dicts keyed off the human-readable building name:
-        >>> 
-        [
-            'Water Purification Plant': {
-                'build': {
-                    'can': 1,
-                    'cost': {   'energy': '64',
+ 
+            ::
+
+                buildable = [
+                    'Water Purification Plant': {
+                        'build': {
+                            'can': 1,
+                            'cost': {
+                                'energy': '64',
                                 'food': '72',
                                 'ore': '88',
                                 'time': '15',
                                 'waste': '16',
                                 'water': '8'
                             },
-                    'no_plot_use': '',
-                    'reason': '',
-                    'tags': ['Resources', 'Water', 'Now']
-                },
-                'image': 'waterpurification0',
-                'production': {
-                    'energy_capacity': 0,
-                    'energy_hour': '-3',
-                    'food_capacity': 0,
-                    'food_hour': '-1',
-                    'happiness_hour': '0',
-                    'ore_capacity': 0,
-                    'ore_hour': '-3',
-                    'waste_capacity': 0,
-                    'waste_hour': '5',
-                    'water_capacity': 0,
-                    'water_hour': '31'
-                },
-                'url': '/waterpurification'
-            },
-            { another building dict },
-            etc
-        ]
+                            'no_plot_use': '',
+                            'reason': '',
+                            'tags': [
+                                'Resources', 
+                                'Water', 
+                                'Now'
+                            ]
+                        },
+                        'image': 'waterpurification0',
+                        'production': {
+                            'energy_capacity': 0,
+                            'energy_hour': '-3',
+                            'food_capacity': 0,
+                            'food_hour': '-1',
+                            'happiness_hour': '0',
+                            'ore_capacity': 0,
+                            'ore_hour': '-3',
+                            'waste_capacity': 0,
+                            'waste_hour': '5',
+                            'water_capacity': 0,
+                            'water_hour': '31'
+                        },
+                        'url': '/waterpurification'
+                    },
+                ]
 
-        Raises ServerError 1009 if the passed coords are illegal for any reason (already 
-        occupied, out-of-bounds, etc)
-        """
-        pass
+    Raises ServerError 1009 if the passed coords are illegal for any reason (already 
+    occupied, out-of-bounds, etc)
+    """
+    pass
 
     @lacuna.bc.LacunaObject.call_body_meth
     def rename( self, name:str = '', *args, **kwargs ):
@@ -472,7 +482,9 @@ class MyBody(Body):
 class Planet(lacuna.bc.SubClass):
     """
     Attributes:
-        >>> 
+
+    ::
+
         id                  "id-goes-here",
         x                   -4,
         y                    10,
@@ -513,7 +525,9 @@ class Planet(lacuna.bc.SubClass):
 class SpaceStation(lacuna.bc.SubClass):
     """
     Attributes:
-        >>> 
+
+    ::
+
         id                  "id-goes-here",
         name                "ISS",
         x                   -4,

@@ -12,6 +12,8 @@ Contents:
    :maxdepth: 2
 
    getting_started
+   caching
+   glossary
    bc
    alliance
    body
