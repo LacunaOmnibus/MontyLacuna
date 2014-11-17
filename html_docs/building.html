@@ -6,10 +6,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>building &mdash; MontyLacuna 0.1 documentation</title>
+    <title>building &mdash; Monty Lacuna 0.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +20,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="next" title="lacuna.buildings package" href="lacuna.buildings.html" />
     <link rel="prev" title="body" href="body.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="body.html" title="body"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -84,8 +84,9 @@ So these have been renamed, adding the &#8220;<a href="#id1"><span class="proble
 name collisions.</p>
 <dl class="class">
 <dt id="lacuna.building.InBuildQueue">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">InBuildQueue</tt><big>(</big><em>mydict: dict</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#InBuildQueue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
+<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">InBuildQueue</tt><big>(</big><em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></p>
+<dl class="docutils">
 <dt>Attributes:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
 <span class="go">id                  &quot;building-id-goes-here&quot;,</span>
@@ -103,12 +104,13 @@ name collisions.</p>
 
 <dl class="class">
 <dt id="lacuna.building.MultiStorage">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MultiStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MultiStorage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MultiStorage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for the storage buildings that store a variegated resource 
+<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MultiStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MultiStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<p>Base class for the storage buildings that store a variegated resource 
 type, eg food or ore.</p>
 <dl class="method">
 <dt id="lacuna.building.MultiStorage.dump">
-<tt class="descname">dump</tt><big>(</big><em>res_type: str=''</em>, <em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MultiStorage.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MultiStorage.dump" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">dump</tt><big>(</big><em>res_type: str=''</em>, <em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MultiStorage.dump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the stored resource into waste</p>
 </dd></dl>
 
@@ -116,8 +118,9 @@ type, eg food or ore.</p>
 
 <dl class="class">
 <dt id="lacuna.building.MyBuilding">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MyBuilding</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
+<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MyBuilding</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<dl class="docutils">
 <dt>Attributes:</dt>
 <dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
 <span class="go">id              Integer ID of the building itself</span>
@@ -147,7 +150,7 @@ type, eg food or ore.</p>
 </dl>
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.build">
-<tt class="descname">build</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.build" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">build</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.build" title="Permalink to this definition">¶</a></dt>
 <dd><p>Actually places a building on the requested coords, assuming the building is
 buildable, the coords are empty, and a plot is available.
 After calling build(), your &#8220;new building&#8221; object will be be an &#8220;existing building&#8221;
@@ -156,7 +159,7 @@ object, capable of calling the rest of the building methods.</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_building_meth">
-<tt class="descname">call_building_meth</tt><big>(</big><em>func</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.call_building_meth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.call_building_meth" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">call_building_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_building_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Calls a server method that requires a id, but no body_id.
 This is the decorator that most MyBuilding methods will use.
@@ -166,7 +169,7 @@ back to them in kwargs[&#8216;rslt&#8217;].</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_naked_meth">
-<tt class="descname">call_naked_meth</tt><big>(</big><em>func</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.call_naked_meth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_meth" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">call_naked_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Some building methods require neither a body_id nor a id (see 
 spaceport.py for examples).
@@ -176,7 +179,7 @@ back to them in kwargs[&#8216;rslt&#8217;].</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_naked_returning_meth">
-<tt class="descname">call_naked_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.call_naked_returning_meth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_returning_meth" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">call_naked_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_returning_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Calls a server method that does not require id or body_id.
 Rather than simply passing back the data returned from the TLE server, 
@@ -188,7 +191,7 @@ using this, there&#8217;s no need to decorate with
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_named_meth">
-<tt class="descname">call_named_meth</tt><big>(</big><em>func</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.call_named_meth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_meth" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">call_named_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.  
 Calls a server method that requires a id, but no body_id.
 Expects named arguments.  This is the &#8216;new&#8217; way of doing it, but there are
@@ -197,7 +200,7 @@ fairly few methods that work this way.  See generate_singularity()</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_named_returning_meth">
-<tt class="descname">call_named_returning_meth</tt><big>(</big><em>func</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.call_named_returning_meth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_returning_meth" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">call_named_returning_meth</tt><big>(</big><em>func</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_returning_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.  
 Calls a server method that requires a id, but no body_id.
 Expects named arguments, and returns the value from the locally-called 
@@ -209,7 +212,7 @@ using this, there&#8217;s no need to decorate with
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_returning_meth">
-<tt class="descname">call_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.call_returning_meth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.call_returning_meth" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">call_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_returning_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Calls a server method that requires a id, but no body_id.
 Rather than simply passing back the data returned from the TLE server, 
@@ -220,20 +223,20 @@ the building status if it was included.</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.do_upgrade">
-<tt class="descname">do_upgrade</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.do_upgrade"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.do_upgrade" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">do_upgrade</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.do_upgrade" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the current building to the build queue.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.get_stats_for_level">
-<tt class="descname">get_stats_for_level</tt><big>(</big><em>level: int</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.get_stats_for_level"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.get_stats_for_level" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_stats_for_level</tt><big>(</big><em>level: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.get_stats_for_level" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns what the stats for this building would be at the requested level.  The
 hypothetical stats are returned in rv[&#8216;building&#8217;].</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.repair">
-<tt class="descname">repair</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.repair"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.repair" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">repair</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.repair" title="Permalink to this definition">¶</a></dt>
 <dd><p>Repairs a building, provided you have enough resources onsite.
 See the repair_costs building attribute (it&#8217;s a dict) before calling
 repair to determine how much res the repair will take.</p>
@@ -241,7 +244,7 @@ repair to determine how much res the repair will take.</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.require_existing">
-<tt class="descname">require_existing</tt><big>(</big><em>func</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.require_existing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.require_existing" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">require_existing</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.require_existing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Many building methods only make sense to be called on a building that 
 actually already exists.  Add this decorator to those methods.</p>
@@ -249,7 +252,7 @@ actually already exists.  Add this decorator to those methods.</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.set_building_status">
-<tt class="descname">set_building_status</tt><big>(</big><em>func</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#MyBuilding.set_building_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.MyBuilding.set_building_status" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_building_status</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.set_building_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Much like LacunaObject.set_empire_status.  A few of the Building server 
 methods return both empire status and building status.  So we&#8217;ll still 
@@ -261,12 +264,13 @@ but we&#8217;ll also decorate with this to set the body status.</p>
 
 <dl class="class">
 <dt id="lacuna.building.SingleStorage">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">SingleStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#SingleStorage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.SingleStorage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Base class for the storage buildings that store a singular resource 
+<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">SingleStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.SingleStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<p>Base class for the storage buildings that store a singular resource 
 type, eg water or energy.</p>
 <dl class="method">
 <dt id="lacuna.building.SingleStorage.dump">
-<tt class="descname">dump</tt><big>(</big><em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/building.html#SingleStorage.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.building.SingleStorage.dump" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">dump</tt><big>(</big><em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.SingleStorage.dump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the stored resource into waste</p>
 </dd></dl>
 
@@ -488,7 +492,7 @@ type, eg water or energy.</p>
         <li class="right" >
           <a href="body.html" title="body"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

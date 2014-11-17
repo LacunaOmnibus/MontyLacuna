@@ -6,10 +6,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started &mdash; MontyLacuna 0.1 documentation</title>
+    <title>Getting Started &mdash; Monty Lacuna 0.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +20,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="next" title="Config File" href="config_file.html" />
     <link rel="prev" title="Welcome to MontyLacuna’s documentation!" href="index.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="index.html" title="Welcome to MontyLacuna’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,13 +54,18 @@
             
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a></li>
+</ul>
+</div>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>Info on how to install the package.</p>
 </div>
 <div class="section" id="create-config-file">
 <h2>Create config file<a class="headerlink" href="#create-config-file" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="config_file.html"><em>Config File</em></a> document describes the config file pretty well, but I
+<p>The <a class="reference internal" href="config_file.html"><em>Config File</em></a> document describes the config file pretty well, but CHECK I
 also want to flesh out and document <tt class="docutils literal"><span class="pre">bin/create_default_config_file.py</span></tt>.</p>
 </div>
 <div class="section" id="set-up-your-environment">
@@ -85,7 +90,10 @@ variables, or virtualenv, or whatever.</p>
 <h2>Get your empire<a class="headerlink" href="#get-your-empire" title="Permalink to this headline">¶</a></h2>
 <p>Your empire info is already part of your client.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span> <span class="s">&quot;I have used&quot;</span><span class="p">,</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">rpc_count</span><span class="p">,</span> <span class="s">&quot;RPCs so far today.&quot;</span><span class="p">)</span>
-<span class="n">profle</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;I am from {} in {}, and my player name is {}.  I have won {} medals.&quot;</span>
+    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">country</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">player_name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">medals</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -185,7 +193,7 @@ variables, or virtualenv, or whatever.</p>
         <li class="right" >
           <a href="index.html" title="Welcome to MontyLacuna’s documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

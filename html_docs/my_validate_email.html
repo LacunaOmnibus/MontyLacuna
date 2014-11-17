@@ -6,10 +6,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>my_validate_email module &mdash; MontyLacuna 0.1 documentation</title>
+    <title>my_validate_email module &mdash; Monty Lacuna 0.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -20,10 +20,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MontyLacuna 0.1 documentation" href="index.html" />
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
     <link rel="prev" title="stats" href="stats.html" /> 
   </head>
   <body>
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="stats.html" title="stats"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -50,20 +50,25 @@
             
   <div class="section" id="module-my_validate_email">
 <span id="my-validate-email-module"></span><h1>my_validate_email module<a class="headerlink" href="#module-my_validate_email" title="Permalink to this headline">¶</a></h1>
+<p>The validate_email module in PyPI was written for python 2, but the only 
+things keeping it from being valid python 3 were three non-parenthesized 
+print() statements.</p>
+<p>This is that module with the print statements fixed.  Otherwise, the module is 
+unmolested from the original (version 1.2).</p>
 <dl class="exception">
 <dt id="my_validate_email.ServerError">
-<em class="property">exception </em><tt class="descclassname">my_validate_email.</tt><tt class="descname">ServerError</tt><a class="reference internal" href="_modules/my_validate_email.html#ServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#my_validate_email.ServerError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><tt class="descclassname">my_validate_email.</tt><tt class="descname">ServerError</tt><a class="headerlink" href="#my_validate_email.ServerError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
 </dd></dl>
 
 <dl class="function">
 <dt id="my_validate_email.get_mx_ip">
-<tt class="descclassname">my_validate_email.</tt><tt class="descname">get_mx_ip</tt><big>(</big><em>hostname</em><big>)</big><a class="reference internal" href="_modules/my_validate_email.html#get_mx_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#my_validate_email.get_mx_ip" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">my_validate_email.</tt><tt class="descname">get_mx_ip</tt><big>(</big><em>hostname</em><big>)</big><a class="headerlink" href="#my_validate_email.get_mx_ip" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="my_validate_email.validate_email">
-<tt class="descclassname">my_validate_email.</tt><tt class="descname">validate_email</tt><big>(</big><em>email</em>, <em>check_mx=False</em>, <em>verify=False</em>, <em>debug=False</em>, <em>smtp_timeout=10</em><big>)</big><a class="reference internal" href="_modules/my_validate_email.html#validate_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#my_validate_email.validate_email" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">my_validate_email.</tt><tt class="descname">validate_email</tt><big>(</big><em>email</em>, <em>check_mx=False</em>, <em>verify=False</em>, <em>debug=False</em>, <em>smtp_timeout=10</em><big>)</big><a class="headerlink" href="#my_validate_email.validate_email" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicate whether the given string is a valid email address
 according to the &#8216;addr-spec&#8217; portion of RFC 2822 (see section
 3.4.1).  Parts of the spec that are marked obsolete are <em>not</em>
@@ -118,7 +123,7 @@ to be in use as of 2011.</p>
         <li class="right" >
           <a href="stats.html" title="stats"
              >previous</a> |</li>
-        <li><a href="index.html">MontyLacuna 0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

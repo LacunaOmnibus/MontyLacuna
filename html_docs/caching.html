@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Caching &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Config File" href="config_file.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="glossary.html" title="Glossary"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="config_file.html" title="Config File"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="caching">
+<h1>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Almost every MontyLacuna method call represents a communication with the TLE
+server.  This communication takes time, and an additional second is used by
+MontyLacuna to make sure that we don&#8217;t swamp the server with too many requests,
+resulting in a mandatory one minute lockout.</p>
+<p>Often, your code will need to re-access the same information more than once,
+or even access information that you&#8217;ve recently accessed in an entirely
+different script.  In these cases, you can make use of the client.Member
+class&#8217;s built-in caching facility.</p>
+</div>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>import lacuna
+
+glc = lacuna.clients.Member( connection args )
+
+### Caching is not turned on by default.
+
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+
+glc.cache_on( &#39;my_planets&#39;, 3600 )              # Turn caching on
+
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
+
+my_planet_one = glc.get_body_byname(&quot;Mars&quot;)     # takes 1-3 seconds
+my_planet_one = glc.get_body_byname(&quot;Mars&quot;)     # takes 4 or 5 milliseconds
+
+glc.cache_clear( &#39;my_planets&#39; )                 # clear out this cache
+
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
+
+glc.cache_off()                                 # Turn caching off altogether
+
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+
+glc.cache_on( &#39;my_planets&#39;, 3600 )              # Turn caching back on
+
+my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>When you turn caching on, you pass in a name and an expiration time.  While
+caching is on, every request to the server will be curried, so when two
+identical requests are made, the second returns the same data that was returned
+by the first, without having to re-query the server.  You can have multiple
+caches, switching between them by simply calling cache_on() with the name of the
+cache you want to use.</p>
+<p>It&#8217;s important to understand that the name you&#8217;re passing to <tt class="docutils literal"><span class="pre">cache_on()</span></tt> is a
+namespace name, not a specific cache key.  Individual cache keys will be
+generated for you, and are invisible to you.  So a single cache name can safely
+contain multiple different types of data.  The cache keys are determined by both
+the server method you&#8217;re calling and the parameters you&#8217;re passing to that
+method.</p>
+<p>Certain actions you take will invalidate your cached data.  In this scenario:</p>
+<ul class="simple">
+<li>Turn caching on</li>
+<li>Get list of buildings on the surface of a planet</li>
+<li>Build a new building on that planet</li>
+<li>Get list of buildings on the surface of that same planet<ul>
+<li>GONNNGG!  Since caching is turned on, we&#8217;ll get the same list we had
+before, which does not include our new building.</li>
+</ul>
+</li>
+</ul>
+<p>In that case, you&#8217;d want to clear out the cache after constructing your new
+building; this would cause the next &#8220;get list of buildings&#8221; to actually hit the
+server again, and the retrieved list would now contain your new building.</p>
+<p>You&#8217;re encouraged to use multiple named caches in your code.  This way, you can
+clear out any cache namespace that becomes invalid because of some other action,
+while maintaining the cached data in your other namespaces.</p>
+<p>Cached data is saved to local files, so accessing the same named cache between
+different runs of a script, or even between two entirely different scripts, will
+make use of your caches.</p>
+<span class="target" id="module-lacuna.clients"></span><dl class="method">
+<dt>
+<tt class="descclassname">Member.</tt><tt class="descname">cache_on</tt><big>(</big><em>name: str</em>, <em>expiry: int=3600</em><big>)</big></dt>
+<dd><p>Turn the cache on.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String namespace to use for caching data</li>
+<li>expiry &#8211; Integer seconds after which cached data is no longer valid.  Defaults to 3600 (one hour).</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descclassname">Member.</tt><tt class="descname">cache_off</tt><big>(</big><big>)</big></dt>
+<dd><p>Turn caching off.
+Does not clear any existing caches, only stops pulling data from them.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descclassname">Member.</tt><tt class="descname">cache_clear</tt><big>(</big><em>name: str=''</em><big>)</big></dt>
+<dd><p>Clears a named cache.  If a cache name is not mentioned, clears the most-recently used cache.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String; name of the cache to clear.  Defaults to the cache most recently used.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_two&#39;</span> <span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">()</span>                <span class="c"># clear cache_two implicitly</span>
+<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">(</span> <span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>   <span class="c"># clear cache_one explicitly</span>
+</pre></div>
+</div>
+<p>Returns True if a cache was cleared, false if no name was passed in and 
+no cache has yet been used by this client (so there&#8217;s no 
+&#8220;most-recently-used&#8221; cache name to clear).</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Caching</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="config_file.html"
+                        title="previous chapter">Config File</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="glossary.html"
+                        title="next chapter">Glossary</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/caching.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="glossary.html" title="Glossary"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="config_file.html" title="Config File"
+             >previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -2,14 +2,20 @@
 Getting Started
 ===============
 
+.. toctree::
+   :maxdepth: 2
+
+   config_file
+
 Install
 -------
 Info on how to install the package.
 
 Create config file
 ------------------
-The :doc:`config_file` document describes the config file pretty well, but I 
+The :doc:`config_file` document describes the config file pretty well, but CHECK I 
 also want to flesh out and document ``bin/create_default_config_file.py``.
+
 
 Set up your environment
 -----------------------
@@ -38,7 +44,10 @@ Your empire info is already part of your client.
 ::
 
     print( "I have used", my_client.empire.rpc_count, "RPCs so far today.")
-    profle = my_client.empire.view_profile()
+    profile = my_client.empire.view_profile()
+    print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
+        .format(profile.city, profile.country, profile.player_name, len(profile.medals.keys()))
+    )
 
 Get info on your alliance
 -------------------------

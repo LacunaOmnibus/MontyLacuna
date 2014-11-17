@@ -12,7 +12,8 @@ Contents:
    :maxdepth: 2
 
    getting_started
-   config_file
+   caching
+   glossary
    bc
    alliance
    body
@@ -30,6 +31,7 @@ Indices and tables
 ==================
 
 * :ref:`genindex`
+* :ref:`glossary`
 * :ref:`modindex`
 * :ref:`search`
 
