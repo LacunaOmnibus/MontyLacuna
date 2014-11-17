@@ -1,0 +1,8 @@
+[2014-11-17 15:10:38] (INFO) - tmtowtdi - empty::empty - Creating a new client
+[2014-11-17 15:10:39] (INFO) - tmtowtdi - empire::get_status - Success - origin server call
+[2014-11-17 15:10:40] (INFO) - tmtowtdi - body::get_buildings - Success - origin cache
+[2014-11-17 15:10:40] (INFO) - tmtowtdi - body::get_buildings - Success - origin cache
+[2014-11-17 15:10:40] (INFO) - tmtowtdi - body::get_buildings - Success - origin server call
+[2014-11-17 15:10:41] (INFO) - tmtowtdi - body::get_buildings - Success - origin cache
+[2014-11-17 15:22:42] (INFO) - tmtowtdi - empty::empty - Creating a new client
+[2014-11-17 15:22:42] (INFO) - tmtowtdi - empire::get_status - Success - origin server call

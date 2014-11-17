@@ -56,9 +56,14 @@
 <span id="captcha"></span><h1>captcha<a class="headerlink" href="#module-lacuna.captcha" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.captcha.Captcha">
+<<<<<<< HEAD
 <em class="property">class </em><tt class="descclassname">lacuna.captcha.</tt><tt class="descname">Captcha</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
 <p>Fetches, displays, and solves graphical captchas.</p>
+=======
+<em class="property">class </em><tt class="descclassname">lacuna.captcha.</tt><tt class="descname">Captcha</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/captcha.html#Captcha"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.captcha.Captcha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches, displays, and solves graphical captchas.</p>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <p>General usage will be:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
 <span class="go">cap = my_client.get_captcha()</span>
@@ -69,7 +74,11 @@
 </div>
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.fetch">
+<<<<<<< HEAD
 <tt class="descname">fetch</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.fetch" title="Permalink to this definition">¶</a></dt>
+=======
+<tt class="descname">fetch</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/captcha.html#Captcha.fetch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.captcha.Captcha.fetch" title="Permalink to this definition">¶</a></dt>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dd><p>Fetches a captcha for the user to solve from the server.</p>
 <p>Generally, you don&#8217;t need to call this, use showit() instead.</p>
 <p>This mirrors the TLE Captcha::fetch() method.  It fetches the url and 
@@ -87,7 +96,11 @@ guid for the captcha, but does not actually fetch the captcha image
 
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.prompt_user">
+<<<<<<< HEAD
 <tt class="descname">prompt_user</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.prompt_user" title="Permalink to this definition">¶</a></dt>
+=======
+<tt class="descname">prompt_user</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/captcha.html#Captcha.prompt_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.captcha.Captcha.prompt_user" title="Permalink to this definition">¶</a></dt>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dd><p>Prompts the user to solve the displayed captcha.
 It&#8217;s not illegal to call this without first calling solveit(), but 
 doing so makes no sense.</p>
@@ -95,7 +108,11 @@ doing so makes no sense.</p>
 
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.showit">
+<<<<<<< HEAD
 <tt class="descname">showit</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.showit" title="Permalink to this definition">¶</a></dt>
+=======
+<tt class="descname">showit</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/captcha.html#Captcha.showit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.captcha.Captcha.showit" title="Permalink to this definition">¶</a></dt>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dd><p>Actually downloads the captcha image, and attempts to display it  
 to the user in one of several browsers.</p>
 <p>If fetch() is called first, showit() uses that fetched data, but this 
@@ -104,14 +121,22 @@ is not necessary.  showit() will call fetch for you.</p>
 
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.solve">
+<<<<<<< HEAD
 <tt class="descname">solve</tt><big>(</big><em>guid: str</em>, <em>solution: str</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.solve" title="Permalink to this definition">¶</a></dt>
+=======
+<tt class="descname">solve</tt><big>(</big><em>guid: str</em>, <em>solution: str</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/lacuna/captcha.html#Captcha.solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.captcha.Captcha.solve" title="Permalink to this definition">¶</a></dt>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dd><p>Mirrors the TLE Captcha::solve() method, but unless you really 
 need this and you really know why, use solveit() instead.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.solveit">
+<<<<<<< HEAD
 <tt class="descname">solveit</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.solveit" title="Permalink to this definition">¶</a></dt>
+=======
+<tt class="descname">solveit</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/lacuna/captcha.html#Captcha.solveit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.captcha.Captcha.solveit" title="Permalink to this definition">¶</a></dt>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dd><p>Sends the user&#8217;s response to the server to check for accuracy.
 Returns True if the user&#8217;s response was correct.  Raises 
 CaptchaResponseError otherwise.</p>

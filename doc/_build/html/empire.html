@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>empire &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="exceptions" href="exceptions.html" />
+    <link rel="prev" title="clients" href="clients.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="exceptions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="clients.html" title="clients"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lacuna.empire">
+<span id="empire"></span><h1>empire<a class="headerlink" href="#module-lacuna.empire" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.empire.Boosts">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">Boosts</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.Boosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">food            &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">ore             &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">energy          &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">water           &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">happiness       &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">storage         &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">building        &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">spy_training    &quot;01 31 2010 13:09:05 +0600&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.Empire">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">Empire</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.Empire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<p>A generic Empire object that can be used with a non-logged-in Guest.</p>
+<dl class="method">
+<dt id="lacuna.empire.Empire.fetch_captcha">
+<tt class="descname">fetch_captcha</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.empire.Empire.fetch_captcha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns dict containing &#8216;guid&#8217; and &#8216;url&#8217; keys.</p>
+<p>There also exists a Captcha class, which requires the user to already 
+be logged in.  This fetch_captcha method exists to allow a brand new, 
+not-yet-logged-in user to get a captcha, the solution to which they 
+can pass to create().</p>
+<p>If you&#8217;re looking for a captcha for anything other than new user 
+creation, go use the Captcha class.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.FoundEmpire">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">FoundEmpire</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.FoundEmpire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><ul class="first last simple">
+<li>id &#8211; Integer ID of the empire</li>
+<li>name &#8211; String name of the empire</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.MyEmpire">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">MyEmpire</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.empire.Empire" title="lacuna.empire.Empire"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.Empire</span></tt></a></p>
+<p>The Empire object belonging to the current Member&#8217;s empire.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">id                      &quot;xxxx&quot;,</span>
+<span class="go">rpc_count               321, # the number of calls made to the server</span>
+<span class="go">is_isolationist         1, # hasn&#39;t sent out probes or colony ships</span>
+<span class="go">name                    &quot;The Syndicate&quot;,</span>
+<span class="go">status_message          &quot;A spy&#39;s work is never done.&quot;,</span>
+<span class="go">home_planet_id          &quot;id-goes-here&quot;,</span>
+<span class="go">has_new_messages        4,</span>
+<span class="go">latest_message_id       1234,</span>
+<span class="go">essentia                0,</span>
+<span class="go">planets                 {</span>
+<span class="go">                            &quot;id-goes-here&quot; : &quot;Earth&quot;,</span>
+<span class="go">                            &quot;id-goes-here&quot; : &quot;Mars</span>
+<span class="go">                        },</span>
+<span class="go">tech_level&quot;             20,  # Highests level university has gotten to.</span>
+<span class="go">self_destruct_active    0,</span>
+<span class="go">self_destruct_date      &quot;&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_building">
+<tt class="descname">boost_building</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_building" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% building speed boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_energy">
+<tt class="descname">boost_energy</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% energy boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_food">
+<tt class="descname">boost_food</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_food" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% food boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_happiness">
+<tt class="descname">boost_happiness</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_happiness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% happiness boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_ore">
+<tt class="descname">boost_ore</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_ore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% ore boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_storage">
+<tt class="descname">boost_storage</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% storage boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.boost_water">
+<tt class="descname">boost_water</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.boost_water" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +25% water boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.change_password">
+<tt class="descname">change_password</tt><big>(</big><em>oldpw: str</em>, <em>newpw: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.change_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes your full password.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>password &#8211; String; the desired new password</li>
+<li>confirmation &#8211; Must be the same string as &#8216;password&#8217;</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.disable_self_destruct">
+<tt class="descname">disable_self_destruct</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.disable_self_destruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simply does not work on the server side.  This is a known problem, 
+and the reason enable_self_destruct() has been disabled.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.edit_profile">
+<tt class="descname">edit_profile</tt><big>(</big><em>profile: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.edit_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit your empire&#8217;s profile.  Requires that you&#8217;re logged in with 
+your real, not sitter, password.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">profile     Dict of profile settings with the keys:</span>
+<span class="go">                description</span>
+<span class="go">                email</span>
+<span class="go">                sitter_password</span>
+<span class="go">                status_message</span>
+<span class="go">                city</span>
+<span class="go">                country</span>
+<span class="go">                notes</span>
+<span class="go">                skype</span>
+<span class="go">                player_name</span>
+<span class="go">                public_medals (list of medal IDs to display)</span>
+<span class="go">                skip_happiness_warnings</span>
+<span class="go">                skip_resource_warnings</span>
+<span class="go">                skip_pollution_warnings</span>
+<span class="go">                skip_medal_messages</span>
+<span class="go">                skip_facebook_wall_posts</span>
+<span class="go">                skip_found_nothing</span>
+<span class="go">                skip_excavator_resources</span>
+<span class="go">                skip_excavator_glyph</span>
+<span class="go">                skip_excavator_plan</span>
+<span class="go">                skip_spy_recovery</span>
+<span class="go">                skip_probe_detected</span>
+<span class="go">                skip_attack_messages</span>
+<span class="go">                skip_incoming_ships</span>
+</pre></div>
+</div>
+<blockquote class="last">
+<div>The skip_* keys all require 1 for &#8220;on&#8221; or 0 for &#8220;off&#8221;.</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.enable_self_destruct">
+<tt class="descname">enable_self_destruct</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.enable_self_destruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Immediately quits.  The server call is badly broken, and you should 
+never call this.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.find">
+<tt class="descname">find</tt><big>(</big><em>name_segment: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find an empire by name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; Standard TLE search string</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a list of empire.FoundEmpire objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.get_invite_friend_url">
+<tt class="descname">get_invite_friend_url</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_invite_friend_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>See the &#8216;referral_url&#8217; key in the returned dict.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.get_species_templates">
+<tt class="descname">get_species_templates</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_species_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the species templates that are presented to a new player 
+upon initial species creation (Average, Warmonger, Resilient, Viral, 
+etc).</p>
+<p>Returns a list of empire.SpeciesTemplate objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.get_status">
+<tt class="descname">get_status</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>There shouldn&#8217;t ever be a need to call this.  An empire status 
+block gets returned with every call, and the MyEmpire object&#8217;s 
+attributes get set each time as a result.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.invite_friend">
+<tt class="descname">invite_friend</tt><big>(</big><em>email</em>, <em>message=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.invite_friend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Doesn&#8217;t error, but doesn&#8217;t send email either.  Since the &#8216;forgot 
+my password&#8217; feature is exhibiting the same behavior, I&#8217;m going to 
+assume the server just isn&#8217;t configured to send mail anymore.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.redeem_essentia_code">
+<tt class="descname">redeem_essentia_code</tt><big>(</big><em>code: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.redeem_essentia_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Redeems an essentia code.</p>
+<p>Requires an essentia code, which is a uuid (eg 
+&#8216;56cc359e-8ba7-4db7-b608-8cb861c65510&#8217;).</p>
+<p>Essentia codes can be obtained by purchasing essentia, or sometimes by 
+admins during contests.  Each code can only be used once, so if you have 
+one, don&#8217;t share it with anybody; if they use it, the E represented by 
+that code will be gone.</p>
+<p>Yes, the example code above was a real E code, worth 10,000 E.  But only 
+on PT, and it&#8217;s been used already.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.redefine_species">
+<tt class="descname">redefine_species</tt><big>(</big><em>params: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.redefine_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actually does the deed of redefining a player&#8217;s species.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>params &#8211; Dict of species settings:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String name of the species (required)</li>
+<li>description &#8211; String</li>
+<li>min_orbit &#8211; Integer 1-7 inclusive</li>
+<li>max_orbit &#8211; Integer 1-7 inclusive.  Must be &gt;= min_orbit.</li>
+<li>manufacturing_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>deception_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>research_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>management_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>farming_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>mining_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>science_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>environmental_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>political_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>trade_affinity &#8211; Integer 1-7 inclusive.</li>
+<li>growth_affinity &#8211; Integer 1-7 inclusive.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.redefine_species_limits">
+<tt class="descname">redefine_species_limits</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.redefine_species_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the limits to be imposed if you redefine your species.</p>
+<dl class="docutils">
+<dt>Returns a dict:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&#39;can&#39;:              1,</span>
+<span class="go">&#39;essentia_cost&#39;:    100,</span>
+<span class="go">&#39;max_orbit&#39;:        3,</span>
+<span class="go">&#39;min_growth&#39;:       1,</span>
+<span class="go">&#39;min_orbit&#39;:        3,</span>
+<span class="go">&#39;reason&#39;:           None,</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>&#8216;can&#8217; will be 0 if the user currently cannot redefine.
+I do not understand why the min/max settings exist.
+If &#8216;can&#8217; is false, &#8216;reason&#8217; will contain a string explaining why 
+not.  eg &#8220;You have already redefined in the past 30 days&#8221;, etc.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.set_status_message">
+<tt class="descname">set_status_message</tt><big>(</big><em>message: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.set_status_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets your empire status message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.spy_training_boost">
+<tt class="descname">spy_training_boost</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.spy_training_boost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 5 E to set a +50% spy training boost for one week.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_boosts">
+<tt class="descname">view_boosts</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.view_boosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows your current boosts and their expiration dates.</p>
+<p>Returns an empire. Boosts object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_profile">
+<tt class="descname">view_profile</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.view_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>View your own empire&#8217;s profile.  Requires login with your real, not 
+sitter, password,</p>
+<p>Returns an empire.OwnProfile object.</p>
+<p>Throws 1015 (Sitters cannot modify preferences) if the user is 
+logged in with their sitter.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_public_profile">
+<tt class="descname">view_public_profile</tt><big>(</big><em>empire_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.view_public_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>View public profile info on any empire.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to view.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns an empire.PublicProfile object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.MyEmpire.view_species_stats">
+<tt class="descname">view_species_stats</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.view_species_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns information about your empire&#8217;s species.</p>
+<p>Returns a single empire.Species object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.OwnProfile">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">OwnProfile</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.OwnProfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>This is the user&#8217;s own profile info.  Another empire&#8217;s public profile 
+will contain less data.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">description                  &quot;description goes here&quot;,</span>
+<span class="go">status_message               &quot;status message goes here&quot;,</span>
+<span class="go">medals                       Dict:</span>
+<span class="go">                                {   &quot;Integer Medal ID&quot; : {</span>
+<span class="go">                                        &quot;name&quot; : &quot;Built Level 1 Building&quot;,</span>
+<span class="go">                                        &quot;image&quot; : &quot;building1&quot;,</span>
+<span class="go">                                        &quot;date&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">                                        &quot;public&quot; : 1,</span>
+<span class="go">                                        &quot;times_earned&quot; : 4       },</span>
+<span class="go">                                    ...       },</span>
+<span class="go">city                         &quot;Madison&quot;,</span>
+<span class="go">country                      &quot;USA&quot;,</span>
+<span class="go">notes                        &quot;notes go here&quot;,</span>
+<span class="go">skype                        &quot;joeuser47&quot;,</span>
+<span class="go">player_name                  &quot;Joe User&quot;,</span>
+<span class="go">skip_happiness_warnings      0,</span>
+<span class="go">skip_resource_warnings       0,</span>
+<span class="go">skip_pollution_warnings      0,</span>
+<span class="go">skip_medal_messages          0,</span>
+<span class="go">skip_facebook_wall_posts     0,</span>
+<span class="go">skip_found_nothing           0,</span>
+<span class="go">skip_excavator_resources     0,</span>
+<span class="go">skip_excavator_glyph         0,</span>
+<span class="go">skip_excavator_plan          0,</span>
+<span class="go">skip_spy_recovery            0,</span>
+<span class="go">skip_probe_detected          0,</span>
+<span class="go">skip_attack_messages         0,</span>
+<span class="go">skip_incoming_ships          0,</span>
+<span class="go">email                        &quot;joe@example.com&quot;,</span>
+<span class="go">sitter_password              &quot;abcdefgh&quot;    </span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.PublicProfile">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">PublicProfile</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.PublicProfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>This is the public profile of any empire.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">id                      &quot;empire-id-goes-here&quot;,</span>
+<span class="go">name                    &quot;Lacuna Expanse Corp&quot;,</span>
+<span class="go">colony_count            1,</span>
+<span class="go">status_message          &quot;Looking for Essentia.&quot;</span>
+<span class="go">description             &quot;We are the original inhabitants of the Lacuna Expanse.&quot;,</span>
+<span class="go">city                    &quot;Madison&quot;,</span>
+<span class="go">country                 &quot;USA&quot;,</span>
+<span class="go">skype                   &quot;joeuser47&quot;,</span>
+<span class="go">player_name             &quot;Joe User&quot;,</span>
+<span class="go">medals                  {</span>
+<span class="go">                            &quot;id-goes-here&quot; : {</span>
+<span class="go">                                &quot;name&quot; : &quot;Built Level 1 Building&quot;,</span>
+<span class="go">                                &quot;image&quot; : &quot;building1&quot;,</span>
+<span class="go">                                &quot;date&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">                            &quot;times_earned&quot; : 4</span>
+<span class="go">                            },</span>
+<span class="go">                            ...</span>
+<span class="go">                        },</span>
+<span class="go">last_login              &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">date_founded            &quot;01 31 2010 13:09:05 +0600&quot;,</span>
+<span class="go">species                 &quot;Lacunan&quot;,</span>
+<span class="go">alliance                {</span>
+<span class="go">                            &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                            &quot;name&quot; : &quot;The Confederacy&quot;</span>
+<span class="go">                        },</span>
+<span class="go">known_colonies          [</span>
+<span class="go">                            {</span>
+<span class="go">                                &quot;id&quot; : &quot;id-goes-here&quot;,</span>
+<span class="go">                                &quot;x&quot; : &quot;1&quot;,</span>
+<span class="go">                                &quot;y&quot; : &quot;-543&quot;,</span>
+<span class="go">                                &quot;name&quot; : &quot;Earth&quot;,</span>
+<span class="go">                                &quot;image&quot; : &quot;p12-3&quot;</span>
+<span class="go">                            },</span>
+<span class="go">                            ...</span>
+<span class="go">                        ]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.Species">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">Species</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.Species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>The attributes associated with an empire&#8217;s species.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name                     &quot;Human&quot;,</span>
+<span class="go">description              &quot;The descendants of Earth.&quot;,</span>
+<span class="go">min_orbit                3,</span>
+<span class="go">max_orbit                3,</span>
+<span class="go">manufacturing_affinity   4,</span>
+<span class="go">deception_affinity       4,</span>
+<span class="go">research_affinity        4,</span>
+<span class="go">management_affinity      4,</span>
+<span class="go">farming_affinity         4,</span>
+<span class="go">mining_affinity          4,</span>
+<span class="go">science_affinity         4,</span>
+<span class="go">environmental_affinity   4,</span>
+<span class="go">political_affinity       4,</span>
+<span class="go">trade_affinity           4,</span>
+<span class="go">growth_affinity          4</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.SpeciesTemplate">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">SpeciesTemplate</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.SpeciesTemplate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>These are the presets presented to a new player in the process of setting 
+up a new empire.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name                        &quot;Average&quot;, </span>
+<span class="go">description                 &quot;A race of average intellect, and weak constitution.&#39;,</span>
+<span class="go">min_orbit                   3,</span>
+<span class="go">max_orbit                   3,</span>
+<span class="go">manufacturing_affinity      4,</span>
+<span class="go">deception_affinity          4,</span>
+<span class="go">research_affinity           4,</span>
+<span class="go">management_affinity         4,</span>
+<span class="go">farming_affinity            4,</span>
+<span class="go">mining_affinity             4,</span>
+<span class="go">science_affinity            4,</span>
+<span class="go">environmental_affinity      4,</span>
+<span class="go">political_affinity          4,</span>
+<span class="go">trade_affinity              4,</span>
+<span class="go">growth_affinity             4</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="clients.html"
+                        title="previous chapter">clients</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="exceptions.html"
+                        title="next chapter">exceptions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/empire.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="exceptions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="clients.html" title="clients"
+             >previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

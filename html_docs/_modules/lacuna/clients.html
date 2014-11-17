@@ -1,0 +1,603 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.clients &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.clients</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">os.path</span><span class="o">,</span> <span class="nn">pprint</span><span class="o">,</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">threading</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">configparser</span>
+<span class="kn">import</span> <span class="nn">beaker.cache</span><span class="o">,</span> <span class="nn">beaker.util</span>
+<span class="kn">from</span> <span class="nn">my_validate_email</span> <span class="kn">import</span> <span class="n">validate_email</span>
+
+<span class="kn">import</span> <span class="nn">lacuna.alliance</span>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.body</span>
+<span class="kn">import</span> <span class="nn">lacuna.captcha</span>
+<span class="kn">import</span> <span class="nn">lacuna.empire</span>
+<span class="kn">import</span> <span class="nn">lacuna.exceptions</span>
+<span class="kn">import</span> <span class="nn">lacuna.inbox</span>
+<span class="kn">import</span> <span class="nn">lacuna.map</span>
+<span class="kn">import</span> <span class="nn">lacuna.stats</span>
+
+<span class="k">class</span> <span class="nc">Guest</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span>
+<div class="viewcode-block" id="Guest"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Guest">[docs]</a>    <span class="sd">&quot;&quot;&quot; Guest users are not logged in.</span>
+
+<span class="sd">    Accepts the following named arguments:</span>
+<span class="sd">        - config_file --  path to your configparser-friendly config file</span>
+<span class="sd">        - config_section -- the section in your config file to read from</span>
+<span class="sd">        - api_key -- your TLE api_key.  Omitting this is fine; the default key (the string &#39;anonymous&#39;) will be used.</span>
+<span class="sd">        - logfile -- path to your logfile.  Defaults to no logfile; only WARNING or higher log events will display to the terminal.</span>
+<span class="sd">        - proto -- http or https.  Defaults to http.</span>
+<span class="sd">        - host -- us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to us1.</span>
+<span class="sd">        - sleep_on_call -- Integer seconds.  Defaults to 1.  Number of seconds to sleep after each call to attempt to avoid using more than the limit of 60 RPCs per minute.</span>
+<span class="sd">        - sleep_on_error -- Boolean.  Defaults to True.  If we&#39;ve used over 60 RPCs in a minute, the server will produce an error, and if this setting is True, when we get that server error we&#39;ll sleep for a minute and then re-try our call.  If this setting is false, we&#39;ll throw an exception.</span>
+
+<span class="sd">    Generally, you&#39;ll omit all arguments except for config_file and </span>
+<span class="sd">    config_section, and just fill the appropriate values out in your config.</span>
+
+<span class="sd">    If a config_file and config_section are passed in, the values in that config </span>
+<span class="sd">    file take precedence over any other values, including passed-in values.</span>
+
+<span class="sd">    Debugging</span>
+<span class="sd">        To take a look at the actual JSON that would be sent to the TLE </span>
+<span class="sd">        servers for a specific method call, in your calling code you can set a </span>
+<span class="sd">        debugging method on your client, eg:</span>
+
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            empire.client.debugging_method = &#39;view_profile&#39;</span>
+<span class="sd">            empire.view_profile()</span>
+
+<span class="sd">        In this case, the call to view_profile() will cause the JSON that </span>
+<span class="sd">        would normally be sent to the server to instead be dumped to your </span>
+<span class="sd">        screen, after which the script will quit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">pp</span> <span class="o">=</span> <span class="n">pprint</span><span class="o">.</span><span class="n">PrettyPrinter</span><span class="p">(</span> <span class="n">indent</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">)</span>
+
+    <span class="n">config_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s">&#39;host&#39;</span><span class="p">,</span> <span class="s">&#39;proto&#39;</span><span class="p">,</span>
+        <span class="s">&#39;username&#39;</span><span class="p">,</span> <span class="s">&#39;password&#39;</span><span class="p">,</span> <span class="s">&#39;api_key&#39;</span><span class="p">,</span>
+        <span class="s">&#39;sleep_on_call&#39;</span><span class="p">,</span> <span class="s">&#39;sleep_after_error&#39;</span><span class="p">,</span> <span class="s">&#39;session_id&#39;</span><span class="p">,</span>
+        <span class="s">&#39;warn_on_sleep&#39;</span><span class="p">,</span> <span class="s">&#39;show_captcha&#39;</span><span class="p">,</span> <span class="s">&#39;logfile&#39;</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span>
+            <span class="n">api_key</span><span class="p">:</span><span class="nb">str</span>             <span class="o">=</span> <span class="s">&#39;anonymous&#39;</span><span class="p">,</span>
+            <span class="n">config_file</span><span class="p">:</span><span class="nb">str</span>         <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> 
+            <span class="n">config_section</span><span class="p">:</span><span class="nb">str</span>      <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">host</span><span class="p">:</span><span class="nb">str</span>                <span class="o">=</span> <span class="s">&#39;us1.lacunaexpanse.com&#39;</span><span class="p">,</span>
+            <span class="n">logfile</span><span class="p">:</span><span class="nb">str</span>             <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="p">:</span><span class="nb">str</span>            <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> 
+            <span class="n">proto</span><span class="p">:</span><span class="nb">str</span>               <span class="o">=</span> <span class="s">&#39;http&#39;</span><span class="p">,</span> 
+            <span class="n">session_id</span><span class="p">:</span><span class="nb">str</span>          <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> 
+            <span class="n">show_captcha</span><span class="p">:</span><span class="nb">bool</span>       <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="n">sleep_after_error</span><span class="p">:</span><span class="nb">bool</span>  <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> 
+            <span class="n">sleep_on_call</span><span class="p">:</span><span class="nb">int</span>       <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+            <span class="n">username</span><span class="p">:</span><span class="nb">str</span>            <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span> 
+            <span class="n">warn_on_sleep</span><span class="p">:</span><span class="nb">bool</span>      <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> 
+        <span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">config_file</span> <span class="ow">and</span> <span class="n">config_section</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config_file</span>    <span class="o">=</span> <span class="n">config_file</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config_section</span> <span class="o">=</span> <span class="n">config_section</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span>         <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_config_file</span><span class="p">(</span> <span class="n">config_file</span> <span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">config_section</span><span class="p">]:</span>
+                    <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">config_section</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">elif</span> <span class="n">config_file</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">EnvironmentError</span><span class="p">(</span><span class="s">&quot;Config file &quot;</span><span class="o">+</span><span class="n">config_file</span><span class="o">+</span><span class="s">&quot;: no such file or directory.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_list</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">eval</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_create_request_logger</span><span class="p">()</span>
+        <span class="n">emp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_empname</span><span class="p">()</span>
+        <span class="n">log_opts</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;empire&#39;</span><span class="p">:</span> <span class="n">emp_name</span><span class="p">,</span>
+            <span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="s">&#39;empty&#39;</span><span class="p">,</span>
+            <span class="s">&#39;method&#39;</span><span class="p">:</span> <span class="s">&#39;empty&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;Creating a new client&#39;</span><span class="p">,</span><span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_up_cache</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">req_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get_cache</span><span class="p">(</span><span class="s">&#39;request_cache&#39;</span><span class="p">)</span>
+        <span class="n">req_cache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set_up_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">libdir</span>      <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+        <span class="n">vardir</span>      <span class="o">=</span> <span class="n">libdir</span> <span class="o">+</span> <span class="s">&quot;/../../var&quot;</span>
+        <span class="n">cachedir</span>    <span class="o">=</span> <span class="n">vardir</span> <span class="o">+</span> <span class="s">&quot;/cache&quot;</span>
+        <span class="n">lockdir</span>     <span class="o">=</span> <span class="n">vardir</span> <span class="o">+</span> <span class="s">&quot;/cachelck&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">vardir</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cachedir</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">cachedir</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">lockdir</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">lockdir</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">EnvironmentError</span><span class="p">(</span><span class="s">&quot;You&#39;re missing var/ off your installation directory.  Fix your install.&quot;</span><span class="p">)</span>
+        <span class="n">cache_opts</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;cache.type&#39;</span><span class="p">:</span>       <span class="s">&#39;file&#39;</span><span class="p">,</span>
+            <span class="s">&#39;cache.data_dir&#39;</span><span class="p">:</span>   <span class="n">cachedir</span><span class="p">,</span>
+            <span class="s">&#39;cache.lock_dir&#39;</span><span class="p">:</span>   <span class="n">lockdir</span><span class="p">,</span>
+            <span class="s">&#39;expire&#39;</span><span class="p">:</span>           <span class="mi">3600</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">beaker</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">CacheManager</span><span class="p">(</span><span class="o">**</span><span class="n">beaker</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">parse_cache_config_options</span><span class="p">(</span><span class="n">cache_opts</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_create_request_logger</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Don&#39;t use logging.getLogger() to get at the logger.  Instead, use the </span>
+<span class="sd">        client.request_logger attribute.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">### logging.getLogger( &#39;logger_name&#39; ) returns a singleton, but we&#39;re </span>
+        <span class="c">### calling this logger creator once for each client.  There will </span>
+        <span class="c">### definitely be scripts with multiple clients.</span>
+        <span class="c">###</span>
+        <span class="c">### Originally, the &#39;logger_name&#39; being used here was static </span>
+        <span class="c">### (&quot;tle_request&quot;).  What was happening was that the second client </span>
+        <span class="c">### created was producing 2 log entries per call to log.LEVEL(msg), </span>
+        <span class="c">### and the third client created was producing 3 log entries, etc.  </span>
+        <span class="c">###</span>
+        <span class="c">### So each client needs to have his own distinctly-named logger.  And </span>
+        <span class="c">### since doing this every time I want a logger is tedious and </span>
+        <span class="c">### fraught:</span>
+        <span class="c">###    emp_name = self._determine_empname()</span>
+        <span class="c">###    l = logging.getLogger( emp_name + &#39;_tle_request&#39; )</span>
+        <span class="c">### ...we&#39;re adding the logger as a client attribute instead.</span>
+        <span class="c">### </span>
+        <span class="c">### Since getLogger() is right out, the logger&#39;s name doesn&#39;t have to </span>
+        <span class="c">### be anything recognizable, just unique per client, so we&#39;re just </span>
+        <span class="c">### using a uuid as the logger name.</span>
+
+        <span class="n">s_format</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%(levelname)s</span><span class="s"> -- </span><span class="si">%(empire)s</span><span class="s"> - </span><span class="si">%(path)s</span><span class="s">::</span><span class="si">%(method)s</span><span class="s"> - </span><span class="si">%(message)s</span><span class="s">&#39;</span>
+        <span class="n">f_format</span> <span class="o">=</span> <span class="s">&#39;[</span><span class="si">%(asctime)s</span><span class="s">] (</span><span class="si">%(levelname)s</span><span class="s">) - </span><span class="si">%(empire)s</span><span class="s"> - </span><span class="si">%(path)s</span><span class="s">::</span><span class="si">%(method)s</span><span class="s"> - </span><span class="si">%(message)s</span><span class="s">&#39;</span>
+        <span class="n">d_format</span> <span class="o">=</span> <span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span>
+
+        <span class="n">l</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span> <span class="p">)</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+        <span class="n">sh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="n">sh</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+        <span class="n">sh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">s_format</span><span class="p">,</span> <span class="n">d_format</span><span class="p">))</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span>
+
+        <span class="k">if</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">logfile</span> <span class="p">):</span>
+            <span class="n">fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logfile</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">f_format</span><span class="p">,</span> <span class="n">d_format</span><span class="p">))</span>
+            <span class="n">l</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span> <span class="o">=</span> <span class="n">l</span>
+
+    <span class="k">def</span> <span class="nf">read_config_file</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">conf</span><span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="s">&#39;DEFAULT&#39;</span> <span class="p">):</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">(</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">configparser</span><span class="o">.</span><span class="n">ExtendedInterpolation</span><span class="p">()</span> <span class="p">)</span>
+        <span class="n">cp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span> <span class="n">conf</span> <span class="p">)</span>
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">cp</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">section</span> <span class="o">==</span> <span class="n">default</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cp</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="ow">and</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cp</span><span class="p">[</span><span class="n">default</span><span class="p">]:</span>
+                    <span class="n">cp</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cp</span><span class="p">[</span><span class="n">default</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">cp</span>
+
+    <span class="k">def</span> <span class="nf">write_default_config_file</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">path</span> <span class="p">):</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+        <span class="n">cp</span><span class="p">[</span><span class="s">&#39;DEFAULT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;host&#39;</span><span class="p">:</span> <span class="s">&#39;us1.lacunaexpanse.com&#39;</span><span class="p">,</span>
+            <span class="s">&#39;proto&#39;</span><span class="p">:</span> <span class="s">&#39;http&#39;</span><span class="p">,</span>
+            <span class="s">&#39;api_key&#39;</span><span class="p">:</span> <span class="s">&#39;anonymous&#39;</span><span class="p">,</span>
+            <span class="s">&#39;sleep_on_call&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;sleep_after_error&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;warn_on_sleep&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;show_captcha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&#39;logfile&#39;</span><span class="p">:</span> <span class="s">&#39;var/tle.log&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+            <span class="n">cp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_build_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns a base URL composed of the proto (http or https) and the </span>
+<span class="sd">        host.  The returned URL does NOT end with a slash.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proto</span> <span class="o">+</span> <span class="s">&quot;://&quot;</span> <span class="o">+</span>  <span class="bp">self</span><span class="o">.</span><span class="n">host</span>
+        <span class="k">return</span> <span class="n">url</span>
+
+    <span class="k">def</span> <span class="nf">get_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_name_available</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rslt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="s">&#39;empire&#39;</span><span class="p">,</span> <span class="s">&#39;is_name_available&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,)</span> <span class="p">)</span>
+        <span class="k">except</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">1000</span> <span class="ow">and</span> <span class="n">e</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s">&#39;Empire name is in use by another player.&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c">### An actual server error - game server is </span>
+                <span class="c">### down/overloaded/whatever.</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Server is borked: &quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="nb">exit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">looks_like_json</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">json_candidate</span><span class="p">:</span><span class="nb">str</span> <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&quot;^{.*}$&quot;</span><span class="p">,</span> <span class="n">json_candidate</span><span class="p">)</span> <span class="k">else</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">_determine_empname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Used for logging.  A guest empire name will be returned as </span>
+<span class="sd">        &quot;UNKNOWN&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">empname</span> <span class="o">=</span> <span class="s">&#39;UNKNOWN&#39;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;username&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">:</span>
+            <span class="n">empname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span>
+        <span class="k">return</span> <span class="n">empname</span>
+
+    <span class="k">def</span> <span class="nf">send_password_reset_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Guest.send_password_reset_message"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Guest.send_password_reset_message">[docs]</a>        <span class="sd">&quot;&quot;&quot; This is meant to send a password reset email to the user&#39;s </span>
+<span class="sd">        registered email address.  However, it seems that the TLE server is not </span>
+<span class="sd">        sending any emails at all, via this method or the browser.</span>
+<span class="sd">        &quot;&quot;&quot;</span> 
+        <span class="k">if</span> <span class="s">&#39;empire_id&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s">&#39;empire_name&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&quot;Either empire_name or empire_id must be sent.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s">&#39;empire_id&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;empire_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;empire_id must be an integer.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">validate_email</span><span class="p">(</span> <span class="n">email</span> <span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="s">&quot;is not a valid email address.&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rslt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="s">&#39;empire&#39;</span><span class="p">,</span> <span class="s">&#39;send_password_reset_message&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">kwargs</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">except</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">NoSuchEmpireError</span><span class="p">(</span><span class="s">&quot;Cannot recover password; no such empire exists.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rslt</span><span class="p">[</span><span class="s">&#39;sent&#39;</span><span class="p">]:</span>
+            <span class="k">print</span><span class="p">(</span> <span class="s">&quot;The server says it sent a message, but sending mail seems to be broken server-side, so you may get nothing.&quot;</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span> <span class="s">&quot;The server says it has not sent the message, but gives no indication as to why not.&quot;</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span>  <span class="n">path</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span><span class="nb">tuple</span><span class="o">=</span><span class="p">(),</span> <span class="n">depth</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">1</span> <span class="p">):</span></div>
+<div class="viewcode-block" id="Guest.send"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Guest.send">[docs]</a>        <span class="sd">&quot;&quot;&quot; Marshals a request and actually sends it to the server, collecting </span>
+<span class="sd">        and json-decoding the response.</span>
+
+<span class="sd">        Accepts:</span>
+<span class="sd">            - path -- The path after the host (eg empire, building, etc).  Don&#39;t include any directory separators.</span>
+<span class="sd">            - method -- The name of the method to be run</span>
+<span class="sd">            - params -- Tuple of arguments/parameters to be passed to the method.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary; the json-decoded response from the server.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            - NotJsonError if the server response is not a JSON string</span>
+<span class="sd">            - ServerError if the server responds with anything other than </span>
+<span class="sd">              a 200, along with a JSON string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_url</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="p">)</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&quot;jsonrpc&quot;</span><span class="p">:</span> <span class="s">&quot;2.0&quot;</span><span class="p">,</span>
+            <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">&quot;method&quot;</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span>
+            <span class="s">&quot;params&quot;</span><span class="p">:</span> <span class="n">params</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">request_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span> <span class="n">request</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;debugging_method&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">debugging_method</span> <span class="o">==</span> <span class="n">method</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span> <span class="n">request_json</span> <span class="p">)</span>
+            <span class="n">quit</span><span class="p">()</span>
+
+        <span class="n">emp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_empname</span><span class="p">()</span>
+        <span class="n">log_opts</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;empire&#39;</span><span class="p">:</span> <span class="n">emp_name</span><span class="p">,</span>
+            <span class="s">&#39;path&#39;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
+            <span class="s">&#39;method&#39;</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">emp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_empname</span><span class="p">()</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span>
+
+        <span class="c">#def get_req():</span>
+        <span class="c">#    resp = requests.post( url, request_json )</span>
+        <span class="c">#    return resp</span>
+        <span class="c">#req_cache = self.cache.get_cache(&#39;request_cache&#39;)</span>
+        <span class="c">#cache_key = method + repr(params)</span>
+        <span class="c">#resp = req_cache.get( key = cache_key, createfunc = get_req )</span>
+
+        <span class="c">### Skip the cache altogether</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span> <span class="n">url</span><span class="p">,</span> <span class="n">request_json</span> <span class="p">)</span>
+
+        <span class="c">### The json parser will happily return a result when handed a raw </span>
+        <span class="c">### string instead of json (json.dumps(&quot;foobar&quot;) works just fine).  </span>
+        <span class="c">### The module is documented to do this.</span>
+        <span class="c">### </span>
+        <span class="c">### ...so an HTML page containing &quot;server error&quot; will not cause </span>
+        <span class="c">### json.loads() to produce a ValueError; it&#39;ll just be treated as a </span>
+        <span class="c">### big-ass string.</span>
+        <span class="c">### </span>
+        <span class="c">### An error page like that should not have a JSON content-type, so </span>
+        <span class="c">### just checking that _should_ be enough.  But in the spirit of CYA, </span>
+        <span class="c">### I still want to confirm that the supposedly JSON string I&#39;m </span>
+        <span class="c">### receiving when the content type indicates JSON, is actually JSON.  </span>
+        <span class="c">### Hence the looks_like_json() check.</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;content-type&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s">&#39;application/json-rpc&#39;</span> <span class="ow">or</span> <span class="ow">not</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">looks_like_json</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&#39;Response is not JSON&#39;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">NotJsonError</span><span class="p">(</span> <span class="s">&quot;Response from server is not json: &quot;</span> <span class="o">+</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span> <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">json_error</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span> <span class="p">)</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServerError</span><span class="p">(</span> <span class="n">json_error</span><span class="p">[</span><span class="s">&#39;error&#39;</span><span class="p">][</span><span class="s">&#39;code&#39;</span><span class="p">],</span> <span class="n">json_error</span><span class="p">[</span><span class="s">&#39;error&#39;</span><span class="p">][</span><span class="s">&#39;message&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&#39;Likely recursion detected&#39;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&quot;Likely infinite recursion detected; bailing!&quot;</span><span class="p">)</span>
+            <span class="n">depth</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">1010</span> <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">&#39;Slow down&#39;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">sleep_after_error</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;60 RPC per minute limit exceeded.&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">warn_on_sleep</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Sleeping for one minute.&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span> <span class="mi">61</span> <span class="p">)</span>
+                <span class="n">thingy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="n">path</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">depth</span> <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">1006</span> <span class="ow">and</span> <span class="n">error</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s">&#39;Session expired.&#39;</span><span class="p">:</span>
+                <span class="c">### Probably the user&#39;s config file had a session_id recorded, </span>
+                <span class="c">### but it&#39;s grown old.  Delete the old session_id, re-login, </span>
+                <span class="c">### and fix the params we&#39;re passing (session_id is the first </span>
+                <span class="c">### param).  Then re-send.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;Stale session_id found; re-logging in.&#39;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;session_id&#39;</span><span class="p">):</span>
+                    <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;session_id&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+                <span class="n">fixed_params</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session_id</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+                <span class="n">thingy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="n">path</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fixed_params</span><span class="p">,</span> <span class="n">depth</span> <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="mi">1016</span> <span class="ow">and</span> <span class="n">error</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s">&#39;Needs to solve a captcha.&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_captcha</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Displaying required captcha.&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+                <span class="n">cap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_captcha</span><span class="p">()</span>
+                <span class="n">cap</span><span class="o">.</span><span class="n">showit</span><span class="p">()</span>
+                <span class="n">cap</span><span class="o">.</span><span class="n">prompt_user</span><span class="p">()</span>
+                <span class="n">cap</span><span class="o">.</span><span class="n">solveit</span><span class="p">()</span>
+                <span class="n">thingy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="n">path</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">depth</span> <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;(&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">code</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;) &quot;</span><span class="o">+</span><span class="n">error</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">error</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">request_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&#39;Success&#39;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">log_opts</span><span class="p">)</span>
+            <span class="n">thingy</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span> <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sleep_on_call</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sleep_on_call</span><span class="p">)</span> <span class="p">)</span>
+        
+        <span class="c">### thingy contains:</span>
+        <span class="c">###     {</span>
+        <span class="c">###         &quot;id&quot;: &quot;1&quot;,</span>
+        <span class="c">###         &quot;jsonrpc&quot;: &quot;2.0&quot;,</span>
+        <span class="c">###         &quot;result&quot;: { dict that we&#39;re actually interested in }</span>
+        <span class="c">###     }</span>
+        <span class="c">### We&#39;re only returning &#39;result&#39;, but sometimes we&#39;re recursing into </span>
+        <span class="c">### ourself (captcha, 60 RPC/min limit) - in those cases, thingy will </span>
+        <span class="c">### already be just &#39;result&#39;.</span>
+        <span class="k">if</span> <span class="s">&#39;result&#39;</span> <span class="ow">in</span> <span class="n">thingy</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">thingy</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">thingy</span>
+
+<span class="c">################################################################</span>
+
+<span class="k">class</span> <span class="nc">Member</span><span class="p">(</span><span class="n">Guest</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="Member"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Member">[docs]</a>    <span class="sd">&quot;&quot;&quot; Members are logged in; username and password are required.  &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span>
+            <span class="n">config_file</span><span class="p">:</span><span class="nb">str</span>         <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">config_section</span><span class="p">:</span><span class="nb">str</span>      <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">api_key</span><span class="p">:</span><span class="nb">str</span>             <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">host</span><span class="p">:</span><span class="nb">str</span>                <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">logfile</span><span class="p">:</span><span class="nb">str</span>             <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">proto</span><span class="p">:</span><span class="nb">str</span>               <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">username</span><span class="p">:</span><span class="nb">str</span>            <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">password</span><span class="p">:</span><span class="nb">str</span>            <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">sleep_on_call</span><span class="p">:</span><span class="nb">int</span>       <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">sleep_after_error</span><span class="p">:</span><span class="nb">bool</span>  <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="n">show_captcha</span><span class="p">:</span><span class="nb">bool</span>       <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+            <span class="n">warn_on_sleep</span><span class="p">:</span><span class="nb">bool</span>      <span class="o">=</span> <span class="bp">True</span>
+        <span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">config_file</span> <span class="o">=</span> <span class="n">config_file</span><span class="p">,</span>
+            <span class="n">config_section</span> <span class="o">=</span> <span class="n">config_section</span><span class="p">,</span>
+            <span class="n">host</span> <span class="o">=</span> <span class="n">host</span><span class="p">,</span> 
+            <span class="n">logfile</span> <span class="o">=</span> <span class="n">logfile</span><span class="p">,</span> 
+            <span class="n">proto</span> <span class="o">=</span> <span class="n">proto</span><span class="p">,</span>
+            <span class="n">username</span> <span class="o">=</span> <span class="n">username</span><span class="p">,</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">password</span><span class="p">,</span>
+            <span class="n">sleep_on_call</span> <span class="o">=</span> <span class="n">sleep_on_call</span><span class="p">,</span>
+            <span class="n">sleep_after_error</span> <span class="o">=</span> <span class="n">sleep_after_error</span><span class="p">,</span>
+            <span class="n">show_captcha</span> <span class="o">=</span> <span class="n">show_captcha</span><span class="p">,</span>
+            <span class="n">warn_on_sleep</span> <span class="o">=</span> <span class="n">warn_on_sleep</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&quot;username and password are required.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_alliance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">alliance</span><span class="o">.</span><span class="n">Alliance</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">body_id</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_body_byname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_name</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">bid</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">body_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">MyBody</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">bid</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">NoSuchMyBodyError</span><span class="p">(</span><span class="s">&quot;No body with the name &#39;{}&#39; was found.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">body_name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_captcha</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">captcha</span><span class="o">.</span><span class="n">Captcha</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_inbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">inbox</span><span class="o">.</span><span class="n">Inbox</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_map</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_my_alliance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">alliance</span><span class="o">.</span><span class="n">MyAlliance</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Member.login"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Member.login">[docs]</a>        <span class="sd">&quot;&quot;&quot; Ensures the current client is logged in.</span>
+
+<span class="sd">        If self.session_id is set, we&#39;ll test it to make sure we can get a </span>
+<span class="sd">        response.  If so, the session_id is valid and we&#39;ll continue to use </span>
+<span class="sd">        that session.</span>
+
+<span class="sd">        If self.session_id is not set or is found to be invalid, we&#39;ll log in </span>
+<span class="sd">        fresh.  The new, now-valid session_id will be written to the config </span>
+<span class="sd">        file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s">&#39;session_id&#39;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">rslt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="s">&#39;empire&#39;</span><span class="p">,</span> <span class="s">&#39;get_status&#39;</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session_id</span><span class="p">,)</span> <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">empire</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">MyEmpire</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+                <span class="n">mydict</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="o">.</span><span class="n">get_status_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rslt</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_write_empire_status</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rslt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="s">&#39;empire&#39;</span><span class="p">,</span> <span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">except</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">BadCredentialsError</span><span class="p">(</span><span class="s">&quot;Incorrect credentials (bad username/password)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_id</span> <span class="o">=</span> <span class="n">rslt</span><span class="p">[</span><span class="s">&#39;session_id&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empire</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">MyEmpire</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+        <span class="n">mydict</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="o">.</span><span class="n">get_status_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rslt</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_write_empire_status</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;config&#39;</span> <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">config_section</span><span class="p">][</span><span class="s">&#39;session_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_id</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_config_file</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_write_empire_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span></div>
+        <span class="sd">&quot;&quot;&quot; This is almost, but not quite the same, as </span>
+<span class="sd">        lacuna.bc.LacunaObject.write_empire_status().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+            <span class="nb">setattr</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mydict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">planet_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="nb">id</span> <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">def</span> <span class="nf">update_config_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;config&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_file</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+<div class="viewcode-block" id="Member.logout"><a class="viewcode-back" href="../../clients.html#lacuna.clients.Member.logout">[docs]</a>        <span class="sd">&quot;&quot;&quot; Logs the current session out.</span>
+
+<span class="sd">        Saving the session_id in the config file allows users to complete a </span>
+<span class="sd">        captcha in one script and have that captcha&#39;s success apply to all </span>
+<span class="sd">        other scripts run, as long as that session_id is valid.</span>
+
+<span class="sd">        Calling logout() invalidates that session_id and removes it from the </span>
+<span class="sd">        config file.  Therefore, actually calling logout() is rarely </span>
+<span class="sd">        necessary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rslt</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;empire&#39;</span><span class="p">):</span>
+            <span class="n">rslt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+            <span class="nb">delattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;empire&#39;</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;session_id&#39;</span><span class="p">):</span>
+            <span class="nb">delattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;session_id&#39;</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;config&#39;</span> <span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;config_section&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s">&#39;session_id&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">config_section</span><span class="p">]:</span>
+                <span class="k">del</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">config_section</span><span class="p">][</span><span class="s">&#39;session_id&#39;</span><span class="p">]</span> <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_config_file</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">rslt</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

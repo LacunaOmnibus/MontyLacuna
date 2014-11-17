@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.transporter &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.transporter</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    As noted in trade.py, copying every method that&#39;s never going to be used </span>
+<span class="sd">    is getting old, so I&#39;m skipping the following:</span>
+<span class="sd">        trade_one_for_one()</span>
+<span class="sd">        report_abuse()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">lacuna.bc</span> <span class="kn">import</span> <span class="n">LacunaObject</span>
+<span class="kn">from</span> <span class="nn">lacuna.trading</span> <span class="kn">import</span> <span class="n">TradeBldg</span>
+<span class="kn">from</span> <span class="nn">lacuna.ship</span> <span class="kn">import</span> <span class="n">TravellingShip</span>
+
+<span class="k">class</span> <span class="nc">transporter</span><span class="p">(</span><span class="n">TradeBldg</span><span class="p">):</span>
+<div class="viewcode-block" id="transporter"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.transporter.transporter">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;transporter&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@TradeBldg.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="transporter.view"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.transporter.transporter.view">[docs]</a>        <span class="sd">&quot;&quot;&quot; The only building-specific bit of data in the SST&#39;s view() call </span>
+<span class="sd">        is the integer maximum number of items this SST can support in a single </span>
+<span class="sd">        trade.</span>
+
+<span class="sd">        So this view() call returns that single integer.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">TradeBldg</span><span class="o">.</span><span class="n">write_building_status</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;transport&#39;</span><span class="p">][</span><span class="s">&#39;max&#39;</span><span class="p">]</span>
+
+    <span class="nd">@TradeBldg.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">add_to_market</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">offer</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="n">ask</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="transporter.add_to_market"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.transporter.transporter.add_to_market">[docs]</a>        <span class="sd">&quot;&quot;&quot; Spends 1 E to add a trade to the SST market.</span>
+
+<span class="sd">        The only difference between this and trade.add_trade() is that the SST </span>
+<span class="sd">        has no &#39;options&#39; argument.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            offer       List of dicts of items to offer for trade.  See below for</span>
+<span class="sd">                        more details.</span>
+<span class="sd">                            {   &#39;type&#39;:         &#39;bauxite&#39;,</span>
+<span class="sd">                                &#39;quantity&#39;:     10000   },</span>
+
+<span class="sd">            ask         Integer price in E you&#39;re asking for this trade, between </span>
+<span class="sd">                        0.1 and 100.</span>
+
+<span class="sd">        &quot;offer&quot;</span>
+<span class="sd">            There are five types of items you can offer for trade, each with </span>
+<span class="sd">            their own required keys for their offer dicts.</span>
+<span class="sd">                resources</span>
+<span class="sd">                    {   &#39;type&#39;:         &#39;bauxite&#39;,</span>
+<span class="sd">                        &#39;quantity&#39;:     10000   },</span>
+<span class="sd">                glyphs</span>
+<span class="sd">                    {   &#39;type&#39;:         &#39;glyph&#39;,</span>
+<span class="sd">                        &#39;name&#39;:         &#39;bauxite&#39;,</span>
+<span class="sd">                        &#39;quantity&#39;:     10000   },</span>
+<span class="sd">                plans</span>
+<span class="sd">                    {   &#39;type&#39;:                 &#39;plan&#39;,</span>
+<span class="sd">                        &#39;plan_type&#39;:            &#39;Permanent_AlgaePond&#39;,  # see get_plan_summary()</span>
+<span class="sd">                        &#39;level&#39;:                1,</span>
+<span class="sd">                        &#39;extra_build_level&#39;:    3,                      # If &gt; 1, &#39;level&#39; must be 1.</span>
+<span class="sd">                        &#39;quantity&#39;:             10000   },</span>
+<span class="sd">                prisoners</span>
+<span class="sd">                    {   &#39;type&#39;:         &#39;prisoner&#39;,</span>
+<span class="sd">                        &#39;prisoner_id&#39;:  12345   },</span>
+<span class="sd">                ships</span>
+<span class="sd">                    {   &#39;type&#39;:     &#39;ship&#39;,</span>
+<span class="sd">                        &#39;ship_id&#39;:  12345   },</span>
+
+<span class="sd">        Returns the ID of the trade just added.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;trade_id&#39;</span><span class="p">]</span>
+
+    <span class="nd">@LacunaObject.set_empire_status</span></div>
+    <span class="nd">@TradeBldg.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">push_items</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">target_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="transporter.push_items"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.transporter.transporter.push_items">[docs]</a>        <span class="sd">&quot;&quot;&quot; Pushes items to another of your planets.  The target planet must </span>
+<span class="sd">        also have an SST built (though its level doesn&#39;t matter).</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            target_id   Integer ID of the body to send resources to.</span>
+<span class="sd">            items       List of item dicts.  See add_to_market().</span>
+
+<span class="sd">        Returns a single TravellingShip object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

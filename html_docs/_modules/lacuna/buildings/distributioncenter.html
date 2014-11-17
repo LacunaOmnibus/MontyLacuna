@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.distributioncenter &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.distributioncenter</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.building</span>
+<span class="kn">import</span> <span class="nn">lacuna.resource</span>
+
+<span class="k">class</span> <span class="nc">distributioncenter</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">building</span><span class="o">.</span><span class="n">MyBuilding</span><span class="p">):</span>
+<div class="viewcode-block" id="distributioncenter"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.distributioncenter.distributioncenter">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;distributioncenter&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="distributioncenter.view"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.distributioncenter.distributioncenter.view">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns a single Reserve object.  &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Reserve</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;reserve&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">reserve</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">resources</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="distributioncenter.reserve"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.distributioncenter.distributioncenter.reserve">[docs]</a>        <span class="sd">&quot;&quot;&quot; Reserves some resources for a set period of time.</span>
+
+<span class="sd">        Once resources are reserved, you can&#39;t just add more resources to the </span>
+<span class="sd">        existing reserve; each call to reserve() must specify all the resources </span>
+<span class="sd">        to be reserved.  So this...</span>
+<span class="sd">                dist.reserve( [{&#39;type&#39;:&#39;apple&#39;, quantity:300}] )</span>
+<span class="sd">                dist.reserve( [{&#39;type&#39;:&#39;bean&#39;,  quantity:100}] )</span>
+<span class="sd">        ...would result in only 100 bean being reserved.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            resources       List of dicts specifying what to reserve:</span>
+<span class="sd">                            [</span>
+<span class="sd">                                { &#39;type&#39;: &#39;water&#39;, &#39;quantity&#39;: 100 },</span>
+<span class="sd">                                { &#39;type&#39;: &#39;energy&#39;, &#39;quantity&#39;: 200 },</span>
+<span class="sd">                            ]</span>
+
+<span class="sd">        Returns a single Reserve object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Reserve</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;reserve&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">get_stored_resources</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="distributioncenter.get_stored_resources"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.distributioncenter.distributioncenter.get_stored_resources">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns a list of resources you currently have on this planet.</span>
+
+<span class="sd">        This is NOT a list of resources currently reserved in the distribution </span>
+<span class="sd">        center; this is a total list of all available resources on the planet; </span>
+<span class="sd">        these resources are available to be reserved in the distribution </span>
+<span class="sd">        center.</span>
+
+<span class="sd">        Returns a tuple:</span>
+<span class="sd">            resources       A single resources.StoredResources object</span>
+<span class="sd">            cargo_space     Amount of cargo space units occupied by each </span>
+<span class="sd">                            individual resource.  Always &#39;1&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">lacuna</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">StoredResources</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;resources&#39;</span><span class="p">]),</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;cargo_space_used_each&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">release_reserve</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="distributioncenter.release_reserve"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.distributioncenter.distributioncenter.release_reserve">[docs]</a>        <span class="sd">&quot;&quot;&quot; Releases any resources currently being reserved.</span>
+
+<span class="sd">        Returns a single Reserve object.</span>
+
+<span class="sd">        Raises ServerError 1010 if there are currently no resources being </span>
+<span class="sd">        reserved.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Reserve</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;reserve&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Reserve</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="Reserve"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.distributioncenter.Reserve">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        seconds_remaining       0, # time until reserved resources will automatically be released</span>
+<span class="sd">        can                     1,</span>
+<span class="sd">        max_reserve_duration    &quot;7200&quot;, # max length resources can be kept in reserve</span>
+<span class="sd">        max_reserve_size        100000, # max amount of resources that can be reserved</span>
+<span class="sd">        resources               A resource.StoredResources object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c">### mydict[&#39;resources&#39;] is coming to us as:</span>
+        <span class="c"># [       # resources currently in reserve</span>
+        <span class="c">#     {</span>
+        <span class="c">#         &quot;type&quot; : &quot;water&quot;,</span>
+        <span class="c">#         &quot;quanity&quot; : 2000</span>
+        <span class="c">#     },</span>
+        <span class="c">#     {</span>
+        <span class="c">#         &quot;type&quot; : &quot;apples&quot;,</span>
+        <span class="c">#         &quot;quanity&quot; : 2000</span>
+        <span class="c">#     }</span>
+        <span class="c">#     ...</span>
+        <span class="c"># ]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+        <span class="n">resdict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s">&#39;resources&#39;</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;resources&#39;</span><span class="p">]:</span>
+                <span class="n">resdict</span><span class="p">[</span> <span class="n">i</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">]</span> <span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s">&#39;quantity&#39;</span><span class="p">]</span>
+        <span class="n">mydict</span><span class="p">[</span><span class="s">&#39;resources&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">StoredResources</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">resdict</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">mydict</span><span class="p">)</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

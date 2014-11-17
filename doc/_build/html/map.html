@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>map &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="stats" href="stats.html" />
+    <link rel="prev" title="inbox" href="inbox.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="stats.html" title="stats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="inbox.html" title="inbox"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lacuna.map">
+<span id="map"></span><h1>map<a class="headerlink" href="#module-lacuna.map" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.map.Fissure">
+<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Fissure</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.map.Fissure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name     &quot;Mercury&quot;,</span>
+<span class="go">id       345,</span>
+<span class="go">orbit    1,</span>
+<span class="go">x        -40,</span>
+<span class="go">y        29,</span>
+<span class="go">type     &quot;habitable planet&quot;,</span>
+<span class="go">image    &quot;p13&quot;,</span>
+<span class="go">size     58,</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.map.Map">
+<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Map</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<p>Provides access to the starmap.</p>
+<dl class="method">
+<dt id="lacuna.map.Map.check_star_for_incoming_probe">
+<tt class="descname">check_star_for_incoming_probe</tt><big>(</big><em>star_id</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.check_star_for_incoming_probe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if you have a probe en route to a star.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star to check</li>
+</ul>
+</dd>
+<dt>Returns</dt>
+<dd><ul class="first last simple">
+<li>incoming_probe &#8211; This will be the date of arrival of the incoming probe, or 0 if no probe is on its way.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_orbiting_planet">
+<tt class="descname">get_orbiting_planet</tt><big>(</big><em>star_name: str</em>, <em>planet_name: str</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_orbiting_planet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the info of any planet you can see in your star map.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd><ul class="first last simple">
+<li>star_name &#8211; String name of a star</li>
+<li>planet_name &#8211; String name of a planet orbiting that star</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a body.Body object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star">
+<tt class="descname">get_star</tt><big>(</big><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a star by its ID.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a Star object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star_by_name">
+<tt class="descname">get_star_by_name</tt><big>(</big><em>star_name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a star by its name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star_name &#8211; String name of the star.  This is NOT a &#8220;standard TLE search string&#8221;, but the full name of the star.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a Star object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star_by_xy">
+<tt class="descname">get_star_by_xy</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star_by_xy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a star by its x, y coordinates.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>x &#8211; Integer X coordinate</li>
+<li>y &#8211; Integer Y coordinate</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a Star object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_star_map">
+<tt class="descname">get_star_map</tt><big>(</big><em>stars: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of stars occupying a region of space.</p>
+<dl class="docutils">
+<dt>Accepts a single dict of arguments:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">left        Coordinate</span>
+<span class="go">top         Coordinate</span>
+<span class="go">right       Coordinate</span>
+<span class="go">bottom      Coordinate</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Each coordinate must be an integer within the star map (so &gt;= -1500 and 
+&lt;= 1500).  The total area covered by these coordinates must be &lt;= 3001 
+units.  The TLE documentation states 1001 units, but thats old 
+information; the limit has been raised to 3001 units.</p>
+<p>Returns a list of map.Star objects.</p>
+<p>Raises ServerError 1003 if your selected area is too large.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.get_stars">
+<tt class="descname">get_stars</tt><big>(</big><em>x1</em>, <em>x2</em>, <em>y1</em>, <em>y2</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_stars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of stars occupying a region of space.</p>
+<p>More or less Deprecated.</p>
+<p>This is not officially deprecated, but there&#8217;s no good reason to use it.  
+get_star_map() is using the newer named arguments calling method, and it 
+allows you a range of 3001 units, whereas this method uses the old 
+positional arguments calling method, and allows a range of only 900 
+units.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">left        Coordinate</span>
+<span class="go">top         Coordinate</span>
+<span class="go">right       Coordinate</span>
+<span class="go">bottom      Coordinate</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Returns a list of map.Star objects.</p>
+<p>Raises ServerError 1003 if your selected area is too large.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.probe_summary_fissures">
+<tt class="descname">probe_summary_fissures</tt><big>(</big><em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.probe_summary_fissures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides info on fissures in a zone.</p>
+<dl class="docutils">
+<dt>Requires a single dict argument:</dt>
+<dd><ul class="first last simple">
+<li>zone &#8211; &#8216;0|0&#8217;</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a list of map.Fissure objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Map.search_stars">
+<tt class="descname">search_stars</tt><big>(</big><em>partial_name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.search_stars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of stars matching a string.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd><ul class="first last simple">
+<li>search_string &#8211; A standard TLE search string.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a list of Star objects.
+partial_name must be at least 3 characters.  Matches up to 25 stars whose names
+START with partial_name (NOT stars whose names just contain partial_name).
+rv is a list, identical to get_star_map().</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.map.Star">
+<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Star</tt><big>(</big><em>client</em>, <em>star_dict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">color       &#39;red&#39;,</span>
+<span class="go">id          &#39;12345&#39;,</span>
+<span class="go">name        &#39;Clou Oghofr Oap&#39;,</span>
+<span class="go">x           &#39;100&#39;,</span>
+<span class="go">y           &#39;-100&#39;,</span>
+<span class="go">zone        &#39;0|0&#39;,</span>
+<span class="go">bodies:     List of body.Body objects.  If you don&#39;t have the star </span>
+<span class="go">            probed or oracled, this list will be empty.</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="inbox.html"
+                        title="previous chapter">inbox</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="stats.html"
+                        title="next chapter">stats</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/map.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="stats.html" title="stats"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="inbox.html" title="inbox"
+             >previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

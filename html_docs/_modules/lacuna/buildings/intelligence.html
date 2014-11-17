@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.intelligence &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.intelligence</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">lacuna.bc</span> <span class="kn">import</span> <span class="n">LacunaObject</span>
+<span class="kn">from</span> <span class="nn">lacuna.building</span> <span class="kn">import</span> <span class="n">MyBuilding</span>
+<span class="kn">from</span> <span class="nn">lacuna.spy</span> <span class="kn">import</span> <span class="n">IntelView</span><span class="p">,</span> <span class="n">MissionResult</span><span class="p">,</span> <span class="n">Spy</span>
+
+<span class="k">class</span> <span class="nc">intelligence</span><span class="p">(</span><span class="n">MyBuilding</span><span class="p">):</span>
+<div class="viewcode-block" id="intelligence"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;intelligence&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">view</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.view"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.view">[docs]</a>        <span class="sd">&quot;&quot;&quot; View stats on current spy numbers, as well as costs to train new </span>
+<span class="sd">        spies.</span>
+
+<span class="sd">        Returns a single IntelView object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">IntelView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;spies&#39;</span><span class="p">])</span>
+
+
+    <span class="nd">@LacunaObject.set_empire_status</span></div>
+    <span class="nd">@MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">train_spy</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.train_spy"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.train_spy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Trains one or more spies.  &quot;Train&quot;, in this case, means &quot;create&quot;.</span>
+<span class="sd">        The &quot;quantity&quot; argument defaults to 1.</span>
+
+<span class="sd">        Retval includes:</span>
+<span class="sd">            &quot;trained&quot; - Integer number added to the training queue.  Always </span>
+<span class="sd">            included in retval, but may be set to 0.</span>
+
+<span class="sd">            &quot;not_trained&quot; - Integer number not added to the training queue.  </span>
+<span class="sd">            Only appears in retval if its value is non-zero.</span>
+
+<span class="sd">            &quot;reason_not_trained&quot; - Dict containing the reason that </span>
+<span class="sd">            &quot;not_trained&quot; is set.  Only appears in retval if &quot;not_trained&quot; </span>
+<span class="sd">            appears.</span>
+<span class="sd">                        {   &quot;code&quot; : 1011,</span>
+<span class="sd">                            &quot;message&quot; : &quot;Not enough food to train a spy.&quot;,  },</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">view_spies</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">page_number</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.view_spies"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.view_spies">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns info on one page (up to 30) spies.  There are a maximum of </span>
+<span class="sd">        three pages of spy data.  </span>
+<span class="sd">        </span>
+<span class="sd">        To get info on all of your spies at once, see also view_all_spies().</span>
+
+<span class="sd">        Returns a list of up to 30 Spy objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spy_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;spies&#39;</span><span class="p">]:</span>
+            <span class="n">spy_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Spy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">spy_list</span>
+
+    <span class="nd">@MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">view_all_spies</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.view_all_spies"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.view_all_spies">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns information on all of the spies controlled from this </span>
+<span class="sd">        planet.</span>
+
+<span class="sd">        Returns a list of up to 90 Spy objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spy_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;spies&#39;</span><span class="p">]:</span>
+            <span class="n">spy_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Spy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">spy_list</span>
+
+    <span class="nd">@LacunaObject.set_empire_status</span></div>
+    <span class="nd">@MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">burn_spy</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">spy_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.burn_spy"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.burn_spy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Burns (deletes) an existing spy. &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@LacunaObject.set_empire_status</span></div>
+    <span class="nd">@MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">name_spy</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">spy_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.name_spy"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.name_spy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Renames an existing spy.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">assign_spy</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">spy_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">assignment</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.assign_spy"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.assign_spy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Assigns a spy to a task.</span>
+<span class="sd">        </span>
+<span class="sd">        Possible assignments for each spy can be found by calling view_spies() </span>
+<span class="sd">        or view_all_spies().  A full list of all assignments can be found at:</span>
+<span class="sd">            https://us1.lacunaexpanse.com/api/Intelligence.html#assignment</span>
+
+<span class="sd">        Requires captcha.</span>
+
+<span class="sd">        Returns a tuple:</span>
+<span class="sd">            spy             Spy object</span>
+<span class="sd">            mission_result  MissionResult object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spy</span>     <span class="o">=</span> <span class="n">Spy</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;spy&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="n">rslt</span>    <span class="o">=</span> <span class="n">MissionResult</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;mission&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span> <span class="n">spy</span><span class="p">,</span> <span class="n">rslt</span> <span class="p">)</span>
+
+    <span class="nd">@LacunaObject.set_empire_status</span></div>
+    <span class="nd">@MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">subsidize_training</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="intelligence.subsidize_training"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.intelligence.intelligence.subsidize_training">[docs]</a>        <span class="sd">&quot;&quot;&quot; Subsidizes training of all spies currently in the queue.</span>
+
+<span class="sd">        Costs 1 E per spy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

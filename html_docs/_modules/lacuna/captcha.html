@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.captcha &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.captcha</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">tempfile</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">webbrowser</span>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">from</span> <span class="nn">lacuna.exceptions</span> <span class="kn">import</span> \
+    <span class="n">CaptchaResponseError</span><span class="p">,</span> \
+    <span class="n">RequestError</span><span class="p">,</span> \
+    <span class="n">ServerError</span>
+
+<span class="c">### Dev notes:</span>
+<span class="c">### The tempfile containing the captcha image is not deleted until solveit() </span>
+<span class="c">### has been called.  </span>
+<span class="c">### </span>
+<span class="c">### Allowing the tempfile to delete itself (delete=True during tempfile </span>
+<span class="c">### creation), or using the tempfile in conjunction with a &#39;with:&#39; expression, </span>
+<span class="c">### have both been attempted.</span>
+<span class="c">### </span>
+<span class="c">### The problem is that, when using those auto-deletion methods, the tempfile </span>
+<span class="c">### is occasionally being removed from the system before the browser we&#39;re </span>
+<span class="c">### firing off actually gets a chance to read it.  Everything is happening in </span>
+<span class="c">### the right order, it&#39;s just that the browser startup is too slow.</span>
+<span class="c">###</span>
+<span class="c">### Deleting the tempfile manually in solveit() works - don&#39;t decide to get </span>
+<span class="c">### clever and replace the unlink() in solveit() with some form of tempfile </span>
+<span class="c">### autodeletion without a lot of testing.</span>
+
+<span class="k">class</span> <span class="nc">Captcha</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Captcha"><a class="viewcode-back" href="../../captcha.html#lacuna.captcha.Captcha">[docs]</a>    <span class="sd">&quot;&quot;&quot; Fetches, displays, and solves graphical captchas.  </span>
+
+<span class="sd">    General usage will be:</span>
+
+<span class="sd">    &gt;&gt;&gt; </span>
+<span class="sd">    cap = my_client.get_captcha()</span>
+<span class="sd">    cap.showit()            # display the captcha image</span>
+<span class="sd">    cap.prompt_user()       # ask the user for a solution</span>
+<span class="sd">    cap.solveit()           # check the user&#39;s solution </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;captcha&#39;</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span>
+    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Captcha.fetch"><a class="viewcode-back" href="../../captcha.html#lacuna.captcha.Captcha.fetch">[docs]</a>        <span class="sd">&quot;&quot;&quot; Fetches a captcha for the user to solve from the server.</span>
+
+<span class="sd">        Generally, you don&#39;t need to call this, use showit() instead.</span>
+
+<span class="sd">        This mirrors the TLE Captcha::fetch() method.  It fetches the url and </span>
+<span class="sd">        guid for the captcha, but does not actually fetch the captcha image </span>
+<span class="sd">        (which lives at url) itself.</span>
+
+<span class="sd">        Retval includes:</span>
+<span class="sd">            - guid - a hashed CHECK captcha ID,</span>
+<span class="sd">            - url - The URL to the image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span>  <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;url&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">guid</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;guid&#39;</span><span class="p">]</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">showit</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span></div>
+<div class="viewcode-block" id="Captcha.showit"><a class="viewcode-back" href="../../captcha.html#lacuna.captcha.Captcha.showit">[docs]</a>        <span class="sd">&quot;&quot;&quot; Actually downloads the captcha image, and attempts to display it  </span>
+<span class="sd">        to the user in one of several browsers.</span>
+
+<span class="sd">        If fetch() is called first, showit() uses that fetched data, but this </span>
+<span class="sd">        is not necessary.  showit() will call fetch for you.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s">&#39;url&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s">&#39;guid&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fetch</span><span class="p">()</span>
+
+        <span class="n">img_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="n">img_resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RequestError</span><span class="p">(</span><span class="s">&quot;The captcha image URL is not responding.&quot;</span><span class="p">)</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span> <span class="n">suffix</span><span class="o">=</span><span class="s">&#39;.png&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s">&#39;tle_capcha_&#39;</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="bp">False</span> <span class="p">);</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tempfile</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">img_resp</span><span class="o">.</span><span class="n">content</span> <span class="p">)</span>
+
+        <span class="n">local_url</span> <span class="o">=</span> <span class="s">&#39;file://&#39;</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">found_browser</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">[</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&#39;windows-default&#39;</span><span class="p">,</span> <span class="s">&#39;macosx&#39;</span><span class="p">,</span> <span class="s">&#39;safari&#39;</span><span class="p">,</span> <span class="s">&#39;firefox&#39;</span><span class="p">,</span> 
+            <span class="s">&#39;google-chrome&#39;</span><span class="p">,</span> <span class="s">&#39;chrome&#39;</span><span class="p">,</span> <span class="s">&#39;chromium-browser&#39;</span><span class="p">,</span> <span class="s">&#39;chromium&#39;</span> <span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">browser</span> <span class="o">=</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">b</span> <span class="p">)</span>
+                <span class="n">browser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span> <span class="n">local_url</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">True</span> <span class="p">)</span>
+                <span class="n">found_browser</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">break</span>
+            <span class="k">except</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found_browser</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">EnvironmentError</span><span class="p">(</span><span class="s">&quot;Unable to find a browser to show the captcha image.  Captcha solution is required.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">prompt_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Captcha.prompt_user"><a class="viewcode-back" href="../../captcha.html#lacuna.captcha.Captcha.prompt_user">[docs]</a>        <span class="sd">&quot;&quot;&quot; Prompts the user to solve the displayed captcha.</span>
+<span class="sd">        It&#39;s not illegal to call this without first calling solveit(), but </span>
+<span class="sd">        doing so makes no sense.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">&quot;Enter the solution to the captcha here: &quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resp</span>
+
+    <span class="k">def</span> <span class="nf">solveit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Captcha.solveit"><a class="viewcode-back" href="../../captcha.html#lacuna.captcha.Captcha.solveit">[docs]</a>        <span class="sd">&quot;&quot;&quot; Sends the user&#39;s response to the server to check for accuracy.</span>
+<span class="sd">        Returns True if the user&#39;s response was correct.  Raises </span>
+<span class="sd">        CaptchaResponseError otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s">&#39;resp&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&quot;You must prompt the user for a response before calling solveit().&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">guid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resp</span> <span class="p">)</span>
+        <span class="k">except</span> <span class="n">ServerError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CaptchaResponseError</span><span class="p">(</span><span class="s">&quot;Incorrect captcha response&quot;</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="nb">delattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;url&#39;</span> <span class="p">)</span>
+            <span class="nb">delattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;guid&#39;</span> <span class="p">)</span>
+            <span class="nb">delattr</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="s">&#39;resp&#39;</span> <span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tempfile</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">tempfile</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_member_meth</span></div>
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">guid</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">solution</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Captcha.solve"><a class="viewcode-back" href="../../captcha.html#lacuna.captcha.Captcha.solve">[docs]</a>        <span class="sd">&quot;&quot;&quot; Mirrors the TLE Captcha::solve() method, but unless you really </span>
+<span class="sd">        need this and you really know why, use solveit() instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

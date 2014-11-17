@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.observatory &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.observatory</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna</span>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.building</span>
+
+<span class="k">class</span> <span class="nc">observatory</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">building</span><span class="o">.</span><span class="n">MyBuilding</span><span class="p">):</span>
+<div class="viewcode-block" id="observatory"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.observatory.observatory">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;observatory&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">get_probed_stars</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="observatory.get_probed_stars"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.observatory.observatory.get_probed_stars">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns a list of probed stars, as well as stats on how many probes </span>
+<span class="sd">        you have out and available.</span>
+
+<span class="sd">        Returns a tuple:</span>
+<span class="sd">            stars           List of lacuna.map.Star objects.  These are the </span>
+<span class="sd">                            stars at which your observatory currently has </span>
+<span class="sd">                            probes.</span>
+<span class="sd">            star_count      Integer number of stars you have probed.</span>
+<span class="sd">            max_probes      Integer number of the maximum probes you can have </span>
+<span class="sd">                            out from this observatory.</span>
+<span class="sd">            travelling      Integer number of how many probes are currently </span>
+<span class="sd">                            travelling from your planet to a star.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">star_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;stars&#39;</span><span class="p">]:</span>
+            <span class="n">star_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Star</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="n">star_list</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;star_count&#39;</span><span class="p">],</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;max_probes&#39;</span><span class="p">],</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;travelling&#39;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.building.MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">abandon_probe</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">star_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="observatory.abandon_probe"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.observatory.observatory.abandon_probe">[docs]</a>        <span class="sd">&quot;&quot;&quot; Abandons a single probe.</span>
+
+<span class="sd">        Requires &#39;star_id&#39;, integer ID of the star whose probe you wish to </span>
+<span class="sd">        abandon.</span>
+
+<span class="sd">        You are abandoning by the ID of the star you have probed, NOT by the ID </span>
+<span class="sd">        of the probe ship itself - don&#39;t hurt yourself looking for the probe&#39;s </span>
+<span class="sd">        ID.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.set_empire_status</span></div>
+    <span class="nd">@lacuna.building.MyBuilding.call_building_meth</span>
+    <span class="k">def</span> <span class="nf">abandon_all_probes</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="observatory.abandon_all_probes"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.observatory.observatory.abandon_all_probes">[docs]</a>        <span class="sd">&quot;&quot;&quot; Abandons all of this observatory&#39;s probes.  &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

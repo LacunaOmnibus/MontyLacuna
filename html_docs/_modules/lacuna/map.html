@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.map &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.map</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.body</span>
+
+<span class="k">class</span> <span class="nc">Map</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">LacunaObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Map"><a class="viewcode-back" href="../../map.html#lacuna.map.Map">[docs]</a>    <span class="sd">&quot;&quot;&quot; Provides access to the starmap.  &quot;&quot;&quot;</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;map&#39;</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_named_returning_meth</span>
+    <span class="k">def</span> <span class="nf">get_star_map</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">stars</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.get_star_map"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star_map">[docs]</a>        <span class="sd">&quot;&quot;&quot; Get a list of stars occupying a region of space.</span>
+<span class="sd">        </span>
+<span class="sd">        Accepts a single dict of arguments:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            left        Coordinate</span>
+<span class="sd">            top         Coordinate</span>
+<span class="sd">            right       Coordinate</span>
+<span class="sd">            bottom      Coordinate</span>
+
+<span class="sd">        Each coordinate must be an integer within the star map (so &gt;= -1500 and </span>
+<span class="sd">        &lt;= 1500).  The total area covered by these coordinates must be &lt;= 3001 </span>
+<span class="sd">        units.  The TLE documentation states 1001 units, but thats old </span>
+<span class="sd">        information; the limit has been raised to 3001 units.</span>
+
+<span class="sd">        Returns a list of map.Star objects.</span>
+
+<span class="sd">        Raises ServerError 1003 if your selected area is too large.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;stars&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Star</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mylist</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">get_stars</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.get_stars"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_stars">[docs]</a>        <span class="sd">&quot;&quot;&quot; Get a list of stars occupying a region of space.</span>
+
+<span class="sd">        This is not officially deprecated, but there&#39;s no good reason to use it.  </span>
+<span class="sd">        get_star_map() is using the newer named arguments calling method, and it </span>
+<span class="sd">        allows you a range of 3001 units, whereas this method uses the old </span>
+<span class="sd">        positional arguments calling method, and allows a range of only 900 </span>
+<span class="sd">        units.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            &gt;&gt;&gt; </span>
+<span class="sd">            left        Coordinate</span>
+<span class="sd">            top         Coordinate</span>
+<span class="sd">            right       Coordinate</span>
+<span class="sd">            bottom      Coordinate</span>
+
+<span class="sd">        Returns a list of map.Star objects.</span>
+
+<span class="sd">        Raises ServerError 1003 if your selected area is too large.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;stars&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Star</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mylist</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">check_star_for_incoming_probe</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">star_id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.check_star_for_incoming_probe"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.check_star_for_incoming_probe">[docs]</a>        <span class="sd">&quot;&quot;&quot; Check if you have a probe en route to a star.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">            - star_id -- Integer ID of the star to check</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">            - incoming_probe -- This will be the date of arrival of the incoming probe, or 0 if no probe is on its way.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;incoming_probe&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&#39;incoming_probe&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">get_star</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">star_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.get_star"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find a star by its ID.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            - star_id -- Integer ID of the star</span>
+
+<span class="sd">        Returns a Star object.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">star</span> <span class="o">=</span> <span class="n">Star</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;star&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">star</span><span class="p">)</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">get_star_by_name</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">star_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.get_star_by_name"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star_by_name">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find a star by its name.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            - star_name -- String name of the star.  This is NOT a &quot;standard TLE search string&quot;, but the full name of the star.</span>
+
+<span class="sd">        Returns a Star object.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">star</span> <span class="o">=</span> <span class="n">Star</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;star&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">star</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">get_star_by_xy</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.get_star_by_xy"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_star_by_xy">[docs]</a>        <span class="sd">&quot;&quot;&quot; Find a star by its x, y coordinates.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            - x -- Integer X coordinate</span>
+<span class="sd">            - y -- Integer Y coordinate</span>
+
+<span class="sd">        Returns a Star object.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">star</span> <span class="o">=</span> <span class="n">Star</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;star&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">star</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">search_stars</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">partial_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.search_stars"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.search_stars">[docs]</a>        <span class="sd">&quot;&quot;&quot; Return a list of stars matching a string.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">            - search_string -- A standard TLE search string.</span>
+
+<span class="sd">        Returns a list of Star objects.</span>
+<span class="sd">        partial_name must be at least 3 characters.  Matches up to 25 stars whose names</span>
+<span class="sd">        START with partial_name (NOT stars whose names just contain partial_name).</span>
+<span class="sd">        rv is a list, identical to get_star_map().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;stars&#39;</span><span class="p">]:</span>
+            <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Star</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mylist</span>
+
+    <span class="nd">@lacuna.bc.LacunaObject.call_named_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">probe_summary_fissures</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">mydict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="Map.probe_summary_fissures"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.probe_summary_fissures">[docs]</a>        <span class="sd">&quot;&quot;&quot; Provides info on fissures in a zone.</span>
+
+<span class="sd">        Requires a single dict argument:</span>
+<span class="sd">            - zone -- &#39;0|0&#39;</span>
+
+<span class="sd">        Returns a list of map.Fissure objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">### kwargs[&#39;rslt&#39;][&#39;fissures&#39;] is either a dict</span>
+        <span class="c">### (fissure_id: fissure_dict) OR it points to nothing.  Not an empty </span>
+        <span class="c">### dict, just nothing.  fissure_dict, btw, _does_ contain the fissure </span>
+        <span class="c">### id again.</span>
+        <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;fissures&#39;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">f_id</span><span class="p">,</span> <span class="n">f_dict</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;fissures&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">Fissure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">f_dict</span><span class="p">)</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">mylist</span>
+
+    <span class="c">### </span>
+    <span class="c">### Non-API methods</span>
+    <span class="c">###</span>
+
+    <span class="k">def</span> <span class="nf">get_orbiting_planet</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">star_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">planet_name</span><span class="p">:</span><span class="nb">str</span> <span class="p">):</span></div>
+<div class="viewcode-block" id="Map.get_orbiting_planet"><a class="viewcode-back" href="../../map.html#lacuna.map.Map.get_orbiting_planet">[docs]</a>        <span class="sd">&quot;&quot;&quot; Get the info of any planet you can see in your star map.</span>
+
+<span class="sd">        Arguments</span>
+<span class="sd">            - star_name -- String name of a star</span>
+<span class="sd">            - planet_name -- String name of a planet orbiting that star</span>
+
+<span class="sd">        Returns a body.Body object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">my_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_map</span><span class="p">()</span>
+        <span class="n">star</span> <span class="o">=</span> <span class="n">my_map</span><span class="o">.</span><span class="n">get_star_by_name</span><span class="p">(</span><span class="n">star_name</span><span class="p">)</span>
+        <span class="n">target_planet</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">star</span><span class="o">.</span><span class="n">bodies</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">planet_name</span><span class="p">:</span>
+                <span class="n">target_planet</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">target_planet</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&quot;Unable to find target planet&quot;</span><span class="p">,</span> <span class="n">planet_name</span><span class="p">,</span> <span class="s">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">target_planet</span>
+
+
+<span class="k">class</span> <span class="nc">Star</span><span class="p">():</span></div></div>
+<div class="viewcode-block" id="Star"><a class="viewcode-back" href="../../map.html#lacuna.map.Star">[docs]</a>    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        color       &#39;red&#39;,</span>
+<span class="sd">        id          &#39;12345&#39;,</span>
+<span class="sd">        name        &#39;Clou Oghofr Oap&#39;,</span>
+<span class="sd">        x           &#39;100&#39;,</span>
+<span class="sd">        y           &#39;-100&#39;,</span>
+<span class="sd">        zone        &#39;0|0&#39;,</span>
+<span class="sd">        bodies:     List of body.Body objects.  If you don&#39;t have the star </span>
+<span class="sd">                    probed or oracled, this list will be empty.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">star_dict</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+
+        <span class="k">if</span> <span class="s">&#39;status&#39;</span> <span class="ow">in</span> <span class="n">star_dict</span><span class="p">:</span>
+            <span class="k">del</span><span class="p">(</span> <span class="n">star_dict</span><span class="p">[</span><span class="s">&#39;status&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+        <span class="n">body_objs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s">&#39;bodies&#39;</span> <span class="ow">in</span> <span class="n">star_dict</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">star_dict</span><span class="p">[</span><span class="s">&#39;bodies&#39;</span><span class="p">]:</span>
+                <span class="n">body_objs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">)</span>
+            <span class="k">del</span><span class="p">(</span> <span class="n">star_dict</span><span class="p">[</span><span class="s">&#39;bodies&#39;</span><span class="p">]</span> <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bodies</span> <span class="o">=</span> <span class="n">body_objs</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">star_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Fissure</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div>
+<div class="viewcode-block" id="Fissure"><a class="viewcode-back" href="../../map.html#lacuna.map.Fissure">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        name     &quot;Mercury&quot;,</span>
+<span class="sd">        id       345,</span>
+<span class="sd">        orbit    1,</span>
+<span class="sd">        x        -40,</span>
+<span class="sd">        y        29,</span>
+<span class="sd">        type     &quot;habitable planet&quot;,</span>
+<span class="sd">        image    &quot;p13&quot;,</span>
+<span class="sd">        size     58,</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

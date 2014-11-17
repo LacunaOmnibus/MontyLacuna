@@ -56,9 +56,14 @@
 <span id="clients"></span><h1>clients<a class="headerlink" href="#module-lacuna.clients" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.clients.Guest">
+<<<<<<< HEAD
 <em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Guest</tt><big>(</big><em>api_key: str='anonymous'</em>, <em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>host: str='us1.lacunaexpanse.com'</em>, <em>logfile: str=''</em>, <em>password: str=''</em>, <em>proto: str='http'</em>, <em>session_id: str=''</em>, <em>show_captcha: bool=True</em>, <em>sleep_after_error: bool=True</em>, <em>sleep_on_call: int=1</em>, <em>username: str=''</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>Guest users are not logged in.</p>
+=======
+<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Guest</tt><big>(</big><em>api_key: str='anonymous'</em>, <em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>host: str='us1.lacunaexpanse.com'</em>, <em>logfile: str=''</em>, <em>password: str=''</em>, <em>proto: str='http'</em>, <em>session_id: str=''</em>, <em>show_captcha: bool=True</em>, <em>sleep_after_error: bool=True</em>, <em>sleep_on_call: int=1</em>, <em>username: str=''</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guest users are not logged in.</p>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dl class="docutils">
 <dt>Accepts the following named arguments:</dt>
 <dd><ul class="first last simple">
@@ -101,7 +106,11 @@ screen, after which the script will quit.</p>
 </dl>
 <dl class="method">
 <dt id="lacuna.clients.Guest.send">
+<<<<<<< HEAD
 <tt class="descname">send</tt><big>(</big><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
+=======
+<tt class="descname">send</tt><big>(</big><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Guest.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dd><p>Marshals a request and actually sends it to the server, collecting 
 and json-decoding the response.</p>
 <dl class="docutils">
@@ -136,6 +145,7 @@ sending any emails at all, via this method or the browser.</p>
 
 <dl class="class">
 <dt id="lacuna.clients.Member">
+<<<<<<< HEAD
 <em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Member</tt><big>(</big><em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>api_key: str=''</em>, <em>host: str=''</em>, <em>logfile: str=''</em>, <em>proto: str=''</em>, <em>username: str=''</em>, <em>password: str=''</em>, <em>sleep_on_call: int=1</em>, <em>sleep_after_error: bool=True</em>, <em>show_captcha: bool=True</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lacuna.clients.Guest" title="lacuna.clients.Guest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Guest</span></tt></a></p>
 <p>Members are logged in; username and password are required.</p>
@@ -201,6 +211,10 @@ Does not clear any existing caches, only stops pulling data from them.</p>
 </dl>
 </dd></dl>
 
+=======
+<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Member</tt><big>(</big><em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>api_key: str=''</em>, <em>host: str=''</em>, <em>logfile: str=''</em>, <em>proto: str=''</em>, <em>username: str=''</em>, <em>password: str=''</em>, <em>sleep_on_call: int=1</em>, <em>sleep_after_error: bool=True</em>, <em>show_captcha: bool=True</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="reference internal" href="_modules/lacuna/clients.html#Member"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Members are logged in; username and password are required.</p>
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
 <dl class="method">
 <dt id="lacuna.clients.Member.login">
 <tt class="descname">login</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.login" title="Permalink to this definition">¶</a></dt>

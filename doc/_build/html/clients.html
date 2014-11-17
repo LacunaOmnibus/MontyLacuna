@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>clients &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
+    <link rel="next" title="empire" href="empire.html" />
+    <link rel="prev" title="captcha" href="captcha.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="empire.html" title="empire"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="captcha.html" title="captcha"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lacuna.clients">
+<span id="clients"></span><h1>clients<a class="headerlink" href="#module-lacuna.clients" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.clients.Guest">
+<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Guest</tt><big>(</big><em>api_key: str='anonymous'</em>, <em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>host: str='us1.lacunaexpanse.com'</em>, <em>logfile: str=''</em>, <em>password: str=''</em>, <em>proto: str='http'</em>, <em>session_id: str=''</em>, <em>show_captcha: bool=True</em>, <em>sleep_after_error: bool=True</em>, <em>sleep_on_call: int=1</em>, <em>username: str=''</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Guest users are not logged in.</p>
+<dl class="docutils">
+<dt>Accepts the following named arguments:</dt>
+<dd><ul class="first last simple">
+<li>config_file &#8211;  path to your configparser-friendly config file</li>
+<li>config_section &#8211; the section in your config file to read from</li>
+<li>api_key &#8211; your TLE api_key.  Omitting this is fine; the default key (the string &#8216;anonymous&#8217;) will be used.</li>
+<li>logfile &#8211; path to your logfile.  Defaults to no logfile; only WARNING or higher log events will display to the terminal.</li>
+<li>proto &#8211; http or https.  Defaults to http.</li>
+<li>host &#8211; us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to us1.</li>
+<li>sleep_on_call &#8211; Integer seconds.  Defaults to 1.  Number of seconds to sleep after each call to attempt to avoid using more than the limit of 60 RPCs per minute.</li>
+<li>sleep_on_error &#8211; Boolean.  Defaults to True.  If we&#8217;ve used over 60 RPCs in a minute, the server will produce an error, and if this setting is True, when we get that server error we&#8217;ll sleep for a minute and then re-try our call.  If this setting is false, we&#8217;ll throw an exception.</li>
+</ul>
+</dd>
+</dl>
+<p>Generally, you&#8217;ll omit all arguments except for config_file and 
+config_section, and just fill the appropriate values out in your config.</p>
+<p>If a config_file and config_section are passed in, the values in that config 
+file take precedence over any other values, including passed-in values.</p>
+<p><strong>Caching</strong>
+None of the MontyLacuna modules are performing any caching for you.  
+However, if your script performs some selective caching, it could well run 
+(much) faster, so there is a &#8216;cache&#8217; attribute you can use in your 
+scripts.</p>
+<p>The &#8216;cache&#8217; attribute is a beaker CacheManager object, with a file-based 
+cache already set up for you.</p>
+<dl class="docutils">
+<dt><strong>Debugging</strong></dt>
+<dd><p class="first">To take a look at the actual JSON that would be sent to the TLE 
+servers for a specific method call, in your calling code you can set a 
+debugging method on your client, eg:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">empire.client.debugging_method = &#39;view_profile&#39;</span>
+<span class="go">empire.view_profile()</span>
+</pre></div>
+</div>
+<p class="last">In this case, the call to view_profile() will cause the JSON that 
+would normally be sent to the server to instead be dumped to your 
+screen, after which the script will quit.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lacuna.clients.Guest.send">
+<tt class="descname">send</tt><big>(</big><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marshals a request and actually sends it to the server, collecting 
+and json-decoding the response.</p>
+<dl class="docutils">
+<dt>Accepts:</dt>
+<dd><ul class="first last simple">
+<li>path &#8211; The path after the host (eg empire, building, etc).  Don&#8217;t include any directory separators.</li>
+<li>method &#8211; The name of the method to be run</li>
+<li>params &#8211; Tuple of arguments/parameters to be passed to the method.</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd>A dictionary; the json-decoded response from the server.</dd>
+<dt>Raises:</dt>
+<dd><ul class="first last simple">
+<li>NotJsonError if the server response is not a JSON string</li>
+<li>ServerError if the server responds with anything other than 
+a 200, along with a JSON string</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.clients.Guest.send_password_reset_message">
+<tt class="descname">send_password_reset_message</tt><big>(</big><em>email=''</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.send_password_reset_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is meant to send a password reset email to the user&#8217;s 
+registered email address.  However, it seems that the TLE server is not 
+sending any emails at all, via this method or the browser.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.clients.Member">
+<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Member</tt><big>(</big><em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>api_key: str=''</em>, <em>host: str=''</em>, <em>logfile: str=''</em>, <em>proto: str=''</em>, <em>username: str=''</em>, <em>password: str=''</em>, <em>sleep_on_call: int=1</em>, <em>sleep_after_error: bool=True</em>, <em>show_captcha: bool=True</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.clients.Guest" title="lacuna.clients.Guest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Guest</span></tt></a></p>
+<p>Members are logged in; username and password are required.</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">config_file</span>
+<span class="go">config_section</span>
+<span class="go">host</span>
+<span class="go">logfile</span>
+<span class="go">proto</span>
+<span class="go">username</span>
+<span class="go">password</span>
+<span class="go">sleep_on_call</span>
+<span class="go">sleep_after_error</span>
+<span class="go">show_captcha</span>
+<span class="go">warn_on_sleep</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lacuna.clients.Member.cache_clear">
+<tt class="descname">cache_clear</tt><big>(</big><em>name: str=''</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member.cache_clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears a named cache.  If a cache name is not mentioned, clears the most-recently used cache.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String; name of the cache to clear.  Defaults to the cache most recently used.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_two&#39;</span> <span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">()</span>                <span class="c"># clear cache_two implicitly</span>
+<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">(</span> <span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>   <span class="c"># clear cache_one explicitly</span>
+</pre></div>
+</div>
+<p>Returns True if a cache was cleared, false if no name was passed in and 
+no cache has yet been used by this client (so there&#8217;s no 
+&#8220;most-recently-used&#8221; cache name to clear).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.clients.Member.cache_off">
+<tt class="descname">cache_off</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.cache_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn caching off.
+Does not clear any existing caches, only stops pulling data from them.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.clients.Member.cache_on">
+<tt class="descname">cache_on</tt><big>(</big><em>name: str</em>, <em>expiry: int=3600</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member.cache_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn the cache on.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String namespace to use for caching data</li>
+<li>expiry &#8211; Integer seconds after which cached data is no longer valid.  Defaults to 3600 (one hour).</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.clients.Member.login">
+<tt class="descname">login</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures the current client is logged in.</p>
+<p>If self.session_id is set, we&#8217;ll test it to make sure we can get a 
+response.  If so, the session_id is valid and we&#8217;ll continue to use 
+that session.</p>
+<p>If self.session_id is not set or is found to be invalid, we&#8217;ll log in 
+fresh.  The new, now-valid session_id will be written to the config 
+file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.clients.Member.logout">
+<tt class="descname">logout</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs the current session out.</p>
+<p>Saving the session_id in the config file allows users to complete a 
+captcha in one script and have that captcha&#8217;s success apply to all 
+other scripts run, as long as that session_id is valid.</p>
+<p>Calling logout() invalidates that session_id and removes it from the 
+config file.  Therefore, actually calling logout() is rarely 
+necessary.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="captcha.html"
+                        title="previous chapter">captcha</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="empire.html"
+                        title="next chapter">empire</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/clients.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="empire.html" title="empire"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="captcha.html" title="captcha"
+             >previous</a> |</li>
+        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

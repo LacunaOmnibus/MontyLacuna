@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lacuna.buildings.geneticslab &mdash; Monty Lacuna 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for lacuna.buildings.geneticslab</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">lacuna.bc</span>
+<span class="kn">import</span> <span class="nn">lacuna.building</span>
+<span class="kn">import</span> <span class="nn">lacuna.empire</span>
+<span class="kn">import</span> <span class="nn">lacuna.spy</span>
+
+<span class="k">class</span> <span class="nc">geneticslab</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">building</span><span class="o">.</span><span class="n">MyBuilding</span><span class="p">):</span>
+<div class="viewcode-block" id="geneticslab"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.geneticslab.geneticslab">[docs]</a>    <span class="n">path</span> <span class="o">=</span> <span class="s">&#39;geneticslab&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">building_id</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">client</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">building_id</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span>
+    <span class="k">def</span> <span class="nf">prepare_experiment</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="geneticslab.prepare_experiment"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.geneticslab.geneticslab.prepare_experiment">[docs]</a>        <span class="sd">&quot;&quot;&quot; Returns information needed to set up a genetics experiment.</span>
+
+<span class="sd">        Returns a tuple:</span>
+<span class="sd">            grafts_list         List of dicts</span>
+<span class="sd">            survival_odds       Integer percent odds of the victim surviving</span>
+<span class="sd">            graft_odds          Integer percent odds of the graft working</span>
+<span class="sd">            essentia_cost       Integer cost per experiment attempt</span>
+<span class="sd">            can_experiment      Boolean; whether the lab can be used or not.</span>
+
+<span class="sd">        The dicts in grafts_list each describe one prisoner who&#39;s available to </span>
+<span class="sd">        do experiments on:</span>
+<span class="sd">            spy                     spy.Spy object</span>
+<span class="sd">            species                 empire.Species object</span>
+<span class="sd">            graftable_affinities    List of affinity names; these are affinities </span>
+<span class="sd">                                    of the prisoner&#39;s that are higher than your </span>
+<span class="sd">                                    own, eg [&quot;min_orbit&quot;, &quot;management_affinity&quot;, </span>
+<span class="sd">                                    ... ]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">grafts_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;grafts&#39;</span><span class="p">]:</span>
+            <span class="n">grafts_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s">&#39;spy&#39;</span><span class="p">:</span>                  <span class="n">lacuna</span><span class="o">.</span><span class="n">spy</span><span class="o">.</span><span class="n">Spy</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="s">&#39;spy&#39;</span><span class="p">]</span> <span class="p">),</span>
+                <span class="s">&#39;species&#39;</span><span class="p">:</span>              <span class="n">lacuna</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">Species</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="s">&#39;species&#39;</span><span class="p">]</span> <span class="p">),</span>
+                <span class="s">&#39;graftable_affinities&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="s">&#39;graftable_affinities&#39;</span><span class="p">],</span>
+            <span class="p">})</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">grafts_list</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;survival_odds&#39;</span><span class="p">],</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;graft_odds&#39;</span><span class="p">],</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;essentia_cost&#39;</span><span class="p">],</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;can_experiment&#39;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">spy_id</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">affinity</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="geneticslab.run_experiment"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.geneticslab.geneticslab.run_experiment">[docs]</a>        <span class="sd">&quot;&quot;&quot; Runs a genetics experiment on a spy in an attempt to graft one of </span>
+<span class="sd">        his affinities onto your species.</span>
+
+<span class="sd">        Returns a single geneticslab.ExperimentResults object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ExperimentResults</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;experiment&#39;</span><span class="p">]</span> <span class="p">)</span>
+
+    <span class="nd">@lacuna.building.MyBuilding.call_returning_meth</span></div>
+    <span class="k">def</span> <span class="nf">rename_species</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">named_args</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+<div class="viewcode-block" id="geneticslab.rename_species"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.geneticslab.geneticslab.rename_species">[docs]</a>        <span class="sd">&quot;&quot;&quot; Allows you to change your species name and description.</span>
+
+<span class="sd">        Argument is a single dict:</span>
+<span class="sd">            name            &quot;My New Species Name&quot;,</span>
+<span class="sd">            description     &quot;My New Species Description&quot;</span>
+
+<span class="sd">            name requirements:</span>
+<span class="sd">                - 30 characters or fewer</span>
+<span class="sd">                - Not blank</span>
+<span class="sd">                - @, &amp; &lt;, &gt;, ; are prohibited.</span>
+
+<span class="sd">            description requirements:</span>
+<span class="sd">                - 1024 characters or fewer</span>
+<span class="sd">                - &lt;, &gt; are prohibited.</span>
+
+<span class="sd">        Retval contains only &#39;success&#39;, set to 1.  No status is returned.</span>
+
+<span class="sd">        Raises ServerError 1000 for bad species name.</span>
+<span class="sd">        Raises ServerError 1005 for bad description.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;rslt&#39;</span><span class="p">][</span><span class="s">&#39;success&#39;</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">ExperimentResults</span><span class="p">(</span><span class="n">lacuna</span><span class="o">.</span><span class="n">bc</span><span class="o">.</span><span class="n">SubClass</span><span class="p">):</span></div></div>
+<div class="viewcode-block" id="ExperimentResults"><a class="viewcode-back" href="../../../lacuna.buildings.html#lacuna.buildings.geneticslab.ExperimentResults">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        graft       Integer.  1 for success, 0 for failure</span>
+<span class="sd">        survive     Integer.  1 for success, 0 for failure</span>
+<span class="sd">        message     String.   eg &quot;The graft was a success, and the prisoner did not survive the experiment.&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Jonathan Barton.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

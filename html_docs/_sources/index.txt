@@ -12,8 +12,11 @@ Contents:
    :maxdepth: 2
 
    getting_started
+<<<<<<< HEAD
    caching
    glossary
+=======
+>>>>>>> e6b7b8711ddba8c55dd76a7e0b92768a693ed737
    bc
    alliance
    body
