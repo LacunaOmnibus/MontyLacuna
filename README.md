@@ -105,19 +105,6 @@ supposed to do.
    project.
 - Announcement
 
-## CACHING
-The client isn't doing any caching on its own (this is as it should be).
-
-But leaving caching completely up to the user isn't ideal either, since some 
-objects look like they can't be serialized and cached.  However, the straight 
-JSON strings we get back from the server certainly can be cached, and server 
-comms is the bottleneck.
-
-So I'm leaning towards some sort of user-settable flag that tells the client 
-that it should cache specific calls.
-
-See t/cache_test.py for what I'm working towards.
-
 ## TBD
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
@@ -138,7 +125,6 @@ http://sphinx-doc.org/tutorial.html
 https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 
 - First run only:
-  - Create ROOT/doc/ if ! exist
   - In ROOT:
     - sphinx-quickstart (this starts a question-and-answer section):
       - root path: ./doc
@@ -150,30 +136,18 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
       - Line 21 (ish):
         - sys.path.insert(0, os.path.abspath('../lib'))
       - That should tell Sphinx where the code lives
-  - I created these by hand in doc/:
-    - bc.rst
-    - body.rst
-    - building.rst
-    - captcha.rst
-    - clients.rst
-    - config_file.rst
-    - empire.rst
-    - getting_started.rst
-    - inbox.rst
-    - map.rst
-    - stats.rst
-- To generate docu based on docstrings:
-  - in ROOT:
-    - sphinx-apidoc -o doc/ lib/ lacuna
-      - http://sphinx-doc.org/invocation.html#invocation-apidoc
-      - This creates several more .rst files in doc/
-        - lacuna.rst
-        - lacuna.buildings.rst
-        - modules.rst
-        - my_validate_email.rst
-    - Of those generated files, the only one I'm explicitly adding to the main toctree is 
-      "my_validate_email".  I don't want lacuna or modules listed there at all.  I've 
-      added lacuna.buildings to the toctree of buildings.rst.
+  - To generate docu based on docstrings:
+    - in ROOT:
+      - sphinx-apidoc -o doc/ lib/ lacuna
+        - http://sphinx-doc.org/invocation.html#invocation-apidoc
+        - This creates several more .rst files in doc/
+          - lacuna.rst
+          - lacuna.buildings.rst
+          - modules.rst
+          - my_validate_email.rst
+      - Of those generated files, the only one I'm explicitly adding to the main toctree 
+        is "my_validate_email".  I don't want lacuna or modules listed there at all.  I've 
+        added lacuna.buildings to the toctree of buildings.rst.
 - Each time you want to update the generated documentation:
   - in ROOT/doc:
     - make html
