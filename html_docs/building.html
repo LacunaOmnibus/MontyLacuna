@@ -77,31 +77,27 @@ but no id.  A Potential building can&#8217;t do anything but call
 build().  After calling <tt class="docutils literal"><span class="pre">`build`</span></tt>, the Potential building becomes an 
 Existing building.</p>
 <dl class="docutils">
-<dt>do_upgrade, do_downgrade</dt>
-<dd>The published (server) method names for these are &#8220;upgrade()&#8221; and 
-&#8220;downgrade()&#8221;.  However, we&#8217;ve got status attributes by those names, and 
+<dt><tt class="docutils literal"><span class="pre">do_upgrade()</span></tt>, <tt class="docutils literal"><span class="pre">do_downgrade()</span></tt></dt>
+<dd>The published (server) method names for these are <tt class="docutils literal"><span class="pre">upgrade()</span></tt> and 
+<tt class="docutils literal"><span class="pre">downgrade()</span></tt>.  However, we&#8217;ve got status attributes by those names, and 
 attributes overwrite methods of the same name.
-So these have been renamed, adding the <tt class="docutils literal"><span class="pre">`do_`</span></tt> prefix&#8221; to avoid attribute 
+So these have been renamed, adding the <tt class="docutils literal"><span class="pre">do_</span></tt> prefix to avoid attribute 
 name collisions.</dd>
 </dl>
 <dl class="class">
 <dt id="lacuna.building.InBuildQueue">
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">InBuildQueue</tt><big>(</big><em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id                  &quot;building-id-goes-here&quot;,</span>
-<span class="go">name                &quot;Planetary Commmand&quot;,</span>
-<span class="go">to_level            8,</span>
-<span class="go">seconds_remaining   537,</span>
-<span class="go">x                   0,</span>
-<span class="go">y                   0,</span>
-<span class="go">subsidy_cost        3 # the essentia cost to subsidize just this building</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id                  &quot;building-id-goes-here&quot;,
+name                &quot;Planetary Commmand&quot;,
+to_level            8,
+seconds_remaining   537,
+x                   0,
+y                   0,
+subsidy_cost        3 # the essentia cost to subsidize just this building
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
@@ -122,34 +118,30 @@ type, eg food or ore.</p>
 <dt id="lacuna.building.MyBuilding">
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MyBuilding</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id              Integer ID of the building itself</span>
-<span class="go">body_id         Integer ID of the body this building is sitting on,</span>
-<span class="go">name            &quot;Apple Orchard&quot;,</span>
-<span class="go">x               1,</span>
-<span class="go">y               -1,</span>
-<span class="go">url             &quot;/apple&quot;,</span>
-<span class="go">level           3,</span>
-<span class="go">image           &quot;apples3&quot;,</span>
-<span class="go">efficiency      95,</span>
-<span class="go">pending_build   {</span>
-<span class="go">                    # only included when building is building/upgrading</span>
-<span class="go">                    &quot;seconds_remaining&quot; : 430,</span>
-<span class="go">                    &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
-<span class="go">                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;</span>
-<span class="go">                },</span>
-<span class="go">work            {</span>
-<span class="go">                    # only included when building is working (Parks, Waste Recycling, etc)</span>
-<span class="go">                    &quot;seconds_remaining&quot; : 49,</span>
-<span class="go">                    &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,</span>
-<span class="go">                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;</span>
-<span class="go">                }</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              Integer ID of the building itself
+body_id         Integer ID of the body this building is sitting on,
+name            &quot;Apple Orchard&quot;,
+x               1,
+y               -1,
+url             &quot;/apple&quot;,
+level           3,
+image           &quot;apples3&quot;,
+efficiency      95,
+pending_build   {
+                    # only included when building is building/upgrading
+                    &quot;seconds_remaining&quot; : 430,
+                    &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
+                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;
+                },
+work            {
+                    # only included when building is working (Parks, Waste Recycling, etc)
+                    &quot;seconds_remaining&quot; : 49,
+                    &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
+                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;
+                }
 </pre></div>
 </div>
-</dd>
-</dl>
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.build">
 <tt class="descname">build</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.build" title="Permalink to this definition">¶</a></dt>

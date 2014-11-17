@@ -69,17 +69,17 @@
 <li>messages &#8211; a list of message IDs</li>
 </ul>
 </dd>
-<dt>Returns a dict containing:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">{</span>
-<span class="go">    success : [id, id, id, ...]</span>
-<span class="go">    failure : [id, id, id, ...]</span>
-<span class="go">    status : { ... }</span>
-<span class="go">}</span>
+</dl>
+<p>Returns a dict containing:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre>{
+    success : [id, id, id, ...]
+    failure : [id, id, id, ...]
+    status : { ... }
+}
 </pre></div>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 <p>There&#8217;s no indication why any given message movement succeeded or failed, just that they did.</p>
 </dd></dl>
 
@@ -122,22 +122,19 @@ the body of the forwarded message is NOT included in the current
 message.  If you want that to happen, you&#8217;ll need to do it yourself.</p>
 <p>Returns a dict with (afaict) two keys (the rv is not documented, so 
 I&#8217;m just reporting the results of a few tests here).</p>
-<dl class="docutils">
-<dt>For a message sent to recipients &#8220;tmtowtdi,Infinate Ones,no_such_player&#8221;:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">    {</span>
-<span class="go">        &#39;sent&#39;: [&#39;tmtowtdi&#39;, &#39;Infinate Ones&#39;],</span>
-<span class="go">        &#39;unknown&#39;: [&#39;no_such_player&#39;]</span>
-<span class="go">    }</span>
+<p>For a message sent to recipients &#8220;tmtowtdi,Infinate Ones,no_such_player&#8221;:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&#39;sent&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;tmtowtdi&#39;</span><span class="p">,</span> <span class="s">&#39;Infinate Ones&#39;</span><span class="p">],</span>
+    <span class="s">&#39;unknown&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;no_such_player&#39;</span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</dd>
+</div></blockquote>
+<dl class="docutils">
 <dt><strong>Message Formatting</strong></dt>
-<dd><p class="first">This is rarely-enough used and the docs are wordy enough that it&#8217;s not worth
-repeating it all here.  See</p>
-<blockquote class="last">
-<div><a class="reference external" href="https://us1.lacunaexpanse.com/api/Inbox.html#Message_Formatting">https://us1.lacunaexpanse.com/api/Inbox.html#Message_Formatting</a></div></blockquote>
-</dd>
+<dd>This is rarely-enough used and the docs are wordy enough that it&#8217;s not worth
+repeating it all here.  See <a class="reference external" href="https://us1.lacunaexpanse.com/api/Inbox.html#Message_Formatting">https://us1.lacunaexpanse.com/api/Inbox.html#Message_Formatting</a></dd>
 </dl>
 </dd></dl>
 
@@ -151,17 +148,15 @@ repeating it all here.  See</p>
 <li>messages &#8211; a list of message IDs</li>
 </ul>
 </dd>
-<dt>Returns a dict containing:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">{</span>
-<span class="go">    success : [id, id, id, ...]</span>
-<span class="go">    failure : [id, id, id, ...]</span>
-<span class="go">    status : { ... }</span>
-<span class="go">}</span>
+</dl>
+<p>Returns a dict containing:</p>
+<div class="highlight-python"><div class="highlight"><pre>dict = {
+    success : [id, id, id, ...]
+    failure : [id, id, id, ...]
+    status : { ... }
+}
 </pre></div>
 </div>
-</dd>
-</dl>
 <p>There&#8217;s no indication why any given message movement succeeded or failed, just that they did.</p>
 </dd></dl>
 
@@ -192,12 +187,13 @@ repeating it all here.  See</p>
 </dl>
 <p>The tags you passed in are joined with &#8216;or&#8217;.  So for this call, you&#8217;ll 
 get back BOTH excavator and correspondence messages:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">msgs, ttl = mail.view_inbox({</span>
-<span class="go">    &quot;tags&quot;: [&quot;excavator&quot;, &quot;correspondence&quot;]</span>
-<span class="go">})</span>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="n">msgs</span><span class="p">,</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">view_inbox</span><span class="p">({</span>
+    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;excavator&quot;</span><span class="p">,</span> <span class="s">&quot;correspondence&quot;</span><span class="p">]</span>
+<span class="p">})</span>
 </pre></div>
 </div>
+</div></blockquote>
 <dl class="docutils">
 <dt>Valid message tags:</dt>
 <dd>Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
@@ -237,57 +233,53 @@ return 0 messages.</p>
 <p>This is the full message you get when viewing a specific message by ID.</p>
 <p>Note that the sender&#8217;s name is listed in the TLE documentation using the 
 key &#8220;from&#8221;, but we&#8217;re instead using &#8220;from_name&#8221;.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id              &quot;id-goes-here&quot;,</span>
-<span class="go">from_name       &quot;Dr. Stephen T. Colbert DFA&quot;,</span>
-<span class="go">from_id         &quot;id-goes-here&quot;,</span>
-<span class="go">to              &quot;Jon Stewart&quot;,</span>
-<span class="go">to_id           &quot;id-goes-here&quot;,</span>
-<span class="go">subject         &quot;Vaxaslim&quot;,</span>
-<span class="go">body            &quot;Just a reminder that Vaxaslim may cause involuntary narnia adventures.&quot;,</span>
-<span class="go">date            &quot;01 31 2010 13:09:05 +0600&quot;,</span>
-<span class="go">has_read        1,</span>
-<span class="go">has_replied     0,</span>
-<span class="go">has_archived    0,</span>
-<span class="go">has_trashed     0,</span>
-<span class="go">in_reply_to     &quot;&quot;,</span>
-<span class="go">recipients      [&quot;John Stewart&quot;],</span>
-<span class="go">tags            [&quot;Correspondence&quot;],</span>
-<span class="go">attachments     Dict, not a list.  A given message may not have more </span>
-<span class="go">                than one of each type of attachment.</span>
-<span class="go">                    {</span>
-<span class="go">                        &quot;image&quot; : {</span>
-<span class="go">                            &quot;url&quot; : &quot;http://www.example.com/path/image.jpg&quot;,</span>
-<span class="go">                            &quot;title&quot; : &quot;Some Title&quot;,</span>
-<span class="go">                            &quot;link&quot; : &quot;http://www.lacunaexpanse.com/&quot;, # optional link to somewhere</span>
-<span class="go">                        },</span>
-<span class="go">                        &quot;link&quot; : {</span>
-<span class="go">                            &quot;url&quot; : &quot;http://www.lacunaexpanse.com/&quot;,</span>
-<span class="go">                            &quot;label&quot; : &quot;The Lacuna Expanse Website&quot;</span>
-<span class="go">                        }</span>
-<span class="go">                        &quot;table&quot; : [</span>
-<span class="go">                            [ &quot;Hostname&quot;, &quot;IP Address&quot; ], # first row is always a header</span>
-<span class="go">                            [ &quot;example.lacunaexpanse.com&quot;, &quot;192.168.1.24&quot; ],</span>
-<span class="go">                            ...</span>
-<span class="go">                        ],</span>
-<span class="go">                        &quot;map&quot; : {</span>
-<span class="go">                            &quot;surface&quot; : &quot;surface-6&quot;,</span>
-<span class="go">                            &quot;buildings&quot; : [</span>
-<span class="go">                                {</span>
-<span class="go">                                    &quot;x&quot; : -3,</span>
-<span class="go">                                    &quot;y&quot; : 4,</span>
-<span class="go">                                    &quot;image&quot; : &quot;apples4&quot;</span>
-<span class="go">                                }</span>
-<span class="go">                                ...</span>
-<span class="go">                            ]</span>
-<span class="go">                        }</span>
-<span class="go">                    }</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
+from_name       &quot;Dr. Stephen T. Colbert DFA&quot;,
+from_id         &quot;id-goes-here&quot;,
+to              &quot;Jon Stewart&quot;,
+to_id           &quot;id-goes-here&quot;,
+subject         &quot;Vaxaslim&quot;,
+body            &quot;Just a reminder that Vaxaslim may cause involuntary narnia adventures.&quot;,
+date            &quot;01 31 2010 13:09:05 +0600&quot;,
+has_read        1,
+has_replied     0,
+has_archived    0,
+has_trashed     0,
+in_reply_to     &quot;&quot;,
+recipients      [&quot;John Stewart&quot;],
+tags            [&quot;Correspondence&quot;],
+attachments     Dict, not a list.  A given message may not have more 
+                than one of each type of attachment.
+                    {
+                        &quot;image&quot; : {
+                            &quot;url&quot; : &quot;http://www.example.com/path/image.jpg&quot;,
+                            &quot;title&quot; : &quot;Some Title&quot;,
+                            &quot;link&quot; : &quot;http://www.lacunaexpanse.com/&quot;, # optional link to somewhere
+                        },
+                        &quot;link&quot; : {
+                            &quot;url&quot; : &quot;http://www.lacunaexpanse.com/&quot;,
+                            &quot;label&quot; : &quot;The Lacuna Expanse Website&quot;
+                        }
+                        &quot;table&quot; : [
+                            [ &quot;Hostname&quot;, &quot;IP Address&quot; ], # first row is always a header
+                            [ &quot;example.lacunaexpanse.com&quot;, &quot;192.168.1.24&quot; ],
+                            ...
+                        ],
+                        &quot;map&quot; : {
+                            &quot;surface&quot; : &quot;surface-6&quot;,
+                            &quot;buildings&quot; : [
+                                {
+                                    &quot;x&quot; : -3,
+                                    &quot;y&quot; : 4,
+                                    &quot;image&quot; : &quot;apples4&quot;
+                                }
+                                ...
+                            ]
+                        }
+                    }
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
@@ -297,24 +289,20 @@ key &#8220;from&#8221;, but we&#8217;re instead using &#8220;from_name&#8221;.</
 <p>This is the message summary you get when viewing a list of messages.</p>
 <p>Note that the sender&#8217;s name is listed in the TLE documentation using the 
 key &#8220;from&#8221;, but we&#8217;re instead using &#8220;from_name&#8221;.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id              &quot;id-goes-here&quot;,</span>
-<span class="go">subject         &quot;Vaxaslim&quot;,</span>
-<span class="go">date            &quot;01 31 2010 13:09:05 +0600&quot;,</span>
-<span class="go">from_name       &quot;Dr. Stephen T. Colbert DFA&quot;,</span>
-<span class="go">from_id         &quot;id-goes-here&quot;,</span>
-<span class="go">to              &quot;Jon Stewart&quot;,</span>
-<span class="go">to_id           &quot;id-goes-here&quot;,</span>
-<span class="go">has_read        1,</span>
-<span class="go">has_replied     0,</span>
-<span class="go">body_preview    &quot;Just a reminder that Vaxaslim &quot;,</span>
-<span class="go">tags            &quot;Correspondence&quot; </span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
+subject         &quot;Vaxaslim&quot;,
+date            &quot;01 31 2010 13:09:05 +0600&quot;,
+from_name       &quot;Dr. Stephen T. Colbert DFA&quot;,
+from_id         &quot;id-goes-here&quot;,
+to              &quot;Jon Stewart&quot;,
+to_id           &quot;id-goes-here&quot;,
+has_read        1,
+has_replied     0,
+body_preview    &quot;Just a reminder that Vaxaslim &quot;,
+tags            &quot;Correspondence&quot; 
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
