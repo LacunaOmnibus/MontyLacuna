@@ -20,15 +20,15 @@
 
     A Potential building doesn't exist yet.  Its constuctor requires a body_id 
     but no id.  A Potential building can't do anything but call 
-    build().  After calling build(), the Potential building becomes an 
+    build().  After calling ```build```, the Potential building becomes an 
     Existing building.
 
-    do_upgrade(), do_downgrade()
-    The published (server) method names for these are "upgrade()" and 
-    "downgrade()".  However, we've got status attributes by those names, and 
-    attributes overwrite methods of the same name.
-    So these have been renamed, adding the "do_" prefix" to avoid attribute 
-    name collisions.
+    do_upgrade, do_downgrade
+        The published (server) method names for these are "upgrade()" and 
+        "downgrade()".  However, we've got status attributes by those names, and 
+        attributes overwrite methods of the same name.
+        So these have been renamed, adding the ```do_``` prefix" to avoid attribute 
+        name collisions.
 """
 
 import functools, re
