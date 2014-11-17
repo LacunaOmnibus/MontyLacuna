@@ -14,23 +14,24 @@ glc = lac.clients.Member(
 )
 
 
-### Get one of your planets
+### 
+### How about leaving out the my_key_name?
 ###
-
-pname = 'bmots01'
-#pname = 'bmots support 01'
-
-
-### I'm starting to lean in this direction, but I'm not sure yet, and it's 
-### getting late so my judgement might be off.  Think about this some more.
+### The key then gets created by client.send() as a join of send()'s args -- 
+### every send() call gets cached as long as cacheon is turned on.  The user 
+### just specifies the cache name.  He can later clear the entire cache by 
+### name.
 ###
-### But the idea is to force client.send() to cache its result while it's 
-### still JSON.  We can't cache things like the result of get_body_byname(), 
-### it's too object-y at that point, but we could cache the JSON string that 
-### turns into the body object.
+### I think that's the way to go.
 ###
-my_key_name = pname 
-glc.cacheon( 'my_cache_name', my_key_name )     # doesn't exist
+### Forcing the user to cacheon and then immediately cacheoff for every call 
+### is going to get tedious quick.
+###
+glc.cacheon( 'my_cache_name', 'my_key_name', 3600 )     # doesn't exist
+
 my_planet = glc.get_body_byname( pname )
 glc.cacheoff(  )                                # doesn't exist
+
+    ...later, optionally...
+glc.clear_cache( 'my_cache_name', my_key_name )
 
