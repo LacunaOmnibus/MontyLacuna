@@ -74,14 +74,16 @@ provide it; any module extending Building must provide that path variable.</p>
 </dl>
 <p>A Potential building doesn&#8217;t exist yet.  Its constuctor requires a body_id 
 but no id.  A Potential building can&#8217;t do anything but call 
-build().  After calling build(), the Potential building becomes an 
+build().  After calling <tt class="docutils literal"><span class="pre">`build`</span></tt>, the Potential building becomes an 
 Existing building.</p>
-<p>do_upgrade(), do_downgrade()
-The published (server) method names for these are &#8220;upgrade()&#8221; and 
+<dl class="docutils">
+<dt>do_upgrade, do_downgrade</dt>
+<dd>The published (server) method names for these are &#8220;upgrade()&#8221; and 
 &#8220;downgrade()&#8221;.  However, we&#8217;ve got status attributes by those names, and 
 attributes overwrite methods of the same name.
-So these have been renamed, adding the &#8220;<a href="#id1"><span class="problematic" id="id2">do_</span></a>&#8221; prefix&#8221; to avoid attribute 
-name collisions.</p>
+So these have been renamed, adding the <tt class="docutils literal"><span class="pre">`do_`</span></tt> prefix&#8221; to avoid attribute 
+name collisions.</dd>
+</dl>
 <dl class="class">
 <dt id="lacuna.building.InBuildQueue">
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">InBuildQueue</tt><big>(</big><em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
