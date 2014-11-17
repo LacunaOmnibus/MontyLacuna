@@ -29,10 +29,12 @@ class Inbox(lacuna.bc.LacunaObject):
 
         The tags you passed in are joined with 'or'.  So for this call, you'll 
         get back BOTH excavator and correspondence messages:
-            >>> 
-            msgs, ttl = mail.view_inbox({
-                "tags": ["excavator", "correspondence"]
-            })
+
+            ::
+
+                msgs, ttl = mail.view_inbox({
+                    "tags": ["excavator", "correspondence"]
+                })
 
         Valid message tags:
             Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
@@ -83,12 +85,14 @@ class Inbox(lacuna.bc.LacunaObject):
             - messages -- a list of message IDs
 
         Returns a dict containing:
-            >>> 
-            {
-                success : [id, id, id, ...]
-                failure : [id, id, id, ...]
-                status : { ... }
-            }
+
+            ::
+
+                {
+                    success : [id, id, id, ...]
+                    failure : [id, id, id, ...]
+                    status : { ... }
+                }
 
         There's no indication why any given message movement succeeded or failed, just that they did.
         """
@@ -103,8 +107,10 @@ class Inbox(lacuna.bc.LacunaObject):
             - messages -- a list of message IDs
 
         Returns a dict containing:
-            >>> 
-            {
+
+        ::
+
+            dict = {
                 success : [id, id, id, ...]
                 failure : [id, id, id, ...]
                 status : { ... }
@@ -137,7 +143,9 @@ class Inbox(lacuna.bc.LacunaObject):
         I'm just reporting the results of a few tests here).
 
         For a message sent to recipients "tmtowtdi,Infinate Ones,no_such_player":
-            >>> 
+
+            ::
+
                 {
                     'sent': ['tmtowtdi', 'Infinate Ones'],
                     'unknown': ['no_such_player']
@@ -145,8 +153,7 @@ class Inbox(lacuna.bc.LacunaObject):
 
         **Message Formatting**
             This is rarely-enough used and the docs are wordy enough that it's not worth
-            repeating it all here.  See
-                https://us1.lacunaexpanse.com/api/Inbox.html#Message_Formatting
+            repeating it all here.  See https://us1.lacunaexpanse.com/api/Inbox.html#Message_Formatting
         """
         pass
 
@@ -159,7 +166,9 @@ class MessageSummary(lacuna.bc.SubClass):
     key "from", but we're instead using "from_name".
 
     Attributes:
-        >>> 
+
+    ::
+
         id              "id-goes-here",
         subject         "Vaxaslim",
         date            "01 31 2010 13:09:05 +0600",
@@ -187,7 +196,9 @@ class Message(MessageSummary):
     key "from", but we're instead using "from_name".
 
     Attributes:
-        >>> 
+
+    ::
+
         id              "id-goes-here",
         from_name       "Dr. Stephen T. Colbert DFA",
         from_id         "id-goes-here",

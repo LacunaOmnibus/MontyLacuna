@@ -23,11 +23,11 @@
     build().  After calling ```build```, the Potential building becomes an 
     Existing building.
 
-    do_upgrade, do_downgrade
-        The published (server) method names for these are "upgrade()" and 
-        "downgrade()".  However, we've got status attributes by those names, and 
+    ``do_upgrade()``, ``do_downgrade()``
+        The published (server) method names for these are ``upgrade()`` and 
+        ``downgrade()``.  However, we've got status attributes by those names, and 
         attributes overwrite methods of the same name.
-        So these have been renamed, adding the ```do_``` prefix" to avoid attribute 
+        So these have been renamed, adding the ``do_`` prefix to avoid attribute 
         name collisions.
 """
 
@@ -45,7 +45,9 @@ class Building():
 class InBuildQueue(Building):
     """
     Attributes:
-        >>> 
+
+    ::
+
         id                  "building-id-goes-here",
         name                "Planetary Commmand",
         to_level            8,
@@ -58,7 +60,9 @@ class InBuildQueue(Building):
 class MyBuilding(LacunaObject):
     """ 
     Attributes:
-        >>> 
+
+    ::
+
         id              Integer ID of the building itself
         body_id         Integer ID of the body this building is sitting on,
         name            "Apple Orchard",
