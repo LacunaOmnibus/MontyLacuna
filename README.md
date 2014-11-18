@@ -50,9 +50,6 @@ work, but it hasn't been fully tested yet.
 - Inbox
 - Map
 - Stats
-  - Mostly oopified.  I didn't fully test (and therefore didn't fully oopify) 
-    this just because I don't see it being too useful.  Still, it should be 
-    completed.
 - Buildings
   - "all functionality" is a bit of a stretch here.  The Buildings base class 
 exists, and stub classes exist for all buildings in the game.  I need to work 
