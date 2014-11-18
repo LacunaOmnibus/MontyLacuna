@@ -164,9 +164,9 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
   - Now that everything is ready for gh-pages:
     - $ cp -Rip doc/{underscore}build/html ~/Desktop
     - $ git co gh-pages
-    - $ rm -rf html_docs
-    - $ mv ~/Desktop/html ./html_docs
-    - $ git add -A html_docs
+    - $ rm -rf html
+    - $ mv ~/Desktop/html ./
+    - $ git add -A html
     - $ git commit -m "docs!"
     - $ git push origin gh-pages
 
