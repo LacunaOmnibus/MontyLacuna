@@ -37,23 +37,15 @@ class Captcha(lacuna.bc.LacunaObject):
 
     path = 'captcha'
 
-    @lacuna.bc.LacunaObject.call_member_meth
+    @lacuna.bc.LacunaObject.call_returning_meth
     def fetch( self, **kwargs ):
         """ Fetches a captcha for the user to solve from the server.
 
-        Generally, you don't need to call this, use showit() instead.
+        This mirrors the TLE API, but you generally don't need to call this.
 
-        This mirrors the TLE Captcha::fetch() method.  It fetches the url and 
-        guid for the captcha, but does not actually fetch the captcha image 
-        (which lives at url) itself.
-
-        Retval includes:
-            - guid - a hashed CHECK captcha ID,
-            - url - The URL to the image
+        Returns a Puzzle object.
         """
-        self.url  = kwargs['rslt']['url']
-        self.guid = kwargs['rslt']['guid']
-        pass
+        return Puzzle( self.client, kwargs['rslt'] )
 
     def showit( self ):
         """ Actually downloads the captcha image, and attempts to display it  
@@ -120,4 +112,17 @@ class Captcha(lacuna.bc.LacunaObject):
         need this and you really know why, use solveit() instead.
         """
         pass
+
+
+class Puzzle(lacuna.bc.SubClass):
+    """
+    Attributes:
+
+    ::
+
+        url     FQ URL to the puzzle image
+        guid    uuid attached to the puzzle; must be passed back along with 
+                the solution.
+    """
+
 

@@ -1,5 +1,5 @@
 
-import os, sys
+import itertools, os, sys
 
 bindir = os.path.abspath(os.path.dirname(__file__))
 libdir = bindir + "/../lib"
@@ -10,7 +10,7 @@ guest = lac.clients.Guest()
 
 tmt = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'play_test_one',
+    config_section = 'my_sitter',
 )
 
 ### Using a non-logged-in guest account
@@ -31,6 +31,18 @@ tmt = lac.clients.Member(
 #print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
 #    .format(pro.city, pro.country, pro.player_name, len(pro.medals.keys()))
 #)
+
+
+### Separate out stations from planets
+###
+#tmt.empire.separate_stations( "^(S|Z)ASS" )
+#print( "10 of my planets:" )
+#for pid, pname in list( itertools.islice(tmt.empire.colonized.items(), 10) ):
+#    print( "\t{} has ID {}.".format(pname, pid) )
+#print( "10 of my stations:" )
+#for pid, pname in list( itertools.islice(tmt.empire.stations.items(), 10) ):
+#    print( "\t{} has ID {}.".format(pname, pid) )
+
 
 
 ### See how many RPCs you've used so far.
