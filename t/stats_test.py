@@ -20,20 +20,19 @@ glc = lac.clients.Member(
     config_section = 'my_sitter',
 )
 
+stats = glc.get_stats()
+
 ### credits() works fine from a guest account.
 ###
-guest_stats = guest.get_stats()
-guest_cred = guest_stats.credits()
-print( "TLE Play Testers:" )
-for i in guest_cred['Play Testers']:
-    print( "\t", i )
-
-
+#guest_stats = guest.get_stats()
+#guest_cred = guest_stats.credits()
+#print( "TLE Play Testers:" )
+#for i in guest_cred['Play Testers']:
+#    print( "\t", i )
 
 
 ### Look at alliance stats by page
 ###
-#stats = glc.get_stats()
 #ranks, num, page = stats.alliance_rank()
 #print( "There are", num, "total alliances." )
 #print( "Names of alliances on page number", page, ":" )
@@ -43,7 +42,6 @@ for i in guest_cred['Play Testers']:
 
 ### Look at alliance stats for a specific alliance
 ###
-#stats = glc.get_stats()
 #ranks = stats.find_alliance_rank('influence', 'S.M.A')
 #for i in ranks:
 #    print( "{} appears on page {}.".format(i.alliance_name, i.page_number) )
@@ -55,7 +53,37 @@ for i in guest_cred['Play Testers']:
 #print( "{} has ID {}.".format(player.empire_name, player.empire_id) )
 
 
+### Get info on empire ranks
+###
+#empires, emp_cnt, page = stats.empire_rank( 'blargle' )
+#print( "There are {} total empires.  We're looking at page {}.".format(emp_cnt, page) )
+#for i in empires:
+#    print( "{} is in the alliance {}, and has an off. success rate of {} and a def. success rate of {}."
+#        .format(i.empire_name, i.alliance_name, i.offense_success_rate, i.defense_success_rate) 
+#    )
 
-### CHECK this is where I got tired of doing the same thing over and over and 
-### stopped testing.  I'm a bad person.
+
+### Get info on colony ranks
+###
+#colonies = stats.colony_rank( 'blargle' )
+#for i in colonies:
+#    print( "{} is owned by {}.".format(i.planet_name, i.empire_name) )
+
+
+### Get info on spy ranks
+###
+#spies = stats.spy_rank()
+#for i in spies:
+#    print( "{}, level {}, with a success rate of {} and a dirty score of {}, is owned by {}."
+#        .format(i.spy_name, i.level, i.success_rate, i.dirtiest, i.empire_name)
+#    )
+
+
+### Get weekly medal winners
+###
+#winners = stats.weekly_medal_winners()
+#for i in winners:
+#    print( "{} won the {} medal {} times.  This should display the '{}' image."
+#        .format(i.empire_name, i.medal_name, i.times_earned, i.medal_image)
+#    )
 

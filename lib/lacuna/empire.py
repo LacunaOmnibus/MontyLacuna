@@ -36,9 +36,7 @@ class Empire(lacuna.bc.LacunaObject):
 class MyEmpire( Empire ):
     """ The Empire object belonging to the current Member's empire.
     
-    Attributes:
-
-        ::
+    Attributes::
 
         id                      "xxxx",
         rpc_count               321,        # the number of calls made to the server
@@ -354,9 +352,9 @@ class MyEmpire( Empire ):
         """ Separates space stations from planets.
 
         Arguments:
-            - regex -- Required string.  Will be applied to the names of all 
-              of the current empire's planets; any names that match the regex 
-              will be assumed to be stations.
+            - regex -- Required string.  Will be compiled as a regex and 
+              applied to the names of all of the current empire's planets; any 
+              names that match the regex will be assumed to be stations.
 
         Returns:
             - The integer count of space stations found.  Also creates the 
@@ -385,11 +383,6 @@ class MyEmpire( Empire ):
         paying attention and name one of your planets so that it matches your 
         regex, it'll show up in the ``stations`` dict.  So be careful with how 
         you use this.
-
-        planets                 {
-                                    "id-goes-here" : "Earth",
-                                    "id-goes-here" : "Mars,
-                                },
         """
         re_obj      = re.compile(regex)
         colonized   = {}
@@ -409,9 +402,7 @@ class MyEmpire( Empire ):
 class Species(lacuna.bc.SubClass):
     """ The attributes associated with an empire's species.
 
-    Attributes:
-
-        ::
+    Attributes::
 
         name                     "Human",
         description              "The descendants of Earth.",
@@ -439,9 +430,7 @@ class SpeciesTemplate(lacuna.bc.SubClass):
     These are the presets presented to a new player in the process of setting 
     up a new empire.
 
-    Attributes:
-
-        ::
+    Attributes::
 
         name                        "Average", 
         description                 "A race of average intellect, and weak constitution.',
@@ -466,9 +455,7 @@ class OwnProfile(lacuna.bc.SubClass):
     """ This is the user's own profile info.  Another empire's public profile 
     will contain less data.
 
-    Attributes:
-
-        ::
+    Attributes::
 
         description                  "description goes here",
         status_message               "status message goes here",
@@ -505,9 +492,7 @@ class OwnProfile(lacuna.bc.SubClass):
 class PublicProfile(lacuna.bc.SubClass):
     """ This is the public profile of any empire.
 
-    Attributes:
-
-        ::
+    Attributes::
 
         id                      "empire-id-goes-here",
         name                    "Lacuna Expanse Corp",
@@ -548,9 +533,7 @@ class PublicProfile(lacuna.bc.SubClass):
 
 class FoundEmpire(lacuna.bc.SubClass):
     """ 
-    Attributes:
-
-        ::
+    Attributes::
 
         id      Integer ID of the empire
         name    String name of the empire
@@ -558,9 +541,7 @@ class FoundEmpire(lacuna.bc.SubClass):
 
 class Boosts(lacuna.bc.SubClass):
     """ 
-    Attributes:
-
-        ::
+    Attributes::
 
         food            "01 31 2010 13:09:05 +0600",
         ore             "01 31 2010 13:09:05 +0600",
