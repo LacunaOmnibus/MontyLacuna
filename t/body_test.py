@@ -1,21 +1,18 @@
 
-import os
-import sys
-import pprint
-pp = pprint.PrettyPrinter( indent = 4 )
-import re
+import os, sys
 
-bindir = os.path.abspath(os.path.dirname(__file__))
-libdir = bindir + "/../lib"
+libdir = os.path.abspath(os.path.dirname(__file__)) + "/../lib"
 sys.path.append(libdir)
 
-import lacuna as lac
+import lacuna
 
 
-glc = lac.clients.Member(
-    config_file = bindir + "/../etc/lacuna.cfg",
+glc = lacuna.clients.Member(
+    config_file = os.path.abspath(os.path.dirname(__file__)) + "/../etc/lacuna.cfg",
     config_section = 'play_test',
 )
+print( glc.empire.name )
+quit()
 
 my_map = glc.get_map()
 

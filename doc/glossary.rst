@@ -30,13 +30,13 @@ Glossary
     Almost all MontyLacuna objects have a ``tle2date`` method, so you can 
     translate those TLE date strings to a Python datetime.datetime object:
 
-::
+        ::
 
-    dt = my_client.tle2date( my_client.some_attribute_with_a_TLE_date_string )
-    print( "Something happened on day {} of month {}, in the year {}, at {}:{}:{}."
-        .format(dt.day, dt.month, dt.year, dt.hour, dt.minute, dt.second)
-    )
-    
+            dt = my_client.tle2date( my_client.SOME_DATE_ATTRIBUTE )
+            print( "Something happened on day {} of month {}, in the year {}, at {}:{}:{}."
+                .format(dt.day, dt.month, dt.year, dt.hour, dt.minute, dt.second)
+            )
+            
 
 
 

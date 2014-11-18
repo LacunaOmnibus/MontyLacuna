@@ -106,8 +106,12 @@ supposed to do.
 - Announcement
 
 ## TBD
+- getting_started.rst currently has zero information on pip or installing prerequisites.  
+  I'm going to need that once I'm sure what the prerequisites are.
+  - Including get_pip.py in bin/ would make sense.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
+  - installing modules via pip or however it works on windows.
 - Ack through everything for "CHECK" and fix.
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 
   automatically - I'm not convinced that's what should be happening.  At the very least, 

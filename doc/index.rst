@@ -3,6 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. _home:
+
 Welcome to MontyLacuna's documentation!
 =======================================
 
@@ -12,6 +14,7 @@ Contents:
    :maxdepth: 2
 
    getting_started
+   config_file
    caching
    glossary
    bc
