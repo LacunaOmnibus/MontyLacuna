@@ -54,42 +54,81 @@
             
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a></li>
+<div class="section" id="install-python-3">
+<h2>Install Python 3<a class="headerlink" href="#install-python-3" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re on Windows, you can download Python 3 from <a class="reference external" href="http://www.activestate.com/activepython/downloads">ActiveState&#8217;s website.</a>  Make sure you download
+version 3.whatever, NOT version 2.whatever.</p>
+<p>If you&#8217;re on Linux or Mac, you probably already have Python installed.  But
+make sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3,
+and MontyLacuna will not work with Python 2.  Python 3 should be available via
+your package manager.</p>
+</div>
+<div class="section" id="install-montylacuna">
+<h2>Install MontyLacuna<a class="headerlink" href="#install-montylacuna" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Download either the <tt class="docutils literal"><span class="pre">.zip</span></tt> or <tt class="docutils literal"><span class="pre">.tar.gz</span></tt> file from <a class="reference external" href="http://tmtowtdi.github.io/MontyLacuna/">the MontyLacuna home
+page</a>.<ul>
+<li>Most people will want the <tt class="docutils literal"><span class="pre">.zip</span></tt> file.  If you&#8217;re not sure of the
+difference, get the <tt class="docutils literal"><span class="pre">.zip</span></tt>.</li>
+</ul>
+</li>
+<li>Open the <tt class="docutils literal"><span class="pre">zip</span></tt> file using whatever unzip tool you like.  It contains just
+one folder - drag that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.</li>
+<li>The folder you just dragged and dropped will have a long name, something
+like <tt class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></tt>.  You can leave that as is or rename
+it to whatever you want, but I strongly suggest you just rename it to
+<tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.<ul>
+<li>The rest of this documentation will assume that&#8217;s what you named it.</li>
+</ul>
+</li>
 </ul>
 </div>
-<div class="section" id="install">
-<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p>Info on how to install the package.</p>
+<div class="section" id="create-a-config-file">
+<h2>Create A Config File<a class="headerlink" href="#create-a-config-file" title="Permalink to this headline">¶</a></h2>
+<p>Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna
+folder, and run the config file creation script:
+&gt;&gt;&gt; python3 bin/create_config_file.py</p>
+<p>That will ask you several questions, and then create your config file for you.</p>
 </div>
-<div class="section" id="create-config-file">
-<h2>Create config file<a class="headerlink" href="#create-config-file" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="config_file.html"><em>Config File</em></a> document describes the config file pretty well, but CHECK I
-also want to flesh out and document <tt class="docutils literal"><span class="pre">bin/create_default_config_file.py</span></tt>.</p>
+<div class="section" id="script-runners-stop-here">
+<h2>Script Runners Stop Here<a class="headerlink" href="#script-runners-stop-here" title="Permalink to this headline">¶</a></h2>
+<p><strong>If you&#8217;re only planning on running scripts, not writing them, you can stop
+reading here; you&#8217;re done!</strong></p>
 </div>
-<div class="section" id="set-up-your-environment">
-<h2>Set up your environment<a class="headerlink" href="#set-up-your-environment" title="Permalink to this headline">¶</a></h2>
-<p>I&#8217;m wanting to end up in a situation where this section is not necessary.  No
-&#8220;use lib&#8221; statements needed; the user installs the package and then starts
-using it right away.</p>
-<p>But if that can&#8217;t happen for whatever reason, this section needs to describe
-how to properly set the path to the lib, via &#8220;use lib&#8221; or setting ENV
-variables, or virtualenv, or whatever.</p>
+<div class="section" id="tell-your-script-where-montylacuna-lives">
+<h2>Tell Your Script Where MontyLacuna Lives<a class="headerlink" href="#tell-your-script-where-montylacuna-lives" title="Permalink to this headline">¶</a></h2>
+<p>When you create a new script, you&#8217;ll need to tell that script how to find the
+MontyLacuna libraries.</p>
+<p>Assuming that your script is going to be in <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>, add this to
+the top of the script:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="n">libdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot;/../lib&quot;</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">libdir</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">lacuna</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="connect-a-client">
 <h2>Connect a client<a class="headerlink" href="#connect-a-client" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">my_client</span> <span class="o">=</span> <span class="n">lac</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
-    <span class="n">config_file</span> <span class="o">=</span> <span class="s">&quot;/home/me/MontyLacuna/etc/lacuna.cfg&quot;</span><span class="p">,</span>
-    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;my_sitter&#39;</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_client</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
+    <span class="n">config_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot;/../etc/lacuna.cfg&quot;</span><span class="p">,</span>
+    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;sitter&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
+<p>Please keep in mind that many of the people using your script may not be very
+technically inclined.  The config file creation script that comes with
+MontyLacuna creates config file sections named <tt class="docutils literal"><span class="pre">real</span></tt> and <tt class="docutils literal"><span class="pre">sitter</span></tt>; if
+your script is meant for distribution, it&#8217;s strongly suggested that you
+specify one of those two names as your <tt class="docutils literal"><span class="pre">config_section</span></tt>.</p>
 </div>
 <div class="section" id="get-your-empire">
 <h2>Get your empire<a class="headerlink" href="#get-your-empire" title="Permalink to this headline">¶</a></h2>
 <p>Your empire info is already part of your client.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span> <span class="s">&quot;I have used&quot;</span><span class="p">,</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">rpc_count</span><span class="p">,</span> <span class="s">&quot;RPCs so far today.&quot;</span><span class="p">)</span>
+
 <span class="n">profile</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span> <span class="s">&quot;I am from {} in {}, and my player name is {}.  I have won {} medals.&quot;</span>
     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">country</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">player_name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">medals</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
@@ -99,8 +138,8 @@ variables, or virtualenv, or whatever.</p>
 </div>
 <div class="section" id="get-info-on-your-alliance">
 <h2>Get info on your alliance<a class="headerlink" href="#get-info-on-your-alliance" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">my_all</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_my_alliance</span><span class="p">();</span>
-<span class="k">print</span><span class="p">(</span> <span class="s">&quot;My alliance is named&quot;</span><span class="p">,</span> <span class="n">my_all</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_alliance</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_my_alliance</span><span class="p">();</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;My alliance is named&quot;</span><span class="p">,</span> <span class="n">my_alliance</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -126,6 +165,11 @@ variables, or virtualenv, or whatever.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>From here, check on some of the existing sample scripts in <tt class="docutils literal"><span class="pre">bin/</span></tt>, and the
+full documentation in <a class="reference internal" href="index.html#home"><em>Welcome to MontyLacuna&#8217;s documentation!</em></a></p>
+</div>
 </div>
 
 
@@ -137,15 +181,18 @@ variables, or virtualenv, or whatever.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Getting Started</a><ul>
-<li><a class="reference internal" href="#install">Install</a></li>
-<li><a class="reference internal" href="#create-config-file">Create config file</a></li>
-<li><a class="reference internal" href="#set-up-your-environment">Set up your environment</a></li>
+<li><a class="reference internal" href="#install-python-3">Install Python 3</a></li>
+<li><a class="reference internal" href="#install-montylacuna">Install MontyLacuna</a></li>
+<li><a class="reference internal" href="#create-a-config-file">Create A Config File</a></li>
+<li><a class="reference internal" href="#script-runners-stop-here">Script Runners Stop Here</a></li>
+<li><a class="reference internal" href="#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li><a class="reference internal" href="#connect-a-client">Connect a client</a></li>
 <li><a class="reference internal" href="#get-your-empire">Get your empire</a></li>
 <li><a class="reference internal" href="#get-info-on-your-alliance">Get info on your alliance</a></li>
 <li><a class="reference internal" href="#read-mail-from-your-inbox">Read mail from your inbox</a></li>
 <li><a class="reference internal" href="#check-on-one-of-your-planets-by-name">Check on one of your planets by name</a></li>
 <li><a class="reference internal" href="#check-on-one-of-the-buildings-on-that-planet">Check on one of the buildings on that planet</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 </ul>

@@ -76,16 +76,18 @@ item, but it&#8217;ll still be a list.</p>
 format &#8220;01 31 2010 13:09:05 +0000&#8221;.</p>
 <p>The &#8220;+0000&#8221; is meant to indicate a Time Zone, but all date returns from
 the server will be in UTC, so they&#8217;ll always be &#8220;+0000&#8221;.</p>
-<p class="last">Almost all MontyLacuna objects have a <tt class="docutils literal"><span class="pre">tle2date</span></tt> method, so you can
+<p>Almost all MontyLacuna objects have a <tt class="docutils literal"><span class="pre">tle2date</span></tt> method, so you can
 translate those TLE date strings to a Python datetime.datetime object:</p>
-</dd>
-</dl>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">dt</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">tle2date</span><span class="p">(</span> <span class="n">my_client</span><span class="o">.</span><span class="n">some_attribute_with_a_TLE_date_string</span> <span class="p">)</span>
+<blockquote class="last">
+<div><div class="highlight-python"><div class="highlight"><pre><span class="n">dt</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">tle2date</span><span class="p">(</span> <span class="n">my_client</span><span class="o">.</span><span class="n">SOME_DATE_ATTRIBUTE</span> <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span> <span class="s">&quot;Something happened on day {} of month {}, in the year {}, at {}:{}:{}.&quot;</span>
     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">minute</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">second</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
 </div>
+</div></blockquote>
+</dd>
+</dl>
 </div>
 
 
