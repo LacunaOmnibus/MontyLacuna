@@ -33,8 +33,6 @@ class embassy(lacuna.building.MyBuilding):
         Raises ServerError 1010 if you are the leader of the alliance.  In 
         that case, you cannot leave.  Instead, you must either turn membership 
         over to another member or dissolve the alliance.
-
-        CHECK untested as I can't create an empire on PT.  Should work.
         """
         pass
 
@@ -130,7 +128,6 @@ class embassy(lacuna.building.MyBuilding):
     def expel_member( self, empire_id:int, message:str = '', **kwargs ):
         """ Expels a member from your alliance.  Can only be called by the 
         alliance leader.
-        CHECK untested as I can't create an empire on PT.  Should work.
         """
         pass
 

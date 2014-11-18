@@ -33,29 +33,16 @@ class Empire(lacuna.bc.LacunaObject):
         pass
 
 
-"""
-CHECK
-
-It might be nice to have an attribute "station_re" or some such:
-    station_re = '^\wASS'
-
-...and then have a method to separate known stations from planets:
-    def get_planets_not_stations:
-        for id, name in self.planets.items():
-            if re.match(self.station_re, name):
-                continue
-            print( "{} is id {}".format(name, id) )
-
-"""
-
 class MyEmpire( Empire ):
     """ The Empire object belonging to the current Member's empire.
     
     Attributes:
-        >>> 
+
+        ::
+
         id                      "xxxx",
-        rpc_count               321, # the number of calls made to the server
-        is_isolationist         1, # hasn't sent out probes or colony ships
+        rpc_count               321,        # the number of calls made to the server
+        is_isolationist         1,          # hasn't sent out probes or colony ships
         name                    "The Syndicate",
         status_message          "A spy's work is never done.",
         home_planet_id          "id-goes-here",
@@ -64,9 +51,9 @@ class MyEmpire( Empire ):
         essentia                0,
         planets                 {
                                     "id-goes-here" : "Earth",
-                                    "id-goes-here" : "Mars
+                                    "id-goes-here" : "Mars,
                                 },
-        tech_level"             20,  # Highests level university has gotten to.
+        tech_level"             20,         # Highest level university has gotten to.
         self_destruct_active    0,
         self_destruct_date      ""
     """
@@ -363,11 +350,69 @@ class MyEmpire( Empire ):
             mylist.append( SpeciesTemplate(self.client, i) )
         return mylist
 
+    def separate_stations(self, regex:str):
+        """ Separates space stations from planets.
+
+        Arguments:
+            - regex -- Required string.  Will be applied to the names of all 
+              of the current empire's planets; any names that match the regex 
+              will be assumed to be stations.
+
+        Returns:
+            - The integer count of space stations found.  Also creates the 
+              attributes ``station`` and ``colonized`` on the current empire 
+              object.
+
+        The ``MyEmpire.planets`` attribute is a dict (id:name) of all of the 
+        bodies that belong to the current empire.  However, "all of the 
+        bodies" includes planets you've colonized as well as space stations 
+        owned by your alliance.
+
+        Not having those separate from each other can be confusing, so it's 
+        common practice amongst alliances to name their space stations in a 
+        way that makes them easy to distinguish from colonized planets.
+
+        This looks through the list of your empire's planets, and creates two 
+        new MyEmpire attributes: ``stations`` and ``colonized``.  Both follow 
+        the same format as the comprehensive ``planets`` dict, but 
+        ``stations`` will contain the bodies we think are space stations, and 
+        ``colonized`` will contain the rest.
+
+        **CAUTION** -- This method is not perfect or authoritative!  Since a 
+        space station needs to have its Parliament up to level 3 before it can 
+        be renamed, it's likely that you'll occasionally get a brand new 
+        station showing up in the ``colonized`` dict.  And if you're not 
+        paying attention and name one of your planets so that it matches your 
+        regex, it'll show up in the ``stations`` dict.  So be careful with how 
+        you use this.
+
+        planets                 {
+                                    "id-goes-here" : "Earth",
+                                    "id-goes-here" : "Mars,
+                                },
+        """
+        re_obj      = re.compile(regex)
+        colonized   = {}
+        stations    = {}
+        cnt         = 0
+        for pid, pname in self.planets.items():
+            if re_obj.match(pname):
+                cnt += 1
+                stations[pid] = pname
+            else:
+                colonized[pid] = pname
+        self.stations   = stations
+        self.colonized  = colonized
+        return cnt
+
+
 class Species(lacuna.bc.SubClass):
     """ The attributes associated with an empire's species.
 
     Attributes:
-        >>> 
+
+        ::
+
         name                     "Human",
         description              "The descendants of Earth.",
         min_orbit                3,
@@ -395,7 +440,9 @@ class SpeciesTemplate(lacuna.bc.SubClass):
     up a new empire.
 
     Attributes:
-        >>> 
+
+        ::
+
         name                        "Average", 
         description                 "A race of average intellect, and weak constitution.',
         min_orbit                   3,
@@ -420,7 +467,9 @@ class OwnProfile(lacuna.bc.SubClass):
     will contain less data.
 
     Attributes:
-        >>> 
+
+        ::
+
         description                  "description goes here",
         status_message               "status message goes here",
         medals                       Dict:
@@ -457,7 +506,9 @@ class PublicProfile(lacuna.bc.SubClass):
     """ This is the public profile of any empire.
 
     Attributes:
-        >>> 
+
+        ::
+
         id                      "empire-id-goes-here",
         name                    "Lacuna Expanse Corp",
         colony_count            1,
@@ -498,14 +549,19 @@ class PublicProfile(lacuna.bc.SubClass):
 class FoundEmpire(lacuna.bc.SubClass):
     """ 
     Attributes:
-        - id -- Integer ID of the empire
-        - name -- String name of the empire
+
+        ::
+
+        id      Integer ID of the empire
+        name    String name of the empire
     """
 
 class Boosts(lacuna.bc.SubClass):
     """ 
     Attributes:
-        >>> 
+
+        ::
+
         food            "01 31 2010 13:09:05 +0600",
         ore             "01 31 2010 13:09:05 +0600",
         energy          "01 31 2010 13:09:05 +0600",

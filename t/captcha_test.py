@@ -31,6 +31,13 @@ glc = lac.clients.Member(
 
 cap = glc.get_captcha()
 
+p = cap.fetch()
+print( "Puzzle is located at {}.  Guid is {}.".format(p.url, p.guid) )
+
+quit()
+
+
+
 ### Display the captcha in a browser
 ###
 cap.showit()
