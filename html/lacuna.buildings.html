@@ -24,7 +24,7 @@
 
   
   
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
   
 
   
@@ -3012,6 +3012,44 @@ point you can throw another party.</p>
 <tt class="descname">path</tt><em class="property"> = 'policestation'</em><a class="headerlink" href="#lacuna.buildings.policestation.policestation.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="lacuna.buildings.policestation.policestation.view_foreign_ships">
+<tt class="descname">view_foreign_ships</tt><big>(</big><em>page_number: int=1</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.policestation.policestation.view_foreign_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows incoming foreign ships, 25 at a time.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>page_number &#8211; the page of results to view</li>
+</ul>
+</dd>
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>ships &#8211; list of ship.IncomingShip objects.</li>
+<li>number &#8211; total number of incoming ships.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.policestation.policestation.view_ships_orbiting">
+<tt class="descname">view_ships_orbiting</tt><big>(</big><em>page_number: int=1</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.policestation.policestation.view_ships_orbiting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows incoming foreign ships, 25 at a time.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>page_number &#8211; the page of results to view</li>
+</ul>
+</dd>
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>ships &#8211; list of ship.ForeignOrbiting objects.</li>
+<li>number &#8211; total number of incoming ships.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -3869,7 +3907,7 @@ upon the stealth levels of those orbiting ships.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ships &#8211; List of ForeignOrbitingShip objects</li>
+<li>ships &#8211; List of lacuna.ship.ForeignOrbiting objects</li>
 <li>number_of_ships &#8211; Integer</li>
 </ul>
 </dd>
@@ -4934,15 +4972,15 @@ trade.</p>
             HAS_SOURCE:  true
         };
     </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="static/js/theme.js"></script>
   
 
   
