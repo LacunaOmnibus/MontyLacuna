@@ -29,10 +29,14 @@ working package.
     thing for the user to have to install
 - beaker
   - pip install beaker
-- sphinx
-  - pip install sphinx
-  - This isn't really a prerequisite of using MontyLacuna, but it's (likely) what I'm 
-    using to generate the documentation.
+
+- Prereqs for documentation creation; not needed by script runners or writers
+  - sphinx
+    - pip install sphinx
+    - This isn't really a prerequisite of using MontyLacuna, but it's (likely) what I'm 
+      using to generate the documentation.
+  - Sphinx Read The Docs! theme
+    - pip install sphinx_rtd_theme
 
 ## Complete
 Nothing.

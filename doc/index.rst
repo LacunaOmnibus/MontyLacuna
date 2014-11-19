@@ -33,8 +33,8 @@ Contents:
    exceptions
    inbox
    map
-   stats
    my_validate_email
+   stats
 
 Indices and tables
 ==================

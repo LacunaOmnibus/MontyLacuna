@@ -36,7 +36,7 @@ class archaeology(lacuna.building.MyBuilding):
     def get_glyph_summary( self, **kwargs ):
         """ Returns summary of glyphs that may be assembled in this arch min.
 
-        Returns a list of OwnedGlyph objects.
+        Returns a list of lacuna.glyph.OwnedGlyph objects.
         """
         mylist = []
         for i in kwargs['rslt']['glyphs']:
