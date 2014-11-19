@@ -184,6 +184,11 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - $ rm -rf html
     - $ mv ~/Desktop/html ./
     - $ git add -A html
+      - There are directories in master containing files in .gitignore.  Since those files 
+        don't get commited to master, their directories don't get removed when checking 
+        out gh-pages.  So don't just "git add -A .", or you'll add that extraneous crap 
+        that has nothing to do with gh-pages.  Just "git add -A html".
     - $ git commit -m "docs!"
     - $ git push origin gh-pages
+    - $ git co master
 
