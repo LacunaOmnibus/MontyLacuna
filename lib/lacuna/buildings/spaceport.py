@@ -418,7 +418,7 @@ class spaceport(lacuna.building.MyBuilding):
         "Orbiting" contains one of the letter "t".
 
         Returns a tuple:
-            - ships -- List of ForeignOrbitingShip objects
+            - ships -- List of lacuna.ship.ForeignOrbiting objects
             - number_of_ships -- Integer
         """
         ### Returned keys here are 'ships' and 'number_of_ships' - these names 
@@ -426,7 +426,7 @@ class spaceport(lacuna.building.MyBuilding):
         ### view_ships_travelling.
         ship_list = []
         for i in kwargs['rslt']['ships']:
-            ship_list.append( ForeignOrbitingShip(self.client, i) )
+            ship_list.append( lacuna.ship.ForeignOrbiting(self.client, i) )
         return(
             ship_list, 
             kwargs['rslt']['number_of_ships']
