@@ -1,6 +1,6 @@
 
-empire
-===============
+TLE Module - Empire
+===================
 
 .. automodule:: lacuna.empire
    :members:

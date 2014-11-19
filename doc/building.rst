@@ -1,6 +1,6 @@
 
-building
-===============
+TLE Module - Building
+=====================
 
 .. automodule:: lacuna.building
    :members:

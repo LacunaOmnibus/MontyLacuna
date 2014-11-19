@@ -5,15 +5,16 @@ import lacuna.bc
 class PlanetaryResource(lacuna.bc.SubClass):
     """ Base class for resource classes.
 
-    Attributes:
+    Attributes::
+
         all_foods       List of all foods in the game
         all_ores        List of all ores in the game
         all_resources   List of all resources in the game
                         This is a join of all_foods and all_ores, along with 
                         "water" and "energy".
-        RES             Amount of RES we have stored up.
+        RES             Amount of RES we have stored up (eg "wheat")
         RES_hour        Amount of RES we're producing per hour
-                        "anthracite_hour", "wheat_hour", etc
+                        (eg "wheat_hour")
 
     """
     def __init__( self, client, mydict:dict, *args, **kwargs ):
@@ -60,7 +61,7 @@ class PlanetaryFood(PlanetaryResource):
         algae           322,    # amount being stored
         bean_hour       1,
         bean            2,
-        etc
+            ...etc...
         avail_list      List (sorted) of all available foods on the planet:
                         [ algae, bean, ... ]
     """
@@ -74,7 +75,7 @@ class PlanetaryOre(PlanetaryResource):
         anthracite          322,
         bauxite_hour        1,
         bauxite             2,
-        etc
+            ...etc...
         avail_list      List (sorted) of all available ores on the planet:
                         [ anthracite, bauxite, ... ]
     """

@@ -22,10 +22,10 @@ Glossary
 
 **TLE date format**
     Many methods include dates as part of their returns.  TLE dates are in the 
-    format "01 31 2010 13:09:05 +0000".
+    format ``01 31 2010 13:09:05 +0000``.
 
-    The "+0000" is meant to indicate a Time Zone, but all date returns from 
-    the server will be in UTC, so they'll always be "+0000".
+    The ``+0000`` is meant to indicate a Time Zone, but all date returns from 
+    the server will be in UTC, so they'll always be ``+0000``.
 
     Almost all MontyLacuna objects have a ``tle2date`` method, so you can 
     translate those TLE date strings to a Python datetime.datetime object:

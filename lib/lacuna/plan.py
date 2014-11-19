@@ -7,7 +7,8 @@ class Plan(lacuna.bc.SubClass):
 class OwnedPlan(Plan):
     """ Returned from viewing plans you currently own, as in your PCC.
 
-    Attributes:
+    Attributes::
+
         name                "Interstellar Broadcast System"
         level               1
         extra_build_level   5
@@ -18,7 +19,8 @@ class PotentialSSPlan(Plan):
     """ Returned from viewing plans you can build, as in your Space Station Lab
     (A).
 
-    Attributes:
+    Attributes::
+
         name                "Interstellar Broadcast System"
         type                "ibs"
         image               "ibs"
@@ -29,7 +31,8 @@ class LevelCosts(Plan):
     """ Not a plan at all, but the costs associated with creating a plan at your 
     SS Lab.
 
-    Attributes:
+    Attributes::
+
         level   1,
         food    10000
         ore     10000

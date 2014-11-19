@@ -1,6 +1,6 @@
 
-captcha
-===============
+TLE Module - Captcha
+====================
 
 .. automodule:: lacuna.captcha
    :members:

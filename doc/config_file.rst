@@ -4,7 +4,12 @@
 Config File
 ===============
 Normally when you connect a client, you'll send along the path to a config 
-file, and which section in that file you want to connect with.
+file, and which section in that file you want to connect with::
+
+    my_client = lacuna.clients.Member(
+        config_file = os.path.abspath(os.path.dirname(__file__)) + "/../etc/lacuna.cfg",
+        config_section = 'sitter',
+    )
 
 The easiest way to create a config file with a new install is to run 
 ``bin/create_config_file.py``.  It will ask you a few basic questions and then 
@@ -20,33 +25,33 @@ You can add as many additional named sections as you'd like.
 .. code-block:: ini
 
     [DEFAULT]
-        proto = https
-        host = us1.lacunaexpanse.com
-        testhost = pt.lacunaexpanse.com
-        api_key = anonymous
-        show_captcha = True
-        sleep_on_call = 1
-        sleep_after_error = True
-        warn_on_sleep = True
-        logfile = var/us1.log
+    proto = https
+    host = us1.lacunaexpanse.com
+    testhost = pt.lacunaexpanse.com
+    api_key = anonymous
+    show_captcha = True
+    sleep_on_call = 1
+    sleep_after_error = True
+    warn_on_sleep = True
+    logfile = var/us1.log
 
     [real]
-        username = My Empire Name
-        password = My Real Password
+    username = My Empire Name
+    password = My Real Password
 
     [sitter]
-        username = My Empire Name
-        password = My Sitter Password
+    username = My Empire Name
+    password = My Sitter Password
 
     [some_alliance_mate]
-        username = My Alliance Mate's Empire Name
-        password = My Alliance Mate's Sitter Password
-        logfile = var/ally_mate.log
+    username = My Alliance Mate's Empire Name
+    password = My Alliance Mate's Sitter Password
+    logfile = var/ally_mate.log
 
     [playtest]
-        host = ${DEFAULT:testhost}
-        username = My PT Empire Name
-        password = My PT Password
+    host = ${DEFAULT:testhost}
+    username = My PT Empire Name
+    password = My PT Password
 
 Setting Descriptions
 --------------------

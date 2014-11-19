@@ -6,6 +6,9 @@ import datetime, functools, math, pprint, re
 class SubClass():
     """ A generic base class for turning returned dicts into objects, and 
     for providing utility methods.
+
+    Almost all MontyLacuna objects inherit from this class, so any methods of 
+    this class can be called using any MontyLacuna object.
     """
     def __init__(self, client, mydict:dict):
         self.client = client
@@ -23,20 +26,20 @@ class SubClass():
                             this method is ignoring it, and it could actually 
                             be omitted from the passed-in string.
 
-        Returns a datetime.datetime object, with the attributes:
+        Returns a datetime.datetime object, with the attributes::
 
-        >>> 
-        year    Four-digit year
-        month   The month number, not zero-offset, so January is 1.  You can 
-                get the month name or abbreviation via:
-                    import calendar
-                    d = tle2time( "30 11 2014 21:40:31 +0000" )
-                    print( calendar.month_name[d.month] )           # November
-                    print( calendar.month_abbr[d.month] )           # Nov
-        day
-        hour
-        minute
-        second  Each of these always consists of two digits.
+            year        Four-digit year
+            month       The month number, not zero-offset, so January is 1.  You can 
+                        get the month name or abbreviation via:
+                            import calendar
+                            d = tle2time( "30 11 2014 21:40:31 +0000" )
+                            print( calendar.month_name[d.month] )           # November
+                            print( calendar.month_abbr[d.month] )           # Nov
+            day
+            hour
+            minute
+            second      Each of these always consists of two digits.
+
         """
         m = re.match("^(\d\d) (\d\d) (\d{4}) (\d\d):(\d\d):(\d\d)", tle_time)
         if m:
@@ -58,14 +61,6 @@ class SubClass():
             - seconds -- Integer seconds to convert
 
         Returns an ElapsedTime object.
-
-        Example:
-            
-            >>> 
-            time = i.sec2time( 86400 )
-            print( "That's {} days, {} hours, {} minutes, and {} seconds."
-                .format(time.days, time.hours, time.minutes, time.seconds)
-            )
         """
         ### http://stackoverflow.com/questions/4048651/python-function-to-convert-seconds-into-minutes-hours-and-days
         ###
@@ -280,23 +275,29 @@ class LacunaObject(SubClass):
         return inner
 
 class ElapsedTime():
-    """ This is awfully close to a datetime.datetime object, except:
-            - The attributes are plural - "days" instead of "day"
-            - The number of days elapsed is correct as-is.  datetime.day would 
-              actually be one too high, and the user would need to subtract 
-              one, and he's going to forget to do that 90% of the time.
+    """ Turns seconds into days, hours, minutes, and seconds.
 
-    Attributes:
+    Some methods return how long something is going to take in terms of seconds 
+    only.  Since it can be a little difficult to look at 190353 seconds and 
+    know off the top of your head how long that really is, you can pass those 
+    seconds to ElapsedTime.
+
+    Attributes (all are integers):
         - days
         - hours
         - minutes
         - seconds
 
-    *CAUTION* - This is slightly hokey - if the number of seconds passed in is 
-    greater than the number of seconds in the current month (2678400 for a 31-day 
-    month), then all returns will be reset:
+    This is awfully close to a datetime.datetime object, except:
+        - The attributes are plural - "days" instead of "day"
+        - The number of days elapsed is correct as-is.  datetime.day would 
+          actually be one too high, and the user would need to subtract 
+          one, and he's going to forget to do that 90% of the time.
 
-        >>> 
+    *CAUTION* - ``sec2time()`` is slightly hokey - if the number of seconds 
+    passed in is greater than the number of seconds in the current month 
+    (2678400 for a 31-day month), then all returns will be reset::
+
         time = i.sec2time( 2678400 )
         print( "That's {} days, {} hours, {} minutes, and {} seconds."
             .format(time.days, time.hours, time.minutes, time.seconds)

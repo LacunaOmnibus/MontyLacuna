@@ -1,28 +1,28 @@
 
-""" 
-Different types of ship objects have varying attributes depending on what 
-state the ship is in.
-
-In some cases, a hostile ship will only be visisble to you if its stealth level 
-is low enough compared to your SpacePort level.  The formula for determining 
-that is:
-        350 * SpacePort Level >= Ship Stealth
-
-If you're trying to detect ships to a space station, the formula for beating 
-stealth is:
-        5250 * PoliceStation Level >= Ship Stealth
-
-A number of ships contain an attribute ``origin``.  In the original API, that 
-attribute was named ``from``.  However, ``from`` is a Python reserved word, so 
-in those cases ``from`` has been changed to ``origin``.
-
-"""
-
 import lacuna.bc
 import lacuna.body
 
 class Ship(lacuna.bc.SubClass):
-    """ Base class """
+    """ Base class for ships.
+
+    Different types of ship objects have varying attributes depending on what 
+    state the ship is in.
+
+    In some cases, a hostile ship will only be visisble to you if its stealth 
+    level is low enough compared to your SpacePort level.  The formula for 
+    determining that is::
+
+        350 * SpacePort Level >= Ship Stealth
+
+    If you're trying to detect ships to a space station, the formula for 
+    beating stealth is::
+
+        525 * PoliceStation Level >= Ship Stealth
+
+    A number of ships contain an attribute ``origin``.  In the original API, 
+    that attribute was named ``from``.  However, ``from`` is a Python reserved 
+    word, so in those cases ``from`` has been changed to ``origin``.
+    """
     def __init__(self, client, mydict:dict):
         ### Can't have an attribute named 'from'.
         mydict['origin'] = mydict['from']
@@ -81,30 +81,26 @@ class ExistingShip(Ship):
         date_arrives    "02 01 2010 10:08:33 +0600",
         can_recall      "0",
         can_scuttle     "1",
-        origin          {
+        origin          {    "id" : "id-goes-here",
+                            "type" : "body",
+                            "name" : "Earth"     },
+        to              {   # Will only appear if the ship is currently
+                            # travelling somewhere:
                             "id" : "id-goes-here",
                             "type" : "body",
-                            "name" : "Earth"
-                        },
-                        # Will only appear if the ship is currently travelling somewhere:
-        to              {
-                            "id" : "id-goes-here",
-                            "type" : "body",
-                            "name" : "Mars"
-                        }
-                        # Will only appear if the ship is currently orbiting another planet:
-        orbiting        {
+                            "name" : "Mars"  }
+        orbiting        {   # Will only appear if the ship is currently
+                            # orbiting another planet:
                             "id" : "id-goes-here",
                             "type" : "body",
                             "name" : "Mars",
                             "x" : 4,
-                            "y" : -3,
-                        }
+                            "y" : -3,    }
     """
 
 class FleetShip(Ship):
     """ A FleetShip is an existing docked ship that's ready to be added to a 
-    fleet action against a specific target (spaceport.get_my_fleet_for())
+    fleet action against a specific target (``spaceport.get_my_fleet_for()``)
 
     Attributes::
 
@@ -128,14 +124,10 @@ class ForeignOrbiting(Ship):
         type            "spy_shuttle",
         type_human      "Spy Shuttle",
         date_arrived    "02 01 2010 10:08:33 +0600",
-        origin          {
-                            "id" : "id-goes-here",
+        origin          {   "id" : "id-goes-here",
                             "name" : "Mars",
-                            "empire" : {
-                                "id" : "id-goes-here",
-                                "name" : "Martians"
-                            }
-                        }
+                            "empire" : {    "id" : "id-goes-here",
+                                            "name" : "Martians"  }  }
 
     """
 
@@ -199,14 +191,12 @@ class PotentialShip(Ship):
         speed           1000,    # 100 roughly equals 1 star in 1 hour
         stealth         1500
         type            placebo
-        cost            {
-                            "seconds" : 900,
+        cost            {   "seconds" : 900,
                             "food" : 1100,
                             "water" : 1000,
                             "energy" : 1200,
                             "ore" : 1200,
-                            "waste" : 100,
-                        },
+                            "waste" : 100,  },
     """
     def __init__( self, client, mydict:dict, *args, **kwargs ):
         for k, v in mydict['attributes'].items():
@@ -257,16 +247,12 @@ class TravellingShip(Ship):
         type            "probe",
         type_human      "Probe",
         date_arrives    "01 31 2010 13:09:05 +0600",
-        origin          {
-                            "id" : "id-goes-here",
+        origin          {   "id" : "id-goes-here",
                             "type" : "body",
-                            "name" : "Earth",
-                        },
-        to              {
-                            "id" : "id-goes-here",
+                            "name" : "Earth"    },
+        to              {   "id" : "id-goes-here",
                             "type" : "star",
-                            "name" : "Sol",
-                        }
+                            "name" : "Sol"      }
     """
 
 class UnavailableShip(Ship):
@@ -300,11 +286,13 @@ class ChainShip(Ship):
 
         id              "id-goes-here",
         type            "scow",
-        task            "Docked", "Supply Chain", or "Waste Chain".  The 
-                        TLE documentation says the task is "Resource Chain", 
-                        but it does return "Supply Chain", not "Resource".
+        task            "Docked", "Supply Chain", or "Waste Chain".
         name            "My Garbage Scow",
         speed           600
         hold_size       1234800
+
+
+    For ``task``, the TLE documentation says the task is "Resource Chain", but 
+    it does return "Supply Chain", not "Resource Chain".
     """
 

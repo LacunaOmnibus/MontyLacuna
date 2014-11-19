@@ -7,37 +7,32 @@ from lacuna.exceptions import \
 
 class Body(lacuna.bc.LacunaObject):
     """
-    Attributes:
+    Attributes::
 
-    ::
-
-        id                          "id-goes-here",
-        x                           -4,
-        y                           10,
-        star_id                     "id-goes-here",
-        star_name                   "Sol",
-        orbit                       3,
-        type                        "habitable planet",
-        name                        "Earth",
-        image                       "p13",
-        size                        67,
-        water                       900,
-        ore                         {   "gold" : 3399,
-                                        "bauxite" : 4000,
-                                        etc
-                                    },
-        empire                      { # only exists if the body is inhabited
-                                        "id" : "id-goes-here",
-                                        "name" : "Earthlings",
-                                        "alignment" : "ally",   # can be 'ally','self', or 'hostile'
-                                        "is_isolationist" : 1
-                                    },
-        station                     { # only shows up if this planet is under the influence of a space station
-                                        "id" : "id-goes-here",
-                                        "x" : 143,
-                                        "y" : -27,
-                                        "name" : "The Death Star"
-                                    },
+        id          "id-goes-here",
+        x           -4,
+        y           10,
+        star_id     "id-goes-here",
+        star_name   "Sol",
+        orbit       3,
+        type        "habitable planet",
+        name        "Earth",
+        image       "p13",
+        size        67,
+        water       900,
+        ore         {   "gold" : 3399,
+                    "bauxite" : 4000,
+                    etc  },
+        empire      { # only exists if the body is inhabited
+                    "id" : "id-goes-here",
+                    "name" : "Earthlings",
+                    "alignment" : "ally",   # can be 'ally','self', or 'hostile'
+                    "is_isolationist" : 1    },
+        station     { # only shows up if this planet is under the influence of a space station
+                    "id" : "id-goes-here",
+                    "x" : 143,
+                    "y" : -27,
+                    "name" : "The Death Star"    },
         ### The following will only be set if you own the body in question.
         ### 
         needs_surface_refresh       1,  # indicates that the client needs to call get_buildings() because something has changed
@@ -66,38 +61,23 @@ class Body(lacuna.bc.LacunaObject):
         num_incoming_enemy          10,     # total number of incoming foreign ships
         num_incoming_ally           1,      # total number of incoming allied ships
         num_incoming_own            0,      # total number of incoming own ships from other colonies
-        incoming_enemy_ships         [
-                                        # will only be included when enemy ships are coming to 
+        incoming_enemy_ships         [  # will only be included when enemy ships are coming to 
                                         # your planet (only the first 20 will be shown)
-                                        {
-                                            "id" : "id-goes-here",
+                                        {   "id" : "id-goes-here",
                                             "date_arrives" : "01 31 2010 13:09:05 +0600",
-                                            "is_own" : 1,                                   # is this from one of our own planets
-                                            "is_ally" : 1                                   # is this from a planet within our alliance
-                                        },
-                                        etc
-                                    ],
-        incoming_ally_ships         [
-                                        # will only be included when allied ships are coming to 
-                                        # your planet (only the first 10 will be shown)
-                                        etc
-                                    ],
-        incoming_own_ships          [
-                                        # will only be included when ships from your other 
+                                            "is_own" : 1,
+                                            "is_ally" : 1   },  ],
+        incoming_ally_ships         [   # will only be included when allied ships are coming to 
+                                        # your planet (only the first 10 will be shown)     ],
+        incoming_own_ships          [   # will only be included when ships from your other 
                                         # colonies are coming to your planet (only the first 
-                                        # 10 will be shown)
-                                        etc  
-                                    ],
+                                        # 10 will be shown)     ],
         ### The following will only be set if the body is a space station.
         ### 
-        alliance                    { 
-                                        "id" : "id-goes-here",
-                                        "name" : "Imperial Empire" 
-                                    },
-        influence                   {
-                                        "total" : 0,
-                                        "spent" : 0
-                                    }
+        alliance                    {   "id" : "id-goes-here",
+                                        "name" : "Imperial Empire"  },
+        influence                   {   "total" : 0,
+                                        "spent" : 0  }
 
     """
 
@@ -168,9 +148,7 @@ class MyBody(Body):
     """ A MyBody object is a planet or space station owned by the current 
     empire.
 
-    Attributes:
-
-    ::
+    Attributes::
 
         id                  "id-goes-here",
         x                   -4,
@@ -183,23 +161,17 @@ class MyBody(Body):
         image               "p13",
         size                67,
         water               900,
-        ore                 {
-                                "gold" : 3399,
-                                "bauxite" : 4000,
-                                etc
-                            },
-        empire                  {
-                                    "id" : "id-goes-here",
-                                    "name" : "Earthlings",
-                                    "alignment" : "ally",   # can be 'ally','self', or 'hostile'
-                                    "is_isolationist" : 1
-                                },
-        station                 { # only shows up if this planet is under the influence of a space station
-                                    "id" : "id-goes-here",
-                                    "x" : 143,
-                                    "y" : -27,
-                                    "name" : "The Death Star"
-                                },
+        ore                 {   "gold" : 3399,
+                                "bauxite" : 4000,   },
+        empire              {   "id" : "id-goes-here",
+                                "name" : "Earthlings",
+                                "alignment" : "ally",   # can be 'ally','self', or 'hostile'
+                                "is_isolationist" : 1    },
+        station             {   # only shows up if this planet is under the influence of a space station
+                                "id" : "id-goes-here",
+                                "x" : 143,
+                                "y" : -27,
+                                "name" : "The Death Star"    },
         needs_surface_refresh   1, # indicates that the client needs to call get_buildings() because something has changed
         building_count          7,
         plots_available         0,
@@ -222,58 +194,40 @@ class MyBody(Body):
         water_stored            9929,
         water_hour              295,
         water_capacity          51050,   
-        skip_incoming_ships     0,   # if set, then the following incoming data is missing.
-        num_incoming_enemy      10,   # total number of incoming foreign ships
-        num_incoming_ally       1,     # total number of incoming allied ships
+        skip_incoming_ships     0,      # if set, then the incoming data is missing.
+        num_incoming_enemy      10,     # total number of incoming foreign ships
+        num_incoming_ally       1,      # total number of incoming allied ships
         num_incoming_own : 0,   # total number of incoming own ships from other colonies
-        incoming_enemy_ships    [ # will only be included when enemy ships are coming to your planet (only the first 20 will be shown)
-                                    {
-                                        "id" : "id-goes-here",
+        incoming_enemy_ships    [ # will only be included when enemy ships are coming 
+                                  # to your planet (only the first 20 will be shown)
+                                    {   "id" : "id-goes-here",
                                         "date_arrives" : "01 31 2010 13:09:05 +0600",
-                                        "is_own" : 1,   # is this from one of our own planets
-                                        "is_ally" : 1   # is this from a planet within our alliance
-                                    },
-                                    etc
-                                ],
-        incoming_ally_ships     [ # will only be included when allied ships are coming to your planet (only the first 10 will be shown)
-                                    etc
-                                ],
-        incoming_own_ships      [ # will only be included when ships from your other colonies are coming to your planet (only the first 10 will be shown)
-                                    etc  
-                                ],
+                                        "is_own" : 1,
+                                        "is_ally" : 1    },  ],
+        incoming_ally_ships     [ # will only be included when allied ships are coming 
+                                  # to your planet (only the first 10 will be shown)     ],
+        incoming_own_ships      [ # will only be included when ships from your other 
+                                  # colonies are coming to your planet (only the first 
+                                  # 10 will be shown)    ],
         ### The following will only be set if the body is a space station.
         ### 
-        alliance                { 
-                                    "id" : "id-goes-here",
-                                    "name" : "Imperial Empire" 
-                                },
-        influence               {
-                                    "total" : 0,
-                                    "spent" : 0
-                                }
+        alliance                {   "id" : "id-goes-here",
+                                    "name" : "Imperial Empire"  },
+        influence               {   "total" : 0,
+                                    "spent" : 0     }
         ### The *building dict*s mentioned below are dicts containing the 
         ### information represented by a building.MyBuilding's attributes.
-        buildings_id            {
-                                    building_id_1 = { building dict },
-                                    building_id_2 = { building dict },
-                                    etc,
-                                }
-        buildings_name          {
-                                    'Apple Orchard' = [
-                                        ### These are lists, as we're going to 
-                                        ### have multiple instances of certain 
-                                        ### building types.
+        ### They are not building objects because reasons.
+        buildings_id            {   building_id_1 = { building dict },
+                                    building_id_2 = { building dict },   }
+        buildings_name          {   'Apple Orchard' = [
+                                        ### These are lists, as some building 
+                                        ### types will have multiple instances 
                                         { building dict },
-                                        { building dict },
-                                        etc
-                                    ],
+                                        { building dict },   ],
                                     'Space Port' = [
                                         { building dict },
-                                        { building dict },
-                                        etc
-                                    ],
-                                    etc
-                                }
+                                        { building dict },   ],     }
     """
 
     def __init__( self, client:object, body_id:int, attrs:dict = {} ):
@@ -289,11 +243,12 @@ class MyBody(Body):
     @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
     def get_status( self, blarg:int, *args, **kwargs ):
-        """ Gets status of the current body.
+        """ Gets the status of the current body.
         This both returns a dict of status information, and sets the MyBody 
-        object's using that dict.  Since every call to every method in this 
-        class also sets those attributes, there should never be a need to call 
-        this method.
+        object's attributes using that dict.
+        
+        Since every call to every method in this class also sets those 
+        attributes, there should **never be a need to call this method.**
         """
         pass
 
@@ -323,8 +278,10 @@ class MyBody(Body):
             raise NoSuchBuildingError("No building was found at ({},{})".format(x,y))
 
     def get_new_building( self, classname:str ):
-        """ Returns a building object of the requested classname.
-        This is a Potential building.
+        """ Get a "new" building.
+
+        This is a building that does not exist yet.  What you're getting is a 
+        building object, which you can then call ``build()`` on.
         """
         bldg_str = "lacuna.buildings.{}( self.client, self.body_id )".format( classname )
         return eval(bldg_str)
@@ -370,19 +327,12 @@ class MyBody(Body):
         """ Moves one or more buildings to a new spot on the planet surface.
 
         Arguments:
-            - arrangement -- A list of dicts describing your new surface arrangement
+            - arrangement -- A list of dicts describing your new surface arrangement::
 
-                ::
-
-                    [
-                        {
-                            'id': integer ID of the building to move,
-                            'x':  integer X coordinate to move to,
-                            'y':  integer y coordinate to move to,
-                        },
-                        { another building to move, same format as above },
-                        etc
-                    ]
+                [ {     'id': integer ID of the building to move,
+                        'x':  integer X coordinate to move to,
+                        'y':  integer y coordinate to move to,  },
+                  { another building to move, same format as above },     ]
 
         Returns a dict including the key 'moved', which is a list of dicts of 
         buildings that were moved.  This returned list is identical to the 
@@ -418,47 +368,35 @@ class MyBody(Body):
         results.
 
         Returns a dict that includes the key 'buildable', which is a list of 
-        dicts keyed off the human-readable building name:
- 
-            ::
+        dicts keyed off the human-readable building name::
 
-                buildable = [
-                    'Water Purification Plant': {
-                        'build': {
-                            'can': 1,
-                            'cost': {
-                                'energy': '64',
-                                'food': '72',
-                                'ore': '88',
-                                'time': '15',
-                                'waste': '16',
-                                'water': '8'
-                            },
-                            'no_plot_use': '',
-                            'reason': '',
-                            'tags': [
-                                'Resources', 
-                                'Water', 
-                                'Now'
-                            ]
-                        },
-                        'image': 'waterpurification0',
-                        'production': {
-                            'energy_capacity': 0,
-                            'energy_hour': '-3',
-                            'food_capacity': 0,
-                            'food_hour': '-1',
-                            'happiness_hour': '0',
-                            'ore_capacity': 0,
-                            'ore_hour': '-3',
-                            'waste_capacity': 0,
-                            'waste_hour': '5',
-                            'water_capacity': 0,
-                            'water_hour': '31'
-                        },
-                        'url': '/waterpurification'
-                    },
-                ]
+            buildable = [
+                'Water Purification Plant': {
+                    'build': {  'can': 1,
+                                'cost': {   'energy': '64',
+                                            'food': '72',
+                                            'ore': '88',
+                                            'time': '15',
+                                            'waste': '16',
+                                            'water': '8'     },
+                                'no_plot_use': '',
+                                'reason': '',
+                                'tags': [   'Resources', 
+                                            'Water', 
+                                            'Now'    ]  },
+                    'image': 'waterpurification0',
+                    'production': {     'energy_capacity': 0,
+                                        'energy_hour': '-3',
+                                        'food_capacity': 0,
+                                        'food_hour': '-1',
+                                        'happiness_hour': '0',
+                                        'ore_capacity': 0,
+                                        'ore_hour': '-3',
+                                        'waste_capacity': 0,
+                                        'waste_hour': '5',
+                                        'water_capacity': 0,
+                                        'water_hour': '31'   },
+                    'url': '/waterpurification'  },     ]
 
     Raises ServerError 1009 if the passed coords are illegal for any reason (already 
     occupied, out-of-bounds, etc)
@@ -481,9 +419,7 @@ class MyBody(Body):
 
 class Planet(lacuna.bc.SubClass):
     """
-    Attributes:
-
-    ::
+    Attributes::
 
         id                  "id-goes-here",
         x                   -4,
@@ -524,9 +460,7 @@ class Planet(lacuna.bc.SubClass):
 
 class SpaceStation(lacuna.bc.SubClass):
     """
-    Attributes:
-
-    ::
+    Attributes::
 
         id                  "id-goes-here",
         name                "ISS",

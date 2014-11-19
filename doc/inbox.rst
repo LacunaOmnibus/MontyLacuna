@@ -1,6 +1,6 @@
 
-inbox
-===============
+TLE Module - Inbox
+==================
 
 .. automodule:: lacuna.inbox
    :members:
