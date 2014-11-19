@@ -118,8 +118,8 @@ class FleetShip(Ship):
 
     """
 
-class ForeignOrbitingShip(Ship):
-    """ A ship NOT owned by your empire, currently orbiting your planet.
+class ForeignOrbiting(Ship):
+    """ A ship currently orbiting your planet.
 
     Attributes::
 
