@@ -6,8 +6,8 @@ Overview
 --------
 Almost every MontyLacuna method call represents a communication with the TLE 
 server.  This communication takes time, and an additional second is used by 
-MontyLacuna to make sure that we don't swamp the server with too many requests, 
-resulting in a mandatory one minute lockout.
+MontyLacuna, per call, to make sure that we don't swamp the server with too 
+many requests, which would result in a mandatory one minute lockout.
 
 Often, your code will need to re-access the same information more than once, 
 or even access information that you've recently accessed in an entirely 
@@ -20,34 +20,34 @@ Synopsis
 
     import lacuna
 
-    glc = lacuna.clients.Member( connection args )
+    my_client = lacuna.clients.Member( connection args )
 
     ### Caching is not turned on by default.
 
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 1-3 seconds
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 1-3 seconds
 
-    glc.cache_on( 'my_planets', 3600 )              # Turn caching on
+    my_client.cache_on( 'my_planets', 3600 )              # Turn caching on
 
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds, but result was cached
-    my_planet_one = glc.get_body_byname("Earth")    # takes 4 or 5 milliseconds
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 1-3 seconds, but result was cached
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 4 or 5 milliseconds
 
-    my_planet_one = glc.get_body_byname("Mars")     # takes 1-3 seconds, but result was cached
-    my_planet_one = glc.get_body_byname("Mars")     # takes 4 or 5 milliseconds
+    my_planet_one = my_client.get_body_byname("Mars")     # takes 1-3 seconds, but result was cached
+    my_planet_one = my_client.get_body_byname("Mars")     # takes 4 or 5 milliseconds
 
-    glc.cache_clear( 'my_planets' )                 # clear this cache, but don't turn it off
+    my_client.cache_clear( 'my_planets' )                 # clear this cache, but don't turn it off
 
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds, but result was cached
-    my_planet_one = glc.get_body_byname("Earth")    # takes 4 or 5 milliseconds
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 1-3 seconds, but result was cached
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 4 or 5 milliseconds
 
-    glc.cache_off()                                 # Turn caching off, but don't clear existing entries
+    my_client.cache_off()                                 # Turn caching off, but don't clear entries
 
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 1-3 seconds
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 1-3 seconds
 
-    glc.cache_on( 'my_planets', 3600 )              # Turn caching back on
+    my_client.cache_on( 'my_planets', 3600 )              # Turn caching back on
 
-    my_planet_one = glc.get_body_byname("Earth")    # takes 4 or 5 milliseconds
+    my_planet_one = my_client.get_body_byname("Earth")    # takes 4 or 5 milliseconds
 
 Description
 -----------
@@ -66,14 +66,13 @@ the server method you're calling and the parameters you're passing to that
 method.
 
 Certain actions you take will invalidate your cached data.  In this scenario:
+    * Turn caching on
+    * Get list of buildings on the surface of a planet
+    * Build a new building on that planet
+    * Get list of buildings on the surface of that same planet
 
-* Turn caching on
-* Get list of buildings on the surface of a planet
-* Build a new building on that planet
-* Get list of buildings on the surface of that same planet
-
-  * GONNNGG!  Since caching is turned on, we'll get the same list we had
-    before, which does not include our new building.
+      * GONNNGG!  Since caching is turned on, we'll get the same list we had
+        before, which does not include our new building.
 
 In that case, you'd want to clear out the cache after constructing your new 
 building; this would cause the next "get list of buildings" to actually hit the 

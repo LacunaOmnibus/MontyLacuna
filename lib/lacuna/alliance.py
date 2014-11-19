@@ -3,6 +3,8 @@ import lacuna.bc
 from lacuna.exceptions import GDIError
 
 class Alliance(lacuna.bc.LacunaObject):
+    """ Represents an alliance's publicly-viewable information.
+    """
 
     path = 'alliance'
 
@@ -12,15 +14,15 @@ class Alliance(lacuna.bc.LacunaObject):
 
         Requires an integer alliance ID.
 
-        Returns an alliance.Profile object.
+        Returns a lacuna.alliance.Profile object.
         """
         return Profile(self.client, kwargs['rslt']['profile'])
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def find( self, partial_name: str, *args, **kwargs ):
-        """ Find a alliances by name.
+        """ Find alliances by name.
 
-        Requires a standard TLE search string.
+        Requires a standard TLE search string.  See :ref:`glossary`.
 
         Returns a list of alliance.FoundAlliance objects.
         """
@@ -37,8 +39,8 @@ class MyAlliance(Alliance):
     method:
     ``my_alliance = my_client.get_my_alliance()``
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id              12345
         name            United Union of Federated Allied Groups
         description     We're an alliance.
@@ -75,24 +77,24 @@ class MyAlliance(Alliance):
 class FoundAlliance(lacuna.bc.SubClass):
     """ An alliance as returned by find().
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id          1234
-        name        United Federation of Unionized Togetherness
+        name        United Union of Federated Allied Groups
     """
 class Member(lacuna.bc.SubClass):
     """ An alliance member.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id          5810
-        name        Invitee One
+        name        Member One
     """
 
 class Profile(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         id              "id-goes-here",
         name            "Lacuna Expanse Allies",
         description     "Blah blah blah blah...",

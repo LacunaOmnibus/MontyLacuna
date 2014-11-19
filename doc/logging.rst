@@ -29,9 +29,8 @@ convenience.
 Request Log Entries
 -------------------
 All requests to the TLE server will be written to the logfile specified in the 
-config file.  This happens automatically, so you don't have to do anything.  
-Just run your scripts as needed, and you'll be able to check that logfile to 
-see what's happening.
+config file.  This happens automatically; just run your scripts, and you'll be 
+able to check that logfile to see what's happening.
 
 Most request log entries will only display to the file.  However, in the case 
 of something going wrong, entries of WARNING level or higher will also be 
@@ -57,8 +56,8 @@ User Log Entries
 Along with the automatic request log, your script can access the user logger 
 so you can create whatever log entries you like::
 
-    glc = lac.clients.Member( standard connection arguments )
-    l = glc.user_logger
+    my_client = lacuna.clients.Member( standard connection arguments )
+    l = my_client.user_logger
     l.error( "This is an error message." )
     l.info( "This is an info message." )
 

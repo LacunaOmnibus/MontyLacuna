@@ -2,7 +2,7 @@
 import lacuna.bc
 
 class Inbox(lacuna.bc.LacunaObject):
-    """ Class representing your mailbox.  """
+    """ Represents your mailbox.  """
 
     path = 'inbox'
 
@@ -23,16 +23,16 @@ class Inbox(lacuna.bc.LacunaObject):
         """ View the messages in your empire's inbox, 25 messages per page.
         
         Arguments:
-            - opts -- Dict (optional)
-                - page_number -- Integer page number to return.  Defaults to 1.
-                - tags -- List of tags to filter by.
+            - opts -- Optional dict containing:
+
+              - page_number -- Integer page number to return.  Defaults to 1.
+              - tags -- List of tags to filter by.
 
         The tags you passed in are joined with 'or'.  So for this call, you'll 
-        get back BOTH excavator and correspondence messages:
-
-            ::
+        get back both excavator and correspondence messages::
 
                 msgs, ttl = mail.view_inbox({
+                    "page_number": 3,
                     "tags": ["excavator", "correspondence"]
                 })
 
@@ -44,7 +44,7 @@ class Inbox(lacuna.bc.LacunaObject):
         Sending an invalid tag will not throw an exception, it'll merely 
         return 0 messages.
 
-        Returns:
+        Returns a tuple:
             - messages -- List of inbox.MessageSummary objects
             - count -- Integer total number of messages in the inbox
         """
@@ -53,17 +53,26 @@ class Inbox(lacuna.bc.LacunaObject):
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def view_archived( self, opts:dict = {}, *args, **kwargs ):
-        """  View archived messages.  Returns the same as view_inbox().  """
+        """  View archived messages.
+        
+        Arguments and returns are the same as view_inbox().
+        """
         return self._set_mail_return( kwargs['rslt'] )
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def view_sent( self, opts:dict = {}, *args, **kwargs ):
-        """  View sent messages.  Returns the same as view_inbox().  """
+        """  View sent messages.
+        
+        Arguments and returns are the same as view_inbox().
+        """
         return self._set_mail_return( kwargs['rslt'] )
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def view_trashed( self, opts:dict = {}, *args, **kwargs ):
-        """  View trashed messages.  Returns the same as view_inbox().  """
+        """  View trashed messages.
+        
+        Arguments and returns are the same as view_inbox().
+        """
         return self._set_mail_return( kwargs['rslt'] )
 
     @lacuna.bc.LacunaObject.call_returning_meth
@@ -84,17 +93,12 @@ class Inbox(lacuna.bc.LacunaObject):
         Arguments:
             - messages -- a list of message IDs
 
-        Returns a dict containing:
+        Returns a dict containing the keys:
+            - success -- [ List of message IDs that were archived successfully ]
+            - failure -- [ List of message IDs that failed to be archived ]
 
-            ::
-
-                {
-                    success : [id, id, id, ...]
-                    failure : [id, id, id, ...]
-                    status : { ... }
-                }
-
-        There's no indication why any given message movement succeeded or failed, just that they did.
+        There's no indication why any given message movement succeeded or 
+        failed, just that they did.
         """
         pass
 
@@ -106,17 +110,12 @@ class Inbox(lacuna.bc.LacunaObject):
         Arguments:
             - messages -- a list of message IDs
 
-        Returns a dict containing:
+        Returns a dict containing the keys:
+            - success -- [ List of message IDs that were archived successfully ]
+            - failure -- [ List of message IDs that failed to be archived ]
 
-        ::
-
-            dict = {
-                success : [id, id, id, ...]
-                failure : [id, id, id, ...]
-                status : { ... }
-            }
-
-        There's no indication why any given message movement succeeded or failed, just that they did.
+        There's no indication why any given message movement succeeded or 
+        failed, just that they did.
         """
         pass
         pass
@@ -130,9 +129,10 @@ class Inbox(lacuna.bc.LacunaObject):
             - recipients -- Comma-separated string containing names of empires to receive your message.  NOT A LIST, a comma-separated string.
             - subject -- < 100 chars in length.  Cannot contain any of &, @, ;, <, or > Unicode is OK (I've mailed myself a snowman).
             - body -- Limit of 200,000 characters.  < and > are disallowed.  Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it's very sensitive, and you're not informed what word it's triggering on.  "crap" (along with other pretty mild language) is considered profane.
-            - options -- Dict:
-                - 'in_reply_to'   A message ID to reply to.
-                - 'forward'       A message ID to forward.
+            - options -- Dict containing:
+
+              - in_reply_to -- A message ID to reply to.
+              - forward -- A message ID to forward.
 
         When forwarding a message, any attachments from the message ID we're 
         forwarding are automatically attached to our current message.  However, 
@@ -142,14 +142,11 @@ class Inbox(lacuna.bc.LacunaObject):
         Returns a dict with (afaict) two keys (the rv is not documented, so 
         I'm just reporting the results of a few tests here).
 
-        For a message sent to recipients "tmtowtdi,Infinate Ones,no_such_player":
+        For a message sent to recipients "tmtowtdi,Infinate 
+        Ones,no_such_player"::
 
-            ::
-
-                {
-                    'sent': ['tmtowtdi', 'Infinate Ones'],
-                    'unknown': ['no_such_player']
-                }
+            {   'sent': ['tmtowtdi', 'Infinate Ones'],
+                'unknown': ['no_such_player']   }
 
         **Message Formatting**
             This is rarely-enough used and the docs are wordy enough that it's not worth
@@ -162,12 +159,7 @@ class Inbox(lacuna.bc.LacunaObject):
 class MessageSummary(lacuna.bc.SubClass):
     """ This is the message summary you get when viewing a list of messages.
 
-    Note that the sender's name is listed in the TLE documentation using the 
-    key "from", but we're instead using "from_name".
-
-    Attributes:
-
-    ::
+    Attributes::
 
         id              "id-goes-here",
         subject         "Vaxaslim",
@@ -180,6 +172,10 @@ class MessageSummary(lacuna.bc.SubClass):
         has_replied     0,
         body_preview    "Just a reminder that Vaxaslim ",
         tags            "Correspondence" 
+
+    **NOTE** The TLE API actually returns the sender's name in a key named 
+    ``from``.  Since ``from`` is a Python reserved word and cannot be used as 
+    an attribute name, the attribute above has been changed to ``from_name``.
     """
     def __init__(self, client, mydict:dict):
         if 'from' in mydict:
@@ -195,9 +191,7 @@ class Message(MessageSummary):
     Note that the sender's name is listed in the TLE documentation using the 
     key "from", but we're instead using "from_name".
 
-    Attributes:
-
-    ::
+    Attributes::
 
         id              "id-goes-here",
         from_name       "Dr. Stephen T. Colbert DFA",
@@ -216,33 +210,23 @@ class Message(MessageSummary):
         tags            ["Correspondence"],
         attachments     Dict, not a list.  A given message may not have more 
                         than one of each type of attachment.
-                            {
-                                "image" : {
-                                    "url" : "http://www.example.com/path/image.jpg",
-                                    "title" : "Some Title",
-                                    "link" : "http://www.lacunaexpanse.com/", # optional link to somewhere
-                                },
-                                "link" : {
-                                    "url" : "http://www.lacunaexpanse.com/",
-                                    "label" : "The Lacuna Expanse Website"
-                                }
-                                "table" : [
-                                    [ "Hostname", "IP Address" ], # first row is always a header
-                                    [ "example.lacunaexpanse.com", "192.168.1.24" ],
-                                    ...
-                                ],
-                                "map" : {
-                                    "surface" : "surface-6",
-                                    "buildings" : [
-                                        {
-                                            "x" : -3,
-                                            "y" : 4,
-                                            "image" : "apples4"
-                                        }
-                                        ...
-                                    ]
-                                }
-                            }
+                        {
+                            "image" : { "url" : "http://www.example.com/path/image.jpg",
+                                        "title" : "Some Title",
+                                        "link" : "http://www.lacunaexpanse.com/", # optional link to somewhere   },
+                            "link" : {  "url" : "http://www.lacunaexpanse.com/",
+                                        "label" : "The Lacuna Expanse Website"   }
+                            "table" : [
+                                [ "Hostname", "IP Address" ], # first row is always a header
+                                [ "example.lacunaexpanse.com", "192.168.1.24" ],
+                                [ "another hostname', "another IP" ],
+                            ],
+                            "map" : {   "surface" : "surface-6",
+                                        "buildings" : [{    "x" : -3,
+                                                            "y" : 4,
+                                                            "image" : "apples4"  }]
+                                    }
+                        }
     """
     pass
 

@@ -119,6 +119,7 @@ supposed to do.
     - Explain the difference between a default dict return and a massaged object return.
       - In a perfect world, I'd get rid of all default dict returns so this wouldn't be 
         necessary.
+  - Add the non-TLE-module modules to index.rst's TOC, and fix up all of their docu.
 - Ack through everything for "CHECK" and fix.
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 
   automatically - I'm not convinced that's what should be happening.  At the very least, 

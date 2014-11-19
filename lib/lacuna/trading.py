@@ -17,9 +17,9 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Get ships available to be added to a trade as merchandise.
 
         Returns a tuple:
-            ships       List of TradeableShip objects.
-            space_used  Amount of cargo space used by each ship.  
-                        Always 10000.
+            - ships -- List of TradeableShip objects.
+            - space_used -- Amount of cargo space used by each ship.  Always 
+              10000.
         """
         mylist = []
         for i in kwargs['rslt']['ships']:
@@ -34,9 +34,9 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Get prisoners available to be added to a trade as merchandise.
 
         Returns a tuple:
-            prisoners       List of Prisoner objects.
-            space_used      Amount of cargo space used by each prisoner.  
-                            Always 350.
+            - prisoners -- List of Prisoner objects.
+            - space_used -- Amount of cargo space used by each prisoner.  
+              Always 350.
         """
         mylist = []
         for i in kwargs['rslt']['prisoners']:
@@ -51,9 +51,9 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Get plans available to be added to a trade as merchandise.
 
         Returns a tuple:
-            plans           List of OwnedPlan objects.
-            space_used      Amount of cargo space used by each prisoner.  
-                            Always 10000.
+            - plans -- List of OwnedPlan objects.
+            - space_used -- Amount of cargo space used by each prisoner.  
+              Always 10000.
         """
         mylist = []
         for i in kwargs['rslt']['plans']:
@@ -68,9 +68,9 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Get glyphs available to be added to a trade as merchandise.
 
         Returns a tuple:
-            glyphs          List of lacuna.glyph.OwnedGlyph objects.
-            space_used      Amount of cargo space used by each prisoner.  
-                            Always 10000.
+            - glyphs -- List of lacuna.glyph.OwnedGlyph objects.
+            - space_used -- Amount of cargo space used by each prisoner.  
+              Always 10000.
         """
         mylist = []
         for i in kwargs['rslt']['glyphs']:
@@ -85,14 +85,14 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Shows the trades you currently have offered.
 
         Arguments:
-            page_number     Optional integer page number to view.  25 trades 
-                            shown per page.  Defaults to 1. 
+            - page_number -- Optional integer page number to view.  25 trades 
+              - shown per page.  Defaults to 1. 
 
         Returns a tuple:
-            trades          List of ExistingTrade objects
-            count           Total number of trades you have up
-            page_number     The page that the "trades" list appeared on.  Same 
-                            value that you passed as an argument, or 1.
+            - trades -- List of trading.ExistingTrade objects
+            - count -- Total number of trades you have up
+            - page_number -- The page that the "trades" list appeared on.  
+              Same value that you passed as an argument, or 1.
         """
         mylist = []
         for i in kwargs['rslt']['trades']:
@@ -110,7 +110,7 @@ class TradeBldg(lacuna.building.MyBuilding):
         on the SST market, refunds your 1 E posting cost.
 
         Arguments:
-            trade_id    Integer ID of the trade to withdraw
+            - trade_id -- Integer ID of the trade to withdraw
         """
         pass
 
@@ -119,17 +119,27 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Shows the trades you currently have offered.
 
         Arguments:
-            page_number     Optional integer page number to view.  25 trades 
-                            shown per page.  Defaults to 1. 
-            filter          Optional string to narrow down the types of trades 
-                            returned.  Valid filters:
-                                energy food glyph ore plan prisoner ship waste water 
+            - page_number -- Optional integer page number to view.  25 trades 
+              shown per page.  Defaults to 1.i
+            - filter -- Optional string to narrow down the types of trades 
+              returned.
+              
+              - Valid filters:
+                - energy
+                - food
+                - glyph
+                - ore
+                - plan
+                - prisoner
+                - ship
+                - waste
+                - water 
 
         Returns a tuple:
-            trades          List of ExistingTrade objects
-            count           Total number of trades you have up
-            page_number     The page that the "trades" list appeared on.  Same 
-                            value that you passed as an argument, or 1.
+            - trades -- List of trading.ExistingTrade objects
+            - count -- Total number of trades you have up
+            - page_number -- The page that the "trades" list appeared on.  
+              Same value that you passed as an argument, or 1.
         """
         mylist = []
         for i in kwargs['rslt']['trades']:
@@ -158,19 +168,21 @@ class TradeBldg(lacuna.building.MyBuilding):
     def get_stored_resources( self, *args, **kwargs ):
         """ Returns resources stored onsite and available for trading.
 
-        Retval includes 'resources', a dict:
-            {   water:      10000,
-                waste:      20000,
-                bauxite:    25,
-                ..self.  }
+        CHECK this should return an object.
+
+        Returns a dict including the key 'resources', itself a dict, containing:
+            - water -- 10000,
+            - waste -- 20000,
+            - bauxite -- 25,
         """
         pass
 
 class ExistingTrade(lacuna.bc.SubClass):
-    """ These are trades that exist on either the Trade or SST market, either 
-    posted by you or another empire.
+    """ Trades that exist on either the Trade or SST market, either posted by 
+    you or another empire.
 
-    Attributes:
+    Attributes::
+
         id              "id-goes-here",
         date_offered    "01 31 2010 13:09:05 +0600",
         ask             25,     # essentia
@@ -183,10 +195,9 @@ class ExistingTrade(lacuna.bc.SubClass):
                         include this.
                             {   "id" : "id-goes-here",
                                 "name" : "Earthlings"   }
-
-        These will only be available for trades on the Trade Ministry.  The SST
-        deliveries are instant, so this information doesn't pertain to the SST.
-
+        # These will only be available for trades on the Trade Ministry.  The
+        # SST deliveries are instant, so this information doesn't pertain to
+        # the SST.
         body            Dict - info on the sending body
                             {   "id" : "id-goes-here" }
         delivery        Dict - info on delivery time (in seconds)
@@ -196,7 +207,8 @@ class ExistingTrade(lacuna.bc.SubClass):
 
 class MercTrade(lacuna.bc.SubClass):
     """
-    Attributes:
+    Attributes::
+
         origin          mercenariesguild.MercTradeOrigin object
         date_offered    "01 31 2010 13:09:05 +0600",
         id              "id-goes-here",
@@ -229,7 +241,8 @@ class MercTrade(lacuna.bc.SubClass):
 
 class MercTradeOrigin(lacuna.bc.SubClass):
     """
-    Attributes:
+    Attributes::
+
         body_id         ID of the sending body
         empire_id       ID of the sending empire
         empire_name     Name of the sending empire

@@ -47,10 +47,8 @@ class MyEmpire( Empire ):
         has_new_messages        4,
         latest_message_id       1234,
         essentia                0,
-        planets                 {
-                                    "id-goes-here" : "Earth",
-                                    "id-goes-here" : "Mars,
-                                },
+        planets                 {   "id-goes-here" : "Earth",
+                                    "id-goes-here" : "Mars,  },
         tech_level"             20,         # Highest level university has gotten to.
         self_destruct_active    0,
         self_destruct_date      ""
@@ -72,24 +70,37 @@ class MyEmpire( Empire ):
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def get_status( self, *args, **kwargs ):
-        """ There shouldn't ever be a need to call this.  An empire status 
-        block gets returned with every call, and the MyEmpire object's 
-        attributes get set each time as a result.
+        """ Gets your empire's current status information.
+
+        There shouldn't ever be a need to call this.  Empire status data gets 
+        returned with every empire method call, and the current MyEmpire 
+        object's attributes get updated each time as a result.
         """
         pass
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def get_invite_friend_url( self, *args, **kwargs ):
-        """ See the 'referral_url' key in the returned dict. """
+        """ Get a unique URL you can send to a friend to use to sign up.  Your 
+        empire will receive rewards for each friend who joins using such a 
+        URL.
+        
+        Returns a dict including the key ``referral_url``.
+        """
         pass
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
-    def invite_friend( self, email, message="", *args, **kwargs ):
-        """ Doesn't error, but doesn't send email either.  Since the 'forgot 
-        my password' feature is exhibiting the same behavior, I'm going to 
-        assume the server just isn't configured to send mail anymore.
+    def invite_friend( self, email:str, message:str = '', *args, **kwargs ):
+        """ Sends email to a friend inviting them to join the game.
+
+        Arguments:
+            - email -- The email address to send the invitation to
+            - message -- An optional personal message to include.
+
+        This doesn't produce any error, but doesn't send email either.  Since 
+        the 'forgot my password' feature is exhibiting the same behavior, I 
+        assume the server just isn't configured to send mail.
         """
         pass
 
@@ -124,8 +135,8 @@ class MyEmpire( Empire ):
         """ Edit your empire's profile.  Requires that you're logged in with 
         your real, not sitter, password.
 
-        Arguments:
-            >>> 
+        Arguments::
+
             profile     Dict of profile settings with the keys:
                             description
                             email
@@ -161,8 +172,8 @@ class MyEmpire( Empire ):
         """ Changes your full password.
 
         Arguments:
-            - password -- String; the desired new password
-            - confirmation -- Must be the same string as 'password'
+            - oldpw -- String; the desired new password
+            - newpw -- Must be the same string as 'oldpw'
         """
         pass
 
@@ -171,7 +182,7 @@ class MyEmpire( Empire ):
         """ Find an empire by name.
 
         Arguments:
-            - name -- Standard TLE search string
+            - name -- Standard TLE search string.  See :ref:`glossary`.
 
         Returns a list of empire.FoundEmpire objects.
         """
@@ -183,7 +194,11 @@ class MyEmpire( Empire ):
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def set_status_message( self, message:str, *args, **kwargs ):
-        """ Sets your empire status message.  """
+        """ Sets your empire status message.
+
+        Arguments:
+            - message -- The message to set as your empire's profile's status.
+        """
         pass
 
     @lacuna.bc.LacunaObject.call_returning_meth
@@ -249,8 +264,19 @@ class MyEmpire( Empire ):
     #@lacuna.bc.LacunaObject.set_empire_status
     #@lacuna.bc.LacunaObject.call_member_meth
     def enable_self_destruct( self, *args, **kwargs ):
-        """ Immediately quits.  The server call is badly broken, and you should 
-        never call this.
+        """ Sets the self destruct timer on your empire.  After 24 hours, your 
+        empire will be deleted.  Such a deletion is *not recoverable*.
+
+        While testing, it was discovered that the ``disable_self_destruct`` 
+        method does not function, server-side.  So if you enable self destruct 
+        on your empire, you cannot turn it off again yourself; you'd need to 
+        find an admin to do it for you.  Admins are usually around, but it's 
+        not unthinkable that a 24-hour period could pass during which you 
+        could not find an admin.  If that were to happen, your empire would be 
+        permanently deleted.
+
+        Since you can't turn it back off again, this method has been disabled.  
+        Calling it simply complains and then immediately quits your script.
         """
         print( "Please don't ever call this." )
         quit()
@@ -268,16 +294,17 @@ class MyEmpire( Empire ):
     def redeem_essentia_code( self, code: str, *args, **kwargs ):
         """ Redeems an essentia code.
 
-        Requires an essentia code, which is a uuid (eg 
-        '56cc359e-8ba7-4db7-b608-8cb861c65510').
+        Arguments:
+            - code -- An essentia code uuid, eg 
+              ``56cc359e-8ba7-4db7-b608-8cb861c65510``
 
         Essentia codes can be obtained by purchasing essentia, or sometimes by 
         admins during contests.  Each code can only be used once, so if you have 
         one, don't share it with anybody; if they use it, the E represented by 
         that code will be gone.
 
-        Yes, the example code above was a real E code, worth 10,000 E.  But only 
-        on PT, and it's been used already.
+        Yes, the example code above was a real E code, worth 10,000 E.  But 
+        only on PT, and it's been used already.  Mine - u cant has!
         """
         pass
 
@@ -286,8 +313,8 @@ class MyEmpire( Empire ):
     def redefine_species_limits( self, *args, **kwargs ):
         """ Returns the limits to be imposed if you redefine your species.
 
-        Returns a dict:
-            >>> 
+        Returns a dict::
+
             'can':              1,
             'essentia_cost':    100,
             'max_orbit':        3,
@@ -295,10 +322,9 @@ class MyEmpire( Empire ):
             'min_orbit':        3,
             'reason':           None,
 
-        'can' will be 0 if the user currently cannot redefine.
-        I do not understand why the min/max settings exist.
-        If 'can' is false, 'reason' will contain a string explaining why 
-        not.  eg "You have already redefined in the past 30 days", etc.
+        ``can`` will be 0 if the user currently cannot redefine.
+        If ``can`` is 0, ``reason`` will contain a string explaining why not.  
+        eg "You have already redefined in the past 30 days", etc.
         """
         pass
 
@@ -337,9 +363,8 @@ class MyEmpire( Empire ):
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def get_species_templates( self, *args, **kwargs ):
-        """ Returns the species templates that are presented to a new player 
-        upon initial species creation (Average, Warmonger, Resilient, Viral, 
-        etc).
+        """ Get the species templates that are presented to a new player upon 
+        initial species creation (Average, Warmonger, Resilient, Viral, etc).
         
         Returns a list of empire.SpeciesTemplate objects.
         """
@@ -366,9 +391,10 @@ class MyEmpire( Empire ):
         bodies" includes planets you've colonized as well as space stations 
         owned by your alliance.
 
-        Not having those separate from each other can be confusing, so it's 
-        common practice amongst alliances to name their space stations in a 
-        way that makes them easy to distinguish from colonized planets.
+        Not having colonies and space stations separate from each other can be 
+        confusing, so it's common practice amongst alliances to name their 
+        space stations in a way that makes them easy to distinguish from 
+        colonized planets.
 
         This looks through the list of your empire's planets, and creates two 
         new MyEmpire attributes: ``stations`` and ``colonized``.  Both follow 
@@ -376,13 +402,13 @@ class MyEmpire( Empire ):
         ``stations`` will contain the bodies we think are space stations, and 
         ``colonized`` will contain the rest.
 
-        **CAUTION** -- This method is not perfect or authoritative!  Since a 
-        space station needs to have its Parliament up to level 3 before it can 
-        be renamed, it's likely that you'll occasionally get a brand new 
-        station showing up in the ``colonized`` dict.  And if you're not 
-        paying attention and name one of your planets so that it matches your 
-        regex, it'll show up in the ``stations`` dict.  So be careful with how 
-        you use this.
+        **CAUTION** -- This method is neither perfect nor authoritative!  
+        Since a space station needs to have its Parliament up to level 3 
+        before it can be renamed, it's likely that you'll occasionally get a 
+        brand new station showing up in the ``colonized`` dict.  And if you're 
+        not paying attention and name one of your planets so that it matches 
+        your regex, it'll show up in the ``stations`` dict.  So be careful 
+        with how you use this.
         """
         re_obj      = re.compile(regex)
         colonized   = {}
@@ -503,32 +529,21 @@ class PublicProfile(lacuna.bc.SubClass):
         country                 "USA",
         skype                   "joeuser47",
         player_name             "Joe User",
-        medals                  {
-                                    "id-goes-here" : {
-                                        "name" : "Built Level 1 Building",
-                                        "image" : "building1",
-                                        "date" : "01 31 2010 13:09:05 +0600",
-                                    "times_earned" : 4
-                                    },
-                                    ...
-                                },
+        medals                  {   "id-goes-here" : {  "name" : "Built Level 1 Building",
+                                                        "image" : "building1",
+                                                        "date" : "01 31 2010 13:09:05 +0600",
+                                                        "times_earned" : 4   },  },
         last_login              "01 31 2010 13:09:05 +0600",
         date_founded            "01 31 2010 13:09:05 +0600",
         species                 "Lacunan",
-        alliance                {
-                                    "id" : "id-goes-here",
-                                    "name" : "The Confederacy"
-                                },
-        known_colonies          [
-                                    {
-                                        "id" : "id-goes-here",
+        alliance                {   "id" : "id-goes-here",
+                                    "name" : "The Confederacy"   },
+        known_colonies          [ {     "id" : "id-goes-here",
                                         "x" : "1",
                                         "y" : "-543",
                                         "name" : "Earth",
-                                        "image" : "p12-3"
-                                    },
-                                    ...
-                                ]
+                                        "image" : "p12-3" },
+                                    { more of the same },   ]
     """
 
 class FoundEmpire(lacuna.bc.SubClass):

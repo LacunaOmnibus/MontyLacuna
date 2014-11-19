@@ -18,36 +18,45 @@ class Guest(lacuna.bc.SubClass):
     """ Guest users are not logged in.
 
     Accepts the following named arguments:
+        - api_key -- your TLE api_key.  Omitting this is fine; the default key 
+          (the string 'anonymous') will be used.
         - config_file --  path to your configparser-friendly config file
         - config_section -- the section in your config file to read from
-        - api_key -- your TLE api_key.  Omitting this is fine; the default key (the string 'anonymous') will be used.
-        - logfile -- path to your logfile.  Defaults to no logfile; only WARNING or higher log events will display to the terminal.
-        - proto -- http or https.  Defaults to http.
-        - host -- us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to us1.
-        - sleep_on_call -- Integer seconds.  Defaults to 1.  Number of seconds to sleep after each call to attempt to avoid using more than the limit of 60 RPCs per minute.
-        - sleep_on_error -- Boolean.  Defaults to True.  If we've used over 60 RPCs in a minute, the server will produce an error, and if this setting is True, when we get that server error we'll sleep for a minute and then re-try our call.  If this setting is false, we'll throw an exception.
+        - host -- us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to 
+          us1.
+        - logfile -- path to your logfile.  Defaults to no logfile; only 
+          WARNING or higher log events will display to the terminal.
+        - show_captcha -- Boolean.  Defaults to True.  If set to false, and a 
+          method call responds that it needs a captcha solved, an exception 
+          will be raised.  If left true, the user will automatically be 
+          prompted to solve a captcha when needed.
+        - sleep_on_call -- Integer seconds.  Defaults to 1.  Number of seconds 
+          to sleep after each call to attempt to avoid using more than the 
+          limit of 60 RPCs per minute.
+        - sleep_after_error -- Boolean.  Defaults to True.  If we've used over 
+          60 RPCs in a minute, the server will produce an error, and if this 
+          setting is True, when we get that server error we'll sleep for a 
+          minute and then re-try our call.  If this setting is false, we'll 
+          throw an exception.
+        - sleep_on_call -- Integer number of seconds to sleep after each TLE 
+          server request.  Defaults to 1.
+        - warn_on_sleep -- Boolean, defaults to True.  If you exceed 60 RPCs 
+          per minute, and the script is therefore going to pause for a minute, 
+          and this is set to True, a warning will be displayed to let you know 
+          why your script is taking so long.
 
     Generally, you'll omit all arguments except for config_file and 
-    config_section, and just fill the appropriate values out in your config.
+    config_section, and just fill the appropriate values out in your config 
+    file.
 
     If a config_file and config_section are passed in, the values in that config 
     file take precedence over any other values, including passed-in values.
 
-    **Caching**
-    None of the MontyLacuna modules are performing any caching for you.  
-    However, if your script performs some selective caching, it could well run 
-    (much) faster, so there is a 'cache' attribute you can use in your 
-    scripts.
-
-    The 'cache' attribute is a beaker CacheManager object, with a file-based 
-    cache already set up for you.
-
-    **Debugging**
+    Debugging
         To take a look at the actual JSON that would be sent to the TLE 
         servers for a specific method call, in your calling code you can set a 
-        debugging method on your client, eg:
+        debugging method on your client, eg::
 
-            >>> 
             empire.client.debugging_method = 'view_profile'
             empire.view_profile()
 
@@ -286,6 +295,8 @@ class Guest(lacuna.bc.SubClass):
         """ Marshals a request and actually sends it to the server, collecting 
         and json-decoding the response.
 
+        This should not be something you ever need to call yourself.
+
         Accepts:
             - path -- The path after the host (eg empire, building, etc).  Don't include any directory separators.
             - method -- The name of the method to be run
@@ -369,7 +380,7 @@ class Guest(lacuna.bc.SubClass):
             if error.code == 1010 and re.match('Slow down', error.text) and self.sleep_after_error:
                 self.request_logger.warning("60 RPC per minute limit exceeded.", extra=log_opts)
                 if self.warn_on_sleep:
-                    self.request_logger.info("Sleeping for one minute.", extra=log_opts)
+                    self.request_logger.warning("Sleeping for one minute.", extra=log_opts)
                 time.sleep( 61 )
                 thingy = self.send( path, method, params, depth )
             elif error.code == 1006 and error.text == 'Session expired.':
@@ -420,8 +431,8 @@ class Guest(lacuna.bc.SubClass):
 class Member(Guest):
     """ Members are logged in; username and password are required.  
 
-    Attributes:
-        >>> 
+    Attributes::
+
         config_file
         config_section
         host
@@ -486,7 +497,8 @@ class Member(Guest):
 
         Arguments:
             - name -- String namespace to use for caching data
-            - expiry -- Integer seconds after which cached data is no longer valid.  Defaults to 3600 (one hour).
+            - expiry -- Integer seconds after which cached data is no longer 
+              valid.  Defaults to 3600 (one hour).
         """
         self._cache_exp = expiry
         self._cache_name = name
@@ -499,10 +511,11 @@ class Member(Guest):
         self._cache_on = False
 
     def cache_clear(self, name:str = ''):
-        """ Clears a named cache.  If a cache name is not mentioned, clears the most-recently used cache.
+        """ Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.
 
         Arguments:
-            - name -- String; name of the cache to clear.  Defaults to the cache most recently used.
+            - name -- String; name of the cache to clear.  Defaults to the 
+              cache most recently used.
 
         ::
 
@@ -601,13 +614,16 @@ class Member(Guest):
     def logout( self ):
         """ Logs the current session out.
 
-        Saving the session_id in the config file allows users to complete a 
-        captcha in one script and have that captcha's success apply to all 
-        other scripts run, as long as that session_id is valid.
+        Normally, there's no need to call this.  However, after a client 
+        connects (and logs in), their session ID will be written to the config 
+        file to save them having to log in again the next time.  Saving this 
+        session ID also records whether the client has recently solved a 
+        captcha.
 
-        Calling logout() invalidates that session_id and removes it from the 
-        config file.  Therefore, actually calling logout() is rarely 
-        necessary.
+        If you're testing something out and want to see any captcha prompts, 
+        you'll want to call logout() at the end of your test script.  This 
+        way, running your test script multiple times will result in actual 
+        captcha prompts each time.
         """
         rslt = {}
         if hasattr(self, 'empire'):

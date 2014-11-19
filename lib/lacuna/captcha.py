@@ -26,13 +26,12 @@ from lacuna.exceptions import \
 class Captcha(lacuna.bc.LacunaObject):
     """ Fetches, displays, and solves graphical captchas.  
 
-    General usage will be:
+    General usage will be::
 
-    >>> 
-    cap = my_client.get_captcha()
-    cap.showit()            # display the captcha image
-    cap.prompt_user()       # ask the user for a solution
-    cap.solveit()           # check the user's solution 
+        cap = my_client.get_captcha()
+        cap.showit()            # display the captcha image
+        cap.prompt_user()       # ask the user for a solution
+        cap.solveit()           # check the user's solution 
     """
 
     path = 'captcha'
@@ -51,8 +50,8 @@ class Captcha(lacuna.bc.LacunaObject):
         """ Actually downloads the captcha image, and attempts to display it  
         to the user in one of several browsers.
 
-        If fetch() is called first, showit() uses that fetched data, but this 
-        is not necessary.  showit() will call fetch for you.
+        If ``fetch()`` is called first, ``showit()`` uses that fetched data, but 
+        this is not necessary.  ``showit()`` will call fetch for you.
         """
         if not hasattr(self,'url') or not hasattr(self,'guid'):
             self.fetch()
@@ -108,17 +107,15 @@ class Captcha(lacuna.bc.LacunaObject):
 
     @lacuna.bc.LacunaObject.call_member_meth
     def solve( self, guid:str, solution:str, **kwargs ):
-        """ Mirrors the TLE Captcha::solve() method, but unless you really 
-        need this and you really know why, use solveit() instead.
+        """ Mirrors the TLE Captcha module's ``solve()`` method, but unless you 
+        really need this and you really know why, use ``solveit()`` instead.
         """
         pass
 
 
 class Puzzle(lacuna.bc.SubClass):
     """
-    Attributes:
-
-    ::
+    Attributes::
 
         url     FQ URL to the puzzle image
         guid    uuid attached to the puzzle; must be passed back along with 

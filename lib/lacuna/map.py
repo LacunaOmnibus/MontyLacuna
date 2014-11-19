@@ -11,16 +11,15 @@ class Map(lacuna.bc.LacunaObject):
     def get_star_map( self, stars:dict, *args, **kwargs ):
         """ Get a list of stars occupying a region of space.
         
-        Accepts a single dict of arguments:
-            >>> 
-            left        Coordinate
-            top         Coordinate
-            right       Coordinate
-            bottom      Coordinate
+        Accepts a single dict of arguments containing the keys:
+            - left -- Coordinate
+            - top -- Coordinate
+            - right -- Coordinate
+            - bottom -- Coordinate
 
-        Each coordinate must be an integer within the star map (so >= -1500 and 
-        <= 1500).  The total area covered by these coordinates must be <= 3001 
-        units.  The TLE documentation states 1001 units, but thats old 
+        Each coordinate must be an integer within the star map (so >= -1500 
+        and <= 1500).  The total area covered by these coordinates must be <= 
+        3001 units.  The TLE documentation states 1001 units, but thats old 
         information; the limit has been raised to 3001 units.
 
         Returns a list of map.Star objects.
@@ -33,7 +32,7 @@ class Map(lacuna.bc.LacunaObject):
         return mylist
 
     @lacuna.bc.LacunaObject.call_returning_meth
-    def get_stars( self, x1, x2, y1, y2, *args, **kwargs ):
+    def get_stars( self, left:int, top:int, right:int, bottom:int, *args, **kwargs ):
         """ Get a list of stars occupying a region of space.
 
         More or less Deprecated.
@@ -45,11 +44,10 @@ class Map(lacuna.bc.LacunaObject):
         units.
 
         Arguments:
-            >>> 
-            left        Coordinate
-            top         Coordinate
-            right       Coordinate
-            bottom      Coordinate
+            - left -- Coordinate
+            - top -- Coordinate
+            - right -- Coordinate
+            - bottom -- Coordinate
 
         Returns a list of map.Star objects.
 
@@ -79,7 +77,7 @@ class Map(lacuna.bc.LacunaObject):
         Arguments:
             - star_id -- Integer ID of the star
 
-        Returns a Star object.  
+        Returns a map.Star object.  
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return(star)
@@ -89,9 +87,10 @@ class Map(lacuna.bc.LacunaObject):
         """ Find a star by its name.
 
         Arguments:
-            - star_name -- String name of the star.  This is NOT a "standard TLE search string", but the full name of the star.
+            - star_name -- String name of the star.  This is NOT a "standard 
+              TLE search string", but the full name of the star.
 
-        Returns a Star object.  
+        Returns a map.Star object.  
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return star
@@ -104,7 +103,7 @@ class Map(lacuna.bc.LacunaObject):
             - x -- Integer X coordinate
             - y -- Integer Y coordinate
 
-        Returns a Star object.  
+        Returns a map.Star object.  
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return star
@@ -114,12 +113,10 @@ class Map(lacuna.bc.LacunaObject):
         """ Return a list of stars matching a string.
 
         Arguments
-            - search_string -- A standard TLE search string.
+            - search_string -- A standard TLE search string.  See 
+              :ref:`glossary`.
 
-        Returns a list of Star objects.
-        partial_name must be at least 3 characters.  Matches up to 25 stars whose names
-        START with partial_name (NOT stars whose names just contain partial_name).
-        rv is a list, identical to get_star_map().
+        Returns a list of map.Star objects.
         """
         mylist = []
         for i in kwargs['rslt']['stars']:
@@ -130,7 +127,7 @@ class Map(lacuna.bc.LacunaObject):
     def probe_summary_fissures( self, mydict:dict, *args, **kwargs ):
         """ Provides info on fissures in a zone.
 
-        Requires a single dict argument:
+        Requires a single dict argument containing the key:
             - zone -- '0|0'
 
         Returns a list of map.Fissure objects.
@@ -169,10 +166,10 @@ class Map(lacuna.bc.LacunaObject):
         return target_planet
 
 
-class Star():
+class Star(lacuna.bc.SubClass):
     """ 
-    Attributes:
-        >>> 
+    Attributes::
+
         color       'red',
         id          '12345',
         name        'Clou Oghofr Oap',
@@ -200,8 +197,8 @@ class Star():
 
 class Fissure(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         name     "Mercury",
         id       345,
         orbit    1,

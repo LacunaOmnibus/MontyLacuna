@@ -1,6 +1,6 @@
 
-alliance
-===============
+TLE Module - Alliance
+=====================
 
 .. automodule:: lacuna.alliance
    :members:

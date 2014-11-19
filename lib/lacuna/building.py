@@ -1,16 +1,67 @@
 
 """
 
-    Building is a base class representing generic buildings. A “generic 
-    building” is usually one that’s handed back to you from the server as a 
-    dict, often in a list of dicts, from such things as checking on the 
-    Development Ministry’s build queue via its view() method.
+
+
+
+"""
+
+import functools, re
+import lacuna.bc
+from lacuna.exceptions import \
+    CaptchaResponseError, \
+    ServerError
+
+class Building(lacuna.bc.SubClass):
+    """ Base class representing generic buildings. A “generic building” is 
+    usually one that’s handed back to you from the server as a dict, often in 
+    a list of dicts, from such things as checking on the Development 
+    Ministry’s build queue via its view() method.
 
     A Building object will probably, but not necessarily, have a building ID, 
     and may or may not belong to the current empire.
 
-    MyBuilding represents a building owned by your empire, and most building 
-    objects you encounter will inherit from MyBuilding.
+    Most buildings you deal with will be MyBuilding objects, not Building 
+    objects.
+    """
+
+class InBuildQueue(Building):
+    """ A building in the Development Ministry's build queue.
+
+    Attributes::
+
+        id                  "building-id-goes-here",
+        name                "Planetary Commmand",
+        to_level            8,
+        seconds_remaining   537,
+        x                   0,
+        y                   0,
+        subsidy_cost        3 # the essentia cost to subsidize just this building
+    """
+
+class MyBuilding(lacuna.bc.LacunaObject):
+    """ Represents a building owned by your empire.  Most building objects 
+    you encounter will inherit from MyBuilding.
+
+    Attributes::
+
+        id              Integer ID of the building itself
+        body_id         Integer ID of the body this building is sitting on,
+        name            "Apple Orchard",
+        x               1,
+        y               -1,
+        url             "/apple",
+        level           3,
+        image           "apples3",
+        efficiency      95,
+        pending_build   {   # only included when building is building/upgrading
+                            "seconds_remaining" : 430,
+                            "start" : "01 31 2010 13:09:05 +0600",
+                            "end" : "01 31 2010 18:09:05 +0600"  },
+        work            {   # only included when building is working (Parks, Waste Recycling, etc)
+                            "seconds_remaining" : 49,
+                            "start" : "01 31 2010 13:09:05 +0600",
+                            "end" : "01 31 2010 18:09:05 +0600"  }
 
     MontyLacuna attempts to provide method calls that mirror all of the method 
     calls documented by the TLE API.  However, MyBuilding had to violate that 
@@ -25,63 +76,11 @@
         So these have been renamed, adding the ``do_`` prefix to avoid attribute 
         name collisions.
 
-
-"""
-
-import functools, re
-from lacuna.bc import LacunaObject
-from lacuna.exceptions import \
-    CaptchaResponseError, \
-    ServerError
-
-class Building():
-    def __init__( self, mydict:dict ):
-        for k, v in mydict.items():
-            setattr(self, k, v)
-
-class InBuildQueue(Building):
-    """
-    Attributes::
-
-        id                  "building-id-goes-here",
-        name                "Planetary Commmand",
-        to_level            8,
-        seconds_remaining   537,
-        x                   0,
-        y                   0,
-        subsidy_cost        3 # the essentia cost to subsidize just this building
-    """
-
-class MyBuilding(LacunaObject):
-    """ 
-    Attributes::
-
-        id              Integer ID of the building itself
-        body_id         Integer ID of the body this building is sitting on,
-        name            "Apple Orchard",
-        x               1,
-        y               -1,
-        url             "/apple",
-        level           3,
-        image           "apples3",
-        efficiency      95,
-        pending_build   {
-                            # only included when building is building/upgrading
-                            "seconds_remaining" : 430,
-                            "start" : "01 31 2010 13:09:05 +0600",
-                            "end" : "01 31 2010 18:09:05 +0600"
-                        },
-        work            {
-                            # only included when building is working (Parks, Waste Recycling, etc)
-                            "seconds_remaining" : 49,
-                            "start" : "01 31 2010 13:09:05 +0600",
-                            "end" : "01 31 2010 18:09:05 +0600"
-                        }
     """
 
     def __init__( self, client, body_id:int, id:int = 0 ):
-        ### Inheritance starts with LacunaObject, so super()__init__() calls 
-        ### LacunaObject's __init__().
+        ### Inheritance starts with lacuna.bc.LacunaObject, so 
+        ### super()__init__() calls lacuna.bc.LacunaObject's __init__().
         super().__init__( client )
         self.body_id = body_id
         if id:
@@ -120,8 +119,8 @@ class MyBuilding(LacunaObject):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id, self.id) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
-            status_dict = LacunaObject.get_status_dict(self, rslt)
-            LacunaObject.write_empire_status(self, status_dict)
+            status_dict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
+            lacuna.bc.LacunaObject.write_empire_status(self, status_dict)
             self.write_building_status(rslt)
             kwargs['rslt'] = rslt
             myrslt = func( self, *args, **kwargs )
@@ -136,15 +135,15 @@ class MyBuilding(LacunaObject):
 
         Updates the empire status based on the TLE-returned data, so if you're 
         using this, there's no need to decorate with 
-        @LacunaObject.set_empire_status (and doing so will fail).
+        @lacuna.bc.LacunaObject.set_empire_status (and doing so will fail).
         """
         @functools.wraps(func)
         def inner(self, *args, **kwargs):
             method_to_call = re.sub('^do_', '', func.__name__)
             myargs = (self.client.session_id,) + args
             rslt = self.client.send( self.path, method_to_call, myargs )
-            status_dict = LacunaObject.get_status_dict(self, rslt)
-            LacunaObject.write_empire_status(self, status_dict)
+            status_dict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
+            lacuna.bc.LacunaObject.write_empire_status(self, status_dict)
             kwargs['rslt'] = rslt
             myrslt = func( self, *args, **kwargs )
             return myrslt
@@ -174,14 +173,14 @@ class MyBuilding(LacunaObject):
 
         Updates the empire status based on the TLE-returned data, so if you're 
         using this, there's no need to decorate with 
-        @LacunaObject.set_empire_status (and doing so will fail).
+        @lacuna.bc.LacunaObject.set_empire_status (and doing so will fail).
         """
         @functools.wraps(func)
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
             mydict['building_id'] = self.id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
-            LacunaObject.write_empire_status(self, rslt)
+            lacuna.bc.LacunaObject.write_empire_status(self, rslt)
             kwargs['rslt'] = rslt
             myrslt = func( self, mydict, *args, **kwargs )
             return myrslt
@@ -218,9 +217,9 @@ class MyBuilding(LacunaObject):
 
     def set_building_status( func ):
         """ Decorator.
-        Much like LacunaObject.set_empire_status.  A few of the Building server 
+        Much like lacuna.bc.LacunaObject.set_empire_status.  A few of the Building server 
         methods return both empire status and building status.  So we'll still 
-        decorate with LacunaObject.set_empire_status to get the empire status, 
+        decorate with lacuna.bc.LacunaObject.set_empire_status to get the empire status, 
         but we'll also decorate with this to set the body status.
         """
         @functools.wraps(func)
@@ -240,26 +239,28 @@ class MyBuilding(LacunaObject):
             setattr( self, n, v )
 
     def build( self, x:int, y:int, **kwargs ):
-        """ Actually places a building on the requested coords, assuming the building is
-        buildable, the coords are empty, and a plot is available.
-        After calling build(), your "new building" object will be be an "existing building"
-        object, capable of calling the rest of the building methods.
+        """ Actually places a building on the requested coords, assuming the 
+        building is buildable, the coords are empty, and a plot is available.
+
+        After calling ``build()``, your "new building" object will be be an 
+        "existing building" object, capable of calling the rest of the building 
+        methods.
         """
-        ### build() is unique, as it requires a body_id but no id, since the 
-        ### building doesn't exist yet.  No decorators here; the call to 
-        ### view() after the building is placed will handle that.
+        ### build() is unique, as it requires a body_id but no building_id, 
+        ### since the building doesn't exist yet.  No decorators here; the 
+        ### call to view() after the building is placed will handle that.
         rv = self.client.send( self.path, 'build', (self.client.session_id, self.body_id, x, y) )
         rv['building']['id'] = rv['building']['id']
         self.write_building_status( rv )
-        self.view();
+        self.view()
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def view( self, **kwargs ):
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @call_building_meth
     def demolish( self, **kwargs ):
         ### Since the building no longer exists, make sure that the object is 
@@ -267,24 +268,27 @@ class MyBuilding(LacunaObject):
         del( self.body_id )
         del( self.id )
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def do_upgrade( self, **kwargs ):
         """ Adds the current building to the build queue. """
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def do_downgrade( self, **kwargs ):
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @call_building_meth
     def get_stats_for_level( self, level:int, **kwargs ):
-        """ Returns what the stats for this building would be at the requested level.  The
-        hypothetical stats are returned in rv['building'].
+        """ Get what the stats for this building would be at the requested 
+        level.
+        
+        Returns a dict including the key ``building``, which contains the
+        hypothetical stats.
         """
         ### Purposely not decorating with set_building_status, since it's 
         ### reading out of rv['building'], and in this case, the information 
@@ -292,36 +296,47 @@ class MyBuilding(LacunaObject):
         ### building's actual stats.
         pass
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def repair( self, **kwargs ):
         """ Repairs a building, provided you have enough resources onsite.
-        See the repair_costs building attribute (it's a dict) before calling
-        repair to determine how much res the repair will take.
+        See the repair_costs building attribute before calling
+        ``repair()`` to determine how much res the repair will take.
         """
         pass
 
 class SingleStorage(MyBuilding):
     """ Base class for the storage buildings that store a singular resource 
-    type, eg water or energy.
+    type, ie water and energy.
     """
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @MyBuilding.set_building_status
     @MyBuilding.call_building_meth
     def dump( self, amount:int = 0, **kwargs ):
-        """ Converts the stored resource into waste """
+        """ Converts the stored resource into waste 
+
+        Arguments:
+            - amount -- Required integer.  The amount of res to dump.
+        """
         pass
 
 class MultiStorage(MyBuilding):
     """ Base class for the storage buildings that store a variegated resource 
-    type, eg food or ore.
+    type, ie food and ore.
     """
 
-    @LacunaObject.set_empire_status
+    @lacuna.bc.LacunaObject.set_empire_status
     @MyBuilding.set_building_status
     @MyBuilding.call_building_meth
-    def dump( self, res_type:str = '', amount:int = 0, **kwargs ):
-        """ Converts the stored resource into waste """
+    def dump( self, res_type:str, amount:int = 0, **kwargs ):
+        """ Converts the stored resource into waste.
+
+        Arguments:
+            - res_type -- Required string.  The name of the specific type of res
+              to dump ('anthracite', 'bauxite', 'algae', 'apple', etc )
+            - amount -- Required integer.  The amount of res to dump.
+        """
         pass
+
