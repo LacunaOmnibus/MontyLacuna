@@ -33,9 +33,9 @@ Install MontyLacuna
 Create A Config File
 --------------------
 Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna 
-folder, and run the config file creation script:
+folder, and run the config file creation script::
 
-    >>> python3 bin/create_config_file.py
+    python3 bin/create_config_file.py
 
 That will ask you several questions, and then create your config file for you.
 

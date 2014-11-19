@@ -6,8 +6,9 @@ use File::Find;
 use File::Slurp;
 use File::Temp;
 
-File::Copy::mv( '_build/html/_static',  '_build/html/static'  );
 File::Copy::mv( '_build/html/_modules', '_build/html/modules' );
+File::Copy::mv( '_build/html/_sources', '_build/html/sources' );
+File::Copy::mv( '_build/html/_static',  '_build/html/static'  );
 
 my $files_fixed = 0;
 find( \&wanted, '_build/html' );
@@ -27,8 +28,9 @@ sub wanted {
     close $tmp_fh;
 
     my $input = File::Slurp::read_file( $_ );
-    $input =~ s/_static/static/g;
     $input =~ s/_modules/modules/g;
+    $input =~ s/_sources/sources/g;
+    $input =~ s/_static/static/g;
     File::Slurp::write_file( $tmp_fn, $input );
 
     File::Copy::mv( $tmp_fn, $_) or die $!;
