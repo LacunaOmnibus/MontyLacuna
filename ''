@@ -1,0 +1,9 @@
+[2014-11-18 15:35:39] (REQ) (INFO) - tmtowtdi - empty::empty - Creating a new client
+[2014-11-18 15:35:40] (REQ) (INFO) - tmtowtdi - empire::get_status - Success
+[2014-11-18 15:35:41] (USER) (CRITICAL) - This is an critical message.
+[2014-11-18 15:35:41] (USER) (ERROR) - This is an error message.
+[2014-11-18 15:35:41] (USER) (WARNING) - This is an warning message.
+[2014-11-18 15:35:41] (USER) (INFO) - This is an info message.
+[2014-11-18 15:35:41] (USER) (DEBUG) - This is an debug message.
+[2014-11-18 15:35:41] (REQ) (INFO) - tmtowtdi - stats::alliance_rank - Success (data from cache)
+[2014-11-18 15:35:41] (REQ) (INFO) - tmtowtdi - stats::alliance_rank - Success (data from cache)

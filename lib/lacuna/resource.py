@@ -2,7 +2,7 @@
 import re
 import lacuna.bc
 
-class PlanetaryResource():
+class PlanetaryResource(lacuna.bc.SubClass):
     """ Base class for resource classes.
 
     Attributes:
@@ -54,12 +54,13 @@ class PlanetaryResource():
 class PlanetaryFood(PlanetaryResource):
     """ The food being produced and currently stored.
 
-    Attributes:
+    Attributes::
+
         algae_hour      24,     # amount being produced
         algae           322,    # amount being stored
         bean_hour       1,
         bean            2,
-        ...
+        etc
         avail_list      List (sorted) of all available foods on the planet:
                         [ algae, bean, ... ]
     """
@@ -67,12 +68,13 @@ class PlanetaryFood(PlanetaryResource):
 class PlanetaryOre(PlanetaryResource):
     """ The ore being produced and currently stored.
 
-    Attributes:
+    Attributes::
+
         anthracite_hour     24,
         anthracite          322,
         bauxite_hour        1,
         bauxite             2,
-        ...
+        etc
         avail_list      List (sorted) of all available ores on the planet:
                         [ anthracite, bauxite, ... ]
     """
@@ -80,10 +82,11 @@ class PlanetaryOre(PlanetaryResource):
 class StoredResources(PlanetaryResource):
     """ The resources stored on this planet.
 
-    Attributes:
+    Attributes::
+
         water:      100,
         anthracite: 200,
         bauxite:    300,
-        ...
+        etc
     """
 

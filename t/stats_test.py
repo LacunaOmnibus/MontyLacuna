@@ -22,6 +22,21 @@ glc = lac.clients.Member(
 
 stats = glc.get_stats()
 
+l = glc.user_logger;
+l.critical("This is an critical message.")
+l.error("This is an error message.")
+l.warning("This is an warning message.")
+l.info("This is an info message.")
+l.debug("This is an debug message.")
+
+glc.cache_on('ally_test')
+ranks, num, page = stats.alliance_rank()
+ranks, num, page = stats.alliance_rank()
+glc.cache_off
+
+print( "DONE" )
+quit()
+
 ### credits() works fine from a guest account.
 ###
 #guest_stats = guest.get_stats()

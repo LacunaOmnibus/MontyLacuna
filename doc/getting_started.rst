@@ -1,4 +1,6 @@
 
+.. _getting_started:
+
 Getting Started
 ===============
 
@@ -15,11 +17,8 @@ your package manager.
 
 Install MontyLacuna
 -------------------
-- Download either the ``.zip`` or ``.tar.gz`` file from `the MontyLacuna home 
-  page <http://tmtowtdi.github.io/MontyLacuna/>`_.
-
-  - Most people will want the ``.zip`` file.  If you're not sure of the 
-    difference, get the ``.zip``.
+- Download the ``.zip`` file from `the MontyLacuna home page 
+  <http://tmtowtdi.github.io/MontyLacuna/>`_.
 
 - Open the ``zip`` file using whatever unzip tool you like.  It contains just 
   one folder - drag that out to ``My Documents`` on your computer.
@@ -35,7 +34,8 @@ Create A Config File
 --------------------
 Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna 
 folder, and run the config file creation script:
->>> python3 bin/create_config_file.py
+
+    >>> python3 bin/create_config_file.py
 
 That will ask you several questions, and then create your config file for you.
 

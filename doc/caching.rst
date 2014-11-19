@@ -29,18 +29,18 @@ Synopsis
 
     glc.cache_on( 'my_planets', 3600 )              # Turn caching on
 
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds
+    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds, but result was cached
     my_planet_one = glc.get_body_byname("Earth")    # takes 4 or 5 milliseconds
 
-    my_planet_one = glc.get_body_byname("Mars")     # takes 1-3 seconds
+    my_planet_one = glc.get_body_byname("Mars")     # takes 1-3 seconds, but result was cached
     my_planet_one = glc.get_body_byname("Mars")     # takes 4 or 5 milliseconds
 
-    glc.cache_clear( 'my_planets' )                 # clear out this cache
+    glc.cache_clear( 'my_planets' )                 # clear this cache, but don't turn it off
 
-    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds
+    my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds, but result was cached
     my_planet_one = glc.get_body_byname("Earth")    # takes 4 or 5 milliseconds
 
-    glc.cache_off()                                 # Turn caching off altogether
+    glc.cache_off()                                 # Turn caching off, but don't clear existing entries
 
     my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds
     my_planet_one = glc.get_body_byname("Earth")    # takes 1-3 seconds

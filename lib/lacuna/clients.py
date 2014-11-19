@@ -94,6 +94,8 @@ class Guest(lacuna.bc.SubClass):
             for i in self.config_list:
                 setattr( self, i, eval(i) )
 
+        self._create_user_logger()
+
         self._create_request_logger()
         emp_name = self._determine_empname()
         log_opts = {
@@ -125,6 +127,26 @@ class Guest(lacuna.bc.SubClass):
         }
         self.cache = beaker.cache.CacheManager(**beaker.util.parse_cache_config_options(cache_opts))
 
+    def _create_user_logger(self):
+        log_format  = '[%(asctime)s] (USER) (%(levelname)s) - %(message)s'
+        date_format = '%Y-%m-%d %H:%M:%S'
+
+        l = logging.getLogger( str(uuid.uuid1()) )
+        l.setLevel(logging.DEBUG)
+
+        sh = logging.StreamHandler()
+        sh.setLevel(logging.WARNING)
+        sh.setFormatter(logging.Formatter(log_format, date_format))
+        l.addHandler(sh)
+
+        if( hasattr(self, 'logfile') and self.logfile ):
+            fh = logging.FileHandler( os.path.normpath(self.logfile) )
+            fh.setLevel(logging.DEBUG)
+            fh.setFormatter(logging.Formatter(log_format, date_format))
+            l.addHandler(fh)
+
+        self.user_logger = l
+
     def _create_request_logger(self):
         """
         Don't use logging.getLogger() to get at the logger.  Instead, use the 
@@ -150,8 +172,13 @@ class Guest(lacuna.bc.SubClass):
         ### be anything recognizable, just unique per client, so we're just 
         ### using a uuid as the logger name.
 
-        s_format = '%(levelname)s -- %(empire)s - %(path)s::%(method)s - %(message)s'
-        f_format = '[%(asctime)s] (%(levelname)s) - %(empire)s - %(path)s::%(method)s - %(message)s'
+        ### screen
+        s_format = '(REQ) %(levelname)s -- %(empire)s - %(path)s::%(method)s - %(message)s'
+
+        ### file
+        f_format = '[%(asctime)s] (REQ) (%(levelname)s) - %(empire)s - %(path)s::%(method)s - %(message)s'
+
+        ### date (used by f_format)
         d_format = '%Y-%m-%d %H:%M:%S'
 
         l = logging.getLogger( str(uuid.uuid1()) )
@@ -162,7 +189,7 @@ class Guest(lacuna.bc.SubClass):
         sh.setFormatter(logging.Formatter(s_format, d_format))
         l.addHandler(sh)
 
-        if( self.logfile ):
+        if( hasattr(self, 'logfile') and self.logfile ):
             fh = logging.FileHandler( os.path.normpath(self.logfile) )
             fh.setLevel(logging.DEBUG)
             fh.setFormatter(logging.Formatter(f_format, d_format))
@@ -367,8 +394,8 @@ class Guest(lacuna.bc.SubClass):
                 self.request_logger.error("("+str(error.code)+") "+error.text, extra=log_opts)
                 raise error
         else:
-            cache_text = "cache" if self._from_cache else "server call"
-            self.request_logger.info('Success - origin '+cache_text, extra=log_opts)
+            cache_text = " (data from cache)" if self._from_cache else ""
+            self.request_logger.info('Success'+cache_text, extra=log_opts)
             thingy = json.loads( resp.text )
 
         if self.sleep_on_call and not self._from_cache:

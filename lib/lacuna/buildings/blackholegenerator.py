@@ -1,14 +1,15 @@
 
 """
     Several BHG methods include a 'target' argument.  This is the same target 
-    argument used by the Space Port.  It's a dict that can contain:
-    - body_id -- "12345",
-    - body_name -- "mars",
-    - star_id -- "12345",
-    - star_name -- "sol",
-    - zone -- "0|0",
-    - x -- 0,
-    - y -- 0,
+    argument used by the Space Port.  It's a dict that can contain::
+
+        - body_id -- "12345",
+        - body_name -- "mars",
+        - star_id -- "12345",
+        - star_name -- "sol",
+        - zone -- "0|0",
+        - x -- 0,
+        - y -- 0,
 
     You'll only send one of those keys, except in the case where you're sending 
     coordinates, in which case you'll send both 'x' and 'y'.
@@ -18,15 +19,15 @@
 """
 
 import lacuna.bc
-from lacuna.building import MyBuilding
+import lacuna.building
 
-class blackholegenerator(MyBuilding):
+class blackholegenerator(lacuna.building.MyBuilding):
     path = 'blackholegenerator'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_actions_for( self, target:dict, **kwargs ):
         """ Returns all available BHG actions for the given target.
 
@@ -41,7 +42,7 @@ class blackholegenerator(MyBuilding):
         return mylist
 
     @lacuna.bc.LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_building_meth
     def subsidize_cooldown( self, **kwargs ):
         """ Spends 2E to subsidize the BHG's current cooldown period.
 
@@ -58,7 +59,7 @@ class blackholegenerator(MyBuilding):
         return( tasks, opts )
 
 
-    @MyBuilding.call_named_returning_meth
+    @lacuna.building.MyBuilding.call_named_returning_meth
     def generate_singularity( self, named_args:dict, **kwargs ):
         """ Performs one of the several actions possible via BHG.  See 
         get_actions_for() for a list of legal actions.
@@ -68,9 +69,7 @@ class blackholegenerator(MyBuilding):
         support subsidizing the action, so this method is purposely not 
         supporting positional arguments at all.
 
-        Format for named_args:
-
-::
+        Format for named_args::
 
             {   "target"        : { "body_name" : "mars" },
                 "task_name"     : "Change Type",
@@ -82,18 +81,37 @@ class blackholegenerator(MyBuilding):
         take the chance that the BHG action will fail, causing catastrophic 
         results up to destroying the BHG and replacing it with a fissure.
 
-        Returns a single BHGEffect object.
+        Returns three blackholegenerator.BHGEffect objects:
+            - target
+            - side
+            - fail
 
         Throws ServerError 1002 if the target can't be found, and 1010 if the 
         BHG is currently in cooldown mode.
         """
-        return BHGEffect(self.client, kwargs['rslt']['effect'])
+        ### The reality doesn't match the API documentation.  We get back a 
+        ### dict with 'status' and 'effect'.  'effect' contains 'side' and 
+        ### 'target' and, possibly, 'fail', each being a dict.
+        ### 
+        ### The API docs don't mention 'effect' as being a sibling to 'status' 
+        ### - it states that 'fail', 'target', and 'side' are all siblings to 
+        ### 'status' - they are not.
+        fail    = {}
+        side    = {}
+        target  = {}
+        if 'fail' in kwargs['rslt']['effect']:
+            fail = BHGEffect(self.client, kwargs['rslt']['effect']['fail'])
+        if 'side' in kwargs['rslt']['effect']:
+            side = BHGEffect(self.client, kwargs['rslt']['effect']['side'])
+        if 'target' in kwargs['rslt']['effect']:
+            target = BHGEffect(self.client, kwargs['rslt']['effect']['target'])
+        return( target, side, fail )
 
 
 class BHGTask(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         base_fail       10,
         dist            134.1
         essentia_cost   None,
@@ -113,8 +131,8 @@ class BHGTask(lacuna.bc.SubClass):
 
 class BHGTaskOptions(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         asteroid_types  [1, 2, ... 26],
         planet_types    [1, 2, .., 40],
         zones           ['-1|-1', '-1|-2', ... '5|5']
@@ -123,68 +141,47 @@ class BHGTaskOptions(lacuna.bc.SubClass):
 
 class BHGEffect(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
-        ore_capacity        21893730088,
-        ore_hour            2593539143,
-        ore_stored          21893730088,
-        plots_available     0,
-        population          30100000,
-        propaganda_boost        '0',
-        size                '72',
-        star_id             "My Planet's Star's ID",
-        star_name           "My Planet's Star's Name",
-        surface_version     '2774',
-        type                'habitable planet',
-        waste_capacity      63944937008,
-        waste_hour          117395,
-        waste_stored        16747563792,
-        water               10768,
-        water_capacity      21893730088,
-        water_hour          1348906217,
-        water_stored        21893730088,
-        x                   'x coord of planet containing BHG',
-        y                   'y coord of planet containing BHG',
-        zone                '0|0',
+    Attributes::
 
-    The 'side' dict specifies any side effects that occurred as a result 
-    of your BHG use.  I believe this will only be set if the BHG usage 
-    produced a side effect.
-    - id -- '121808',
-    - message -- '2 decor items placed',
-    - name -- 'Name of affected planet',  },
+        class       "Lacuna::DB::Result::Map::Body::Asteroid::A2",
+        id          "body id",
+        name        "name of planet effected",
+        old_class   "Lacuna::DB::Result::Map::Body::Planet::P9",
+        old_size    Size before change,
+        message     "Made Asteroid",
+        size        Size of body after effect
+        type        "asteroid", "gas giant", "habitable planet", or "space station"
+        variance    -1, 0, or 1
+        waste       "Zero", "Random", or "Filled"
 
-    The 'fail' dict is listed in the TLE docu as "fail: { ... }", so I 
-    don't know what it's supposed to contain.  It'll only be set if the 
-    BHG usage failed for some reason.
+    There are three different types of BHG effect:
+        - target
+          - this is what you were trying to do.
+        - side
+          - this is a possible unintended side effect.
+        - fail
+          - this only shows up if the attempted BHG usage failed.
 
-    The 'target' dict will contain different keys depending upon what was 
-    done.
+    Different tasks will return different attributes; not all attributes listed 
+    above will be returned.
 
-    This first example is what's documented in the TLE API docu:
-        - class -- 'Lacuna::DB::Result::Map::Body::Asteroid::A2',
-        - id -- 'body id',
-        - name -- 'name of planet effected',
-        - old_class -- 'Lacuna::DB::Result::Map::Body::Planet::P9',
-        - old_size -- Size before change,
-        - message -- 'Made Asteroid',
-        - size -- Size of body after effect
-        - type -- 'asteroid', 'gas giant', 'habitable planet', or 'space station'
-        - variance -- -1, 0, or 1
-        - waste -- 'Zero', 'Random', or 'Filled'
+    Before using any specific attribute, check to see if it exists in the first 
+    place.
 
-    This is what I got back after trying to change a p35 into a p35:
-        - id -- '467277',
-        - message -- 'Fizzle',
-        - name -- 'Opriogee 2'
-
-    This is what I got back after changing a p35 into a p33:
+    This is what I got back as the Target effect after changing a p35 into a p33, for example:
         - class -- 'Lacuna::DB::Result::Map::Body::Planet::P33',
         - id -- '467277',
         - message -- 'Changed Type',
         - name -- 'Opriogee 2',
         - old_class -- 'Lacuna::DB::Result::Map::Body::Planet::P35'
 
-    ...So use your head, and check your keys.
+    Neither 'side' nor 'fail' are fully documented in the API docs, and I'm not 
+    brave enough to force a BHG failure right now, but I'd guess that the Fail 
+    effect return is similar to that of the Side effect.
+
+    In tests, a Side effect included only these attributes:
+        - id -- '121808',
+        - message -- '2 decor items placed',
+        - name -- 'Name of affected planet',  },
     """
 
