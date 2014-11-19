@@ -15,6 +15,7 @@
 
 import sys
 import os
+import sphinx_rtd_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -101,7 +102,42 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+#html_theme = 'default'  # nav bar on the left, which is a problem.
+#html_theme = 'scrolls'  # OK, simple clean layout.  But Times New Roman?
+#html_theme = 'traditional'  # Welcome to 1997.  Here's your Times New Roman.  Fail.
+#html_theme = 'nature'  # Nice looking, but nav on left so text overruns.
+#html_theme = 'haiku'  # A little too simple, and a little too orange.
+#html_theme = 'pyramid'  # too simple, left nav.
+
+
+### not bad.  nav on the right, so long package names don't overwrite text.
+### I think I like agogo's look just a little better, but this handles TOC 
+### lists better.
+#html_theme = 'sphinxdoc'
+
+### Nav on right, does not list each building mod in that nav.  Pretty, easy 
+### to read.  Doesn't handle TOC lists so well.
+### Bah I really like the overall layout of this, but can't get past the bad 
+### TOC lists.
+#html_theme = 'agogo'
+
+### Theme downloaded using pip.
+### Great-looking, no nav overwrites anything, headers stand out.
+###
+### The only downside to this so far is that the left nav is meant to stay 
+### sticky.  But when you visit a section (eg Getting Started) that has too 
+### many subheading sections (these appear in that left nav after you visit 
+### the section), the nav stops being sticky.
+### ...Oh, wait.  This isn't a downside at all.  What's happening is that, 
+### when there are too many subsections, and those subsections suddenly show 
+### up in the left nav, they're pushing the bottom of the nav below the bottom 
+### of the viewport.  By turning off sticky nav in those cases, the user is 
+### able to scroll down to see the rest of the nav.
+### In fact, any time you shorten the viewport to obscure part of the nav, it 
+### stops being sticky.  Resize it again so it's big enough to encompass the 
+### whole nav, and it becomes sticky again.  It's perfect as is.
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

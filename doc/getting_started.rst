@@ -50,9 +50,7 @@ When you create a new script, you'll need to tell that script how to find the
 MontyLacuna libraries.
 
 Assuming that your script is going to be in ``INSTALLDIR/bin/``, add this to 
-the top of the script:
-
-::
+the top of the script::
 
     import os, sys
 
@@ -78,9 +76,7 @@ specify one of those two names as your ``config_section``.
 
 Get your empire
 ---------------
-Your empire info is already part of your client.
-
-::
+Your empire info is already part of your clien ::
 
     print( "I have used", my_client.empire.rpc_count, "RPCs so far today.")
 
