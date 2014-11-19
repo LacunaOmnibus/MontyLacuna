@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to MontyLacuna’s documentation! &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Logging &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -28,8 +28,9 @@
   
 
   
-    <link rel="top" title="Monty Lacuna 0.1 documentation" href="#"/>
-        <link rel="next" title="Getting Started" href="getting_started.html"/> 
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Caching" href="caching.html"/>
+        <link rel="prev" title="Config File" href="config_file.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -43,7 +44,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="#" class="fa fa-home"> Monty Lacuna</a>
+        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,7 +57,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
@@ -78,10 +79,10 @@
 <li class="toctree-l2"><a class="reference internal" href="config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log-entries">Request Log Entries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log-entries">User Log Entries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#request-log-entries">Request Log Entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-log-entries">User Log Entries</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a><ul>
@@ -118,7 +119,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">Monty Lacuna</a>
+        <a href="index.html">Monty Lacuna</a>
       </nav>
 
 
@@ -127,12 +128,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Welcome to MontyLacuna&#8217;s documentation!</li>
+    <li>Logging</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/logging.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -140,75 +141,96 @@
 </div>
           <div role="main">
             
-  <div class="section" id="welcome-to-montylacuna-s-documentation">
-<span id="home"></span><h1>Welcome to MontyLacuna&#8217;s documentation!<a class="headerlink" href="#welcome-to-montylacuna-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>There&#8217;s a lot of information here, but if you just want to get yourself set up
-to run MontyLacuna scripts, and don&#8217;t want (yet, at least) to write them, just
-read the <a class="reference internal" href="getting_started.html#getting-started"><em>Getting Started</em></a> section down to where it tells you to stop,
-and ignore the rest.</p>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#create-a-config-file">Create A Config File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#script-runners-stop-here">Script Runners Stop Here</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#connect-a-client">Connect a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#get-your-empire">Get your empire</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#get-info-on-your-alliance">Get info on your alliance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#read-mail-from-your-inbox">Read mail from your inbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#check-on-one-of-your-planets-by-name">Check on one of your planets by name</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#check-on-one-of-the-buildings-on-that-planet">Check on one of the buildings on that planet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#next-steps">Next Steps</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="config_file.html#setting-descriptions">Setting Descriptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_file.html#default-values">Default Values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log-entries">Request Log Entries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log-entries">User Log Entries</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
-</ul>
+  <div class="section" id="logging">
+<span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
+<p>Logging is performed using Python&#8217;s core <a class="reference external" href="https://docs.python.org/3.4/library/logging.html">logging library</a>.</p>
+<p>Both Request and User log entries will be written to the same logfile,
+specified in your config file.</p>
+<div class="section" id="log-levels">
+<h2>Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this headline">¶</a></h2>
+<p>This is documented at the URL above, but it&#8217;s being repeated here for
+convenience.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Level</th>
+<th class="head">Numeric value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CRITICAL</td>
+<td>50</td>
+</tr>
+<tr class="row-odd"><td>ERROR</td>
+<td>40</td>
+</tr>
+<tr class="row-even"><td>WARNING</td>
+<td>30</td>
+</tr>
+<tr class="row-odd"><td>INFO</td>
+<td>20</td>
+</tr>
+<tr class="row-even"><td>DEBUG</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
 </div>
+<div class="section" id="request-log-entries">
+<h2>Request Log Entries<a class="headerlink" href="#request-log-entries" title="Permalink to this headline">¶</a></h2>
+<p>All requests to the TLE server will be written to the logfile specified in the
+config file.  This happens automatically, so you don&#8217;t have to do anything.
+Just run your scripts as needed, and you&#8217;ll be able to check that logfile to
+see what&#8217;s happening.</p>
+<p>Most request log entries will only display to the file.  However, in the case
+of something going wrong, entries of WARNING level or higher will also be
+shown on-screen.</p>
+<p>An example request log entry:</p>
+<div class="highlight-python"><div class="highlight"><pre>[2014-11-18 15:49:39] (REQ) (INFO) - tmtowtdi - stats::alliance_rank - Success
+</pre></div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="glossary.html#glossary"><em>Glossary</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+<li><strong>[2014-11-18 15:49:39]</strong> &#8211; The date and time this entry was generated.</li>
+<li><strong>(REQ)</strong> &#8211; This is a request log entry, rather than a user entry.</li>
+<li><strong>(INFO)</strong> &#8211; The log level.  This is is an INFO-level entry.</li>
+<li><strong>tmtowtdi</strong> &#8211; The name of the empire that generated this entry.  Handy if
+you&#8217;re running scripts for multiple different empires and logging them all
+to the same file.</li>
+<li><strong>stats::alliance_rank</strong> &#8211; The TLE server module and method that were
+called.</li>
+<li><strong>Success</strong> &#8211; The actual log message.  For most request log entries, the
+entire message will simply be &#8220;Success&#8221;.</li>
 </ul>
+</div>
+<div class="section" id="user-log-entries">
+<h2>User Log Entries<a class="headerlink" href="#user-log-entries" title="Permalink to this headline">¶</a></h2>
+<p>Along with the automatic request log, your script can access the user logger
+so you can create whatever log entries you like:</p>
+<div class="highlight-python"><div class="highlight"><pre>glc = lac.clients.Member( standard connection arguments )
+l = glc.user_logger
+l.error( &quot;This is an error message.&quot; )
+l.info( &quot;This is an info message.&quot; )
+</pre></div>
+</div>
+<p>You can use all of the log levels in the table above.  Again, only WARNING
+level or higher will display to the screen; any lower-level entries will just
+go into the log file.</p>
+<p>An example user log entry:</p>
+<div class="highlight-python"><div class="highlight"><pre>[2014-11-18 15:49:39] (USER) (INFO) - This is an info message.
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>[2014-11-18 15:49:39]</strong> &#8211; The date and time this entry was generated.</li>
+<li><strong>(USER)</strong> &#8211; This is a user log entry, rather than a request entry.</li>
+<li><strong>(INFO)</strong> &#8211; The log level.  This is is an INFO-level entry.</li>
+<li><strong>This is an info message.</strong> &#8211; The actual log message.</li>
+</ul>
+</div>
 </div>
 
 
@@ -217,8 +239,10 @@ and ignore the rest.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="caching.html" class="btn btn-neutral float-right" title="Caching"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="config_file.html" class="btn btn-neutral" title="Config File"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

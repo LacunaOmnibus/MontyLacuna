@@ -1,58 +1,148 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>lacuna.buildings package &mdash; Monty Lacuna 0.1 documentation</title>
-    
-    <link rel="stylesheet" href="static/default.css" type="text/css" />
-    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="static/jquery.js"></script>
-    <script type="text/javascript" src="static/underscore.js"></script>
-    <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html" />
-    <link rel="up" title="building" href="building.html" />
-    <link rel="next" title="captcha" href="captcha.html" />
-    <link rel="prev" title="building" href="building.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="captcha.html" title="captcha"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="building.html" title="building"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
-          <li><a href="building.html" accesskey="U">building</a> &raquo;</li> 
-      </ul>
-    </div>  
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lacuna.buildings package &mdash; Monty Lacuna 0.1 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="up" title="building" href="building.html"/>
+        <link rel="next" title="captcha" href="captcha.html"/>
+        <link rel="prev" title="building" href="building.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#script-runners-stop-here">Script Runners Stop Here</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#get-your-empire">Get your empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#get-info-on-your-alliance">Get info on your alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#read-mail-from-your-inbox">Read mail from your inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#check-on-one-of-your-planets-by-name">Check on one of your planets by name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#check-on-one-of-the-buildings-on-that-planet">Check on one of the buildings on that planet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log-entries">Request Log Entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log-entries">User Log Entries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="building.html">building</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">lacuna.buildings package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="building.html">building</a> &raquo;</li>
+      
+    <li>lacuna.buildings package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/lacuna.buildings.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
             
   <div class="section" id="lacuna-buildings-package">
 <h1>lacuna.buildings package<a class="headerlink" href="#lacuna-buildings-package" title="Permalink to this headline">¶</a></h1>
@@ -118,11 +208,13 @@
 <div class="section" id="module-lacuna.buildings.archaeology">
 <span id="lacuna-buildings-archaeology-module"></span><h2>lacuna.buildings.archaeology module<a class="headerlink" href="#module-lacuna.buildings.archaeology" title="Permalink to this headline">¶</a></h2>
 <p>The archaeology building will contain an attribute &#8216;work&#8217; if and only if it 
-is currently searching for an ore.  That attribute is a dict containing:
-- searching &#8211; &#8220;anthracite&#8221;,
-- start &#8211; &#8216;31 10 2014 18:45:34 +0000&#8217;,
-- end &#8211; &#8216;01 11 2014 00:45:34 +0000&#8217;,
-- seconds_remaining &#8211; 21574,</p>
+is currently searching for an ore.  That attribute is a dict containing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">-</span> <span class="n">searching</span> <span class="o">--</span> <span class="s">&quot;anthracite&quot;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">start</span> <span class="o">--</span> <span class="s">&#39;31 10 2014 18:45:34 +0000&#39;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">end</span> <span class="o">--</span> <span class="s">&#39;01 11 2014 00:45:34 +0000&#39;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">seconds_remaining</span> <span class="o">--</span> <span class="mi">21574</span><span class="p">,</span>
+</pre></div>
+</div>
 <p>...But that &#8216;work&#8217; attribute will not exist at all if the arch min is not 
 searching right now, so you&#8217;ll have to do a hasattr() check to see.</p>
 <dl class="class">
@@ -132,19 +224,30 @@ searching right now, so you&#8217;ll have to do a hasattr() check to see.</p>
 <dl class="method">
 <dt id="lacuna.buildings.archaeology.archaeology.abandon_excavator">
 <tt class="descname">abandon_excavator</tt><big>(</big><em>site_id: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.archaeology.archaeology.abandon_excavator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abandons the excavator located at site_id.
-Be sure you understand the difference between an excavator site ID and 
-a body ID, documented in view_excavators(), before using this.</p>
+<dd><p>Abandons the excavator located at site_id.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>site_id &#8211; Integer ID of the excavation site to abandon, taken from an Excavator object returned by view_excavators().</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.archaeology.archaeology.assemble_glyphs">
 <tt class="descname">assemble_glyphs</tt><big>(</big><em>glyphs: list</em>, <em>quantity: int=1</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.archaeology.archaeology.assemble_glyphs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attempts to assemble the listed glyphs into something useful.  
-Quantity defaults to 1.</p>
-<p>On success, retval includes the keys &#8216;item_name&#8217; and &#8216;quantity&#8217;.
-&#8216;item_name&#8217; is the name of the artifact created.
-&#8216;quantity&#8217; is the integer number created.</p>
+<dd><p>Attempts to assemble the listed glyphs into something useful.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>glyphs &#8211; a list of glyphs to assemble.  Order, spelling, and 
+capitalization matter; &#8220;goethite&#8221; is valid, &#8220;Goethite&#8221; is not!</li>
+<li>quantity &#8211; Integer number of this recipe you want to assemble.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a glyph.AssembledArtifact object.</p>
 <p>Raises ServerError 1002 if the listed glyphs do not form a valid 
 artifact recipe.</p>
 </dd></dl>
@@ -153,7 +256,7 @@ artifact recipe.</p>
 <dt id="lacuna.buildings.archaeology.archaeology.get_glyph_summary">
 <tt class="descname">get_glyph_summary</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.archaeology.archaeology.get_glyph_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns summary of glyphs that may be assembled in this arch min.</p>
-<p>Returns a list of OwnedGlyph objects.</p>
+<p>Returns a list of lacuna.glyph.OwnedGlyph objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -165,17 +268,11 @@ artifact recipe.</p>
 <dl class="method">
 <dt id="lacuna.buildings.archaeology.archaeology.get_ores_available_for_processing">
 <tt class="descname">get_ores_available_for_processing</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.archaeology.archaeology.get_ores_available_for_processing" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Returns list of all ores that are of sufficient quantity onsite to </dt>
-<dd><p class="first">perform glyph searches on.</p>
-<p class="last">Returns a dict containing the key &#8216;ore&#8217;, a dict keyed off ore names, with the ore 
-quantities as values:</p>
-</dd>
-</dl>
-<div class="highlight-python"><div class="highlight"><pre>&#39;ore&#39;: {   &#39;anthracite&#39;: 99294156,
-            &#39;bauxite&#39;: 210171773,
-            ...
-}
+<dd><p>Get ores of sufficient quantity to perform glyph searches on.</p>
+<p>Returns a dict of sufficient ores and their quantities:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;anthracite&#39;: 99294156,
+&#39;bauxite&#39;: 210171773,
+etc
 </pre></div>
 </div>
 </dd></dl>
@@ -192,7 +289,7 @@ quantities as values:</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>excavators &#8211; List of Excavator objects</li>
+<li>excavators &#8211; List of lacuna.ship.Excavator objects</li>
 <li>max &#8211; Integer max excavators this arch min can support</li>
 <li>travelling &#8211; Integer number of excavators currently in the air on the way to a body to begin work.</li>
 </ul>
@@ -458,14 +555,16 @@ quantities as values:</p>
 <div class="section" id="module-lacuna.buildings.blackholegenerator">
 <span id="lacuna-buildings-blackholegenerator-module"></span><h2>lacuna.buildings.blackholegenerator module<a class="headerlink" href="#module-lacuna.buildings.blackholegenerator" title="Permalink to this headline">¶</a></h2>
 <p>Several BHG methods include a &#8216;target&#8217; argument.  This is the same target 
-argument used by the Space Port.  It&#8217;s a dict that can contain:
-- body_id &#8211; &#8220;12345&#8221;,
-- body_name &#8211; &#8220;mars&#8221;,
-- star_id &#8211; &#8220;12345&#8221;,
-- star_name &#8211; &#8220;sol&#8221;,
-- zone &#8211; &#8220;0|0&#8221;,
-- x &#8211; 0,
-- y &#8211; 0,</p>
+argument used by the Space Port.  It&#8217;s a dict that can contain:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">-</span> <span class="n">body_id</span> <span class="o">--</span> <span class="s">&quot;12345&quot;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">body_name</span> <span class="o">--</span> <span class="s">&quot;mars&quot;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">star_id</span> <span class="o">--</span> <span class="s">&quot;12345&quot;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">star_name</span> <span class="o">--</span> <span class="s">&quot;sol&quot;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">zone</span> <span class="o">--</span> <span class="s">&quot;0|0&quot;</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">x</span> <span class="o">--</span> <span class="mi">0</span><span class="p">,</span>
+<span class="o">-</span> <span class="n">y</span> <span class="o">--</span> <span class="mi">0</span><span class="p">,</span>
+</pre></div>
+</div>
 <p>You&#8217;ll only send one of those keys, except in the case where you&#8217;re sending 
 coordinates, in which case you&#8217;ll send both &#8216;x&#8217; and &#8216;y&#8217;.</p>
 <p>Not all of the target keys listed above will be appropriate for all calls; 
@@ -474,68 +573,37 @@ eg sending &#8216;star_name&#8217; to a call to &#8216;jump_zone&#8217; doesn&#8
 <dt id="lacuna.buildings.blackholegenerator.BHGEffect">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.blackholegenerator.</tt><tt class="descname">BHGEffect</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.blackholegenerator.BHGEffect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">ore_capacity        21893730088,</span>
-<span class="go">ore_hour            2593539143,</span>
-<span class="go">ore_stored          21893730088,</span>
-<span class="go">plots_available     0,</span>
-<span class="go">population          30100000,</span>
-<span class="go">propaganda_boost        &#39;0&#39;,</span>
-<span class="go">size                &#39;72&#39;,</span>
-<span class="go">star_id             &quot;My Planet&#39;s Star&#39;s ID&quot;,</span>
-<span class="go">star_name           &quot;My Planet&#39;s Star&#39;s Name&quot;,</span>
-<span class="go">surface_version     &#39;2774&#39;,</span>
-<span class="go">type                &#39;habitable planet&#39;,</span>
-<span class="go">waste_capacity      63944937008,</span>
-<span class="go">waste_hour          117395,</span>
-<span class="go">waste_stored        16747563792,</span>
-<span class="go">water               10768,</span>
-<span class="go">water_capacity      21893730088,</span>
-<span class="go">water_hour          1348906217,</span>
-<span class="go">water_stored        21893730088,</span>
-<span class="go">x                   &#39;x coord of planet containing BHG&#39;,</span>
-<span class="go">y                   &#39;y coord of planet containing BHG&#39;,</span>
-<span class="go">zone                &#39;0|0&#39;,</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>class       &quot;Lacuna::DB::Result::Map::Body::Asteroid::A2&quot;,
+id          &quot;body id&quot;,
+name        &quot;name of planet effected&quot;,
+old_class   &quot;Lacuna::DB::Result::Map::Body::Planet::P9&quot;,
+old_size    Size before change,
+message     &quot;Made Asteroid&quot;,
+size        Size of body after effect
+type        &quot;asteroid&quot;, &quot;gas giant&quot;, &quot;habitable planet&quot;, or &quot;space station&quot;
+variance    -1, 0, or 1
+waste       &quot;Zero&quot;, &quot;Random&quot;, or &quot;Filled&quot;
 </pre></div>
 </div>
+<dl class="docutils">
+<dt>There are three different types of BHG effect:</dt>
+<dd><ul class="first last simple">
+<li>target
+- this is what you were trying to do.</li>
+<li>side
+- this is a possible unintended side effect.</li>
+<li>fail
+- this only shows up if the attempted BHG usage failed.</li>
+</ul>
 </dd>
 </dl>
-<p>The &#8216;side&#8217; dict specifies any side effects that occurred as a result 
-of your BHG use.  I believe this will only be set if the BHG usage 
-produced a side effect.
-- id &#8211; &#8216;121808&#8217;,
-- message &#8211; &#8216;2 decor items placed&#8217;,
-- name &#8211; &#8216;Name of affected planet&#8217;,  },</p>
-<p>The &#8216;fail&#8217; dict is listed in the TLE docu as &#8220;fail: { ... }&#8221;, so I 
-don&#8217;t know what it&#8217;s supposed to contain.  It&#8217;ll only be set if the 
-BHG usage failed for some reason.</p>
-<p>The &#8216;target&#8217; dict will contain different keys depending upon what was 
-done.</p>
+<p>Different tasks will return different attributes; not all attributes listed 
+above will be returned.</p>
+<p>Before using any specific attribute, check to see if it exists in the first 
+place.</p>
 <dl class="docutils">
-<dt>This first example is what&#8217;s documented in the TLE API docu:</dt>
-<dd><ul class="first last simple">
-<li>class &#8211; &#8216;Lacuna::DB::Result::Map::Body::Asteroid::A2&#8217;,</li>
-<li>id &#8211; &#8216;body id&#8217;,</li>
-<li>name &#8211; &#8216;name of planet effected&#8217;,</li>
-<li>old_class &#8211; &#8216;Lacuna::DB::Result::Map::Body::Planet::P9&#8217;,</li>
-<li>old_size &#8211; Size before change,</li>
-<li>message &#8211; &#8216;Made Asteroid&#8217;,</li>
-<li>size &#8211; Size of body after effect</li>
-<li>type &#8211; &#8216;asteroid&#8217;, &#8216;gas giant&#8217;, &#8216;habitable planet&#8217;, or &#8216;space station&#8217;</li>
-<li>variance &#8211; -1, 0, or 1</li>
-<li>waste &#8211; &#8216;Zero&#8217;, &#8216;Random&#8217;, or &#8216;Filled&#8217;</li>
-</ul>
-</dd>
-<dt>This is what I got back after trying to change a p35 into a p35:</dt>
-<dd><ul class="first last simple">
-<li>id &#8211; &#8216;467277&#8217;,</li>
-<li>message &#8211; &#8216;Fizzle&#8217;,</li>
-<li>name &#8211; &#8216;Opriogee 2&#8217;</li>
-</ul>
-</dd>
-<dt>This is what I got back after changing a p35 into a p33:</dt>
+<dt>This is what I got back as the Target effect after changing a p35 into a p33, for example:</dt>
 <dd><ul class="first last simple">
 <li>class &#8211; &#8216;Lacuna::DB::Result::Map::Body::Planet::P33&#8217;,</li>
 <li>id &#8211; &#8216;467277&#8217;,</li>
@@ -545,51 +613,54 @@ done.</p>
 </ul>
 </dd>
 </dl>
-<p>...So use your head, and check your keys.</p>
+<p>Neither &#8216;side&#8217; nor &#8216;fail&#8217; are fully documented in the API docs, and I&#8217;m not 
+brave enough to force a BHG failure right now, but I&#8217;d guess that the Fail 
+effect return is similar to that of the Side effect.</p>
+<dl class="docutils">
+<dt>In tests, a Side effect included only these attributes:</dt>
+<dd><ul class="first last simple">
+<li>id &#8211; &#8216;121808&#8217;,</li>
+<li>message &#8211; &#8216;2 decor items placed&#8217;,</li>
+<li>name &#8211; &#8216;Name of affected planet&#8217;,  },</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.buildings.blackholegenerator.BHGTask">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.blackholegenerator.</tt><tt class="descname">BHGTask</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.blackholegenerator.BHGTask" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">base_fail       10,</span>
-<span class="go">dist            134.1</span>
-<span class="go">essentia_cost   None,</span>
-<span class="go">min_level       10,</span>
-<span class="go">name            &#39;Make Asteroid&#39;,</span>
-<span class="go">occupied        0,</span>
-<span class="go">range           450,</span>
-<span class="go">reason          &#39;You can only make an asteroid from a planet.&#39;,</span>
-<span class="go">recovery        259200,</span>
-<span class="go">side_chance     25,</span>
-<span class="go">subsidy_mult    0.75,</span>
-<span class="go">success         0,</span>
-<span class="go">throw           1009,</span>
-<span class="go">types           [&#39;habitable planet&#39;, &#39;gas giant&#39;],</span>
-<span class="go">waste_cost      50000000</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>base_fail       10,
+dist            134.1
+essentia_cost   None,
+min_level       10,
+name            &#39;Make Asteroid&#39;,
+occupied        0,
+range           450,
+reason          &#39;You can only make an asteroid from a planet.&#39;,
+recovery        259200,
+side_chance     25,
+subsidy_mult    0.75,
+success         0,
+throw           1009,
+types           [&#39;habitable planet&#39;, &#39;gas giant&#39;],
+waste_cost      50000000
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.buildings.blackholegenerator.BHGTaskOptions">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.blackholegenerator.</tt><tt class="descname">BHGTaskOptions</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.blackholegenerator.BHGTaskOptions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">asteroid_types  [1, 2, ... 26],</span>
-<span class="go">planet_types    [1, 2, .., 40],</span>
-<span class="go">zones           [&#39;-1|-1&#39;, &#39;-1|-2&#39;, ... &#39;5|5&#39;]</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>asteroid_types  [1, 2, ... 26],
+planet_types    [1, 2, .., 40],
+zones           [&#39;-1|-1&#39;, &#39;-1|-2&#39;, ... &#39;5|5&#39;]
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
@@ -599,32 +670,34 @@ done.</p>
 <dl class="method">
 <dt id="lacuna.buildings.blackholegenerator.blackholegenerator.generate_singularity">
 <tt class="descname">generate_singularity</tt><big>(</big><em>named_args: dict</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.blackholegenerator.blackholegenerator.generate_singularity" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Performs one of the several actions possible via BHG.  See </dt>
-<dd><p class="first">get_actions_for() for a list of legal actions.</p>
+<dd><p>Performs one of the several actions possible via BHG.  See 
+get_actions_for() for a list of legal actions.</p>
 <p>Arguments must be passed in a dict.  The server method does support 
 positional arguments, but that form is deprecated, and does not 
 support subsidizing the action, so this method is purposely not 
 supporting positional arguments at all.</p>
-<p class="last">Format for named_args:</p>
-</dd>
-</dl>
-<div class="highlight-python"><div class="highlight"><pre>    {   &quot;target&quot;        : { &quot;body_name&quot; : &quot;mars&quot; },
-        &quot;task_name&quot;     : &quot;Change Type&quot;,
-        &quot;params&quot;        : { &quot;newtype&quot; : 33 },
-        &quot;subsidize&quot;     : 1     }
-
-Setting subsidize to 1 spends E to subsidize the action.  Setting 
-subsidize to a 0 is very much not recommended.  When you do this, you 
-take the chance that the BHG action will fail, causing catastrophic 
-results up to destroying the BHG and replacing it with a fissure.
-
-Returns a single BHGEffect object.
-
-Throws ServerError 1002 if the target can&#39;t be found, and 1010 if the 
-BHG is currently in cooldown mode.
+<p>Format for named_args:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>   <span class="s">&quot;target&quot;</span>        <span class="p">:</span> <span class="p">{</span> <span class="s">&quot;body_name&quot;</span> <span class="p">:</span> <span class="s">&quot;mars&quot;</span> <span class="p">},</span>
+    <span class="s">&quot;task_name&quot;</span>     <span class="p">:</span> <span class="s">&quot;Change Type&quot;</span><span class="p">,</span>
+    <span class="s">&quot;params&quot;</span>        <span class="p">:</span> <span class="p">{</span> <span class="s">&quot;newtype&quot;</span> <span class="p">:</span> <span class="mi">33</span> <span class="p">},</span>
+    <span class="s">&quot;subsidize&quot;</span>     <span class="p">:</span> <span class="mi">1</span>     <span class="p">}</span>
 </pre></div>
 </div>
+<p>Setting subsidize to 1 spends E to subsidize the action.  Setting 
+subsidize to a 0 is very much not recommended.  When you do this, you 
+take the chance that the BHG action will fail, causing catastrophic 
+results up to destroying the BHG and replacing it with a fissure.</p>
+<dl class="docutils">
+<dt>Returns three blackholegenerator.BHGEffect objects:</dt>
+<dd><ul class="first last simple">
+<li>target</li>
+<li>side</li>
+<li>fail</li>
+</ul>
+</dd>
+</dl>
+<p>Throws ServerError 1002 if the target can&#8217;t be found, and 1010 if the 
+BHG is currently in cooldown mode.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1233,8 +1306,7 @@ specified donation.</p>
 <dt id="lacuna.buildings.embassy.embassy.expel_member">
 <tt class="descname">expel_member</tt><big>(</big><em>empire_id: int</em>, <em>message: str=''</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.embassy.embassy.expel_member" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expels a member from your alliance.  Can only be called by the 
-alliance leader.
-CHECK untested as I can&#8217;t create an empire on PT.  Should work.</p>
+alliance leader.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1265,7 +1337,6 @@ CHECK untested as I can&#8217;t create an empire on PT.  Should work.</p>
 <p>Raises ServerError 1010 if you are the leader of the alliance.  In 
 that case, you cannot leave.  Instead, you must either turn membership 
 over to another member or dissolve the alliance.</p>
-<p>CHECK untested as I can&#8217;t create an empire on PT.  Should work.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -4821,225 +4892,67 @@ trade.</p>
 
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">lacuna.buildings package</a><ul>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.algae">lacuna.buildings.algae module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.algaepond">lacuna.buildings.algaepond module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.amalgusmeadow">lacuna.buildings.amalgusmeadow module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.apple">lacuna.buildings.apple module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.archaeology">lacuna.buildings.archaeology module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.artmuseum">lacuna.buildings.artmuseum module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.atmosphericevaporator">lacuna.buildings.atmosphericevaporator module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach1">lacuna.buildings.beach1 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach10">lacuna.buildings.beach10 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach11">lacuna.buildings.beach11 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach12">lacuna.buildings.beach12 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach13">lacuna.buildings.beach13 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach2">lacuna.buildings.beach2 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach3">lacuna.buildings.beach3 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach4">lacuna.buildings.beach4 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach5">lacuna.buildings.beach5 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach6">lacuna.buildings.beach6 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach7">lacuna.buildings.beach7 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach8">lacuna.buildings.beach8 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beach9">lacuna.buildings.beach9 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.bean">lacuna.buildings.bean module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beeldeban">lacuna.buildings.beeldeban module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.beeldebannest">lacuna.buildings.beeldebannest module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.blackholegenerator">lacuna.buildings.blackholegenerator module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.bread">lacuna.buildings.bread module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.burger">lacuna.buildings.burger module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.capitol">lacuna.buildings.capitol module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.cheese">lacuna.buildings.cheese module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.chip">lacuna.buildings.chip module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.cider">lacuna.buildings.cider module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.citadelofknope">lacuna.buildings.citadelofknope module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.cloakinglab">lacuna.buildings.cloakinglab module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.corn">lacuna.buildings.corn module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.cornmeal">lacuna.buildings.cornmeal module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.crashedshipsite">lacuna.buildings.crashedshipsite module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.crater">lacuna.buildings.crater module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.culinaryinstitute">lacuna.buildings.culinaryinstitute module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.dairy">lacuna.buildings.dairy module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.denton">lacuna.buildings.denton module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.dentonbrambles">lacuna.buildings.dentonbrambles module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.deployedbleeder">lacuna.buildings.deployedbleeder module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.development">lacuna.buildings.development module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.distributioncenter">lacuna.buildings.distributioncenter module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.embassy">lacuna.buildings.embassy module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.energyreserve">lacuna.buildings.energyreserve module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.entertainment">lacuna.buildings.entertainment module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.espionage">lacuna.buildings.espionage module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.essentiavein">lacuna.buildings.essentiavein module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.fission">lacuna.buildings.fission module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.fissure">lacuna.buildings.fissure module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.foodreserve">lacuna.buildings.foodreserve module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.fusion">lacuna.buildings.fusion module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.gasgiantlab">lacuna.buildings.gasgiantlab module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.gasgiantplatform">lacuna.buildings.gasgiantplatform module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.geneticslab">lacuna.buildings.geneticslab module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.geo">lacuna.buildings.geo module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.geothermalvent">lacuna.buildings.geothermalvent module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.gratchsgauntlet">lacuna.buildings.gratchsgauntlet module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.greatballofjunk">lacuna.buildings.greatballofjunk module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.grove">lacuna.buildings.grove module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.hallsofvrbansk">lacuna.buildings.hallsofvrbansk module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.hydrocarbon">lacuna.buildings.hydrocarbon module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.ibs">lacuna.buildings.ibs module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.intelligence">lacuna.buildings.intelligence module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.inteltraining">lacuna.buildings.inteltraining module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.interdimensionalrift">lacuna.buildings.interdimensionalrift module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.junkhengesculpture">lacuna.buildings.junkhengesculpture module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.kalavianruins">lacuna.buildings.kalavianruins module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.kasternskeep">lacuna.buildings.kasternskeep module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lagoon">lacuna.buildings.lagoon module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lake">lacuna.buildings.lake module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lapis">lacuna.buildings.lapis module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lapisforest">lacuna.buildings.lapisforest module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcota">lacuna.buildings.lcota module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcotb">lacuna.buildings.lcotb module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcotc">lacuna.buildings.lcotc module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcotd">lacuna.buildings.lcotd module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcote">lacuna.buildings.lcote module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcotf">lacuna.buildings.lcotf module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcotg">lacuna.buildings.lcotg module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcoth">lacuna.buildings.lcoth module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.lcoti">lacuna.buildings.lcoti module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.libraryofjith">lacuna.buildings.libraryofjith module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.luxuryhousing">lacuna.buildings.luxuryhousing module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.malcud">lacuna.buildings.malcud module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.malcudfield">lacuna.buildings.malcudfield module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.massadshenge">lacuna.buildings.massadshenge module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.mayhemtraining">lacuna.buildings.mayhemtraining module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.mercenariesguild">lacuna.buildings.mercenariesguild module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.metaljunkarches">lacuna.buildings.metaljunkarches module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.mine">lacuna.buildings.mine module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.miningministry">lacuna.buildings.miningministry module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.missioncommand">lacuna.buildings.missioncommand module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.munitionslab">lacuna.buildings.munitionslab module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.naturalspring">lacuna.buildings.naturalspring module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.network19">lacuna.buildings.network19 module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.observatory">lacuna.buildings.observatory module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.operahouse">lacuna.buildings.operahouse module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.oracleofanid">lacuna.buildings.oracleofanid module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.orerefinery">lacuna.buildings.orerefinery module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.orestorage">lacuna.buildings.orestorage module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.oversight">lacuna.buildings.oversight module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.pancake">lacuna.buildings.pancake module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.pantheonofhagness">lacuna.buildings.pantheonofhagness module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.park">lacuna.buildings.park module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.parliament">lacuna.buildings.parliament module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.pie">lacuna.buildings.pie module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.pilottraining">lacuna.buildings.pilottraining module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.planetarycommand">lacuna.buildings.planetarycommand module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.policestation">lacuna.buildings.policestation module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.politicstraining">lacuna.buildings.politicstraining module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.potato">lacuna.buildings.potato module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.propulsion">lacuna.buildings.propulsion module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.pyramidjunksculpture">lacuna.buildings.pyramidjunksculpture module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.ravine">lacuna.buildings.ravine module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.rockyoutcrop">lacuna.buildings.rockyoutcrop module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.sand">lacuna.buildings.sand module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.saw">lacuna.buildings.saw module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.security">lacuna.buildings.security module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.shake">lacuna.buildings.shake module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.shipyard">lacuna.buildings.shipyard module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.singularity">lacuna.buildings.singularity module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.soup">lacuna.buildings.soup module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.spacejunkpark">lacuna.buildings.spacejunkpark module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.spaceport">lacuna.buildings.spaceport module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.ssla">lacuna.buildings.ssla module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.sslb">lacuna.buildings.sslb module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.sslc">lacuna.buildings.sslc module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.ssld">lacuna.buildings.ssld module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.stationcommand">lacuna.buildings.stationcommand module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.stockpile">lacuna.buildings.stockpile module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.subspacesupplydepot">lacuna.buildings.subspacesupplydepot module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.supplypod">lacuna.buildings.supplypod module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.syrup">lacuna.buildings.syrup module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.templeofthedrajilites">lacuna.buildings.templeofthedrajilites module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.terraforminglab">lacuna.buildings.terraforminglab module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.terraformingplatform">lacuna.buildings.terraformingplatform module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.thedillonforge">lacuna.buildings.thedillonforge module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.thefttraining">lacuna.buildings.thefttraining module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.themepark">lacuna.buildings.themepark module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.trade">lacuna.buildings.trade module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.transporter">lacuna.buildings.transporter module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.university">lacuna.buildings.university module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.volcano">lacuna.buildings.volcano module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.warehouse">lacuna.buildings.warehouse module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.wastedigester">lacuna.buildings.wastedigester module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.wasteenergy">lacuna.buildings.wasteenergy module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.wasteexchanger">lacuna.buildings.wasteexchanger module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.wasterecycling">lacuna.buildings.wasterecycling module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.wastesequestration">lacuna.buildings.wastesequestration module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.wastetreatment">lacuna.buildings.wastetreatment module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.waterproduction">lacuna.buildings.waterproduction module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.waterpurification">lacuna.buildings.waterpurification module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.waterreclamation">lacuna.buildings.waterreclamation module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.waterstorage">lacuna.buildings.waterstorage module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings.wheat">lacuna.buildings.wheat module</a></li>
-<li><a class="reference internal" href="#module-lacuna.buildings">Module contents</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="captcha.html" class="btn btn-neutral float-right" title="captcha"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="building.html" class="btn btn-neutral" title="building"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="building.html"
-                        title="previous chapter">building</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="captcha.html"
-                        title="next chapter">captcha</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/lacuna.buildings.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="captcha.html" title="captcha"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="building.html" title="building"
-             >previous</a> |</li>
-        <li><a href="index.html">Monty Lacuna 0.1 documentation</a> &raquo;</li>
-          <li><a href="building.html" >building</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2014, Jonathan Barton.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
