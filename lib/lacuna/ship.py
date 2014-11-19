@@ -23,8 +23,8 @@ class Ship(lacuna.bc.SubClass):
 class BuildingShip(Ship):
     """ A ship being built (currently in the shipyard queue).
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id               "1234",
         type             "spy_pod",
         type_human       "Spy Pod",
@@ -32,9 +32,11 @@ class BuildingShip(Ship):
     """
 
 class Excavator(Ship):
-    """
-    Attributes:
-        >>> 
+    """ These aren't truly ships anymore, they're excavator sites.  The id is 
+    the id of the site that's currently being excavated (the site_id).
+
+    Attributes::
+
         id              "id-goes-here",
         body            Body object
         artifact        5,
@@ -53,8 +55,8 @@ class ExistingShip(Ship):
     It's taking up dock space in a spaceport, but it does not appear in a build 
     queue.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id              "id-goes-here",
         name            "CS3",
         type_human      "Cargo Ship",
@@ -95,8 +97,8 @@ class FleetShip(Ship):
     """ A FleetShip is an existing docked ship that's ready to be added to a 
     fleet action against a specific target (spaceport.get_my_fleet_for())
 
-    Attributes:
-        >>> 
+    Attributes::
+
         type                    "sweeper",
         type_human              "Sweeper",
         speed                   10166,
@@ -110,8 +112,8 @@ class FleetShip(Ship):
 class ForeignOrbitingShip(Ship):
     """ A ship NOT owned by your empire, currently orbiting your planet.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id              "id-goes-here",
         name            "SS3",
         type            "spy_shuttle",
@@ -134,8 +136,8 @@ class IncomingShip(Ship):
     high the ship's stealth level is.
 
     Attributes if the ship is from a friendly empire, or its stealth level is low enough 
-    to be seen by your spaceport:
-        >>> 
+    to be seen by your spaceport::
+
         id             "id-goes-here",
         name           "CS3",
         type_human     "Cargo Ship",
@@ -149,8 +151,8 @@ class IncomingShip(Ship):
                                         "name"  "Earthlings"    }    }
 
     Attributes if the ship is from a hostile empire (anyone not in your alliance), and your 
-    spaceport is not high enough level to see past its stealth, you'll only get:
-        >>> 
+    spaceport is not high enough level to see past its stealth, you'll only get::
+
         date_arrives   '24 10 2014 04:35:39 +0000',
         from            {},
         id              '45549844',
@@ -168,8 +170,8 @@ class MiningPlatform(Ship):
     platform itself is no longer actually a ship, and does not have a name or ID
     of its own.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         empire_id       ID of your empire, NOT of the ship
         empire_name     Name of your empire, NOT of the ship
     """
@@ -178,8 +180,8 @@ class PotentialShip(Ship):
     """ A PotentialShip does not yet exist in any form; this is a ship that is 
     able to be built (returned from a call to shipyard.get_buildable()):
 
-    Attributes:
-        >>> 
+    Attributes::
+
         can             1,       # can it be built or not
         combat          0,
         hold_size       1000,
@@ -207,8 +209,8 @@ class TradeableShip(Ship):
     """ A TradeableShip is an existing docked ship that's ready to be added to 
     a trade as merchandise. (trading.get_ships())
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id                      1234,
         type                    "smuggler_ship",
         name                    "My Trade Smug",
@@ -228,8 +230,8 @@ class TradeTransportShip(Ship):
     transport vehicle to add a trade to the Trade Ministry.  
     (trade.get_trade_ships())
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id                      1234,
         type                    "smuggler_ship",
         name                    "My Trade Smug",
@@ -240,8 +242,8 @@ class TravellingShip(Ship):
     """ A TravellingShip is a ship owned by your empire, currently in the air
     between two points.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id              "id-goes-here",
         type            "probe",
         type_human      "Probe",
@@ -262,8 +264,8 @@ class UnavailableShip(Ship):
     """ An UnavailableShip is an existing docked ship that's not able to be 
     sent to a specific target for some reason.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         type                    "sweeper",
         type_human              "Sweeper",
         speed                   10166,
@@ -285,8 +287,8 @@ class ChainShip(Ship):
     """ A ChainShip is owned by your empire and is either on or capable of 
     being added to a Waste Chain or a Supply Chain.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id              "id-goes-here",
         type            "scow",
         task            "Docked", "Supply Chain", or "Waste Chain".  The 

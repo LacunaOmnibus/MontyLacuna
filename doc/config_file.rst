@@ -1,4 +1,6 @@
 
+.. _config_file:
+
 Config File
 ===============
 Normally when you connect a client, you'll send along the path to a config 
@@ -13,6 +15,8 @@ desired.  Often you'll want to add a section for an alliance mate for whom
 you're running scripts; see the ``some_alliance_mate`` section in the example 
 below.
 
+You can add as many additional named sections as you'd like.
+
 .. code-block:: ini
 
     [DEFAULT]
@@ -26,11 +30,12 @@ below.
         warn_on_sleep = True
         logfile = var/us1.log
 
-    [my_account]
+    [real]
         username = My Empire Name
         password = My Real Password
 
-    [my_sitter]
+    [sitter]
+        username = My Empire Name
         password = My Sitter Password
 
     [some_alliance_mate]
@@ -98,16 +103,22 @@ Setting Descriptions
 
 Default Values
 --------------
-The ``[DEFAULT]`` section is the only one whose name matters.  Any of the 
-settings that appear in that ``[DEFAULT]`` section can also appear in any 
-other named section.  However, most settings do not need to appear in each 
-section.  Any setting that does not appear in a given section will simply use 
-the value listed in ``[DEFAULT]``.  Note that the ``[some_alliance_mate]`` 
+The ``[DEFAULT]`` section is the only one whose name matters to MontyLacuna.  
+Any of the settings that appear in that ``[DEFAULT]`` section can also appear 
+in any other named section.  However, most settings do not need to appear in 
+each section.  Any setting that does not appear in a given section will simply 
+use the value listed in ``[DEFAULT]``.  Note that the ``[some_alliance_mate]`` 
 section contains its own ``logfile`` setting, while most of the other sections 
 don't.  This means that any scripts that connect using the 
 ``[some_alliance_mate]`` section will write to the ``var/ally_mate.log`` log 
 file, while scripts that connect using any other section will write to the 
 default ``var/us1.log`` log file.
+
+Although the names of the other sections don't matter to MontyLacuna, remember 
+that the default config file creation script that everybody else using 
+MontyLacuna uses is going to create sections named ``real`` and ``sitter``.  
+If you're going to be writing scripts that are meant to be run by other 
+people, you'll probably want your client connection to use one of those names.
 
 Section Variable Interpolation
 ------------------------------

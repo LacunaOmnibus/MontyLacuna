@@ -46,7 +46,6 @@ work, but it hasn't been fully tested yet.
 - Captcha
 - Clients
 - Empire
-  - There's still a CHECK in here, but it's feature-creep-y.  Worry about it later.
 - Inbox
 - Map
 - Stats
@@ -109,6 +108,13 @@ supposed to do.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
+  - Run through the whole Getting Started instruction set on a fresh Python install on 
+    Windows to make sure the docs are correct.
+- Doc Sections
+  - For script writers:
+    - Explain the difference between a default dict return and a massaged object return.
+      - In a perfect world, I'd get rid of all default dict returns so this wouldn't be 
+        necessary.
 - Ack through everything for "CHECK" and fix.
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 
   automatically - I'm not convinced that's what should be happening.  At the very least, 
@@ -118,7 +124,9 @@ supposed to do.
 - The logfile attribute of clients is meant to be optional, but ISTR getting an explosion 
   on a test at some point where I didn't have a logfile set.  Confirm that setting a 
   logfile is optional.
-- Figure out how to generate HTML documentation from my docstrings.
+- Need a different template for the docs - have a look at 
+  lacuna.buildings.blackholegenerator.  The nav text on the left is overwriting my 
+  documentation text.
 - Figure out how to install this puppy (setup.py?)
 
 ## Documentation

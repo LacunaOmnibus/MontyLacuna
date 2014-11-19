@@ -1,37 +1,38 @@
 
 """
     The archaeology building will contain an attribute 'work' if and only if it 
-    is currently searching for an ore.  That attribute is a dict containing:
-    - searching -- "anthracite",
-    - start -- '31 10 2014 18:45:34 +0000',
-    - end -- '01 11 2014 00:45:34 +0000',
-    - seconds_remaining -- 21574,
+    is currently searching for an ore.  That attribute is a dict containing::
+
+        - searching -- "anthracite",
+        - start -- '31 10 2014 18:45:34 +0000',
+        - end -- '01 11 2014 00:45:34 +0000',
+        - seconds_remaining -- 21574,
 
     ...But that 'work' attribute will not exist at all if the arch min is not 
     searching right now, so you'll have to do a hasattr() check to see.
 """
 
-from lacuna.bc import LacunaObject
-from lacuna.building import MyBuilding
+import lacuna.bc
+import lacuna.building
 import lacuna.glyph
 import lacuna.ship
 
 import warnings
 
-class archaeology(MyBuilding):
+class archaeology(lacuna.building.MyBuilding):
     path = 'archaeology'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def get_glyphs( self, **kwargs ):
         """get_glyphs() is deprecated.  Prefer get_glyph_summary() instead."""
         warnings.warn("get_glyphs() is deprecated - please use get_glyph_summary instead.")
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_glyph_summary( self, **kwargs ):
         """ Returns summary of glyphs that may be assembled in this arch min.
 
@@ -42,45 +43,40 @@ class archaeology(MyBuilding):
             mylist.append( lacuna.glyph.OwnedGlyph(self.client, i) )
         return mylist
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def assemble_glyphs( self, glyphs:list, quantity:int = 1, **kwargs ):
         """ Attempts to assemble the listed glyphs into something useful.  
-        Quantity defaults to 1.
 
-        On success, retval includes the keys 'item_name' and 'quantity'.
-        'item_name' is the name of the artifact created.
-        'quantity' is the integer number created.
+        Arguments:
+            - glyphs -- a list of glyphs to assemble.  Order, spelling, and 
+              capitalization matter; "goethite" is valid, "Goethite" is not!
+            - quantity -- Integer number of this recipe you want to assemble.
+
+        Returns a glyph.AssembledArtifact object.
 
         Raises ServerError 1002 if the listed glyphs do not form a valid 
         artifact recipe.
         """
-        pass
+        return lacuna.glyph.AssembledArtifact(self.client, kwargs['rslt']['item_name'], kwargs['rslt']['quantity'] )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_ores_available_for_processing( self, **kwargs ):
-        """ Returns list of all ores that are of sufficient quantity onsite to 
-        perform glyph searches on.
+        """ Get ores of sufficient quantity to perform glyph searches on.
 
-        Returns a dict containing the key 'ore', a dict keyed off ore names, with the ore 
-        quantities as values:
+        Returns a dict of sufficient ores and their quantities::
 
-::
-
-        'ore': {   'anthracite': 99294156,
-                    'bauxite': 210171773,
-                    ...
-        }
+            'anthracite': 99294156,
+            'bauxite': 210171773,
+            etc
         """
-        pass
+        return kwargs['rslt']['ore']
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def view_excavators( self, **kwargs ):
         """ Gets info on working excavators.
 
         Returns a tuple:
-            - excavators -- List of Excavator objects
+            - excavators -- List of lacuna.ship.Excavator objects
             - max -- Integer max excavators this arch min can support
             - travelling -- Integer number of excavators currently in the air on the way to a body to begin work.
         """
@@ -93,12 +89,13 @@ class archaeology(MyBuilding):
             kwargs['rslt']['travelling'],
         )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def abandon_excavator( self, site_id:int, **kwargs ):
         """ Abandons the excavator located at site_id.
-        Be sure you understand the difference between an excavator site ID and 
-        a body ID, documented in view_excavators(), before using this.
+
+        Arguments:
+            - site_id -- Integer ID of the excavation site to abandon, taken from an Excavator object returned by view_excavators().
         """
         pass
 

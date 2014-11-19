@@ -1,9 +1,10 @@
 
 """
-    Building is a base class representing generic buildings.  A "generic 
-    building" is usually one that's handed back to you from the server as a 
+
+    Building is a base class representing generic buildings. A “generic 
+    building” is usually one that’s handed back to you from the server as a 
     dict, often in a list of dicts, from such things as checking on the 
-    Development Ministry's build queue via its view() method.
+    Development Ministry’s build queue via its view() method.
 
     A Building object will probably, but not necessarily, have a building ID, 
     and may or may not belong to the current empire.
@@ -11,24 +12,20 @@
     MyBuilding represents a building owned by your empire, and most building 
     objects you encounter will inherit from MyBuilding.
 
-    LacunaObject requires a class variable name 'path', but MyBuilding does not 
-    provide it; any module extending Building must provide that path variable.
+    MontyLacuna attempts to provide method calls that mirror all of the method 
+    calls documented by the TLE API.  However, MyBuilding had to violate that 
+    for two methods:
 
-    There are two types of Building objects:
-        - Potential buildings
-        - Existing buildings
+        - ``do_upgrade()``
+        - ``do_downgrade()``
 
-    A Potential building doesn't exist yet.  Its constuctor requires a body_id 
-    but no id.  A Potential building can't do anything but call 
-    build().  After calling ```build```, the Potential building becomes an 
-    Existing building.
-
-    ``do_upgrade()``, ``do_downgrade()``
         The published (server) method names for these are ``upgrade()`` and 
-        ``downgrade()``.  However, we've got status attributes by those names, and 
-        attributes overwrite methods of the same name.
+        ``downgrade()``.  However, we've got status attributes by those names, 
+        and attributes overwrite methods of the same name.
         So these have been renamed, adding the ``do_`` prefix to avoid attribute 
         name collisions.
+
+
 """
 
 import functools, re
@@ -44,9 +41,7 @@ class Building():
 
 class InBuildQueue(Building):
     """
-    Attributes:
-
-    ::
+    Attributes::
 
         id                  "building-id-goes-here",
         name                "Planetary Commmand",
@@ -59,9 +54,7 @@ class InBuildQueue(Building):
 
 class MyBuilding(LacunaObject):
     """ 
-    Attributes:
-
-    ::
+    Attributes::
 
         id              Integer ID of the building itself
         body_id         Integer ID of the body this building is sitting on,
@@ -174,7 +167,8 @@ class MyBuilding(LacunaObject):
 
     def call_named_returning_meth(func, *args, **kwargs):
         """ Decorator.  
-        Calls a server method that requires a id, but no body_id.
+        Calls a server method that requires a session_id, but not a body_id.
+
         Expects named arguments, and returns the value from the locally-called 
         method rather than the dict returned from the TLE server.
 
@@ -185,7 +179,7 @@ class MyBuilding(LacunaObject):
         @functools.wraps(func)
         def inner( self, mydict:dict ):
             mydict['session_id'] = self.client.session_id
-            mydict['id'] = self.id
+            mydict['building_id'] = self.id
             rslt = self.client.send( self.path, func.__name__, (mydict,) )
             LacunaObject.write_empire_status(self, rslt)
             kwargs['rslt'] = rslt
@@ -194,7 +188,7 @@ class MyBuilding(LacunaObject):
         return inner
 
     def call_naked_meth(func):
-        """Decorator.
+        """ Decorator.
         Some building methods require neither a body_id nor a id (see 
         spaceport.py for examples).
         Methods using this decorator get the original server result handed 
@@ -210,7 +204,7 @@ class MyBuilding(LacunaObject):
         return inner
 
     def require_existing(func):
-        """Decorator.
+        """ Decorator.
         Many building methods only make sense to be called on a building that 
         actually already exists.  Add this decorator to those methods.
         """

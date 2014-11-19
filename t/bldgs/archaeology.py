@@ -12,7 +12,7 @@ glc = lac.clients.Member(
     config_section = 'play_test',
 )
 
-my_planet = glc.get_body_byname( 'bmots rof 2.1' )
+my_planet = glc.get_body_byname( 'bmots01' )
 arch = my_planet.get_building_coords( -5, -5 )
 
 
@@ -29,32 +29,31 @@ arch = my_planet.get_building_coords( -5, -5 )
 
 
 ### Get lists of available glyphs
-###
 ### Deprecated call; don't use this.
+###
 #arch.get_glyphs()
 
 ### This is current; use this instead of get_glyphs().
-glyphs = arch.get_glyph_summary()
-for g in glyphs:
-    print( "Glyph {} has ID {}, and we have {} of them."
-        .format(g.name, g.id, g.quantity)
-    )
+###
+#glyphs = arch.get_glyph_summary()
+#for g in glyphs:
+#    print( "Glyph {} has ID {}, and we have {} of them."
+#        .format(g.name, g.id, g.quantity)
+#    )
 
 
 ### Assemble glyph recipes
 ###
 #halls_recipe_1 = ['goethite', 'halite', 'gypsum', 'trona']
-#arch.assemble_glyphs( halls_recipe_1, 3 )
-### 
-#bad_recipe = ['goethite', 'halite', 'trona', 'gypsum']     # the order is invalid here
-#rvd = arch.assemble_glyphs( bad_recipe )                   # So this raises 1002
+#a = arch.assemble_glyphs( halls_recipe_1, 3 )
+#print( "I just assembled {} of {}".format(a.quantity, a.item_name) )
 
 
 ### Get available ores
 ###
-#rv = arch.get_ores_available_for_processing()
-#for ore, quantity in rv['ore'].items():
-#    print( "We have {} of {}." .format(quantity, ore) )
+#ores = arch.get_ores_available_for_processing()
+#for name, quantity in ores.items():
+#    print( "We have {} of {}." .format(quantity, name) )
 
 
 ### Get info on working excavators

@@ -8,7 +8,6 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
     config_section = 'play_test',
 )
 
@@ -18,11 +17,13 @@ bhg = my_planet.get_building_coords( 5, -3 )
 
 ### Get available actions
 ###
-#target_zone = { 'zone':'1|-4' }
-#t = bhg.get_actions_for( target_zone )[0]
-#print( "We have a {}% chance of failing the task of {} at a distance of {}."
-#    .format(t.base_fail, t.name, t.dist)
-#)
+#target = { 'zone':'1|-4' }
+#target = { 'body_name':'Schu Ize 2' }
+#actions = bhg.get_actions_for( target )
+#for a in actions:
+#    print( "We have a {}% chance of failing the task of {} at a distance of {}."
+#        .format(a.base_fail, a.name, a.dist)
+#    )
 
 
 ### Subsidize cooldown
@@ -35,32 +36,28 @@ bhg = my_planet.get_building_coords( 5, -3 )
 
 ### Method 1 - Generate.    DON'T DO THIS!
 ###
-#t1 = {
+#args = {
 #    "target"        : { "body_name" : "Some Planet Name" },
 #    "task_name"     : "Change Type",
 #    "params"        : { "newtype" : 35 },
 #    "subsidize"     : 0                                    # Danger Will Robinson!
 #}
-#rvc = bhg.generate_singularity(t1)
-#glc.pp.pprint( rvc )
+#target, side, fail = bhg.generate_singularity( args )
 
 
 ### Method 2 - Subsidize.   This is what you should be doing.
 ###
-t2 = {
-    "target"        : { "body_name" : "Opriogee 2" },
+args = {
+    "target"        : { "body_name" : "Schu Ize 2" },
     "task_name"     : "Change Type",
     "params"        : { "newtype" : 31 },
     "subsidize"     : 1                                     # And there was much rejoicing
 }
-rv = bhg.generate_singularity(t2)
-
-#print( "Our attempt to use the BHG on {} resulted in the message '{}'." 
-#    .format(rv.target['name'], rv.target['message'])
-#)
-#
-#if hasattr(rv, 'side'):
-#    print( "Our BHG usage had the side affect of {} on {}." 
-#        .format(rv.side['message'], rv.side['name'])
-#    )
+target, side, fail = bhg.generate_singularity( args )
+if hasattr(target, 'message'):
+    print( "Our attempt generated the message", target.message )
+if hasattr(side, 'message'):
+    print( "Our side effect generated the message", side.message )
+if hasattr(fail, 'message'):
+    print( "Our attempt failed with the message", fail.message )
 
