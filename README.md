@@ -98,6 +98,12 @@ supposed to do.
  - recycler (base class)
     - wasteexchanger
     - wasterecycling
+- Space Station Modules
+  - CHECK Whoopsie I forgot about these.
+  - policestation.py
+    - started.  not going to be hard, just another building.  Finish these all 
+      up.
+
 
 ## Incomplete/Not Started
 - Payments

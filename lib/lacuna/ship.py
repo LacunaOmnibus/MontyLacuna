@@ -3,14 +3,18 @@
 Different types of ship objects have varying attributes depending on what 
 state the ship is in.
 
-Several of the Ship subclasses are identical in code to the base class, but 
-their attributes will be different, so separate classes exist to avoid 
-confusion.
-
 In some cases, a hostile ship will only be visisble to you if its stealth level 
 is low enough compared to your SpacePort level.  The formula for determining 
 that is:
         350 * SpacePort Level >= Ship Stealth
+
+If you're trying to detect ships to a space station, the formula for beating 
+stealth is:
+        5250 * PoliceStation Level >= Ship Stealth
+
+A number of ships contain an attribute ``origin``.  In the original API, that 
+attribute was named ``from``.  However, ``from`` is a Python reserved word, so 
+in those cases ``from`` has been changed to ``origin``.
 
 """
 
@@ -19,6 +23,11 @@ import lacuna.body
 
 class Ship(lacuna.bc.SubClass):
     """ Base class """
+    def __init__(self, client, mydict:dict):
+        ### Can't have an attribute named 'from'.
+        mydict['origin'] = mydict['from']
+        del mydict['from']
+        super().__init__(client, mydict)
 
 class BuildingShip(Ship):
     """ A ship being built (currently in the shipyard queue).
@@ -72,7 +81,7 @@ class ExistingShip(Ship):
         date_arrives    "02 01 2010 10:08:33 +0600",
         can_recall      "0",
         can_scuttle     "1",
-        from            {
+        origin          {
                             "id" : "id-goes-here",
                             "type" : "body",
                             "name" : "Earth"
@@ -109,8 +118,8 @@ class FleetShip(Ship):
 
     """
 
-class ForeignOrbitingShip(Ship):
-    """ A ship NOT owned by your empire, currently orbiting your planet.
+class ForeignOrbiting(Ship):
+    """ A ship currently orbiting your planet.
 
     Attributes::
 
@@ -119,7 +128,7 @@ class ForeignOrbitingShip(Ship):
         type            "spy_shuttle",
         type_human      "Spy Shuttle",
         date_arrived    "02 01 2010 10:08:33 +0600",
-        from            {
+        origin          {
                             "id" : "id-goes-here",
                             "name" : "Mars",
                             "empire" : {
@@ -145,7 +154,7 @@ class IncomingShip(Ship):
         date_arrives   "02 01 2010 10:08:33 +0600",
         can_recall     "0",
         can_scuttle    "0",
-        from            {   "id"    "id-goes-here",
+        origin          {   "id"    "id-goes-here",
                             "name"  "Earth",
                             "empire {   "id"    "id-goes-here",
                                         "name"  "Earthlings"    }    }
@@ -154,7 +163,7 @@ class IncomingShip(Ship):
     spaceport is not high enough level to see past its stealth, you'll only get::
 
         date_arrives   '24 10 2014 04:35:39 +0000',
-        from            {},
+        origin          {},
         id              '45549844',
         name            'Unknown',
         type            'unknown',
@@ -248,7 +257,7 @@ class TravellingShip(Ship):
         type            "probe",
         type_human      "Probe",
         date_arrives    "01 31 2010 13:09:05 +0600",
-        from            {
+        origin          {
                             "id" : "id-goes-here",
                             "type" : "body",
                             "name" : "Earth",
