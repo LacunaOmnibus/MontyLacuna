@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>glyph &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -28,7 +28,9 @@
   
 
   
-    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/> 
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="next" title="my_validate_email module" href="my_validate_email.html"/>
+        <link rel="prev" title="exceptions" href="exceptions.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -44,7 +46,7 @@
       <div class="wy-side-nav-search">
         <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -55,7 +57,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
@@ -104,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
@@ -134,8 +136,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>glyph</li>
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/glyph.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -143,22 +147,58 @@
 </div>
           <div role="main">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="module-lacuna.glyph">
+<span id="glyph"></span><h1>glyph<a class="headerlink" href="#module-lacuna.glyph" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.glyph.AssembledArtifact">
+<em class="property">class </em><tt class="descclassname">lacuna.glyph.</tt><tt class="descname">AssembledArtifact</tt><big>(</big><em>client</em>, <em>name: str</em>, <em>quan: int</em><big>)</big><a class="headerlink" href="#lacuna.glyph.AssembledArtifact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.glyph.Glyph" title="lacuna.glyph.Glyph"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.Glyph</span></tt></a></p>
+<p>One or more artifacts created by assembling glyphs.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>item_name   &quot;Halls of Vrbansk&quot;
+quantity    10
+</pre></div>
+</div>
+</dd></dl>
 
-  
-  <div id="search-results">
-  
-  </div>
+<dl class="class">
+<dt id="lacuna.glyph.Glyph">
+<em class="property">class </em><tt class="descclassname">lacuna.glyph.</tt><tt class="descname">Glyph</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.glyph.Glyph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Glyph base class</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.glyph.OwnedGlyph">
+<em class="property">class </em><tt class="descclassname">lacuna.glyph.</tt><tt class="descname">OwnedGlyph</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.glyph.OwnedGlyph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.glyph.Glyph" title="lacuna.glyph.Glyph"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.Glyph</span></tt></a></p>
+<p>A single specific glyph on your planet.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          12345,
+name        &quot;bauxite&quot;
+type        &quot;bauxite&quot;
+quantity    23
+</pre></div>
+</div>
+<p>name and type are always the same.  There&#8217;s no longer such a thing as an 
+individual glyph, only types of glyphs, which is why we have both an ID 
+and a quantity.</p>
+</dd></dl>
+
+</div>
+
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="my_validate_email.html" class="btn btn-neutral float-right" title="my_validate_email module"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="exceptions.html" class="btn btn-neutral" title="exceptions"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -194,7 +234,6 @@
       <script type="text/javascript" src="static/jquery.js"></script>
       <script type="text/javascript" src="static/underscore.js"></script>
       <script type="text/javascript" src="static/doctools.js"></script>
-      <script type="text/javascript" src="static/searchtools.js"></script>
 
   
 
@@ -210,14 +249,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

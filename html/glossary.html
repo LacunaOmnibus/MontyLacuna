@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="bc" href="bc.html"/>
+        <link rel="next" title="TLE Module - Alliance" href="alliance.html"/>
         <link rel="prev" title="Caching" href="caching.html"/> 
 
   
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -162,9 +168,9 @@ item, but it&#8217;ll still be a list.</p>
 </dd>
 <dt><strong>TLE date format</strong></dt>
 <dd><p class="first">Many methods include dates as part of their returns.  TLE dates are in the
-format &#8220;01 31 2010 13:09:05 +0000&#8221;.</p>
-<p>The &#8220;+0000&#8221; is meant to indicate a Time Zone, but all date returns from
-the server will be in UTC, so they&#8217;ll always be &#8220;+0000&#8221;.</p>
+format <tt class="docutils literal"><span class="pre">01</span> <span class="pre">31</span> <span class="pre">2010</span> <span class="pre">13:09:05</span> <span class="pre">+0000</span></tt>.</p>
+<p>The <tt class="docutils literal"><span class="pre">+0000</span></tt> is meant to indicate a Time Zone, but all date returns from
+the server will be in UTC, so they&#8217;ll always be <tt class="docutils literal"><span class="pre">+0000</span></tt>.</p>
 <p>Almost all MontyLacuna objects have a <tt class="docutils literal"><span class="pre">tle2date</span></tt> method, so you can
 translate those TLE date strings to a Python datetime.datetime object:</p>
 <blockquote class="last">
@@ -185,7 +191,7 @@ translate those TLE date strings to a Python datetime.datetime object:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="bc.html" class="btn btn-neutral float-right" title="bc"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="alliance.html" class="btn btn-neutral float-right" title="TLE Module - Alliance"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="caching.html" class="btn btn-neutral" title="Caching"><span class="fa fa-arrow-circle-left"></span> Previous</a>

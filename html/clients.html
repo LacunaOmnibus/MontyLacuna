@@ -29,8 +29,8 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="empire" href="empire.html"/>
-        <link rel="prev" title="captcha" href="captcha.html"/> 
+        <link rel="next" title="exceptions" href="exceptions.html"/>
+        <link rel="prev" title="bc" href="bc.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -151,36 +157,47 @@
 <dl class="docutils">
 <dt>Accepts the following named arguments:</dt>
 <dd><ul class="first last simple">
+<li>api_key &#8211; your TLE api_key.  Omitting this is fine; the default key 
+(the string &#8216;anonymous&#8217;) will be used.</li>
 <li>config_file &#8211;  path to your configparser-friendly config file</li>
 <li>config_section &#8211; the section in your config file to read from</li>
-<li>api_key &#8211; your TLE api_key.  Omitting this is fine; the default key (the string &#8216;anonymous&#8217;) will be used.</li>
-<li>logfile &#8211; path to your logfile.  Defaults to no logfile; only WARNING or higher log events will display to the terminal.</li>
-<li>proto &#8211; http or https.  Defaults to http.</li>
-<li>host &#8211; us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to us1.</li>
-<li>sleep_on_call &#8211; Integer seconds.  Defaults to 1.  Number of seconds to sleep after each call to attempt to avoid using more than the limit of 60 RPCs per minute.</li>
-<li>sleep_on_error &#8211; Boolean.  Defaults to True.  If we&#8217;ve used over 60 RPCs in a minute, the server will produce an error, and if this setting is True, when we get that server error we&#8217;ll sleep for a minute and then re-try our call.  If this setting is false, we&#8217;ll throw an exception.</li>
+<li>host &#8211; us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to 
+us1.</li>
+<li>logfile &#8211; path to your logfile.  Defaults to no logfile; only 
+WARNING or higher log events will display to the terminal.</li>
+<li>show_captcha &#8211; Boolean.  Defaults to True.  If set to false, and a 
+method call responds that it needs a captcha solved, an exception 
+will be raised.  If left true, the user will automatically be 
+prompted to solve a captcha when needed.</li>
+<li>sleep_on_call &#8211; Integer seconds.  Defaults to 1.  Number of seconds 
+to sleep after each call to attempt to avoid using more than the 
+limit of 60 RPCs per minute.</li>
+<li>sleep_after_error &#8211; Boolean.  Defaults to True.  If we&#8217;ve used over 
+60 RPCs in a minute, the server will produce an error, and if this 
+setting is True, when we get that server error we&#8217;ll sleep for a 
+minute and then re-try our call.  If this setting is false, we&#8217;ll 
+throw an exception.</li>
+<li>sleep_on_call &#8211; Integer number of seconds to sleep after each TLE 
+server request.  Defaults to 1.</li>
+<li>warn_on_sleep &#8211; Boolean, defaults to True.  If you exceed 60 RPCs 
+per minute, and the script is therefore going to pause for a minute, 
+and this is set to True, a warning will be displayed to let you know 
+why your script is taking so long.</li>
 </ul>
 </dd>
 </dl>
 <p>Generally, you&#8217;ll omit all arguments except for config_file and 
-config_section, and just fill the appropriate values out in your config.</p>
+config_section, and just fill the appropriate values out in your config 
+file.</p>
 <p>If a config_file and config_section are passed in, the values in that config 
 file take precedence over any other values, including passed-in values.</p>
-<p><strong>Caching</strong>
-None of the MontyLacuna modules are performing any caching for you.  
-However, if your script performs some selective caching, it could well run 
-(much) faster, so there is a &#8216;cache&#8217; attribute you can use in your 
-scripts.</p>
-<p>The &#8216;cache&#8217; attribute is a beaker CacheManager object, with a file-based 
-cache already set up for you.</p>
 <dl class="docutils">
-<dt><strong>Debugging</strong></dt>
+<dt>Debugging</dt>
 <dd><p class="first">To take a look at the actual JSON that would be sent to the TLE 
 servers for a specific method call, in your calling code you can set a 
 debugging method on your client, eg:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">empire.client.debugging_method = &#39;view_profile&#39;</span>
-<span class="go">empire.view_profile()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">empire</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">debugging_method</span> <span class="o">=</span> <span class="s">&#39;view_profile&#39;</span>
+<span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
 </pre></div>
 </div>
 <p class="last">In this case, the call to view_profile() will cause the JSON that 
@@ -193,6 +210,7 @@ screen, after which the script will quit.</p>
 <tt class="descname">send</tt><big>(</big><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Marshals a request and actually sends it to the server, collecting 
 and json-decoding the response.</p>
+<p>This should not be something you ever need to call yourself.</p>
 <dl class="docutils">
 <dt>Accepts:</dt>
 <dd><ul class="first last simple">
@@ -228,32 +246,29 @@ sending any emails at all, via this method or the browser.</p>
 <em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Member</tt><big>(</big><em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>api_key: str=''</em>, <em>host: str=''</em>, <em>logfile: str=''</em>, <em>proto: str=''</em>, <em>username: str=''</em>, <em>password: str=''</em>, <em>sleep_on_call: int=1</em>, <em>sleep_after_error: bool=True</em>, <em>show_captcha: bool=True</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lacuna.clients.Guest" title="lacuna.clients.Guest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Guest</span></tt></a></p>
 <p>Members are logged in; username and password are required.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">config_file</span>
-<span class="go">config_section</span>
-<span class="go">host</span>
-<span class="go">logfile</span>
-<span class="go">proto</span>
-<span class="go">username</span>
-<span class="go">password</span>
-<span class="go">sleep_on_call</span>
-<span class="go">sleep_after_error</span>
-<span class="go">show_captcha</span>
-<span class="go">warn_on_sleep</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config_file</span>
+<span class="n">config_section</span>
+<span class="n">host</span>
+<span class="n">logfile</span>
+<span class="n">proto</span>
+<span class="n">username</span>
+<span class="n">password</span>
+<span class="n">sleep_on_call</span>
+<span class="n">sleep_after_error</span>
+<span class="n">show_captcha</span>
+<span class="n">warn_on_sleep</span>
 </pre></div>
 </div>
-</dd>
-</dl>
 <dl class="method">
 <dt id="lacuna.clients.Member.cache_clear">
 <tt class="descname">cache_clear</tt><big>(</big><em>name: str=''</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member.cache_clear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clears a named cache.  If a cache name is not mentioned, clears the most-recently used cache.</p>
+<dd><p>Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>name &#8211; String; name of the cache to clear.  Defaults to the cache most recently used.</li>
+<li>name &#8211; String; name of the cache to clear.  Defaults to the 
+cache most recently used.</li>
 </ul>
 </dd>
 </dl>
@@ -284,7 +299,8 @@ Does not clear any existing caches, only stops pulling data from them.</p>
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
 <li>name &#8211; String namespace to use for caching data</li>
-<li>expiry &#8211; Integer seconds after which cached data is no longer valid.  Defaults to 3600 (one hour).</li>
+<li>expiry &#8211; Integer seconds after which cached data is no longer 
+valid.  Defaults to 3600 (one hour).</li>
 </ul>
 </dd>
 </dl>
@@ -306,12 +322,15 @@ file.</p>
 <dt id="lacuna.clients.Member.logout">
 <tt class="descname">logout</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.logout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logs the current session out.</p>
-<p>Saving the session_id in the config file allows users to complete a 
-captcha in one script and have that captcha&#8217;s success apply to all 
-other scripts run, as long as that session_id is valid.</p>
-<p>Calling logout() invalidates that session_id and removes it from the 
-config file.  Therefore, actually calling logout() is rarely 
-necessary.</p>
+<p>Normally, there&#8217;s no need to call this.  However, after a client 
+connects (and logs in), their session ID will be written to the config 
+file to save them having to log in again the next time.  Saving this 
+session ID also records whether the client has recently solved a 
+captcha.</p>
+<p>If you&#8217;re testing something out and want to see any captcha prompts, 
+you&#8217;ll want to call logout() at the end of your test script.  This 
+way, running your test script multiple times will result in actual 
+captcha prompts each time.</p>
 </dd></dl>
 
 </dd></dl>
@@ -324,10 +343,10 @@ necessary.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="empire.html" class="btn btn-neutral float-right" title="empire"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="exceptions.html" class="btn btn-neutral float-right" title="exceptions"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="captcha.html" class="btn btn-neutral" title="captcha"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="bc.html" class="btn btn-neutral" title="bc"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

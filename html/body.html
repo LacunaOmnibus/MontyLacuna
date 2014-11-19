@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>body &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>TLE Module - Body &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -29,8 +29,8 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="building" href="building.html"/>
-        <link rel="prev" title="alliance" href="alliance.html"/> 
+        <link rel="next" title="TLE Module - Building" href="building.html"/>
+        <link rel="prev" title="TLE Module - Alliance" href="alliance.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -130,7 +136,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>body</li>
+    <li>TLE Module - Body</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/body.txt" rel="nofollow"> View page source</a>
@@ -142,39 +148,36 @@
           <div role="main">
             
   <div class="section" id="module-lacuna.body">
-<span id="body"></span><h1>body<a class="headerlink" href="#module-lacuna.body" title="Permalink to this headline">¶</a></h1>
+<span id="tle-module-body"></span><h1>TLE Module - Body<a class="headerlink" href="#module-lacuna.body" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.body.Body">
 <em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Body</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.Body" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
 <p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id                          &quot;id-goes-here&quot;,
-x                           -4,
-y                           10,
-star_id                     &quot;id-goes-here&quot;,
-star_name                   &quot;Sol&quot;,
-orbit                       3,
-type                        &quot;habitable planet&quot;,
-name                        &quot;Earth&quot;,
-image                       &quot;p13&quot;,
-size                        67,
-water                       900,
-ore                         {   &quot;gold&quot; : 3399,
-                                &quot;bauxite&quot; : 4000,
-                                etc
-                            },
-empire                      { # only exists if the body is inhabited
-                                &quot;id&quot; : &quot;id-goes-here&quot;,
-                                &quot;name&quot; : &quot;Earthlings&quot;,
-                                &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;
-                                &quot;is_isolationist&quot; : 1
-                            },
-station                     { # only shows up if this planet is under the influence of a space station
-                                &quot;id&quot; : &quot;id-goes-here&quot;,
-                                &quot;x&quot; : 143,
-                                &quot;y&quot; : -27,
-                                &quot;name&quot; : &quot;The Death Star&quot;
-                            },
+<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
+x           -4,
+y           10,
+star_id     &quot;id-goes-here&quot;,
+star_name   &quot;Sol&quot;,
+orbit       3,
+type        &quot;habitable planet&quot;,
+name        &quot;Earth&quot;,
+image       &quot;p13&quot;,
+size        67,
+water       900,
+ore         {   &quot;gold&quot; : 3399,
+            &quot;bauxite&quot; : 4000,
+            etc  },
+empire      { # only exists if the body is inhabited
+            &quot;id&quot; : &quot;id-goes-here&quot;,
+            &quot;name&quot; : &quot;Earthlings&quot;,
+            &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;
+            &quot;is_isolationist&quot; : 1    },
+station     { # only shows up if this planet is under the influence of a space station
+            &quot;id&quot; : &quot;id-goes-here&quot;,
+            &quot;x&quot; : 143,
+            &quot;y&quot; : -27,
+            &quot;name&quot; : &quot;The Death Star&quot;    },
 ### The following will only be set if you own the body in question.
 ### 
 needs_surface_refresh       1,  # indicates that the client needs to call get_buildings() because something has changed
@@ -203,38 +206,23 @@ skip_incoming_ships         0,      # if set, then the following incoming data i
 num_incoming_enemy          10,     # total number of incoming foreign ships
 num_incoming_ally           1,      # total number of incoming allied ships
 num_incoming_own            0,      # total number of incoming own ships from other colonies
-incoming_enemy_ships         [
-                                # will only be included when enemy ships are coming to 
+incoming_enemy_ships         [  # will only be included when enemy ships are coming to 
                                 # your planet (only the first 20 will be shown)
-                                {
-                                    &quot;id&quot; : &quot;id-goes-here&quot;,
+                                {   &quot;id&quot; : &quot;id-goes-here&quot;,
                                     &quot;date_arrives&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                                    &quot;is_own&quot; : 1,                                   # is this from one of our own planets
-                                    &quot;is_ally&quot; : 1                                   # is this from a planet within our alliance
-                                },
-                                etc
-                            ],
-incoming_ally_ships         [
-                                # will only be included when allied ships are coming to 
-                                # your planet (only the first 10 will be shown)
-                                etc
-                            ],
-incoming_own_ships          [
-                                # will only be included when ships from your other 
+                                    &quot;is_own&quot; : 1,
+                                    &quot;is_ally&quot; : 1   },  ],
+incoming_ally_ships         [   # will only be included when allied ships are coming to 
+                                # your planet (only the first 10 will be shown)     ],
+incoming_own_ships          [   # will only be included when ships from your other 
                                 # colonies are coming to your planet (only the first 
-                                # 10 will be shown)
-                                etc  
-                            ],
+                                # 10 will be shown)     ],
 ### The following will only be set if the body is a space station.
 ### 
-alliance                    { 
-                                &quot;id&quot; : &quot;id-goes-here&quot;,
-                                &quot;name&quot; : &quot;Imperial Empire&quot; 
-                            },
-influence                   {
-                                &quot;total&quot; : 0,
-                                &quot;spent&quot; : 0
-                            }
+alliance                    {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                                &quot;name&quot; : &quot;Imperial Empire&quot;  },
+influence                   {   &quot;total&quot; : 0,
+                                &quot;spent&quot; : 0  }
 </pre></div>
 </div>
 </dd></dl>
@@ -257,23 +245,17 @@ name                &quot;Earth&quot;,
 image               &quot;p13&quot;,
 size                67,
 water               900,
-ore                 {
-                        &quot;gold&quot; : 3399,
-                        &quot;bauxite&quot; : 4000,
-                        etc
-                    },
-empire                  {
-                            &quot;id&quot; : &quot;id-goes-here&quot;,
-                            &quot;name&quot; : &quot;Earthlings&quot;,
-                            &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;
-                            &quot;is_isolationist&quot; : 1
-                        },
-station                 { # only shows up if this planet is under the influence of a space station
-                            &quot;id&quot; : &quot;id-goes-here&quot;,
-                            &quot;x&quot; : 143,
-                            &quot;y&quot; : -27,
-                            &quot;name&quot; : &quot;The Death Star&quot;
-                        },
+ore                 {   &quot;gold&quot; : 3399,
+                        &quot;bauxite&quot; : 4000,   },
+empire              {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                        &quot;name&quot; : &quot;Earthlings&quot;,
+                        &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;
+                        &quot;is_isolationist&quot; : 1    },
+station             {   # only shows up if this planet is under the influence of a space station
+                        &quot;id&quot; : &quot;id-goes-here&quot;,
+                        &quot;x&quot; : 143,
+                        &quot;y&quot; : -27,
+                        &quot;name&quot; : &quot;The Death Star&quot;    },
 needs_surface_refresh   1, # indicates that the client needs to call get_buildings() because something has changed
 building_count          7,
 plots_available         0,
@@ -296,58 +278,40 @@ waste_capacity          13000,
 water_stored            9929,
 water_hour              295,
 water_capacity          51050,   
-skip_incoming_ships     0,   # if set, then the following incoming data is missing.
-num_incoming_enemy      10,   # total number of incoming foreign ships
-num_incoming_ally       1,     # total number of incoming allied ships
+skip_incoming_ships     0,      # if set, then the incoming data is missing.
+num_incoming_enemy      10,     # total number of incoming foreign ships
+num_incoming_ally       1,      # total number of incoming allied ships
 num_incoming_own : 0,   # total number of incoming own ships from other colonies
-incoming_enemy_ships    [ # will only be included when enemy ships are coming to your planet (only the first 20 will be shown)
-                            {
-                                &quot;id&quot; : &quot;id-goes-here&quot;,
+incoming_enemy_ships    [ # will only be included when enemy ships are coming 
+                          # to your planet (only the first 20 will be shown)
+                            {   &quot;id&quot; : &quot;id-goes-here&quot;,
                                 &quot;date_arrives&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                                &quot;is_own&quot; : 1,   # is this from one of our own planets
-                                &quot;is_ally&quot; : 1   # is this from a planet within our alliance
-                            },
-                            etc
-                        ],
-incoming_ally_ships     [ # will only be included when allied ships are coming to your planet (only the first 10 will be shown)
-                            etc
-                        ],
-incoming_own_ships      [ # will only be included when ships from your other colonies are coming to your planet (only the first 10 will be shown)
-                            etc  
-                        ],
+                                &quot;is_own&quot; : 1,
+                                &quot;is_ally&quot; : 1    },  ],
+incoming_ally_ships     [ # will only be included when allied ships are coming 
+                          # to your planet (only the first 10 will be shown)     ],
+incoming_own_ships      [ # will only be included when ships from your other 
+                          # colonies are coming to your planet (only the first 
+                          # 10 will be shown)    ],
 ### The following will only be set if the body is a space station.
 ### 
-alliance                { 
-                            &quot;id&quot; : &quot;id-goes-here&quot;,
-                            &quot;name&quot; : &quot;Imperial Empire&quot; 
-                        },
-influence               {
-                            &quot;total&quot; : 0,
-                            &quot;spent&quot; : 0
-                        }
+alliance                {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                            &quot;name&quot; : &quot;Imperial Empire&quot;  },
+influence               {   &quot;total&quot; : 0,
+                            &quot;spent&quot; : 0     }
 ### The *building dict*s mentioned below are dicts containing the 
 ### information represented by a building.MyBuilding&#39;s attributes.
-buildings_id            {
-                            building_id_1 = { building dict },
-                            building_id_2 = { building dict },
-                            etc,
-                        }
-buildings_name          {
-                            &#39;Apple Orchard&#39; = [
-                                ### These are lists, as we&#39;re going to 
-                                ### have multiple instances of certain 
-                                ### building types.
+### They are not building objects because reasons.
+buildings_id            {   building_id_1 = { building dict },
+                            building_id_2 = { building dict },   }
+buildings_name          {   &#39;Apple Orchard&#39; = [
+                                ### These are lists, as some building 
+                                ### types will have multiple instances 
                                 { building dict },
-                                { building dict },
-                                etc
-                            ],
+                                { building dict },   ],
                             &#39;Space Port&#39; = [
                                 { building dict },
-                                { building dict },
-                                etc
-                            ],
-                            etc
-                        }
+                                { building dict },   ],     }
 </pre></div>
 </div>
 <dl class="method">
@@ -379,47 +343,35 @@ Resources, etc.</p>
 results.</p>
 <p>Returns a dict that includes the key &#8216;buildable&#8217;, which is a list of 
 dicts keyed off the human-readable building name:</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>buildable = [
+<div class="highlight-python"><div class="highlight"><pre>buildable = [
     &#39;Water Purification Plant&#39;: {
-        &#39;build&#39;: {
-            &#39;can&#39;: 1,
-            &#39;cost&#39;: {
-                &#39;energy&#39;: &#39;64&#39;,
-                &#39;food&#39;: &#39;72&#39;,
-                &#39;ore&#39;: &#39;88&#39;,
-                &#39;time&#39;: &#39;15&#39;,
-                &#39;waste&#39;: &#39;16&#39;,
-                &#39;water&#39;: &#39;8&#39;
-            },
-            &#39;no_plot_use&#39;: &#39;&#39;,
-            &#39;reason&#39;: &#39;&#39;,
-            &#39;tags&#39;: [
-                &#39;Resources&#39;, 
-                &#39;Water&#39;, 
-                &#39;Now&#39;
-            ]
-        },
+        &#39;build&#39;: {  &#39;can&#39;: 1,
+                    &#39;cost&#39;: {   &#39;energy&#39;: &#39;64&#39;,
+                                &#39;food&#39;: &#39;72&#39;,
+                                &#39;ore&#39;: &#39;88&#39;,
+                                &#39;time&#39;: &#39;15&#39;,
+                                &#39;waste&#39;: &#39;16&#39;,
+                                &#39;water&#39;: &#39;8&#39;     },
+                    &#39;no_plot_use&#39;: &#39;&#39;,
+                    &#39;reason&#39;: &#39;&#39;,
+                    &#39;tags&#39;: [   &#39;Resources&#39;, 
+                                &#39;Water&#39;, 
+                                &#39;Now&#39;    ]  },
         &#39;image&#39;: &#39;waterpurification0&#39;,
-        &#39;production&#39;: {
-            &#39;energy_capacity&#39;: 0,
-            &#39;energy_hour&#39;: &#39;-3&#39;,
-            &#39;food_capacity&#39;: 0,
-            &#39;food_hour&#39;: &#39;-1&#39;,
-            &#39;happiness_hour&#39;: &#39;0&#39;,
-            &#39;ore_capacity&#39;: 0,
-            &#39;ore_hour&#39;: &#39;-3&#39;,
-            &#39;waste_capacity&#39;: 0,
-            &#39;waste_hour&#39;: &#39;5&#39;,
-            &#39;water_capacity&#39;: 0,
-            &#39;water_hour&#39;: &#39;31&#39;
-        },
-        &#39;url&#39;: &#39;/waterpurification&#39;
-    },
-]
+        &#39;production&#39;: {     &#39;energy_capacity&#39;: 0,
+                            &#39;energy_hour&#39;: &#39;-3&#39;,
+                            &#39;food_capacity&#39;: 0,
+                            &#39;food_hour&#39;: &#39;-1&#39;,
+                            &#39;happiness_hour&#39;: &#39;0&#39;,
+                            &#39;ore_capacity&#39;: 0,
+                            &#39;ore_hour&#39;: &#39;-3&#39;,
+                            &#39;waste_capacity&#39;: 0,
+                            &#39;waste_hour&#39;: &#39;5&#39;,
+                            &#39;water_capacity&#39;: 0,
+                            &#39;water_hour&#39;: &#39;31&#39;   },
+        &#39;url&#39;: &#39;/waterpurification&#39;  },     ]
 </pre></div>
 </div>
-</div></blockquote>
 </div></blockquote>
 <p>Raises ServerError 1009 if the passed coords are illegal for any reason (already 
 occupied, out-of-bounds, etc)</p>
@@ -448,18 +400,19 @@ get_buildable().</p>
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_new_building">
 <tt class="descname">get_new_building</tt><big>(</big><em>classname: str</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_new_building" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a building object of the requested classname.
-This is a Potential building.</p>
+<dd><p>Get a &#8220;new&#8221; building.</p>
+<p>This is a building that does not exist yet.  What you&#8217;re getting is a 
+building object, which you can then call <tt class="docutils literal"><span class="pre">build()</span></tt> on.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_status">
 <tt class="descname">get_status</tt><big>(</big><em>blarg: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets status of the current body.
+<dd><p>Gets the status of the current body.
 This both returns a dict of status information, and sets the MyBody 
-object&#8217;s using that dict.  Since every call to every method in this 
-class also sets those attributes, there should never be a need to call 
-this method.</p>
+object&#8217;s attributes using that dict.</p>
+<p>Since every call to every method in this class also sets those 
+attributes, there should <strong>never be a need to call this method.</strong></p>
 </dd></dl>
 
 <dl class="method">
@@ -469,20 +422,13 @@ this method.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last">
-<li><p class="first">arrangement &#8211; A list of dicts describing your new surface arrangement</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>[
-    {
-        &#39;id&#39;: integer ID of the building to move,
+<li><p class="first">arrangement &#8211; A list of dicts describing your new surface arrangement:</p>
+<div class="highlight-python"><div class="highlight"><pre>[ {     &#39;id&#39;: integer ID of the building to move,
         &#39;x&#39;:  integer X coordinate to move to,
-        &#39;y&#39;:  integer y coordinate to move to,
-    },
-    { another building to move, same format as above },
-    etc
-]
+        &#39;y&#39;:  integer y coordinate to move to,  },
+  { another building to move, same format as above },     ]
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 </ul>
 </dd>
@@ -586,10 +532,10 @@ y                    10,
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="building.html" class="btn btn-neutral float-right" title="building"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="building.html" class="btn btn-neutral float-right" title="TLE Module - Building"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="alliance.html" class="btn btn-neutral" title="alliance"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="alliance.html" class="btn btn-neutral" title="TLE Module - Alliance"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>map &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>TLE Module - Map &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -29,8 +29,8 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="my_validate_email module" href="my_validate_email.html"/>
-        <link rel="prev" title="inbox" href="inbox.html"/> 
+        <link rel="next" title="TLE Module - Stats" href="stats.html"/>
+        <link rel="prev" title="TLE Module - Inbox" href="inbox.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -130,7 +136,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>map</li>
+    <li>TLE Module - Map</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/map.txt" rel="nofollow"> View page source</a>
@@ -142,26 +148,22 @@
           <div role="main">
             
   <div class="section" id="module-lacuna.map">
-<span id="map"></span><h1>map<a class="headerlink" href="#module-lacuna.map" title="Permalink to this headline">¶</a></h1>
+<span id="tle-module-map"></span><h1>TLE Module - Map<a class="headerlink" href="#module-lacuna.map" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.map.Fissure">
 <em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Fissure</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.map.Fissure" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">name     &quot;Mercury&quot;,</span>
-<span class="go">id       345,</span>
-<span class="go">orbit    1,</span>
-<span class="go">x        -40,</span>
-<span class="go">y        29,</span>
-<span class="go">type     &quot;habitable planet&quot;,</span>
-<span class="go">image    &quot;p13&quot;,</span>
-<span class="go">size     58,</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>name     &quot;Mercury&quot;,
+id       345,
+orbit    1,
+x        -40,
+y        29,
+type     &quot;habitable planet&quot;,
+image    &quot;p13&quot;,
+size     58,
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
@@ -213,7 +215,7 @@
 </ul>
 </dd>
 </dl>
-<p>Returns a Star object.</p>
+<p>Returns a map.Star object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -223,11 +225,12 @@
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>star_name &#8211; String name of the star.  This is NOT a &#8220;standard TLE search string&#8221;, but the full name of the star.</li>
+<li>star_name &#8211; String name of the star.  This is NOT a &#8220;standard 
+TLE search string&#8221;, but the full name of the star.</li>
 </ul>
 </dd>
 </dl>
-<p>Returns a Star object.</p>
+<p>Returns a map.Star object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -242,7 +245,7 @@
 </ul>
 </dd>
 </dl>
-<p>Returns a Star object.</p>
+<p>Returns a map.Star object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -250,19 +253,18 @@
 <tt class="descname">get_star_map</tt><big>(</big><em>stars: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of stars occupying a region of space.</p>
 <dl class="docutils">
-<dt>Accepts a single dict of arguments:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">left        Coordinate</span>
-<span class="go">top         Coordinate</span>
-<span class="go">right       Coordinate</span>
-<span class="go">bottom      Coordinate</span>
-</pre></div>
-</div>
+<dt>Accepts a single dict of arguments containing the keys:</dt>
+<dd><ul class="first last simple">
+<li>left &#8211; Coordinate</li>
+<li>top &#8211; Coordinate</li>
+<li>right &#8211; Coordinate</li>
+<li>bottom &#8211; Coordinate</li>
+</ul>
 </dd>
 </dl>
-<p>Each coordinate must be an integer within the star map (so &gt;= -1500 and 
-&lt;= 1500).  The total area covered by these coordinates must be &lt;= 3001 
-units.  The TLE documentation states 1001 units, but thats old 
+<p>Each coordinate must be an integer within the star map (so &gt;= -1500 
+and &lt;= 1500).  The total area covered by these coordinates must be &lt;= 
+3001 units.  The TLE documentation states 1001 units, but thats old 
 information; the limit has been raised to 3001 units.</p>
 <p>Returns a list of map.Star objects.</p>
 <p>Raises ServerError 1003 if your selected area is too large.</p>
@@ -270,7 +272,7 @@ information; the limit has been raised to 3001 units.</p>
 
 <dl class="method">
 <dt id="lacuna.map.Map.get_stars">
-<tt class="descname">get_stars</tt><big>(</big><em>x1</em>, <em>x2</em>, <em>y1</em>, <em>y2</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_stars" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_stars</tt><big>(</big><em>left: int</em>, <em>top: int</em>, <em>right: int</em>, <em>bottom: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_stars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of stars occupying a region of space.</p>
 <p>More or less Deprecated.</p>
 <p>This is not officially deprecated, but there&#8217;s no good reason to use it.  
@@ -280,13 +282,12 @@ positional arguments calling method, and allows a range of only 900
 units.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">left        Coordinate</span>
-<span class="go">top         Coordinate</span>
-<span class="go">right       Coordinate</span>
-<span class="go">bottom      Coordinate</span>
-</pre></div>
-</div>
+<dd><ul class="first last simple">
+<li>left &#8211; Coordinate</li>
+<li>top &#8211; Coordinate</li>
+<li>right &#8211; Coordinate</li>
+<li>bottom &#8211; Coordinate</li>
+</ul>
 </dd>
 </dl>
 <p>Returns a list of map.Star objects.</p>
@@ -298,7 +299,7 @@ units.</p>
 <tt class="descname">probe_summary_fissures</tt><big>(</big><em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.probe_summary_fissures" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provides info on fissures in a zone.</p>
 <dl class="docutils">
-<dt>Requires a single dict argument:</dt>
+<dt>Requires a single dict argument containing the key:</dt>
 <dd><ul class="first last simple">
 <li>zone &#8211; &#8216;0|0&#8217;</li>
 </ul>
@@ -314,14 +315,12 @@ units.</p>
 <dl class="docutils">
 <dt>Arguments</dt>
 <dd><ul class="first last simple">
-<li>search_string &#8211; A standard TLE search string.</li>
+<li>search_string &#8211; A standard TLE search string.  See 
+<a class="reference internal" href="glossary.html#glossary"><em>Glossary</em></a>.</li>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of Star objects.
-partial_name must be at least 3 characters.  Matches up to 25 stars whose names
-START with partial_name (NOT stars whose names just contain partial_name).
-rv is a list, identical to get_star_map().</p>
+<p>Returns a list of map.Star objects.</p>
 </dd></dl>
 
 </dd></dl>
@@ -329,22 +328,18 @@ rv is a list, identical to get_star_map().</p>
 <dl class="class">
 <dt id="lacuna.map.Star">
 <em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Star</tt><big>(</big><em>client</em>, <em>star_dict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Star" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">color       &#39;red&#39;,</span>
-<span class="go">id          &#39;12345&#39;,</span>
-<span class="go">name        &#39;Clou Oghofr Oap&#39;,</span>
-<span class="go">x           &#39;100&#39;,</span>
-<span class="go">y           &#39;-100&#39;,</span>
-<span class="go">zone        &#39;0|0&#39;,</span>
-<span class="go">bodies:     List of body.Body objects.  If you don&#39;t have the star </span>
-<span class="go">            probed or oracled, this list will be empty.</span>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>color       &#39;red&#39;,
+id          &#39;12345&#39;,
+name        &#39;Clou Oghofr Oap&#39;,
+x           &#39;100&#39;,
+y           &#39;-100&#39;,
+zone        &#39;0|0&#39;,
+bodies:     List of body.Body objects.  If you don&#39;t have the star 
+            probed or oracled, this list will be empty.
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
@@ -355,10 +350,10 @@ rv is a list, identical to get_star_map().</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="my_validate_email.html" class="btn btn-neutral float-right" title="my_validate_email module"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="stats.html" class="btn btn-neutral float-right" title="TLE Module - Stats"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="inbox.html" class="btn btn-neutral" title="inbox"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="inbox.html" class="btn btn-neutral" title="TLE Module - Inbox"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

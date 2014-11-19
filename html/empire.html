@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>empire &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>TLE Module - Empire &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -29,8 +29,8 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="exceptions" href="exceptions.html"/>
-        <link rel="prev" title="clients" href="clients.html"/> 
+        <link rel="next" title="TLE Module - Inbox" href="inbox.html"/>
+        <link rel="prev" title="TLE Module - Captcha" href="captcha.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -130,7 +136,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>empire</li>
+    <li>TLE Module - Empire</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/empire.txt" rel="nofollow"> View page source</a>
@@ -142,7 +148,7 @@
           <div role="main">
             
   <div class="section" id="module-lacuna.empire">
-<span id="empire"></span><h1>empire<a class="headerlink" href="#module-lacuna.empire" title="Permalink to this headline">¶</a></h1>
+<span id="tle-module-empire"></span><h1>TLE Module - Empire<a class="headerlink" href="#module-lacuna.empire" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.empire.Boosts">
 <em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">Boosts</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.Boosts" title="Permalink to this definition">¶</a></dt>
@@ -205,10 +211,8 @@ home_planet_id          &quot;id-goes-here&quot;,
 has_new_messages        4,
 latest_message_id       1234,
 essentia                0,
-planets                 {
-                            &quot;id-goes-here&quot; : &quot;Earth&quot;,
-                            &quot;id-goes-here&quot; : &quot;Mars,
-                        },
+planets                 {   &quot;id-goes-here&quot; : &quot;Earth&quot;,
+                            &quot;id-goes-here&quot; : &quot;Mars,  },
 tech_level&quot;             20,         # Highest level university has gotten to.
 self_destruct_active    0,
 self_destruct_date      &quot;&quot;
@@ -263,8 +267,8 @@ self_destruct_date      &quot;&quot;
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>password &#8211; String; the desired new password</li>
-<li>confirmation &#8211; Must be the same string as &#8216;password&#8217;</li>
+<li>oldpw &#8211; String; the desired new password</li>
+<li>newpw &#8211; Must be the same string as &#8216;oldpw&#8217;</li>
 </ul>
 </dd>
 </dl>
@@ -282,46 +286,51 @@ and the reason enable_self_destruct() has been disabled.</p>
 <tt class="descname">edit_profile</tt><big>(</big><em>profile: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.edit_profile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Edit your empire&#8217;s profile.  Requires that you&#8217;re logged in with 
 your real, not sitter, password.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">profile     Dict of profile settings with the keys:</span>
-<span class="go">                description</span>
-<span class="go">                email</span>
-<span class="go">                sitter_password</span>
-<span class="go">                status_message</span>
-<span class="go">                city</span>
-<span class="go">                country</span>
-<span class="go">                notes</span>
-<span class="go">                skype</span>
-<span class="go">                player_name</span>
-<span class="go">                public_medals (list of medal IDs to display)</span>
-<span class="go">                skip_happiness_warnings</span>
-<span class="go">                skip_resource_warnings</span>
-<span class="go">                skip_pollution_warnings</span>
-<span class="go">                skip_medal_messages</span>
-<span class="go">                skip_facebook_wall_posts</span>
-<span class="go">                skip_found_nothing</span>
-<span class="go">                skip_excavator_resources</span>
-<span class="go">                skip_excavator_glyph</span>
-<span class="go">                skip_excavator_plan</span>
-<span class="go">                skip_spy_recovery</span>
-<span class="go">                skip_probe_detected</span>
-<span class="go">                skip_attack_messages</span>
-<span class="go">                skip_incoming_ships</span>
+<p>Arguments:</p>
+<div class="highlight-python"><div class="highlight"><pre>profile     Dict of profile settings with the keys:
+                description
+                email
+                sitter_password
+                status_message
+                city
+                country
+                notes
+                skype
+                player_name
+                public_medals (list of medal IDs to display)
+                skip_happiness_warnings
+                skip_resource_warnings
+                skip_pollution_warnings
+                skip_medal_messages
+                skip_facebook_wall_posts
+                skip_found_nothing
+                skip_excavator_resources
+                skip_excavator_glyph
+                skip_excavator_plan
+                skip_spy_recovery
+                skip_probe_detected
+                skip_attack_messages
+                skip_incoming_ships
+
+    The skip_* keys all require 1 for &quot;on&quot; or 0 for &quot;off&quot;.
 </pre></div>
 </div>
-<blockquote class="last">
-<div>The skip_* keys all require 1 for &#8220;on&#8221; or 0 for &#8220;off&#8221;.</div></blockquote>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.enable_self_destruct">
 <tt class="descname">enable_self_destruct</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.enable_self_destruct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Immediately quits.  The server call is badly broken, and you should 
-never call this.</p>
+<dd><p>Sets the self destruct timer on your empire.  After 24 hours, your 
+empire will be deleted.  Such a deletion is <em>not recoverable</em>.</p>
+<p>While testing, it was discovered that the <tt class="docutils literal"><span class="pre">disable_self_destruct</span></tt> 
+method does not function, server-side.  So if you enable self destruct 
+on your empire, you cannot turn it off again yourself; you&#8217;d need to 
+find an admin to do it for you.  Admins are usually around, but it&#8217;s 
+not unthinkable that a 24-hour period could pass during which you 
+could not find an admin.  If that were to happen, your empire would be 
+permanently deleted.</p>
+<p>Since you can&#8217;t turn it back off again, this method has been disabled.  
+Calling it simply complains and then immediately quits your script.</p>
 </dd></dl>
 
 <dl class="method">
@@ -331,7 +340,7 @@ never call this.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>name &#8211; Standard TLE search string</li>
+<li>name &#8211; Standard TLE search string.  See <a class="reference internal" href="glossary.html#glossary"><em>Glossary</em></a>.</li>
 </ul>
 </dd>
 </dl>
@@ -341,46 +350,64 @@ never call this.</p>
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.get_invite_friend_url">
 <tt class="descname">get_invite_friend_url</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_invite_friend_url" title="Permalink to this definition">¶</a></dt>
-<dd><p>See the &#8216;referral_url&#8217; key in the returned dict.</p>
+<dd><p>Get a unique URL you can send to a friend to use to sign up.  Your 
+empire will receive rewards for each friend who joins using such a 
+URL.</p>
+<p>Returns a dict including the key <tt class="docutils literal"><span class="pre">referral_url</span></tt>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.get_species_templates">
 <tt class="descname">get_species_templates</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_species_templates" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the species templates that are presented to a new player 
-upon initial species creation (Average, Warmonger, Resilient, Viral, 
-etc).</p>
+<dd><p>Get the species templates that are presented to a new player upon 
+initial species creation (Average, Warmonger, Resilient, Viral, etc).</p>
 <p>Returns a list of empire.SpeciesTemplate objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.get_status">
 <tt class="descname">get_status</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>There shouldn&#8217;t ever be a need to call this.  An empire status 
-block gets returned with every call, and the MyEmpire object&#8217;s 
-attributes get set each time as a result.</p>
+<dd><p>Gets your empire&#8217;s current status information.</p>
+<p>There shouldn&#8217;t ever be a need to call this.  Empire status data gets 
+returned with every empire method call, and the current MyEmpire 
+object&#8217;s attributes get updated each time as a result.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.invite_friend">
-<tt class="descname">invite_friend</tt><big>(</big><em>email</em>, <em>message=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.invite_friend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Doesn&#8217;t error, but doesn&#8217;t send email either.  Since the &#8216;forgot 
-my password&#8217; feature is exhibiting the same behavior, I&#8217;m going to 
-assume the server just isn&#8217;t configured to send mail anymore.</p>
+<tt class="descname">invite_friend</tt><big>(</big><em>email: str</em>, <em>message: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.invite_friend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends email to a friend inviting them to join the game.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>email &#8211; The email address to send the invitation to</li>
+<li>message &#8211; An optional personal message to include.</li>
+</ul>
+</dd>
+</dl>
+<p>This doesn&#8217;t produce any error, but doesn&#8217;t send email either.  Since 
+the &#8216;forgot my password&#8217; feature is exhibiting the same behavior, I 
+assume the server just isn&#8217;t configured to send mail.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.redeem_essentia_code">
 <tt class="descname">redeem_essentia_code</tt><big>(</big><em>code: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.redeem_essentia_code" title="Permalink to this definition">¶</a></dt>
 <dd><p>Redeems an essentia code.</p>
-<p>Requires an essentia code, which is a uuid (eg 
-&#8216;56cc359e-8ba7-4db7-b608-8cb861c65510&#8217;).</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>code &#8211; An essentia code uuid, eg 
+<tt class="docutils literal"><span class="pre">56cc359e-8ba7-4db7-b608-8cb861c65510</span></tt></li>
+</ul>
+</dd>
+</dl>
 <p>Essentia codes can be obtained by purchasing essentia, or sometimes by 
 admins during contests.  Each code can only be used once, so if you have 
 one, don&#8217;t share it with anybody; if they use it, the E represented by 
 that code will be gone.</p>
-<p>Yes, the example code above was a real E code, worth 10,000 E.  But only 
-on PT, and it&#8217;s been used already.</p>
+<p>Yes, the example code above was a real E code, worth 10,000 E.  But 
+only on PT, and it&#8217;s been used already.  Mine - u cant has!</p>
 </dd></dl>
 
 <dl class="method">
@@ -421,23 +448,18 @@ on PT, and it&#8217;s been used already.</p>
 <dt id="lacuna.empire.MyEmpire.redefine_species_limits">
 <tt class="descname">redefine_species_limits</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.redefine_species_limits" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the limits to be imposed if you redefine your species.</p>
-<dl class="docutils">
-<dt>Returns a dict:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">&#39;can&#39;:              1,</span>
-<span class="go">&#39;essentia_cost&#39;:    100,</span>
-<span class="go">&#39;max_orbit&#39;:        3,</span>
-<span class="go">&#39;min_growth&#39;:       1,</span>
-<span class="go">&#39;min_orbit&#39;:        3,</span>
-<span class="go">&#39;reason&#39;:           None,</span>
+<p>Returns a dict:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;can&#39;:              1,
+&#39;essentia_cost&#39;:    100,
+&#39;max_orbit&#39;:        3,
+&#39;min_growth&#39;:       1,
+&#39;min_orbit&#39;:        3,
+&#39;reason&#39;:           None,
 </pre></div>
 </div>
-</dd>
-</dl>
-<p>&#8216;can&#8217; will be 0 if the user currently cannot redefine.
-I do not understand why the min/max settings exist.
-If &#8216;can&#8217; is false, &#8216;reason&#8217; will contain a string explaining why 
-not.  eg &#8220;You have already redefined in the past 30 days&#8221;, etc.</p>
+<p><tt class="docutils literal"><span class="pre">can</span></tt> will be 0 if the user currently cannot redefine.
+If <tt class="docutils literal"><span class="pre">can</span></tt> is 0, <tt class="docutils literal"><span class="pre">reason</span></tt> will contain a string explaining why not.  
+eg &#8220;You have already redefined in the past 30 days&#8221;, etc.</p>
 </dd></dl>
 
 <dl class="method">
@@ -464,27 +486,35 @@ object.</li>
 bodies that belong to the current empire.  However, &#8220;all of the 
 bodies&#8221; includes planets you&#8217;ve colonized as well as space stations 
 owned by your alliance.</p>
-<p>Not having those separate from each other can be confusing, so it&#8217;s 
-common practice amongst alliances to name their space stations in a 
-way that makes them easy to distinguish from colonized planets.</p>
+<p>Not having colonies and space stations separate from each other can be 
+confusing, so it&#8217;s common practice amongst alliances to name their 
+space stations in a way that makes them easy to distinguish from 
+colonized planets.</p>
 <p>This looks through the list of your empire&#8217;s planets, and creates two 
 new MyEmpire attributes: <tt class="docutils literal"><span class="pre">stations</span></tt> and <tt class="docutils literal"><span class="pre">colonized</span></tt>.  Both follow 
 the same format as the comprehensive <tt class="docutils literal"><span class="pre">planets</span></tt> dict, but 
 <tt class="docutils literal"><span class="pre">stations</span></tt> will contain the bodies we think are space stations, and 
 <tt class="docutils literal"><span class="pre">colonized</span></tt> will contain the rest.</p>
-<p><strong>CAUTION</strong> &#8211; This method is not perfect or authoritative!  Since a 
-space station needs to have its Parliament up to level 3 before it can 
-be renamed, it&#8217;s likely that you&#8217;ll occasionally get a brand new 
-station showing up in the <tt class="docutils literal"><span class="pre">colonized</span></tt> dict.  And if you&#8217;re not 
-paying attention and name one of your planets so that it matches your 
-regex, it&#8217;ll show up in the <tt class="docutils literal"><span class="pre">stations</span></tt> dict.  So be careful with how 
-you use this.</p>
+<p><strong>CAUTION</strong> &#8211; This method is neither perfect nor authoritative!  
+Since a space station needs to have its Parliament up to level 3 
+before it can be renamed, it&#8217;s likely that you&#8217;ll occasionally get a 
+brand new station showing up in the <tt class="docutils literal"><span class="pre">colonized</span></tt> dict.  And if you&#8217;re 
+not paying attention and name one of your planets so that it matches 
+your regex, it&#8217;ll show up in the <tt class="docutils literal"><span class="pre">stations</span></tt> dict.  So be careful 
+with how you use this.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.set_status_message">
 <tt class="descname">set_status_message</tt><big>(</big><em>message: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.set_status_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets your empire status message.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>message &#8211; The message to set as your empire&#8217;s profile&#8217;s status.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -589,32 +619,21 @@ city                    &quot;Madison&quot;,
 country                 &quot;USA&quot;,
 skype                   &quot;joeuser47&quot;,
 player_name             &quot;Joe User&quot;,
-medals                  {
-                            &quot;id-goes-here&quot; : {
-                                &quot;name&quot; : &quot;Built Level 1 Building&quot;,
-                                &quot;image&quot; : &quot;building1&quot;,
-                                &quot;date&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                            &quot;times_earned&quot; : 4
-                            },
-                            ...
-                        },
+medals                  {   &quot;id-goes-here&quot; : {  &quot;name&quot; : &quot;Built Level 1 Building&quot;,
+                                                &quot;image&quot; : &quot;building1&quot;,
+                                                &quot;date&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
+                                                &quot;times_earned&quot; : 4   },  },
 last_login              &quot;01 31 2010 13:09:05 +0600&quot;,
 date_founded            &quot;01 31 2010 13:09:05 +0600&quot;,
 species                 &quot;Lacunan&quot;,
-alliance                {
-                            &quot;id&quot; : &quot;id-goes-here&quot;,
-                            &quot;name&quot; : &quot;The Confederacy&quot;
-                        },
-known_colonies          [
-                            {
-                                &quot;id&quot; : &quot;id-goes-here&quot;,
+alliance                {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                            &quot;name&quot; : &quot;The Confederacy&quot;   },
+known_colonies          [ {     &quot;id&quot; : &quot;id-goes-here&quot;,
                                 &quot;x&quot; : &quot;1&quot;,
                                 &quot;y&quot; : &quot;-543&quot;,
                                 &quot;name&quot; : &quot;Earth&quot;,
-                                &quot;image&quot; : &quot;p12-3&quot;
-                            },
-                            ...
-                        ]
+                                &quot;image&quot; : &quot;p12-3&quot; },
+                            { more of the same },   ]
 </pre></div>
 </div>
 </dd></dl>
@@ -678,10 +697,10 @@ growth_affinity             4
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="exceptions.html" class="btn btn-neutral float-right" title="exceptions"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="inbox.html" class="btn btn-neutral float-right" title="TLE Module - Inbox"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="clients.html" class="btn btn-neutral" title="clients"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="captcha.html" class="btn btn-neutral" title="TLE Module - Captcha"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

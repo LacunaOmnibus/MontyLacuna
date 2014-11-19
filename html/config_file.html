@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -144,7 +150,13 @@
   <div class="section" id="config-file">
 <span id="id1"></span><h1>Config File<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h1>
 <p>Normally when you connect a client, you&#8217;ll send along the path to a config
-file, and which section in that file you want to connect with.</p>
+file, and which section in that file you want to connect with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_client</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
+    <span class="n">config_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot;/../etc/lacuna.cfg&quot;</span><span class="p">,</span>
+    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;sitter&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <p>The easiest way to create a config file with a new install is to run
 <tt class="docutils literal"><span class="pre">bin/create_config_file.py</span></tt>.  It will ask you a few basic questions and then
 create a working config file based on your responses.</p>
@@ -154,33 +166,33 @@ you&#8217;re running scripts; see the <tt class="docutils literal"><span class="
 below.</p>
 <p>You can add as many additional named sections as you&#8217;d like.</p>
 <div class="highlight-ini"><div class="highlight"><pre><span class="k">[DEFAULT]</span>
-    <span class="na">proto</span> <span class="o">=</span> <span class="s">https</span>
-<span class="s">    host = us1.lacunaexpanse.com</span>
-<span class="s">    testhost = pt.lacunaexpanse.com</span>
-<span class="s">    api_key = anonymous</span>
-<span class="s">    show_captcha = True</span>
-<span class="s">    sleep_on_call = 1</span>
-<span class="s">    sleep_after_error = True</span>
-<span class="s">    warn_on_sleep = True</span>
-<span class="s">    logfile = var/us1.log</span>
+<span class="na">proto</span> <span class="o">=</span> <span class="s">https</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">us1.lacunaexpanse.com</span>
+<span class="na">testhost</span> <span class="o">=</span> <span class="s">pt.lacunaexpanse.com</span>
+<span class="na">api_key</span> <span class="o">=</span> <span class="s">anonymous</span>
+<span class="na">show_captcha</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">sleep_on_call</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">sleep_after_error</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">warn_on_sleep</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">logfile</span> <span class="o">=</span> <span class="s">var/us1.log</span>
 
 <span class="k">[real]</span>
-    <span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
-<span class="s">    password = My Real Password</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My Real Password</span>
 
 <span class="k">[sitter]</span>
-    <span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
-<span class="s">    password = My Sitter Password</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My Sitter Password</span>
 
 <span class="k">[some_alliance_mate]</span>
-    <span class="na">username</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Empire Name</span>
-<span class="s">    password = My Alliance Mate&#39;s Sitter Password</span>
-<span class="s">    logfile = var/ally_mate.log</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Sitter Password</span>
+<span class="na">logfile</span> <span class="o">=</span> <span class="s">var/ally_mate.log</span>
 
 <span class="k">[playtest]</span>
-    <span class="na">host</span> <span class="o">=</span> <span class="s">${DEFAULT:testhost}</span>
-<span class="s">    username = My PT Empire Name</span>
-<span class="s">    password = My PT Password</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">${DEFAULT:testhost}</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My PT Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My PT Password</span>
 </pre></div>
 </div>
 <div class="section" id="setting-descriptions">

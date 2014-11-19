@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trading &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="ship" href="ship.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#script-runners-stop-here">Script Runners Stop Here</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#get-your-empire">Get your empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#get-info-on-your-alliance">Get info on your alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#read-mail-from-your-inbox">Read mail from your inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#check-on-one-of-your-planets-by-name">Check on one of your planets by name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#check-on-one-of-the-buildings-on-that-planet">Check on one of the buildings on that planet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log-entries">Request Log Entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log-entries">User Log Entries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">trading</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>trading</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/trading.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-lacuna.trading">
+<span id="trading"></span><h1>trading<a class="headerlink" href="#module-lacuna.trading" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.trading.ExistingTrade">
+<em class="property">class </em><tt class="descclassname">lacuna.trading.</tt><tt class="descname">ExistingTrade</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.trading.ExistingTrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Trades that exist on either the Trade or SST market, either posted by 
+you or another empire.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
+date_offered    &quot;01 31 2010 13:09:05 +0600&quot;,
+ask             25,     # essentia
+offer           List of items
+                    [   &quot;Level 21 spy named Jack Bauer (prisoner)&quot;,
+                        &quot;4,000 bauxite&quot;,
+                        &quot;gold glyph&quot;     ]
+empire          Info on offering empire.  Will only exist if this is a
+                trade offered by somebody else - your own trades do not
+                include this.
+                    {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                        &quot;name&quot; : &quot;Earthlings&quot;   }
+# These will only be available for trades on the Trade Ministry.  The
+# SST deliveries are instant, so this information doesn&#39;t pertain to
+# the SST.
+body            Dict - info on the sending body
+                    {   &quot;id&quot; : &quot;id-goes-here&quot; }
+delivery        Dict - info on delivery time (in seconds)
+                    {   &quot;duration&quot; : &quot;4600&quot; }
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.trading.MercTrade">
+<em class="property">class </em><tt class="descclassname">lacuna.trading.</tt><tt class="descname">MercTrade</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.trading.MercTrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>origin          mercenariesguild.MercTradeOrigin object
+date_offered    &quot;01 31 2010 13:09:05 +0600&quot;,
+id              &quot;id-goes-here&quot;,
+ask             25,                         # essentia cost
+offer           &quot;Level 9 spy named Jack Bauer (Mercenary Transport) 
+                Offense: 875, Defense: 875, Intel: 2, Mayhem: 0, 
+                Politics: 0, Theft: 0, Mission Count Offensive: 0 
+                Defensive: 2)&quot;,
+offer_summary   The first 32 characters of self.offer, plus &quot;...&quot;
+                eg &quot;Level 9 spy named Jack Bauer (Me...&quot;
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.trading.MercTradeOrigin">
+<em class="property">class </em><tt class="descclassname">lacuna.trading.</tt><tt class="descname">MercTradeOrigin</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.trading.MercTradeOrigin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>body_id         ID of the sending body
+empire_id       ID of the sending empire
+empire_name     Name of the sending empire
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.trading.TradeBldg">
+<em class="property">class </em><tt class="descclassname">lacuna.trading.</tt><tt class="descname">TradeBldg</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<p>Base class for trade and transporter buildings.</p>
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.accept_from_market">
+<tt class="descname">accept_from_market</tt><big>(</big><em>trade_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.accept_from_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a trade from the market.  When buying from the SST market, 
+an additional 1 E processing cost is automatically charged in addition
+to the &#8216;ask&#8217; price displayed for the trade.</p>
+<p>Requires captcha.</p>
+<p>Requires &#8216;trade_id&#8217;, integer ID of the trade to purchase.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.get_glyph_summary">
+<tt class="descname">get_glyph_summary</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.get_glyph_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get glyphs available to be added to a trade as merchandise.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>glyphs &#8211; List of lacuna.glyph.OwnedGlyph objects.</li>
+<li>space_used &#8211; Amount of cargo space used by each prisoner.  
+Always 10000.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.get_plan_summary">
+<tt class="descname">get_plan_summary</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.get_plan_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get plans available to be added to a trade as merchandise.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>plans &#8211; List of OwnedPlan objects.</li>
+<li>space_used &#8211; Amount of cargo space used by each prisoner.  
+Always 10000.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.get_prisoners">
+<tt class="descname">get_prisoners</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.get_prisoners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get prisoners available to be added to a trade as merchandise.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>prisoners &#8211; List of Prisoner objects.</li>
+<li>space_used &#8211; Amount of cargo space used by each prisoner.  
+Always 350.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.get_ships">
+<tt class="descname">get_ships</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.get_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get ships available to be added to a trade as merchandise.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>ships &#8211; List of TradeableShip objects.</li>
+<li>space_used &#8211; Amount of cargo space used by each ship.  Always 
+10000.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.get_stored_resources">
+<tt class="descname">get_stored_resources</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.get_stored_resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns resources stored onsite and available for trading.</p>
+<p>CHECK this should return an object.</p>
+<dl class="docutils">
+<dt>Returns a dict including the key &#8216;resources&#8217;, itself a dict, containing:</dt>
+<dd><ul class="first last simple">
+<li>water &#8211; 10000,</li>
+<li>waste &#8211; 20000,</li>
+<li>bauxite &#8211; 25,</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.view_market">
+<tt class="descname">view_market</tt><big>(</big><em>page_number: int=1</em>, <em>filter: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.view_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the trades you currently have offered.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>page_number &#8211; Optional integer page number to view.  25 trades 
+shown per page.  Defaults to 1.i</li>
+<li>filter &#8211; Optional string to narrow down the types of trades 
+returned.<ul>
+<li>Valid filters:
+- energy
+- food
+- glyph
+- ore
+- plan
+- prisoner
+- ship
+- waste
+- water</li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>trades &#8211; List of trading.ExistingTrade objects</li>
+<li>count &#8211; Total number of trades you have up</li>
+<li>page_number &#8211; The page that the &#8220;trades&#8221; list appeared on.  
+Same value that you passed as an argument, or 1.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.view_my_market">
+<tt class="descname">view_my_market</tt><big>(</big><em>page_number: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.view_my_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the trades you currently have offered.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>page_number &#8211; Optional integer page number to view.  25 trades 
+- shown per page.  Defaults to 1.</li>
+</ul>
+</dd>
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>trades &#8211; List of trading.ExistingTrade objects</li>
+<li>count &#8211; Total number of trades you have up</li>
+<li>page_number &#8211; The page that the &#8220;trades&#8221; list appeared on.  
+Same value that you passed as an argument, or 1.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.trading.TradeBldg.withdraw_from_market">
+<tt class="descname">withdraw_from_market</tt><big>(</big><em>trade_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.withdraw_from_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Withdraws one of your trades from the market.  If the trade had been 
+on the SST market, refunds your 1 E posting cost.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>trade_id &#8211; Integer ID of the trade to withdraw</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ship.html" class="btn btn-neutral" title="ship"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

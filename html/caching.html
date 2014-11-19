@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -147,8 +153,8 @@
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Almost every MontyLacuna method call represents a communication with the TLE
 server.  This communication takes time, and an additional second is used by
-MontyLacuna to make sure that we don&#8217;t swamp the server with too many requests,
-resulting in a mandatory one minute lockout.</p>
+MontyLacuna, per call, to make sure that we don&#8217;t swamp the server with too
+many requests, which would result in a mandatory one minute lockout.</p>
 <p>Often, your code will need to re-access the same information more than once,
 or even access information that you&#8217;ve recently accessed in an entirely
 different script.  In these cases, you can make use of the client.Member
@@ -158,34 +164,34 @@ class&#8217;s built-in caching facility.</p>
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre>import lacuna
 
-glc = lacuna.clients.Member( connection args )
+my_client = lacuna.clients.Member( connection args )
 
 ### Caching is not turned on by default.
 
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
 
-glc.cache_on( &#39;my_planets&#39;, 3600 )              # Turn caching on
+my_client.cache_on( &#39;my_planets&#39;, 3600 )              # Turn caching on
 
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds, but result was cached
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds, but result was cached
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
 
-my_planet_one = glc.get_body_byname(&quot;Mars&quot;)     # takes 1-3 seconds, but result was cached
-my_planet_one = glc.get_body_byname(&quot;Mars&quot;)     # takes 4 or 5 milliseconds
+my_planet_one = my_client.get_body_byname(&quot;Mars&quot;)     # takes 1-3 seconds, but result was cached
+my_planet_one = my_client.get_body_byname(&quot;Mars&quot;)     # takes 4 or 5 milliseconds
 
-glc.cache_clear( &#39;my_planets&#39; )                 # clear this cache, but don&#39;t turn it off
+my_client.cache_clear( &#39;my_planets&#39; )                 # clear this cache, but don&#39;t turn it off
 
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds, but result was cached
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds, but result was cached
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
 
-glc.cache_off()                                 # Turn caching off, but don&#39;t clear existing entries
+my_client.cache_off()                                 # Turn caching off, but don&#39;t clear entries
 
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 1-3 seconds
 
-glc.cache_on( &#39;my_planets&#39;, 3600 )              # Turn caching back on
+my_client.cache_on( &#39;my_planets&#39;, 3600 )              # Turn caching back on
 
-my_planet_one = glc.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
+my_planet_one = my_client.get_body_byname(&quot;Earth&quot;)    # takes 4 or 5 milliseconds
 </pre></div>
 </div>
 </div>
@@ -203,8 +209,9 @@ generated for you, and are invisible to you.  So a single cache name can safely
 contain multiple different types of data.  The cache keys are determined by both
 the server method you&#8217;re calling and the parameters you&#8217;re passing to that
 method.</p>
-<p>Certain actions you take will invalidate your cached data.  In this scenario:</p>
-<ul class="simple">
+<dl class="docutils">
+<dt>Certain actions you take will invalidate your cached data.  In this scenario:</dt>
+<dd><ul class="first last simple">
 <li>Turn caching on</li>
 <li>Get list of buildings on the surface of a planet</li>
 <li>Build a new building on that planet</li>
@@ -214,6 +221,8 @@ before, which does not include our new building.</li>
 </ul>
 </li>
 </ul>
+</dd>
+</dl>
 <p>In that case, you&#8217;d want to clear out the cache after constructing your new
 building; this would cause the next &#8220;get list of buildings&#8221; to actually hit the
 server again, and the retrieved list would now contain your new building.</p>
@@ -231,7 +240,8 @@ make use of your caches.</p>
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
 <li>name &#8211; String namespace to use for caching data</li>
-<li>expiry &#8211; Integer seconds after which cached data is no longer valid.  Defaults to 3600 (one hour).</li>
+<li>expiry &#8211; Integer seconds after which cached data is no longer 
+valid.  Defaults to 3600 (one hour).</li>
 </ul>
 </dd>
 </dl>
@@ -247,11 +257,12 @@ Does not clear any existing caches, only stops pulling data from them.</p>
 <dl class="method">
 <dt>
 <tt class="descclassname">Member.</tt><tt class="descname">cache_clear</tt><big>(</big><em>name: str=''</em><big>)</big></dt>
-<dd><p>Clears a named cache.  If a cache name is not mentioned, clears the most-recently used cache.</p>
+<dd><p>Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>name &#8211; String; name of the cache to clear.  Defaults to the cache most recently used.</li>
+<li>name &#8211; String; name of the cache to clear.  Defaults to the 
+cache most recently used.</li>
 </ul>
 </dd>
 </dl>

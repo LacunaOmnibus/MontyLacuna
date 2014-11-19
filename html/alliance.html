@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>alliance &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>TLE Module - Alliance &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -29,8 +29,8 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="body" href="body.html"/>
-        <link rel="prev" title="bc" href="bc.html"/> 
+        <link rel="next" title="TLE Module - Body" href="body.html"/>
+        <link rel="prev" title="Glossary" href="glossary.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -130,7 +136,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>alliance</li>
+    <li>TLE Module - Alliance</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/alliance.txt" rel="nofollow"> View page source</a>
@@ -142,21 +148,40 @@
           <div role="main">
             
   <div class="section" id="module-lacuna.alliance">
-<span id="alliance"></span><h1>alliance<a class="headerlink" href="#module-lacuna.alliance" title="Permalink to this headline">¶</a></h1>
+<span id="tle-module-alliance"></span><h1>TLE Module - Alliance<a class="headerlink" href="#module-lacuna.alliance" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.alliance.Alliance">
+<em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">Alliance</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.alliance.Alliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<p>Represents an alliance&#8217;s publicly-viewable information.</p>
+<dl class="method">
+<dt id="lacuna.alliance.Alliance.find">
+<tt class="descname">find</tt><big>(</big><em>partial_name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.alliance.Alliance.find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find alliances by name.</p>
+<p>Requires a standard TLE search string.  See <a class="reference internal" href="glossary.html#glossary"><em>Glossary</em></a>.</p>
+<p>Returns a list of alliance.FoundAlliance objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.alliance.Alliance.view_profile">
+<tt class="descname">view_profile</tt><big>(</big><em>alliance_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.alliance.Alliance.view_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get publicly-available information on an alliance.</p>
+<p>Requires an integer alliance ID.</p>
+<p>Returns a lacuna.alliance.Profile object.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="lacuna.alliance.FoundAlliance">
 <em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">FoundAlliance</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.alliance.FoundAlliance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>An alliance as returned by find().</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id          1234</span>
-<span class="go">name        United Federation of Unionized Togetherness</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          1234
+name        United Union of Federated Allied Groups
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
@@ -164,61 +189,49 @@
 <em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">Member</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.alliance.Member" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>An alliance member.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id          5810</span>
-<span class="go">name        Invitee One</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          5810
+name        Member One
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.alliance.MyAlliance">
 <em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">MyAlliance</tt><big>(</big><em>client: object</em><big>)</big><a class="headerlink" href="#lacuna.alliance.MyAlliance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Alliance</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.alliance.Alliance" title="lacuna.alliance.Alliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Alliance</span></tt></a></p>
 <p>This is the alliance of which the current empire is a member.</p>
 <p>You&#8217;ll normally get at this via the clients.Member&#8217;s get_my_alliance() 
 method:
 <tt class="docutils literal"><span class="pre">my_alliance</span> <span class="pre">=</span> <span class="pre">my_client.get_my_alliance()</span></tt></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id              12345</span>
-<span class="go">name            United Union of Federated Allied Groups</span>
-<span class="go">description     We&#39;re an alliance.</span>
-<span class="go">leader_id       67890</span>
-<span class="go">date_created    &quot;01 31 2010 13:09:05 +0000&quot;,</span>
-<span class="go">influence       0</span>
-<span class="go">members         List of alliance.Member objects</span>
-<span class="go">space_stations  List of lacuna.body.SpaceStation objects</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              12345
+name            United Union of Federated Allied Groups
+description     We&#39;re an alliance.
+leader_id       67890
+date_created    &quot;01 31 2010 13:09:05 +0000&quot;,
+influence       0
+members         List of alliance.Member objects
+space_stations  List of lacuna.body.SpaceStation objects
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.alliance.Profile">
 <em class="property">class </em><tt class="descclassname">lacuna.alliance.</tt><tt class="descname">Profile</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.alliance.Profile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">id              &quot;id-goes-here&quot;,</span>
-<span class="go">name            &quot;Lacuna Expanse Allies&quot;,</span>
-<span class="go">description     &quot;Blah blah blah blah...&quot;,</span>
-<span class="go">leader_id       &quot;id-goes-here&quot;,</span>
-<span class="go">date_created    &quot;01 31 2010 13:09:05 +0600&quot;,</span>
-<span class="go">members         List of alliance.Member objects,</span>
-<span class="go">space_stations  List of ship.SpaceStation objects,</span>
-<span class="go">influence       0</span>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
+name            &quot;Lacuna Expanse Allies&quot;,
+description     &quot;Blah blah blah blah...&quot;,
+leader_id       &quot;id-goes-here&quot;,
+date_created    &quot;01 31 2010 13:09:05 +0600&quot;,
+members         List of alliance.Member objects,
+space_stations  List of ship.SpaceStation objects,
+influence       0
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
@@ -229,10 +242,10 @@ method:
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="body.html" class="btn btn-neutral float-right" title="body"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="body.html" class="btn btn-neutral float-right" title="TLE Module - Body"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="bc.html" class="btn btn-neutral" title="bc"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="glossary.html" class="btn btn-neutral" title="Glossary"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

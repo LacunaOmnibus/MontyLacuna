@@ -29,9 +29,9 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="up" title="building" href="building.html"/>
-        <link rel="next" title="captcha" href="captcha.html"/>
-        <link rel="prev" title="building" href="building.html"/> 
+        <link rel="up" title="TLE Module - Building" href="building.html"/>
+        <link rel="next" title="TLE Module - Captcha" href="captcha.html"/>
+        <link rel="prev" title="TLE Module - Building" href="building.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -93,21 +93,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="building.html">building</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="building.html">TLE Module - Building</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -131,7 +137,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-          <li><a href="building.html">building</a> &raquo;</li>
+          <li><a href="building.html">TLE Module - Building</a> &raquo;</li>
       
     <li>lacuna.buildings package</li>
       <li class="wy-breadcrumbs-aside">
@@ -4509,7 +4515,7 @@ not bothering with them.</p>
 <dl class="class">
 <dt id="lacuna.buildings.trade.trade">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.trade.</tt><tt class="descname">trade</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.trade.trade" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.TradeBldg</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="trading.html#lacuna.trading.TradeBldg" title="lacuna.trading.TradeBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.TradeBldg</span></tt></a></p>
 <dl class="method">
 <dt id="lacuna.buildings.trade.trade.add_to_market">
 <tt class="descname">add_to_market</tt><big>(</big><em>offer: dict</em>, <em>ask: int</em>, <em>options: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.trade.trade.add_to_market" title="Permalink to this definition">¶</a></dt>
@@ -4646,7 +4652,7 @@ is getting old, so I&#8217;m skipping the following:</p>
 <dl class="class">
 <dt id="lacuna.buildings.transporter.transporter">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.transporter.</tt><tt class="descname">transporter</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.transporter.transporter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.TradeBldg</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="trading.html#lacuna.trading.TradeBldg" title="lacuna.trading.TradeBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.TradeBldg</span></tt></a></p>
 <dl class="method">
 <dt id="lacuna.buildings.transporter.transporter.add_to_market">
 <tt class="descname">add_to_market</tt><big>(</big><em>offer: dict</em>, <em>ask: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.transporter.transporter.add_to_market" title="Permalink to this definition">¶</a></dt>
@@ -4802,7 +4808,7 @@ trade.</p>
 <dl class="class">
 <dt id="lacuna.buildings.wasteexchanger.wasteexchanger">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.wasteexchanger.</tt><tt class="descname">wasteexchanger</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.wasteexchanger.wasteexchanger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="recycling.html#lacuna.recycling.RecycleBldg" title="lacuna.recycling.RecycleBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></tt></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.wasteexchanger.wasteexchanger.path">
 <tt class="descname">path</tt><em class="property"> = 'wasteexchanger'</em><a class="headerlink" href="#lacuna.buildings.wasteexchanger.wasteexchanger.path" title="Permalink to this definition">¶</a></dt>
@@ -4816,7 +4822,7 @@ trade.</p>
 <dl class="class">
 <dt id="lacuna.buildings.wasterecycling.wasterecycling">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.wasterecycling.</tt><tt class="descname">wasterecycling</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.wasterecycling.wasterecycling" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="recycling.html#lacuna.recycling.RecycleBldg" title="lacuna.recycling.RecycleBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></tt></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.wasterecycling.wasterecycling.path">
 <tt class="descname">path</tt><em class="property"> = 'wasterecycling'</em><a class="headerlink" href="#lacuna.buildings.wasterecycling.wasterecycling.path" title="Permalink to this definition">¶</a></dt>
@@ -4934,10 +4940,10 @@ trade.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="captcha.html" class="btn btn-neutral float-right" title="captcha"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="captcha.html" class="btn btn-neutral float-right" title="TLE Module - Captcha"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="building.html" class="btn btn-neutral" title="building"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="building.html" class="btn btn-neutral" title="TLE Module - Building"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

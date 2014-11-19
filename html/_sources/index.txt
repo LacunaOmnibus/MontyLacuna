@@ -13,7 +13,13 @@ to run MontyLacuna scripts, and don't want (yet, at least) to write them, just
 read the :ref:`getting_started` section down to where it tells you to stop, 
 and ignore the rest.
 
-Contents:
+.. In the toctree,
+   - The first grouping are intro-y sections, whose titles are capitalized.
+   - The next grouping are moduels that mirror modules documented by the TLE 
+     API, and their titles are "TLE Module - Modulename"
+   - The next grouping are Non-TLE classes and utilities.
+   #
+   I apparently can't put comments inside the toctree section.
 
 .. toctree::
    :maxdepth: 2
@@ -23,18 +29,26 @@ Contents:
    logging
    caching
    glossary
-   bc
+
    alliance
    body
    building
    captcha
-   clients
    empire
-   exceptions
    inbox
    map
-   my_validate_email
    stats
+
+   bc
+   clients
+   exceptions
+   glyph
+   my_validate_email
+   plan
+   recycling
+   resource
+   ship
+   trading
 
 Indices and tables
 ==================

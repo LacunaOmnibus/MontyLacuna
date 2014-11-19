@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>captcha &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>TLE Module - Captcha &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="clients" href="clients.html"/>
+        <link rel="next" title="TLE Module - Empire" href="empire.html"/>
         <link rel="prev" title="lacuna.buildings package" href="lacuna.buildings.html"/> 
 
   
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">captcha</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -130,7 +136,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>captcha</li>
+    <li>TLE Module - Captcha</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/captcha.txt" rel="nofollow"> View page source</a>
@@ -142,18 +148,17 @@
           <div role="main">
             
   <div class="section" id="module-lacuna.captcha">
-<span id="captcha"></span><h1>captcha<a class="headerlink" href="#module-lacuna.captcha" title="Permalink to this headline">¶</a></h1>
+<span id="tle-module-captcha"></span><h1>TLE Module - Captcha<a class="headerlink" href="#module-lacuna.captcha" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.captcha.Captcha">
 <em class="property">class </em><tt class="descclassname">lacuna.captcha.</tt><tt class="descname">Captcha</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
 <p>Fetches, displays, and solves graphical captchas.</p>
 <p>General usage will be:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
-<span class="go">cap = my_client.get_captcha()</span>
-<span class="go">cap.showit()            # display the captcha image</span>
-<span class="go">cap.prompt_user()       # ask the user for a solution</span>
-<span class="go">cap.solveit()           # check the user&#39;s solution </span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cap</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_captcha</span><span class="p">()</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">showit</span><span class="p">()</span>            <span class="c"># display the captcha image</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">prompt_user</span><span class="p">()</span>       <span class="c"># ask the user for a solution</span>
+<span class="n">cap</span><span class="o">.</span><span class="n">solveit</span><span class="p">()</span>           <span class="c"># check the user&#39;s solution </span>
 </pre></div>
 </div>
 <dl class="method">
@@ -177,15 +182,15 @@ doing so makes no sense.</p>
 <tt class="descname">showit</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.showit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Actually downloads the captcha image, and attempts to display it  
 to the user in one of several browsers.</p>
-<p>If fetch() is called first, showit() uses that fetched data, but this 
-is not necessary.  showit() will call fetch for you.</p>
+<p>If <tt class="docutils literal"><span class="pre">fetch()</span></tt> is called first, <tt class="docutils literal"><span class="pre">showit()</span></tt> uses that fetched data, but 
+this is not necessary.  <tt class="docutils literal"><span class="pre">showit()</span></tt> will call fetch for you.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.solve">
 <tt class="descname">solve</tt><big>(</big><em>guid: str</em>, <em>solution: str</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.solve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mirrors the TLE Captcha::solve() method, but unless you really 
-need this and you really know why, use solveit() instead.</p>
+<dd><p>Mirrors the TLE Captcha module&#8217;s <tt class="docutils literal"><span class="pre">solve()</span></tt> method, but unless you 
+really need this and you really know why, use <tt class="docutils literal"><span class="pre">solveit()</span></tt> instead.</p>
 </dd></dl>
 
 <dl class="method">
@@ -218,7 +223,7 @@ guid    uuid attached to the puzzle; must be passed back along with
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="clients.html" class="btn btn-neutral float-right" title="clients"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="empire.html" class="btn btn-neutral float-right" title="TLE Module - Empire"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="lacuna.buildings.html" class="btn btn-neutral" title="lacuna.buildings package"><span class="fa fa-arrow-circle-left"></span> Previous</a>

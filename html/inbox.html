@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>inbox &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>TLE Module - Inbox &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -29,8 +29,8 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
-        <link rel="next" title="map" href="map.html"/>
-        <link rel="prev" title="exceptions" href="exceptions.html"/> 
+        <link rel="next" title="TLE Module - Map" href="map.html"/>
+        <link rel="prev" title="TLE Module - Empire" href="empire.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -130,7 +136,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>inbox</li>
+    <li>TLE Module - Inbox</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/inbox.txt" rel="nofollow"> View page source</a>
@@ -142,12 +148,12 @@
           <div role="main">
             
   <div class="section" id="module-lacuna.inbox">
-<span id="inbox"></span><h1>inbox<a class="headerlink" href="#module-lacuna.inbox" title="Permalink to this headline">¶</a></h1>
+<span id="tle-module-inbox"></span><h1>TLE Module - Inbox<a class="headerlink" href="#module-lacuna.inbox" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.inbox.Inbox">
 <em class="property">class </em><tt class="descclassname">lacuna.inbox.</tt><tt class="descname">Inbox</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
-<p>Class representing your mailbox.</p>
+<p>Represents your mailbox.</p>
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.archive_messages">
 <tt class="descname">archive_messages</tt><big>(</big><em>messages: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.archive_messages" title="Permalink to this definition">¶</a></dt>
@@ -158,18 +164,15 @@
 <li>messages &#8211; a list of message IDs</li>
 </ul>
 </dd>
+<dt>Returns a dict containing the keys:</dt>
+<dd><ul class="first last simple">
+<li>success &#8211; [ List of message IDs that were archived successfully ]</li>
+<li>failure &#8211; [ List of message IDs that failed to be archived ]</li>
+</ul>
+</dd>
 </dl>
-<p>Returns a dict containing:</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre>{
-    success : [id, id, id, ...]
-    failure : [id, id, id, ...]
-    status : { ... }
-}
-</pre></div>
-</div>
-</div></blockquote>
-<p>There&#8217;s no indication why any given message movement succeeded or failed, just that they did.</p>
+<p>There&#8217;s no indication why any given message movement succeeded or 
+failed, just that they did.</p>
 </dd></dl>
 
 <dl class="method">
@@ -186,21 +189,14 @@
 <dd><p>Sends an in-game mail message.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><p class="first">recipients &#8211; Comma-separated string containing names of empires to receive your message.  NOT A LIST, a comma-separated string.</p>
-</li>
-<li><p class="first">subject &#8211; &lt; 100 chars in length.  Cannot contain any of &amp;, &#64;, ;, &lt;, or &gt; Unicode is OK (I&#8217;ve mailed myself a snowman).</p>
-</li>
-<li><p class="first">body &#8211; Limit of 200,000 characters.  &lt; and &gt; are disallowed.  Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it&#8217;s very sensitive, and you&#8217;re not informed what word it&#8217;s triggering on.  &#8220;crap&#8221; (along with other pretty mild language) is considered profane.</p>
-</li>
-<li><dl class="first docutils">
-<dt>options &#8211; Dict:</dt>
 <dd><ul class="first last simple">
-<li>&#8216;in_reply_to&#8217;   A message ID to reply to.</li>
-<li>&#8216;forward&#8217;       A message ID to forward.</li>
+<li>recipients &#8211; Comma-separated string containing names of empires to receive your message.  NOT A LIST, a comma-separated string.</li>
+<li>subject &#8211; &lt; 100 chars in length.  Cannot contain any of &amp;, &#64;, ;, &lt;, or &gt; Unicode is OK (I&#8217;ve mailed myself a snowman).</li>
+<li>body &#8211; Limit of 200,000 characters.  &lt; and &gt; are disallowed.  Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it&#8217;s very sensitive, and you&#8217;re not informed what word it&#8217;s triggering on.  &#8220;crap&#8221; (along with other pretty mild language) is considered profane.</li>
+<li>options &#8211; Dict containing:<ul>
+<li>in_reply_to &#8211; A message ID to reply to.</li>
+<li>forward &#8211; A message ID to forward.</li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </dd>
@@ -211,15 +207,12 @@ the body of the forwarded message is NOT included in the current
 message.  If you want that to happen, you&#8217;ll need to do it yourself.</p>
 <p>Returns a dict with (afaict) two keys (the rv is not documented, so 
 I&#8217;m just reporting the results of a few tests here).</p>
-<p>For a message sent to recipients &#8220;tmtowtdi,Infinate Ones,no_such_player&#8221;:</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&#39;sent&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;tmtowtdi&#39;</span><span class="p">,</span> <span class="s">&#39;Infinate Ones&#39;</span><span class="p">],</span>
-    <span class="s">&#39;unknown&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;no_such_player&#39;</span><span class="p">]</span>
-<span class="p">}</span>
+<p>For a message sent to recipients &#8220;tmtowtdi,Infinate 
+Ones,no_such_player&#8221;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>   <span class="s">&#39;sent&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;tmtowtdi&#39;</span><span class="p">,</span> <span class="s">&#39;Infinate Ones&#39;</span><span class="p">],</span>
+    <span class="s">&#39;unknown&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;no_such_player&#39;</span><span class="p">]</span>   <span class="p">}</span>
 </pre></div>
 </div>
-</div></blockquote>
 <dl class="docutils">
 <dt><strong>Message Formatting</strong></dt>
 <dd>This is rarely-enough used and the docs are wordy enough that it&#8217;s not worth
@@ -237,22 +230,22 @@ repeating it all here.  See <a class="reference external" href="https://us1.lacu
 <li>messages &#8211; a list of message IDs</li>
 </ul>
 </dd>
+<dt>Returns a dict containing the keys:</dt>
+<dd><ul class="first last simple">
+<li>success &#8211; [ List of message IDs that were archived successfully ]</li>
+<li>failure &#8211; [ List of message IDs that failed to be archived ]</li>
+</ul>
+</dd>
 </dl>
-<p>Returns a dict containing:</p>
-<div class="highlight-python"><div class="highlight"><pre>dict = {
-    success : [id, id, id, ...]
-    failure : [id, id, id, ...]
-    status : { ... }
-}
-</pre></div>
-</div>
-<p>There&#8217;s no indication why any given message movement succeeded or failed, just that they did.</p>
+<p>There&#8217;s no indication why any given message movement succeeded or 
+failed, just that they did.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_archived">
 <tt class="descname">view_archived</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_archived" title="Permalink to this definition">¶</a></dt>
-<dd><p>View archived messages.  Returns the same as view_inbox().</p>
+<dd><p>View archived messages.</p>
+<p>Arguments and returns are the same as view_inbox().</p>
 </dd></dl>
 
 <dl class="method">
@@ -261,28 +254,23 @@ repeating it all here.  See <a class="reference external" href="https://us1.lacu
 <dd><p>View the messages in your empire&#8217;s inbox, 25 messages per page.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>opts &#8211; Dict (optional)</dt>
 <dd><ul class="first last simple">
+<li>opts &#8211; Optional dict containing:<ul>
 <li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
 <li>tags &#8211; List of tags to filter by.</li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </dd>
 </dl>
 <p>The tags you passed in are joined with &#8216;or&#8217;.  So for this call, you&#8217;ll 
-get back BOTH excavator and correspondence messages:</p>
-<blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span class="n">msgs</span><span class="p">,</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">view_inbox</span><span class="p">({</span>
+get back both excavator and correspondence messages:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">msgs</span><span class="p">,</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">view_inbox</span><span class="p">({</span>
+    <span class="s">&quot;page_number&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
     <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;excavator&quot;</span><span class="p">,</span> <span class="s">&quot;correspondence&quot;</span><span class="p">]</span>
 <span class="p">})</span>
 </pre></div>
 </div>
-</div></blockquote>
 <dl class="docutils">
 <dt>Valid message tags:</dt>
 <dd>Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
@@ -292,7 +280,7 @@ Tutorial</dd>
 <p>Sending an invalid tag will not throw an exception, it&#8217;ll merely 
 return 0 messages.</p>
 <dl class="docutils">
-<dt>Returns:</dt>
+<dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
 <li>messages &#8211; List of inbox.MessageSummary objects</li>
 <li>count &#8211; Integer total number of messages in the inbox</li>
@@ -304,13 +292,15 @@ return 0 messages.</p>
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_sent">
 <tt class="descname">view_sent</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_sent" title="Permalink to this definition">¶</a></dt>
-<dd><p>View sent messages.  Returns the same as view_inbox().</p>
+<dd><p>View sent messages.</p>
+<p>Arguments and returns are the same as view_inbox().</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_trashed">
 <tt class="descname">view_trashed</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_trashed" title="Permalink to this definition">¶</a></dt>
-<dd><p>View trashed messages.  Returns the same as view_inbox().</p>
+<dd><p>View trashed messages.</p>
+<p>Arguments and returns are the same as view_inbox().</p>
 </dd></dl>
 
 </dd></dl>
@@ -340,33 +330,23 @@ recipients      [&quot;John Stewart&quot;],
 tags            [&quot;Correspondence&quot;],
 attachments     Dict, not a list.  A given message may not have more 
                 than one of each type of attachment.
-                    {
-                        &quot;image&quot; : {
-                            &quot;url&quot; : &quot;http://www.example.com/path/image.jpg&quot;,
-                            &quot;title&quot; : &quot;Some Title&quot;,
-                            &quot;link&quot; : &quot;http://www.lacunaexpanse.com/&quot;, # optional link to somewhere
-                        },
-                        &quot;link&quot; : {
-                            &quot;url&quot; : &quot;http://www.lacunaexpanse.com/&quot;,
-                            &quot;label&quot; : &quot;The Lacuna Expanse Website&quot;
-                        }
-                        &quot;table&quot; : [
-                            [ &quot;Hostname&quot;, &quot;IP Address&quot; ], # first row is always a header
-                            [ &quot;example.lacunaexpanse.com&quot;, &quot;192.168.1.24&quot; ],
-                            ...
-                        ],
-                        &quot;map&quot; : {
-                            &quot;surface&quot; : &quot;surface-6&quot;,
-                            &quot;buildings&quot; : [
-                                {
-                                    &quot;x&quot; : -3,
-                                    &quot;y&quot; : 4,
-                                    &quot;image&quot; : &quot;apples4&quot;
-                                }
-                                ...
-                            ]
-                        }
-                    }
+                {
+                    &quot;image&quot; : { &quot;url&quot; : &quot;http://www.example.com/path/image.jpg&quot;,
+                                &quot;title&quot; : &quot;Some Title&quot;,
+                                &quot;link&quot; : &quot;http://www.lacunaexpanse.com/&quot;, # optional link to somewhere   },
+                    &quot;link&quot; : {  &quot;url&quot; : &quot;http://www.lacunaexpanse.com/&quot;,
+                                &quot;label&quot; : &quot;The Lacuna Expanse Website&quot;   }
+                    &quot;table&quot; : [
+                        [ &quot;Hostname&quot;, &quot;IP Address&quot; ], # first row is always a header
+                        [ &quot;example.lacunaexpanse.com&quot;, &quot;192.168.1.24&quot; ],
+                        [ &quot;another hostname&#39;, &quot;another IP&quot; ],
+                    ],
+                    &quot;map&quot; : {   &quot;surface&quot; : &quot;surface-6&quot;,
+                                &quot;buildings&quot; : [{    &quot;x&quot; : -3,
+                                                    &quot;y&quot; : 4,
+                                                    &quot;image&quot; : &quot;apples4&quot;  }]
+                            }
+                }
 </pre></div>
 </div>
 </dd></dl>
@@ -376,8 +356,6 @@ attachments     Dict, not a list.  A given message may not have more
 <em class="property">class </em><tt class="descclassname">lacuna.inbox.</tt><tt class="descname">MessageSummary</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.inbox.MessageSummary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>This is the message summary you get when viewing a list of messages.</p>
-<p>Note that the sender&#8217;s name is listed in the TLE documentation using the 
-key &#8220;from&#8221;, but we&#8217;re instead using &#8220;from_name&#8221;.</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 subject         &quot;Vaxaslim&quot;,
@@ -392,6 +370,9 @@ body_preview    &quot;Just a reminder that Vaxaslim &quot;,
 tags            &quot;Correspondence&quot; 
 </pre></div>
 </div>
+<p><strong>NOTE</strong> The TLE API actually returns the sender&#8217;s name in a key named 
+<tt class="docutils literal"><span class="pre">from</span></tt>.  Since <tt class="docutils literal"><span class="pre">from</span></tt> is a Python reserved word and cannot be used as 
+an attribute name, the attribute above has been changed to <tt class="docutils literal"><span class="pre">from_name</span></tt>.</p>
 </dd></dl>
 
 </div>
@@ -402,10 +383,10 @@ tags            &quot;Correspondence&quot;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="map.html" class="btn btn-neutral float-right" title="map"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="map.html" class="btn btn-neutral float-right" title="TLE Module - Map"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="exceptions.html" class="btn btn-neutral" title="exceptions"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="empire.html" class="btn btn-neutral" title="TLE Module - Empire"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

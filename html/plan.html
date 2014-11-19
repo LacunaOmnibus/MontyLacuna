@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>plan &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -28,7 +28,9 @@
   
 
   
-    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/> 
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="next" title="recycling" href="recycling.html"/>
+        <link rel="prev" title="my_validate_email module" href="my_validate_email.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -44,7 +46,7 @@
       <div class="wy-side-nav-search">
         <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -55,7 +57,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
@@ -106,7 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
@@ -134,8 +136,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>plan</li>
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/plan.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -143,22 +147,76 @@
 </div>
           <div role="main">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="module-lacuna.plan">
+<span id="plan"></span><h1>plan<a class="headerlink" href="#module-lacuna.plan" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.plan.LevelCosts">
+<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">LevelCosts</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.plan.LevelCosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></tt></a></p>
+<p>Not a plan at all, but the costs associated with creating a plan at your 
+SS Lab.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>level   1,
+food    10000
+ore     10000
+water   10000
+energy  10000
+waste   2500
+time    1200 (in seconds)
+</pre></div>
+</div>
+</dd></dl>
 
-  
-  <div id="search-results">
-  
-  </div>
+<dl class="class">
+<dt id="lacuna.plan.OwnedPlan">
+<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">OwnedPlan</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.plan.OwnedPlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></tt></a></p>
+<p>Returned from viewing plans you currently own, as in your PCC.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>name                &quot;Interstellar Broadcast System&quot;
+level               1
+extra_build_level   5
+quantity            23
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.plan.Plan">
+<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">Plan</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.plan.Plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Plan base class</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.plan.PotentialSSPlan">
+<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">PotentialSSPlan</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.plan.PotentialSSPlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></tt></a></p>
+<p>Returned from viewing plans you can build, as in your Space Station Lab
+(A).</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>name                &quot;Interstellar Broadcast System&quot;
+type                &quot;ibs&quot;
+image               &quot;ibs&quot;
+url                 &quot;/ibs&quot;
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="recycling.html" class="btn btn-neutral float-right" title="recycling"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="my_validate_email.html" class="btn btn-neutral" title="my_validate_email module"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -194,7 +252,6 @@
       <script type="text/javascript" src="static/jquery.js"></script>
       <script type="text/javascript" src="static/underscore.js"></script>
       <script type="text/javascript" src="static/doctools.js"></script>
-      <script type="text/javascript" src="static/searchtools.js"></script>
 
   
 
@@ -210,14 +267,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

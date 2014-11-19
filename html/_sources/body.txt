@@ -1,6 +1,6 @@
 
-body
-===============
+TLE Module - Body
+=================
 
 .. automodule:: lacuna.body
    :members:

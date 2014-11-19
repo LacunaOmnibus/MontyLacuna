@@ -1,6 +1,6 @@
 
-map
-===============
+TLE Module - Map
+================
 
 .. automodule:: lacuna.map
    :members:

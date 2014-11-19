@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>building &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>TLE Module - Building &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
         <link rel="next" title="lacuna.buildings package" href="lacuna.buildings.html"/>
-        <link rel="prev" title="body" href="body.html"/> 
+        <link rel="prev" title="TLE Module - Body" href="body.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -92,21 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">body</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">building</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Building</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">empire</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
         
@@ -130,7 +136,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>building</li>
+    <li>TLE Module - Building</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/building.txt" rel="nofollow"> View page source</a>
@@ -142,33 +148,26 @@
           <div role="main">
             
   <div class="section" id="module-lacuna.building">
-<span id="building"></span><h1>building<a class="headerlink" href="#module-lacuna.building" title="Permalink to this headline">¶</a></h1>
-<p>Building is a base class representing generic buildings. A “generic 
-building” is usually one that’s handed back to you from the server as a 
-dict, often in a list of dicts, from such things as checking on the 
-Development Ministry’s build queue via its view() method.</p>
+<span id="tle-module-building"></span><h1>TLE Module - Building<a class="headerlink" href="#module-lacuna.building" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.building.Building">
+<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">Building</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.Building" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Base class representing generic buildings. A “generic building” is 
+usually one that’s handed back to you from the server as a dict, often in 
+a list of dicts, from such things as checking on the Development 
+Ministry’s build queue via its view() method.</p>
 <p>A Building object will probably, but not necessarily, have a building ID, 
 and may or may not belong to the current empire.</p>
-<p>MyBuilding represents a building owned by your empire, and most building 
-objects you encounter will inherit from MyBuilding.</p>
-<p>MontyLacuna attempts to provide method calls that mirror all of the method 
-calls documented by the TLE API.  However, MyBuilding had to violate that 
-for two methods:</p>
-<blockquote>
-<div><ul class="simple">
-<li><tt class="docutils literal"><span class="pre">do_upgrade()</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">do_downgrade()</span></tt></li>
-</ul>
-<p>The published (server) method names for these are <tt class="docutils literal"><span class="pre">upgrade()</span></tt> and 
-<tt class="docutils literal"><span class="pre">downgrade()</span></tt>.  However, we&#8217;ve got status attributes by those names, 
-and attributes overwrite methods of the same name.
-So these have been renamed, adding the <tt class="docutils literal"><span class="pre">do_</span></tt> prefix to avoid attribute 
-name collisions.</p>
-</div></blockquote>
+<p>Most buildings you deal with will be MyBuilding objects, not Building 
+objects.</p>
+</dd></dl>
+
 <dl class="class">
 <dt id="lacuna.building.InBuildQueue">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">InBuildQueue</tt><big>(</big><em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></p>
+<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">InBuildQueue</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a></p>
+<p>A building in the Development Ministry&#8217;s build queue.</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id                  &quot;building-id-goes-here&quot;,
 name                &quot;Planetary Commmand&quot;,
@@ -186,11 +185,20 @@ subsidy_cost        3 # the essentia cost to subsidize just this building
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MultiStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MultiStorage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
 <p>Base class for the storage buildings that store a variegated resource 
-type, eg food or ore.</p>
+type, ie food and ore.</p>
 <dl class="method">
 <dt id="lacuna.building.MultiStorage.dump">
-<tt class="descname">dump</tt><big>(</big><em>res_type: str=''</em>, <em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MultiStorage.dump" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts the stored resource into waste</p>
+<tt class="descname">dump</tt><big>(</big><em>res_type: str</em>, <em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MultiStorage.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the stored resource into waste.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>res_type &#8211; Required string.  The name of the specific type of res
+to dump (&#8216;anthracite&#8217;, &#8216;bauxite&#8217;, &#8216;algae&#8217;, &#8216;apple&#8217;, etc )</li>
+<li>amount &#8211; Required integer.  The amount of res to dump.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -199,6 +207,8 @@ type, eg food or ore.</p>
 <dt id="lacuna.building.MyBuilding">
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MyBuilding</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<p>Represents a building owned by your empire.  Most building objects 
+you encounter will inherit from MyBuilding.</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              Integer ID of the building itself
 body_id         Integer ID of the body this building is sitting on,
@@ -209,27 +219,38 @@ url             &quot;/apple&quot;,
 level           3,
 image           &quot;apples3&quot;,
 efficiency      95,
-pending_build   {
-                    # only included when building is building/upgrading
+pending_build   {   # only included when building is building/upgrading
                     &quot;seconds_remaining&quot; : 430,
                     &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;
-                },
-work            {
-                    # only included when building is working (Parks, Waste Recycling, etc)
+                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;  },
+work            {   # only included when building is working (Parks, Waste Recycling, etc)
                     &quot;seconds_remaining&quot; : 49,
                     &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;
-                }
+                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;  }
 </pre></div>
 </div>
+<p>MontyLacuna attempts to provide method calls that mirror all of the method 
+calls documented by the TLE API.  However, MyBuilding had to violate that 
+for two methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">do_upgrade()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">do_downgrade()</span></tt></li>
+</ul>
+<p>The published (server) method names for these are <tt class="docutils literal"><span class="pre">upgrade()</span></tt> and 
+<tt class="docutils literal"><span class="pre">downgrade()</span></tt>.  However, we&#8217;ve got status attributes by those names, 
+and attributes overwrite methods of the same name.
+So these have been renamed, adding the <tt class="docutils literal"><span class="pre">do_</span></tt> prefix to avoid attribute 
+name collisions.</p>
+</div></blockquote>
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.build">
 <tt class="descname">build</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.build" title="Permalink to this definition">¶</a></dt>
-<dd><p>Actually places a building on the requested coords, assuming the building is
-buildable, the coords are empty, and a plot is available.
-After calling build(), your &#8220;new building&#8221; object will be be an &#8220;existing building&#8221;
-object, capable of calling the rest of the building methods.</p>
+<dd><p>Actually places a building on the requested coords, assuming the 
+building is buildable, the coords are empty, and a plot is available.</p>
+<p>After calling <tt class="docutils literal"><span class="pre">build()</span></tt>, your &#8220;new building&#8221; object will be be an 
+&#8220;existing building&#8221; object, capable of calling the rest of the building 
+methods.</p>
 </dd></dl>
 
 <dl class="method">
@@ -261,7 +282,7 @@ Rather than simply passing back the data returned from the TLE server,
 returns the value from the originally-called method.</p>
 <p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
 using this, there&#8217;s no need to decorate with 
-&#64;LacunaObject.set_empire_status (and doing so will fail).</p>
+&#64;lacuna.bc.LacunaObject.set_empire_status (and doing so will fail).</p>
 </dd></dl>
 
 <dl class="method">
@@ -282,7 +303,7 @@ Calls a server method that requires a session_id, but not a body_id.</p>
 method rather than the dict returned from the TLE server.</p>
 <p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
 using this, there&#8217;s no need to decorate with 
-&#64;LacunaObject.set_empire_status (and doing so will fail).</p>
+&#64;lacuna.bc.LacunaObject.set_empire_status (and doing so will fail).</p>
 </dd></dl>
 
 <dl class="method">
@@ -305,16 +326,18 @@ the building status if it was included.</p>
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.get_stats_for_level">
 <tt class="descname">get_stats_for_level</tt><big>(</big><em>level: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.get_stats_for_level" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns what the stats for this building would be at the requested level.  The
-hypothetical stats are returned in rv[&#8216;building&#8217;].</p>
+<dd><p>Get what the stats for this building would be at the requested 
+level.</p>
+<p>Returns a dict including the key <tt class="docutils literal"><span class="pre">building</span></tt>, which contains the
+hypothetical stats.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.repair">
 <tt class="descname">repair</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.repair" title="Permalink to this definition">¶</a></dt>
 <dd><p>Repairs a building, provided you have enough resources onsite.
-See the repair_costs building attribute (it&#8217;s a dict) before calling
-repair to determine how much res the repair will take.</p>
+See the repair_costs building attribute before calling
+<tt class="docutils literal"><span class="pre">repair()</span></tt> to determine how much res the repair will take.</p>
 </dd></dl>
 
 <dl class="method">
@@ -329,9 +352,9 @@ actually already exists.  Add this decorator to those methods.</p>
 <dt id="lacuna.building.MyBuilding.set_building_status">
 <tt class="descname">set_building_status</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.set_building_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
-Much like LacunaObject.set_empire_status.  A few of the Building server 
+Much like lacuna.bc.LacunaObject.set_empire_status.  A few of the Building server 
 methods return both empire status and building status.  So we&#8217;ll still 
-decorate with LacunaObject.set_empire_status to get the empire status, 
+decorate with lacuna.bc.LacunaObject.set_empire_status to get the empire status, 
 but we&#8217;ll also decorate with this to set the body status.</p>
 </dd></dl>
 
@@ -342,11 +365,18 @@ but we&#8217;ll also decorate with this to set the body status.</p>
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">SingleStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.SingleStorage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
 <p>Base class for the storage buildings that store a singular resource 
-type, eg water or energy.</p>
+type, ie water and energy.</p>
 <dl class="method">
 <dt id="lacuna.building.SingleStorage.dump">
 <tt class="descname">dump</tt><big>(</big><em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.SingleStorage.dump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the stored resource into waste</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>amount &#8211; Required integer.  The amount of res to dump.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -527,7 +557,7 @@ type, eg water or energy.</p>
         <a href="lacuna.buildings.html" class="btn btn-neutral float-right" title="lacuna.buildings package"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="body.html" class="btn btn-neutral" title="body"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="body.html" class="btn btn-neutral" title="TLE Module - Body"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
