@@ -177,6 +177,8 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - $ perl fix_underscores.pl
     - $ cp -Rip doc/{underscore}build/html ~/Desktop
     - $ cd ..
+    - $ git status
+      - Commit any changes to master
     - $ git co gh-pages
     - $ rm -rf html
     - $ mv ~/Desktop/html ./
