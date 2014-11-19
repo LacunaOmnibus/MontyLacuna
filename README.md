@@ -98,12 +98,6 @@ supposed to do.
  - recycler (base class)
     - wasteexchanger
     - wasterecycling
-- Space Station Modules
-  - CHECK Whoopsie I forgot about these.
-  - policestation.py
-    - started.  not going to be hard, just another building.  Finish these all 
-      up.
-
 
 ## Incomplete/Not Started
 - Payments
@@ -175,9 +169,14 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     {underscore}build/html/.  Those HTML files contain links to both _static/ and 
     _modules.  For whatever reason, github pages does not like the underscore on the front 
     of directory names - it refuses to host files from there.
-    - To fix the whole underscore problem, run fix_underscores.pl (in doc/).
+    - fix_underscores.pl (in doc/) fixes that.
   - Now that everything is ready for gh-pages:
+    - $ pwd
+      /home/jon/work/MontyLacuna/doc
+    - $ make html
+    - $ perl fix_underscores.pl
     - $ cp -Rip doc/{underscore}build/html ~/Desktop
+    - $ cd ..
     - $ git co gh-pages
     - $ rm -rf html
     - $ mv ~/Desktop/html ./
