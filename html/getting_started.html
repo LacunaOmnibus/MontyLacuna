@@ -61,16 +61,13 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install-python-3">Install Python 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#script-runners-stop-here">Script Runners Stop Here</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#connect-a-client">Connect a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#get-your-empire">Get your empire</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#get-info-on-your-alliance">Get info on your alliance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#read-mail-from-your-inbox">Read mail from your inbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#check-on-one-of-your-planets-by-name">Check on one of your planets by name</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#check-on-one-of-the-buildings-on-that-planet">Check on one of the buildings on that planet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
@@ -173,10 +170,27 @@ it to whatever you want, but I strongly suggest you just rename it to
 </li>
 </ul>
 </div>
+<div class="section" id="install-pip-and-prerequisite-libraries">
+<h2>Install pip and Prerequisite Libraries<a class="headerlink" href="#install-pip-and-prerequisite-libraries" title="Permalink to this headline">¶</a></h2>
+<p>pip is a tool for installing Python libraries.  Installing pip is very easy,
+as MontyLacuna includes a script to install it for you.</p>
+<p>Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna
+folder, and run pip installer script:</p>
+<div class="highlight-python"><div class="highlight"><pre>python3 bin/get-pip.py
+</pre></div>
+</div>
+<p>There are only two Python libraries to install, <tt class="docutils literal"><span class="pre">requests</span></tt> and <tt class="docutils literal"><span class="pre">beaker</span></tt>,
+and you install both of them using <tt class="docutils literal"><span class="pre">pip</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install requests
+pip install beaker
+</pre></div>
+</div>
+<p>Leave that CMD window open for the next step.</p>
+</div>
 <div class="section" id="create-a-config-file">
 <h2>Create A Config File<a class="headerlink" href="#create-a-config-file" title="Permalink to this headline">¶</a></h2>
-<p>Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna
-folder, and run the config file creation script:</p>
+<p>Using the CMD window you left open from the previous step, run the config file
+creation script:</p>
 <div class="highlight-python"><div class="highlight"><pre>python3 bin/create_config_file.py
 </pre></div>
 </div>
@@ -187,12 +201,22 @@ folder, and run the config file creation script:</p>
 <p><strong>If you&#8217;re only planning on running scripts, not writing them, you can stop
 reading here; you&#8217;re done!</strong></p>
 </div>
+<div class="section" id="test-scripts">
+<h2>Test Scripts<a class="headerlink" href="#test-scripts" title="Permalink to this headline">¶</a></h2>
+<p>There are a bunch of test scripts in <tt class="docutils literal"><span class="pre">INSTALLDIR/t/</span></tt>.  These are not meant
+to be attached to any test harness, and almost all the code in all of the
+scripts has been commented out.</p>
+<p>Instead of automated unit tests, those are to-be-run-manually test scripts.
+You can run them as you like, but you&#8217;ll need to edit each one to make sense
+to you, and be careful; some of the example code in those scripts can be
+damaging to your empire.</p>
+<p>Those scripts really exist as examples of how to use MontyLacuna.</p>
+</div>
 <div class="section" id="tell-your-script-where-montylacuna-lives">
 <h2>Tell Your Script Where MontyLacuna Lives<a class="headerlink" href="#tell-your-script-where-montylacuna-lives" title="Permalink to this headline">¶</a></h2>
 <p>When you create a new script, you&#8217;ll need to tell that script how to find the
 MontyLacuna libraries.</p>
-<p>Assuming that your script is going to be in <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>, add this to
-the top of the script:</p>
+<p>Add this to the top of your script:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 
 <span class="n">libdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s">&quot;/../lib&quot;</span>
@@ -201,6 +225,10 @@ the top of the script:</p>
 <span class="kn">import</span> <span class="nn">lacuna</span>
 </pre></div>
 </div>
+<p>The path to the <tt class="docutils literal"><span class="pre">lib/</span></tt> directory is relative to the location of your script,
+and this example assumes your script is going to live in <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>.
+If you&#8217;re going to put your script somewhere else, adjust the path
+accordingly.</p>
 </div>
 <div class="section" id="connect-a-client">
 <h2>Connect a client<a class="headerlink" href="#connect-a-client" title="Permalink to this headline">¶</a></h2>
@@ -210,15 +238,20 @@ the top of the script:</p>
 <span class="p">)</span>
 </pre></div>
 </div>
+<p>As with the previous step, the path to the config file is relative to the
+location of your script.  Adjust the path accordingly if your script is going
+to live somewhere other than <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>.</p>
 <p>Please keep in mind that many of the people using your script may not be very
 technically inclined.  The config file creation script that comes with
 MontyLacuna creates config file sections named <tt class="docutils literal"><span class="pre">real</span></tt> and <tt class="docutils literal"><span class="pre">sitter</span></tt>; if
 your script is meant for distribution, it&#8217;s strongly suggested that you
 specify one of those two names as your <tt class="docutils literal"><span class="pre">config_section</span></tt>.</p>
 </div>
+<div class="section" id="example-snippets">
+<h2>Example Snippets<a class="headerlink" href="#example-snippets" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="get-your-empire">
-<h2>Get your empire<a class="headerlink" href="#get-your-empire" title="Permalink to this headline">¶</a></h2>
-<p>Your empire info is already part of your clien</p>
+<h3>Get your empire<a class="headerlink" href="#get-your-empire" title="Permalink to this headline">¶</a></h3>
+<p>Your empire info is already part of your client:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span> <span class="s">&quot;I have used&quot;</span><span class="p">,</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">rpc_count</span><span class="p">,</span> <span class="s">&quot;RPCs so far today.&quot;</span><span class="p">)</span>
 
 <span class="n">profile</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
@@ -229,14 +262,16 @@ specify one of those two names as your <tt class="docutils literal"><span class=
 </div>
 </div>
 <div class="section" id="get-info-on-your-alliance">
-<h2>Get info on your alliance<a class="headerlink" href="#get-info-on-your-alliance" title="Permalink to this headline">¶</a></h2>
+<h3>Get info on your alliance<a class="headerlink" href="#get-info-on-your-alliance" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">my_alliance</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_my_alliance</span><span class="p">();</span>
-<span class="k">print</span><span class="p">(</span> <span class="s">&quot;My alliance is named&quot;</span><span class="p">,</span> <span class="n">my_alliance</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;My alliance is named {}, and its ID is {}.&quot;</span>
+    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_alliance</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">my_alliance</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="read-mail-from-your-inbox">
-<h2>Read mail from your inbox<a class="headerlink" href="#read-mail-from-your-inbox" title="Permalink to this headline">¶</a></h2>
+<h3>Read mail from your inbox<a class="headerlink" href="#read-mail-from-your-inbox" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">mail</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_inbox</span><span class="p">();</span>
 <span class="n">msgs</span><span class="p">,</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">view_inbox</span><span class="p">(</span> <span class="p">{</span><span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;correspondence&quot;</span><span class="p">]}</span> <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span> <span class="s">&quot;I have &quot;</span><span class="p">,</span> <span class="n">ttl</span><span class="p">,</span> <span class="s">&quot;messages in my inbox.&quot;</span><span class="p">)</span>
@@ -244,23 +279,24 @@ specify one of those two names as your <tt class="docutils literal"><span class=
 </div>
 </div>
 <div class="section" id="check-on-one-of-your-planets-by-name">
-<h2>Check on one of your planets by name<a class="headerlink" href="#check-on-one-of-your-planets-by-name" title="Permalink to this headline">¶</a></h2>
+<h3>Check on one of your planets by name<a class="headerlink" href="#check-on-one-of-your-planets-by-name" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">my_planet</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_body_byname</span><span class="p">(</span> <span class="s">&#39;Earth&#39;</span> <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span> <span class="s">&quot;Earth&#39;s ID is&quot;</span><span class="p">,</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">id</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="check-on-one-of-the-buildings-on-that-planet">
-<h2>Check on one of the buildings on that planet<a class="headerlink" href="#check-on-one-of-the-buildings-on-that-planet" title="Permalink to this headline">¶</a></h2>
+<h3>Check on one of the buildings on that planet<a class="headerlink" href="#check-on-one-of-the-buildings-on-that-planet" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">pcc</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_building_coords</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span>
 <span class="k">print</span><span class="p">(</span> <span class="s">&quot;My PCC&#39;s ID is&quot;</span><span class="p">,</span> <span class="n">pcc</span><span class="o">.</span><span class="n">id</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h3>
 <p>From here, check on some of the existing sample scripts in <tt class="docutils literal"><span class="pre">bin/</span></tt>, and the
 full documentation in <a class="reference internal" href="index.html#home"><em>Welcome to MontyLacuna&#8217;s documentation!</em></a></p>
+</div>
 </div>
 </div>
 
