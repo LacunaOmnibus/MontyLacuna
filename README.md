@@ -146,7 +146,8 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
       - That tells Sphinx where the code lives
   - To generate docu based on docstrings:
     - in ROOT:
-      - sphinx-apidoc -o doc/ lib/ lacuna
+      - sphinx-apidoc -o doc/ lib/
+        - You do not have to manually create doc/ first.
         - http://sphinx-doc.org/invocation.html#invocation-apidoc
         - This creates several more .rst files in doc/
           - lacuna.rst
@@ -156,6 +157,15 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
       - Of those generated files, the only one I'm explicitly adding to the main toctree 
         is "my_validate_email".  I don't want lacuna or modules listed there at all.  I've 
         added lacuna.buildings to the toctree of buildings.rst.
+    - That doesn't get any modules in lib/lacuna/buildings/SUBDIR/, like the LCOT or Space 
+      Station modules.
+      - To get those specifically, do something like this:
+        - sphinx-apidoc -o test/ lib/lacuna/buildings/ss_modules
+      - That'll create test/, which will contain your module .rst files.  You're going to 
+        want to edit those by hand; they'll list the module names as eg "artmuseum module" 
+        instead of "lacuna.buildings.artmuseum module".  Copy the contents of those test/ 
+        files into wherever you want them in your existing docu, and then get rid of 
+        test/.
   - All of the other .rst files in doc/ were not created automatically, but by hand.  If 
     you add a new module, you'll want to copy one of the existing .rst files and edit it 
     appropriately for your new module.
