@@ -106,20 +106,13 @@ supposed to do.
 - Announcement
 
 ## TBD
-- getting_started.rst currently has zero information on pip or installing prerequisites.  
-  I'm going to need that once I'm sure what the prerequisites are.
-  - Including get_pip.py in bin/ would make sense.
+- The Space Station modules haven't been done (whoops).  I started on policestation.py, 
+  but that needs to be finished and the rest need to be added and completed.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
   - Run through the whole Getting Started instruction set on a fresh Python install on 
     Windows to make sure the docs are correct.
-- Doc Sections
-  - For script writers:
-    - Explain the difference between a default dict return and a massaged object return.
-      - In a perfect world, I'd get rid of all default dict returns so this wouldn't be 
-        necessary.
-  - Add the non-TLE-module modules to index.rst's TOC, and fix up all of their docu.
 - Ack through everything for "CHECK" and fix.
 - Whenever we instantiate a MyBuilding object, we're calling view() on that building 
   automatically - I'm not convinced that's what should be happening.  At the very least, 
@@ -129,10 +122,7 @@ supposed to do.
 - The logfile attribute of clients is meant to be optional, but ISTR getting an explosion 
   on a test at some point where I didn't have a logfile set.  Confirm that setting a 
   logfile is optional.
-- Need a different template for the docs - have a look at 
-  lacuna.buildings.blackholegenerator.  The nav text on the left is overwriting my 
-  documentation text.
-- Figure out how to install this puppy (setup.py?)
+- I'm going to need at least a few useful scripts in bin/ before making this public.
 
 ## Documentation
 http://sphinx-doc.org/tutorial.html
@@ -149,7 +139,7 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - Edit conf.py (which was just created):
       - Line 21 (ish):
         - sys.path.insert(0, os.path.abspath('../lib'))
-      - That should tell Sphinx where the code lives
+      - That tells Sphinx where the code lives
   - To generate docu based on docstrings:
     - in ROOT:
       - sphinx-apidoc -o doc/ lib/ lacuna
@@ -162,33 +152,35 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
       - Of those generated files, the only one I'm explicitly adding to the main toctree 
         is "my_validate_email".  I don't want lacuna or modules listed there at all.  I've 
         added lacuna.buildings to the toctree of buildings.rst.
-- Each time you want to update the generated documentation:
-  - in ROOT/doc:
-    - make html
+  - All of the other .rst files in doc/ were not created automatically, but by hand.  If 
+    you add a new module, you'll want to copy one of the existing .rst files and edit it 
+    appropriately for your new module.
+
 - To publish the docs generated on the master branch to gh-pages:
-  - The HTML pages produced by "make html" in the previous step end up in 
-    {underscore}build/html/.  Those HTML files contain links to both _static/ and 
-    _modules.  For whatever reason, github pages does not like the underscore on the front 
-    of directory names - it refuses to host files from there.
-    - fix_underscores.pl (in doc/) fixes that.
-  - Now that everything is ready for gh-pages:
-    - $ pwd
-      /home/jon/work/MontyLacuna/doc
-    - $ make html
-    - $ perl fix_underscores.pl
-    - $ cp -Rip doc/{underscore}build/html ~/Desktop
-    - $ cd ..
-    - $ git status
-      - Commit any changes to master
-    - $ git co gh-pages
-    - $ rm -rf html
-    - $ mv ~/Desktop/html ./
-    - $ git add -A html
-      - There are directories in master containing files in .gitignore.  Since those files 
-        don't get commited to master, their directories don't get removed when checking 
-        out gh-pages.  So don't just "git add -A .", or you'll add that extraneous crap 
-        that has nothing to do with gh-pages.  Just "git add -A html".
-    - $ git commit -m "docs!"
-    - $ git push origin gh-pages
-    - $ git co master
+  - The HTML pages produced by "make html" end up in {underscore}build/html/.  Those HTML 
+    files contain links to _modules/, _sources/, and _static/.  For whatever reason, 
+    github pages does not like the underscore on the front of directory names - it refuses 
+    to host files from there.  These underscore directories and the links to them are what 
+    fix_underscores.pl is fixing.
+  - $ pwd
+    /home/jon/work/MontyLacuna/doc
+  - $ make html
+  - $ perl fix_underscores.pl
+  - $ cp -Rip doc/{underscore}build/html ~/Desktop
+  - $ cd ..
+  - $ git status
+    - Commit any changes to master
+  - $ git co gh-pages
+  - $ rm -rf html
+  - $ mv ~/Desktop/html ./
+  - $ git add -A html
+    - There are directories in master containing files in .gitignore.  Since those files 
+      don't get commited to master, their directories don't get removed when checking out 
+      gh-pages.  So don't just "git add -A .", or you'll add that extraneous crap that has 
+      nothing to do with gh-pages.  Just "git add -A html".
+  - $ git commit -m "docs!"
+  - $ git push origin gh-pages
+  - $ git co master
+  - Wait a $time_period (Github claims it may take up to 10 minutes, but I've never had it 
+    take more than a few seconds), and then go look at your pretty docs online.
 

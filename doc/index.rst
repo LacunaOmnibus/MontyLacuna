@@ -1,7 +1,5 @@
 .. MontyLacuna documentation master file, created by
    sphinx-quickstart on Thu Nov 13 14:04:09 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
 .. _home:
 
@@ -15,11 +13,12 @@ and ignore the rest.
 
 .. In the toctree,
    - The first grouping are intro-y sections, whose titles are capitalized.
-   - The next grouping are moduels that mirror modules documented by the TLE 
+   - The next grouping are modules that mirror modules documented by the TLE 
      API, and their titles are "TLE Module - Modulename"
    - The next grouping are Non-TLE classes and utilities.
    #
-   I apparently can't put comments inside the toctree section.
+   I apparently can't put comments inside the toctree section, so leave this 
+   up here.
 
 .. toctree::
    :maxdepth: 2
