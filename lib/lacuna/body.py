@@ -1,7 +1,9 @@
 
 import functools, re
-import lacuna.buildings
 import lacuna.bc
+import lacuna.buildings
+import lacuna.map
+import lacuna.resource
 from lacuna.exceptions import \
     NoSuchBuildingError
 
@@ -457,6 +459,36 @@ class Planet(lacuna.bc.SubClass):
         water_hour          295,
         water_capacity      51050
     """
+
+class JurisdictionPlanet(lacuna.bc.SubClass):
+    """ A planet you don't necessarily own, that's orbiting a star in the 
+    jurisdiction of one of your Space Stations, as returned by 
+    ``lacuna.buildings.parliament.get_bodies_for_star_in_jurisdiction()``.
+
+    Attributes::
+
+        id          "id-goes-here" 
+        star_id     "star-id-goes-here"
+        star_name   "Sol"
+        x           0
+        y           1
+        size        45
+        image       'a18-1',
+        ore         lacuna.resource.StoredResources object
+        zone        '0|0'
+        orbit       '3'
+        name        'Earth'
+        type        'asteroid'
+        ### 
+        ### 'station' will only appear if the planet's star has been seized by 
+        ### a space station.
+        station     lacuna.map.Station object
+
+    """
+    def __init__(self, client, mydict:dict):
+        mydict['station']   = lacuna.map.Station(client, mydict['station'])
+        mydict['ore']       = lacuna.resource.StoredResources(client, mydict['ore'])
+        super().__init__(client, mydict)
 
 class SpaceStation(lacuna.bc.SubClass):
     """

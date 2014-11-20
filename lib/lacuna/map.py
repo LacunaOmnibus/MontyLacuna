@@ -195,6 +195,29 @@ class Star(lacuna.bc.SubClass):
         for k, v in star_dict.items():
             setattr(self, k, v)
 
+class StationStar(lacuna.bc.SubClass):
+    """ A star in the jurisdiction of a space station, as returned by 
+    ``lacuna.buildings.parliament.get_stars_in_jurisdiction()``.
+
+    Attributes::
+
+        name        "Sol",
+        color       "yellow",
+        x           -41,
+        y           27,
+        zone        "0|1",
+    """
+
+class Station(lacuna.bc.SubClass):
+    """
+    Attributes::
+
+        id      "id-goes-here",
+        x       143,
+        y       -27,
+        name    "The Death Star"
+    """
+
 class Fissure(lacuna.bc.SubClass):
     """
     Attributes::

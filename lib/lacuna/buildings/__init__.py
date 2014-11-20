@@ -1,24 +1,11 @@
 
+### Regular buildings
 from lacuna.buildings.algae import algae
 from lacuna.buildings.algaepond import algaepond
 from lacuna.buildings.amalgusmeadow import amalgusmeadow
 from lacuna.buildings.apple import apple
 from lacuna.buildings.archaeology import archaeology
-from lacuna.buildings.artmuseum import artmuseum
 from lacuna.buildings.atmosphericevaporator import atmosphericevaporator
-from lacuna.buildings.beach1 import beach1
-from lacuna.buildings.beach10 import beach10
-from lacuna.buildings.beach11 import beach11
-from lacuna.buildings.beach12 import beach12
-from lacuna.buildings.beach13 import beach13
-from lacuna.buildings.beach2 import beach2
-from lacuna.buildings.beach3 import beach3
-from lacuna.buildings.beach4 import beach4
-from lacuna.buildings.beach5 import beach5
-from lacuna.buildings.beach6 import beach6
-from lacuna.buildings.beach7 import beach7
-from lacuna.buildings.beach8 import beach8
-from lacuna.buildings.beach9 import beach9
 from lacuna.buildings.bean import bean
 from lacuna.buildings.beeldeban import beeldeban
 from lacuna.buildings.beeldebannest import beeldebannest
@@ -35,7 +22,6 @@ from lacuna.buildings.corn import corn
 from lacuna.buildings.cornmeal import cornmeal
 from lacuna.buildings.crashedshipsite import crashedshipsite
 from lacuna.buildings.crater import crater
-from lacuna.buildings.culinaryinstitute import culinaryinstitute
 from lacuna.buildings.dairy import dairy
 from lacuna.buildings.denton import denton
 from lacuna.buildings.dentonbrambles import dentonbrambles
@@ -61,7 +47,6 @@ from lacuna.buildings.greatballofjunk import greatballofjunk
 from lacuna.buildings.grove import grove
 from lacuna.buildings.hallsofvrbansk import hallsofvrbansk
 from lacuna.buildings.hydrocarbon import hydrocarbon
-from lacuna.buildings.ibs import ibs
 from lacuna.buildings.intelligence import intelligence
 from lacuna.buildings.inteltraining import inteltraining
 from lacuna.buildings.interdimensionalrift import interdimensionalrift
@@ -72,15 +57,6 @@ from lacuna.buildings.lagoon import lagoon
 from lacuna.buildings.lake import lake
 from lacuna.buildings.lapis import lapis
 from lacuna.buildings.lapisforest import lapisforest
-from lacuna.buildings.lcota import lcota
-from lacuna.buildings.lcotb import lcotb
-from lacuna.buildings.lcotc import lcotc
-from lacuna.buildings.lcotd import lcotd
-from lacuna.buildings.lcote import lcote
-from lacuna.buildings.lcotf import lcotf
-from lacuna.buildings.lcotg import lcotg
-from lacuna.buildings.lcoth import lcoth
-from lacuna.buildings.lcoti import lcoti
 from lacuna.buildings.libraryofjith import libraryofjith
 from lacuna.buildings.luxuryhousing import luxuryhousing
 from lacuna.buildings.malcud import malcud
@@ -96,7 +72,6 @@ from lacuna.buildings.munitionslab import munitionslab
 from lacuna.buildings.naturalspring import naturalspring
 from lacuna.buildings.network19 import network19
 from lacuna.buildings.observatory import observatory
-from lacuna.buildings.operahouse import operahouse
 from lacuna.buildings.oracleofanid import oracleofanid
 from lacuna.buildings.orerefinery import orerefinery
 from lacuna.buildings.orestorage import orestorage
@@ -104,11 +79,9 @@ from lacuna.buildings.oversight import oversight
 from lacuna.buildings.pancake import pancake
 from lacuna.buildings.pantheonofhagness import pantheonofhagness
 from lacuna.buildings.park import park
-from lacuna.buildings.parliament import parliament
 from lacuna.buildings.pie import pie
 from lacuna.buildings.pilottraining import pilottraining
 from lacuna.buildings.planetarycommand import planetarycommand
-from lacuna.buildings.policestation import policestation
 from lacuna.buildings.politicstraining import politicstraining
 from lacuna.buildings.potato import potato
 from lacuna.buildings.propulsion import propulsion
@@ -155,3 +128,38 @@ from lacuna.buildings.waterpurification import waterpurification
 from lacuna.buildings.waterreclamation import waterreclamation
 from lacuna.buildings.waterstorage import waterstorage
 from lacuna.buildings.wheat import wheat
+
+### Beaches
+from lacuna.buildings.beach.beach1 import beach1
+from lacuna.buildings.beach.beach10 import beach10
+from lacuna.buildings.beach.beach11 import beach11
+from lacuna.buildings.beach.beach12 import beach12
+from lacuna.buildings.beach.beach13 import beach13
+from lacuna.buildings.beach.beach2 import beach2
+from lacuna.buildings.beach.beach3 import beach3
+from lacuna.buildings.beach.beach4 import beach4
+from lacuna.buildings.beach.beach5 import beach5
+from lacuna.buildings.beach.beach6 import beach6
+from lacuna.buildings.beach.beach7 import beach7
+from lacuna.buildings.beach.beach8 import beach8
+from lacuna.buildings.beach.beach9 import beach9
+
+### LCOT pieces
+from lacuna.buildings.lcot.lcota import lcota
+from lacuna.buildings.lcot.lcotb import lcotb
+from lacuna.buildings.lcot.lcotc import lcotc
+from lacuna.buildings.lcot.lcotd import lcotd
+from lacuna.buildings.lcot.lcote import lcote
+from lacuna.buildings.lcot.lcotf import lcotf
+from lacuna.buildings.lcot.lcotg import lcotg
+from lacuna.buildings.lcot.lcoth import lcoth
+from lacuna.buildings.lcot.lcoti import lcoti
+
+### Space station modules
+from lacuna.buildings.ss_modules.artmuseum import artmuseum
+from lacuna.buildings.ss_modules.culinaryinstitute import culinaryinstitute
+from lacuna.buildings.ss_modules.ibs import ibs
+from lacuna.buildings.ss_modules.operahouse import operahouse
+from lacuna.buildings.ss_modules.parliament import parliament
+from lacuna.buildings.ss_modules.policestation import policestation
+
