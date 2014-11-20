@@ -11,11 +11,11 @@ glc = lac.clients.Member(
     config_section = 'my_real',
 )
 
-my_planet = glc.get_body_byname( 'SASS bmots 01' )
-parl = my_planet.get_building_coords( 3, 4 )
+#my_planet = glc.get_body_byname( 'SASS bmots 01' )
+#parl = my_planet.get_building_coords( 3, 4 )
 
-#my_planet = glc.get_body_byname( 'SASS Acapulco' )
-#parl = my_planet.get_building_coords( -1, 0 )
+my_planet = glc.get_body_byname( 'SASS Fireball 01' )
+parl = my_planet.get_building_coords( -1, 0 )
 
 #my_planet = glc.get_body_byname( 'SASS Ascension' )
 #parl = my_planet.get_building_coords( -1, 0 )
@@ -36,12 +36,12 @@ parl = my_planet.get_building_coords( 3, 4 )
 
 ### View propositions
 ### 
-#props = parl.view_propositions()
-#for i in props:
-#    print( "{} needs {} votes to pass, and has {} yes and {} no votes.  It was proposed by {}."
-#        .format(i.name, i.votes_needed, i.votes_yes, i.votes_no, i.proposed_by.name)
-#    )
-#print( "-------------------------------" )
+props = parl.view_propositions()
+for i in props:
+    print( "{} needs {} votes to pass, and has {} yes and {} no votes.  It was proposed by {}."
+        .format(i.name, i.votes_needed, i.votes_yes, i.votes_no, i.proposed_by.name)
+    )
+print( "-------------------------------" )
 
 
 ### Propose a writ
