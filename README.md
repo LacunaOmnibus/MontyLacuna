@@ -112,6 +112,11 @@ supposed to do.
   - I'm up to working on Parliament, which is only partway done.
 - I've started to re-organize the buildings/ modules into subdirectories for sanity.  
   Finish that.  Remember to update __init__.py when moving a file.
+- I currently have - planet.get_building_coords( x, y ), which works fine.  But I want to 
+  add something like:
+        planet.get_buildings_bytype( 'Space Port', min_level )
+  ...that should return a list of all space port buildings on the planet >= min_level.  
+  Sort them by level.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
