@@ -98,6 +98,8 @@ supposed to do.
  - recycler (base class)
     - wasteexchanger
     - wasterecycling
+  - Space Station Modules
+    - policestation
 
 ## Incomplete/Not Started
 - Payments
@@ -106,8 +108,10 @@ supposed to do.
 - Announcement
 
 ## TBD
-- The Space Station modules haven't been done (whoops).  I started on policestation.py, 
-  but that needs to be finished and the rest need to be added and completed.
+- The Space Station modules haven't been completed.
+  - I'm up to working on Parliament, which is only partway done.
+- I've started to re-organize the buildings/ modules into subdirectories for sanity.  
+  Finish that.  Remember to update __init__.py when moving a file.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.

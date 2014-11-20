@@ -168,7 +168,7 @@ class spaceport(lacuna.building.MyBuilding):
         mining_list = []
         if 'mining_platforms' in kwargs['rslt']:
             for i in kwargs['rslt']['mining_platforms']:
-                mining_list.append( lacuna.ship.MiningPlatform(self.client, i) )
+                mining_list.append( MiningPlatform(self.client, i) )
 
         return(
             inc_list,
@@ -193,7 +193,7 @@ class spaceport(lacuna.building.MyBuilding):
             - available -- List of lacuna.ship.FleetShip objects
             - unavailable -- List of lacuna.ship.UnavailableShip objects
             - orbiting -- List of lacuna.ship.ExistingShip objects
-            - mining_platforms -- List of lacuna.ship.MiningPlatform objects
+            - mining_platforms -- List of lacuna.buildings.spaceport.MiningPlatform objects
             - fleet_send_limit -- Always integer 20.
 
         """
@@ -626,8 +626,8 @@ class spaceport(lacuna.building.MyBuilding):
 
 class BattleLog(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         date                "06 21 2011 22:54:37 +0600",
         attacking_body      "Romulus",
         attacking_empire    "Romulans",
@@ -638,3 +638,17 @@ class BattleLog(lacuna.bc.SubClass):
         victory_to          "defender"
     """
 
+class MiningPlatform(lacuna.bc.SubClass):
+    """ A mining platform is a mining platform ship that has successfully 
+    arrived at an asteroid and converted itself into a mining platform.  The 
+    platform itself is no longer actually a ship, and does not have a name or ID
+    of its own.
+
+    This class exists in the spaceport module because this is the only place 
+    that this format is used.
+
+    Attributes::
+
+        empire_id       ID of your empire, NOT of the ship
+        empire_name     Name of your empire, NOT of the ship
+    """

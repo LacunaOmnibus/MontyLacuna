@@ -165,18 +165,6 @@ class IncomingShip(Ship):
     will be able to see some, but not all, of the incomings.
     """
 
-class MiningPlatform(Ship):
-    """ A mining platform is a mining platform ship that has successfully 
-    arrived at an asteroid and converted itself into a mining platform.  The 
-    platform itself is no longer actually a ship, and does not have a name or ID
-    of its own.
-
-    Attributes::
-
-        empire_id       ID of your empire, NOT of the ship
-        empire_name     Name of your empire, NOT of the ship
-    """
-
 class PotentialShip(Ship):
     """ A PotentialShip does not yet exist in any form; this is a ship that is 
     able to be built (returned from a call to shipyard.get_buildable()):

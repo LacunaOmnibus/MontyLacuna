@@ -90,7 +90,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
 
     def call_building_meth(func):
         """ Decorator.
-        Calls a server method that requires a id, but no body_id.
+        Calls a server method that requires a building id, but no body_id.
         This is the decorator that most MyBuilding methods will use.
         Methods using this decorator get the original server result handed 
         back to them in kwargs['rslt'].
@@ -107,7 +107,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
 
     def call_returning_meth(func):
         """ Decorator.
-        Calls a server method that requires a id, but no body_id.
+        Calls a server method that requires a building id, but no body_id.
         Rather than simply passing back the data returned from the TLE server, 
         returns the value from the originally-called method.
 
@@ -129,7 +129,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
 
     def call_naked_returning_meth(func):
         """ Decorator.
-        Calls a server method that does not require id or body_id.
+        Calls a server method that does not require building id or body_id.
         Rather than simply passing back the data returned from the TLE server, 
         returns the value from the originally-called method.
 

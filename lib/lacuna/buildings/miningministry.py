@@ -14,7 +14,8 @@ class miningministry(lacuna.building.MyBuilding):
         """ Views your current platform status
 
         Returns a tuple:
-            - platforms -- List of MiningPlatform objects
+            - platforms -- List of 
+              lacuna.buildings.miningministry.MiningPlatform objects
             - max_platforms -- Integer max platforms this min min can support
         """
         mylist = []
@@ -95,8 +96,8 @@ class miningministry(lacuna.building.MyBuilding):
 
 class MiningPlatform(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         id                  "id-goes-here",
         asteroid            {
                                 "id" : "id-goes-here",
