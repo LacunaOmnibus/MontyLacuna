@@ -30,10 +30,28 @@ Install MontyLacuna
 
   - The rest of this documentation will assume that's what you named it.
 
+Install pip and Prerequisite Libraries
+--------------------------------------
+pip is a tool for installing Python libraries.  Installing pip is very easy, 
+as MontyLacuna includes a script to install it for you.
+
+Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna 
+folder, and run pip installer script::
+
+    python3 bin/get-pip.py
+
+There are only two Python libraries to install, ``requests`` and ``beaker``, 
+and you install both of them using ``pip``::
+
+    pip install requests
+    pip install beaker
+
+Leave that CMD window open for the next step.
+
 Create A Config File
 --------------------
-Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna 
-folder, and run the config file creation script::
+Using the CMD window you left open from the previous step, run the config file 
+creation script::
 
     python3 bin/create_config_file.py
 
@@ -44,13 +62,25 @@ Script Runners Stop Here
 **If you're only planning on running scripts, not writing them, you can stop 
 reading here; you're done!**
 
+Test Scripts
+------------
+There are a bunch of test scripts in ``INSTALLDIR/t/``.  These are not meant 
+to be attached to any test harness, and almost all the code in all of the 
+scripts has been commented out.  
+
+Instead of automated unit tests, those are to-be-run-manually test scripts.  
+You can run them as you like, but you'll need to edit each one to make sense 
+to you, and be careful; some of the example code in those scripts can be 
+damaging to your empire.
+
+Those scripts really exist as examples of how to use MontyLacuna.
+
 Tell Your Script Where MontyLacuna Lives
 ----------------------------------------
 When you create a new script, you'll need to tell that script how to find the 
 MontyLacuna libraries.
 
-Assuming that your script is going to be in ``INSTALLDIR/bin/``, add this to 
-the top of the script::
+Add this to the top of your script::
 
     import os, sys
 
@@ -58,6 +88,11 @@ the top of the script::
     sys.path.append(libdir)
 
     import lacuna
+
+The path to the ``lib/`` directory is relative to the location of your script, 
+and this example assumes your script is going to live in ``INSTALLDIR/bin/``.  
+If you're going to put your script somewhere else, adjust the path 
+accordingly.
 
 Connect a client
 ----------------
@@ -68,15 +103,22 @@ Connect a client
         config_section = 'sitter',
     )
 
+As with the previous step, the path to the config file is relative to the 
+location of your script.  Adjust the path accordingly if your script is going 
+to live somewhere other than ``INSTALLDIR/bin/``.
+
 Please keep in mind that many of the people using your script may not be very 
 technically inclined.  The config file creation script that comes with 
 MontyLacuna creates config file sections named ``real`` and ``sitter``; if 
 your script is meant for distribution, it's strongly suggested that you 
 specify one of those two names as your ``config_section``.
 
+Example Snippets
+----------------
+
 Get your empire
----------------
-Your empire info is already part of your clien ::
+~~~~~~~~~~~~~~~
+Your empire info is already part of your client::
 
     print( "I have used", my_client.empire.rpc_count, "RPCs so far today.")
 
@@ -86,14 +128,16 @@ Your empire info is already part of your clien ::
     )
 
 Get info on your alliance
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
     my_alliance = my_client.get_my_alliance();
-    print( "My alliance is named", my_alliance.name )
+    print( "My alliance is named {}, and its ID is {}."
+        .format(my_alliance.name, my_alliance.id)
+    )
 
 Read mail from your inbox
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
     mail = my_client.get_inbox();
@@ -101,20 +145,20 @@ Read mail from your inbox
     print( "I have ", ttl, "messages in my inbox.")
 
 Check on one of your planets by name
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
     my_planet = my_client.get_body_byname( 'Earth' )
     print( "Earth's ID is", my_planet.id )
 
 Check on one of the buildings on that planet
---------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
     pcc = my_planet.get_building_coords( 0, 0 )
     print( "My PCC's ID is", pcc.id )
     
 Next Steps
-----------
+~~~~~~~~~~
 From here, check on some of the existing sample scripts in ``bin/``, and the 
 full documentation in :ref:`home`
