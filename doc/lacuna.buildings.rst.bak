@@ -44,10 +44,122 @@ lacuna.buildings.archaeology module
     :undoc-members:
     :show-inheritance:
 
+lacuna.buildings.artmuseum module
+---------------------------------
+
+.. automodule:: lacuna.buildings.artmuseum
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 lacuna.buildings.atmosphericevaporator module
 ---------------------------------------------
 
 .. automodule:: lacuna.buildings.atmosphericevaporator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach1 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach1
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach10 module
+-------------------------------
+
+.. automodule:: lacuna.buildings.beach10
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach11 module
+-------------------------------
+
+.. automodule:: lacuna.buildings.beach11
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach12 module
+-------------------------------
+
+.. automodule:: lacuna.buildings.beach12
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach13 module
+-------------------------------
+
+.. automodule:: lacuna.buildings.beach13
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach2 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach2
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach3 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach3
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach4 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach4
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach5 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach5
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach6 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach6
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach7 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach7
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach8 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach8
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.beach9 module
+------------------------------
+
+.. automodule:: lacuna.buildings.beach9
     :members:
     :undoc-members:
     :show-inheritance:
@@ -176,6 +288,14 @@ lacuna.buildings.crater module
 ------------------------------
 
 .. automodule:: lacuna.buildings.crater
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.culinaryinstitute module
+-----------------------------------------
+
+.. automodule:: lacuna.buildings.culinaryinstitute
     :members:
     :undoc-members:
     :show-inheritance:
@@ -380,6 +500,14 @@ lacuna.buildings.hydrocarbon module
     :undoc-members:
     :show-inheritance:
 
+lacuna.buildings.ibs module
+---------------------------
+
+.. automodule:: lacuna.buildings.ibs
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 lacuna.buildings.intelligence module
 ------------------------------------
 
@@ -456,6 +584,78 @@ lacuna.buildings.lapisforest module
 -----------------------------------
 
 .. automodule:: lacuna.buildings.lapisforest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcota module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcota
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcotb module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcotb
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcotc module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcotc
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcotd module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcotd
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcote module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcote
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcotf module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcotf
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcotg module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcotg
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcoth module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcoth
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.lcoti module
+-----------------------------
+
+.. automodule:: lacuna.buildings.lcoti
     :members:
     :undoc-members:
     :show-inheritance:
@@ -580,6 +780,14 @@ lacuna.buildings.observatory module
     :undoc-members:
     :show-inheritance:
 
+lacuna.buildings.operahouse module
+----------------------------------
+
+.. automodule:: lacuna.buildings.operahouse
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 lacuna.buildings.oracleofanid module
 ------------------------------------
 
@@ -636,6 +844,14 @@ lacuna.buildings.park module
     :undoc-members:
     :show-inheritance:
 
+lacuna.buildings.parliament module
+----------------------------------
+
+.. automodule:: lacuna.buildings.parliament
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 lacuna.buildings.pie module
 ---------------------------
 
@@ -656,6 +872,14 @@ lacuna.buildings.planetarycommand module
 ----------------------------------------
 
 .. automodule:: lacuna.buildings.planetarycommand
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.policestation module
+-------------------------------------
+
+.. automodule:: lacuna.buildings.policestation
     :members:
     :undoc-members:
     :show-inheritance:
@@ -812,6 +1036,14 @@ lacuna.buildings.ssld module
     :undoc-members:
     :show-inheritance:
 
+lacuna.buildings.stationcommand module
+--------------------------------------
+
+.. automodule:: lacuna.buildings.stationcommand
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 lacuna.buildings.stockpile module
 ---------------------------------
 
@@ -920,6 +1152,14 @@ lacuna.buildings.volcano module
 -------------------------------
 
 .. automodule:: lacuna.buildings.volcano
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lacuna.buildings.warehouse module
+---------------------------------
+
+.. automodule:: lacuna.buildings.warehouse
     :members:
     :undoc-members:
     :show-inheritance:

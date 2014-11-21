@@ -14,16 +14,17 @@ glc = lac.clients.Member(
 my_planet = glc.get_body_byname( 'SASS bmots 01' )
 cops = my_planet.get_building_coords( 2, 3 )
 
+glc.pp.pprint( cops )
 
 ### See all incoming ships
 ### 
-ships, count = cops.view_foreign_ships()
-print( "There are", count, "ships incoming." )
-for i in ships:
-    print( "{} is coming from {}'s planet {}."
-        .format(i.type_human, i.origin['empire']['name'], i.origin['name'])
-    )
-print( "-------------------------------" )
+#ships, count = cops.view_foreign_ships()
+#print( "There are", count, "ships incoming." )
+#for i in ships:
+#    print( "{} is coming from {}'s planet {}."
+#        .format(i.type_human, i.origin['empire']['name'], i.origin['name'])
+#    )
+#print( "-------------------------------" )
 
 
 ### See travelling ships
