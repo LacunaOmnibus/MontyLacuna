@@ -7,7 +7,9 @@ TLE Module - Building
 
    beach/index
    lcot/index
+   permanent/index
    ss_modules/index
+   buildings
 
 .. automodule:: lacuna.building
    :members:
