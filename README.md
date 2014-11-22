@@ -111,7 +111,9 @@ supposed to do.
 - The Space Station modules haven't been completed.
   - I'm up to working on Parliament, which is only partway done.
 - I've started to re-organize the buildings/ modules into subdirectories for sanity.  
-  Finish that.  Remember to update __init__.py when moving a file.
+  - Finish that.  Remember to update __init__.py when moving a file.
+  - There are still too many buildings listed in the docs under "Miscellaneous Buildings".  
+    Keep on classifying them so they're easy to find.
 - I currently have - planet.get_building_coords( x, y ), which works fine.  But I want to 
   add something like:
         planet.get_buildings_bytype( 'Space Port', min_level )
