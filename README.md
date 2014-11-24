@@ -196,7 +196,7 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     /home/jon/work/MontyLacuna/doc
   - $ make html
   - $ perl fix_underscores.pl
-  - $ cp -Rip doc/{underscore}build/html ~/Desktop
+  - $ cp -Rip {underscore}build/html ~/Desktop
   - $ cd ..
   - $ git status
     - Commit any changes to master
@@ -213,4 +213,26 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
   - $ git co master
   - Wait a $time_period (Github claims it may take up to 10 minutes, but I've never had it 
     take more than a few seconds), and then go look at your pretty docs online.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
