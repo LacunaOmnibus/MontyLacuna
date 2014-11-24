@@ -542,12 +542,17 @@ class Member(Guest):
         return lacuna.alliance.Alliance( self )
 
     def get_body(self, body_id):
-        return lacuna.body.Body( self, body_id )
+        attrs = { 'id': body_id, }
+        return lacuna.body.Body( self, attrs )
 
     def get_body_byname(self, body_name):
         for bid, name in self.empire.planets.items():
             if name == body_name:
-                return lacuna.body.MyBody( self, bid )
+                attrs = {
+                    'id': bid,
+                    'name': name
+                }
+                return lacuna.body.MyBody( self, attrs )
         else:
             raise lacuna.exceptions.NoSuchMyBodyError("No body with the name '{}' was found.".format(body_name))
 

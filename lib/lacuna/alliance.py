@@ -82,6 +82,8 @@ class FoundAlliance(lacuna.bc.SubClass):
         id          1234
         name        United Union of Federated Allied Groups
     """
+
+
 class Member(lacuna.bc.SubClass):
     """ An alliance member.
 
@@ -89,6 +91,16 @@ class Member(lacuna.bc.SubClass):
 
         id          5810
         name        Member One
+    """
+
+
+class Influence(lacuna.bc.SubClass):
+    """ The amount of influence a Space Station has.
+
+    Attributes::
+
+        total   50
+        spent   25
     """
 
 class Profile(lacuna.bc.SubClass):

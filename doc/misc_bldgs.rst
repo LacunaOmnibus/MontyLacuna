@@ -1,6 +1,9 @@
 Miscellaneous Buildings
 ========================
 
+These are buildings that don't have any of their own methods, only what they 
+inherit from their parents (usually ``lacuna.building.MyBuilding``.)
+
 lacuna.buildings.algae
 -----------------------------
 
@@ -13,14 +16,6 @@ lacuna.buildings.apple
 -----------------------------
 
 .. automodule:: lacuna.buildings.apple
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.archaeology
------------------------------------
-
-.. automodule:: lacuna.buildings.archaeology
     :members:
     :undoc-members:
     :show-inheritance:
@@ -61,14 +56,6 @@ lacuna.buildings.burger
 ------------------------------
 
 .. automodule:: lacuna.buildings.burger
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.capitol
--------------------------------
-
-.. automodule:: lacuna.buildings.capitol
     :members:
     :undoc-members:
     :show-inheritance:
@@ -153,42 +140,10 @@ lacuna.buildings.deployedbleeder
     :undoc-members:
     :show-inheritance:
 
-lacuna.buildings.development
------------------------------------
-
-.. automodule:: lacuna.buildings.development
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.distributioncenter
-------------------------------------------
-
-.. automodule:: lacuna.buildings.distributioncenter
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.embassy
--------------------------------
-
-.. automodule:: lacuna.buildings.embassy
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 lacuna.buildings.energyreserve
 -------------------------------------
 
 .. automodule:: lacuna.buildings.energyreserve
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.entertainment
--------------------------------------
-
-.. automodule:: lacuna.buildings.entertainment
     :members:
     :undoc-members:
     :show-inheritance:
@@ -249,14 +204,6 @@ lacuna.buildings.gasgiantplatform
     :undoc-members:
     :show-inheritance:
 
-lacuna.buildings.geneticslab
------------------------------------
-
-.. automodule:: lacuna.buildings.geneticslab
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 lacuna.buildings.geo
 ---------------------------
 
@@ -285,14 +232,6 @@ lacuna.buildings.hydrocarbon
 -----------------------------------
 
 .. automodule:: lacuna.buildings.hydrocarbon
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.intelligence
-------------------------------------
-
-.. automodule:: lacuna.buildings.intelligence
     :members:
     :undoc-members:
     :show-inheritance:
@@ -361,14 +300,6 @@ lacuna.buildings.mayhemtraining
     :undoc-members:
     :show-inheritance:
 
-lacuna.buildings.mercenariesguild
-----------------------------------------
-
-.. automodule:: lacuna.buildings.mercenariesguild
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 lacuna.buildings.metaljunkarches
 ---------------------------------------
 
@@ -385,42 +316,10 @@ lacuna.buildings.mine
     :undoc-members:
     :show-inheritance:
 
-lacuna.buildings.miningministry
---------------------------------------
-
-.. automodule:: lacuna.buildings.miningministry
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.missioncommand
---------------------------------------
-
-.. automodule:: lacuna.buildings.missioncommand
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 lacuna.buildings.munitionslab
 ------------------------------------
 
 .. automodule:: lacuna.buildings.munitionslab
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.network19
----------------------------------
-
-.. automodule:: lacuna.buildings.network19
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.observatory
------------------------------------
-
-.. automodule:: lacuna.buildings.observatory
     :members:
     :undoc-members:
     :show-inheritance:
@@ -457,14 +356,6 @@ lacuna.buildings.pancake
     :undoc-members:
     :show-inheritance:
 
-lacuna.buildings.park
-----------------------------
-
-.. automodule:: lacuna.buildings.park
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 lacuna.buildings.pie
 ---------------------------
 
@@ -477,14 +368,6 @@ lacuna.buildings.pilottraining
 -------------------------------------
 
 .. automodule:: lacuna.buildings.pilottraining
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.planetarycommand
-----------------------------------------
-
-.. automodule:: lacuna.buildings.planetarycommand
     :members:
     :undoc-members:
     :show-inheritance:
@@ -553,26 +436,10 @@ lacuna.buildings.saw
     :undoc-members:
     :show-inheritance:
 
-lacuna.buildings.security
---------------------------------
-
-.. automodule:: lacuna.buildings.security
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 lacuna.buildings.shake
 -----------------------------
 
 .. automodule:: lacuna.buildings.shake
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.shipyard
---------------------------------
-
-.. automodule:: lacuna.buildings.shipyard
     :members:
     :undoc-members:
     :show-inheritance:
@@ -597,22 +464,6 @@ lacuna.buildings.spacejunkpark
 -------------------------------------
 
 .. automodule:: lacuna.buildings.spacejunkpark
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.spaceport
----------------------------------
-
-.. automodule:: lacuna.buildings.spaceport
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.ssla
-----------------------------
-
-.. automodule:: lacuna.buildings.ssla
     :members:
     :undoc-members:
     :show-inheritance:
@@ -685,30 +536,6 @@ lacuna.buildings.thefttraining
 -------------------------------------
 
 .. automodule:: lacuna.buildings.thefttraining
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.themepark
----------------------------------
-
-.. automodule:: lacuna.buildings.themepark
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.trade
------------------------------
-
-.. automodule:: lacuna.buildings.trade
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-lacuna.buildings.transporter
------------------------------------
-
-.. automodule:: lacuna.buildings.transporter
     :members:
     :undoc-members:
     :show-inheritance:

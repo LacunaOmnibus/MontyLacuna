@@ -1,7 +1,7 @@
 
 
 """
-    I'm getting to the point were replicating every single TLE method is 
+    I'm to the point were replicating every single TLE method is 
     getting boring.
 
     I'm really doing this to learn Python.  On top of that, I can't see 
@@ -24,6 +24,8 @@ import lacuna.trading
 import lacuna.ship
 
 class trade(lacuna.trading.TradeBldg):
+    """ Trade Ministry """
+
     path = 'trade'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
@@ -33,8 +35,8 @@ class trade(lacuna.trading.TradeBldg):
     def add_to_market( self, offer:dict, ask:int, options:dict = {}, *args, **kwargs ):
         """ Adds a trade to the market.
 
-        Arguments:
-            >>> 
+        Arguments::
+
             offer       List of dicts of items to offer for trade.  See below for
                         more details.
                             {   'type':         'bauxite',
@@ -51,28 +53,27 @@ class trade(lacuna.trading.TradeBldg):
         *offer*
 
         There are five types of items you can offer for trade, each with 
-        their own required keys for their offer dicts.
+        their own required keys for their offer dicts::
 
-        >>> 
-        resources
-            {   'type':         'bauxite',
-                'quantity':     10000   },
-        glyphs
-            {   'type':         'glyph',
-                'name':         'bauxite',
-                'quantity':     10000   },
-        plans
-            {   'type':                 'plan',
-                'plan_type':            'Permanent_AlgaePond',  # see get_plan_summary()
-                'level':                1,
-                'extra_build_level':    3,                      # If > 1, 'level' must be 1.
-                'quantity':             10000   },
-        prisoners
-            {   'type':         'prisoner',
-                'prisoner_id':  12345   },
-        ships
-            {   'type':     'ship',
-                'ship_id':  12345   },
+            resources
+                {   'type':         'bauxite',
+                    'quantity':     10000   },
+            glyphs
+                {   'type':         'glyph',
+                    'name':         'bauxite',
+                    'quantity':     10000   },
+            plans
+                {   'type':                 'plan',
+                    'plan_type':            'Permanent_AlgaePond',  # see get_plan_summary()
+                    'level':                1,
+                    'extra_build_level':    3,                      # If > 1, 'level' must be 1.
+                    'quantity':             10000   },
+            prisoners
+                {   'type':         'prisoner',
+                    'prisoner_id':  12345   },
+            ships
+                {   'type':     'ship',
+                    'ship_id':  12345   },
 
         Returns the ID of the trade just added.
         """
@@ -156,17 +157,14 @@ class trade(lacuna.trading.TradeBldg):
         return lacuna.ship.TravellingShip(self.client, kwargs['rslt']['ship'])
 
 
-
-
-
 class Chain(lacuna.bc.SubClass):
     """ Chain base class """
     pass
 
 class SupplyChain(Chain):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         id                      "id-goes-here",
         body                    {   "id" : "id-goes-here",
                                     "name" : "Mars",
@@ -182,8 +180,8 @@ class SupplyChain(Chain):
 
 class WasteChain(Chain):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         id                      "id-goes-here",
         star                    {   "id" : "id-goes-here",
                                     "name" : "Mars",

@@ -62,16 +62,16 @@ class NewsItem():
 
 class Story(NewsItem):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         headline    "HCorp founded a new colony on Rigel 4.", 
         date        "01 31 2010 13:09:05 +0600" 
     """
 
 class Feed():
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         zone     0|0
         url      'http://feeds.game.lacunaexpanse.com/78d5e7b2-b8d7-317c-b244-3f774264be57.rss'
     """

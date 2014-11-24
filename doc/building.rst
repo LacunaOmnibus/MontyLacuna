@@ -9,7 +9,8 @@ TLE Module - Building
    lcot/index
    permanent/index
    ss_modules/index
-   buildings
+   callable/index
+   misc_bldgs
 
 .. automodule:: lacuna.building
    :members:

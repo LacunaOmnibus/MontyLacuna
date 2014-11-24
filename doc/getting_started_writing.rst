@@ -10,8 +10,8 @@ section assumes that you're already to the point of being able to run scripts.
 Test Scripts
 ------------
 There are a bunch of test scripts in ``INSTALLDIR/t/``.  These are not meant 
-to be attached to any test harness, and almost all the code in all of the 
-scripts has been commented out.  
+to be attached to any test harness, and almost all the code in those scripts 
+has been commented out.
 
 Instead of automated unit tests, those are to-be-run-manually test scripts.  
 You can run them as you like, but you'll need to edit each one to make sense 
@@ -63,7 +63,7 @@ Example Snippets
 
 Get your empire
 ~~~~~~~~~~~~~~~
-Your empire info is already part of your client::
+Your empire object is already part of your client::
 
     print( "I have used", my_client.empire.rpc_count, "RPCs so far today.")
 

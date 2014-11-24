@@ -49,8 +49,8 @@ class park(lacuna.building.MyBuilding):
 
 class Party(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         seconds_remaining   397,
         happiness           10000,
         can_throw           0

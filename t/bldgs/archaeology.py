@@ -18,13 +18,13 @@ arch = my_planet.get_building_coords( -5, -5 )
 
 ### Is the archmin performing a local search right now?
 ###
-#rv = arch.view()
-#if hasattr(arch, 'work'):
-#    print( "Arch min is searching for {} now; that will complete at {}."
-#        .format(arch.work['searching'], arch.work['end'])
-#    )
-#else:
-#    print( "Arch min is not searching now." )
+rv = arch.view()
+if hasattr(arch, 'work'):
+    print( "Arch min is searching for {} now; that will complete at {}."
+        .format(arch.work['searching'], arch.work['end'])
+    )
+else:
+    print( "Arch min is not searching now." )
 
 
 

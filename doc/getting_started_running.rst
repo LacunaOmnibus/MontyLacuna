@@ -36,9 +36,11 @@ pip is a tool for installing Python libraries.  Installing pip is very easy,
 as MontyLacuna includes a script to install it for you.
 
 Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna 
-folder, and run pip installer script::
+folder, and run the pip installer script::
 
     python3 bin/get-pip.py
+
+pip is now installed.
 
 There are only two Python libraries to install, ``requests`` and ``beaker``, 
 and you install both of them using ``pip``::

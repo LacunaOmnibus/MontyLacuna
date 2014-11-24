@@ -554,6 +554,17 @@ class FoundEmpire(lacuna.bc.SubClass):
         name    String name of the empire
     """
 
+class OwningEmpire(lacuna.bc.SubClass):
+    """ An empire that owns a given body.
+
+    Attributes::
+
+        id                  Integer ID of the empire
+        name                String name of the empire
+        alignment           'ally' # 'ally', 'self', or 'hostile'
+        is_isolationist     1 or 0
+    """
+
 class Boosts(lacuna.bc.SubClass):
     """ 
     Attributes::

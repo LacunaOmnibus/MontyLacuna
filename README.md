@@ -48,6 +48,17 @@ work, but it hasn't been fully tested yet.
 
 - Alliance
 - Body
+  - CHECK
+    most calls are just returning dicts.
+  - FIXED
+    - get_buildable()
+    - get_new_building()
+    - get_status()
+    - repair_list()
+    - MyBody attributes are now objects, not dicts, and surface_type actually works.
+  - I've been working down the documentation top-to-bottom, NOT the code.  The code is in 
+    a different order than the docu is, so pick up by working down the docs from 
+    rearrange_buildings() (which isn't done yet).
 - Captcha
 - Clients
 - Empire
@@ -81,6 +92,7 @@ supposed to do.
   - orestorage
   - park
   - planetarycommand
+    - CHECK - fix view().
   - politicstraining
   - security
   - shipyard
@@ -111,10 +123,6 @@ supposed to do.
 ## TBD
 - The Space Station modules haven't been completed.
   - I'm up to working on Parliament, which is only partway done.
-- I've started to re-organize the buildings/ modules into subdirectories for sanity.  
-  - Finish that.  Remember to update __init__.py when moving a file.
-  - There are still too many buildings listed in the docs under "Miscellaneous Buildings".  
-    Keep on classifying them so they're easy to find.
 - I currently have - planet.get_building_coords( x, y ), which works fine.  But I want to 
   add something like:
         planet.get_buildings_bytype( 'Space Port', min_level )

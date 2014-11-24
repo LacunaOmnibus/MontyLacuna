@@ -1,11 +1,4 @@
 
-"""
-
-
-
-
-"""
-
 import functools, re
 import lacuna.bc
 from lacuna.exceptions import \
@@ -79,8 +72,6 @@ class MyBuilding(lacuna.bc.LacunaObject):
     """
 
     def __init__( self, client, body_id:int, id:int = 0 ):
-        ### Inheritance starts with lacuna.bc.LacunaObject, so 
-        ### super()__init__() calls lacuna.bc.LacunaObject's __init__().
         super().__init__( client )
         self.body_id = body_id
         if id:

@@ -165,6 +165,20 @@ class IncomingShip(Ship):
     will be able to see some, but not all, of the incomings.
     """
 
+class IncomingToBodyShip(Ship):
+    """ An IncomingShip is what you can see from your Space Port or Police 
+    Station, while an IncomingToBodyShip is the much reduced information you 
+    can get from a MyBody object.
+
+    Attributes::
+
+        id              "id-goes-here",
+        date_arrives    "01 31 2010 13:09:05 +0600",
+        is_own          1 or 0,
+        is_ally         1 or 0
+    """
+
+
 class PotentialShip(Ship):
     """ A PotentialShip does not yet exist in any form; this is a ship that is 
     able to be built (returned from a call to shipyard.get_buildable()):

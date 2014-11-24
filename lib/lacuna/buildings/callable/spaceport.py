@@ -1,20 +1,5 @@
 
-"""
-Multiple spaceport buildings on a single planet work together as a single 
-unit.  So calling view_all_ships() on one spaceport building will return 
-exactly the same list as calling it on a different spaceport building (on the 
-same planet).
 
-**target**
-
-Several methods require a 'target' argument.  This is always a dict in one of the following formats:
-    >>> 
-    { "body_name" : "Earth" }
-    { "body_id" : "id-goes-here" }
-    { "star_name" : "Sol" }
-    { "star_id" : "id-goes-here" }
-    { "x" : 4, "y" : -3 }
-"""
 
 import lacuna.bc
 import lacuna.building
@@ -23,11 +8,27 @@ import lacuna.ship
 import lacuna.spy
 
 class spaceport(lacuna.building.MyBuilding):
+    """
+    Multiple spaceport buildings on a single planet work together as a single 
+    unit.  So calling view_all_ships() on one spaceport building will return 
+    exactly the same list as calling it on a different spaceport building (on the 
+    same planet).
+
+    Target
+        Several methods require a 'target' argument.  This is always a dict in one of 
+        the following formats::
+
+        { "body_name" : "Earth" }
+        { "body_id" : "id-goes-here" }
+        { "star_name" : "Sol" }
+        { "star_id" : "id-goes-here" }
+        { "x" : 4, "y" : -3 }
+    """
+
     path = 'spaceport'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
-
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
@@ -36,8 +37,8 @@ class spaceport(lacuna.building.MyBuilding):
         Returns a tuple:
             - max_ships -- Integer maximum ships that can be stored
             - docks_available -- Integer; how many more ships can be stored
-            - docked_ships -- Dict; summary of counts of ships currently at dock:
-                >>> 
+            - docked_ships -- Dict; summary of counts of ships currently at dock::
+
                 {
                     "probe": 3,
                     "cargo_ship": 0,
@@ -228,7 +229,7 @@ class spaceport(lacuna.building.MyBuilding):
         Sugar method for send_ship_types() - saves you from having to send the 
         ID of the sending body.
 
-        Arguments:
+        Arguments
             - target -- Dict, identical to the one in get_my_fleet_for()
             - types -- List of shiptype dicts
             - arrival -- Dict to specify arrival time
@@ -236,40 +237,31 @@ class spaceport(lacuna.building.MyBuilding):
         Shiptype dicts
             You can specify ships to send not just by the shiptype, 
             but also by minimum attributes.  Set only the dict keys 
-            you're interested in.
+            you're interested in::
 
-::
-
-            types = [
-                {   
-                    "type" : "sweeper",
-                    "speed" : 10166,
-                    "stealth" : 10948,
-                    "combat" : 33372,
-                    "quantity" : 100        
-                },
-                {   
-                    "type" : "surveyor",
-                    "speed" : 9030,
-                    "stealth" : 9030,
-                    "combat" : 3220,
-                    "quantity" : 10         
-                }
-                etc
-            ]
+                types = [{   
+                        "type" : "sweeper",
+                        "speed" : 10166,
+                        "stealth" : 10948,
+                        "combat" : 33372,
+                        "quantity" : 100        
+                    },
+                    {   
+                        "type" : "surveyor",
+                        "speed" : 9030,
+                        "stealth" : 9030,
+                        "combat" : 3220,
+                        "quantity" : 10         
+                    }, { more of the same }, ]
 
         Arrival time dicts
             All dict keys must be set.  You likely don't care about 
-            what second the ships arrive, but set it anyway.
+            what second the ships arrive, but set it anyway::
 
-::
-
-            {   
-                "day" : "23",
-                "hour" : "12",
-                "minute" : "01",
-                "second" : "30"     
-            }
+                {   "day" : "23",
+                    "hour" : "12",
+                    "minute" : "01",
+                    "second" : "30"         }
 
         Return is identical to that for get_my_fleet_for().
 
@@ -549,14 +541,14 @@ class spaceport(lacuna.building.MyBuilding):
         """ Returns a list of ships assigned to a specific task.  
 
         There are sugar methods available for each of the possible tasks; it 
-        should be move convenient to use those.
-        >>> 
-        target = { 'star_name': 'Sol' }
-        available_list          = get_available_ships_for( target )
-        incoming_list           = get_incoming_ships_for( target )
-        mining_list             = get_mining_ships_for( target )
-        orbiting_list           = get_orbiting_ships_for( target )
-        unavailable_list        = get_unavailable_ships_for( target )
+        should be move convenient to use those::
+
+            target = { 'star_name': 'Sol' }
+            available_list          = get_available_ships_for( target )
+            incoming_list           = get_incoming_ships_for( target )
+            mining_list             = get_mining_ships_for( target )
+            orbiting_list           = get_orbiting_ships_for( target )
+            unavailable_list        = get_unavailable_ships_for( target )
 
         Each one requires a standard target dict.
         """
