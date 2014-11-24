@@ -91,3 +91,43 @@ class StoredResources(PlanetaryResource):
         etc
     """
 
+class AvailableOre(lacuna.bc.SubClass):
+    """ The ore available on the planet.  Varies by planet type.
+
+    Attributes::
+
+        anthracite: 200,
+        bauxite:    300,
+        etc
+    """
+
+class BuildCost(lacuna.bc.SubClass):
+    """ How much it'll cost to build a building
+
+    Attributes::
+
+        food        500,
+        water       500,
+        energy      500,
+        waste       500,    # is added to your storage, not spent like the other resources
+        ore         1000,
+        time        1200,   # in seconds
+    """
+
+class Production(lacuna.bc.SubClass):
+    """ How much a building produces (or will produce upon build/upgrade)
+
+    Attributes::
+
+        food_hour       1500,
+        energy_hour     -144,
+        ore_hour        -1310,
+        water_hour      -1100,
+        waste_hour      133,
+        happiness_hour  0,
+    """
+
+
+
+
+

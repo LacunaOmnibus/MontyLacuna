@@ -6,47 +6,60 @@ sys.path.append(libdir)
 
 import lacuna
 
-
 glc = lacuna.clients.Member(
     config_file = os.path.abspath(os.path.dirname(__file__)) + "/../etc/lacuna.cfg",
     config_section = 'play_test',
 )
-print( glc.empire.name )
-quit()
-
-my_map = glc.get_map()
 
 
-### Find some information about the body in orbit 3 around a specific star.
-### Use the name of any star whose bodies you can see on the starmap.
+### Get some basic info about your planet
 ###
-#starname = 'Sol'
-#star = my_map.get_star_by_name(starname)
-#for i in star.bodies:
-#    if i.orbit == '3':
-#        print( "The planet in orbit 3 around {} is named {}."
-#            .format(starname, i.name) 
-#        )
+#p = glc.get_body_byname( 'bmots support 02' )
+#print( "My planet is of type {}.  It orbits the star {} in orbit {}, and is owned by {}."
+#    .format(p.surface_type, p.star_name, p.orbit, p.empire.name)
+#)
+#print( "There's {} bauxite and {} anthracite available.  But no unobtainium."
+#    .format(p.ore.bauxite, p.ore.anthracite)    # etc
+#)
+#if hasattr(p, 'station'):
+#    print( "This planet is under the control of", p.station.name )
 
 
-### Get one of your planets
+### Get the building at a specific coordinate on your planet's surface
 ###
-#my_planet = glc.get_body_byname( 'bmots01' )
-#print( "Planet {} has ID {}.".format(my_planet.name, my_planet.id) )
+#my_planet = glc.get_body_byname( 'bmots support 02' )
+#my_pcc = my_planet.get_building_coords(0, 0)
+#print( "The building's full name is {}.  Mine is operating at {}% efficiency."
+#    .format(my_pcc.name, my_pcc.efficiency)
+#)
+#quit()
+
+
+### Get all of the buildings of a certain type above a specific level
+### 
+### Since getting building lists like this requires looking at each individual 
+### building, it can be slow.  So let's turn caching on in case we want to run 
+### this more than once.
+#glc.cache_on( 'my_buildings_test', 3600 )
+#my_planet = glc.get_body_byname( 'bmots support 01' )
+#ports = my_planet.get_buildings_bytype('spaceport', 25)
+#for i in ports:
+#    print( "The spaceport at ({},{}) is level {}."
+#        .format(i.x, i.y, i.level)
+#    )
 
 
 ### Repair broken buildings
 ###
-#my_planet = glc.get_body_byname( 'bmots support 02' )
 #building_ids = []
 #for id, bldg_dict in my_planet.buildings_id.items():
 #    if int(bldg_dict['efficiency']) < 100:
 #        print( "{} is damaged.".format(bldg_dict['name']) )
 #        building_ids.append( id )
-#rv = my_planet.repair_list( building_ids )
-#for id, bldg_dict in rv['buildings'].items():
+#repaired = my_planet.repair_list( building_ids )
+#for i in repaired:
 #    print( "{} is now at {}% efficiency."
-#        .format(bldg_dict['name'], bldg_dict['efficiency'] )
+#        .format(i.name, i.efficiency )
 #    )
 
 
@@ -76,10 +89,10 @@ my_map = glc.get_map()
 
 ### Get list of buildings that can be built on a given plot
 ###
-#my_planet = glc.get_body_byname( 'bmots support 01' )
-#rv = my_planet.get_buildable( 0, 1, 'Water' )
-#for name, bldg_dict in rv['buildable'].items():
-#    print( "I can build a {} on this plot.".format(name) )
+#my_planet = glc.get_body_byname( 'bmots support 02' )
+#bldabl = my_planet.get_buildable( 1, 0, 'Water' )
+#for i in bldabl:
+#    print( "I can build a {} on this plot in {} seconds.".format(i.name, i.cost.time) )
 
 
 ### Rename your planet

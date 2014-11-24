@@ -78,11 +78,12 @@ class geneticslab(lacuna.building.MyBuilding):
 
 class ExperimentResults(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+        
         graft       Integer.  1 for success, 0 for failure
         survive     Integer.  1 for success, 0 for failure
-        message     String.   eg "The graft was a success, and the prisoner did not survive the experiment."
+        message     String.   eg "The graft was a success, and the prisoner 
+                    did not survive the experiment."
     """
     pass
 

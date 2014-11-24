@@ -1,7 +1,7 @@
 .. _permanent:
 
-Permanent Buildings
-====================
+Permanent (Glyph) Buildings
+===========================
 
 .. toctree::
    :maxdepth: 1

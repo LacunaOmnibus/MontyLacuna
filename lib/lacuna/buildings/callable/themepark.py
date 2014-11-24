@@ -39,15 +39,13 @@ class themepark(MyBuilding):
 
 class ParkView():
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         can_operate         1 or 0
-        reason              [
-                                1011,
+        reason              [   1011,
                                 "This Theme Park was started with 12 types of 
                                 food so you need at least 12 types of food to 
-                                continue its operation."
-                            ]
+                                continue its operation."    ]
         food_type_count     Integer number of food types required to extend
                             operations.
 

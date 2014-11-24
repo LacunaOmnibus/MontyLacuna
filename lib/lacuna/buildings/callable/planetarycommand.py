@@ -68,8 +68,8 @@ class planetarycommand(lacuna.building.MyBuilding):
 
 class SupplyChain(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         id                      "id-goes-here",
         from_body               {   "id" : "id-goes-here",
                                     "name" : "Mars",

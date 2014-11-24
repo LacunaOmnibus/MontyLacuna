@@ -51,8 +51,8 @@ class missioncommand(lacuna.building.MyBuilding):
 
 class Mission(lacuna.bc.SubClass):
     """ 
-    Attributes:
-        >>> 
+    Attributes::
+
         id                      Integer ID of the mission.
         name                    String.
         description             String.

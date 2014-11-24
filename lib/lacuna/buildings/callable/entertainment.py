@@ -35,8 +35,8 @@ class entertainment(lacuna.building.MyBuilding):
 
 class LotteryOptions(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         name    Name of the gaming/voting website
         url     URL to vote on TLE at the website
     """
