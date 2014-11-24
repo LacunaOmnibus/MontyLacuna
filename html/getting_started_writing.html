@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting Started &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Getting Started Writing Scripts &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
         <link rel="next" title="Config File" href="config_file.html"/>
-        <link rel="prev" title="Welcome to MontyLacuna’s documentation!" href="index.html"/> 
+        <link rel="prev" title="Getting Started Running Scripts" href="getting_started_running.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -58,12 +58,15 @@
         
         
             <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-montylacuna">Install MontyLacuna</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-a-config-file">Create A Config File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#script-runners-stop-here">Script Runners Stop Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started Writing Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#connect-a-client">Connect a client</a></li>
@@ -92,7 +95,12 @@
 <li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beach/index.html">Beach Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcot/index.html">LCOT Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permanent/index.html">Permanent (Glyph) Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssmodules/index.html">Space Station Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callable/index.html">Miscellaneous Buildings with Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
@@ -133,10 +141,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Getting Started</li>
+    <li>Getting Started Writing Scripts</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="sources/getting_started.txt" rel="nofollow"> View page source</a>
+          <a href="sources/getting_started_writing.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -144,68 +152,15 @@
 </div>
           <div role="main">
             
-  <div class="section" id="getting-started">
-<span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="install-python-3">
-<h2>Install Python 3<a class="headerlink" href="#install-python-3" title="Permalink to this headline">¶</a></h2>
-<p>If you&#8217;re on Windows, you can download Python 3 from <a class="reference external" href="http://www.activestate.com/activepython/downloads">ActiveState&#8217;s website.</a>  Make sure you download
-version 3.whatever, NOT version 2.whatever.</p>
-<p>If you&#8217;re on Linux or Mac, you probably already have Python installed.  But
-make sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3,
-and MontyLacuna will not work with Python 2.  Python 3 should be available via
-your package manager.</p>
-</div>
-<div class="section" id="install-montylacuna">
-<h2>Install MontyLacuna<a class="headerlink" href="#install-montylacuna" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Download the <tt class="docutils literal"><span class="pre">.zip</span></tt> file from <a class="reference external" href="http://tmtowtdi.github.io/MontyLacuna/">the MontyLacuna home page</a>.</li>
-<li>Open the <tt class="docutils literal"><span class="pre">zip</span></tt> file using whatever unzip tool you like.  It contains just
-one folder - drag that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.</li>
-<li>The folder you just dragged and dropped will have a long name, something
-like <tt class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></tt>.  You can leave that as is or rename
-it to whatever you want, but I strongly suggest you just rename it to
-<tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.<ul>
-<li>The rest of this documentation will assume that&#8217;s what you named it.</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="install-pip-and-prerequisite-libraries">
-<h2>Install pip and Prerequisite Libraries<a class="headerlink" href="#install-pip-and-prerequisite-libraries" title="Permalink to this headline">¶</a></h2>
-<p>pip is a tool for installing Python libraries.  Installing pip is very easy,
-as MontyLacuna includes a script to install it for you.</p>
-<p>Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna
-folder, and run pip installer script:</p>
-<div class="highlight-python"><div class="highlight"><pre>python3 bin/get-pip.py
-</pre></div>
-</div>
-<p>There are only two Python libraries to install, <tt class="docutils literal"><span class="pre">requests</span></tt> and <tt class="docutils literal"><span class="pre">beaker</span></tt>,
-and you install both of them using <tt class="docutils literal"><span class="pre">pip</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install requests
-pip install beaker
-</pre></div>
-</div>
-<p>Leave that CMD window open for the next step.</p>
-</div>
-<div class="section" id="create-a-config-file">
-<h2>Create A Config File<a class="headerlink" href="#create-a-config-file" title="Permalink to this headline">¶</a></h2>
-<p>Using the CMD window you left open from the previous step, run the config file
-creation script:</p>
-<div class="highlight-python"><div class="highlight"><pre>python3 bin/create_config_file.py
-</pre></div>
-</div>
-<p>That will ask you several questions, and then create your config file for you.</p>
-</div>
-<div class="section" id="script-runners-stop-here">
-<h2>Script Runners Stop Here<a class="headerlink" href="#script-runners-stop-here" title="Permalink to this headline">¶</a></h2>
-<p><strong>If you&#8217;re only planning on running scripts, not writing them, you can stop
-reading here; you&#8217;re done!</strong></p>
-</div>
+  <div class="section" id="getting-started-writing-scripts">
+<span id="getting-started-writing"></span><h1>Getting Started Writing Scripts<a class="headerlink" href="#getting-started-writing-scripts" title="Permalink to this headline">¶</a></h1>
+<p>Be sure to follow the <a class="reference internal" href="getting_started_running.html#getting-started-running"><em>Getting Started Running Scripts</em></a> section first.  This
+section assumes that you&#8217;re already to the point of being able to run scripts.</p>
 <div class="section" id="test-scripts">
 <h2>Test Scripts<a class="headerlink" href="#test-scripts" title="Permalink to this headline">¶</a></h2>
 <p>There are a bunch of test scripts in <tt class="docutils literal"><span class="pre">INSTALLDIR/t/</span></tt>.  These are not meant
-to be attached to any test harness, and almost all the code in all of the
-scripts has been commented out.</p>
+to be attached to any test harness, and almost all the code in those scripts
+has been commented out.</p>
 <p>Instead of automated unit tests, those are to-be-run-manually test scripts.
 You can run them as you like, but you&#8217;ll need to edit each one to make sense
 to you, and be careful; some of the example code in those scripts can be
@@ -251,7 +206,7 @@ specify one of those two names as your <tt class="docutils literal"><span class=
 <h2>Example Snippets<a class="headerlink" href="#example-snippets" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="get-your-empire">
 <h3>Get your empire<a class="headerlink" href="#get-your-empire" title="Permalink to this headline">¶</a></h3>
-<p>Your empire info is already part of your client:</p>
+<p>Your empire object is already part of your client:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span> <span class="s">&quot;I have used&quot;</span><span class="p">,</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">rpc_count</span><span class="p">,</span> <span class="s">&quot;RPCs so far today.&quot;</span><span class="p">)</span>
 
 <span class="n">profile</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
@@ -309,7 +264,7 @@ full documentation in <a class="reference internal" href="index.html#home"><em>W
         <a href="config_file.html" class="btn btn-neutral float-right" title="Config File"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to MontyLacuna’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="getting_started_running.html" class="btn btn-neutral" title="Getting Started Running Scripts"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

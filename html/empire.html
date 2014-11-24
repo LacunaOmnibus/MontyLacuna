@@ -58,16 +58,19 @@
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#create-a-config-file">Create A Config File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#script-runners-stop-here">Script Runners Stop Here</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#test-scripts">Test Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#connect-a-client">Connect a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#example-snippets">Example Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
@@ -92,7 +95,12 @@
 <li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beach/index.html">Beach Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcot/index.html">LCOT Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permanent/index.html">Permanent (Glyph) Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssmodules/index.html">Space Station Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callable/index.html">Miscellaneous Buildings with Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
@@ -597,6 +605,20 @@ skip_attack_messages         0,
 skip_incoming_ships          0,
 email                        &quot;joe@example.com&quot;,
 sitter_password              &quot;abcdefgh&quot;    
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.empire.OwningEmpire">
+<em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">OwningEmpire</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.empire.OwningEmpire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>An empire that owns a given body.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id                  Integer ID of the empire
+name                String name of the empire
+alignment           &#39;ally&#39; # &#39;ally&#39;, &#39;self&#39;, or &#39;hostile&#39;
+is_isolationist     1 or 0
 </pre></div>
 </div>
 </dd></dl>

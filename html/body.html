@@ -58,16 +58,19 @@
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-montylacuna">Install MontyLacuna</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#create-a-config-file">Create A Config File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#script-runners-stop-here">Script Runners Stop Here</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#test-scripts">Test Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#connect-a-client">Connect a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#example-snippets">Example Snippets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
@@ -92,7 +95,12 @@
 <li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lacuna.buildings.html">lacuna.buildings package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beach/index.html">Beach Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcot/index.html">LCOT Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permanent/index.html">Permanent (Glyph) Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssmodules/index.html">Space Station Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callable/index.html">Miscellaneous Buildings with Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
@@ -151,38 +159,120 @@
 <em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Body</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.Body" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
 <p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
-x           -4,
-y           10,
-star_id     &quot;id-goes-here&quot;,
-star_name   &quot;Sol&quot;,
-orbit       3,
-type        &quot;habitable planet&quot;,
-name        &quot;Earth&quot;,
-image       &quot;p13&quot;,
-size        67,
-water       900,
-ore         {   &quot;gold&quot; : 3399,
-            &quot;bauxite&quot; : 4000,
-            etc  },
-empire      { # only exists if the body is inhabited
-            &quot;id&quot; : &quot;id-goes-here&quot;,
-            &quot;name&quot; : &quot;Earthlings&quot;,
-            &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;
-            &quot;is_isolationist&quot; : 1    },
-station     { # only shows up if this planet is under the influence of a space station
-            &quot;id&quot; : &quot;id-goes-here&quot;,
-            &quot;x&quot; : 143,
-            &quot;y&quot; : -27,
-            &quot;name&quot; : &quot;The Death Star&quot;    },
-### The following will only be set if you own the body in question.
+<div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
+x               -4,
+y               10,
+star_id         &quot;id-goes-here&quot;,
+star_name       &quot;Sol&quot;,
+orbit           3,
+type            &quot;habitable planet&quot;,
+name            &quot;Earth&quot;,
+image           &quot;p13-3&quot;,
+size            67,
+water           900,
+ore             lacuna.resource.AvailableOre object
+empire          lacuna.empire.OwningEmpire object
+                Only exists if the body is inhabited
+station         lacuna.map.Station object
+                Only exists if the body is under the control of a space station.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.body.Buildable">
+<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Buildable</tt><big>(</big><em>client</em>, <em>name</em>, <em>mydict</em><big>)</big><a class="headerlink" href="#lacuna.body.Buildable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>A building to be built on a given plot.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>name                Wheat Farm
+url                 /wheat
+building_class      wheat
+image               wheat1
+can_build           1 or 0
+reason              Only shows up if &#39;can_build&#39; is 0, in which case 
+                    this will be a string explaining why the building 
+                    cannot be built.
+extra_level         7,
+                    Only shows up for some plan types, skips level 1 
+                    and goes straight to this level
+tags                List of build tags applying to this building (see below)
+cost                lacuna.resource.BuildCost object
+production          lacuna.resource.Production object
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Possible build tags:</dt>
+<dd><ul class="first last simple">
+<li><strong>Now</strong> &#8211; Can be built right now.</li>
+<li><strong>Soon</strong> &#8211; Could be built right now if only there were enough resources in storage.</li>
+<li><strong>Later</strong> &#8211; Will eventually become available once you&#8217;ve completed the necessary prerequisites.</li>
+<li><strong>Plan</strong> &#8211; This building will be built using a Plan, which means it will cost no resources to build.</li>
+<li><strong>Infrastructure</strong> &#8211; Everything that is not a resource building.<ul>
+<li><strong>Intelligence</strong> &#8211; This building helps you gain information.</li>
+<li><strong>Happiness</strong> &#8211; This building helps you gain favor with your citizens.</li>
+<li><strong>Ships</strong> &#8211; This building helps you build ships.</li>
+<li><strong>Colonization</strong> &#8211; This building helps you colonize other worlds.</li>
+<li><strong>Construction</strong> &#8211; This building helps in some way building buildings on your planet surface.</li>
+<li><strong>Trade</strong> &#8211; This building allows you to trade good or resources with other players, or assists in trade in some way.</li>
+</ul>
+</li>
+<li><strong>Resources</strong> &#8211; Everything that is not infrastructure.<ul>
+<li><strong>Food</strong> &#8211; This building either produces or stores food.</li>
+<li><strong>Ore</strong> &#8211; This building either produces or stores ore.</li>
+<li><strong>Water</strong> &#8211; This building either produces or stores water.</li>
+<li><strong>Energy</strong> &#8211; This building either produces or stores energy.</li>
+<li><strong>Waste</strong> &#8211; This building either consumes or stores waste.</li>
+<li><strong>Storage</strong> &#8211; This building provides storage for one or more of the five resources.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.body.JurisdictionPlanet">
+<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">JurisdictionPlanet</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.JurisdictionPlanet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>A planet you don&#8217;t necessarily own, that&#8217;s orbiting a star in the 
+jurisdiction of one of your Space Stations, as returned by 
+<tt class="docutils literal"><span class="pre">lacuna.buildings.parliament.get_bodies_for_star_in_jurisdiction()</span></tt>.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot; 
+star_id     &quot;star-id-goes-here&quot;
+star_name   &quot;Sol&quot;
+x           0
+y           1
+size        45
+image       &#39;a18-1&#39;,
+ore         lacuna.resource.StoredResources object
+zone        &#39;0|0&#39;
+orbit       &#39;3&#39;
+name        &#39;Earth&#39;
+type        &#39;asteroid&#39;
 ### 
-needs_surface_refresh       1,  # indicates that the client needs to call get_buildings() because something has changed
+### &#39;station&#39; will only appear if the planet&#39;s star has been seized by 
+### a space station.
+station     lacuna.map.Station object
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.body.MyBody">
+<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">MyBody</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></p>
+<p>A MyBody object is a planet or space station owned by the current 
+empire.  It has all of the attributes of a Body object, plus:</p>
+<div class="highlight-python"><div class="highlight"><pre>needs_surface_refresh       1,  # client needs to call get_buildings() 
+                                # because something has changed
 building_count              7,
 plots_available             60,
 happiness                   3939,
 happiness_hour              25,
-unhappy_date                &quot;01 13 2014 16:11:21 +0600&quot;,  # Only given if happiness is below zero
+unhappy_date                &quot;01 13 2014 16:11:21 +0600&quot;,  
+                            # Only given if happiness is below zero
 propaganda_boost            20,
 food_stored                 33329,
 food_capacity               40000,
@@ -199,116 +289,27 @@ waste_capacity              13000,
 water_stored                9929,
 water_hour                  295,
 water_capacity              51050,   
-skip_incoming_ships         0,      # if set, then the following incoming data is missing.
-num_incoming_enemy          10,     # total number of incoming foreign ships
-num_incoming_ally           1,      # total number of incoming allied ships
-num_incoming_own            0,      # total number of incoming own ships from other colonies
-incoming_enemy_ships         [  # will only be included when enemy ships are coming to 
-                                # your planet (only the first 20 will be shown)
-                                {   &quot;id&quot; : &quot;id-goes-here&quot;,
-                                    &quot;date_arrives&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                                    &quot;is_own&quot; : 1,
-                                    &quot;is_ally&quot; : 1   },  ],
-incoming_ally_ships         [   # will only be included when allied ships are coming to 
-                                # your planet (only the first 10 will be shown)     ],
-incoming_own_ships          [   # will only be included when ships from your other 
-                                # colonies are coming to your planet (only the first 
-                                # 10 will be shown)     ],
+skip_incoming_ships         0,      # if set, the &#39;incoming&#39; data below is missing.
+num_incoming_enemy          10,     # total incoming foreign ships
+num_incoming_ally           1,      # total incoming allied ships
+num_incoming_own            0,      # total incoming own ships
+incoming_enemy_ships        List of lacuna.ship.IncomingToBodyShip objects
+                            Will only be included when enemy ships are incoming
+incoming_ally_ships         List of lacuna.ship.IncomingToBodyShip objects
+                            Will only be included when allied ships are incoming
+incoming_own_ships          List of lacuna.ship.IncomingToBodyShip objects
+                            Will only be included when own ships are incoming
+buildings_id                {   building_id_1 = { building dict },
+                                building_id_2 = { building dict },   }
+buildings_name              {   &#39;Apple Orchard&#39; = [     { building dict },
+                                                        { building dict },   ],
+                                &#39;Space Port&#39;    = [     { building dict },
+                                                        { building dict },   ],
+                                &#39;etc&#39;           = [     { more of the same}, ]     }
 ### The following will only be set if the body is a space station.
 ### 
-alliance                    {   &quot;id&quot; : &quot;id-goes-here&quot;,
-                                &quot;name&quot; : &quot;Imperial Empire&quot;  },
-influence                   {   &quot;total&quot; : 0,
-                                &quot;spent&quot; : 0  }
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="class">
-<dt id="lacuna.body.MyBody">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">MyBody</tt><big>(</big><em>client: object</em>, <em>body_id: int</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></p>
-<p>A MyBody object is a planet or space station owned by the current 
-empire.</p>
-<p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id                  &quot;id-goes-here&quot;,
-x                   -4,
-y                   10,
-star_id             &quot;id-goes-here&quot;,
-star_name           &quot;Sol&quot;,
-orbit               3,
-type                &quot;habitable planet&quot;,
-name                &quot;Earth&quot;,
-image               &quot;p13&quot;,
-size                67,
-water               900,
-ore                 {   &quot;gold&quot; : 3399,
-                        &quot;bauxite&quot; : 4000,   },
-empire              {   &quot;id&quot; : &quot;id-goes-here&quot;,
-                        &quot;name&quot; : &quot;Earthlings&quot;,
-                        &quot;alignment&quot; : &quot;ally&quot;,   # can be &#39;ally&#39;,&#39;self&#39;, or &#39;hostile&#39;
-                        &quot;is_isolationist&quot; : 1    },
-station             {   # only shows up if this planet is under the influence of a space station
-                        &quot;id&quot; : &quot;id-goes-here&quot;,
-                        &quot;x&quot; : 143,
-                        &quot;y&quot; : -27,
-                        &quot;name&quot; : &quot;The Death Star&quot;    },
-needs_surface_refresh   1, # indicates that the client needs to call get_buildings() because something has changed
-building_count          7,
-plots_available         0,
-happiness               3939,
-happiness_hour          25,
-unhappy_date            &quot;01 13 2014 16:11:21 +0600&quot;,  # Only given if happiness is below zero
-propaganda_boost        20,
-food_stored             33329,
-food_capacity           40000,
-food_hour               229,
-energy_stored           39931,
-energy_capacity         43000,
-energy_hour             391,
-ore_hour                284,
-ore_capacity            35000,
-ore_stored              1901,
-waste_hour              ,
-waste_stored            9933,
-waste_capacity          13000,
-water_stored            9929,
-water_hour              295,
-water_capacity          51050,   
-skip_incoming_ships     0,      # if set, then the incoming data is missing.
-num_incoming_enemy      10,     # total number of incoming foreign ships
-num_incoming_ally       1,      # total number of incoming allied ships
-num_incoming_own : 0,   # total number of incoming own ships from other colonies
-incoming_enemy_ships    [ # will only be included when enemy ships are coming 
-                          # to your planet (only the first 20 will be shown)
-                            {   &quot;id&quot; : &quot;id-goes-here&quot;,
-                                &quot;date_arrives&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                                &quot;is_own&quot; : 1,
-                                &quot;is_ally&quot; : 1    },  ],
-incoming_ally_ships     [ # will only be included when allied ships are coming 
-                          # to your planet (only the first 10 will be shown)     ],
-incoming_own_ships      [ # will only be included when ships from your other 
-                          # colonies are coming to your planet (only the first 
-                          # 10 will be shown)    ],
-### The following will only be set if the body is a space station.
-### 
-alliance                {   &quot;id&quot; : &quot;id-goes-here&quot;,
-                            &quot;name&quot; : &quot;Imperial Empire&quot;  },
-influence               {   &quot;total&quot; : 0,
-                            &quot;spent&quot; : 0     }
-### The *building dict*s mentioned below are dicts containing the 
-### information represented by a building.MyBuilding&#39;s attributes.
-### They are not building objects because reasons.
-buildings_id            {   building_id_1 = { building dict },
-                            building_id_2 = { building dict },   }
-buildings_name          {   &#39;Apple Orchard&#39; = [
-                                ### These are lists, as some building 
-                                ### types will have multiple instances 
-                                { building dict },
-                                { building dict },   ],
-                            &#39;Space Port&#39; = [
-                                { building dict },
-                                { building dict },   ],     }
+alliance                    Lacuna.alliance.FoundAlliance object
+influence                   Lacuna.alliance.Influence object
 </pre></div>
 </div>
 <dl class="method">
@@ -320,8 +321,7 @@ buildings_name          {   &#39;Apple Orchard&#39; = [
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_buildable">
 <tt class="descname">get_buildable</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>tag: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildable" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Get a list of buildings that can be built on the indicated coords.</p>
+<dd><p>Get a list of buildings that can be built on the indicated coords.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
@@ -331,45 +331,10 @@ buildings_name          {   &#39;Apple Orchard&#39; = [
 </ul>
 </dd>
 </dl>
-<p>Tags are analogous to the buttons and drop-down box that appear in the 
-build menu in the browser client, such as Now, Later, Happiness, Ore, 
-Resources, etc.</p>
-<p>A complete list of tags can be found at:
-<a class="reference external" href="https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29">https://us1.lacunaexpanse.com/api/Body.html#get_buildable_%28_session_id%2C_body_id%2C_x%2C_y%2C_tag_%29</a></p>
-<p>Sending an invalid tag is not an error, it simply returns zero 
-results.</p>
-<p>Returns a dict that includes the key &#8216;buildable&#8217;, which is a list of 
-dicts keyed off the human-readable building name:</p>
-<div class="highlight-python"><div class="highlight"><pre>buildable = [
-    &#39;Water Purification Plant&#39;: {
-        &#39;build&#39;: {  &#39;can&#39;: 1,
-                    &#39;cost&#39;: {   &#39;energy&#39;: &#39;64&#39;,
-                                &#39;food&#39;: &#39;72&#39;,
-                                &#39;ore&#39;: &#39;88&#39;,
-                                &#39;time&#39;: &#39;15&#39;,
-                                &#39;waste&#39;: &#39;16&#39;,
-                                &#39;water&#39;: &#39;8&#39;     },
-                    &#39;no_plot_use&#39;: &#39;&#39;,
-                    &#39;reason&#39;: &#39;&#39;,
-                    &#39;tags&#39;: [   &#39;Resources&#39;, 
-                                &#39;Water&#39;, 
-                                &#39;Now&#39;    ]  },
-        &#39;image&#39;: &#39;waterpurification0&#39;,
-        &#39;production&#39;: {     &#39;energy_capacity&#39;: 0,
-                            &#39;energy_hour&#39;: &#39;-3&#39;,
-                            &#39;food_capacity&#39;: 0,
-                            &#39;food_hour&#39;: &#39;-1&#39;,
-                            &#39;happiness_hour&#39;: &#39;0&#39;,
-                            &#39;ore_capacity&#39;: 0,
-                            &#39;ore_hour&#39;: &#39;-3&#39;,
-                            &#39;waste_capacity&#39;: 0,
-                            &#39;waste_hour&#39;: &#39;5&#39;,
-                            &#39;water_capacity&#39;: 0,
-                            &#39;water_hour&#39;: &#39;31&#39;   },
-        &#39;url&#39;: &#39;/waterpurification&#39;  },     ]
-</pre></div>
-</div>
-</div></blockquote>
+<p>See the lacuna.body.Buildable class for a list of valid tags.  Passing 
+an invalid tag as an argument is not an error, but zero results will be 
+returned.</p>
+<p>Returns a list of lacuna.body.Buildable objects.</p>
 <p>Raises ServerError 1009 if the passed coords are illegal for any reason (already 
 occupied, out-of-bounds, etc)</p>
 </dd></dl>
@@ -378,28 +343,89 @@ occupied, out-of-bounds, etc)</p>
 <dt id="lacuna.body.MyBody.get_building_coords">
 <tt class="descname">get_building_coords</tt><big>(</big><em>x: int</em>, <em>y: int</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_building_coords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a building&#8217;s coordinates, returns the object for that building.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>x &#8211; The integer X coordinate on your planet&#8217;s surface</li>
+<li>y &#8211; The integer Y coordinate on your planet&#8217;s surface</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the building object found on the requested coordinates.  The 
+class of object returned will vary depending on which building type 
+exists on those coords.</p>
+<p>Raises NoSuchBuildingError if no building exists on the requested coords.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_building_id">
 <tt class="descname">get_building_id</tt><big>(</big><em>classname: str</em>, <em>id: int</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_building_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a building&#8217;s ID, returns the object for that building.</p>
+<dd><p>Returns a building object by ID.</p>
+<p>Unless you&#8217;re sure you want this and you know why, you don&#8217;t want this.
+See <tt class="docutils literal"><span class="pre">get_building_coords()</span></tt> or <tt class="docutils literal"><span class="pre">get_buildings_bytype()</span></tt> instead.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>classname &#8211; Name of the class of building</li>
+<li>building_id &#8211; Integer ID of the building</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_buildings">
 <tt class="descname">get_buildings</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns dict with key &#8216;buildings&#8217;.  This dict is keyed off 
-building IDs.  Values are building dicts as documented by 
-get_buildable().</p>
+<dd><p>Returns all buildings on the planet.</p>
+<p>There shouldn&#8217;t be any need to call this, as your MyBody object already 
+contains the information returned by this method (see the 
+<tt class="docutils literal"><span class="pre">buildings_id</span></tt> and <tt class="docutils literal"><span class="pre">buildings_name</span></tt> MyBody attributes).</p>
+<p>So this hasn&#8217;t been cleaned up at all.  It returns a dict that includes 
+the with key &#8216;buildings&#8217;.  This dict is keyed off building IDs, the 
+values are building dicts.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.get_buildings_bytype">
+<tt class="descname">get_buildings_bytype</tt><big>(</big><em>btype: str</em>, <em>min_level: int=1</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildings_bytype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of buildings of a specific type and minimum level.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>btype &#8211; The type of building you want.  The type as given must 
+match <em>either</em> the &#8220;human name&#8221; of the building (eg &#8220;Ship Yard&#8221;, 
+&#8220;Space Port&#8221;), or the classname of the building (eg &#8220;shipyard&#8221;, 
+&#8220;spaceport&#8221;).</li>
+<li>min_level &#8211; Integer minimum level of the building to return.  Defaults to 1.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a list of the requested buildings.</p>
+<p>Each building returned will have its <tt class="docutils literal"><span class="pre">view()</span></tt> method called 
+automatically.  So if you&#8217;re going to get 10 buildings back, that&#8217;s 
+10 <tt class="docutils literal"><span class="pre">view()</span></tt> calls that need to be made, and that&#8217;s going to slow things 
+down a bit.  So keep that in mind, and turn caching on.</p>
+<p>If you passed an unrecognized type (eg &#8220;Convenience Store&#8221;) or a 
+min_level that doesn&#8217;t match any existing buildings, you&#8217;ll get back 
+an empty list.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_new_building">
 <tt class="descname">get_new_building</tt><big>(</big><em>classname: str</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_new_building" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a &#8220;new&#8221; building.</p>
-<p>This is a building that does not exist yet.  What you&#8217;re getting is a 
-building object, which you can then call <tt class="docutils literal"><span class="pre">build()</span></tt> on.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>classname &#8211; String name of the class of building to build.  This 
+must be the classname, <em>not</em> the human readable name.  So 
+&#8220;spaceport&#8221; rather than &#8220;Space Port&#8221;.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a lacuna.buildings.&lt;classname&gt; object.</p>
+<p>This is a building that does not exist yet, but which you&#8217;re getting 
+ready to build.</p>
 </dd></dl>
 
 <dl class="method">
@@ -450,16 +476,17 @@ every other method), just a bare int.</p>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.repair_list">
-<tt class="descname">repair_list</tt><big>(</big><em>building_ids_to_repair: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.repair_list" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">repair_list</tt><big>(</big><em>ids_to_repair: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.repair_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Repairs all buildings indicated by ID in the passed-in list.</p>
-<p>Requires a list of building IDs to be repaired.</p>
 <dl class="docutils">
-<dt>Returns a dict including the key &#8216;buildings&#8217;, containing:</dt>
+<dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>id &#8211; building dict</li>
+<li>ids_to_repair &#8211; A list of integer IDs of buildings to attempt to 
+repair.</li>
 </ul>
 </dd>
 </dl>
+<p>Returns a list of lacuna.building.Building objects.</p>
 </dd></dl>
 
 </dd></dl>
@@ -504,19 +531,6 @@ waste_capacity      13000,
 water_stored        9929,
 water_hour          295,
 water_capacity      51050
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="class">
-<dt id="lacuna.body.SpaceStation">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">SpaceStation</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.SpaceStation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id                  &quot;id-goes-here&quot;,
-name                &quot;ISS&quot;,
-x                   -4,
-y                    10,
 </pre></div>
 </div>
 </dd></dl>
