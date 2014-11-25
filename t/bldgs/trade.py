@@ -8,11 +8,10 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'my_sitter',
-    #config_section = 'play_test',
+    config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
-trade       = my_planet.get_building_coords( 5, -5 )
+trade       = my_planet.get_buildings_bytype( 'trade', 0, 1 )[0]
 
 
 ### View ships available for trading
@@ -140,8 +139,11 @@ if False:
 
 ### See resources available for trade onsite
 ###
-#res = trade.get_stored_resources()
-#glc.pp.pprint( res['resources'] )
+res = trade.get_stored_resources()
+print( "I have {:,} water, {:,} waste, and {:,} bauxite ready for trade."
+    .format(res.water, res.waste, res.bauxite)
+)
+
 
 ### Push items to another of your colonies
 ###
@@ -163,15 +165,8 @@ if False:
 
 
 
-
-
-
-
-
-
-
 ### Do this for each run so you can see the captchas pop up where required.
-glc.logout();
+#glc.logout();
 
 
 

@@ -1,8 +1,4 @@
 
-### CHECK
-### Pick back up at propose_seize_star, which has not been started yet  
-### (working through the API docs top to bottom).
-
 import lacuna.bc
 import lacuna.body
 import lacuna.empire

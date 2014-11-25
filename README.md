@@ -114,6 +114,7 @@ supposed to do.
   - Space Station Modules
     - parliament
     - policestation
+      - "done", but several methods are untested.
     - stationcommand
 
 ## Incomplete/Not Started
@@ -129,9 +130,6 @@ supposed to do.
   - Run through the whole Getting Started instruction set on a fresh Python install on 
     Windows to make sure the docs are correct.
 - Ack through everything for "CHECK" and fix.
-- The logfile attribute of clients is meant to be optional, but ISTR getting an explosion 
-  on a test at some point where I didn't have a logfile set.  Confirm that setting a 
-  logfile is optional.
 - I'm going to need at least a few useful scripts in bin/ before making this public.
 
 ## Documentation

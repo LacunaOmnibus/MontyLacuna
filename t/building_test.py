@@ -37,8 +37,8 @@ my_planet = glc.get_body_byname( 'bmots support 01' )
 ### Finding a building by building type (also easy)
 ### just remember this returns a list.
 ### 
-#sp = my_planet.get_buildings_bytype( 'spaceport', 0, 1 )[0]
-#print( sp.image )
+sp = my_planet.get_buildings_bytype( 'spaceport', 0, 1 )[0]
+print( sp.image )
 
 
 ### Build new
