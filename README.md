@@ -129,11 +129,6 @@ supposed to do.
   - Run through the whole Getting Started instruction set on a fresh Python install on 
     Windows to make sure the docs are correct.
 - Ack through everything for "CHECK" and fix.
-- Whenever we instantiate a MyBuilding object, we're calling view() on that building 
-  automatically - I'm not convinced that's what should be happening.  At the very least, 
-  we should be caching the results.
-- lacuna.bc.SubClass is idiotically named.  It's meant as a full-coverage superclass, not 
-  a subclass.  Do something about that name.
 - The logfile attribute of clients is meant to be optional, but ISTR getting an explosion 
   on a test at some point where I didn't have a logfile set.  Confirm that setting a 
   logfile is optional.

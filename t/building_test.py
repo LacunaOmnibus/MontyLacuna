@@ -16,8 +16,6 @@ glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'play_test',
 )
-
-
 my_planet = glc.get_body_byname( 'bmots support 01' )
 
 
@@ -39,7 +37,7 @@ my_planet = glc.get_body_byname( 'bmots support 01' )
 ### Finding a building by building type (also easy)
 ### just remember this returns a list.
 ### 
-#sp = my_planet.get_buildings_bytype( 'spaceport' )[0]
+#sp = my_planet.get_buildings_bytype( 'spaceport', 0, 1 )[0]
 #print( sp.image )
 
 
