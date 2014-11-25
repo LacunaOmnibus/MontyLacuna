@@ -139,10 +139,10 @@ if False:
 
 ### See resources available for trade onsite
 ###
-res = trade.get_stored_resources()
-print( "I have {:,} water, {:,} waste, and {:,} bauxite ready for trade."
-    .format(res.water, res.waste, res.bauxite)
-)
+#res = trade.get_stored_resources()
+#print( "I have {:,} water, {:,} waste, and {:,} bauxite ready for trade."
+#    .format(res.water, res.waste, res.bauxite)
+#)
 
 
 ### Push items to another of your colonies

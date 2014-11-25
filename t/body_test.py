@@ -66,25 +66,20 @@ glc = lacuna.clients.Member(
 ### Rearrange
 ### 
 ### First, find out the ID of the building at coords (5, 5):
-#my_planet = glc.get_body_byname( 'bmots01' )
-#bldg_to_move = ''
-#for bid, mydict in my_planet.buildings_id.items():
-#    if mydict['x'] == '5' and mydict['y'] == '5':
-#        bldg_to_move = mydict
-#if not bldg_to_move:
+#my_planet = glc.get_body_byname( 'bmots support 01' )
+#sp = my_planet.get_building_coords( 5, -1 )
+#if not sp:
 #    raise KeyError("You don't have any buildings at 5, 5 on this planet.")
 ### 
 ### Now, set up  the move_to list, specifying where the building should end 
 ### up, then move it.
-#move_to = [{
-#    'id': bldg_to_move['id'],
-#    'x': 0,                 # enter the coords to move it to
-#    'y': 1                  # enter the coords to move it to
-#}]   
-#rv = my_planet.rearrange_buildings( move_to )
-#print( "I just moved the building {} to ({}, {})."
-#    .format(rv['moved']['name'],rv['moved']['x'],rv['moved']['y'])
-#)
+#move_to    = [{ 'id': sp.id, 'x': 5, 'y': -2 }]   
+#move_back  = [{ 'id': sp.id, 'x': 5, 'y': -1 }]   
+#arrs = my_planet.rearrange_buildings( move_to )
+#for a in arrs:
+#    print( "I just moved the building {} to ({}, {})."
+#        .format(a.name, a.x, a.y)
+#    )
 
 
 ### Get list of buildings that can be built on a given plot

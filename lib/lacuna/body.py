@@ -383,8 +383,7 @@ class MyBody(Body):
             mylist.append( lacuna.building.Building(self.client, mydict) )
         return mylist
 
-    @Body._set_body_status
-    @lacuna.bc.LacunaObject.call_body_meth
+    @lacuna.bc.LacunaObject.call_returning_body_meth
     def rearrange_buildings( self, arrangement:list, *args, **kwargs ):
         """ Moves one or more buildings to a new spot on the planet surface.
 
@@ -396,17 +395,17 @@ class MyBody(Body):
                         'y':  integer y coordinate to move to,  },
                   { another building to move, same format as above },     ]
 
-        Returns a dict including the key 'moved', which is a list of dicts of 
-        buildings that were moved.  This returned list is identical to the 
-        list you passed in except it also contains a 'name' key containing the 
-        human-readable name of the moved building.
+        Returns a list of body.Arrangement objects.
 
         Attempting to make an illegal move (moving a building out of -5..5 
         bounds, moving it on top of another building, moving the PCC at all, 
         etc) raises ServerError 1013 and no moves are made, even if others in 
         the list were legal.
         """
-        pass
+        mylist = []
+        for i in kwargs['rslt']['moved']:
+            mylist.append( Arrangement(self.client, i) )
+        return mylist
 
     @lacuna.bc.LacunaObject.call_returning_body_meth
     def get_buildable( self, x:int, y:int, tag:str = '', *args, **kwargs ):
@@ -436,9 +435,10 @@ class MyBody(Body):
     def rename( self, name:str = '', *args, **kwargs ):
         """ Renames the current planet.
 
-        For whatever reason, this returns int 1 on success.  Not a dict (like 
-        every other method), just a bare int.
+        Returns 1 on success.
         """
+        ### For whatever reason, the server returns int 1 on success.  Not a 
+        ### dict, just a bare int.
         pass
 
     @lacuna.bc.LacunaObject.call_body_meth
@@ -599,5 +599,16 @@ class SimpleBody(lacuna.bc.SubClass):
     """
 
 
+class Arrangement(lacuna.bc.SubClass):
+    """ This comes back after rearranging buildings.
+
+    Attributes::
+
+        id          "id-goes-here",
+        name        "Earth"
+        x           100
+        y           -250
+        image       "p35"
+    """
             
 
