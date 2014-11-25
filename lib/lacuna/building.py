@@ -229,11 +229,11 @@ class MyBuilding(lacuna.bc.LacunaObject):
             mydict = rv['building']
             del( rv['building'] )
 
-        if 'pending_build' in mydict:
+        if 'pending_build' in mydict and type(mydict['pending_build']) is dict:
             self.pending_build = Working(self.client, mydict['pending_build'])
             del mydict['pending_build']
 
-        if 'work' in mydict:
+        if 'work' in mydict and type(mydict['work']) is dict:
             self.work = Working(self.client, mydict['work'])
             del mydict['work']
 
@@ -367,6 +367,12 @@ class Working(lacuna.bc.SubClass):
 
     """
     def __init__(self, client, mydict:dict):
+        if type(mydict['seconds_remaining']) is not int or mydict['seconds_remaining'] <= 0:
+            ### This sometimes comes back as a negative, which we can't send 
+            ### to sec2time.  If it's anything other than an int >= 0, change 
+            ### it to a 0.
+            mydict['seconds_remaining'] = 0
+
         self.seconds_el = self.sec2time( mydict['seconds_remaining'] )
         self.start_dt   = self.tle2time( mydict['start'] )
         self.end_dt     = self.tle2time( mydict['end'] )
