@@ -11,8 +11,8 @@ glc = lac.clients.Member(
     config_section = 'my_real',
 )
 
-my_station = glc.get_body_byname( 'Some Station' )
-scc = my_station.get_buildings_bytype( 'stationcommand' )[0]
+my_station = glc.get_body_byname( 'SASS bmots 02' )
+scc = my_station.get_buildings_bytype( 'stationcommand', 0, 1 )[0]
 
 
 

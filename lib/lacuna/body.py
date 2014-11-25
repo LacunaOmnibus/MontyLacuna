@@ -285,7 +285,7 @@ class MyBody(Body):
             raise NoSuchBuildingError("No building was found at ({},{})".format(x,y))
 
 
-    def get_buildings_bytype( self, btype:str, min_level:int = 1 ):
+    def get_buildings_bytype( self, btype:str, min_level:int = 1, limit:int = 0 ):
         """ Get a list of buildings of a specific type and minimum level.
 
         Arguments:
@@ -293,7 +293,11 @@ class MyBody(Body):
               match *either* the "human name" of the building (eg "Ship Yard", 
               "Space Port"), or the classname of the building (eg "shipyard", 
               "spaceport").
-            - min_level -- Integer minimum level of the building to return.  Defaults to 1.
+            - min_level -- Integer minimum level of the building to return.  
+              Defaults to 1.
+            - limit -- Integer max number of this building you want returned.  
+              Defaults to 0 (returns all buildings of this type).
+              This method returns a list, even if ``limit`` is set to 1.
 
         Returns a list of the requested buildings.
 
@@ -312,6 +316,8 @@ class MyBody(Body):
             if bdict['name'] == btype or classname == btype and int(bdict['level']) >= min_level:
                 bldg_str = "lacuna.buildings.{}( self.client, self.body_id, bid )".format( classname )
                 mylist.append( eval(bldg_str) )
+                if limit and len(mylist) >= limit:
+                    break
         return mylist
 
 
@@ -589,7 +595,7 @@ class SimpleBody(lacuna.bc.SubClass):
         name        "Earth"
         x           100
         y           -250
-        image       "huzzuh?"
+        image       "p35"
     """
 
 
