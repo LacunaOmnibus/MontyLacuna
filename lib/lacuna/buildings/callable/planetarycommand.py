@@ -4,12 +4,9 @@ import lacuna.building
 import lacuna.plan
 import lacuna.resource
 
-"""
-    The TLE API docs claim that the view() method retval contains a 'building' 
-    key. At least on PT, it does not.
-"""
-
 class planetarycommand(lacuna.building.MyBuilding):
+    """ Planetary Command Center """
+
     path = 'planetarycommand'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
@@ -18,7 +15,11 @@ class planetarycommand(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
-        """
+        """ Get planet details.
+
+        The TLE API claim that the view() method retval contains a 'building' 
+        key. At least on PT, it does not.
+
         Returns a tuple:
             - food -- List of lacuna.resource.PlanetaryFood objects
             - ore -- List of lacuna.resource.PlanetaryOre objects
@@ -40,46 +41,28 @@ class planetarycommand(lacuna.building.MyBuilding):
     def view_plans( self, *args, **kwargs ):
         """ Shows plans stored on the planet.
 
-        Retval includes 'plans', a list of plan dicts:
+        Retval includes 'plans', a list of plan dicts::
 
-::
-
-                {       'extra_build_level': 0,
-                        'level': 6,
-                        'name': 'Warehouse',
-                        'plan_type': 'Module_Warehouse',
-                        'quantity': '50'        }
+            {       'extra_build_level': 0,
+                    'level': 6,
+                    'name': 'Warehouse',
+                    'plan_type': 'Module_Warehouse',
+                    'quantity': '50'        }
         """
         mylist = []
         for i in kwargs['rslt']['plans']:
             mylist.append( lacuna.plan.OwnedPlan(self.client, i) )
         return mylist
 
+
     @lacuna.building.MyBuilding.call_returning_meth
     def view_incoming_supply_chains( self, *args, **kwargs ):
         """ Shows the supply chains coming in to this planet from elsewhere.
 
-        Returns a list of SupplyChain objects.
+        Returns a list of lacuna.resource.SupplyChain objects.
         """
         mylist = []
         for i in kwargs['rslt']['supply_chains']:
-            mylist.append( SupplyChain(self.client, i) )
+            mylist.append( lacuna.resource.SupplyChain(self.client, i) )
         return mylist
-
-class SupplyChain(lacuna.bc.SubClass):
-    """
-    Attributes::
-
-        id                      "id-goes-here",
-        from_body               {   "id" : "id-goes-here",
-                                    "name" : "Mars",
-                                    "x" : 0,
-                                    "y" : -123,
-                                    "image" : "station",
-                                    ...      },
-        resource_hour           10000000,
-        resource_type           'water',
-        percent_transferred     95,
-        stalled                 0,
-    """
 
