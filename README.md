@@ -26,8 +26,6 @@ working package.
   - This gets installed by virtualenv, so if you're using that, you're good.
 - requests
   - pip install requests
-  - CHECK It might make sense to replace this with urllib, since it's standard - one less 
-    thing for the user to have to install
 - beaker
   - pip install beaker
 
@@ -48,17 +46,6 @@ work, but it hasn't been fully tested yet.
 
 - Alliance
 - Body
-  - CHECK
-    most calls are just returning dicts.
-  - FIXED
-    - get_buildable()
-    - get_new_building()
-    - get_status()
-    - repair_list()
-    - rearrange()
-    - MyBody attributes are now objects, not dicts, and surface_type actually works.
-  - I've been working down the documentation top-to-bottom, NOT the code.  The code is in 
-    a different order than the docu is.
 - Captcha
 - Clients
 - Empire
