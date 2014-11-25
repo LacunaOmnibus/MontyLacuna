@@ -33,7 +33,7 @@ class PlanetaryResource(lacuna.bc.SubClass):
             "kerogen", "magnetite", "methane", "monazite", "rutile", "sulfur",
             "trona", "uraninite", "zircon",
         ]
-        self.all_resources = self.all_foods + self.all_ores + [ "water", "energy" ]
+        self.all_resources = self.all_foods + self.all_ores + [ "water", "energy", "waste" ]
 
         ### Iterate through our exhaustive list of all resources instead of 
         ### iterating through mydict, which only lists resources > 0.  This 
@@ -42,7 +42,7 @@ class PlanetaryResource(lacuna.bc.SubClass):
             ### Sometimes we get "water", and sometimes we get "water_stored".  
             ### It's confusing and inconsistent.  Strip the "_stored".
             if i in mydict:
-                setattr( self, i, mydict[i] )
+                setattr( self, i, int(mydict[i]) )
             elif i+"_stored" in mydict:
                 setattr( self, i, int(mydict[i+"_stored"]) )
             else:

@@ -75,7 +75,8 @@ class policestation(lacuna.building.MyBuilding):
     def view_prisoners( self, page_number:int = 1, **kwargs ):
         """ Shows prisoners, 25 at a time.
 
-        CHECK untested
+        This hasn't been tested.  I have not reason to believe it's a problem, 
+        but I haven't confirmed otherwise.
 
         Arguments:
             - page_number -- Optional page of results to view.  Defaults to 1.
@@ -91,7 +92,8 @@ class policestation(lacuna.building.MyBuilding):
     def execute_prisoner( self, prisoner_id:int, **kwargs ):
         """ Execute a captured spy
 
-        CHECK untested
+        This hasn't been tested.  I have not reason to believe it's a problem, 
+        but I haven't confirmed otherwise.
 
         Arguments:
             - prisoner_id -- Integer ID of the prisoner to execute.
@@ -104,7 +106,8 @@ class policestation(lacuna.building.MyBuilding):
     def release_prisoner( self, prisoner_id:int, **kwargs ):
         """ Release a captured spy
 
-        CHECK untested
+        This hasn't been tested.  I have not reason to believe it's a problem, 
+        but I haven't confirmed otherwise.
 
         Arguments:
             - prisoner_id -- Integer ID of the prisoner to release.
@@ -117,7 +120,8 @@ class policestation(lacuna.building.MyBuilding):
     def view_foreign_spies( self, page_number:int = 1, **kwargs ):
         """ Shows foreign spies, 25 at a time.
 
-        CHECK untested
+        This hasn't been tested.  I have not reason to believe it's a problem, 
+        but I haven't confirmed otherwise.
 
         Arguments:
             - page_number -- Optional page of results to view.  Defaults to 1.

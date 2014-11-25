@@ -150,6 +150,7 @@ class TradeBldg(lacuna.building.MyBuilding):
             kwargs['rslt']['page_number'],
         )
 
+
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
     def accept_from_market( self, trade_id:int, *args, **kwargs ):
@@ -163,19 +164,15 @@ class TradeBldg(lacuna.building.MyBuilding):
         """
         pass
 
-    @lacuna.bc.LacunaObject.set_empire_status
-    @lacuna.building.MyBuilding.call_building_meth
+
+    @lacuna.building.MyBuilding.call_returning_meth
     def get_stored_resources( self, *args, **kwargs ):
-        """ Returns resources stored onsite and available for trading.
+        """ Get resources stored onsite and available for trading.
 
-        CHECK this should return an object.
-
-        Returns a dict including the key 'resources', itself a dict, containing:
-            - water -- 10000,
-            - waste -- 20000,
-            - bauxite -- 25,
+        Returns a lacuna.resource.StoredResources object.
         """
-        pass
+        return lacuna.resource.StoredResources(self.client, kwargs['rslt']['resources'])
+
 
 class ExistingTrade(lacuna.bc.SubClass):
     """ Trades that exist on either the Trade or SST market, either posted by 

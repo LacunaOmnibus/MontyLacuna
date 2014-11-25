@@ -1,6 +1,11 @@
 
+import lacuna.bc
+import lacuna.trading
+import lacuna.ship
 
-"""
+class trade(lacuna.trading.TradeBldg):
+    """ Trade Ministry 
+
     I'm to the point were replicating every single TLE method is 
     getting boring.
 
@@ -17,14 +22,7 @@
     - remove_supply_ship_from_fleet()
     - remove_waste_ship_from_fleet()
     - report_abuse()
-"""
-
-import lacuna.bc
-import lacuna.trading
-import lacuna.ship
-
-class trade(lacuna.trading.TradeBldg):
-    """ Trade Ministry """
+    """
 
     path = 'trade'
 
