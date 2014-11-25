@@ -173,6 +173,225 @@ class parliament(lacuna.building.MyBuilding):
         return Proposition(self.client, kwargs['rslt']['proposition'])
 
 
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_seize_star( self, star_id:int, *args, **kwargs ):
+        """ Seize control of a star.
+
+        Arguments:
+            - star_id -- Integer ID of the star to seize.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_rename_star( self, star_id:int, name:str, *args, **kwargs ):
+        """ Rename a star.
+
+        Arguments:
+            - star_id -- Integer ID of the star to rename.
+            - name -- The proposed new name
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_broadcast_on_network19( self, message:str, *args, **kwargs ):
+        """ Broadcast any message on Network 19.
+
+        Arguments:
+            - message -- The message to broadcast
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_induct_member( self, empire_id:int, message:str = '', *args, **kwargs ):
+        """ Induct a new alliance member.
+
+        Arguments:
+            - empire_id -- Integer ID of the empire to invite
+            - message -- Optional string message to include in the boilerplate 
+              mail that gets sent to the invited empire.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_expel_member( self, empire_id:int, message:str = '', *args, **kwargs ):
+        """ Remove a member from the alliance.
+
+        Arguments:
+            - empire_id -- Integer ID of the empire to invite
+            - message -- Optional string message to include in the boilerplate 
+              mail that gets sent to the expelled empire.
+
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_elect_new_leader( self, empire_id:int, *args, **kwargs ):
+        """ Elect a new leader of the alliance.
+
+        Arguments:
+            - empire_id -- Integer ID of the empire to elect
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_rename_asteroid( self, roid_id:int, *args, **kwargs ):
+        """ Rename an asteroid.
+
+        Arguments:
+            - roid_id -- Integer ID of the asteroid to rename
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_rename_uninhabited( self, planet_id:int, name:str, *args, **kwargs ):
+        """ Seize control of a star.
+
+        Arguments:
+            - planet_id -- Integer ID of the star to seize.
+            - name -- The new name to use.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_members_only_mining_rights( self, *args, **kwargs ):
+        """ Only allow alliance members to send mining platforms withing the
+        station's jurisdiction.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_evict_mining_platform( self, plat_id:int, *args, **kwargs ):
+        """ Destroys a mining platform deployed on an asteroid.
+
+        Arguments:
+            - plat_id -- Integer ID of the platform to evict
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_taxation( self, taxes:int, *args, **kwargs ):
+        """ Propose taxation.
+
+        This doesn't work, and has never worked.  It's not broken, it's just 
+        never been made part of the game.
+
+        Included for consistency with the API - the method is published, it 
+        just doesn't do anything.
+
+        Arguments:
+            - taxes -- I have no idea what this is.  An integer amount of E?  Of
+              resources?  A hash of resources?  Dunno, it's undocumented.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_foreign_aid( self, planet_id:int, resources:int, *args, **kwargs ):
+        """ Send an aid package to a planet.
+
+        Documented as being part of the API, but not available through the 
+        browser client.  I assume it doesn't actually do anything.
+
+        Arguments:
+            - planet_id -- Integer ID of the star to seize.
+            - resources -- Integer?  Hash?  Who knows?
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_members_only_colonization( self, *args, **kwargs ):
+        """ Only alliance members can colonize planets within the station's 
+        jurisdiction.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_members_only_excavation( self, *args, **kwargs ):
+        """ Only alliance members can send excavators within the station's 
+        jurisdiction.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_neutralize_bhg( self, *args, **kwargs ):
+        """ No BHGs will be usable within the station's jurisdiction.  This law 
+        applies to BHGs owned by both foreign and allied empires.
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
+    @lacuna.building.MyBuilding.call_returning_meth
+    def propose_fire_bfg( self, body_id:int, reason:str = "pew pew!", *args, **kwargs ):
+        """ Fire the BFG at a target.
+
+        Arguments:
+            - body_id -- Integer ID of the body to attack.
+            - reason -- String reason for firing.  Defaults to "pew pew!"
+
+        Returns a single lacuna.buildings.parliament.Proposition object.
+        """ 
+        ### Untested but should be fine.
+        return Proposition(self.client, kwargs['rslt']['proposition'])
+
+
 class Law(lacuna.bc.SubClass):
     """
     Attributes::

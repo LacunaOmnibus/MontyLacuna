@@ -1,6 +1,7 @@
 
 import re
 import lacuna.bc
+import lacuna.body
 
 class PlanetaryResource(lacuna.bc.SubClass):
     """ Base class for resource classes.
@@ -101,6 +102,7 @@ class AvailableOre(lacuna.bc.SubClass):
         etc
     """
 
+
 class BuildCost(lacuna.bc.SubClass):
     """ How much it'll cost to build a building
 
@@ -113,6 +115,7 @@ class BuildCost(lacuna.bc.SubClass):
         ore         1000,
         time        1200,   # in seconds
     """
+
 
 class Production(lacuna.bc.SubClass):
     """ How much a building produces (or will produce upon build/upgrade)
@@ -128,6 +131,27 @@ class Production(lacuna.bc.SubClass):
     """
 
 
+class SupplyChain(lacuna.bc.SubClass):
+    """
+    Attributes::
 
+        id                      "id-goes-here",
+        from_body               lacuna.body.SimpleBody object
+        from_body               {   "id" : "id-goes-here",
+                                    "name" : "Mars",
+                                    "x" : 0,
+                                    "y" : -123,
+                                    "image" : "station",     },
+        resource_hour           10000000,
+        resource_type           'water',
+        percent_transferred     95,
+        stalled                 0,
+    """
+    def __init__(self, client, mydict:dict):
+        if 'from_body' in mydict:
+            self.from_body = lacuna.body.SimpleBody(client, mydict['from_body'])
+            del mydict['from_body']
+        super().__init__(client, mydict)
+        
 
 

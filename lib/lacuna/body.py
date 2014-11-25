@@ -455,11 +455,7 @@ class Planet(lacuna.bc.SubClass):
         image               "p13",
         size                67,
         water               900,
-        ore                 {
-                                "gold" : 3399,
-                                "bauxite" : 4000,
-                                etc,
-                            },
+        ore                 lacuna.resource.AvailableOre object
         building_count      7,
         population          470000,
         happiness           3939,
@@ -480,6 +476,12 @@ class Planet(lacuna.bc.SubClass):
         water_hour          295,
         water_capacity      51050
     """
+    def __init__(self, client, mydict:dict):
+        if 'ore' in mydict:
+            self.ore = lacuna.resource.AvailableOre(client, mydict['ore'] )
+            del mydict['ore']
+        super().__init__(client, mydict)
+
 
 class JurisdictionPlanet(lacuna.bc.SubClass):
     """ A planet you don't necessarily own, that's orbiting a star in the 
@@ -577,4 +579,19 @@ class Buildable(lacuna.bc.SubClass):
 
         if 'extra_level' in mydict['build']:
             self.extra_level = mydict['build']['extra_level']
+
+
+class SimpleBody(lacuna.bc.SubClass):
+    """
+    Attributes::
+
+        id          "id-goes-here",
+        name        "Earth"
+        x           100
+        y           -250
+        image       "huzzuh?"
+    """
+
+
+            
 

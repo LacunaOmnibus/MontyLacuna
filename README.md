@@ -112,7 +112,9 @@ supposed to do.
     - wasteexchanger
     - wasterecycling
   - Space Station Modules
+    - parliament
     - policestation
+    - stationcommand
 
 ## Incomplete/Not Started
 - Payments
@@ -121,13 +123,7 @@ supposed to do.
 - Announcement
 
 ## TBD
-- The Space Station modules haven't been completed.
-  - I'm up to working on Parliament, which is only partway done.
-- I currently have - planet.get_building_coords( x, y ), which works fine.  But I want to 
-  add something like:
-        planet.get_buildings_bytype( 'Space Port', min_level )
-  ...that should return a list of all space port buildings on the planet >= min_level.  
-  Sort them by level.
+- Fix body.get_buildings_bytype to accept a limit arg ("I only want X of these")
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.

@@ -11,19 +11,14 @@ glc = lac.clients.Member(
     config_section = 'my_real',
 )
 
-#my_planet = glc.get_body_byname( 'SASS bmots 01' )
-#parl = my_planet.get_building_coords( 3, 4 )
+my_station = glc.get_body_byname( 'Some Station' )
+parl = my_station.get_buildings_bytype( 'parliament' )[0]
 
-my_planet = glc.get_body_byname( 'SASS Fireball 01' )
-parl = my_planet.get_building_coords( -1, 0 )
-
-#my_planet = glc.get_body_byname( 'SASS Ascension' )
-#parl = my_planet.get_building_coords( -1, 0 )
 
 
 ### View laws
 ### 
-#laws = parl.view_laws( my_planet.id )
+#laws = parl.view_laws( my_station.id )
 #for i in laws:
 #    if re.match("^Seize", i.name):
 #        ### Don't list all the seizure laws.
@@ -31,17 +26,15 @@ parl = my_planet.get_building_coords( -1, 0 )
 #    print( "{} is described as {}, and was enacted on {}."
 #        .format(i.name, i.description, i.date_enacted)
 #    )
-#print( "-------------------------------" )
 
 
 ### View propositions
 ### 
-props = parl.view_propositions()
-for i in props:
-    print( "{} needs {} votes to pass, and has {} yes and {} no votes.  It was proposed by {}."
-        .format(i.name, i.votes_needed, i.votes_yes, i.votes_no, i.proposed_by.name)
-    )
-print( "-------------------------------" )
+#props = parl.view_propositions()
+#for i in props:
+#    print( "{} needs {} votes to pass, and has {} yes and {} no votes.  It was proposed by {}."
+#        .format(i.name, i.votes_needed, i.votes_yes, i.votes_no, i.proposed_by.name)
+#    )
 
 
 ### Propose a writ
@@ -68,23 +61,11 @@ print( "-------------------------------" )
 
 ### Propose repealing an existing law
 ### 
-#laws = parl.view_laws( my_planet.id )
+#laws = parl.view_laws( my_station.id )
 #for i in laws:
 #    if i.name == 'nopush 2':       # The name of a law to propose repealing
 #        prop = parl.propose_repeal_law( i.id )
 #        print( "I just proposed to repeal the law {}.".format(prop.name) )
-
-
-### Propose transferring station ownership
-### 
-#my_ally = glc.get_my_alliance()
-#new_owner = ''
-#for i in my_ally.members:
-#    if i.name == 'Infinate Ones':
-#        new_owner = i
-#        break
-#prop = parl.propose_transfer_station_ownership( i.id )
-#print( "I just proposed {}.".format(prop.description) )
 
 
 ### View taxes
@@ -139,4 +120,31 @@ print( "-------------------------------" )
 #            print( "The empire '{}' has platform ID {} on {}."
 #                .format(j.empire.name, j.id, i.name)
 #            )
+
+
+
+###
+### All of the proposal methods work more-or-less the same way.  They do take 
+### different arguments; sometimes you need to send along a planet ID or a 
+### string message or whatever.  But they're all essentially the same code, so 
+### they're not all being tested here.
+###
+### They _should_ all work, but if you're planning on using one in earnest, 
+### give it a test run first.
+###
+
+
+### Propose transferring station ownership
+### 
+#my_ally = glc.get_my_alliance()
+#new_owner = ''
+#for i in my_ally.members:
+#    if i.name == 'The Name of the Empire to Take Over Control':
+#        new_owner = i
+#        break
+#prop = parl.propose_transfer_station_ownership( i.id )
+#print( "I just proposed {}.".format(prop.description) )
+
+
+
 
