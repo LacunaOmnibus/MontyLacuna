@@ -46,11 +46,21 @@ class spaceport(lacuna.building.MyBuilding):
                 }
 
         """
+        docked_ships    = 0
+        docks_avail     = 0
+        max_ships       = 0
+
+        if 'docked_ships' in kwargs['rslt']:
+            docked_ships = kwargs['rslt']['docked_ships']
+        if 'docks_available' in kwargs['rslt']:
+            docks_avail = kwargs['rslt']['docks_available']
+        if 'max_ships' in kwargs['rslt']:
+            max_ships = kwargs['rslt']['max_ships']
 
         return (
-            kwargs['rslt']['docked_ships'],
-            kwargs['rslt']['docks_available'],
-            kwargs['rslt']['max_ships'],
+            docked_ships,
+            docks_avail,
+            max_ships,
         )
 
     @lacuna.building.MyBuilding.call_returning_meth

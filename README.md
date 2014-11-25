@@ -123,7 +123,6 @@ supposed to do.
 - Announcement
 
 ## TBD
-- Fix body.get_buildings_bytype to accept a limit arg ("I only want X of these")
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.

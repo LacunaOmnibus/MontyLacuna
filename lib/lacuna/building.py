@@ -47,14 +47,8 @@ class MyBuilding(lacuna.bc.LacunaObject):
         level           3,
         image           "apples3",
         efficiency      95,
-        pending_build   {   # only included when building is building/upgrading
-                            "seconds_remaining" : 430,
-                            "start" : "01 31 2010 13:09:05 +0600",
-                            "end" : "01 31 2010 18:09:05 +0600"  },
-        work            {   # only included when building is working (Parks, Waste Recycling, etc)
-                            "seconds_remaining" : 49,
-                            "start" : "01 31 2010 13:09:05 +0600",
-                            "end" : "01 31 2010 18:09:05 +0600"  }
+        pending_build   lacuna.building.Working object
+        work            lacuna.building.Working object
 
     MontyLacuna attempts to provide method calls that mirror all of the method 
     calls documented by the TLE API.  However, MyBuilding had to violate that 
@@ -68,7 +62,6 @@ class MyBuilding(lacuna.bc.LacunaObject):
         and attributes overwrite methods of the same name.
         So these have been renamed, adding the ``do_`` prefix to avoid attribute 
         name collisions.
-
     """
 
     def __init__( self, client, body_id:int, id:int = 0 ):
@@ -77,7 +70,8 @@ class MyBuilding(lacuna.bc.LacunaObject):
         if id:
             self.id = id
             rv = self.client.send( self.path, 'view', (self.client.session_id, id) )
-            self.write_building_status( rv )
+            self._write_building_status( rv )
+
 
     def call_building_meth(func):
         """ Decorator.
@@ -96,6 +90,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
             return rslt
         return inner
 
+
     def call_returning_meth(func):
         """ Decorator.
         Calls a server method that requires a building id, but no body_id.
@@ -112,11 +107,12 @@ class MyBuilding(lacuna.bc.LacunaObject):
             rslt = self.client.send( self.path, method_to_call, myargs )
             status_dict = lacuna.bc.LacunaObject.get_status_dict(self, rslt)
             lacuna.bc.LacunaObject.write_empire_status(self, status_dict)
-            self.write_building_status(rslt)
+            self._write_building_status(rslt)
             kwargs['rslt'] = rslt
             myrslt = func( self, *args, **kwargs )
             return myrslt
         return inner
+
 
     def call_naked_returning_meth(func):
         """ Decorator.
@@ -140,6 +136,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
             return myrslt
         return inner
 
+
     def call_named_meth(func):
         """ Decorator.  
         Calls a server method that requires a id, but no body_id.
@@ -154,6 +151,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
             func( self, mydict )
             return rslt
         return inner
+
 
     def call_named_returning_meth(func, *args, **kwargs):
         """ Decorator.  
@@ -177,6 +175,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
             return myrslt
         return inner
 
+
     def call_naked_meth(func):
         """ Decorator.
         Some building methods require neither a body_id nor a id (see 
@@ -193,6 +192,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
             return rslt
         return inner
 
+
     def require_existing(func):
         """ Decorator.
         Many building methods only make sense to be called on a building that 
@@ -206,6 +206,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
             return rslt
         return inner
 
+
     def set_building_status( func ):
         """ Decorator.
         Much like lacuna.bc.LacunaObject.set_empire_status.  A few of the Building server 
@@ -217,17 +218,28 @@ class MyBuilding(lacuna.bc.LacunaObject):
         def inner(*args, **kwargs):
             rv = func( *args, **kwargs )
             self = args[0]
-            self.write_building_status( rv )
+            self._write_building_status( rv )
             return rv
         return inner
 
-    def write_building_status( self, rv:dict ):
+
+    def _write_building_status( self, rv:dict ):
         mydict = {}
         if 'building' in rv:
             mydict = rv['building']
             del( rv['building'] )
+
+        if 'pending_build' in mydict:
+            self.pending_build = Working(self.client, mydict['pending_build'])
+            del mydict['pending_build']
+
+        if 'work' in mydict:
+            self.work = Working(self.client, mydict['work'])
+            del mydict['work']
+
         for n, v in mydict.items():
             setattr( self, n, v )
+
 
     def build( self, x:int, y:int, **kwargs ):
         """ Actually places a building on the requested coords, assuming the 
@@ -241,15 +253,17 @@ class MyBuilding(lacuna.bc.LacunaObject):
         ### since the building doesn't exist yet.  No decorators here; the 
         ### call to view() after the building is placed will handle that.
         rv = self.client.send( self.path, 'build', (self.client.session_id, self.body_id, x, y) )
-        rv['building']['id'] = rv['building']['id']
-        self.write_building_status( rv )
+        #rv['building']['id'] = rv['building']['id']
+        self._write_building_status( rv )
         self.view()
+
 
     @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def view( self, **kwargs ):
         pass
+
 
     @lacuna.bc.LacunaObject.set_empire_status
     @call_building_meth
@@ -259,6 +273,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
         del( self.body_id )
         del( self.id )
 
+
     @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
@@ -266,11 +281,13 @@ class MyBuilding(lacuna.bc.LacunaObject):
         """ Adds the current building to the build queue. """
         pass
 
+
     @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
     def do_downgrade( self, **kwargs ):
         pass
+
 
     @lacuna.bc.LacunaObject.set_empire_status
     @call_building_meth
@@ -287,6 +304,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
         ### building's actual stats.
         pass
 
+
     @lacuna.bc.LacunaObject.set_empire_status
     @set_building_status
     @call_building_meth
@@ -296,6 +314,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
         ``repair()`` to determine how much res the repair will take.
         """
         pass
+
 
 class SingleStorage(MyBuilding):
     """ Base class for the storage buildings that store a singular resource 
@@ -312,6 +331,7 @@ class SingleStorage(MyBuilding):
             - amount -- Required integer.  The amount of res to dump.
         """
         pass
+
 
 class MultiStorage(MyBuilding):
     """ Base class for the storage buildings that store a variegated resource 
@@ -330,4 +350,34 @@ class MultiStorage(MyBuilding):
             - amount -- Required integer.  The amount of res to dump.
         """
         pass
+
+
+class Working(lacuna.bc.SubClass):
+    """ The work being done, actually or potentially, by a building.
+
+    Attributes::
+
+        seconds     430,
+        seconds_el  lacuna.bc.ElaspsedTime object representing the value in 
+                    seconds.
+        start       "01 31 2010 13:09:05 +0600"
+        start_dt    datetime.datetime object representing the value in start.
+        end         "01 31 2010 18:09:05 +0600"
+        end_dt      datetime.datetime object representing the value in end.
+
+    """
+    def __init__(self, client, mydict:dict):
+        self.seconds_el = self.sec2time( mydict['seconds_remaining'] )
+        self.start_dt   = self.tle2time( mydict['start'] )
+        self.end_dt     = self.tle2time( mydict['end'] )
+
+        ### 'seconds_remaining' is too damn wordy, just change it to 
+        ### 'seconds'.  But don't delete 'seconds_remaining' -- leave that in 
+        ### case our user is following the TLE docu instead of the MontyLacuna 
+        ### docu.
+        mydict['seconds'] = mydict['seconds_remaining']
+
+        super().__init__(client, mydict)
+
+
 

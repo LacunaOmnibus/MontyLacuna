@@ -14,36 +14,58 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'my_sitter',
+    config_section = 'play_test',
 )
 
 
-my_planet = glc.get_body_byname( 'bmots rof 2.1' )
+my_planet = glc.get_body_byname( 'bmots support 01' )
 
 
 
-### Finding a building
+### Finding a building (the hard way)
 #list_buildings(my_planet)  # I deleted this function; see body_test.py if you really want it back.
 #quit()
 ### ...read the output, find the building you want, copy its ID, then:
 #sp = my_planet.get_building_id( 'spaceport', <ID from copy above> )
 #print( sp.image )
-#quit()
+
+
+### Finding a building by coords (easy)
 ### 
-### ...OR, much nicer...
-sp = my_planet.get_building_coords( 1, -3 )
-print( sp.image )
-quit()
+#sp = my_planet.get_building_coords( 1, -3 )
+#print( sp.image )
+
+
+### Finding a building by building type (also easy)
+### just remember this returns a list.
+### 
+#sp = my_planet.get_buildings_bytype( 'spaceport' )[0]
+#print( sp.image )
 
 
 ### Build new
 ### Make sure to set the coords (args to build()) to an available plot.
+###
 #sp = my_planet.get_new_building( 'spaceport' )
-#sp.build(-1, -3)
-#print( sp.id )
-#print( "start:", sp.pending_build['start'] )
-#print( "end:", sp.pending_build['end'] )
-#print( sp.image )
+#sp.build(5, -2)
+#print( "My new spaceport started building on {} and will finish on {}, which will take {} seconds."
+#    .format(sp.pending_build.start, sp.pending_build.end, sp.pending_build.seconds)
+#)
+### 
+### This is a little wordy, but you've also got access to the start/end times 
+### as datetime objects, and the build duration as a lacuna.bc.ElapsedTime 
+### object:
+#print( "My new spaceport will finish on {}-{}-{}.  That's {} days, {} hours, {} minutes, and {} seconds."
+#    .format(
+#        sp.pending_build.end_dt.year, 
+#        sp.pending_build.end_dt.month, 
+#        sp.pending_build.end_dt.day, 
+#        sp.pending_build.seconds_el.days, 
+#        sp.pending_build.seconds_el.hours, 
+#        sp.pending_build.seconds_el.minutes, 
+#        sp.pending_build.seconds_el.seconds, 
+#    )
+#)
 
 
 ### Demolish
