@@ -55,10 +55,10 @@ work, but it hasn't been fully tested yet.
     - get_new_building()
     - get_status()
     - repair_list()
+    - rearrange()
     - MyBody attributes are now objects, not dicts, and surface_type actually works.
   - I've been working down the documentation top-to-bottom, NOT the code.  The code is in 
-    a different order than the docu is, so pick up by working down the docs from 
-    rearrange_buildings() (which isn't done yet).
+    a different order than the docu is.
 - Captcha
 - Clients
 - Empire
@@ -92,7 +92,6 @@ supposed to do.
   - orestorage
   - park
   - planetarycommand
-    - CHECK - fix view().
   - politicstraining
   - security
   - shipyard
