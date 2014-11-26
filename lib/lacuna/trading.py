@@ -16,6 +16,10 @@ class TradeBldg(lacuna.building.MyBuilding):
     def get_ships( self, *args, **kwargs ):
         """ Get ships available to be added to a trade as merchandise.
 
+        These are *not* ships available to carry trade cargo.  These are ships 
+        that are available *as* cargo - these ships can be traded, but can't 
+        necessarily carry a trade.
+
         Returns a tuple:
             - ships -- List of TradeableShip objects.
             - space_used -- Amount of cargo space used by each ship.  Always 
@@ -26,7 +30,7 @@ class TradeBldg(lacuna.building.MyBuilding):
             mylist.append( lacuna.ship.TradeableShip(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['cargo_space_used_each']
+            self.get_type(kwargs['rslt']['cargo_space_used_each'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -43,7 +47,7 @@ class TradeBldg(lacuna.building.MyBuilding):
             mylist.append( lacuna.spy.Prisoner(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['cargo_space_used_each']
+            self.get_type(kwargs['rslt']['cargo_space_used_each'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -60,7 +64,7 @@ class TradeBldg(lacuna.building.MyBuilding):
             mylist.append( lacuna.plan.OwnedPlan(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['cargo_space_used_each']
+            self.get_type(kwargs['rslt']['cargo_space_used_each'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -77,7 +81,7 @@ class TradeBldg(lacuna.building.MyBuilding):
             mylist.append( lacuna.glyph.OwnedGlyph(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['cargo_space_used_each']
+            self.get_type(kwargs['rslt']['cargo_space_used_each'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -99,8 +103,8 @@ class TradeBldg(lacuna.building.MyBuilding):
             mylist.append( ExistingTrade(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['trade_count'],
-            kwargs['rslt']['page_number'],
+            self.get_type(kwargs['rslt']['trade_count']),
+            self.get_type(kwargs['rslt']['page_number']),
         )
 
     @lacuna.bc.LacunaObject.set_empire_status
@@ -146,8 +150,8 @@ class TradeBldg(lacuna.building.MyBuilding):
             mylist.append( ExistingTrade(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['trade_count'],
-            kwargs['rslt']['page_number'],
+            self.get_type(kwargs['rslt']['trade_count']),
+            self.get_type(kwargs['rslt']['page_number']),
         )
 
 

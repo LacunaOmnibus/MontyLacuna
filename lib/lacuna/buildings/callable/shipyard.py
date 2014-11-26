@@ -24,8 +24,8 @@ class shipyard(lacuna.building.MyBuilding):
             ship_list.append( lacuna.ship.BuildingShip(self.client, i) )
         return( 
             ship_list, 
-            int(kwargs['rslt']['number_of_ships_building']), 
-            int(kwargs['rslt']['cost_to_subsidize']) 
+            self.get_type(kwargs['rslt']['number_of_ships_building']), 
+            self.get_type(kwargs['rslt']['cost_to_subsidize']) 
         )
 
     @lacuna.bc.LacunaObject.set_empire_status
@@ -75,9 +75,9 @@ class shipyard(lacuna.building.MyBuilding):
             ship_list.append( lacuna.ship.PotentialShip(self.client, mydict) )
         return( 
             ship_list, 
-            kwargs['rslt']['docks_available'], 
-            kwargs['rslt']['build_queue_max'],
-            kwargs['rslt']['build_queue_used']
+            self.get_type(kwargs['rslt']['docks_available']), 
+            self.get_type(kwargs['rslt']['build_queue_max']),
+            self.get_type(kwargs['rslt']['build_queue_used'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -95,7 +95,7 @@ class shipyard(lacuna.building.MyBuilding):
             ship_list.append( lacuna.ship.MyBuildingShip(self.client, i) )
         return( 
             ship_list, 
-            kwargs['rslt']['number_of_ships_building'], 
-            kwargs['rslt']['cost_to_subsidize'] 
+            self.get_type(kwargs['rslt']['number_of_ships_building']),
+            self.get_type(kwargs['rslt']['cost_to_subsidize'])
         )
 

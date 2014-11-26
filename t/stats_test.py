@@ -15,27 +15,12 @@ guest = lac.clients.Guest(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'my_guest',
 )
-glc = lac.clients.Member(
+client = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'my_sitter',
 )
+stats = client.get_stats()
 
-stats = glc.get_stats()
-
-l = glc.user_logger;
-l.critical("This is an critical message.")
-l.error("This is an error message.")
-l.warning("This is an warning message.")
-l.info("This is an info message.")
-l.debug("This is an debug message.")
-
-glc.cache_on('ally_test')
-ranks, num, page = stats.alliance_rank()
-ranks, num, page = stats.alliance_rank()
-glc.cache_off
-
-print( "DONE" )
-quit()
 
 ### credits() works fine from a guest account.
 ###
@@ -49,8 +34,8 @@ quit()
 ### Look at alliance stats by page
 ###
 #ranks, num, page = stats.alliance_rank()
-#print( "There are", num, "total alliances." )
-#print( "Names of alliances on page number", page, ":" )
+#print( "There are {:,} total alliances.".format(num) )
+#print( "Names of alliances on page number {}:".format(page) )
 #for i in ranks:
 #    print( "\t", i.alliance_name )
 

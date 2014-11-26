@@ -63,6 +63,9 @@ class archaeology(lacuna.building.MyBuilding):
     def get_ores_available_for_processing( self, **kwargs ):
         """ Get ores of sufficient quantity to perform glyph searches on.
 
+        CHECK
+        this should return a resource.SOMETHING object.
+
         Returns a dict of sufficient ores and their quantities::
 
             'anthracite': 99294156,
@@ -85,8 +88,8 @@ class archaeology(lacuna.building.MyBuilding):
             mylist.append( lacuna.ship.Excavator(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['max_excavators'],
-            kwargs['rslt']['travelling'],
+            self.get_type(kwargs['rslt']['max_excavators']),
+            self.get_type(kwargs['rslt']['travelling']),
         )
 
     @lacuna.bc.LacunaObject.set_empire_status

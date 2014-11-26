@@ -1,20 +1,21 @@
 
-from lacuna.building import MyBuilding
+import lacuna.bc
+import lacuna.building
 
-class themepark(MyBuilding):
+class themepark(lacuna.building.MyBuilding):
     path = 'themepark'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
         """ Returns a ParkView object for this Theme Park.  """
-        MyBuilding.write_building_status( self, kwargs['rslt'] )
+        lacuna.building.MyBuilding._write_building_status( self, kwargs['rslt'] )
         view = ParkView( self.client, kwargs['rslt']['themepark'] )
         return view
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def operate( self, *args, **kwargs ):
         """ Runs the theme park.
 
@@ -33,11 +34,11 @@ class themepark(MyBuilding):
 
         Returns a ParkView object.
         """
-        MyBuilding.write_building_status( self, kwargs['rslt'] )
+        lacuna.building.MyBuilding._write_building_status( self, kwargs['rslt'] )
         view = ParkView( self.client, kwargs['rslt']['themepark'] )
         return view
 
-class ParkView():
+class ParkView(lacuna.bc.SubClass):
     """
     Attributes::
 
@@ -57,8 +58,7 @@ class ParkView():
 
     """
     def __init__( self, client, mydict:dict, *args, **kwargs ):
-        for k, v in mydict.items():
-            setattr(self, k, v)
+        super().__init__(client, mydict)
         if not hasattr(self, 'food_type_count'):
             ### If the park isn't currently in operation, we don't actually 
             ### get a food_type_count key in the hash returned from TLE at 

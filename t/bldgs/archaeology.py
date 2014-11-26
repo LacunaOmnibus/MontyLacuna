@@ -13,7 +13,7 @@ glc = lac.clients.Member(
 )
 
 my_planet = glc.get_body_byname( 'bmots01' )
-arch = my_planet.get_building_coords( -5, -5 )
+arch = my_planet.get_buildings_bytype( 'archaeology', 0, 1 )[0]
 
 
 ### Is the archmin performing a local search right now?
@@ -59,7 +59,7 @@ arch = my_planet.get_building_coords( -5, -5 )
 ### Get info on working excavators
 ###
 #excavs, max, trav = arch.view_excavators()
-#print( "We have {} excavs working, and {} are in the air.  We max out at {}."
+#print( "We have {} excavs working, and {} are in the air.  We max out at {:,}."
 #    .format(len(excavs), trav, max)
 #)
 #e = excavs[0]

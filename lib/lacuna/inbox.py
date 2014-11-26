@@ -15,7 +15,7 @@ class Inbox(lacuna.bc.LacunaObject):
             mylist.append( MessageSummary(self.client, i) )
         return (
             mylist,
-            result['message_count'],
+            self.get_type(result['message_count']),
         )
 
     @lacuna.bc.LacunaObject.call_returning_meth

@@ -1,5 +1,5 @@
 
-import json, logging, os, os.path, pprint, re, requests, threading, time, uuid
+import json, logging, os, os.path, pprint, re, requests, sys, threading, time, uuid
 import configparser
 import beaker.cache, beaker.util
 from my_validate_email import validate_email
@@ -90,6 +90,11 @@ class Guest(lacuna.bc.SubClass):
             warn_on_sleep:bool      = True, 
         ):
 
+        ### As long as this file, 'clients.py', is in ROOT/lib/lacuna/, the 
+        ### following is correct.  We _do_ want __file__ here, not 
+        ### sys.argv[0].
+        self.root_dir = os.path.abspath(os.path.dirname(__file__)) + '/../..'
+
         if config_file and config_section and os.path.isfile(config_file):
             self.config_file    = config_file
             self.config_section = config_section
@@ -117,8 +122,7 @@ class Guest(lacuna.bc.SubClass):
         self._set_up_cache()
 
     def _set_up_cache(self):
-        bindir      = os.path.abspath(os.path.dirname(sys.argv[0]))
-        vardir      = bindir + "/../var"
+        vardir      = self.root_dir + "/var"
         cachedir    = vardir + "/cache"
         lockdir     = vardir + "/cachelck"
         if os.path.isdir(vardir):

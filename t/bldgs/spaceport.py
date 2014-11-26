@@ -11,10 +11,12 @@ glc = lac.clients.Member(
     config_section = 'play_test',
 )
 ### The map on PT is smaller than that on US1, but the US1 data was copied to 
-### PT.  So be sure you're getting one of your bodies that's actually within 
-### the bounds of the PT map or Weird Things can happen.
+### PT.  So if you're using PT, be sure you're getting one of your bodies 
+### that's actually within the bounds of the PT map or Weird Things can 
+### happen.
+###
 my_planet   = glc.get_body_byname( 'bmots01' )
-sp          = my_planet.get_building_coords( 5, 5 )
+sp          = my_planet.get_buildings_bytype( 'spaceport', 0, 1 )[0]
 my_map      = glc.get_map();
 
 
@@ -36,7 +38,7 @@ my_map      = glc.get_map();
 #ships, number = sp.view_all_ships( paging, myfilter, sort )
 #for i in ships:
 #    print( i.type_human )
-#print( "There are {} of my ships matching my filter.".format(number) )
+#print( "I have {:,} ships matching my filter.".format(number) )
 
 
 ### View incoming foreign ships

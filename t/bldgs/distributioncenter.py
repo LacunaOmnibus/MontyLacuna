@@ -10,8 +10,8 @@ glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
     config_section = 'play_test',
 )
-my_planet = glc.get_body_byname( 'bmots rof 2.1' )
-dist = my_planet.get_building_coords( -1, -3 )
+my_planet = glc.get_body_byname( 'bmots support 02' )
+dist = my_planet.get_buildings_bytype( 'distributioncenter', 0, 1 )[0]
 
 
 ### View the dist ctr
@@ -32,7 +32,7 @@ dist = my_planet.get_building_coords( -1, -3 )
 ### List resources onsite to see what can be reserved
 ###
 #res, space = dist.get_stored_resources( )
-#print( "Each resource unit takes up {} cargo space units.".format(space) )
+#print( "Each resource unit takes up {:,} unit of reserve space.".format(space) )
 #print( "I have {:,} water stored".format(res.water) )
 #print( "I have {:,} anthracite stored".format(res.anthracite) )
 

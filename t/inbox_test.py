@@ -20,13 +20,15 @@ mail = glc.get_inbox();
 
 ### See messages in your inbox
 ###
-#msgs, ttl = mail.view_inbox( {"tags": ["excavator", "correspondence"]} )
-#print( "There are", ttl, "excavator/correspondence messages in my inbox.  Here are the first few:")
-#for i in msgs[0:3]:
-#    print( "{} from {} (preview: {})".format(i.subject, i.from_name, i.body_preview) )
-#    print( "The full body of the message follows:" )
-#    print( mail.read_message( i.id ).body )
-#    print( "----------------------" )
+msgs, ttl = mail.view_inbox( {"tags": ["excavator", "correspondence"]} )
+print( "There are {:,} excavator/correspondence messages in my inbox.  Here are the first few:"
+    .format(ttl)
+)
+for i in msgs[0:3]:
+    print( "{} from {} (preview: {})".format(i.subject, i.from_name, i.body_preview) )
+    print( "The full body of the message follows:" )
+    print( mail.read_message( i.id ).body )
+    print( "----------------------" )
 
 
 ### See messages in one of the mailbox's sub-tabs

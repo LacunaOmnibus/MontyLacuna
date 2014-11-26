@@ -123,7 +123,7 @@ class Body(lacuna.bc.LacunaObject):
 
 
             for n, v in mydict.items():
-                setattr( self, n, v )
+                setattr( self, n, self.get_type(v) )
 
             return rv
         return inner
@@ -306,9 +306,8 @@ class MyBody(Body):
         10 ``view()`` calls that need to be made, and that's going to slow things 
         down a bit.  So keep that in mind, and turn caching on.
 
-        If you passed an unrecognized type (eg "Convenience Store") or a 
-        min_level that doesn't match any existing buildings, you'll get back 
-        an empty list.
+        Raises KeyError if you don't have any buildings of the requested type 
+        and level.
         """
         mylist = []
         for bid, bdict in self.buildings_id.items():
@@ -318,6 +317,8 @@ class MyBody(Body):
                 mylist.append( eval(bldg_str) )
                 if limit and len(mylist) >= limit:
                     break
+        if not len(mylist):
+            raise KeyError("You don't have a {} building on {}.".format(btype, self.name))
         return mylist
 
 

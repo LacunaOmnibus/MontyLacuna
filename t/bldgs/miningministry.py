@@ -8,19 +8,18 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'my_sitter',
-    #config_section = 'play_test',
+    config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
-minmin      = my_planet.get_building_coords( -3, 3 )
+minmin      = my_planet.get_buildings_bytype( 'miningministry', 0, 1 )[0]
 
 
 ### See what platforms you have out
 ###
 #plats, max = minmin.view_platforms()
-#print( "I have {} of a maximum {} platforms out.".format(len(plats), max) )
+#print( "I have {:,} of a maximum {:,} platforms out.".format(len(plats), max) )
 #for i in plats[0:3]:
-#    print( "The plat on {} is producing {} chromite per hour and its shipping capacity is {}."
+#    print( "The plat on {} is producing {:,} chromite per hour and its shipping capacity is {:,}."
 #        .format(i.asteroid['name'], i.chromite_hour, i.shipping_capacity)
 #    )
 

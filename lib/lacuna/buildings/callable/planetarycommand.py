@@ -33,7 +33,7 @@ class planetarycommand(lacuna.building.MyBuilding):
             food, 
             ore, 
             planet, 
-            kwargs['rslt']['next_colony_cost']
+            self.get_type(kwargs['rslt']['next_colony_cost'])
         )
 
 
