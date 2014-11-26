@@ -8,7 +8,6 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
     config_section = 'play_test',
 )
 
@@ -52,8 +51,8 @@ arch = my_planet.get_buildings_bytype( 'archaeology', 0, 1 )[0]
 ### Get available ores
 ###
 #ores = arch.get_ores_available_for_processing()
-#for name, quantity in ores.items():
-#    print( "We have {} of {}." .format(quantity, name) )
+#for name, quantity in ores.my_ores():
+#    print( "I have {:,} of {}".format(quantity, name) )
 
 
 ### Get info on working excavators

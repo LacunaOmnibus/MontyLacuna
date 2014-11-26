@@ -10,6 +10,7 @@ from lacuna.exceptions import CaptchaResponseError
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
     config_section = 'play_test',
+    #config_section = 'sitter',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.4' )
 gen         = my_planet.get_buildings_bytype( 'geneticslab', 0, 1 )[0]
@@ -17,12 +18,12 @@ gen         = my_planet.get_buildings_bytype( 'geneticslab', 0, 1 )[0]
 
 ### Prepare for experimentation
 ### 
-#grafts, s_odds, g_odds, cost, can = gen.prepare_experiment()
-#if can:
-#    print( "I have {:,}% chance of grafting, and prisoners have {:,}% chance of surviving.  {:,} E per attempt."
-#        .format(g_odds, s_odds, cost))
-#else:
-#    print( "I'm currently unable to run any experiments." )
+grafts, s_odds, g_odds, cost, can = gen.prepare_experiment()
+if can:
+    print( "I have {:,}% chance of grafting, and prisoners have {:,}% chance of surviving.  {:,} E per attempt."
+        .format(g_odds, s_odds, cost))
+else:
+    print( "I'm currently unable to run any experiments." )
 ###
 ### Requires you have 2 prisoners with at least 2 graftable affinities on the 
 ### second one. 
@@ -30,12 +31,11 @@ gen         = my_planet.get_buildings_bytype( 'geneticslab', 0, 1 )[0]
 ### This test is a bit contrived; IRL you shouldn't need to be messing with 
 ### the eval() - you'll know what affinity you're attempting to graft.
 ###
-#for i in range(0,2):
-#    g = grafts[i]
-#    random_affin = g['graftable_affinities'][i]
-#    print( "I can graft {} from spy {}.  His score is {}."
-#        .format( random_affin, g['spy'].name, eval("g['species']."+random_affin) )
-#    )
+for g in grafts:
+    random_affin = g.graftable_affinities[0]
+    print( "I can graft {} from spy {}.  His score is {}."
+        .format( random_affin, g.spy.name, eval("g.species."+random_affin) )
+    )
 
 
 ### Perform an experiment

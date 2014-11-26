@@ -15,28 +15,26 @@ class geneticslab(lacuna.building.MyBuilding):
         """ Returns information needed to set up a genetics experiment.
 
         CHECK
-        grafts_list should be an object, not a list of dicts.
+        grafts_list used to be a list of dicts, changed to a list of objects.  
+        Should be fine, but I can't find any prisoners to test on.
+
+        If this comment still exists and you're wanting to use this method, 
+        keep in mind that the grafts_list returned might not be as advertised.  
+        It should be, but check it before assuming it's correct. 
+
+        And if you do that, let tmtowtdi know whether it worked or not.
 
         Returns a tuple:
-            - grafts_list -- List of dicts
+            - grafts_list -- List of lacuna.buildings.geneticslab.Graft objects
             - survival_odds -- Integer percent odds of the victim surviving
             - graft_odds -- Integer percent odds of the graft working
             - essentia_cost -- Integer cost per experiment attempt
             - can_experiment -- Boolean; whether the lab can be used or not.
 
-        The dicts in grafts_list each describe one prisoner who's available to 
-        do experiments on:
-        - spy -- spy.Spy object
-        - species -- empire.Species object
-        - graftable_affinities -- List of affinity names; these are affinities of the prisoner's that are higher than your own, eg ["min_orbit", "management_affinity", ... ]
         """
         grafts_list = []
         for i in kwargs['rslt']['grafts']:
-            grafts_list.append({
-                'spy':                  lacuna.spy.Spy( self.client, i['spy'] ),
-                'species':              lacuna.empire.Species( self.client, i['species'] ),
-                'graftable_affinities': i['graftable_affinities'],
-            })
+            grafts_list.append( Graft(client, i) )
         return (
             grafts_list,
             self.get_type(kwargs['rslt']['survival_odds']),
@@ -90,4 +88,19 @@ class ExperimentResults(lacuna.bc.SubClass):
     """
     pass
 
+
+class Graft(lacuna.bc.SubClass):
+    """
+    Attributes::
+
+        spy                     lacuna.spy.Spy object
+        species                 lacuna.empire.Species object of the spy
+        graftable_affinities    List of affinity names that can be grafted from 
+                                the spy to your empire
+    """
+    def __init__(self, client, mydict:dict):
+        self.client                 = client
+        self.spy                    = lacuna.spy.Spy( self.client, mydict['spy'] )
+        self.species                = lacuna.empire.Species( self.client, mydict['species'] )
+        self.graftable_affinities   = mydict['graftable_affinities']
 

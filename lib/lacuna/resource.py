@@ -53,6 +53,74 @@ class PlanetaryResource(lacuna.bc.SubClass):
             else:
                 setattr( self, i+"_hour", 0 )
 
+
+    def my_ores(self):
+        """ Generator.  Iterate through all of the ores in the current object:
+
+        >>> ores = <PlanetaryOre object>
+        >>> for name, quantity in ores.my_ores():
+        >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
+        name: anthracite, quantity: 1,200
+        (no bauxite on this planet, so it's not listed)
+        name: beryl, quantity: 2,200
+        ...
+        """
+        for i in self.all_ores:
+            if hasattr(self, i):
+                yield(i, eval('self.'+i))
+
+
+    def my_foods(self):
+        """ Generator.  Iterate through all of the foods in the current object:
+
+        >>> foods = <PlanetaryFood object>
+        >>> for name, quantity in foods.my_foods():
+        >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
+        name: algae, quantity: 1,200
+        (no apple on this planet, so it's not listed)
+        name: bean, quantity: 2,200
+        ...
+        """
+        for i in self.all_foods:
+            if hasattr(self, i):
+                yield(i, eval('self.'+i))
+
+
+    def my_hourly_ores(self):
+        """ Generator.  Iterate through all of the hourly rates of ore 
+        production in the current object:
+
+        >>> ores = <PlanetaryOre object>
+        >>> for name, quantity in ores.my_hourly_ores():
+        >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
+        name: anthracite_hour, quantity: 1,200
+        (no bauxite production on this planet, so it's not listed)
+        name: beryl_hour, quantity: 2,200
+        ...
+        """
+        for i in self.all_ores:
+            attr = i+"_hour"
+            if hasattr(self, attr):
+                yield(i, eval('self.'+attr))
+
+
+    def my_hourly_foods(self):
+        """ Generator.  Iterate through all of the hourly rates of food 
+        production in the current object:
+
+        >>> foods = <PlanetaryFood object>
+        >>> for name, quantity in foods.my_hourly_foods():
+        >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
+        name: algae_hour, quantity: 1,200
+        (no apple production on this planet, so it's not listed)
+        name: bean_hour, quantity: 2,200
+        ...
+        """
+        for i in self.all_foods:
+            attr = i+"_hour"
+            if hasattr(self, attr):
+                yield(i, eval('self.'+attr))
+
 class PlanetaryFood(PlanetaryResource):
     """ The food being produced and currently stored.
 
@@ -92,7 +160,7 @@ class StoredResources(PlanetaryResource):
         etc
     """
 
-class AvailableOre(lacuna.bc.SubClass):
+class AvailableOre(PlanetaryResource):
     """ The ore available on the planet.  Varies by planet type.
 
     Attributes::
@@ -103,7 +171,7 @@ class AvailableOre(lacuna.bc.SubClass):
     """
 
 
-class BuildCost(lacuna.bc.SubClass):
+class BuildCost(PlanetaryResource):
     """ How much it'll cost to build a building
 
     Attributes::
@@ -117,7 +185,7 @@ class BuildCost(lacuna.bc.SubClass):
     """
 
 
-class Production(lacuna.bc.SubClass):
+class Production(PlanetaryResource):
     """ How much a building produces (or will produce upon build/upgrade)
 
     Attributes::
