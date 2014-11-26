@@ -13,6 +13,9 @@ class miningministry(lacuna.building.MyBuilding):
     def view_platforms( self, *args, **kwargs ):
         """ Views your current platform status
 
+        CHECK
+        MiningPlatform objects contain 'asteroid', which is a dict.  Should be an object.
+
         Returns a tuple:
             - platforms -- List of 
               lacuna.buildings.miningministry.MiningPlatform objects
@@ -23,7 +26,7 @@ class miningministry(lacuna.building.MyBuilding):
             mylist.append( MiningPlatform(self.client, i) )
         return (
             mylist,
-            kwargs['rslt']['max_platforms']
+            self.get_type(kwargs['rslt']['max_platforms'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -35,9 +38,7 @@ class miningministry(lacuna.building.MyBuilding):
         platforms.  If its task is listed as 'Docked', it's available to be 
         added to your current mining fleet.
 
-        Retval includes 'ships', a list of ship dicts:
-
-::
+        Retval includes 'ships', a list of ship dicts::
 
                 {
                     "name" : "CS4",

@@ -75,14 +75,18 @@ class trade(lacuna.trading.TradeBldg):
 
         Returns the ID of the trade just added.
         """
-        return kwargs['rslt']['trade_id']
+        return self.get_type(kwargs['rslt']['trade_id'])
 
     @lacuna.trading.TradeBldg.call_returning_meth
     def get_trade_ships( self, target_id:int = 0, *args, **kwargs ):
         """ Returns a list of ships available to be used as trade transports.
 
+        These are *not* ships available to be traded; these are ships that are 
+        available to carry trades.
+
         Arguments
-            - target_id -- Optional ID of the target receiving the trade.  If included, the ships' estimated_travel_time attribute will be set.
+            - target_id -- Optional ID of the target receiving the trade.  If 
+              included, the ships' estimated_travel_time attribute will be set.
 
         Returns a list of lacuna.ship.TradeTransportShip objects.
         """
@@ -123,7 +127,7 @@ class trade(lacuna.trading.TradeBldg):
             mylist.append( WasteChain(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['max_supply_chains']
+            self.get_type(kwargs['rslt']['max_supply_chains'])
         )
 
     @lacuna.trading.TradeBldg.call_returning_meth

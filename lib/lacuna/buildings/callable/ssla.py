@@ -10,7 +10,9 @@ class ssla(MyBuilding):
         super().__init__( client, body_id, building_id )
 
     def _marshal_view(self, rv):
-        """ Multiple methods return the same data.  """
+        """ All ssla methods return data in the same format, so they all call
+        _marshal_view().
+        """
         plans_list = []
         for i in rv['make_plan']['types']:
             plans_list.append( PotentialSSPlan(self.client, i) )

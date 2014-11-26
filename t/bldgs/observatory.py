@@ -8,16 +8,16 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'play_test_one',
+    config_section = 'play_test',
 )
-my_planet   = glc.get_body_byname( 'Earph' )
-obs         = my_planet.get_building_coords( 5, -3 )
+my_planet   = glc.get_body_byname( 'bmots01' )
+obs         = my_planet.get_buildings_bytype( 'observatory', 0, 1 )[0]
 
 
 ### See what stars we have probed
 ###
 #stars, out, max, travelling = obs.get_probed_stars()
-#print( "We have {} of a maximum {} stars probed, and {} probes currently on the way"
+#print( "We have {:,} of a maximum {:,} stars probed, and {:,} probes currently on the way"
 #    .format(out, max, travelling )
 #)
 #print( "We have probes at these stars:" )

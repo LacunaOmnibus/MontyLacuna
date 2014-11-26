@@ -61,8 +61,8 @@ class Stats(lacuna.bc.LacunaObject):
             mylist.append( AllianceInfo(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['total_alliances'],
-            kwargs['rslt']['page_number'],
+            self.get_type(kwargs['rslt']['total_alliances']),
+            self.get_type(kwargs['rslt']['page_number']),
         )
 
     @lacuna.bc.LacunaObject.call_returning_meth
@@ -111,8 +111,8 @@ class Stats(lacuna.bc.LacunaObject):
             mylist.append( EmpireInfo(self.client, i) )
         return (
             mylist,
-            kwargs['rslt']['total_empires'],
-            kwargs['rslt']['page_number'],
+            self.get_type(kwargs['rslt']['total_empires']),
+            self.get_type(kwargs['rslt']['page_number']),
         )
 
     @lacuna.bc.LacunaObject.call_returning_meth

@@ -20,9 +20,10 @@ class distributioncenter(lacuna.building.MyBuilding):
 
         Once resources are reserved, you can't just add more resources to the 
         existing reserve; each call to reserve() must specify all the resources 
-        to be reserved.  So this...
-        >>> dist.reserve( [{'type':'apple', quantity:300}] )
-        >>> dist.reserve( [{'type':'bean',  quantity:100}] )
+        to be reserved.  So this::
+
+            dist.reserve( [{'type':'apple', quantity:300}] )
+            dist.reserve( [{'type':'bean',  quantity:100}] )
 
         ...would result in only 100 bean being reserved.
 
@@ -32,7 +33,7 @@ class distributioncenter(lacuna.building.MyBuilding):
 
         Returns a single Reserve object.
         """
-        return Reserve( self.client, kwargs['rslt']['reserve'] )
+        return Reserve(self.client, kwargs['rslt']['reserve'] )
 
     @lacuna.building.MyBuilding.call_returning_meth
     def get_stored_resources( self, **kwargs ):
@@ -49,7 +50,7 @@ class distributioncenter(lacuna.building.MyBuilding):
         """
         return (
             lacuna.resource.StoredResources(self.client, kwargs['rslt']['resources']),
-            kwargs['rslt']['cargo_space_used_each']
+            self.get_type(kwargs['rslt']['cargo_space_used_each'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -65,8 +66,8 @@ class distributioncenter(lacuna.building.MyBuilding):
 
 class Reserve(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         seconds_remaining       0, # time until reserved resources will automatically be released
         can                     1,
         max_reserve_duration    "7200", # max length resources can be kept in reserve

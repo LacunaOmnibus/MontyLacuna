@@ -11,14 +11,14 @@ glc = lac.clients.Member(
     config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
-mercs       = my_planet.get_building_coords( -2, -2 )
+mercs       = my_planet.get_buildings_bytype( 'mercenariesguild', 0, 1 )[0]
 
 
 ### See what's available for sale from other empires
 ###
 #trades, num, page = mercs.view_market()
-#print( "There are currently", num, "total trades available.")
-#print( "We're viewing trade page number {}.".format(page) )
+#print( "There are currently {:,} total trades available.".format(num))
+#print( "We're viewing trade page number {:,}.".format(page) )
 #for i in trades[0:3]:
 #    print( "'{}' (trade id {}) was offered by {} on {} for {} E."
 #        .format(i.offer_summary, i.id, i.origin.empire_name, i.date_offered, i.ask)

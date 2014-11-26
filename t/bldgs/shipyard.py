@@ -8,11 +8,10 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    #config_section = 'my_sitter',
     config_section = 'play_test',
 )
-my_planet   = glc.get_body_byname( 'bmots rof 2.1' )
-sy          = my_planet.get_building_coords( 4, -4 )
+my_planet   = glc.get_body_byname( 'bmots support 01' )
+sy          = my_planet.get_buildings_bytype( 'shipyard', 0, 1 )[0]
 
 
 ### View build queue
@@ -20,8 +19,8 @@ sy          = my_planet.get_building_coords( 4, -4 )
 #ships, number, cost = sy.view_build_queue()
 #for i in ships:
 #    print( i.type_human )
-#print( number, "ships are building.")
-#print( "It'll cost", cost, "E to subsidize them.")
+#print( "{:,} ships are building.".format(number))
+#print( "It'll cost {:,} E to subsidize them.".format(cost))
 
 
 ### Subsidize whole build queue

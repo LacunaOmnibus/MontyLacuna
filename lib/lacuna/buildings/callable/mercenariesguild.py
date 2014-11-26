@@ -24,8 +24,8 @@ class mercenariesguild(lacuna.building.MyBuilding):
             mylist.append( lacuna.trading.MercTrade(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['trade_count'],
-            kwargs['rslt']['page_number'],
+            self.get_type(kwargs['rslt']['trade_count']),
+            self.get_type(kwargs['rslt']['page_number']),
         )
         pass
 
@@ -87,7 +87,7 @@ class mercenariesguild(lacuna.building.MyBuilding):
 
         Raises ServerError 1011 if you do not have any spy pods available.
         """
-        return kwargs['rslt']['trade_id']
+        return self.get_type(kwargs['rslt']['trade_id'])
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view_my_market( self, page_number:int = 1, *args, **kwargs ):
@@ -103,8 +103,8 @@ class mercenariesguild(lacuna.building.MyBuilding):
             mylist.append( lacuna.trading.ExistingTrade(self.client, i) )
         return(
             mylist,
-            kwargs['rslt']['trade_count'],
-            kwargs['rslt']['page_number'],
+            self.get_type(kwargs['rslt']['trade_count']),
+            self.get_type(kwargs['rslt']['page_number']),
         )
         pass
 

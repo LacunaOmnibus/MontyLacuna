@@ -1,10 +1,10 @@
 
 
-from lacuna.bc import LacunaObject
-from lacuna.trading import TradeBldg
-from lacuna.ship import TravellingShip
+import lacuna.bc
+import lacuna.trading
+import lacuna.ship
 
-class transporter(TradeBldg):
+class transporter(lacuna.trading.TradeBldg):
     """
         As noted in trade.py, copying every method that's never going to be used 
         is getting old, so I'm skipping the following:
@@ -18,7 +18,7 @@ class transporter(TradeBldg):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def view( self, *args, **kwargs ):
         """ The only building-specific bit of data in the SST's view() call 
         is the integer maximum number of items this SST can support in a single 
@@ -26,10 +26,10 @@ class transporter(TradeBldg):
 
         So this view() call returns that single integer.
         """
-        TradeBldg.write_building_status( self, kwargs['rslt'] )
-        return kwargs['rslt']['transport']['max']
+        lacuna.trading.TradeBldg._write_building_status( self, kwargs['rslt'] )
+        return self.get_type(kwargs['rslt']['transport']['max'])
 
-    @TradeBldg.call_returning_meth
+    @lacuna.trading.TradeBldg.call_returning_meth
     def add_to_market( self, offer:dict, ask:int, *args, **kwargs ):
         """ Spends 1 E to add a trade to the SST market.
 
@@ -72,10 +72,10 @@ class transporter(TradeBldg):
 
         Returns the ID of the trade just added.
         """
-        return kwargs['rslt']['trade_id']
+        return self.get_type(kwargs['rslt']['trade_id'])
 
-    @LacunaObject.set_empire_status
-    @TradeBldg.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.trading.TradeBldg.call_building_meth
     def push_items( self, target_id:int, items:list, *args, **kwargs ):
         """ Pushes items to another of your planets.  The target planet must 
         also have an SST built (though its level doesn't matter).
@@ -84,6 +84,8 @@ class transporter(TradeBldg):
             - target_id -- Integer ID of the body to send resources to.
             - items -- List of item dicts.  See add_to_market().
 
-        Returns a single TravellingShip object.
+        Returns a single lacuna.ship.TravellingShip object.
+
+            CHECK no it damn well doesn't - fix this
         """
 

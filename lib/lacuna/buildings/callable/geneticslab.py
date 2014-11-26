@@ -14,6 +14,9 @@ class geneticslab(lacuna.building.MyBuilding):
     def prepare_experiment( self, *args, **kwargs ):
         """ Returns information needed to set up a genetics experiment.
 
+        CHECK
+        grafts_list should be an object, not a list of dicts.
+
         Returns a tuple:
             - grafts_list -- List of dicts
             - survival_odds -- Integer percent odds of the victim surviving
@@ -36,10 +39,10 @@ class geneticslab(lacuna.building.MyBuilding):
             })
         return (
             grafts_list,
-            kwargs['rslt']['survival_odds'],
-            kwargs['rslt']['graft_odds'],
-            kwargs['rslt']['essentia_cost'],
-            kwargs['rslt']['can_experiment'],
+            self.get_type(kwargs['rslt']['survival_odds']),
+            self.get_type(kwargs['rslt']['graft_odds']),
+            self.get_type(kwargs['rslt']['essentia_cost']),
+            self.get_type(kwargs['rslt']['can_experiment']),
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -73,7 +76,7 @@ class geneticslab(lacuna.building.MyBuilding):
         Raises ServerError 1000 for bad species name.
         Raises ServerError 1005 for bad description.
         """
-        return kwargs['rslt']['success']
+        return self.get_type(kwargs['rslt']['success'])
 
 
 class ExperimentResults(lacuna.bc.SubClass):

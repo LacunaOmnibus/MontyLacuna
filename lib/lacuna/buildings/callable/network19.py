@@ -17,7 +17,10 @@ class network19(lacuna.building.MyBuilding):
         - 0 -- coverage is flowing freely
         - 1 -- coverage is restricted
         """
-        return kwargs['rslt']['restrict_coverage']
+        ### restrict_coverage() wants '1' or '0'.  For consistency, leave this 
+        ### return as-is (meaning, 'also 1 or 0') rather than converting it to 
+        ### a boolean.
+        return self.get_type(kwargs['rslt']['restrict_coverage'])
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth

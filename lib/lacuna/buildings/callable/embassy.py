@@ -143,9 +143,7 @@ class embassy(lacuna.building.MyBuilding):
     def donate_to_stash( self, donation:dict, **kwargs ):
         """ Donate items to the alliance stash.
 
-        Requires a dictionary of items to donate:
-
-::
+        Requires a dictionary of items to donate::
 
                 {   'apple': 10,
                     'burger': 20, 
@@ -194,8 +192,8 @@ class embassy(lacuna.building.MyBuilding):
 
 class AllianceData(lacuna.bc.SubClass):
     """
-    Attributes:
-        >>> 
+    Attributes::
+
         announcements   None,
         date_created    '21 10 2014 21:56:34 +0000',
         description     None,
@@ -209,8 +207,8 @@ class AllianceData(lacuna.bc.SubClass):
 class InvitedGuest(lacuna.bc.SubClass):
     """ This is an invite your alliance sends out to an empire.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id          5810                ID of the invite itself
         empire_id   1234                ID of the invited empire
         name        Invitee One         Name of the invited empire
@@ -219,8 +217,8 @@ class InvitedGuest(lacuna.bc.SubClass):
 class AllianceInvited(lacuna.bc.SubClass):
     """ This is an invitation your empire has received from an alliance.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         id              5810                ID of the invite itself
         alliance_id     1234                ID of the invited empire
         name            United Alliance     Name of the inviting alliance
@@ -229,8 +227,8 @@ class AllianceInvited(lacuna.bc.SubClass):
 class Stash():
     """ The current contents of the alliance stash.
 
-    Attributes:
-        >>> 
+    Attributes::
+
         stash                       Dict of items currently in the stash
                                         {   "gold" : 4500,
                                             "water" : 1000,

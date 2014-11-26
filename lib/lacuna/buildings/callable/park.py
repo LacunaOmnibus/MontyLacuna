@@ -57,6 +57,10 @@ class Party(lacuna.bc.SubClass):
 
     If no party is currently ongoing, "can_throw" attribute will be set to 1 and 
     the other two will be set to 0.
+
+    Remember you can call ``t = park.sec2time( party.seconds_remaining )`` if 
+    you'd prefer to deal with a ``lacuna.bc.ElapsedTime`` object over integer 
+    seconds.
     """
     def __init__(self, client, mydict:dict):
         super().__init__( client, mydict )

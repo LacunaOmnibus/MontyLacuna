@@ -4,7 +4,8 @@ import lacuna.building
 
 class Spy(lacuna.bc.SubClass):
     """
-    Attributes:
+    Attributes::
+
         id                     "id-goes-here",
         name                   "Jason Bourne",
         assignment             "Idle",
@@ -26,33 +27,31 @@ class Spy(lacuna.bc.SubClass):
     """
 
     def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-
         if 'possible_assignments' in mydict:
             assignment_list = []
             for i in mydict['possible_assignments']:
-                assignment_list.append( Assignment(self.client, i) )
+                assignment_list.append( Assignment(client, i) )
             del mydict['possible_assignments']
 
         if 'assigned_to' in mydict:
-            self.assigned_to = SpyBody(self.client, mydict['assigned_to'])
+            self.assigned_to = SpyBody(client, mydict['assigned_to'])
             del mydict['assigned_to']
 
         if 'based_from' in mydict:
-            self.based_from = SpyBody(self.client, mydict['based_from'])
+            self.based_from = SpyBody(client, mydict['based_from'])
             del mydict['based_from']
 
         if 'mission_count' in mydict:
-            self.mission_count = MissionCount(self.client, mydict['mission_count'])
+            self.mission_count = MissionCount(client, mydict['mission_count'])
             del mydict['mission_count']
 
-        for k, v in mydict.items():
-            setattr(self, k, v)
+        super().__init__(client, mydict)
 
 class Assignment(lacuna.bc.SubClass):
     """ A task that a spy can be assigned to.
 
-    Attributes:
+    Attributes::
+
             task        "Idle",
             recovery    0,          # in seconds
             skill       "none"
@@ -124,38 +123,37 @@ class Assignment(lacuna.bc.SubClass):
     Skill:
         Which of the spy's skills will be used to calculate success.
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
 
 
 class ForeignAgent(Spy):
     """
-        A ForeignAgent object has the following attributes:
-            name                "James Bond",
-            level               "20",
-            task                "Appropriate Technology"
-            next_mission        "01 31 2010 13:09:05 +0600"   
+    Attributes::
 
-        You have to capture a ForeignSpy to turn him into a Prisoner to be able 
-        to see his ID.
+        name                "James Bond",
+        level               "20",
+        task                "Appropriate Technology"
+        next_mission        "01 31 2010 13:09:05 +0600"   
+
+    You have to capture a ForeignSpy to turn him into a Prisoner to be able to 
+    see his ID.
     """
 
 
 class Merc(Spy):
     """ A spy who's ready to be added as a trade on the Merc's Guild.
 
-        Attributes
-            id      12345
-            name    "James Bond",
-            level   "20",
+    Attributes::
+
+        id      12345
+        name    "James Bond",
+        level   "20",
     """
 
 
 class IntelView(lacuna.bc.SubClass):
     """
-    Attributes:
+    Attributes::
+
         maximum             5,
         current             1,
         in_training         1,
@@ -168,11 +166,6 @@ class IntelView(lacuna.bc.SubClass):
             "time" : 60,
         }
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
-
 
 class MissionCount(lacuna.bc.SubClass):
     """ The count of missions performed by the spy.
@@ -182,19 +175,17 @@ class MissionCount(lacuna.bc.SubClass):
     gets to 149 of one type of mission, you should only use him for the other 
     type from then on.
 
-    Attributes:
+    Attributes::
+
         offensive   149
         defensive   149
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
 
 
 class MissionResult(lacuna.bc.SubClass):
     """
-    Attributes:
+    Attributes::
+
         result          "Failure",
         message_id      "id-goes-here",
         reason          "I'm under heavy fire over here!"
@@ -211,36 +202,31 @@ class MissionResult(lacuna.bc.SubClass):
     containing details of the result of the mission.  Not all 
     missions will include a message_id (eg 'Idle').
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
 
 
 class Prisoner(Spy):
     """
-        A Prisoner object has the following attributes:
-            id                  "id-goes-here",
-            name                "James Bond",
-            level               "20",
-            task                "Captured" or "Prisoner Transport",
-            sentence_expires    "01 31 2010 13:09:05 +0600"   
+    Attributes:
+
+        id                  "id-goes-here",
+        name                "James Bond",
+        level               "20",
+        task                "Captured" or "Prisoner Transport",
+        sentence_expires    "01 31 2010 13:09:05 +0600"   
     """
+
 
 class SpyBody(lacuna.bc.SubClass):
     """ A body (planet, space station, etc).  This can be where the spy is 
     currently located or his home base (from which he is controlled).
 
-    Attributes:
+    Attributes::
+
         body_id     id-goes-here",
         name        Earth",
         x           40,
         y           -71
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr(self, k, v)
 
 class Training(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_returning_meth
@@ -250,19 +236,16 @@ class Training(lacuna.building.MyBuilding):
 
         Returns a single TrainingView object.
         """
-        lacuna.building.MyBuilding.write_building_status( self, kwargs['rslt'] )
+        lacuna.building.MyBuilding._write_building_status( self, kwargs['rslt'] )
         view = TrainingView( self.client, kwargs['rslt']['spies'] )
         return view
 
 class TrainingView(lacuna.bc.SubClass):
     """
-    Attributes:
+    Attributes::
+
         max_points      2600
         points_per      45
         in_training     4
     """
-    def __init__( self, client, mydict:dict, *args, **kwargs ):
-        self.client = client
-        for k, v in mydict.items():
-            setattr( self, k, v )
 

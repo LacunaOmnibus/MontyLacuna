@@ -110,8 +110,6 @@ supposed to do.
 - Announcement
 
 ## TBD
-- Anywhere we're returning what should be an int, we should be int()ing it before 
-  returning.  Same deal with all attributes of all objects - if it's an integer, cast it.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.

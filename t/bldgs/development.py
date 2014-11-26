@@ -13,8 +13,7 @@ glc = lac.clients.Member(
 )
 
 my_planet = glc.get_body_byname( 'bmots rof 2.1' )
-dev = my_planet.get_building_coords( -2, -4 )
-
+dev = my_planet.get_buildings_bytype( 'development', 0, 1 )[0]
 
 
 ### Subsidize entire build queue

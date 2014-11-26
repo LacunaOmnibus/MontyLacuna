@@ -14,25 +14,29 @@ my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
 trade       = my_planet.get_buildings_bytype( 'trade', 0, 1 )[0]
 
 
-### View ships available for trading
+### View ships available to be traded
 ###
-#ships, space_used = trade.get_trade_ships()
+#ships, space_used = trade.get_ships()
+#print( "Each ship will take up {:,} units of cargo hold space.".format(space_used) )
 #for i in ships[0:3]:
 #    print(i.name)
 
-### View prisoners available for trading
+
+### View prisoners available to be traded
 ###
 #pris, space_used = trade.get_prisoners()
 #for i in pris[0:3]:
 #   print(i.name)
 
-### View plans available for trading
+
+### View plans available to be traded
 ###
 #plans, space_used = trade.get_plan_summary()
 #for i in plans[0:3]:
 #    print(i.name)
 
-### View glyphs available for trading
+
+### View glyphs available to be traded
 ###
 #glyphs, space_used = trade.get_glyph_summary()
 #for i in glyphs[0:3]:

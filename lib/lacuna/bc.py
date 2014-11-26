@@ -13,7 +13,51 @@ class SubClass():
     def __init__(self, client, mydict:dict):
         self.client = client
         for k, v in mydict.items():
-            setattr(self, k, v)
+            setattr( self, k, self.get_type(v) )
+
+    def get_type( self, cand ):
+        """ Duck-types looks-like-numbers into numbers.
+
+        Since all communications with the server is via JSON, which is a text 
+        transport, all values that look like numbers are actually strings. 
+        
+        eg the '5' in 'ship_count = 5' is a string, not an int, so doing math on 
+        it, or trying to format it as a number, is going to cause problems).
+
+        This attempts to turn strings that should be either ints or floats into 
+        ints or floats.  Any type other than an int or float gets returned 
+        unmolested::
+
+            cand = 1
+            new = client.get_type( cand )
+            print( type(new) )              # int
+
+            cand = 1.7
+            new = client.get_type( cand )
+            print( type(new) )              # float
+
+            cand = "one point seven"
+            new = client.get_type( cand )
+            print( type(new) )              # str
+
+            cand = { 'number': 1.7 }
+            new = client.get_type( cand )
+            print( type(new) )              # dict
+
+        """
+        try:
+            ### int() here just tells us if it's a number; it operates without 
+            ### exception on both ints and floats (int(1.7) == 1).  The point 
+            ### of this is to throw an exception if we've got a string or a 
+            ### dict or whatever, but to pass through on any number.
+            new = int(cand)
+            if '.' in cand:
+                new = float(cand)
+        except:
+            ### Not a number; leave it alone.
+            new = cand
+        return new
+
 
     def tle2time(self, tle_time:str):
         """ Converts a TLE datetime string into a datetime.datetime object.
@@ -60,7 +104,7 @@ class SubClass():
         Arguments:
             - seconds -- Integer seconds to convert
 
-        Returns an ElapsedTime object.
+        Returns a lacuna.bc.ElapsedTime object.
         """
         ### http://stackoverflow.com/questions/4048651/python-function-to-convert-seconds-into-minutes-hours-and-days
         ###
@@ -144,7 +188,7 @@ class LacunaObject(SubClass):
                 ### to the server, so don't update anything.
                 return
         for i in mydict:
-            setattr( self.client.empire, i, mydict[i] )
+            setattr( self.client.empire, i, self.get_type(mydict[i]) )
         self.client.empire.planet_names = {name: id for id, name in self.client.empire.planets.items()}
 
     def call_guest_meth(func):

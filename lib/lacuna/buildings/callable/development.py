@@ -19,7 +19,7 @@ class development(lacuna.building.MyBuilding):
         Returns
             - essentia_spent -- Integer cost of subsidy
         """
-        return kwargs['rslt']['essentia_spent']
+        return self.get_type(kwargs['rslt']['essentia_spent'])
 
     @lacuna.building.MyBuilding.call_named_returning_meth
     def subsidize_one_build( self, named_args:dict, **kwargs ):
@@ -39,7 +39,7 @@ class development(lacuna.building.MyBuilding):
         Raises ServerError 1000 if the specified building is not currently being 
         built or upgraded.
         """
-        return kwargs['rslt']['essentia_spent']
+        return self.get_type(kwargs['rslt']['essentia_spent'])
 
     @lacuna.building.MyBuilding.call_named_returning_meth
     def cancel_build( self, named_args:dict, **kwargs ):
@@ -56,5 +56,8 @@ class development(lacuna.building.MyBuilding):
         mylist = []
         for i in kwargs['rslt']['build_queue']:
             mylist.append( lacuna.building.InBuildQueue(i) )
-        return( mylist, kwargs['rslt']['subsidy_cost'] )
+        return(
+            mylist,
+            self.get_type(kwargs['rslt']['subsidy_cost'])
+        )
 

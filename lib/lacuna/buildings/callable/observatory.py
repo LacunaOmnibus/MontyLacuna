@@ -25,9 +25,9 @@ class observatory(lacuna.building.MyBuilding):
             star_list.append( lacuna.map.Star(self.client, s) )
         return(
             star_list,
-            kwargs['rslt']['star_count'],
-            kwargs['rslt']['max_probes'],
-            kwargs['rslt']['travelling'],
+            self.get_type(kwargs['rslt']['star_count']),
+            self.get_type(kwargs['rslt']['max_probes']),
+            self.get_type(kwargs['rslt']['travelling']),
         )
 
     @lacuna.bc.LacunaObject.set_empire_status

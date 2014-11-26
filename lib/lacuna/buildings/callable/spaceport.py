@@ -51,11 +51,11 @@ class spaceport(lacuna.building.MyBuilding):
         max_ships       = 0
 
         if 'docked_ships' in kwargs['rslt']:
-            docked_ships = kwargs['rslt']['docked_ships']
+            docked_ships = self.get_type(kwargs['rslt']['docked_ships'])
         if 'docks_available' in kwargs['rslt']:
-            docks_avail = kwargs['rslt']['docks_available']
+            docks_avail = self.get_type(kwargs['rslt']['docks_available'])
         if 'max_ships' in kwargs['rslt']:
-            max_ships = kwargs['rslt']['max_ships']
+            max_ships = self.get_type(kwargs['rslt']['max_ships'])
 
         return (
             docked_ships,
@@ -85,14 +85,10 @@ class spaceport(lacuna.building.MyBuilding):
                 - type
 
         Filter critera are joined with 'or', not 'and'.  So this filter dict may 
-        not be what you really mean:
+        not be what you really mean::
 
-::
-
-            {
-                'type': 'supply_pod3',
-                'task': 'Docked'
-            }
+            {   'type': 'supply_pod3',
+                'task': 'Docked'    }
 
         Instead of telling you about just the Supply Pod IIIs that are 
         currently docked, it's going to tell you about all your Supply Pod 
@@ -109,7 +105,7 @@ class spaceport(lacuna.building.MyBuilding):
             ship_list.append( lacuna.ship.ExistingShip(self.client, i) )
         return( 
             ship_list, 
-            kwargs['rslt']['number_of_ships']
+            self.get_type(kwargs['rslt']['number_of_ships'])
         )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -128,7 +124,7 @@ class spaceport(lacuna.building.MyBuilding):
             ship_list.append( lacuna.ship.IncomingShip(self.client, i) )
         return( 
             ship_list, 
-            kwargs['rslt']['number_of_ships']
+            self.get_type(kwargs['rslt']['number_of_ships'])
         )
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
@@ -187,7 +183,7 @@ class spaceport(lacuna.building.MyBuilding):
             unavail_list,
             orbit_list,
             mining_list,
-            kwargs['rslt']['fleet_send_limit']
+            self.get_type(kwargs['rslt']['fleet_send_limit'])
         )
 
     def get_my_ships_for( self, target:dict, *args, **kwargs ):
@@ -249,20 +245,16 @@ class spaceport(lacuna.building.MyBuilding):
             but also by minimum attributes.  Set only the dict keys 
             you're interested in::
 
-                types = [{   
-                        "type" : "sweeper",
-                        "speed" : 10166,
-                        "stealth" : 10948,
-                        "combat" : 33372,
-                        "quantity" : 100        
-                    },
-                    {   
-                        "type" : "surveyor",
-                        "speed" : 9030,
-                        "stealth" : 9030,
-                        "combat" : 3220,
-                        "quantity" : 10         
-                    }, { more of the same }, ]
+                types = [{  "type" : "sweeper",
+                            "speed" : 10166,
+                            "stealth" : 10948,
+                            "combat" : 33372,
+                            "quantity" : 100        },
+                    {       "type" : "surveyor",
+                            "speed" : 9030,
+                            "stealth" : 9030,
+                            "combat" : 3220,
+                            "quantity" : 10         }, { more of the same }, ]
 
         Arrival time dicts
             All dict keys must be set.  You likely don't care about 
@@ -316,20 +308,18 @@ class spaceport(lacuna.building.MyBuilding):
         this planet that are orbiting anywhere.
 
         Returns a list of lacuna.ship.IncomingShip objects, with the following additional 
-        attributes:
+        attributes::
 
-::
-
-        returning_from:    {  # This is the planet the ships are being recalled from
-                                "id" : "id-goes-here",
-                                "type" : "body",
-                                "name" : "Earth"
-                            },
-        to:                 {    # This is the planet you're recalling the ships back to.
-                                "id" : "id-goes-here",
-                                "type" : "star",
-                                "name" : "Sol"
-                            }
+            returning_from:    {  # This is the planet the ships are being recalled from
+                                    "id" : "id-goes-here",
+                                    "type" : "body",
+                                    "name" : "Earth"
+                                },
+            to:                 {    # This is the planet you're recalling the ships back to.
+                                    "id" : "id-goes-here",
+                                    "type" : "star",
+                                    "name" : "Sol"
+                                }
 
         Raises NO error if there are no ships currently orbiting, but the 
         'ships' retval will be an empty list.
@@ -408,7 +398,7 @@ class spaceport(lacuna.building.MyBuilding):
             ship_list.append( lacuna.ship.TravellingShip(self.client, i) )
         return(
             ship_list, 
-            kwargs['rslt']['number_of_ships_travelling']
+            self.get_type(kwargs['rslt']['number_of_ships_travelling'])
         )
 
 
@@ -431,7 +421,7 @@ class spaceport(lacuna.building.MyBuilding):
             ship_list.append( lacuna.ship.ForeignOrbiting(self.client, i) )
         return(
             ship_list, 
-            kwargs['rslt']['number_of_ships']
+            self.get_type(kwargs['rslt']['number_of_ships'])
         )
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
@@ -535,12 +525,15 @@ class spaceport(lacuna.building.MyBuilding):
 
         Returns a tuple:
             - battle_log -- List of spaceport.BattleLog objects
-            - number_of_log -- Integer total number of entries in the logbook.
+            - number_of_logs -- Integer total number of entries in the logbook.
         """
         mylist = []
         for i in kwargs['rslt']['battle_log']:
             mylist.append( BattleLog(self.client, i) )
-        return ( mylist, kwargs['rslt']['number_of_logs'] )
+        return(
+            mylist, 
+            self.get_type(kwargs['rslt']['number_of_logs'])
+        )
 
 
     ### 
@@ -615,11 +608,12 @@ class spaceport(lacuna.building.MyBuilding):
                     break
         else:
             ship_id = ships[0].id     # No ship name specified.  Use the first one available.
+        ship_id = int(ship_id)
 
         spy_ids = []
         for i in spies:
             if i.based_from.body_id == self.body_id and i.assigned_to.body_id == from_id:
-                spy_ids.append( i.id )
+                spy_ids.append( int(i.id) )
         ship = self.fetch_spies( from_id, self.body_id, ship_id, spy_ids )
         return(
             ship,

@@ -238,7 +238,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
             del mydict['work']
 
         for n, v in mydict.items():
-            setattr( self, n, v )
+            setattr( self, n, self.get_type(v) )
 
 
     def build( self, x:int, y:int, **kwargs ):
@@ -253,7 +253,6 @@ class MyBuilding(lacuna.bc.LacunaObject):
         ### since the building doesn't exist yet.  No decorators here; the 
         ### call to view() after the building is placed will handle that.
         rv = self.client.send( self.path, 'build', (self.client.session_id, self.body_id, x, y) )
-        #rv['building']['id'] = rv['building']['id']
         self._write_building_status( rv )
         self.view()
 

@@ -8,17 +8,18 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'my_sitter',
-    #config_section = 'play_test',
+    config_section = 'play_test',
 )
 my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
-trade       = my_planet.get_building_coords( 5, -4 )
+trade       = my_planet.get_buildings_bytype( 'transporter', 0, 1 )[0]
 
 
 ### View sst
+### The sst view() doesn't do anything but tell you the max trade size it can 
+### handle.
 ###
 #trade_max = trade.view()
-#print( "This SST can trade a max of", trade_max, "units per trade." )
+#print( "This SST can trade a max of {:,} units per trade.".format(trade_max) )
 
 
 ### View prisoners available for trading
