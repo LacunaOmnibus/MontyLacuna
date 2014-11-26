@@ -13,9 +13,6 @@ class miningministry(lacuna.building.MyBuilding):
     def view_platforms( self, *args, **kwargs ):
         """ Views your current platform status
 
-        CHECK
-        MiningPlatform objects contain 'asteroid', which is a dict.  Should be an object.
-
         Returns a tuple:
             - platforms -- List of 
               lacuna.buildings.miningministry.MiningPlatform objects
@@ -100,13 +97,7 @@ class MiningPlatform(lacuna.bc.SubClass):
     Attributes::
 
         id                  "id-goes-here",
-        asteroid            {
-                                "id" : "id-goes-here",
-                                "name" : "Kuiper",
-                                "x" : 0,
-                                "y" : -444,
-                                "image" : "a1-5",
-                            },
+        asteroid            lacuna.body.SimpleBody object
         rutile_hour         10,
         chromite_hour       10,
         chalcopyrite_hour   10,
@@ -128,6 +119,8 @@ class MiningPlatform(lacuna.bc.SubClass):
         beryl_hour          10,
         magnetite_hour      10,  
         shipping_capacity   51 
-
     """
+    def __init__(self, client, mydict:dict):
+        mydict['asteroid'] = lacuna.body.SimpleBody(client, mydict['asteroid'])
+        super().__init__(client, mydict)
 

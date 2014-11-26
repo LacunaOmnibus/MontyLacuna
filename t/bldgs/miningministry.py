@@ -20,7 +20,7 @@ minmin      = my_planet.get_buildings_bytype( 'miningministry', 0, 1 )[0]
 #print( "I have {:,} of a maximum {:,} platforms out.".format(len(plats), max) )
 #for i in plats[0:3]:
 #    print( "The plat on {} is producing {:,} chromite per hour and its shipping capacity is {:,}."
-#        .format(i.asteroid['name'], i.chromite_hour, i.shipping_capacity)
+#        .format(i.asteroid.name, i.chromite_hour, i.shipping_capacity)
 #    )
 
 
