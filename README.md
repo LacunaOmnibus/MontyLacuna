@@ -110,6 +110,8 @@ supposed to do.
 - Announcement
 
 ## TBD
+- Anywhere we're returning what should be an int, we should be int()ing it before 
+  returning.  Same deal with all attributes of all objects - if it's an integer, cast it.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
@@ -117,6 +119,7 @@ supposed to do.
     Windows to make sure the docs are correct.
 - Ack through everything for "CHECK" and fix.
 - I'm going to need at least a few useful scripts in bin/ before making this public.
+  - starting to play with build_ships.py.
 
 ## Documentation
 http://sphinx-doc.org/tutorial.html

@@ -8,7 +8,6 @@ libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
 import lacuna as lac
-pp = pprint.PrettyPrinter( indent = 4 )
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",

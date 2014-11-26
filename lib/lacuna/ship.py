@@ -24,9 +24,10 @@ class Ship(lacuna.bc.SubClass):
     word, so in those cases ``from`` has been changed to ``origin``.
     """
     def __init__(self, client, mydict:dict):
-        ### Can't have an attribute named 'from'.
-        mydict['origin'] = mydict['from']
-        del mydict['from']
+        if 'from' in mydict:
+            ### Can't have an attribute named 'from'.
+            mydict['origin'] = mydict['from']
+            del mydict['from']
         super().__init__(client, mydict)
 
 class BuildingShip(Ship):
