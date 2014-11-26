@@ -3,7 +3,7 @@ import os
 import sys
 import pprint, re
 
-bindir = os.path.abspath(os.path.dirname(__file__))
+bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
 sys.path.append(libdir)
 

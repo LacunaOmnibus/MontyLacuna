@@ -117,8 +117,8 @@ class Guest(lacuna.bc.SubClass):
         self._set_up_cache()
 
     def _set_up_cache(self):
-        libdir      = os.path.abspath(os.path.dirname(__file__))
-        vardir      = libdir + "/../../var"
+        bindir      = os.path.abspath(os.path.dirname(sys.argv[0]))
+        vardir      = bindir + "/../var"
         cachedir    = vardir + "/cache"
         lockdir     = vardir + "/cachelck"
         if os.path.isdir(vardir):
