@@ -84,8 +84,9 @@ class transporter(lacuna.trading.TradeBldg):
             - target_id -- Integer ID of the body to send resources to.
             - items -- List of item dicts.  See add_to_market().
 
-        Returns a single lacuna.ship.TravellingShip object.
-
-            CHECK no it damn well doesn't - fix this
+        Returns:
+            Who knows, it's not documented.  Your call will get back whatever 
+            the server returns.  If you want to know what's in there, you'll 
+            have to fight with it.
         """
 

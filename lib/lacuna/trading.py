@@ -222,9 +222,7 @@ class MercTrade(lacuna.bc.SubClass):
                         eg "Level 9 spy named Jack Bauer (Me..."
     """
     def __init__(self, client, mydict:dict):
-        self.client = client
-
-        self.origin = MercTradeOrigin( self.client, mydict )
+        self.origin = MercTradeOrigin( client, mydict )
         del mydict['body']
         del mydict['empire']
 
@@ -234,10 +232,7 @@ class MercTrade(lacuna.bc.SubClass):
         ### ever more than a single element, the join deals with it.
         self.offer = " ".join(mydict['offer'])
         self.offer_summary = self.offer[0:32] + '...'
-        del mydict['offer']
-
-        for k, v in mydict.items():
-            setattr(self, k, v)
+        super().__init__(client, mydict)
 
 
 class MercTradeOrigin(lacuna.bc.SubClass):

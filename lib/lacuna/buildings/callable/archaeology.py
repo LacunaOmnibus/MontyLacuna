@@ -1,7 +1,18 @@
 
-"""
-    The archaeology building will contain an attribute 'work' if and only if it 
-    is currently searching for an ore.  That attribute is a dict containing::
+
+import lacuna.bc
+import lacuna.building
+import lacuna.glyph
+import lacuna.resource
+import lacuna.ship
+
+import warnings
+
+class archaeology(lacuna.building.MyBuilding):
+    """ Archaeology Ministry
+
+    The archaeology ministry will contain an attribute 'work' if and only if it 
+    is currently searching ore for a glyph.  That attribute is a dict containing::
 
         - searching -- "anthracite",
         - start -- '31 10 2014 18:45:34 +0000',
@@ -10,16 +21,8 @@
 
     ...But that 'work' attribute will not exist at all if the arch min is not 
     searching right now, so you'll have to do a hasattr() check to see.
-"""
+    """
 
-import lacuna.bc
-import lacuna.building
-import lacuna.glyph
-import lacuna.ship
-
-import warnings
-
-class archaeology(lacuna.building.MyBuilding):
     path = 'archaeology'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
@@ -63,16 +66,9 @@ class archaeology(lacuna.building.MyBuilding):
     def get_ores_available_for_processing( self, **kwargs ):
         """ Get ores of sufficient quantity to perform glyph searches on.
 
-        CHECK
-        this should return a resource.SOMETHING object.
-
-        Returns a dict of sufficient ores and their quantities::
-
-            'anthracite': 99294156,
-            'bauxite': 210171773,
-            etc
+        Returns a lacuna.resource.AvailableOre object.
         """
-        return kwargs['rslt']['ore']
+        return lacuna.resource.AvailableOre(self.client, kwargs['rslt']['ore'])
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view_excavators( self, **kwargs ):
