@@ -29,7 +29,7 @@ Add this to the top of your script::
 
     import os, sys
 
-    libdir = os.path.abspath(os.path.dirname(__file__)) + "/../lib"
+    libdir = os.path.abspath(os.path.dirname(sys.argv[0])) + "/../lib"
     sys.path.append(libdir)
 
     import lacuna
@@ -44,7 +44,8 @@ Connect a client
 ::
 
     my_client = lacuna.clients.Member(
-        config_file = os.path.abspath(os.path.dirname(__file__)) + "/../etc/lacuna.cfg",
+        config_file = os.path.abspath(os.path.dirname(sys.argv[0])) + 
+        "/../etc/lacuna.cfg",
         config_section = 'sitter',
     )
 

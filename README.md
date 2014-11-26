@@ -110,6 +110,7 @@ supposed to do.
 - Announcement
 
 ## TBD
+- I need to replace all uses of "__file__" with "sys.argv[0]"
 - Anywhere we're returning what should be an int, we should be int()ing it before 
   returning.  Same deal with all attributes of all objects - if it's an integer, cast it.
 - Everything needs to be tested on Windows.  In particular:
