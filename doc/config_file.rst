@@ -7,7 +7,7 @@ Normally when you connect a client, you'll send along the path to a config
 file, and which section in that file you want to connect with::
 
     my_client = lacuna.clients.Member(
-        config_file = os.path.abspath(os.path.dirname(__file__)) + "/../etc/lacuna.cfg",
+        config_file = os.path.abspath(os.path.dirname(sys.argv[0])) + "/../etc/lacuna.cfg",
         config_section = 'sitter',
     )
 
