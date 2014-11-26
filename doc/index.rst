@@ -7,9 +7,8 @@ Welcome to MontyLacuna's documentation!
 =======================================
 
 There's a lot of information here, but if you just want to get yourself set up 
-to run MontyLacuna scripts, and don't want (yet, at least) to write them, just 
-read the :ref:`getting_started_running` section down to where it tells you to 
-stop, and ignore the rest.
+to run MontyLacuna scripts, just read the :ref:`getting_started_running` 
+section and ignore the rest.
 
 .. In the toctree,
    - The first grouping are intro-y sections, whose titles are capitalized.
