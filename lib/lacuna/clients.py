@@ -152,16 +152,16 @@ class Guest(lacuna.bc.SubClass):
         ### client attributes, so we can change the log levels later if 
         ### needed.
 
-        self.log_stream_handler = logging.StreamHandler()
-        self.log_stream_handler.setLevel(logging.WARNING)
-        self.log_stream_handler.setFormatter(logging.Formatter(log_format, date_format))
-        l.addHandler(self.log_stream_handler)
+        self.user_log_stream_handler = logging.StreamHandler()
+        self.user_log_stream_handler.setLevel(logging.WARNING)
+        self.user_log_stream_handler.setFormatter(logging.Formatter(log_format, date_format))
+        l.addHandler(self.user_log_stream_handler)
 
         if( hasattr(self, 'logfile') and self.logfile ):
-            self.log_file_handler = logging.FileHandler( os.path.normpath(self.logfile) )
-            self.log_file_handler.setLevel(logging.DEBUG)
-            self.log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
-            l.addHandler(self.log_file_handler)
+            self.user_log_file_handler = logging.FileHandler( os.path.normpath(self.logfile) )
+            self.user_log_file_handler.setLevel(logging.DEBUG)
+            self.user_log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
+            l.addHandler(self.user_log_file_handler)
 
         self.user_logger = l
 

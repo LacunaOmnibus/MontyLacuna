@@ -53,8 +53,7 @@ class BuildShips:
         )
         parser.add_argument( '--quiet', 
             dest        = 'quiet',
-            metavar     = '<quiet>',
-            action      = 'store',
+            action      = 'store_true',
             help        = "Silence all output."
         )
 
@@ -75,8 +74,6 @@ class BuildShips:
         return( yards )
 
 
-    ### CHECK
-    ### see comments in the script about this.
     def determine_buildable(self, yards):
         """ Ensures we can actually build the requested ship type, and figures 
         out how many of them we should build.
@@ -96,11 +93,12 @@ class BuildShips:
             raise KeyError("All of your build queue slots are occupied.")
         if not len([ i for i in ships if i.type == self.args.type ]):
             raise KeyError( "The type of ship requested, {}, cannot be built.".format(self.args.type) )
-        ### If the 'num to build' arg is 0, we're to build all we can.
+        ### If the 'num to build' arg is 0, that means "build max"
         requested_num = self.args.num if self.args.num > 0 else build_queue_max
         ### If we were asked to build more than we can, back off to just 
         ### building what we can.
         num_to_build = requested_num if requested_num < build_queue_max else build_queue_max
+        num_to_build = docks_avail if docks_avail < build_queue_max else build_queue_max
         return num_to_build
 
 
