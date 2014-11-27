@@ -51,7 +51,6 @@ class shipyard(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_returning_meth
     def get_buildable( self, tag:str = '', *args, **kwargs ):
         """ Gets information on what ships are available to be built.
-                ships, docks, q_max, q_used = sy.get_buildable()
 
         Accepts an optional 'tag' string to limit the shiptypes returned, and defaults to no tag, returning all buildable ships.
 
@@ -64,10 +63,15 @@ class shipyard(lacuna.building.MyBuilding):
             - War
 
         Returns a tuple:
-            - ships -- list of PotentialShip objects (see ship.py)
-            - docks_available -- Integer count of spaceport docks available for new ships
-            - build_queue_max -- Maximum number of ships that can be added to the build queue across all shipyards on this planet.  However, no matter how big this number gets, a single shipyard can only ever queue a maximum of 50 ships.
-            - build_queue_used -- Number of ships currently in build queues across all shipyards on this planet.
+            - ships -- list of lacuna.ship.PotentialShip objects
+            - docks_available -- Integer count of spaceport docks available 
+              for new ships
+            - build_queue_max -- Maximum number of ships that can be added to 
+              the build queue across all shipyards on this planet.  However, 
+              no matter how big this number gets, a single shipyard can only 
+              ever queue a maximum of 50 ships.
+            - build_queue_used -- Number of ships currently in build queues 
+              across all shipyards on this planet.
         """
         ship_list = []
         for name, mydict in kwargs['rslt']['buildable'].items():
@@ -85,14 +89,20 @@ class shipyard(lacuna.building.MyBuilding):
         """ Adds one or more ships of a given type to the build queue.
 
         Arguments:
-            - type -- String, type of ship to build.  Available ship types can be found by calling get_buildable() and checking the 'type' attribute of the returned list of ships.
+            - type -- String, type of ship to build.  Available ship types can 
+              be found by calling get_buildable() and checking the 'type' 
+              attribute of the returned list of ships.
             - quantity -- Integer number of ships to build.  Defaults to 1.
 
-        Returns the same tuple as returned by view_build_queue.
+        Returns a tuple consisting of:
+            - ships -- List of lacuna.ship.BuildingShip objects (the ships now 
+              being built)
+            - number -- Integer number of ships currently building
+            - cost -- Integer cost in E to subsidize the whole queue
         """
         ship_list = []
         for i in kwargs['rslt']['ships_building']:
-            ship_list.append( lacuna.ship.MyBuildingShip(self.client, i) )
+            ship_list.append( lacuna.ship.BuildingShip(self.client, i) )
         return( 
             ship_list, 
             self.get_type(kwargs['rslt']['number_of_ships_building']),
