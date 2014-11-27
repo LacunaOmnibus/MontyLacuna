@@ -1,0 +1,23 @@
+[DEFAULT]
+host = us1.lacunaexpanse.com
+testhost = pt.lacunaexpanse.com
+sleep_after_error = 1
+proto = https
+sleep_on_call = 1
+api_key = anonymous
+show_captcha = True
+warn_on_sleep = True
+logfile = var/tle.log
+
+[my_guest]
+
+[real]
+username = tmtowtdi
+password = zaphod lampshade
+session_id = ffb48118-cd61-447b-8bc7-a0b609851a0e
+
+[sitter]
+username = tmtowtdi
+password = ogio breakfast
+session_id = cee305e0-b523-4472-b9f5-f4c22f669c4a
+
