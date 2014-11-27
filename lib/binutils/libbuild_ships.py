@@ -7,8 +7,8 @@ class BuildShips:
         self.bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 
         parser = argparse.ArgumentParser(
-            description = 'Build ships in bulk.',
-            epilog      = 'This shows at the end after help.',
+            description = 'This will build as many of a single type of ship as you want, up to the maximum that can be built across all shipyards on your planet.  If there are already ships in your build queue, this will figure that out and only build what it can.',
+            epilog      = 'EXAMPLE: python bin/build_ships.py "Earth" sweeper (fills the build queues of all shipyards on Earth with sweepers).',
         )
         ### https://docs.python.org/3.4/library/argparse.html#the-add-argument-method
         parser.add_argument( 'name', 
@@ -27,7 +27,7 @@ class BuildShips:
             action      = 'store',
             type        = int,
             default     = 0,
-            help        = "Number of ships to build.  Defaults to 'fill up all available build queue slots'."
+            help        = "Number of ships to build.  Defaults to 'fill up all available build queue slots'.  If you request more ships than your shipyards can queue, as many as possible will be built."
         )
         parser.add_argument( '--level', 
             metavar     = '<lvl>',
@@ -51,6 +51,12 @@ class BuildShips:
             default     = 'sitter',
             help        = "Config file section.  Defaults to 'sitter'."
         )
+        parser.add_argument( '--quiet', 
+            dest        = 'quiet',
+            metavar     = '<quiet>',
+            action      = 'store',
+            help        = "Silence all output."
+        )
 
         self.args   = parser.parse_args()
 
@@ -63,20 +69,38 @@ class BuildShips:
 
 
     def get_shipyards( self, planet ):
-        mymax = 0
         yards = planet.get_buildings_bytype( 'shipyard', self.args.min_lvl )
         if not yards:
             raise RuntimeError("You don't have any shipyards of the required level.")
-        for y in yards:
-            if hasattr(y, 'work'):
-                ships, num, cost = y.view_build_queue()
-                mymax += (int(y.level) - num)                    # SHIT y.level is a string.
-            else:
-                mymax += int(y.level)
-        return( yards, mymax )
+        return( yards )
 
 
+    ### CHECK
+    ### see comments in the script about this.
+    def determine_buildable(self, yards):
+        """ Ensures we can actually build the requested ship type, and figures 
+        out how many of them we should build.
 
+        Returns the number of ships we should queue across all shipyards.
 
+        This number to be built does not take current build queues into 
+        account.  Four level 30 SYs are going to return 120, no matter what 
+        those SYs are currently doing.
+
+        Raises KeyError if the shiptype isn't buildable for whatever reason.
+        """
+        ships, docks_avail, build_queue_max, build_queue_used = yards[0].get_buildable()
+        if not docks_avail:
+            raise KeyError("You don't have any docks available to hold more ships.")
+        if not build_queue_max:
+            raise KeyError("All of your build queue slots are occupied.")
+        if not len([ i for i in ships if i.type == self.args.type ]):
+            raise KeyError( "The type of ship requested, {}, cannot be built.".format(self.args.type) )
+        ### If the 'num to build' arg is 0, we're to build all we can.
+        requested_num = self.args.num if self.args.num > 0 else build_queue_max
+        ### If we were asked to build more than we can, back off to just 
+        ### building what we can.
+        num_to_build = requested_num if requested_num < build_queue_max else build_queue_max
+        return num_to_build
 
 

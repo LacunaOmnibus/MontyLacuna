@@ -110,12 +110,20 @@ supposed to do.
 - Announcement
 
 ## TBD
+- logging
+  - Look at LoggerAdapters - the way the request log is being dealt with (the extra) 
+    sucks.
+    https://docs.python.org/3.4/howto/logging-cookbook.html#using-loggeradapters-to-impart-contextual-information
+  - There's also a RotatingFileHandler handler - that's what I should be using, or people 
+    are going to end up with way-too-big logfiles.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
   - Run through the whole Getting Started instruction set on a fresh Python install on 
     Windows to make sure the docs are correct.
 - Ack through everything for "CHECK" and fix.
+  - Even if you finish this, leave this list item here.  I have a tendency to re-add these 
+    marks.
 - I'm going to need at least a few useful scripts in bin/ before making this public.
   - starting to play with build_ships.py.
 

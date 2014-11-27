@@ -147,16 +147,21 @@ class Guest(lacuna.bc.SubClass):
         l = logging.getLogger( str(uuid.uuid1()) )
         l.setLevel(logging.DEBUG)
 
-        sh = logging.StreamHandler()
-        sh.setLevel(logging.WARNING)
-        sh.setFormatter(logging.Formatter(log_format, date_format))
-        l.addHandler(sh)
+        ### Hrm I'm not seeing a way to get the handlers back out of the log 
+        ### object after creation.  So the handlers themselves are becoming 
+        ### client attributes, so we can change the log levels later if 
+        ### needed.
+
+        self.log_stream_handler = logging.StreamHandler()
+        self.log_stream_handler.setLevel(logging.WARNING)
+        self.log_stream_handler.setFormatter(logging.Formatter(log_format, date_format))
+        l.addHandler(self.log_stream_handler)
 
         if( hasattr(self, 'logfile') and self.logfile ):
-            fh = logging.FileHandler( os.path.normpath(self.logfile) )
-            fh.setLevel(logging.DEBUG)
-            fh.setFormatter(logging.Formatter(log_format, date_format))
-            l.addHandler(fh)
+            self.log_file_handler = logging.FileHandler( os.path.normpath(self.logfile) )
+            self.log_file_handler.setLevel(logging.DEBUG)
+            self.log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
+            l.addHandler(self.log_file_handler)
 
         self.user_logger = l
 

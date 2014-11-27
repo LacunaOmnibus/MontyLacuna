@@ -14,7 +14,7 @@ class geneticslab(lacuna.building.MyBuilding):
     def prepare_experiment( self, *args, **kwargs ):
         """ Returns information needed to set up a genetics experiment.
 
-        CHECK
+        CHECK - need prisoners to test this
         grafts_list used to be a list of dicts, changed to a list of objects.  
         Should be fine, but I can't find any prisoners to test on.
 
