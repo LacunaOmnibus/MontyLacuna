@@ -12,21 +12,16 @@ import binutils.libbuild_ships as lib
 
 bs      = lib.BuildShips()
 client  = bs.connect()
+l       = client.user_logger
 
-client.cache_on("my_planets", 3600)
-planet  = client.get_body_byname( bs.args.name )
-
-l = client.user_logger
 if not bs.args.quiet:
     client.user_log_stream_handler.setLevel(logging.INFO)
 
-### We're going to want to get at those shipyards a few times in here, but we 
-### don't want to draw from the cache from a previous run of this script, 
-### because we have to check for whether the shipyards are building anything 
-### or not.
-### So turn shipyard caching on, but clear its contents.
-client.cache_on("shipyards_for_building", 3600)
-client.cache_clear()
+client.cache_on("my_planets", 3600)
+planet = client.get_body_byname( bs.args.name )
+
+client.cache_on("shipyards_for_building", 30)
+client.cache_clear( "shipyards_for_building" )
 
 ### Get a list of shipyards that match the user's CLI args
 shipyards = bs.get_shipyards( planet )
