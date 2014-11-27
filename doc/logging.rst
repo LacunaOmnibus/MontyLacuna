@@ -26,8 +26,8 @@ convenience.
     ==========  ===============
   
 
-Request Log Entries
--------------------
+Request Log
+-----------
 All requests to the TLE server will be written to the logfile specified in the 
 config file.  This happens automatically; just run your scripts, and you'll be 
 able to check that logfile to see what's happening.
@@ -51,8 +51,8 @@ An example request log entry::
 - **Success** -- The actual log message.  For most request log entries, the 
   entire message will simply be "Success".   
 
-User Log Entries
-----------------
+User Log
+--------
 Along with the automatic request log, your script can access the user logger 
 so you can create whatever log entries you like::
 
@@ -60,10 +60,21 @@ so you can create whatever log entries you like::
     l = my_client.user_logger
     l.error( "This is an error message." )
     l.info( "This is an info message." )
+    l.debug( "This is a debug message.  You may want a lot of these as you're working." )
 
-You can use all of the log levels in the table above.  Again, only WARNING 
-level or higher will display to the screen; any lower-level entries will just 
-go into the log file.
+As with the request log, only WARNING level or higher will display to the 
+screen by default, while any lower-level entries will just go into the log 
+file.  If you want to change that, for example to display DEBUG level messages 
+while you're working on your script, add the following::
+
+    client.user_log_stream_handler.setLevel(logging.DEBUG)
+
+Once you're finished working, maybe you don't want all your DEBUG messages to 
+show up for the user, but you do want INFO level messages to continue going to 
+the screen to let the user know what's going on, in which case you'd just 
+change that previous line to::
+
+    client.user_log_stream_handler.setLevel(logging.INFO)
 
 An example user log entry::
 

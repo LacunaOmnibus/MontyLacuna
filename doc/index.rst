@@ -8,7 +8,9 @@ Welcome to MontyLacuna's documentation!
 
 There's a lot of information here, but if you just want to get yourself set up 
 to run MontyLacuna scripts, just read the :ref:`getting_started_running` 
-section and ignore the rest.
+section to get your system set up, then the :ref:`scripts_index` section to 
+figure out how to run the various available scripts.  You can ignore 
+everything else.
 
 .. In the toctree,
    - The first grouping are intro-y sections, whose titles are capitalized.
