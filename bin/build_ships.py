@@ -18,7 +18,7 @@ planet  = client.get_body_byname( bs.args.name )
 
 l = client.user_logger
 if not bs.args.quiet:
-    client.log_stream_handler.setLevel(logging.INFO)
+    client.user_log_stream_handler.setLevel(logging.INFO)
 
 ### We're going to want to get at those shipyards a few times in here, but we 
 ### don't want to draw from the cache from a previous run of this script, 
@@ -29,17 +29,12 @@ client.cache_on("shipyards_for_building", 3600)
 client.cache_clear()
 
 ### Get a list of shipyards that match the user's CLI args
-yards = bs.get_shipyards( planet )
-l.info( "You have", len(yards), "shipyards of the correct level." )
+shipyards = bs.get_shipyards( planet )
+l.info( "You have {} shipyards of the correct level.".format(len(shipyards)) )
 
 ### Ensure building the requested ship type is possible, and figure out how 
 ### many should be built.
-###
-### CHECK
-### Bah this is not taking available spaceport slots into account.  I thought 
-### that get_buildable() would do that, but it isn't.  So determine_buildable 
-### does need to query a spaceport.
-num_to_build = bs.determine_buildable( yards )
+num_to_build = bs.determine_buildable( shipyards )
 requested = 'max' if bs.args.num == 0 else bs.args.num
 l.info( "You requested to build {} ships.  I'm going to try to build {:,} ships."
     .format(requested, num_to_build)
@@ -47,10 +42,10 @@ l.info( "You requested to build {} ships.  I'm going to try to build {:,} ships.
 
 ### Doo eet.
 left_to_build = num_to_build
-for y in yards:
+for y in shipyards:
     ships, building_now, cost = y.view_build_queue()
     num_to_build_here = y.level - building_now
-    num_to_build_here = left_to_build if num_to_build_here > left_to_build else num_to_build_here
+    num_to_build_here = left_to_build if left_to_build < num_to_build_here else num_to_build_here
     left_to_build -= num_to_build_here
     y.build_ship( bs.args.type, num_to_build_here )
     l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
@@ -66,5 +61,4 @@ if left_to_build != 0:
     built = num_to_build - left_to_build
 
 l.info( "I am now building {:,} {} in various shipyards on {}.".format(built, bs.args.type, planet.name) )
-
 
