@@ -23,6 +23,7 @@ section and ignore the rest.
    :maxdepth: 2
 
    getting_started_running
+   scripts/index
    getting_started_writing
    config_file
    logging
