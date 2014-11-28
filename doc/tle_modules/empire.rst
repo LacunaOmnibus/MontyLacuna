@@ -1,5 +1,5 @@
 
-TLE Module - Empire
+Empire
 ===================
 
 .. automodule:: lacuna.empire

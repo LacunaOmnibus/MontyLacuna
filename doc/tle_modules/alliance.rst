@@ -1,5 +1,5 @@
 
-TLE Module - Alliance
+Alliance
 =====================
 
 .. automodule:: lacuna.alliance

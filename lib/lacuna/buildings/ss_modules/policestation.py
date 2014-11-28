@@ -9,6 +9,7 @@ class policestation(lacuna.building.MyBuilding):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
+
     @lacuna.building.MyBuilding.call_returning_meth
     def view_foreign_ships( self, page_number:int = 1, **kwargs ):
         """ Shows incoming ships, 25 at a time.
@@ -29,6 +30,7 @@ class policestation(lacuna.building.MyBuilding):
             mylist.append( lacuna.ship.IncomingShip(self.client, i) )
         return (mylist, kwargs['rslt']['number_of_ships'])
 
+
     @lacuna.building.MyBuilding.call_returning_meth
     def view_ships_orbiting( self, page_number:int = 1, **kwargs ):
         """ Shows incoming foreign ships, 25 at a time.
@@ -44,6 +46,7 @@ class policestation(lacuna.building.MyBuilding):
         for i in kwargs['rslt']['ships']:
             mylist.append( lacuna.ship.ForeignOrbiting(self.client, i) )
         return (mylist, kwargs['rslt']['number_of_ships'])
+
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view_ships_travelling( self, page_number:int = 1, **kwargs ):
@@ -71,6 +74,7 @@ class policestation(lacuna.building.MyBuilding):
             mylist.append( lacuna.ship.IncomingShip(self.client, i) )
         return (mylist, kwargs['rslt']['number_of_ships_travelling'])
 
+
     @lacuna.building.MyBuilding.call_returning_meth
     def view_prisoners( self, page_number:int = 1, **kwargs ):
         """ Shows prisoners, 25 at a time.
@@ -88,6 +92,7 @@ class policestation(lacuna.building.MyBuilding):
             mylist.append( lacuna.spy.Prisoner(self.client, i) )
         return mylist
 
+
     @lacuna.building.MyBuilding.call_returning_meth
     def execute_prisoner( self, prisoner_id:int, **kwargs ):
         """ Execute a captured spy
@@ -102,6 +107,7 @@ class policestation(lacuna.building.MyBuilding):
         """
         return True
 
+
     @lacuna.building.MyBuilding.call_returning_meth
     def release_prisoner( self, prisoner_id:int, **kwargs ):
         """ Release a captured spy
@@ -115,6 +121,7 @@ class policestation(lacuna.building.MyBuilding):
         Returns True on success.
         """
         return True
+
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view_foreign_spies( self, page_number:int = 1, **kwargs ):

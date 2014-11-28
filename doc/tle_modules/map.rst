@@ -1,5 +1,5 @@
 
-TLE Module - Map
+Map
 ================
 
 .. automodule:: lacuna.map
