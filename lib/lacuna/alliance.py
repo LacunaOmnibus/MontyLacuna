@@ -123,9 +123,10 @@ class Profile(lacuna.bc.SubClass):
         mydict['members'] = member_list
 
         ss_list = []
-        for i in mydict['space_stations']:
-            ss_list.append( lacuna.body.SpaceStation(client, i) )
-        mydict['space_stations'] = ss_list
+        if 'space_stations' in mydict:
+            for i in mydict['space_stations']:
+                ss_list.append( lacuna.body.SpaceStation(client, i) )
+            mydict['space_stations'] = ss_list
 
         super().__init__(client, mydict)
 

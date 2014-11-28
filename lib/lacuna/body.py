@@ -588,6 +588,17 @@ class Buildable(lacuna.bc.SubClass):
             self.extra_level = mydict['build']['extra_level']
 
 
+class SpaceStation(lacuna.bc.SubClass):
+    """
+    Attributes::
+
+        id          "id-goes-here",
+        name        "Earth"
+        x           100
+        y           -250
+    """
+
+
 class SimpleBody(lacuna.bc.SubClass):
     """
     Attributes::

@@ -15,8 +15,6 @@ my_planet = glc.get_body_byname( 'bmots01' )
 arch = my_planet.get_buildings_bytype( 'archaeology', 0, 1 )[0]
 
 
-rv = arch.get_glyphs()
-
 
 ### Is the archmin performing a local search right now?
 ###

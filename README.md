@@ -39,9 +39,6 @@ I'm not seeing any need to worry about either of these.
   - Announcement
 
 ## TBD
-- logging
-  - There's also a RotatingFileHandler handler - that's what I should be using, or people 
-    are going to end up with way-too-big logfiles.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
