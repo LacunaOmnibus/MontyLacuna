@@ -1,23 +1,40 @@
 [DEFAULT]
-host = us1.lacunaexpanse.com
-testhost = pt.lacunaexpanse.com
+logfile = us1.log
+show_captcha = 1
 sleep_after_error = 1
-proto = https
+warn_on_sleep = 1
+proto = http
 sleep_on_call = 1
 api_key = anonymous
-show_captcha = True
-warn_on_sleep = True
-logfile = var/tle.log
-
-[my_guest]
+host = us1.lacunaexpanse.com
 
 [real]
 username = tmtowtdi
 password = zaphod lampshade
-session_id = ffb48118-cd61-447b-8bc7-a0b609851a0e
+session_id = b27542e1-b9c7-4ad4-8ed2-23cb16801954
 
 [sitter]
 username = tmtowtdi
 password = ogio breakfast
-session_id = cee305e0-b523-4472-b9f5-f4c22f669c4a
+session_id = 3eae5c0c-1d0c-4d73-a523-5df327b71b1e
+
+[play_test]
+host = pt.lacunaexpanse.com
+username = tmtowtdi
+password = ogio breakfast
+logfile = pt.log
+session_id = 259a0006-b20f-4eb6-8bbb-a92e1c540897
+
+[play_test_one]
+host = pt.lacunaexpanse.com
+username = tmtowtdi_testone
+password = foobar
+session_id = fbb3d33e-d351-4333-877e-cc3baa15c840
+logfile = pt.log
+
+[play_test_two]
+host = pt.lacunaexpanse.com
+username = tmtowtdi_testtwo
+password = foobar
+logfile = pt.log
 

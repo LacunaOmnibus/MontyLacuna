@@ -94,15 +94,12 @@ class Guest(lacuna.bc.SubClass):
             for i in self.config_list:
                 setattr( self, i, eval(i) )
 
+        self._create_module_logger()
+        self._create_request_logger()
         self._create_user_logger()
 
-        self._create_request_logger()
         emp_name = self._determine_empname()
-        log_opts = {
-            'empire': emp_name,
-            'path': 'empty',
-            'method': 'empty',
-        }
+        log_opts = { 'empire': emp_name, 'path': 'empty', 'method': 'empty' }
         self.request_logger.info('Creating a new client',extra=log_opts)
 
         self._set_up_cache()
@@ -126,7 +123,37 @@ class Guest(lacuna.bc.SubClass):
         }
         self.cache = beaker.cache.CacheManager(**beaker.util.parse_cache_config_options(cache_opts))
 
+    def _create_module_logger(self):
+        """
+        Usable by any modules that want to create log entries.  These should be 
+        kept down to a dull roar; mostly warnings.
+        """
+        log_format  = '[%(asctime)s] (MODULE) (%(levelname)s) - %(message)s'
+        date_format = '%Y-%m-%d %H:%M:%S'
+
+        l = logging.getLogger( str(uuid.uuid1()) )
+        l.setLevel(logging.DEBUG)
+
+        sh = logging.StreamHandler()
+        sh.setLevel(logging.WARNING)
+        sh.setFormatter(logging.Formatter(log_format, date_format))
+        l.addHandler(sh)
+
+        if( hasattr(self, 'logfile') and self.logfile ):
+            lf_path = self.root_dir + "/var/" + self.logfile
+            lf = logging.FileHandler( lf_path )
+            lf.setLevel(logging.DEBUG)
+            lf.setFormatter(logging.Formatter(log_format, date_format))
+            l.addHandler(lf)
+        self.module_logger = l
+
     def _create_user_logger(self):
+        """
+        Documented as being accessible to the user.  Creates entries in the same 
+        format as the module logger, except these are tagged as (USER) instead 
+        of (MODULE), and the handlers here get set up as client attributes, so 
+        the user can change their loglevels.
+        """
         log_format  = '[%(asctime)s] (USER) (%(levelname)s) - %(message)s'
         date_format = '%Y-%m-%d %H:%M:%S'
 
@@ -149,13 +176,17 @@ class Guest(lacuna.bc.SubClass):
             self.user_log_file_handler.setLevel(logging.DEBUG)
             self.user_log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
             l.addHandler(self.user_log_file_handler)
-
         self.user_logger = l
 
     def _create_request_logger(self):
         """
-        Don't use logging.getLogger() to get at the logger.  Instead, use the 
-        client.request_logger attribute.
+        Request logger entries require that you send a dict of args:
+            (message, extra=some_dict)
+
+        That some_dict has to include the keys 'empire', 'path', and 'method'.  
+
+        The request logger should *only* be used by self.send() -- anything else 
+        that wants to write to the logfile should use the module logger.
         """
         ### logging.getLogger( 'logger_name' ) returns a singleton, but we're 
         ### calling this logger creator once for each client.  There will 
@@ -195,11 +226,11 @@ class Guest(lacuna.bc.SubClass):
         l.addHandler(sh)
 
         if( hasattr(self, 'logfile') and self.logfile ):
-            fh = logging.FileHandler( self.root_dir + "/var/" + self.logfile )
+            lf = self.root_dir + "/var/" + self.logfile 
+            fh = logging.FileHandler( lf )
             fh.setLevel(logging.DEBUG)
             fh.setFormatter(logging.Formatter(f_format, d_format))
             l.addHandler(fh)
-
         self.request_logger = l
 
     def read_config_file( self, conf, default = 'DEFAULT' ):
@@ -322,13 +353,6 @@ class Guest(lacuna.bc.SubClass):
             print( request_json )
             quit()
 
-        emp_name = self._determine_empname()
-        log_opts = {
-            'empire': emp_name,
-            'path': path,
-            'method': method,
-        }
-
         def get_req():
             self._from_cache = False
             resp = requests.post( url, request_json )
@@ -343,6 +367,9 @@ class Guest(lacuna.bc.SubClass):
             resp = cache.get( key = cache_key, createfunc = get_req )
         else:
             resp = requests.post( url, request_json )
+
+        emp_name = self._determine_empname()
+        log_opts = { 'empire': emp_name, 'path': path, 'method': method, }
 
         ### The json parser will happily return a result when handed a raw 
         ### string instead of json (json.dumps("foobar") works just fine).  

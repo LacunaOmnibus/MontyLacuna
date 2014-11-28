@@ -40,9 +40,6 @@ I'm not seeing any need to worry about either of these.
 
 ## TBD
 - logging
-  - Look at LoggerAdapters - the way the request log is being dealt with (the extra) 
-    sucks.
-    https://docs.python.org/3.4/howto/logging-cookbook.html#using-loggeradapters-to-impart-contextual-information
   - There's also a RotatingFileHandler handler - that's what I should be using, or people 
     are going to end up with way-too-big logfiles.
 - Everything needs to be tested on Windows.  In particular:
