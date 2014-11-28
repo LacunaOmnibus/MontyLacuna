@@ -1,5 +1,5 @@
 
-import json, logging, os, os.path, pprint, re, requests, sys, threading, time, uuid
+import json, logging, logging.handlers, os, os.path, pprint, re, requests, sys, threading, time, uuid
 import configparser
 import beaker.cache, beaker.util
 from my_validate_email import validate_email
@@ -94,6 +94,8 @@ class Guest(lacuna.bc.SubClass):
             for i in self.config_list:
                 setattr( self, i, eval(i) )
 
+        self.max_log_size = 1024*500    # 500k seems reasonable
+        self.num_log_backups = 3
         self._create_module_logger()
         self._create_request_logger()
         self._create_user_logger()
@@ -141,7 +143,7 @@ class Guest(lacuna.bc.SubClass):
 
         if( hasattr(self, 'logfile') and self.logfile ):
             lf_path = self.root_dir + "/var/" + self.logfile
-            lf = logging.FileHandler( lf_path )
+            lf = logging.handlers.RotatingFileHandler( lf_path, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
             lf.setLevel(logging.DEBUG)
             lf.setFormatter(logging.Formatter(log_format, date_format))
             l.addHandler(lf)
@@ -172,7 +174,7 @@ class Guest(lacuna.bc.SubClass):
 
         if( hasattr(self, 'logfile') and self.logfile ):
             lf_path = self.root_dir + "/var/" + self.logfile
-            self.user_log_file_handler = logging.FileHandler( lf_path )
+            self.user_log_file_handler = logging.handlers.RotatingFileHandler( lf_path, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
             self.user_log_file_handler.setLevel(logging.DEBUG)
             self.user_log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
             l.addHandler(self.user_log_file_handler)
@@ -227,7 +229,7 @@ class Guest(lacuna.bc.SubClass):
 
         if( hasattr(self, 'logfile') and self.logfile ):
             lf = self.root_dir + "/var/" + self.logfile 
-            fh = logging.FileHandler( lf )
+            fh = logging.handlers.RotatingFileHandler( lf, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
             fh.setLevel(logging.DEBUG)
             fh.setFormatter(logging.Formatter(f_format, d_format))
             l.addHandler(fh)
