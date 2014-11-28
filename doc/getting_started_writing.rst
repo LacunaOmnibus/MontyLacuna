@@ -58,8 +58,27 @@ specify one of those two names as your ``config_section``.
 
 Logging and Caching
 -------------------
-    Logging and caching facilities are set up for use in your scripts, and are 
-    both easy to access.  For details, see :ref:`logging` and :ref:`caching`.
+Logging and caching facilities are set up for use in your scripts, and are 
+both easy to access.  For details, see :ref:`logging` and :ref:`caching`.
+
+Debugging Requests
+------------------
+If you ever need to see the exact JSON that a given method would send to the 
+server, you can assign a ``debugging_method`` on your client, eg::
+
+    client.debugging_method = 'view_profile'
+    empire.view_profile()
+
+Once a ``debugging_method`` has been assigned, the next time a method by that 
+name is called, the JSON that would normally be passed to the TLE servers will 
+instead be dumped to the screen, and the script will terminate immediately, to 
+allow you to inspect the JSON dump.
+
+A ``debugging_method`` must be the name of a TLE API method.  Most MontyLacuna 
+methods are mirrors of TLE API methods, but not all.  To check if a given 
+method is a published TLE API method, check out the TLE API documentation:
+https://us1.lacunaexpanse.com/api/
+
 
 Example Snippets
 ----------------

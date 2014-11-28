@@ -18,32 +18,30 @@ class Guest(lacuna.bc.SubClass):
     """ Guest users are not logged in.
 
     Accepts the following named arguments:
-        - api_key -- your TLE api_key.  Omitting this is fine; the default key 
-          (the string 'anonymous') will be used.
-        - config_file --  path to your configparser-friendly config file
-        - config_section -- the section in your config file to read from
-        - host -- us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to 
+        - api_key -- Your TLE api_key.  Defaults to 'anonymous'.
+        - config_file --  Path to your config file.
+        - config_section -- The section in your config file to read from.
+        - host -- ``us1.lacunaexpanse.com`` or ``pt.lacunaexpanse.com``.  Defaults to 
           us1.
-        - logfile -- path to your logfile.  Defaults to no logfile; only 
-          WARNING or higher log events will display to the terminal.
-        - show_captcha -- Boolean.  Defaults to True.  If set to false, and a 
-          method call responds that it needs a captcha solved, an exception 
+        - logfile -- Path to your logfile.  Defaults to no logfile.
+        - show_captcha -- Boolean.  If set to false, and a 
+          method call needs a captcha solved, an exception 
           will be raised.  If left true, the user will automatically be 
-          prompted to solve a captcha when needed.
-        - sleep_on_call -- Integer seconds.  Defaults to 1.  Number of seconds 
+          prompted to solve a captcha when needed.  Defaults to True.  
+        - sleep_on_call -- Integer seconds.  Number of seconds 
           to sleep after each call to attempt to avoid using more than the 
-          limit of 60 RPCs per minute.
-        - sleep_after_error -- Boolean.  Defaults to True.  If we've used over 
+          limit of 60 RPCs per minute.  Defaults to 1.  
+        - sleep_after_error -- Boolean.  If we've used over 
           60 RPCs in a minute, the server will produce an error, and if this 
           setting is True, when we get that server error we'll sleep for a 
           minute and then re-try our call.  If this setting is false, we'll 
-          throw an exception.
+          throw an exception.  Defaults to True.  
         - sleep_on_call -- Integer number of seconds to sleep after each TLE 
           server request.  Defaults to 1.
-        - warn_on_sleep -- Boolean, defaults to True.  If you exceed 60 RPCs 
+        - warn_on_sleep -- Boolean. If you exceed 60 RPCs 
           per minute, and the script is therefore going to pause for a minute, 
           and this is set to True, a warning will be displayed to let you know 
-          why your script is taking so long.
+          why your script is taking so long.  Defaults to True.  
 
     Generally, you'll omit all arguments except for config_file and 
     config_section, and just fill the appropriate values out in your config 
@@ -51,18 +49,6 @@ class Guest(lacuna.bc.SubClass):
 
     If a config_file and config_section are passed in, the values in that config 
     file take precedence over any other values, including passed-in values.
-
-    Debugging
-        To take a look at the actual JSON that would be sent to the TLE 
-        servers for a specific method call, in your calling code you can set a 
-        debugging method on your client, eg::
-
-            empire.client.debugging_method = 'view_profile'
-            empire.view_profile()
-
-        In this case, the call to view_profile() will cause the JSON that 
-        would normally be sent to the server to instead be dumped to your 
-        screen, after which the script will quit.
     """
 
     pp = pprint.PrettyPrinter( indent = 4 )
