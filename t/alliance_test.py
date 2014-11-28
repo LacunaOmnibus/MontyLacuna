@@ -11,18 +11,20 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'my_sitter',
+    config_section = 'sitter',
 )
 
 ally = glc.get_alliance()
+l = glc.user_logger
+l.info("user info message")
 
 ### Find an alliance by name
 ###
-#allies = ally.find( 'S.M.A' )
-#for i in allies:
-#    print( "The alliance named {} has an ID of {}."
-#        .format(i.name, i.id)
-#    )
+allies = ally.find( 'S.M.A' )
+for i in allies:
+    print( "The alliance named {} has an ID of {}."
+        .format(i.name, i.id)
+    )
 
 
 ### Get info on the alliance your logged-in client is a member of.  If that 
