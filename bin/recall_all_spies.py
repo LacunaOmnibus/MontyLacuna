@@ -37,10 +37,14 @@ sp = planet.get_buildings_bytype( 'spaceport', 1, 1 )[0]
 l.debug("Got spaceport")
 
 ### Do eet.
+cnt = 0
 for bid, name in foreign_bodies.items():
+    cnt += 1
     l.info( "Recalling spies from {} (ID {}).".format(name, bid) )
     ### Turn the cache back off, or we'll try to use the same ship to pick up 
     ### spies on multiple planets.
     client.cache_off()
     ship, ids = sp.get_spies_back( bid )
+
+l.info( "You had spies on {} foreign bodies.  They've all been recalled.".format(cnt) )
 
