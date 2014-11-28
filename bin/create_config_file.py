@@ -38,7 +38,7 @@ cp['DEFAULT'] = {
     'sleep_after_error': 1,
     'warn_on_sleep': 1,
     'show_captcha': 1,
-    'logfile': 'var/us1.log',
+    'logfile': 'us1.log',
 }
 cp['real'] = {
     'username': emp_name,
@@ -52,7 +52,7 @@ cp['play_test'] = {
     'host': '${DEFAULT:test_host}',
     'username': emp_name,
     'password': sitter_pw,
-    'logfile': 'var/pt.log',
+    'logfile': 'pt.log',
 }
 with open(filepath, 'w') as handle:
     cp.write(handle)

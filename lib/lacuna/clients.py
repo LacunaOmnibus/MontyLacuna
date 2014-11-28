@@ -79,7 +79,7 @@ class Guest(lacuna.bc.SubClass):
         ### As long as this file, 'clients.py', is in ROOT/lib/lacuna/, the 
         ### following is correct.  We _do_ want __file__ here, not 
         ### sys.argv[0].
-        self.root_dir = os.path.abspath(os.path.dirname(__file__)) + '/../..'
+        self.root_dir   = os.path.abspath(os.path.dirname(__file__)) + '/../..'
 
         if config_file and config_section and os.path.isfile(config_file):
             self.config_file    = config_file
@@ -144,7 +144,8 @@ class Guest(lacuna.bc.SubClass):
         l.addHandler(self.user_log_stream_handler)
 
         if( hasattr(self, 'logfile') and self.logfile ):
-            self.user_log_file_handler = logging.FileHandler( os.path.normpath(self.logfile) )
+            lf_path = self.root_dir + "/var/" + self.logfile
+            self.user_log_file_handler = logging.FileHandler( lf_path )
             self.user_log_file_handler.setLevel(logging.DEBUG)
             self.user_log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
             l.addHandler(self.user_log_file_handler)
@@ -194,7 +195,7 @@ class Guest(lacuna.bc.SubClass):
         l.addHandler(sh)
 
         if( hasattr(self, 'logfile') and self.logfile ):
-            fh = logging.FileHandler( os.path.normpath(self.logfile) )
+            fh = logging.FileHandler( self.root_dir + "/var/" + self.logfile )
             fh.setLevel(logging.DEBUG)
             fh.setFormatter(logging.Formatter(f_format, d_format))
             l.addHandler(fh)
@@ -327,8 +328,6 @@ class Guest(lacuna.bc.SubClass):
             'path': path,
             'method': method,
         }
-        emp_name = self._determine_empname()
-        l = self.request_logger
 
         def get_req():
             self._from_cache = False
