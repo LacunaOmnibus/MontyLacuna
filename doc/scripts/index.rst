@@ -29,13 +29,13 @@ syntax just by running the script with no arguments::
 
     >>> python3 bin/scriptname.py
 
-Or, you can get more in-depth information on the script by passing the -h (or 
---help) flag::
+Or, you can get more in-depth information on the script by passing the ``-h`` 
+(or ``--help``) flag::
 
     >>> python3 bin/scriptname.py -h
 
-Most scripts allow you to send various command-line arguments.  Remember that, 
-if you arguments contain spaces, you have to quote them::
+Most scripts allow you to send various command-line arguments.  Remember that 
+if your arguments contain spaces, you have to quote them::
 
     >>> python3 bin/scriptname.py --planet "My Planet Name"
 
@@ -43,4 +43,5 @@ if you arguments contain spaces, you have to quote them::
    :maxdepth: 2
 
    build_ships
+   recall_all_spies
 

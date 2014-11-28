@@ -11,102 +11,26 @@ The main goal is to help me learn Python, but I'd like to end up with a fully
 working package.
 
 ## Prerequisites
-- virtualenv
-  - You want to do this before any other installing, so the module installs will install 
-    to your virtual environment.
-  - $ sudo apt-get install python-virtualenv
-  - Again, this probably doesn't count as a true prereq, but it's something I did.
-  - After installing virtualenv, I created one for this project with:
-    - $ virtualenv -p /usr/bin/python Python3
-    - $ source Python3/bin/activate
-      - Now "python script.py" will call Python3/bin/python.
-    - You can turn that virtualenv off with just $ deactivate
-- pip
-  - This gets installed by virtualenv, so if you're using that, you're good.
-- requests
-  - pip install requests
-- beaker
-  - pip install beaker
-
-- Prereqs for documentation creation; not needed by script runners or writers
+- Prereqs for documentation creation; not needed by script runners or writers, 
+  only needed if you want to generate the docu yourself.
   - sphinx
     - pip install sphinx
-    - This isn't really a prerequisite of using MontyLacuna, but it's (likely) what I'm 
-      using to generate the documentation.
   - Sphinx Read The Docs! theme
     - pip install sphinx_rtd_theme
 
-## Complete
-Nothing.
-
-## Working
-"working" means that all functionality exists, and quickie scripts appear to 
-work, but it hasn't been fully tested yet.
-
-- Alliance
-- Body
-- Captcha
-- Clients
-- Empire
-- Inbox
-- Map
-- Stats
-- Buildings
-  - "all functionality" is a bit of a stretch here.  The Buildings base class 
-exists, and stub classes exist for all buildings in the game.  I need to work 
-through those building stubs to make them each do whatever-it-is they're each 
-supposed to do.
-  - archaeology
-  - blackholegenerator
-  - development
-  - distributioncenter
-  - embassy
-  - energyreserve
-  - entertainment
-  - foodreserve
-  - geneticslab
-  - intelligence
-  - inteltraining
-  - libraryofjith
-  - mayhemtraining
-  - mercenariesguild
-  - miningministry
-  - missioncommand
-  - network19
-  - observatory
-  - oracleofanid
-  - orestorage
-  - park
-  - planetarycommand
-  - politicstraining
-  - security
-  - shipyard
-  - spaceport
-  - ssla
-  - subspacesupplydepot
-  - thedillonforge
-  - thefttraining
-  - themepark
-  - trading (base class)
-    - trade (trade ministry)
-    - transporter (sst)
-    - I purposely skipped some methods in both trade and transporter.  They'll never be 
-      used and I'm getting bored.  Add them if you're feeling productive.  The skipped 
-      methods are noted in comments at the top of both files.
- - recycler (base class)
-    - wasteexchanger
-    - wasterecycling
-  - Space Station Modules
-    - parliament
-    - policestation
-      - "done", but several methods are untested.
-    - stationcommand
+## Unfinished
+- trading (base class)
+  - I purposely skipped some methods in both trade.py and transporter.py.  
+    They'll never be used and I'm getting bored.  Add them if you're feeling 
+    productive.  The skipped methods are noted in comments at the top of both 
+    files.
+- Space Station Modules
+  - policestation
 
 ## Incomplete/Not Started
-- Payments
- - There's a real good chance this will never be worked on as part of this 
-   project.
-- Announcement
+I'm not seeing any need to worry about either of these.
+  - Payments
+  - Announcement
 
 ## TBD
 - logging
@@ -126,7 +50,7 @@ supposed to do.
 - I'm going to need at least a few useful scripts in bin/ before making this public.
   - starting to play with build_ships.py.
 
-## Documentation
+## Building the Documentation
 http://sphinx-doc.org/tutorial.html
 https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 

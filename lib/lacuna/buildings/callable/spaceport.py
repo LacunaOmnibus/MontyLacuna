@@ -1,5 +1,5 @@
 
-
+import operator
 
 import lacuna.bc
 import lacuna.building
@@ -588,12 +588,21 @@ class spaceport(lacuna.building.MyBuilding):
         """ Fetches all spies currently posted to a planet back home again.
 
         Arguments:
-            - on_body_id -- Integer ID of the body from which you want to retrieve your spies.
-            - ship_name -- Optional; name of the ship you want to use to retrieve your spies.  If not sent, the first available ship will be used.
+            - on_body_id -- Integer ID of the body from which you want to 
+              retrieve your spies.
+            - ship_name -- Optional; name of the ship you want to use to 
+              retrieve your spies.  If not sent, the fastest available ship will 
+              be used.
 
         Returns a tuple:
             - ship -- lacuna.ship.TravellingShip object
-            - spy_ids -- List of integer IDs of spies being fetched NOT a list of Spy objects.
+            - spy_ids -- List of integer IDs of spies being fetched NOT a list 
+              of Spy objects.
+
+        Raises KeyError if you don't have any ships capable of grabbing all of 
+        the spies on the target planet in one shot, or if you don't have any 
+        spies on foreign soil ready to be picked up (remember that a spy has to 
+        be Idle to be picked up).
         """
         ships, spies = self.prepare_fetch_spies( from_id, self.body_id )
 
@@ -607,14 +616,31 @@ class spaceport(lacuna.building.MyBuilding):
                     ship_id = ship.id
                     break
         else:
-            ship_id = ships[0].id     # No ship name specified.  Use the first one available.
-        ship_id = int(ship_id)
+            ships.sort( key=operator.attrgetter('speed'), reverse=True )
+
+            ### CHECK
+            ### I haven't got 'max_occupants' listed as a possible 
+            ### ExistingShip attribute.  I think it'll be there -- update the 
+            ### ExistingShip docs if it is.
+            ship = ''
+            for s in ships:
+                if hasattr(s, 'max_occupants'):
+                    if s.max_occupants > len(spies):
+                        ship = s
+                        break
+            if not ship:
+                raise KeyError("You have no ships capable of carrying all of your spies.")
+            ship_id = ships.pop().id
 
         spy_ids = []
         for i in spies:
             if i.based_from.body_id == self.body_id and i.assigned_to.body_id == from_id:
-                spy_ids.append( int(i.id) )
-        ship = self.fetch_spies( from_id, self.body_id, ship_id, spy_ids )
+                spy_ids.append( i.id )
+        if len(spy_ids):
+            ship = self.fetch_spies( from_id, self.body_id, ship_id, spy_ids )
+        else:
+            raise KeyError("I couldn't find any spies to pick up.")
+
         return(
             ship,
             spy_ids

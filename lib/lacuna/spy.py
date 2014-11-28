@@ -157,14 +157,23 @@ class IntelView(lacuna.bc.SubClass):
         maximum             5,
         current             1,
         in_training         1,
-        training_costs      {
-            "food" : 100,
-            "water" : 120,
-            "energy" : 20,
-            "ore" : 5,
-            "waste" : 10,
-            "time" : 60,
-        }
+        training_costs      lacuna.spy.TrainingCosts object
+    """
+    def __init__(self, client, mydict:dict):
+        if ['training_costs'] in mydict:
+            mydict['training_costs'] = TrainingCosts(client, mydict['training_costs'])
+        super().__init__(client, mydict)
+
+class TrainingCosts(lacuna.bc.SubClass):
+    """
+    Attributes::
+
+        food    100,
+        water   120,
+        energy  20,
+        ore     5,
+        waste   10,
+        time    60,
     """
 
 class MissionCount(lacuna.bc.SubClass):
@@ -190,7 +199,8 @@ class MissionResult(lacuna.bc.SubClass):
         message_id      "id-goes-here",
         reason          "I'm under heavy fire over here!"
 
-    Possible values for 'result' are:
+    Possible values for 'result' are::
+
         Accepted    Nothing happened as a result of the assignment, as to 
                     Counter Espionage or Idle.
         Success     The mission succeeded and your spy won.
@@ -206,7 +216,7 @@ class MissionResult(lacuna.bc.SubClass):
 
 class Prisoner(Spy):
     """
-    Attributes:
+    Attributes::
 
         id                  "id-goes-here",
         name                "James Bond",

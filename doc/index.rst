@@ -6,11 +6,10 @@
 Welcome to MontyLacuna's documentation!
 =======================================
 
-There's a lot of information here, but if you just want to get yourself set up 
-to run MontyLacuna scripts, just read the :ref:`getting_started_running` 
-section to get your system set up, then the :ref:`scripts_index` section to 
-figure out how to run the various available scripts.  You can ignore 
-everything else.
+There's a lot of information here, but if you only want to get yourself set up 
+to run MontyLacuna scripts, read the :ref:`getting_started_running` section to 
+get your system set up, then the :ref:`scripts_index` section to figure out 
+how to run the various available scripts.  You can ignore everything else.
 
 .. In the toctree,
    - The first grouping are intro-y sections, whose titles are capitalized.
@@ -26,11 +25,8 @@ everything else.
 
    getting_started_running
    scripts/index
-   getting_started_writing
    config_file
-   logging
-   caching
-   glossary
+   getting_started_writing
 
    alliance
    body
@@ -50,6 +46,7 @@ everything else.
    recycling
    resource
    ship
+   spy
    trading
 
 Indices and tables
