@@ -18,6 +18,12 @@ working package.
   - Sphinx Read The Docs! theme
     - pip install sphinx_rtd_theme
 
+## Working
+There are now a couple scripts that work, and the entire project is shaping 
+up.  The full docs (available at the gh-pages website, which is linked at the 
+top of this page if you're reading this in your browser on Github) should be 
+pretty current.
+
 ## Unfinished
 - trading (base class)
   - I purposely skipped some methods in both trade.py and transporter.py.  
