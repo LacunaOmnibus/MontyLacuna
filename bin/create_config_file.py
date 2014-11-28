@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 
 import configparser, os, re, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
