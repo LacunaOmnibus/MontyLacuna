@@ -1,5 +1,5 @@
-my_validate_email module
-========================
+my_validate_email
+=================
 
 .. automodule:: my_validate_email
     :members:

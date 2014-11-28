@@ -66,20 +66,9 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
 </ul>
 </li>
-<<<<<<< HEAD
 <li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="scripts/create_config_file.html">Create Config File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scripts/build_ships.html">Build Ships</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="scripts/index.html#indices-and-tables">Indices and tables</a></li>
-=======
->>>>>>> 3cbbed38944967d03370d112bd890284020452e8
-<li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#regular-scripts">Regular Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
@@ -88,19 +77,14 @@
 <li class="toctree-l2"><a class="reference internal" href="config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log-entries">Request Log Entries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log-entries">User Log Entries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="caching.html">Caching</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">TLE Module - Building</a><ul>
@@ -121,11 +105,12 @@
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
 </ul>
 
@@ -243,19 +228,8 @@ url             &quot;/apple&quot;,
 level           3,
 image           &quot;apples3&quot;,
 efficiency      95,
-<<<<<<< HEAD
 pending_build   lacuna.building.Working object
 work            lacuna.building.Working object
-=======
-pending_build   {   # only included when building is building/upgrading
-                    &quot;seconds_remaining&quot; : 430,
-                    &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;  },
-work            {   # only included when building is working (Parks, Waste Recycling, etc)
-                    &quot;seconds_remaining&quot; : 49,
-                    &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
-                    &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;  }
->>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </pre></div>
 </div>
 <p>MontyLacuna attempts to provide method calls that mirror all of the method 
@@ -410,7 +384,6 @@ type, ie water and energy.</p>
 
 </dd></dl>
 
-<<<<<<< HEAD
 <dl class="class">
 <dt id="lacuna.building.Working">
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">Working</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.Working" title="Permalink to this definition">¶</a></dt>
@@ -428,8 +401,6 @@ end_dt      datetime.datetime object representing the value in end.
 </div>
 </dd></dl>
 
-=======
->>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </div>
 
 
