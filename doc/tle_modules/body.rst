@@ -1,5 +1,5 @@
 
-TLE Module - Body
+Body
 =================
 
 .. automodule:: lacuna.body

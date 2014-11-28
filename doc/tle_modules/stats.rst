@@ -1,8 +1,8 @@
 
-TLE Module - Inbox
+Stats
 ==================
 
-.. automodule:: lacuna.inbox
+.. automodule:: lacuna.stats
    :members:
    :show-inheritance:
 

@@ -1,5 +1,5 @@
 
-TLE Module - Captcha
+Captcha
 ====================
 
 .. automodule:: lacuna.captcha
