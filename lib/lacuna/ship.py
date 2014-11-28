@@ -82,22 +82,23 @@ class ExistingShip(Ship):
         date_arrives    "02 01 2010 10:08:33 +0600",
         can_recall      "0",
         can_scuttle     "1",
-        origin          {    "id" : "id-goes-here",
-                            "type" : "body",
-                            "name" : "Earth"     },
-        to              {   # Will only appear if the ship is currently
-                            # travelling somewhere:
-                            "id" : "id-goes-here",
-                            "type" : "body",
-                            "name" : "Mars"  }
-        orbiting        {   # Will only appear if the ship is currently
-                            # orbiting another planet:
-                            "id" : "id-goes-here",
-                            "type" : "body",
-                            "name" : "Mars",
-                            "x" : 4,
-                            "y" : -3,    }
+        max_occupants   120                             # attribute will always exist, but will 
+                                                        # sometimes be '0'.
+        origin          lacuna.ship.ShipDest object
+        to              lacuna.ship.ShipDest object     # Will only appear if the ship is currently
+                                                        # travelling somewhere:
+        orbiting        lacuna.ship.ShipHub object
     """
+    def __init__(self, client, mydict):
+        if not 'max_occupants' in mydict:
+            mydict['max_occupants'] = 0
+        if 'to' in mydict:
+            mydict['to'] = lacuna.body.ShipDest(client, mydict['to'] )
+        if 'from' in mydict:
+            mydict['from'] = lacuna.body.ShipDest(client, mydict['from'] )
+        if 'orbiting' in mydict:
+            mydict['orbiting'] = lacuna.body.ShipHub(client, mydict['orbiting'] )
+        super().__init__(client, mydict)
 
 class FleetShip(Ship):
     """ A FleetShip is an existing docked ship that's ready to be added to a 
@@ -112,7 +113,6 @@ class FleetShip(Ship):
         combat                  33372,
         quantity                103,
         estimated_travel_time   "3654",
-
     """
 
 class ForeignOrbiting(Ship):

@@ -36,7 +36,7 @@ class Body(lacuna.bc.LacunaObject):
     path = 'body'
 
     def __init__( self, client:object, attrs:dict = {} ):
-        self.body_id = attrs['id']
+        self.body_id = int(attrs['id'])
 
         super().__init__( client, attrs )
         self._set_status_attr( attrs )
@@ -597,6 +597,29 @@ class SimpleBody(lacuna.bc.SubClass):
         x           100
         y           -250
         image       "p35"
+    """
+
+
+class ShipDest(lacuna.bc.SubClass):
+    """ Where a ship is travelling to or from.
+
+    Attributes::
+
+        id          "id-goes-here",
+        type        "body"
+        name        "Earth"
+    """
+
+
+class ShipHub(lacuna.bc.SubClass):
+    """ The body an orbiting ship is orbiting.
+
+    Attributes::
+        id          "id-goes-here",
+        type        "body"
+        name        "Earth"
+        x           100
+        y           250
     """
 
 

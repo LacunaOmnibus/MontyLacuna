@@ -1,26 +1,26 @@
 
-from lacuna.bc import LacunaObject
-from lacuna.building import MyBuilding
-from lacuna.spy import IntelView, MissionResult, Spy
+import lacuna.bc 
+import lacuna.building 
+import lacuna.spy
 
-class intelligence(MyBuilding):
+class intelligence(lacuna.building.MyBuilding):
     path = 'intelligence'
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
         """ View stats on current spy numbers, as well as costs to train new 
         spies.
 
-        Returns a single IntelView object.
+        Returns a single lacuna.spy.IntelView object.
         """
-        return IntelView(self.client, kwargs['rslt']['spies'])
+        return lacuna.spy.IntelView(self.client, kwargs['rslt']['spies'])
 
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def train_spy( self, *args, quantity:int = 1, **kwargs ):
         """ Trains one or more spies.  "Train", in this case, means "create".
         The "quantity" argument defaults to 1.
@@ -34,45 +34,45 @@ class intelligence(MyBuilding):
         """
         pass
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def view_spies( self, page_number:int = 1, *args, **kwargs ):
         """ Returns info on one page (up to 30) spies.  There are a maximum of 
         three pages of spy data.  
         
         To get info on all of your spies at once, see also view_all_spies().
 
-        Returns a list of up to 30 Spy objects.
+        Returns a list of up to 30 lacuna.spy.Spy objects.
         """
         spy_list = []
         for i in kwargs['rslt']['spies']:
-            spy_list.append( Spy(self.client, i) )
+            spy_list.append( lacuna.spy.Spy(self.client, i) )
         return spy_list
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def view_all_spies( self, *args, **kwargs ):
         """ Returns information on all of the spies controlled from this 
         planet.
 
-        Returns a list of up to 90 Spy objects.
+        Returns a list of up to 90 lacuna.spy.Spy objects.
         """
         spy_list = []
         for i in kwargs['rslt']['spies']:
-            spy_list.append( Spy(self.client, i) )
+            spy_list.append( lacuna.spy.Spy(self.client, i) )
         return spy_list
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def burn_spy( self, spy_id:int, *args, **kwargs ):
         """ Burns (deletes) an existing spy. """
         pass
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def name_spy( self, spy_id:int, name:str, *args, **kwargs ):
         """ Renames an existing spy."""
         pass
 
-    @MyBuilding.call_returning_meth
+    @lacuna.building.MyBuilding.call_returning_meth
     def assign_spy( self, spy_id:int, assignment:str, *args, **kwargs ):
         """ Assigns a spy to a task.
         
@@ -83,15 +83,15 @@ class intelligence(MyBuilding):
         Requires captcha.
 
         Returns a tuple:
-            - spy -- Spy object
-            - mission_result -- MissionResult object
+            - spy -- lacuna.spy.Spy object
+            - mission_result -- lacuna.spy.MissionResult object
         """
-        spy     = Spy( self.client, kwargs['rslt']['spy'] )
-        rslt    = MissionResult( self.client, kwargs['rslt']['mission'] )
+        spy     = lacuna.spy.Spy( self.client, kwargs['rslt']['spy'] )
+        rslt    = lacuna.spy.MissionResult( self.client, kwargs['rslt']['mission'] )
         return( spy, rslt )
 
-    @LacunaObject.set_empire_status
-    @MyBuilding.call_building_meth
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
     def subsidize_training( self, *args, **kwargs ):
         """ Subsidizes training of all spies currently in the queue.
 

@@ -12,8 +12,6 @@ specified in your config file.
 
 Log Levels
 ----------
-This is documented at the URL above, but it's being repeated here for 
-convenience.
 
     ==========  ===============
     Level       Numeric value
@@ -60,7 +58,7 @@ so you can create whatever log entries you like::
     l = my_client.user_logger
     l.error( "This is an error message." )
     l.info( "This is an info message." )
-    l.debug( "This is a debug message.  You may want a lot of these as you're working." )
+    l.debug( "This is a debug message.  You may want a lot of these while you're working." )
 
 As with the request log, only WARNING level or higher will display to the 
 screen by default, while any lower-level entries will just go into the log 

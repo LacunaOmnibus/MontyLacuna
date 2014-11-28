@@ -59,6 +59,11 @@ MontyLacuna creates config file sections named ``real`` and ``sitter``; if
 your script is meant for distribution, it's strongly suggested that you 
 specify one of those two names as your ``config_section``.
 
+Logging and Caching
+-------------------
+    Logging and caching facilities are set up for use in your scripts, and are 
+    both easy to access.  For details, see :ref:`logging` and :ref:`caching`.
+
 Example Snippets
 ----------------
 
