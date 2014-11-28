@@ -29,7 +29,11 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
+<<<<<<< HEAD
+        <link rel="up" title="Miscellaneous Buildings with Methods" href="index.html"/>
+=======
         <link rel="up" title="Other Buildings with Unique Methods" href="index.html"/>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
         <link rel="next" title="ssla" href="ssla.html"/>
         <link rel="prev" title="shipyard" href="shipyard.html"/> 
 
@@ -67,6 +71,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
@@ -82,8 +94,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<<<<<<< HEAD
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+=======
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log-entries">Request Log Entries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log-entries">User Log Entries</a></li>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../caching.html">Caching</a><ul>
@@ -100,7 +117,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../lcot/index.html">LCOT Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../permanent/index.html">Permanent (Glyph) Buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ssmodules/index.html">Space Station Modules</a></li>
+<<<<<<< HEAD
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Miscellaneous Buildings with Methods</a></li>
+=======
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Other Buildings with Unique Methods</a></li>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <li class="toctree-l2"><a class="reference internal" href="../misc_bldgs.html">Miscellaneous Buildings</a></li>
 </ul>
 </li>
@@ -118,6 +139,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<<<<<<< HEAD
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
 </ul>
 
@@ -144,7 +169,11 @@
       
           <li><a href="../building.html">TLE Module - Building</a> &raquo;</li>
       
+<<<<<<< HEAD
+          <li><a href="index.html">Miscellaneous Buildings with Methods</a> &raquo;</li>
+=======
           <li><a href="index.html">Other Buildings with Unique Methods</a> &raquo;</li>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
       
     <li>spaceport</li>
       <li class="wy-breadcrumbs-aside">
@@ -300,17 +329,37 @@ method.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
+<<<<<<< HEAD
+<li>on_body_id &#8211; Integer ID of the body from which you want to 
+retrieve your spies.</li>
+<li>ship_name &#8211; Optional; name of the ship you want to use to 
+retrieve your spies.  If not sent, the fastest available ship will 
+be used.</li>
+=======
 <li>on_body_id &#8211; Integer ID of the body from which you want to retrieve your spies.</li>
 <li>ship_name &#8211; Optional; name of the ship you want to use to retrieve your spies.  If not sent, the first available ship will be used.</li>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </ul>
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
 <li>ship &#8211; lacuna.ship.TravellingShip object</li>
+<<<<<<< HEAD
+<li>spy_ids &#8211; List of integer IDs of spies being fetched NOT a list 
+of Spy objects.</li>
+</ul>
+</dd>
+</dl>
+<p>Raises KeyError if you don&#8217;t have any ships capable of grabbing all of 
+the spies on the target planet in one shot, or if you don&#8217;t have any 
+spies on foreign soil ready to be picked up (remember that a spy has to 
+be Idle to be picked up).</p>
+=======
 <li>spy_ids &#8211; List of integer IDs of spies being fetched NOT a list of Spy objects.</li>
 </ul>
 </dd>
 </dl>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </dd></dl>
 
 <dl class="method">
@@ -404,6 +453,15 @@ Up to 30 characters are allowed.  &#8220;No profanity or funky characters&#8221;
 <dl class="method">
 <dt id="lacuna.buildings.callable.spaceport.spaceport.recall_all">
 <tt class="descname">recall_all</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.recall_all" title="Permalink to this definition">¶</a></dt>
+<<<<<<< HEAD
+<dd><p>Recalls all ships from the current planet that are on &#8216;Defend&#8217; or 
+&#8216;Orbiting&#8217; tasks.
+Note there is no &#8216;target&#8217; argument here; this is not recalling all 
+ships orbiting a specific target - this is recalling ALL ships from 
+this planet that are orbiting anywhere.</p>
+<p>Returns a list of lacuna.ship.IncomingShip objects, with the following additional 
+attributes:</p>
+=======
 <dd><dl class="docutils">
 <dt>Recalls all ships from the current planet that are on &#8216;Defend&#8217; or </dt>
 <dd><p class="first">&#8216;Orbiting&#8217; tasks.
@@ -414,6 +472,7 @@ this planet that are orbiting anywhere.</p>
 attributes:</p>
 </dd>
 </dl>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <div class="highlight-python"><div class="highlight"><pre>returning_from:    {  # This is the planet the ships are being recalled from
                         &quot;id&quot; : &quot;id-goes-here&quot;,
                         &quot;type&quot; : &quot;body&quot;,
@@ -424,11 +483,18 @@ to:                 {    # This is the planet you&#39;re recalling the ships bac
                         &quot;type&quot; : &quot;star&quot;,
                         &quot;name&quot; : &quot;Sol&quot;
                     }
+<<<<<<< HEAD
+</pre></div>
+</div>
+<p>Raises NO error if there are no ships currently orbiting, but the 
+&#8216;ships&#8217; retval will be an empty list.</p>
+=======
 
 Raises NO error if there are no ships currently orbiting, but the 
 &#39;ships&#39; retval will be an empty list.
 </pre></div>
 </div>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </dd></dl>
 
 <dl class="method">
@@ -485,6 +551,18 @@ ID of the sending body.</p>
 <dd><p class="first">You can specify ships to send not just by the shiptype, 
 but also by minimum attributes.  Set only the dict keys 
 you&#8217;re interested in:</p>
+<<<<<<< HEAD
+<div class="last highlight-python"><div class="highlight"><pre>types = [{  &quot;type&quot; : &quot;sweeper&quot;,
+            &quot;speed&quot; : 10166,
+            &quot;stealth&quot; : 10948,
+            &quot;combat&quot; : 33372,
+            &quot;quantity&quot; : 100        },
+    {       &quot;type&quot; : &quot;surveyor&quot;,
+            &quot;speed&quot; : 9030,
+            &quot;stealth&quot; : 9030,
+            &quot;combat&quot; : 3220,
+            &quot;quantity&quot; : 10         }, { more of the same }, ]
+=======
 <div class="last highlight-python"><div class="highlight"><pre>types = [{   
         &quot;type&quot; : &quot;sweeper&quot;,
         &quot;speed&quot; : 10166,
@@ -499,6 +577,7 @@ you&#8217;re interested in:</p>
         &quot;combat&quot; : 3220,
         &quot;quantity&quot; : 10         
     }, { more of the same }, ]
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </pre></div>
 </div>
 </dd>
@@ -593,8 +672,12 @@ the slowest ship in the group can manage at its top speed.</p>
 <dt id="lacuna.buildings.callable.spaceport.spaceport.view_all_ships">
 <tt class="descname">view_all_ships</tt><big>(</big><em>paging: dict={}</em>, <em>filter: dict={}</em>, <em>sort: str='type'</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.view_all_ships" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show all ships on the planet.</p>
+<<<<<<< HEAD
+<dl class="docutils">
+=======
 <blockquote>
 <div><dl class="docutils">
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <dt>All three arguments are optional.  If sent, they are:</dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
@@ -635,6 +718,24 @@ the slowest ship in the group can manage at its top speed.</p>
 </dl>
 <p>Filter critera are joined with &#8216;or&#8217;, not &#8216;and&#8217;.  So this filter dict may 
 not be what you really mean:</p>
+<<<<<<< HEAD
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>   <span class="s">&#39;type&#39;</span><span class="p">:</span> <span class="s">&#39;supply_pod3&#39;</span><span class="p">,</span>
+    <span class="s">&#39;task&#39;</span><span class="p">:</span> <span class="s">&#39;Docked&#39;</span>    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Instead of telling you about just the Supply Pod IIIs that are 
+currently docked, it&#8217;s going to tell you about all your Supply Pod 
+IIIs, as well as all of the other ships that are currently Docked, 
+which may be more than you were expecting.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>ships &#8211; list of lacuna.ship.ExistingShip objects.</li>
+<li>number_of_ships &#8211; is the total number that result from your filter, ignoring your pagin</li>
+</ul>
+</dd>
+</dl>
+=======
 </div></blockquote>
 <div class="highlight-python"><div class="highlight"><pre>    {
         &#39;type&#39;: &#39;supply_pod3&#39;,
@@ -651,6 +752,7 @@ Returns a tuple:
     - number_of_ships -- is the total number that result from your filter, ignoring your pagin
 </pre></div>
 </div>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </dd></dl>
 
 <dl class="method">
@@ -666,7 +768,11 @@ Returns a tuple:
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
 <li>battle_log &#8211; List of spaceport.BattleLog objects</li>
+<<<<<<< HEAD
+<li>number_of_logs &#8211; Integer total number of entries in the logbook.</li>
+=======
 <li>number_of_log &#8211; Integer total number of entries in the logbook.</li>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </ul>
 </dd>
 </dl>

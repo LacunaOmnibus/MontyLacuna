@@ -66,6 +66,15 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts/create_config_file.html">Create Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/build_ships.html">Build Ships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html#indices-and-tables">Indices and tables</a></li>
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
@@ -156,8 +165,13 @@
 <span id="resource"></span><h1>resource<a class="headerlink" href="#module-lacuna.resource" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.resource.AvailableOre">
+<<<<<<< HEAD
+<em class="property">class </em><tt class="descclassname">lacuna.resource.</tt><tt class="descname">AvailableOre</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.resource.AvailableOre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.resource.PlanetaryResource" title="lacuna.resource.PlanetaryResource"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.PlanetaryResource</span></tt></a></p>
+=======
 <em class="property">class </em><tt class="descclassname">lacuna.resource.</tt><tt class="descname">AvailableOre</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.resource.AvailableOre" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <p>The ore available on the planet.  Varies by planet type.</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>anthracite: 200,
@@ -169,8 +183,13 @@ etc
 
 <dl class="class">
 <dt id="lacuna.resource.BuildCost">
+<<<<<<< HEAD
+<em class="property">class </em><tt class="descclassname">lacuna.resource.</tt><tt class="descname">BuildCost</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.resource.BuildCost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.resource.PlanetaryResource" title="lacuna.resource.PlanetaryResource"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.PlanetaryResource</span></tt></a></p>
+=======
 <em class="property">class </em><tt class="descclassname">lacuna.resource.</tt><tt class="descname">BuildCost</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.resource.BuildCost" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <p>How much it&#8217;ll cost to build a building</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>food        500,
@@ -233,12 +252,82 @@ RES_hour        Amount of RES we&#39;re producing per hour
                 (eg &quot;wheat_hour&quot;)
 </pre></div>
 </div>
+<<<<<<< HEAD
+<dl class="method">
+<dt id="lacuna.resource.PlanetaryResource.my_foods">
+<tt class="descname">my_foods</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.resource.PlanetaryResource.my_foods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator.  Iterate through all of the foods in the current object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">foods</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">PlanetaryFood</span> <span class="nb">object</span><span class="o">&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">quantity</span> <span class="ow">in</span> <span class="n">foods</span><span class="o">.</span><span class="n">my_foods</span><span class="p">():</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span> <span class="s">&quot;name: {}, quantity: {:,}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">quantity</span><span class="p">)</span> <span class="p">)</span>
+<span class="go">name: algae, quantity: 1,200</span>
+<span class="go">(no apple on this planet, so it&#39;s not listed)</span>
+<span class="go">name: bean, quantity: 2,200</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.resource.PlanetaryResource.my_hourly_foods">
+<tt class="descname">my_hourly_foods</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.resource.PlanetaryResource.my_hourly_foods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator.  Iterate through all of the hourly rates of food 
+production in the current object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">foods</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">PlanetaryFood</span> <span class="nb">object</span><span class="o">&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">quantity</span> <span class="ow">in</span> <span class="n">foods</span><span class="o">.</span><span class="n">my_hourly_foods</span><span class="p">():</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span> <span class="s">&quot;name: {}, quantity: {:,}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">quantity</span><span class="p">)</span> <span class="p">)</span>
+<span class="go">name: algae_hour, quantity: 1,200</span>
+<span class="go">(no apple production on this planet, so it&#39;s not listed)</span>
+<span class="go">name: bean_hour, quantity: 2,200</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.resource.PlanetaryResource.my_hourly_ores">
+<tt class="descname">my_hourly_ores</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.resource.PlanetaryResource.my_hourly_ores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator.  Iterate through all of the hourly rates of ore 
+production in the current object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ores</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">PlanetaryOre</span> <span class="nb">object</span><span class="o">&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">quantity</span> <span class="ow">in</span> <span class="n">ores</span><span class="o">.</span><span class="n">my_hourly_ores</span><span class="p">():</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span> <span class="s">&quot;name: {}, quantity: {:,}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">quantity</span><span class="p">)</span> <span class="p">)</span>
+<span class="go">name: anthracite_hour, quantity: 1,200</span>
+<span class="go">(no bauxite production on this planet, so it&#39;s not listed)</span>
+<span class="go">name: beryl_hour, quantity: 2,200</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.resource.PlanetaryResource.my_ores">
+<tt class="descname">my_ores</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.resource.PlanetaryResource.my_ores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generator.  Iterate through all of the ores in the current object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ores</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">PlanetaryOre</span> <span class="nb">object</span><span class="o">&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">quantity</span> <span class="ow">in</span> <span class="n">ores</span><span class="o">.</span><span class="n">my_ores</span><span class="p">():</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span> <span class="s">&quot;name: {}, quantity: {:,}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">quantity</span><span class="p">)</span> <span class="p">)</span>
+<span class="go">name: anthracite, quantity: 1,200</span>
+<span class="go">(no bauxite on this planet, so it&#39;s not listed)</span>
+<span class="go">name: beryl, quantity: 2,200</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.resource.Production">
+<<<<<<< HEAD
+<em class="property">class </em><tt class="descclassname">lacuna.resource.</tt><tt class="descname">Production</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.resource.Production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.resource.PlanetaryResource" title="lacuna.resource.PlanetaryResource"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.PlanetaryResource</span></tt></a></p>
+=======
 <em class="property">class </em><tt class="descclassname">lacuna.resource.</tt><tt class="descname">Production</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.resource.Production" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <p>How much a building produces (or will produce upon build/upgrade)</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>food_hour       1500,
@@ -265,6 +354,29 @@ etc
 </div>
 </dd></dl>
 
+<<<<<<< HEAD
+<dl class="class">
+<dt id="lacuna.resource.SupplyChain">
+<em class="property">class </em><tt class="descclassname">lacuna.resource.</tt><tt class="descname">SupplyChain</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.resource.SupplyChain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id                      &quot;id-goes-here&quot;,
+from_body               lacuna.body.SimpleBody object
+from_body               {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                            &quot;name&quot; : &quot;Mars&quot;,
+                            &quot;x&quot; : 0,
+                            &quot;y&quot; : -123,
+                            &quot;image&quot; : &quot;station&quot;,     },
+resource_hour           10000000,
+resource_type           &#39;water&#39;,
+percent_transferred     95,
+stalled                 0,
+</pre></div>
+</div>
+</dd></dl>
+
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </div>
 
 

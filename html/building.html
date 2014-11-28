@@ -66,6 +66,15 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
 </ul>
 </li>
+<<<<<<< HEAD
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts/create_config_file.html">Create Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/build_ships.html">Build Ships</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html#indices-and-tables">Indices and tables</a></li>
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
@@ -234,6 +243,10 @@ url             &quot;/apple&quot;,
 level           3,
 image           &quot;apples3&quot;,
 efficiency      95,
+<<<<<<< HEAD
+pending_build   lacuna.building.Working object
+work            lacuna.building.Working object
+=======
 pending_build   {   # only included when building is building/upgrading
                     &quot;seconds_remaining&quot; : 430,
                     &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
@@ -242,6 +255,7 @@ work            {   # only included when building is working (Parks, Waste Recyc
                     &quot;seconds_remaining&quot; : 49,
                     &quot;start&quot; : &quot;01 31 2010 13:09:05 +0600&quot;,
                     &quot;end&quot; : &quot;01 31 2010 18:09:05 +0600&quot;  }
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </pre></div>
 </div>
 <p>MontyLacuna attempts to provide method calls that mirror all of the method 
@@ -396,6 +410,26 @@ type, ie water and energy.</p>
 
 </dd></dl>
 
+<<<<<<< HEAD
+<dl class="class">
+<dt id="lacuna.building.Working">
+<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">Working</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.Working" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>The work being done, actually or potentially, by a building.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>seconds     430,
+seconds_el  lacuna.bc.ElaspsedTime object representing the value in 
+            seconds.
+start       &quot;01 31 2010 13:09:05 +0600&quot;
+start_dt    datetime.datetime object representing the value in start.
+end         &quot;01 31 2010 18:09:05 +0600&quot;
+end_dt      datetime.datetime object representing the value in end.
+</pre></div>
+</div>
+</dd></dl>
+
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 </div>
 
 

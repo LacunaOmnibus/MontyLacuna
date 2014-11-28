@@ -100,7 +100,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../lcot/index.html">LCOT Modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../permanent/index.html">Permanent (Glyph) Buildings</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Space Station Modules</a></li>
+<<<<<<< HEAD
+<li class="toctree-l2"><a class="reference internal" href="../callable/index.html">Miscellaneous Buildings with Methods</a></li>
+=======
 <li class="toctree-l2"><a class="reference internal" href="../callable/index.html">Other Buildings with Unique Methods</a></li>
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <li class="toctree-l2"><a class="reference internal" href="../misc_bldgs.html">Miscellaneous Buildings</a></li>
 </ul>
 </li>
@@ -287,6 +291,191 @@ an attribute of the StationStar objects returned.</p>
 <dd></dd></dl>
 
 <dl class="method">
+<<<<<<< HEAD
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_broadcast_on_network19">
+<tt class="descname">propose_broadcast_on_network19</tt><big>(</big><em>message: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_broadcast_on_network19" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broadcast any message on Network 19.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>message &#8211; The message to broadcast</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_elect_new_leader">
+<tt class="descname">propose_elect_new_leader</tt><big>(</big><em>empire_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_elect_new_leader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elect a new leader of the alliance.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to elect</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_evict_mining_platform">
+<tt class="descname">propose_evict_mining_platform</tt><big>(</big><em>plat_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_evict_mining_platform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroys a mining platform deployed on an asteroid.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>plat_id &#8211; Integer ID of the platform to evict</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_expel_member">
+<tt class="descname">propose_expel_member</tt><big>(</big><em>empire_id: int</em>, <em>message: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_expel_member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a member from the alliance.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to invite</li>
+<li>message &#8211; Optional string message to include in the boilerplate 
+mail that gets sent to the expelled empire.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_fire_bfg">
+<tt class="descname">propose_fire_bfg</tt><big>(</big><em>body_id: int</em>, <em>reason: str='pew pew!'</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_fire_bfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fire the BFG at a target.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>body_id &#8211; Integer ID of the body to attack.</li>
+<li>reason &#8211; String reason for firing.  Defaults to &#8220;pew pew!&#8221;</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_foreign_aid">
+<tt class="descname">propose_foreign_aid</tt><big>(</big><em>planet_id: int</em>, <em>resources: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_foreign_aid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send an aid package to a planet.</p>
+<p>Documented as being part of the API, but not available through the 
+browser client.  I assume it doesn&#8217;t actually do anything.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>planet_id &#8211; Integer ID of the star to seize.</li>
+<li>resources &#8211; Integer?  Hash?  Who knows?</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_induct_member">
+<tt class="descname">propose_induct_member</tt><big>(</big><em>empire_id: int</em>, <em>message: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_induct_member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Induct a new alliance member.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to invite</li>
+<li>message &#8211; Optional string message to include in the boilerplate 
+mail that gets sent to the invited empire.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_members_only_colonization">
+<tt class="descname">propose_members_only_colonization</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_members_only_colonization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only alliance members can colonize planets within the station&#8217;s 
+jurisdiction.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_members_only_excavation">
+<tt class="descname">propose_members_only_excavation</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_members_only_excavation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only alliance members can send excavators within the station&#8217;s 
+jurisdiction.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_members_only_mining_rights">
+<tt class="descname">propose_members_only_mining_rights</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_members_only_mining_rights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only allow alliance members to send mining platforms withing the
+station&#8217;s jurisdiction.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_neutralize_bhg">
+<tt class="descname">propose_neutralize_bhg</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_neutralize_bhg" title="Permalink to this definition">¶</a></dt>
+<dd><p>No BHGs will be usable within the station&#8217;s jurisdiction.  This law 
+applies to BHGs owned by both foreign and allied empires.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_rename_asteroid">
+<tt class="descname">propose_rename_asteroid</tt><big>(</big><em>roid_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_rename_asteroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename an asteroid.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>roid_id &#8211; Integer ID of the asteroid to rename</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_rename_star">
+<tt class="descname">propose_rename_star</tt><big>(</big><em>star_id: int</em>, <em>name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_rename_star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename a star.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star to rename.</li>
+<li>name &#8211; The proposed new name</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_rename_uninhabited">
+<tt class="descname">propose_rename_uninhabited</tt><big>(</big><em>planet_id: int</em>, <em>name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_rename_uninhabited" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seize control of a star.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>planet_id &#8211; Integer ID of the star to seize.</li>
+<li>name &#8211; The new name to use.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_repeal_law">
 <tt class="descname">propose_repeal_law</tt><big>(</big><em>law_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_repeal_law" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a proposal to repeal an existing law</p>
@@ -301,6 +490,42 @@ an attribute of the StationStar objects returned.</p>
 </dd></dl>
 
 <dl class="method">
+<<<<<<< HEAD
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_seize_star">
+<tt class="descname">propose_seize_star</tt><big>(</big><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_seize_star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seize control of a star.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star to seize.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_taxation">
+<tt class="descname">propose_taxation</tt><big>(</big><em>taxes: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_taxation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propose taxation.</p>
+<p>This doesn&#8217;t work, and has never worked.  It&#8217;s not broken, it&#8217;s just 
+never been made part of the game.</p>
+<p>Included for consistency with the API - the method is published, it 
+just doesn&#8217;t do anything.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>taxes &#8211; I have no idea what this is.  An integer amount of E?  Of
+resources?  A hash of resources?  Dunno, it&#8217;s undocumented.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 <dt id="lacuna.buildings.ssmodules.parliament.parliament.propose_transfer_station_ownership">
 <tt class="descname">propose_transfer_station_ownership</tt><big>(</big><em>to_empire_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ssmodules.parliament.parliament.propose_transfer_station_ownership" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a proposal to transfer station ownership to another empire.</p>

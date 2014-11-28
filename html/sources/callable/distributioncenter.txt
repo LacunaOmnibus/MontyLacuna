@@ -1,5 +1,9 @@
 distributioncenter
+<<<<<<< HEAD
+==================
+=======
 ================
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 
 .. automodule:: lacuna.buildings.callable.distributioncenter
     :members:

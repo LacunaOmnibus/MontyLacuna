@@ -29,7 +29,11 @@ Add this to the top of your script::
 
     import os, sys
 
+<<<<<<< HEAD
+    libdir = os.path.abspath(os.path.dirname(sys.argv[0])) + "/../lib"
+=======
     libdir = os.path.abspath(os.path.dirname(__file__)) + "/../lib"
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
     sys.path.append(libdir)
 
     import lacuna
@@ -44,7 +48,12 @@ Connect a client
 ::
 
     my_client = lacuna.clients.Member(
+<<<<<<< HEAD
+        config_file = os.path.abspath(os.path.dirname(sys.argv[0])) + 
+        "/../etc/lacuna.cfg",
+=======
         config_file = os.path.abspath(os.path.dirname(__file__)) + "/../etc/lacuna.cfg",
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
         config_section = 'sitter',
     )
 
@@ -58,6 +67,14 @@ MontyLacuna creates config file sections named ``real`` and ``sitter``; if
 your script is meant for distribution, it's strongly suggested that you 
 specify one of those two names as your ``config_section``.
 
+<<<<<<< HEAD
+Logging and Caching
+-------------------
+    Logging and caching facilities are set up for use in your scripts, and are 
+    both easy to access.  For details, see :ref:`logging` and :ref:`caching`.
+
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 Example Snippets
 ----------------
 

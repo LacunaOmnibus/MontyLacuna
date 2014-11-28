@@ -1,4 +1,9 @@
 
+<<<<<<< HEAD
+.. _caching:
+
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
 Caching
 =======
 
@@ -35,6 +40,15 @@ Synopsis
     my_planet_one = my_client.get_body_byname("Mars")     # takes 1-3 seconds, but result was cached
     my_planet_one = my_client.get_body_byname("Mars")     # takes 4 or 5 milliseconds
 
+<<<<<<< HEAD
+    my_client.cache_on( 'my_buildings', 3600 )            # Switch to a different cache namespace
+    sps = planet.get_buildings_bytype( 'spaceport' )      # Get all spaceports on the planet
+    ...time passes...
+    sps = planet.get_buildings_bytype( 'spaceport' )      # Get spaceports again, much faster
+
+    my_client.cache_on( 'my_planets', 3600 )              # Switch back to the my_planets namespace
+=======
+>>>>>>> 3cbbed38944967d03370d112bd890284020452e8
     my_client.cache_clear( 'my_planets' )                 # clear this cache, but don't turn it off
 
     my_planet_one = my_client.get_body_byname("Earth")    # takes 1-3 seconds, but result was cached
