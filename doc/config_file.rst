@@ -25,15 +25,15 @@ You can add as many additional named sections as you'd like.
 .. code-block:: ini
 
     [DEFAULT]
-    proto = https
-    host = us1.lacunaexpanse.com
-    testhost = pt.lacunaexpanse.com
     api_key = anonymous
+    host = us1.lacunaexpanse.com
+    logfile = us1.log
+    proto = https
     show_captcha = True
     sleep_on_call = 1
     sleep_after_error = True
+    testhost = pt.lacunaexpanse.com
     warn_on_sleep = True
-    logfile = var/us1.log
 
     [real]
     username = My Empire Name
@@ -46,7 +46,7 @@ You can add as many additional named sections as you'd like.
     [some_alliance_mate]
     username = My Alliance Mate's Empire Name
     password = My Alliance Mate's Sitter Password
-    logfile = var/ally_mate.log
+    logfile = ally_mate.log
 
     [playtest]
     host = ${DEFAULT:testhost}
@@ -74,9 +74,9 @@ Setting Descriptions
 - **proto**
 
   - The protocol to connect with.  Either ``http`` or ``https``.  ``https`` is 
-    more secure, but slower, and may cause connection problems in some rare 
-    cases.  It's recommended you use ``https``, and only switch to ``http`` if 
-    there's a problem.
+    more secure, but may cause connection problems in some rare cases.  It's 
+    recommended you use ``https``, and only switch to ``http`` if there's a 
+    problem.
 
 - **show_captcha**
 

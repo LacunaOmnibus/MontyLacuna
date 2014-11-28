@@ -6,8 +6,6 @@ import lacuna.glyph
 import lacuna.resource
 import lacuna.ship
 
-import warnings
-
 class archaeology(lacuna.building.MyBuilding):
     """ Archaeology Ministry
 
@@ -33,7 +31,7 @@ class archaeology(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_building_meth
     def get_glyphs( self, **kwargs ):
         """get_glyphs() is deprecated.  Prefer get_glyph_summary() instead."""
-        warnings.warn("get_glyphs() is deprecated - please use get_glyph_summary instead.")
+        self.client.module_logger.warning("archaeology.get_glyphs() is deprecated - please use get_glyph_summary instead.")
 
     @lacuna.building.MyBuilding.call_returning_meth
     def get_glyph_summary( self, **kwargs ):
