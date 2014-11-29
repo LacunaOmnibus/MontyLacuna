@@ -5,8 +5,7 @@ README.md
 test.py
 test.txt
 __pycache__/
-doc/_build/
-etc/lacuna.cfg
-var/cache/
-var/cachelck/
-Python3/
+doc/
+etc/
+lib/
+var/

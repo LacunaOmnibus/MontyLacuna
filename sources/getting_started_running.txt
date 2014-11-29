@@ -15,10 +15,17 @@ make sure that you've got Python 3.  Many systems come with Python 2, not 3,
 and MontyLacuna will not work with Python 2.  Python 3 should be available via 
 your package manager.
 
-Install MontyLacuna
--------------------
-- Download the ``.zip`` file from `the MontyLacuna home page 
-  <http://tmtowtdi.github.io/MontyLacuna/>`_.
+Install MontyLacuna (DOWNLOADS HERE)
+------------------------------------
+- Download your preferred filetype.  For most people, that will be the "zip" 
+  file.
+
+    ====  ===============
+    Type  Link
+    ====  ===============
+    Zip   `Download <https://github.com/tmtowtdi/MontyLacuna/zipball/master>`_
+    Tar   `Download <https://github.com/tmtowtdi/MontyLacuna/tarball/master>`_
+    ====  ===============
 
 - Open the ``zip`` file using whatever unzip tool you like.  It contains just 
   one folder - drag that out to ``My Documents`` on your computer.
