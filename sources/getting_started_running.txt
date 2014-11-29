@@ -38,7 +38,7 @@ as MontyLacuna includes a script to install it for you.
 Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna 
 folder, and run the pip installer script::
 
-    python3 bin/get-pip.py
+    python bin/get-pip.py
 
 pip is now installed.
 
@@ -48,6 +48,22 @@ and you install both of them using ``pip``::
     pip install requests
     pip install beaker
 
+*Ruh-Roh!  Pip didn't work!*
+    If you ran one of the ``pip install`` commands above, and it told you 
+    something like::
+
+        Unknown or unsupported command 'install'
+
+    ...here's what happened.  You probably have Strawberry Perl installed, and 
+    Strawberry Perl has, for some bizarre reason, a completely different 
+    program named 'pip', and that's what you're running right now.
+
+    The fix is easy enough.  Instead of just typing ``pip``, you need to type 
+    the full path to your Python pip program.  So do this::
+
+        c:\Python34\Scripts\pip install requests
+        c:\Python34\Scripts\pip install beaker
+
 Leave that CMD window open for the next step.
 
 Create A Config File
@@ -55,7 +71,7 @@ Create A Config File
 Using the CMD window you left open from the previous step, run the config file 
 creation script::
 
-    python3 bin/create_config_file.py
+    python bin/create_config_file.py
 
 That will ask you several questions, and then create your config file for you.
 

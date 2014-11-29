@@ -8,6 +8,14 @@ libraries.
 
 This script requires no configuration, just run it::
 
-    >>> python3 bin/get_pip.py
+    >>> python bin/get_pip.py
 
-And pip is now installed.
+pip is now installed.
+
+**However**, it's possible that just typing "pip" at the command line will end 
+up finding an entirely different program also named ``pip`` -- Strawberry Perl 
+comes with such a program.
+
+If you installed ActiveState Python, the full path to your Python ``pip`` 
+should be ``c:\Python34\Scripts\pip``.  
+

@@ -25,15 +25,15 @@ You can add as many additional named sections as you'd like.
 .. code-block:: ini
 
     [DEFAULT]
-    proto = https
-    host = us1.lacunaexpanse.com
-    testhost = pt.lacunaexpanse.com
     api_key = anonymous
+    host = us1.lacunaexpanse.com
+    logfile = us1.log
+    proto = https
     show_captcha = True
     sleep_on_call = 1
     sleep_after_error = True
+    testhost = pt.lacunaexpanse.com
     warn_on_sleep = True
-    logfile = var/us1.log
 
     [real]
     username = My Empire Name
@@ -46,7 +46,7 @@ You can add as many additional named sections as you'd like.
     [some_alliance_mate]
     username = My Alliance Mate's Empire Name
     password = My Alliance Mate's Sitter Password
-    logfile = var/ally_mate.log
+    logfile = ally_mate.log
 
     [playtest]
     host = ${DEFAULT:testhost}
@@ -55,22 +55,28 @@ You can add as many additional named sections as you'd like.
 
 Setting Descriptions
 --------------------
-- **proto**
+- **api_key**
 
-  - The protocol to connect with.  Either ``http`` or ``https``.  ``https`` is 
-    more secure, but slower, and may cause connection problems in some rare 
-    cases.  It's recommended you use ``https``, and only switch to ``http`` if 
-    there's a problem.
+  - Just leave this as ``anonymous``.  A key is required, and you can sign up 
+    for your own key if you want to, but it seems to be largely unused.
 
 - **host**
 
   - The hostname to connect to.  Either ``us1.lacunaexpanse.com`` or 
     ``pt.lacunaexpanse.com``
 
-- **api_key**
+- **logfile**
 
-  - Just leave this as ``anonymous``.  A key is required, and you can sign up 
-    for your own key if you want to, but it seems to be largely unused.
+  - The name of your logfile.  This file will live in ``ROOT/var/``, and will 
+    be created if it doesn't already exist.  *Don't* include a path here, just 
+    a filename.
+
+- **proto**
+
+  - The protocol to connect with.  Either ``http`` or ``https``.  ``https`` is 
+    more secure, but may cause connection problems in some rare cases.  It's 
+    recommended you use ``https``, and only switch to ``http`` if there's a 
+    problem.
 
 - **show_captcha**
 
@@ -82,14 +88,6 @@ Setting Descriptions
     a terminal application (eg a web app), you'll need to manage the captcha 
     display yourself, and should set this to False.
 
-- **sleep_on_call**
-
-  - Integer.  Defaults to 1.
-  - Number of seconds to sleep after each request is made to the TLE server.  
-    This is meant to keep you from hitting the 60 RPC per minute limit.  
-    Setting it to 0 to not sleep at all will speed up your scripts, but you 
-    run a much greater risk of hitting that limit.
-
 - **sleep_after_error**
 
   - Boolean.  Defaults to True.
@@ -97,6 +95,14 @@ Setting Descriptions
     your script will go to sleep for a minute, then pick up where it left off.  
     If this is set to False and you hit that limit, your script will raise a 
     ServerError exception.
+
+- **sleep_on_call**
+
+  - Integer.  Defaults to 1.
+  - Number of seconds to sleep after each request is made to the TLE server.  
+    This is meant to keep you from hitting the 60 RPC per minute limit.  
+    Setting it to 0 to not sleep at all will speed up your scripts, but you 
+    run a much greater risk of hitting that limit.
 
 - **warn_on_sleep**
 

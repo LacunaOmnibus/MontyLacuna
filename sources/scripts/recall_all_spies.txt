@@ -11,9 +11,9 @@ have available that can carry spies.
 
 All you have to specify is the name of the planets to pull spies back to::
 
-    >>> python3 bin/recall_all_spies.py Earth
+    >>> python bin/recall_all_spies.py Earth
 
 For complete help, see the script's help documentation:
 
-    >>> python3 bin/recall_all_spies.py -h
+    >>> python bin/recall_all_spies.py -h
 
