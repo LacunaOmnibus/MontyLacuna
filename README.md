@@ -26,28 +26,25 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     them in your existing docu, and then get rid of test/.
 
 - To publish the docs generated on the master branch to gh-pages:
-  - $ cd doc
-  - $ make html
-  - $ perl fix_underscores.pl
+  - ``$ cd doc``
+  - ``$ make html``
+  - ``$ perl fix_underscores.pl``
     - The HTML pages produced by "make html" end up in {underscore}build/html/. They 
       contain links to _modules/, _sources/, and _static/.  Github pages refuses to host 
       files from dirs starting with underscores.  These underscore directories and the 
       links to them are what fix_underscores.pl is fixing.
-  - $ cp -Rip {underscore}build/html ~/Desktop
-  - $ cd ..
-  - $ git status
+  - ``$ cp -Rip {underscore}build/html ~/Desktop``
+  - ``$ cd ..``
+  - ``$ git status``
     - Commit any changes to master
-  - $ git co gh-pages
-  - $ rm -rf html
-  - $ mv ~/Desktop/html ./
-  - $ git add -A html
-    - There are directories in master containing files in .gitignore.  Since those files 
-      don't get commited to master, their directories don't get removed when checking out 
-      gh-pages.  So don't just "git add -A .", or you'll add that extraneous crap that has 
-      nothing to do with gh-pages.  Just "git add -A html".
-  - $ git commit -m "docs!"
-  - $ git push origin gh-pages
-    - It'll take anywhere from a few seconds to up to 10 minutes for github pages to 
-      refresh
-  - $ git co master
+  - ``$ git co gh-pages``
+  - ``$ rm -rf *``
+    - ya rly
+  - ``$ cp -Rip ~/Desktop/html/*``
+  - ``$ git add -A .``
+  - ``$ git commit -m docs``
+  - ``$ git push origin gh-pages``
+    - It'll take anywhere from a few seconds to up to 10 minutes for github 
+      pages to refresh
+  - ``$ git co master``
 
