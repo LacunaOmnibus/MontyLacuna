@@ -15,14 +15,18 @@ make sure that you've got Python 3.  Many systems come with Python 2, not 3,
 and MontyLacuna will not work with Python 2.  Python 3 should be available via 
 your package manager.
 
-Install MontyLacuna
--------------------
-- Download the ``.zip`` file from `the MontyLacuna home page 
-  <http://tmtowtdi.github.io/MontyLacuna/>`_.
-
-- Open the ``zip`` file using whatever unzip tool you like.  It contains just 
+Install MontyLacuna (DOWNLOADS HERE)
+------------------------------------
+- Download your preferred file.  For most people, that will be the ``.zip`` 
+  file:
+    =====  =========
+    Type   File
+    =====  =========
+    zip    `Download <https://github.com/tmtowtdi/MontyLacuna/zipball/master>`_
+    tar    `Download <https://github.com/tmtowtdi/MontyLacuna/tarball/master>`_
+    =====  =========
+- Open the downloaded file using whatever unzip tool you like.  It contains just 
   one folder - drag that out to ``My Documents`` on your computer.
-
 - The folder you just dragged and dropped will have a long name, something 
   like ``tmtowtdi-MontyLacuna-1234abc``.  You can leave that as is or rename 
   it to whatever you want, but I strongly suggest you just rename it to 
@@ -81,5 +85,4 @@ At this point, you should be set to run any of the available scripts in the
 ``bin/`` directory, by typing::
 
     python bin/SCRIPTNAME.py
-
 

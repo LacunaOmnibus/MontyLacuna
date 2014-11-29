@@ -49,4 +49,5 @@ Indices and tables
 * :ref:`glossary`
 * :ref:`modindex`
 * :ref:`search`
+* `This Project on Github <https://github.com/tmtowtdi/MontyLacuna>`_
 
