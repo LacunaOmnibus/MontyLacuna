@@ -40,7 +40,7 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
   - ``$ git co gh-pages``
   - ``$ rm -rf *``
     - ya rly
-  - ``$ cp -Rip ~/Desktop/html/*``
+  - ``$ mv ~/Desktop/html/*``
   - ``$ git add -A .``
   - ``$ git commit -m docs``
   - ``$ git push origin gh-pages``
