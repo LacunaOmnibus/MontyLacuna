@@ -3,8 +3,8 @@
 
 .. _home:
 
-Welcome to MontyLacuna's documentation!
-=======================================
+MontyLacuna Documentation
+=========================
 
 There's a lot of information here, but if you only want to get yourself set up 
 to run MontyLacuna scripts, read the :ref:`getting_started_running` section to 
