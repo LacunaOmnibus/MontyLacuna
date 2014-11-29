@@ -27,17 +27,17 @@ to the GLC scripts many players are already familiar with.
 These scripts have built-in documentation.  You can get the basic command-line 
 syntax just by running the script with no arguments::
 
-    >>> python3 bin/scriptname.py
+    >>> python bin/scriptname.py
 
 Or, you can get more in-depth information on the script by passing the ``-h`` 
 (or ``--help``) flag::
 
-    >>> python3 bin/scriptname.py -h
+    >>> python bin/scriptname.py -h
 
 Most scripts allow you to send various command-line arguments.  Remember that 
 if your arguments contain spaces, you have to quote them::
 
-    >>> python3 bin/scriptname.py --planet "My Planet Name"
+    >>> python bin/scriptname.py --planet "My Planet Name"
 
 .. toctree::
    :maxdepth: 2

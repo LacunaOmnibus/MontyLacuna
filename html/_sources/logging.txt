@@ -8,7 +8,9 @@ Logging is performed using Python's core `logging library
 <https://docs.python.org/3.4/library/logging.html>`_.
 
 Both Request and User log entries will be written to the same logfile, 
-specified in your config file.
+specified in your config file.  When this logfile starts to get too big, it 
+will be rotated.  Three backups will be kept, and older backups will be 
+deleted.
 
 Log Levels
 ----------

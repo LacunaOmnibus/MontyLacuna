@@ -24,7 +24,7 @@
 
   
   
-    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
 
   
@@ -82,25 +82,21 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="beach/index.html">Beach Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lcot/index.html">LCOT Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="permanent/index.html">Permanent (Glyph) Buildings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ssmodules/index.html">Space Station Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="callable/index.html">Miscellaneous Buildings with Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
@@ -138,7 +134,7 @@
     <li>clients</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="sources/clients.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/clients.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -156,32 +152,30 @@
 <dl class="docutils">
 <dt>Accepts the following named arguments:</dt>
 <dd><ul class="first last simple">
-<li>api_key &#8211; your TLE api_key.  Omitting this is fine; the default key 
-(the string &#8216;anonymous&#8217;) will be used.</li>
-<li>config_file &#8211;  path to your configparser-friendly config file</li>
-<li>config_section &#8211; the section in your config file to read from</li>
-<li>host &#8211; us1.lacunaexpanse.com or pt.lacunaexpanse.com.  Defaults to 
+<li>api_key &#8211; Your TLE api_key.  Defaults to &#8216;anonymous&#8217;.</li>
+<li>config_file &#8211;  Path to your config file.</li>
+<li>config_section &#8211; The section in your config file to read from.</li>
+<li>host &#8211; <tt class="docutils literal"><span class="pre">us1.lacunaexpanse.com</span></tt> or <tt class="docutils literal"><span class="pre">pt.lacunaexpanse.com</span></tt>.  Defaults to 
 us1.</li>
-<li>logfile &#8211; path to your logfile.  Defaults to no logfile; only 
-WARNING or higher log events will display to the terminal.</li>
-<li>show_captcha &#8211; Boolean.  Defaults to True.  If set to false, and a 
-method call responds that it needs a captcha solved, an exception 
+<li>logfile &#8211; Path to your logfile.  Defaults to no logfile.</li>
+<li>show_captcha &#8211; Boolean.  If set to false, and a 
+method call needs a captcha solved, an exception 
 will be raised.  If left true, the user will automatically be 
-prompted to solve a captcha when needed.</li>
-<li>sleep_on_call &#8211; Integer seconds.  Defaults to 1.  Number of seconds 
+prompted to solve a captcha when needed.  Defaults to True.</li>
+<li>sleep_on_call &#8211; Integer seconds.  Number of seconds 
 to sleep after each call to attempt to avoid using more than the 
-limit of 60 RPCs per minute.</li>
-<li>sleep_after_error &#8211; Boolean.  Defaults to True.  If we&#8217;ve used over 
+limit of 60 RPCs per minute.  Defaults to 1.</li>
+<li>sleep_after_error &#8211; Boolean.  If we&#8217;ve used over 
 60 RPCs in a minute, the server will produce an error, and if this 
 setting is True, when we get that server error we&#8217;ll sleep for a 
 minute and then re-try our call.  If this setting is false, we&#8217;ll 
-throw an exception.</li>
+throw an exception.  Defaults to True.</li>
 <li>sleep_on_call &#8211; Integer number of seconds to sleep after each TLE 
 server request.  Defaults to 1.</li>
-<li>warn_on_sleep &#8211; Boolean, defaults to True.  If you exceed 60 RPCs 
+<li>warn_on_sleep &#8211; Boolean. If you exceed 60 RPCs 
 per minute, and the script is therefore going to pause for a minute, 
 and this is set to True, a warning will be displayed to let you know 
-why your script is taking so long.</li>
+why your script is taking so long.  Defaults to True.</li>
 </ul>
 </dd>
 </dl>
@@ -190,20 +184,6 @@ config_section, and just fill the appropriate values out in your config
 file.</p>
 <p>If a config_file and config_section are passed in, the values in that config 
 file take precedence over any other values, including passed-in values.</p>
-<dl class="docutils">
-<dt>Debugging</dt>
-<dd><p class="first">To take a look at the actual JSON that would be sent to the TLE 
-servers for a specific method call, in your calling code you can set a 
-debugging method on your client, eg:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">empire</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">debugging_method</span> <span class="o">=</span> <span class="s">&#39;view_profile&#39;</span>
-<span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
-</pre></div>
-</div>
-<p class="last">In this case, the call to view_profile() will cause the JSON that 
-would normally be sent to the server to instead be dumped to your 
-screen, after which the script will quit.</p>
-</dd>
-</dl>
 <dl class="method">
 <dt id="lacuna.clients.Guest.send">
 <tt class="descname">send</tt><big>(</big><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
@@ -380,15 +360,15 @@ captcha prompts each time.</p>
             HAS_SOURCE:  true
         };
     </script>
-      <script type="text/javascript" src="static/jquery.js"></script>
-      <script type="text/javascript" src="static/underscore.js"></script>
-      <script type="text/javascript" src="static/doctools.js"></script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="static/js/theme.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   

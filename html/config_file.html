@@ -24,7 +24,7 @@
 
   
   
-    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
 
   
@@ -82,25 +82,21 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">TLE Module - Alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">TLE Module - Body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">TLE Module - Building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="beach/index.html">Beach Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lcot/index.html">LCOT Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="permanent/index.html">Permanent (Glyph) Buildings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ssmodules/index.html">Space Station Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="callable/index.html">Miscellaneous Buildings with Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">TLE Module - Captcha</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">TLE Module - Empire</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">TLE Module - Inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">TLE Module - Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">TLE Module - Stats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
@@ -138,7 +134,7 @@
     <li>Config File</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="sources/config_file.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/config_file.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -165,15 +161,15 @@ you&#8217;re running scripts; see the <tt class="docutils literal"><span class="
 below.</p>
 <p>You can add as many additional named sections as you&#8217;d like.</p>
 <div class="highlight-ini"><div class="highlight"><pre><span class="k">[DEFAULT]</span>
-<span class="na">proto</span> <span class="o">=</span> <span class="s">https</span>
-<span class="na">host</span> <span class="o">=</span> <span class="s">us1.lacunaexpanse.com</span>
-<span class="na">testhost</span> <span class="o">=</span> <span class="s">pt.lacunaexpanse.com</span>
 <span class="na">api_key</span> <span class="o">=</span> <span class="s">anonymous</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">us1.lacunaexpanse.com</span>
+<span class="na">logfile</span> <span class="o">=</span> <span class="s">us1.log</span>
+<span class="na">proto</span> <span class="o">=</span> <span class="s">https</span>
 <span class="na">show_captcha</span> <span class="o">=</span> <span class="s">True</span>
 <span class="na">sleep_on_call</span> <span class="o">=</span> <span class="s">1</span>
 <span class="na">sleep_after_error</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">testhost</span> <span class="o">=</span> <span class="s">pt.lacunaexpanse.com</span>
 <span class="na">warn_on_sleep</span> <span class="o">=</span> <span class="s">True</span>
-<span class="na">logfile</span> <span class="o">=</span> <span class="s">var/us1.log</span>
 
 <span class="k">[real]</span>
 <span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
@@ -186,7 +182,7 @@ below.</p>
 <span class="k">[some_alliance_mate]</span>
 <span class="na">username</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Empire Name</span>
 <span class="na">password</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Sitter Password</span>
-<span class="na">logfile</span> <span class="o">=</span> <span class="s">var/ally_mate.log</span>
+<span class="na">logfile</span> <span class="o">=</span> <span class="s">ally_mate.log</span>
 
 <span class="k">[playtest]</span>
 <span class="na">host</span> <span class="o">=</span> <span class="s">${DEFAULT:testhost}</span>
@@ -197,11 +193,9 @@ below.</p>
 <div class="section" id="setting-descriptions">
 <h2>Setting Descriptions<a class="headerlink" href="#setting-descriptions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><strong>proto</strong><ul>
-<li>The protocol to connect with.  Either <tt class="docutils literal"><span class="pre">http</span></tt> or <tt class="docutils literal"><span class="pre">https</span></tt>.  <tt class="docutils literal"><span class="pre">https</span></tt> is
-more secure, but slower, and may cause connection problems in some rare
-cases.  It&#8217;s recommended you use <tt class="docutils literal"><span class="pre">https</span></tt>, and only switch to <tt class="docutils literal"><span class="pre">http</span></tt> if
-there&#8217;s a problem.</li>
+<li><strong>api_key</strong><ul>
+<li>Just leave this as <tt class="docutils literal"><span class="pre">anonymous</span></tt>.  A key is required, and you can sign up
+for your own key if you want to, but it seems to be largely unused.</li>
 </ul>
 </li>
 <li><strong>host</strong><ul>
@@ -209,9 +203,17 @@ there&#8217;s a problem.</li>
 <tt class="docutils literal"><span class="pre">pt.lacunaexpanse.com</span></tt></li>
 </ul>
 </li>
-<li><strong>api_key</strong><ul>
-<li>Just leave this as <tt class="docutils literal"><span class="pre">anonymous</span></tt>.  A key is required, and you can sign up
-for your own key if you want to, but it seems to be largely unused.</li>
+<li><strong>logfile</strong><ul>
+<li>The name of your logfile.  This file will live in <tt class="docutils literal"><span class="pre">ROOT/var/</span></tt>, and will
+be created if it doesn&#8217;t already exist.  <em>Don&#8217;t</em> include a path here, just
+a filename.</li>
+</ul>
+</li>
+<li><strong>proto</strong><ul>
+<li>The protocol to connect with.  Either <tt class="docutils literal"><span class="pre">http</span></tt> or <tt class="docutils literal"><span class="pre">https</span></tt>.  <tt class="docutils literal"><span class="pre">https</span></tt> is
+more secure, but may cause connection problems in some rare cases.  It&#8217;s
+recommended you use <tt class="docutils literal"><span class="pre">https</span></tt>, and only switch to <tt class="docutils literal"><span class="pre">http</span></tt> if there&#8217;s a
+problem.</li>
 </ul>
 </li>
 <li><strong>show_captcha</strong><ul>
@@ -224,20 +226,20 @@ a terminal application (eg a web app), you&#8217;ll need to manage the captcha
 display yourself, and should set this to False.</li>
 </ul>
 </li>
-<li><strong>sleep_on_call</strong><ul>
-<li>Integer.  Defaults to 1.</li>
-<li>Number of seconds to sleep after each request is made to the TLE server.
-This is meant to keep you from hitting the 60 RPC per minute limit.
-Setting it to 0 to not sleep at all will speed up your scripts, but you
-run a much greater risk of hitting that limit.</li>
-</ul>
-</li>
 <li><strong>sleep_after_error</strong><ul>
 <li>Boolean.  Defaults to True.</li>
 <li>If you do hit the 60 RPC per minute limit error and this is set to True,
 your script will go to sleep for a minute, then pick up where it left off.
 If this is set to False and you hit that limit, your script will raise a
 ServerError exception.</li>
+</ul>
+</li>
+<li><strong>sleep_on_call</strong><ul>
+<li>Integer.  Defaults to 1.</li>
+<li>Number of seconds to sleep after each request is made to the TLE server.
+This is meant to keep you from hitting the 60 RPC per minute limit.
+Setting it to 0 to not sleep at all will speed up your scripts, but you
+run a much greater risk of hitting that limit.</li>
 </ul>
 </li>
 <li><strong>warn_on_sleep</strong><ul>
@@ -322,15 +324,15 @@ variable interpolation.</p>
             HAS_SOURCE:  true
         };
     </script>
-      <script type="text/javascript" src="static/jquery.js"></script>
-      <script type="text/javascript" src="static/underscore.js"></script>
-      <script type="text/javascript" src="static/doctools.js"></script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="static/js/theme.js"></script>
+    <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   

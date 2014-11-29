@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>geneticslab &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Miscellaneous Buildings with Methods" href="index.html"/>
+        <link rel="next" title="intelligence" href="intelligence.html"/>
+        <link rel="prev" title="entertainment" href="entertainment.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">TLE Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../body.html">Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trading.html">trading</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">TLE Modules</a> &raquo;</li>
+      
+          <li><a href="../../building.html">Building</a> &raquo;</li>
+      
+          <li><a href="index.html">Miscellaneous Buildings with Methods</a> &raquo;</li>
+      
+    <li>geneticslab</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../_sources/tle_modules/buildings/callable/geneticslab.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-lacuna.buildings.callable.geneticslab">
+<span id="geneticslab"></span><h1>geneticslab<a class="headerlink" href="#module-lacuna.buildings.callable.geneticslab" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.buildings.callable.geneticslab.ExperimentResults">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.geneticslab.</tt><tt class="descname">ExperimentResults</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.ExperimentResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>graft       Integer.  1 for success, 0 for failure
+survive     Integer.  1 for success, 0 for failure
+message     String.   eg &quot;The graft was a success, and the prisoner 
+            did not survive the experiment.&quot;
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.callable.geneticslab.Graft">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.geneticslab.</tt><tt class="descname">Graft</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.Graft" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>spy                     lacuna.spy.Spy object
+species                 lacuna.empire.Species object of the spy
+graftable_affinities    List of affinity names that can be grafted from 
+                        the spy to your empire
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.callable.geneticslab.geneticslab">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.geneticslab.</tt><tt class="descname">geneticslab</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<dl class="attribute">
+<dt id="lacuna.buildings.callable.geneticslab.geneticslab.path">
+<tt class="descname">path</tt><em class="property"> = 'geneticslab'</em><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.geneticslab.geneticslab.prepare_experiment">
+<tt class="descname">prepare_experiment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab.prepare_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns information needed to set up a genetics experiment.</p>
+<p>CHECK - need prisoners to test this
+grafts_list used to be a list of dicts, changed to a list of objects.  
+Should be fine, but I can&#8217;t find any prisoners to test on.</p>
+<p>If this comment still exists and you&#8217;re wanting to use this method, 
+keep in mind that the grafts_list returned might not be as advertised.  
+It should be, but check it before assuming it&#8217;s correct.</p>
+<p>And if you do that, let tmtowtdi know whether it worked or not.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>grafts_list &#8211; List of lacuna.buildings.geneticslab.Graft objects</li>
+<li>survival_odds &#8211; Integer percent odds of the victim surviving</li>
+<li>graft_odds &#8211; Integer percent odds of the graft working</li>
+<li>essentia_cost &#8211; Integer cost per experiment attempt</li>
+<li>can_experiment &#8211; Boolean; whether the lab can be used or not.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.geneticslab.geneticslab.rename_species">
+<tt class="descname">rename_species</tt><big>(</big><em>named_args: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab.rename_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows you to change your species name and description.</p>
+<dl class="docutils">
+<dt>Argument is a single dict:</dt>
+<dd><ul class="first simple">
+<li>name &#8211; &#8220;My New Species Name&#8221;,</li>
+<li>description &#8211; &#8220;My New Species Description&#8221;</li>
+</ul>
+<p>name requirements:
+- 30 characters or fewer
+- Not blank
+- &#64;, &amp; &lt;, &gt;, ; are prohibited.</p>
+<p class="last">description requirements:
+- 1024 characters or fewer
+- &lt;, &gt; are prohibited.</p>
+</dd>
+</dl>
+<p>Retval contains only &#8216;success&#8217;, set to 1.  No status is returned.</p>
+<p>Raises ServerError 1000 for bad species name.
+Raises ServerError 1005 for bad description.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.geneticslab.geneticslab.run_experiment">
+<tt class="descname">run_experiment</tt><big>(</big><em>spy_id: int</em>, <em>affinity: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab.run_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs a genetics experiment on a spy in an attempt to graft one of 
+his affinities onto your species.</p>
+<p>Returns a single geneticslab.ExperimentResults object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intelligence.html" class="btn btn-neutral float-right" title="intelligence"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="entertainment.html" class="btn btn-neutral" title="entertainment"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

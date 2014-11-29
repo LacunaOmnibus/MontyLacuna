@@ -28,14 +28,7 @@ how to run the various available scripts.  You can ignore everything else.
    config_file
    getting_started_writing
 
-   alliance
-   body
-   building
-   captcha
-   empire
-   inbox
-   map
-   stats
+   tle_modules/index
 
    bc
    clients
