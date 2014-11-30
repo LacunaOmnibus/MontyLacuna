@@ -8,7 +8,7 @@ Install Python 3
 ----------------
 If you're on Windows, you can download Python 3 from `ActiveState's website.  
 <http://www.activestate.com/activepython/downloads>`_  Make sure you download 
-version 3.whatever, NOT version 2.whatever.
+version **3.whatever**, *not* version **2.whatever**.
 
 If you're on Linux or Mac, you probably already have Python installed.  But 
 make sure that you've got Python 3.  Many systems come with Python 2, not 3, 
@@ -17,8 +17,8 @@ your package manager.
 
 Install MontyLacuna (DOWNLOADS HERE)
 ------------------------------------
-- Download your preferred filetype.  For most people, that will be the "zip" 
-  file.
+Download your preferred filetype.  For most people, that will be the "zip" 
+file.
 
     ====  ===============
     Type  Link
@@ -28,12 +28,11 @@ Install MontyLacuna (DOWNLOADS HERE)
     ====  ===============
 
 - Open the ``zip`` file using whatever unzip tool you like.  It contains just 
-  one folder - drag that out to ``My Documents`` on your computer.
+  one folder, named something like ``tmtowtdi-MontyLacuna-1234abc``.  Drag 
+  that out to ``My Documents`` on your computer.
 
-- The folder you just dragged and dropped will have a long name, something 
-  like ``tmtowtdi-MontyLacuna-1234abc``.  You can leave that as is or rename 
-  it to whatever you want, but I strongly suggest you just rename it to 
-  ``MontyLacuna``.
+- You can leave that as is or rename it to whatever you want, but I strongly 
+  suggest you just rename it to ``MontyLacuna``.
 
   - The rest of this documentation will assume that's what you named it.
 
@@ -42,8 +41,9 @@ Install pip and Prerequisite Libraries
 pip is a tool for installing Python libraries.  Installing pip is very easy, 
 as MontyLacuna includes a script to install it for you.
 
-Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna 
-folder, and run the pip installer script::
+Open up a terminal window (on Windows, this means ``CMD.exe``) to the 
+MontyLacuna folder you just extracted in the previous step, and run the pip 
+installer script::
 
     python bin/get-pip.py
 
@@ -82,11 +82,13 @@ creation script::
 
 That will ask you several questions, and then create your config file for you.
 
-Ready to Run Scripts
---------------------
+Ready to Test
+-------------
 At this point, you should be set to run any of the available scripts in the 
-``bin/`` directory, by typing::
+``bin/`` directory.  There's a test script that will show you a few details 
+about your empire, and requires no arguments.  Try it out by typing::
 
-    python bin/SCRIPTNAME.py
+    python bin/test_script.py
 
+If that tells you "Congratulations", you're all set.
 

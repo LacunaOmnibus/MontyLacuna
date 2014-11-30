@@ -1,16 +1,14 @@
 
+import binutils.libbin
 import argparse, lacuna, os, sys
 
-class BuildShips:
+class BuildShips(binutils.libbin.Script):
 
     def __init__(self):
-        self.bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
-
         parser = argparse.ArgumentParser(
             description = 'This will build as many of a single type of ship as you want, up to the maximum that can be built across all shipyards on your planet.  If there are already ships in your build queue, this will figure that out and only build what it can.',
             epilog      = 'EXAMPLE: python bin/build_ships.py "Earth" sweeper (fills the build queues of all shipyards on Earth with sweepers).',
         )
-        ### https://docs.python.org/3.4/library/argparse.html#the-add-argument-method
         parser.add_argument( 'name', 
             metavar     = '<planet>',
             action      = 'store',
@@ -21,7 +19,6 @@ class BuildShips:
             action      = 'store',
             help        = "Type of ship to build (eg 'scow_mega')."
         )
-
         parser.add_argument( '--num', 
             metavar     = '<count>',
             action      = 'store',
@@ -37,34 +34,12 @@ class BuildShips:
             default     = 1,
             help        = 'Minimum shipyard level to use for building.  Defaults to 1.'
         )
-        parser.add_argument( '--file', 
-            dest        = 'config_file',
-            metavar     = '<config_file>',
-            action      = 'store',
-            default     = self.bindir + "/../etc/lacuna.cfg",
-            help        = "Path to the config file.  Defaults to 'ROOT/etc/lacuna.cfg'"
-        )
-        parser.add_argument( '--section', 
-            dest        = 'config_section',
-            metavar     = '<section>',
-            action      = 'store',
-            default     = 'sitter',
-            help        = "Config file section.  Defaults to 'sitter'."
-        )
         parser.add_argument( '--quiet', 
             dest        = 'quiet',
             action      = 'store_true',
             help        = "Silence all output."
         )
-
-        self.args   = parser.parse_args()
-
-
-    def connect( self ):
-        return lacuna.clients.Member(
-            config_file     = self.args.config_file,
-            config_section  = self.args.config_section
-        )
+        super().__init__(parser, 'real')
 
 
     def get_shipyards( self, planet ):
