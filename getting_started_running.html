@@ -63,7 +63,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-config-file">Create A Config File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ready-to-run-scripts">Ready to Run Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ready-to-test">Ready to Test</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
@@ -147,7 +147,7 @@
 <div class="section" id="install-python-3">
 <h2>Install Python 3<a class="headerlink" href="#install-python-3" title="Permalink to this headline">¶</a></h2>
 <p>If you&#8217;re on Windows, you can download Python 3 from <a class="reference external" href="http://www.activestate.com/activepython/downloads">ActiveState&#8217;s website.</a>  Make sure you download
-version 3.whatever, NOT version 2.whatever.</p>
+version <strong>3.whatever</strong>, <em>not</em> version <strong>2.whatever</strong>.</p>
 <p>If you&#8217;re on Linux or Mac, you probably already have Python installed.  But
 make sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3,
 and MontyLacuna will not work with Python 2.  Python 3 should be available via
@@ -155,8 +155,7 @@ your package manager.</p>
 </div>
 <div class="section" id="install-montylacuna-downloads-here">
 <h2>Install MontyLacuna (DOWNLOADS HERE)<a class="headerlink" href="#install-montylacuna-downloads-here" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Download your preferred filetype.  For most people, that will be the &#8220;zip&#8221;
+<p>Download your preferred filetype.  For most people, that will be the &#8220;zip&#8221;
 file.</p>
 <blockquote>
 <div><table border="1" class="docutils">
@@ -179,15 +178,12 @@ file.</p>
 </tbody>
 </table>
 </div></blockquote>
-</li>
-<li><p class="first">Open the <tt class="docutils literal"><span class="pre">zip</span></tt> file using whatever unzip tool you like.  It contains just
-one folder - drag that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.</p>
-</li>
-<li><p class="first">The folder you just dragged and dropped will have a long name, something
-like <tt class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></tt>.  You can leave that as is or rename
-it to whatever you want, but I strongly suggest you just rename it to
-<tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.</p>
 <ul class="simple">
+<li>Open the <tt class="docutils literal"><span class="pre">zip</span></tt> file using whatever unzip tool you like.  It contains just
+one folder, named something like <tt class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></tt>.  Drag
+that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.</li>
+<li>You can leave that as is or rename it to whatever you want, but I strongly
+suggest you just rename it to <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.<ul>
 <li>The rest of this documentation will assume that&#8217;s what you named it.</li>
 </ul>
 </li>
@@ -197,8 +193,9 @@ it to whatever you want, but I strongly suggest you just rename it to
 <h2>Install pip and Prerequisite Libraries<a class="headerlink" href="#install-pip-and-prerequisite-libraries" title="Permalink to this headline">¶</a></h2>
 <p>pip is a tool for installing Python libraries.  Installing pip is very easy,
 as MontyLacuna includes a script to install it for you.</p>
-<p>Open up a terminal window (on Windows, this means CMD.exe) to the MontyLacuna
-folder, and run the pip installer script:</p>
+<p>Open up a terminal window (on Windows, this means <tt class="docutils literal"><span class="pre">CMD.exe</span></tt>) to the
+MontyLacuna folder you just extracted in the previous step, and run the pip
+installer script:</p>
 <div class="highlight-python"><div class="highlight"><pre>python bin/get-pip.py
 </pre></div>
 </div>
@@ -238,13 +235,15 @@ creation script:</p>
 </div>
 <p>That will ask you several questions, and then create your config file for you.</p>
 </div>
-<div class="section" id="ready-to-run-scripts">
-<h2>Ready to Run Scripts<a class="headerlink" href="#ready-to-run-scripts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ready-to-test">
+<h2>Ready to Test<a class="headerlink" href="#ready-to-test" title="Permalink to this headline">¶</a></h2>
 <p>At this point, you should be set to run any of the available scripts in the
-<tt class="docutils literal"><span class="pre">bin/</span></tt> directory, by typing:</p>
-<div class="highlight-python"><div class="highlight"><pre>python bin/SCRIPTNAME.py
+<tt class="docutils literal"><span class="pre">bin/</span></tt> directory.  There&#8217;s a test script that will show you a few details
+about your empire, and requires no arguments.  Try it out by typing:</p>
+<div class="highlight-python"><div class="highlight"><pre>python bin/test_script.py
 </pre></div>
 </div>
+<p>If that tells you &#8220;Congratulations&#8221;, you&#8217;re all set.</p>
 </div>
 </div>
 
