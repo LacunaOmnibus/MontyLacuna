@@ -43,5 +43,6 @@ if your arguments contain spaces, you have to quote them::
    :maxdepth: 2
 
    build_ships
+   recall_all_ships
    recall_all_spies
 
