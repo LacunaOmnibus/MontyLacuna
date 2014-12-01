@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>trade &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">TLE Module - Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">TLE Module - Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">TLE Module - Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">TLE Module - Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>trade</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../sources/callable/trade.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-lacuna.buildings.callable.trade">
+<span id="trade"></span><h1>trade<a class="headerlink" href="#module-lacuna.buildings.callable.trade" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.buildings.callable.trade.Chain">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">Chain</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.Chain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Chain base class</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.callable.trade.SupplyChain">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">SupplyChain</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.SupplyChain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.callable.trade.Chain" title="lacuna.buildings.callable.trade.Chain"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.trade.Chain</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id                      &quot;id-goes-here&quot;,
+body                    {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                            &quot;name&quot; : &quot;Mars&quot;,
+                            &quot;x&quot; : 0,
+                            &quot;y&quot; : -123,
+                            ...      },
+building_id             1234567,        # ID of the Trade Min.  Yeah I dunno either.
+resource_hour           10000000,
+resource_type           &#39;water&#39;,
+percent_transferred     95,
+stalled                 0,
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.callable.trade.WasteChain">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">WasteChain</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.WasteChain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.callable.trade.Chain" title="lacuna.buildings.callable.trade.Chain"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.trade.Chain</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id                      &quot;id-goes-here&quot;,
+star                    {   &quot;id&quot; : &quot;id-goes-here&quot;,
+                            &quot;name&quot; : &quot;Mars&quot;,
+                            &quot;x&quot; : 0,
+                            &quot;y&quot; : -123,
+                            ...     },
+waste_hour              10000000,
+percent_transferred     95,
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.callable.trade.trade">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">trade</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../trading.html#lacuna.trading.TradeBldg" title="lacuna.trading.TradeBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.TradeBldg</span></tt></a></p>
+<p>Trade Ministry</p>
+<p>I&#8217;m to the point were replicating every single TLE method is 
+getting boring.</p>
+<p>I&#8217;m really doing this to learn Python.  On top of that, I can&#8217;t see 
+anybody ever wanting to script some of the methods in here, so I&#8217;m just 
+not bothering with them.</p>
+<ul class="simple">
+<li>create_supply_chain()</li>
+<li>delete_supply_chain()</li>
+<li>update_supply_chain()</li>
+<li>update_waste_chain()</li>
+<li>add_supply_ship_to_fleet()</li>
+<li>add_waste_ship_to_fleet()</li>
+<li>remove_supply_ship_from_fleet()</li>
+<li>remove_waste_ship_from_fleet()</li>
+<li>report_abuse()</li>
+</ul>
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.add_to_market">
+<tt class="descname">add_to_market</tt><big>(</big><em>offer: dict</em>, <em>ask: int</em>, <em>options: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.add_to_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a trade to the market.</p>
+<p>Arguments:</p>
+<div class="highlight-python"><div class="highlight"><pre>offer       List of dicts of items to offer for trade.  See below for
+            more details.
+                {   &#39;type&#39;:         &#39;bauxite&#39;,
+                    &#39;quantity&#39;:     10000   },
+ask         Integer price in E you&#39;re asking for this trade, between 
+            0.1 and 100.
+options     Dict of &#39;options&#39; to modify the trade.  The only option, 
+            which is not an option at all since it&#39;s required, is 
+            the ID of the ship you want to use to transport your 
+            trade.
+                { &#39;ship_id&#39;:    12345   }
+            Use get_trade_ships() to find appropriate ship IDs.
+</pre></div>
+</div>
+<p><em>offer</em></p>
+<p>There are five types of items you can offer for trade, each with 
+their own required keys for their offer dicts:</p>
+<div class="highlight-python"><div class="highlight"><pre>resources
+    {   &#39;type&#39;:         &#39;bauxite&#39;,
+        &#39;quantity&#39;:     10000   },
+glyphs
+    {   &#39;type&#39;:         &#39;glyph&#39;,
+        &#39;name&#39;:         &#39;bauxite&#39;,
+        &#39;quantity&#39;:     10000   },
+plans
+    {   &#39;type&#39;:                 &#39;plan&#39;,
+        &#39;plan_type&#39;:            &#39;Permanent_AlgaePond&#39;,  # see get_plan_summary()
+        &#39;level&#39;:                1,
+        &#39;extra_build_level&#39;:    3,                      # If &gt; 1, &#39;level&#39; must be 1.
+        &#39;quantity&#39;:             10000   },
+prisoners
+    {   &#39;type&#39;:         &#39;prisoner&#39;,
+        &#39;prisoner_id&#39;:  12345   },
+ships
+    {   &#39;type&#39;:     &#39;ship&#39;,
+        &#39;ship_id&#39;:  12345   },
+</pre></div>
+</div>
+<p>Returns the ID of the trade just added.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.get_supply_ships">
+<tt class="descname">get_supply_ships</tt><big>(</big><em>target_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_supply_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of supply ships either currently on or available for 
+supply disposal duty.</p>
+<p>Returns a list of lacuna.ship.ChainShip objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.get_trade_ships">
+<tt class="descname">get_trade_ships</tt><big>(</big><em>target_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_trade_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of ships available to be used as trade transports.</p>
+<p>These are <em>not</em> ships available to be traded; these are ships that are 
+available to carry trades.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd><ul class="first last simple">
+<li>target_id &#8211; Optional ID of the target receiving the trade.  If 
+included, the ships&#8217; estimated_travel_time attribute will be set.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a list of lacuna.ship.TradeTransportShip objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.get_waste_ships">
+<tt class="descname">get_waste_ships</tt><big>(</big><em>target_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_waste_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of waste ships either currently on or available for 
+waste disposal duty.</p>
+<p>Returns a list of lacuna.ship.ChainShip objects.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lacuna.buildings.callable.trade.trade.path">
+<tt class="descname">path</tt><em class="property"> = 'trade'</em><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.push_items">
+<tt class="descname">push_items</tt><big>(</big><em>target_id: int</em>, <em>items: list</em>, <em>options: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.push_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pushes items to another of your planets.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>target_id &#8211; Integer ID of the body to send resources to.</li>
+<li>items &#8211; List of item dicts.  See add_to_market().</li>
+<li>options &#8211; Required (not optional) dict.  See add_to_market().</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.ship.TravellingShip object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.view_supply_chains">
+<tt class="descname">view_supply_chains</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_supply_chains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of SupplyChain objects</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.view_waste_chain">
+<tt class="descname">view_waste_chain</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_waste_chain" title="Permalink to this definition">¶</a></dt>
+<dd><p>The actual TLE method is plural, but there&#8217;s only one waste chain 
+per planet, and the key returned is singular.  So give the user a 
+break and let them call this method with or without the s.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.trade.trade.view_waste_chains">
+<tt class="descname">view_waste_chains</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_waste_chains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of WasteChain objects</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../static/jquery.js"></script>
+      <script type="text/javascript" src="../static/underscore.js"></script>
+      <script type="text/javascript" src="../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

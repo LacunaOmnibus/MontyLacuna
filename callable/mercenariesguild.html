@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mercenariesguild &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">TLE Module - Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">TLE Module - Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">TLE Module - Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">TLE Module - Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>mercenariesguild</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../sources/callable/mercenariesguild.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-lacuna.buildings.callable.mercenariesguild">
+<span id="mercenariesguild"></span><h1>mercenariesguild<a class="headerlink" href="#module-lacuna.buildings.callable.mercenariesguild" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.mercenariesguild.</tt><tt class="descname">mercenariesguild</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../tle_modules/building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.accept_from_market">
+<tt class="descname">accept_from_market</tt><big>(</big><em>trade_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.accept_from_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accept (purchase) a trade from the market.</p>
+<p>Requires captcha.</p>
+<p>Raises ServerError 1009 if your Intelligence Ministry already has the 
+maximum number of spies it can hold.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.add_to_market">
+<tt class="descname">add_to_market</tt><big>(</big><em>spy_id: int</em>, <em>ask: float</em>, <em>ship_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.add_to_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a spy to the mercs market.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>spy_id  &#8211; Required  - Integer ID of the spy to add.</li>
+<li>ask     &#8211; Required  - Integer amount of E to charge.  Between 1-99</li>
+<li>ship_id &#8211; Optional  - Integer ID of the ship to use for the trade.  Obtainable via get_trade_ships().  If not sent, a trade ship will be chosen for you if one is available.  This must be the ID of a spy pod.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the integer ID of the trade you just created.</p>
+<p>Raises ServerError 1011 if you do not have any spy pods available.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.get_spies">
+<tt class="descname">get_spies</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.get_spies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a list of your spies that are available to be added as trades.</p>
+<p>Returns a list of lacuna.spy.Merc objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.get_trade_ships">
+<tt class="descname">get_trade_ships</tt><big>(</big><em>target_body_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.get_trade_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of ships currently onsite that can be used to add a
+mercenary trade.</p>
+<p>Accepts an optional integer; the ID of the body we&#8217;re planning to send our 
+trade to.  If this is included, the trade ships returned will include 
+<tt class="docutils literal"><span class="pre">estimated_travel_time</span></tt>, the number of seconds the trip will take.</p>
+<p>Returns a list of lacuna.ship.TradeableShip objects.</p>
+<p>The only ship type acceptable for adding mercenary trades is a spy pod, 
+so those are the only ships that will be included in the returned list.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.path">
+<tt class="descname">path</tt><em class="property"> = 'mercenariesguild'</em><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.report_abuse">
+<tt class="descname">report_abuse</tt><big>(</big><em>trade_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.report_abuse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports a trade for abuse.</p>
+<p>What&#8217;s done with these reports is not documented.</p>
+<p>The TLE API docu says this retval contains a normal &#8216;status&#8217; key, but 
+in practice, on PT at least, it&#8217;s returning just an empty string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.view_market">
+<tt class="descname">view_market</tt><big>(</big><em>page_number: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.view_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a page of trades, up to 25 trades per page.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>trades &#8211; List of lacuna.trading.MercTrade objects</li>
+<li>trade_count &#8211; Integer total number of trades.  This is not the number of trades on the current page; this is the total number of trades available across all pages.</li>
+<li>page_number &#8211; Integer number of the page you&#8217;re currently viewing.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.view_my_market">
+<tt class="descname">view_my_market</tt><big>(</big><em>page_number: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.view_my_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the trades you have offered.</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>trades &#8211; List of lacuna.trading.ExistingTrade objects</li>
+<li>trade_count &#8211; Integer total number of trades you have on the market.</li>
+<li>page_number &#8211; Integer page number you&#8217;re looking at.  Will only be greater than 1 if you have more than 25 trades.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.mercenariesguild.mercenariesguild.withdraw_from_market">
+<tt class="descname">withdraw_from_market</tt><big>(</big><em>trade_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.mercenariesguild.mercenariesguild.withdraw_from_market" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes one of your trades from the market.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../static/jquery.js"></script>
+      <script type="text/javascript" src="../static/underscore.js"></script>
+      <script type="text/javascript" src="../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

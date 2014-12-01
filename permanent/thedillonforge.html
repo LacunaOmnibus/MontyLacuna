@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>thedillonforge &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-run-scripts">Ready to Run Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">TLE Module - Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">TLE Module - Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">TLE Module - Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">TLE Module - Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">TLE Module - Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">TLE Module - Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">TLE Module - Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">TLE Module - Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>thedillonforge</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../sources/permanent/thedillonforge.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-lacuna.buildings.permanent.thedillonforge">
+<span id="thedillonforge"></span><h1>thedillonforge<a class="headerlink" href="#module-lacuna.buildings.permanent.thedillonforge" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.buildings.permanent.thedillonforge.MakePlan">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.permanent.thedillonforge.</tt><tt class="descname">MakePlan</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.MakePlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.permanent.thedillonforge.Plan" title="lacuna.buildings.permanent.thedillonforge.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.permanent.thedillonforge.Plan</span></tt></a></p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name                    &quot;Algae&quot;,</span>
+<span class="go">max_level               10,</span>
+<span class="go">perl_class              &quot;Food::Algae&quot;,</span>
+<span class="go">reset_sec_per_level     5000,</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>&#8220;perl_class&#8221; is named &#8220;class&#8221; in the return from TLE, but &#8220;class&#8221; is a 
+reserved word in Python so I can&#8217;t make an attribute with that name.</p>
+<dl class="docutils">
+<dt>&#8220;reset_sec_per_level&#8221; is the number of seconds it&#8217;ll take to build the plan </dt>
+<dd>(reset_sec_per_level * (level you&#8217;re building) == total seconds)</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.permanent.thedillonforge.Plan">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.permanent.thedillonforge.</tt><tt class="descname">Plan</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.Plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Plan base class</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.permanent.thedillonforge.SplitPlan">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.permanent.thedillonforge.</tt><tt class="descname">SplitPlan</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.SplitPlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.permanent.thedillonforge.Plan" title="lacuna.buildings.permanent.thedillonforge.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.permanent.thedillonforge.Plan</span></tt></a></p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<span class="go">name                &quot;Beach [10]&quot;,</span>
+<span class="go">perl_class          &quot;Permanent::Beach10&quot;,</span>
+<span class="go">level               1,</span>
+<span class="go">extra_build_level   6,</span>
+<span class="go">fail_chance         50,</span>
+<span class="go">reset_seconds       50400</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>&#8220;perl_class&#8221; is named &#8220;class&#8221; in the return from TLE, but &#8220;class&#8221; is a 
+reserved word in Python so I can&#8217;t make an attribute with that name.</p>
+<p>&#8220;reset_seconds&#8221; is the number of seconds it&#8217;ll take to split this plan.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.permanent.thedillonforge.thedillonforge">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.permanent.thedillonforge.</tt><tt class="descname">thedillonforge</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.thedillonforge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../tle_modules/building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<dl class="method">
+<dt id="lacuna.buildings.permanent.thedillonforge.thedillonforge.make_plan">
+<tt class="descname">make_plan</tt><big>(</big><em>perl_class: str</em>, <em>level: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.thedillonforge.make_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts making a plan in the forge.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>perl_class &#8211; As displayed in MakeClass.perl_class</li>
+<li>level &#8211; Optional integer level to build.  Defaults to 1.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a tuple is the same as for view().  make_list and split_list are 
+included included in the tuple, but they will both be empty lists.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lacuna.buildings.permanent.thedillonforge.thedillonforge.path">
+<tt class="descname">path</tt><em class="property"> = 'thedillonforge'</em><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.thedillonforge.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.permanent.thedillonforge.thedillonforge.split_plan">
+<tt class="descname">split_plan</tt><big>(</big><em>perl_class: str</em>, <em>level: int=1</em>, <em>extra_build_level: int=0</em>, <em>quantity: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.thedillonforge.split_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts splitting a plan in the forge.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>perl_class &#8211; As displayed in MakeClass.perl_class</li>
+<li>level &#8211; Optional integer level to build.  Defaults to 1.</li>
+<li>extra_build_level &#8211; Optional integer additional build level.  Defaults to 0.</li>
+<li>quantity &#8211; Optional integer number to build.  Defaults to 1.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a tuple is the same as for view().  make_list and split_list are 
+included included in the tuple, but they will both be empty lists.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.permanent.thedillonforge.thedillonforge.subsidize">
+<tt class="descname">subsidize</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.thedillonforge.subsidize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spends 2 E to subsidize the current job.</p>
+<p>Raises ServerError 1010 if the forge isn&#8217;t doing anything right now.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.permanent.thedillonforge.thedillonforge.view">
+<tt class="descname">view</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.thedillonforge.thedillonforge.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>View plans that can be built and split.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>make_list &#8211; List of MakePlan objects</li>
+<li>split_list &#8211; List of SplitPlan objects</li>
+<li>current_task &#8211; &#8220;make_plan&#8221;, &#8220;split_plan&#8221;, or &#8220;None&#8221;</li>
+<li>seconds_remaining &#8211; How many seconds left on the current task.  0 if the forge isn&#8217;t doing anything.</li>
+<li>can &#8211; 1 if the forge is available, 0 if it&#8217;s working.</li>
+<li>working &#8211; Human-readable description of the task the forge is working on right now.  &#8220;Making Crater 6.0&#8221;</li>
+<li>subsidy_cost &#8211; Always 2, whether the forge is working or not.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../static/jquery.js"></script>
+      <script type="text/javascript" src="../static/underscore.js"></script>
+      <script type="text/javascript" src="../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
