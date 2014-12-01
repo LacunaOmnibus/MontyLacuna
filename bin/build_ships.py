@@ -10,18 +10,14 @@ import logging
 import lacuna
 import binutils.libbuild_ships as lib
 
-bs      = lib.BuildShips()
-client  = bs.connect()
-l       = client.user_logger
+bs  = lib.BuildShips()
+l   = bs.client.user_logger
 
-if not bs.args.quiet:
-    client.user_log_stream_handler.setLevel(logging.INFO)
+bs.client.cache_on("my_planets", 3600)
+planet = bs.client.get_body_byname( bs.args.name )
 
-client.cache_on("my_planets", 3600)
-planet = client.get_body_byname( bs.args.name )
-
-client.cache_on("shipyards_for_building", 30)
-client.cache_clear( "shipyards_for_building" )
+bs.client.cache_on("shipyards_for_building", 30)
+bs.client.cache_clear( "shipyards_for_building" )
 
 ### Get a list of shipyards that match the user's CLI args
 shipyards = bs.get_shipyards( planet )

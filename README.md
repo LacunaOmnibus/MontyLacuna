@@ -28,9 +28,9 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
 - To publish the docs generated on the master branch to gh-pages:
   - This procedure will remove any files in the master branch's .gitignore 
     file.  This includes your logs and lacuna.cfg file.
-    - You probably don't care too much about the logs, but having to 
-      re-generate your lacuna.cfg each time is a bit of a pain.  So before 
-      continuing, you probably want to copy that config file to your desktop.
+    - You probably don't care too much about the logs, but having to re-generate your 
+      lacuna.cfg each time is a bit of a pain.  So before continuing, copy that config 
+      file to your desktop.
     - ``cp etc/lacuna.cfg ~/Desktop``
 
   - ``$ cd doc``

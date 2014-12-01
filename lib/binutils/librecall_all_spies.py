@@ -1,6 +1,6 @@
 
 import binutils.libbin
-import argparse, lacuna, os, sys
+import argparse, lacuna, logging, os, sys
 
 class RecallAllSpies(binutils.libbin.Script):
 
@@ -20,6 +20,11 @@ class RecallAllSpies(binutils.libbin.Script):
             help        = "Silence all output."
         )
         super().__init__(parser, 'real')
+
+        ### If you need to work on this, change INFO to DEBUG below, but 
+        ### remember to change it back again when you're done.
+        if not self.args.quiet:
+            self.client.user_log_stream_handler.setLevel(logging.INFO)
 
     
     def find_nothome_spies( self, home_id:int, intmin ):

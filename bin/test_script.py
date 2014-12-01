@@ -11,13 +11,10 @@ import binutils.libtest_script as lib
 
 
 test    = lib.TestScript()
-client  = test.connect()
-l       = client.user_logger
-client.user_log_stream_handler.setLevel(logging.INFO)
-
+l       = test.client.user_logger
 
 l.info( "Following are some details about your empire." )
-pro = client.empire.view_profile()
+pro = test.client.empire.view_profile()
 l.info( "You are from {} in {}, and your player name is {}."
     .format(pro.city, pro.country, pro.player_name)
 )

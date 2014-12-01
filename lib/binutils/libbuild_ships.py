@@ -1,6 +1,6 @@
 
 import binutils.libbin
-import argparse, lacuna, os, sys
+import argparse, lacuna, logging, os, sys
 
 class BuildShips(binutils.libbin.Script):
 
@@ -40,6 +40,9 @@ class BuildShips(binutils.libbin.Script):
             help        = "Silence all output."
         )
         super().__init__(parser, 'real')
+
+        if not self.args.quiet:
+            self.client.user_log_stream_handler.setLevel(logging.INFO)
 
 
     def get_shipyards( self, planet ):

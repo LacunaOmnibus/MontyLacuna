@@ -1,6 +1,6 @@
 
 import binutils.libbin
-import argparse, lacuna, os, sys
+import argparse, lacuna, logging, os, sys
 
 class TestScript(binutils.libbin.Script):
 
@@ -12,4 +12,8 @@ class TestScript(binutils.libbin.Script):
         ### The test script is displaying empire profile, which requires the 
         ### real, not sitter, password.
         super().__init__(parser, 'real')
+
+        ### This simple test script doesn't allow a --quiet arg.  The min log 
+        ### level always gets set to INFO.
+        self.client.user_log_stream_handler.setLevel(logging.INFO)
 

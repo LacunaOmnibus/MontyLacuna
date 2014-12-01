@@ -28,7 +28,11 @@ class Script:
 
     Attributes::
 
-        bindir      The full path to the script being run.
+        args        The user's arguments, passed from the command line.
+        bindir      The full path to the directory containing the script being 
+                    run.
+        client      A TLE client, connected using the empire and password found 
+                    in the requested config file section.
         connect     Method; connects to the server and returns a
                     lacuna.clients.Member object.  Checks for bad credentials 
                     and produces reasonably friendly output if the login 
@@ -60,7 +64,7 @@ class Script:
             help        = "Config file section.  Defaults to '" + section + "'."
         )
         self.args   = parser.parse_args()
-
+        self.client = self.connect()
 
     def connect( self ):
         try:

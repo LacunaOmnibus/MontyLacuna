@@ -6,21 +6,21 @@ libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
 import lacuna
-
-
-### This is the binutils lib to import.
 import binutils.librecall_all_ships as lib
 
-recall  = lib.RecallShips()
-client  = recall.connect()
-l       = client.user_logger
+### Get library class instance
+recall = lib.RecallShips()
 
-if not recall.args.quiet:
-    client.user_log_stream_handler.setLevel(logging.INFO)
+### Get planet
+recall.client.cache_on("my_planets", 3600)
+planet = recall.client.get_body_byname( recall.args.name )
 
-l.info("foobar")
-quit()
+### Get any spaceport
+sp = planet.get_buildings_bytype( 'spaceport', 1, 1 )[0]
 
-client.cache_on("my_planets", 3600)
-planet = client.get_body_byname( recall.args.name )
+### Recall our ships
+ships = sp.recall_all()
+
+### Produce report on what we just did unless the user included --quiet
+recall.show_report(ships)
 

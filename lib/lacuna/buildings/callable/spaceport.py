@@ -321,7 +321,7 @@ class spaceport(lacuna.building.MyBuilding):
                                     "name" : "Sol"
                                 }
 
-        Raises NO error if there are no ships currently orbiting, but the 
+        Raises no error if there are no ships currently orbiting, but the 
         'ships' retval will be an empty list.
         """
         ship_list = []
@@ -330,8 +330,8 @@ class spaceport(lacuna.building.MyBuilding):
         ### actually getting is a list of hashrefs:
         ###
         ###    ships = [
-        ###     { ship => { the actual ship hashref} },
-        ###     { ship => { the actual ship hashref} },
+        ###     { 'ship' => { the actual ship hashref} },
+        ###     { 'ship' => { the actual ship hashref} },
         ###     etc
         ###    ]
         ###
