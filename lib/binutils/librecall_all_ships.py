@@ -2,7 +2,7 @@
 import binutils.libbin
 import argparse, lacuna, os, sys
 
-class CHECK(binutils.libbin.Script):
+class RecallShips(binutils.libbin.Script):
 
     def __init__(self):
         parser = argparse.ArgumentParser(
@@ -14,11 +14,11 @@ class CHECK(binutils.libbin.Script):
         ### arguments automatically.  Add any others you need for this 
         ### particular script.
         ###
-        parser.add_argument( 'name', 
-            metavar     = '<planet>',
-            action      = 'store',
-            help        = 'All spies from this planet will be recalled.'
-        )
+#        parser.add_argument( 'name', 
+#            metavar     = '<planet>',
+#            action      = 'store',
+#            help        = 'All spies from this planet will be recalled.'
+#        )
         parser.add_argument( '--quiet', 
             dest        = 'quiet',
             action      = 'store_true',
