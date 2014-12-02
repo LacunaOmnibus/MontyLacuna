@@ -285,7 +285,7 @@ class MyBody(Body):
             raise NoSuchBuildingError("No building was found at ({},{})".format(x,y))
 
 
-    def get_buildings_bytype( self, btype:str, min_level:int = 1, limit:int = 0 ):
+    def get_buildings_bytype( self, btype:str, min_level:int = 1, limit:int = 0, efficiency:int = 0 ):
         """ Get a list of buildings of a specific type and minimum level.
 
         Arguments:
@@ -298,6 +298,9 @@ class MyBody(Body):
             - limit -- Integer max number of this building you want returned.  
               Defaults to 0 (returns all buildings of this type).
               This method returns a list, even if ``limit`` is set to 1.
+            - efficiency -- Integer minimum efficiency of the buildings to 
+              return.  If you're planning on actually using the buildings, 
+              you'll want to set this to 100.
 
         Returns a list of the requested buildings.
 
@@ -312,7 +315,7 @@ class MyBody(Body):
         mylist = []
         for bid, bdict in self.buildings_id.items():
             classname = re.sub("^/(\w+)", "\g<1>", bdict['url'] )
-            if bdict['name'] == btype or classname == btype and int(bdict['level']) >= min_level:
+            if bdict['name'] == btype or classname == btype and int(bdict['level']) >= min_level and bdict['efficiency'] >= efficiency:
                 bldg_str = "lacuna.buildings.{}( self.client, self.body_id, bid )".format( classname )
                 mylist.append( eval(bldg_str) )
                 if limit and len(mylist) >= limit:
