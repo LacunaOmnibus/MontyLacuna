@@ -24,6 +24,7 @@ class Body(lacuna.bc.LacunaObject):
         type            "habitable planet",
         name            "Earth",
         image           "p13-3",
+        surface_type    "p13",      # derived from 'image'
         size            67,
         water           900,
         ore             lacuna.resource.AvailableOre object
@@ -40,14 +41,17 @@ class Body(lacuna.bc.LacunaObject):
 
         super().__init__( client, attrs )
         self._set_status_attr( attrs )
+        self._derive_surface_type()
 
     def _derive_surface_type(self):
         ### 'image' == 'p16-1' or so.  The "-1" indicates the size of the 
         ### image, which will depend on the size of the planet, and we don't 
         ### care about that at all.  Just get the planet type, the "p16", out 
         ### of that.
+        ### Roids will be 'a12-3', and GGs are 'pg10-3' (the numbers vary, the 
+        ### format and letters do not.)
         if hasattr(self, 'image'):
-            mymatch = re.match( "^(p\d+)", self.image )
+            mymatch = re.match( "^((p|a)g?\d+)", self.image )
             if mymatch:
                 self.surface_type = mymatch.group(1)
             else:
@@ -217,7 +221,7 @@ class MyBody(Body):
         ### calling get_buildings()) and get both the status data and the 
         ### building data in a single shot.
         self._set_buildings()
-        self._derive_surface_type()
+        #self._derive_surface_type()
 
     @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth
@@ -300,7 +304,7 @@ class MyBody(Body):
               This method returns a list, even if ``limit`` is set to 1.
             - efficiency -- Integer minimum efficiency of the buildings to 
               return.  If you're planning on actually using the buildings, 
-              you'll want to set this to 100.
+              you'll want to set this to 100.  Defaults to 0.
 
         Returns a list of the requested buildings.
 
@@ -315,7 +319,7 @@ class MyBody(Body):
         mylist = []
         for bid, bdict in self.buildings_id.items():
             classname = re.sub("^/(\w+)", "\g<1>", bdict['url'] )
-            if bdict['name'] == btype or classname == btype and int(bdict['level']) >= min_level and bdict['efficiency'] >= efficiency:
+            if bdict['name'] == btype or classname == btype and int(bdict['level']) >= min_level and int(bdict['efficiency']) >= efficiency:
                 bldg_str = "lacuna.buildings.{}( self.client, self.body_id, bid )".format( classname )
                 mylist.append( eval(bldg_str) )
                 if limit and len(mylist) >= limit:

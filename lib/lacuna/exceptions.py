@@ -13,6 +13,13 @@ class BadConfigSectionError(Exception):
     def __str__(self):
         return repr(self.section)
 
+class BadBuildingError(Exception):
+    """ The building requested exists but isn't usable (probably damaged)"""
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
 class CaptchaResponseError(Exception):
     """ The user's response to a captcha puzzle was incorrect."""
     def __init__(self, section):

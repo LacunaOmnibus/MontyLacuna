@@ -5,6 +5,7 @@ import argparse, lacuna, logging, os, sys
 class TestScript(binutils.libbin.Script):
 
     def __init__(self):
+        self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = "This is just a test script to verify that MontyLacuna was installed properly.",
             epilog      = "EXAMPLE: python bin/test_script.py",

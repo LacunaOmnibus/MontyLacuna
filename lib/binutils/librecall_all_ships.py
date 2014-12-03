@@ -1,10 +1,11 @@
 
 import binutils.libbin
-import argparse, lacuna, logging, os, sys
+import argparse, lacuna, os, sys
 
 class RecallShips(binutils.libbin.Script):
 
     def __init__(self):
+        self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Recall all ships that are either orbiting or defending other planets.  This is not selective - it recalls everything the current planet has out.',
             epilog      = 'EXAMPLE: python bin/recall_all_ships.py Earth',
@@ -22,7 +23,7 @@ class RecallShips(binutils.libbin.Script):
         super().__init__(parser)
 
         if not self.args.quiet:
-            self.client.user_log_stream_handler.setLevel(logging.INFO)
+            self.client.user_log_stream_handler.setLevel('INFO')
 
     def show_report(self, ships):
         l = self.client.user_logger

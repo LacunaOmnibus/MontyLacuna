@@ -35,17 +35,22 @@ glc = lacuna.clients.Member(
 #quit()
 
 
-### Get all of the buildings of a certain type above a specific level
+### Get all of the buildings of a certain type above a specific level and 
+### efficiency.
+###
+### Test this (on PT!) by demolishing your citadel, then sending a few 
+### spaceport seekers at yourself.  Modify min_level and efficiency as 
+### desired.
 ### 
 ### Since getting building lists like this requires looking at each individual 
 ### building, it can be slow.  So let's turn caching on in case we want to run 
 ### this more than once.
 #glc.cache_on( 'my_buildings_test', 3600 )
 #my_planet = glc.get_body_byname( 'bmots support 01' )
-#ports = my_planet.get_buildings_bytype('spaceport', 25)
+#ports = my_planet.get_buildings_bytype( 'spaceport', min_level = 10, efficiency = 35 )
 #for i in ports:
-#    print( "The spaceport at ({},{}) is level {}."
-#        .format(i.x, i.y, i.level)
+#    print( "The spaceport at ({},{}) is level {}, and running at {}% efficiency."
+#        .format(i.x, i.y, i.level, i.efficiency)
 #    )
 
 

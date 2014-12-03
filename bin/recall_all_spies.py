@@ -17,6 +17,8 @@ if not recall.args.quiet:
 
 recall.client.cache_on("my_planets", 3600)
 planet = recall.client.get_body_byname( recall.args.name )
+print( planet.name )
+quit()
 
 recall.client.cache_on("nothome_spies", 3600)
 

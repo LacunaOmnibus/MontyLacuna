@@ -5,6 +5,7 @@ import argparse, lacuna, os, sys
 class CHECK(binutils.libbin.Script):
 
     def __init__(self):
+        self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'I SHOW UP ABOVE THE OPTIONS SECTION IN HELP',
             epilog      = 'I SHOW UP BELOW THE OPTIONS SECTION IN HELP',

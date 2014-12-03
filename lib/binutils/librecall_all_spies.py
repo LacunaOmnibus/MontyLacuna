@@ -1,10 +1,11 @@
 
 import binutils.libbin
-import argparse, lacuna, logging, os, sys
+import argparse, lacuna, os, sys
 
 class RecallAllSpies(binutils.libbin.Script):
 
     def __init__(self):
+        self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = "Fetch home all spies based on a given planet, regardless of where they're currently located.  Spies will be fetched using the fastest ship you have available that can carry occupants.",
             epilog      = "EXAMPLE: python3 bin/recall_all_spies Earth",
@@ -24,7 +25,7 @@ class RecallAllSpies(binutils.libbin.Script):
         ### If you need to work on this, change INFO to DEBUG below, but 
         ### remember to change it back again when you're done.
         if not self.args.quiet:
-            self.client.user_log_stream_handler.setLevel(logging.INFO)
+            self.client.user_log_stream_handler.setLevel('INFO')
 
     
     def find_nothome_spies( self, home_id:int, intmin ):

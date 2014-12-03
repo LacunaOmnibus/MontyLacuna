@@ -33,11 +33,11 @@ class Script:
                     run.
         client      A TLE client, connected using the empire and password found 
                     in the requested config file section.
-        connect     Method; connects to the server and returns a
-                    lacuna.clients.Member object.  Checks for bad credentials 
-                    and produces reasonably friendly output if the login 
-                    failed.
         parser      The argparse parser.
+        version     The program version.  Generally this will be set in the 
+                    ``__init__`` method of the inheriting child class, but if 
+                    it's not set there, this will default to '0.1'
+
 
     Parser
         The argparse parser handed in will have the optional arguments 
@@ -56,6 +56,7 @@ class Script:
             default     = self.bindir + "/../etc/lacuna.cfg",
             help        = "Path to the config file.  Defaults to 'ROOT/etc/lacuna.cfg'"
         )
+
         parser.add_argument( '--section', 
             dest        = 'config_section',
             metavar     = '<section>',
@@ -63,6 +64,18 @@ class Script:
             default     = section,
             help        = "Config file section.  Defaults to '" + section + "'."
         )
+
+        vers = '0.1'
+        if hasattr(self, 'version'):
+            vers = self.version
+        else:
+            self.version = vers
+        parser.add_argument( '--version', 
+            action      = 'version',
+            version     = os.path.basename(sys.argv[0]) + ' ' + vers,
+            help        = "Print program version and quit"
+        )
+
         self.args   = parser.parse_args()
         self.client = self.connect()
 

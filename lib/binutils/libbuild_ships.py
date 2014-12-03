@@ -1,10 +1,11 @@
 
 import binutils.libbin
-import argparse, lacuna, logging, os, sys
+import argparse, lacuna, os, sys
 
 class BuildShips(binutils.libbin.Script):
 
     def __init__(self):
+        self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'This will build as many of a single type of ship as you want, up to the maximum that can be built across all shipyards on your planet.  If there are already ships in your build queue, this will figure that out and only build what it can.',
             epilog      = 'EXAMPLE: python bin/build_ships.py "Earth" sweeper (fills the build queues of all shipyards on Earth with sweepers).',
@@ -42,7 +43,7 @@ class BuildShips(binutils.libbin.Script):
         super().__init__(parser, 'real')
 
         if not self.args.quiet:
-            self.client.user_log_stream_handler.setLevel(logging.INFO)
+            self.client.user_log_stream_handler.setLevel('INFO')
 
 
     def get_shipyards( self, planet ):
