@@ -4,5 +4,5 @@ test.py
 test.txt
 __pycache__/
 doc/_build/
-etc/*
-var/*
+etc/*cfg*
+var/*log*
