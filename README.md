@@ -5,10 +5,10 @@ A Python Client for The Lacuna Expanse.
 
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
-## TBD
-- Most of the script documentation is too hard-coded.  See send_excavs.rst for an example
-  of pulling in the lib docs - that needs to be spread to the docs for the other scripts.
+## Currently working on 
+- bin/send_excavs.py
 
+## TBD
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.

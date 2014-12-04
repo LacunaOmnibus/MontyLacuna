@@ -57,6 +57,9 @@ class BuildShips(lacuna.binutils.libbin.Script):
         """ Ensures we can actually build the requested ship type, and figures 
         out how many of them we should build.
 
+        Arguments:
+            - yards -- list of lacuna.building.shipyard.shipyard objects
+
         Returns the number of ships we should queue across all shipyards.
 
         This number to be built does not take current build queues into 

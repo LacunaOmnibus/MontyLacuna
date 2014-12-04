@@ -26,6 +26,12 @@ class RecallShips(lacuna.binutils.libbin.Script):
             self.client.user_log_stream_handler.setLevel('INFO')
 
     def show_report(self, ships):
+        """ Displays a report on what ships have been recalled.
+
+        Arguments:
+            - ships -- A list of ``lacuna.ship.IncomingShip`` objects as returned by 
+              ``lacuna.building.spaceport.recall_all()``
+        """
         l = self.client.user_logger
         if ships:
             shiptypes = {}
