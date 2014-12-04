@@ -16,11 +16,15 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 
 - The binutils/ directory should probably be a child of lacuna/, not a sibling.
 
+- Most of the script documentation is too hard-coded.  See send_excavs.rst for an example
+  of pulling in the lib docs - that needs to be spread to the docs for the other scripts.
+
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
   - Run through the whole Getting Started instruction set on a fresh Python install on 
     Windows to make sure the docs are correct.
+
 - Ack through everything for "CHECK" and fix.
   - Even if you finish this, leave this list item here.  I have a tendency to re-add these 
     marks.
