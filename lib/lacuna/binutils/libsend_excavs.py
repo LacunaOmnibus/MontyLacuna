@@ -67,14 +67,16 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.client.user_log_stream_handler.setLevel('DEBUG')
             #self.client.user_log_stream_handler.setLevel('INFO')
 
-        self.ring_offset    = 1
-        self.cell_number    = 1
         self.num_excavs     = 0
         self.excav_sites    = []
         self.client.user_logger.debug( "Getting star map." )
         self.map            = self.client.get_map()
         self.client.user_logger.debug( "Getting planet " + self.args.name + "." )
         self.planet         = self.client.get_body_byname( self.args.name )
+
+        self.ring           = Ring(self.planet, 0)
+        #self.ring_offset    = 1
+        #self.cell_number    = 1
 
         self.client.user_logger.debug( "Getting Arch Min." )
         self.arch   = self.planet.get_buildings_bytype( 'archaeology', 1, 1, 100 )[0]
@@ -86,10 +88,13 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """ Get number of excavs this planet is able to send right now, and 
         locations of its existing excavs.
 
-        Arguments:
-            - planet -- lacuna.body.MyBody object
+        "Able to send right now" means the lower of "how many available excav 
+        slots are there in my Arch Min" and "how many excavators do I have built 
+        and ready to go".
 
-        This does _not_ take into account the destinations of excavs that are 
+        Returns nothing, but sets ``self.num_excavs``.
+
+        This does *not* take into account the destinations of excavs that are 
         currently in the air on the way to excavate a planet.
         """
         self.out, max, trav = self.arch.view_excavators()
@@ -109,9 +114,78 @@ class SendExcavs(lacuna.binutils.libbin.Script):
 
         return
 
-    def get_map_square( self ):
-        """ Gets a list of stars in the next map square.  """
 
+    def get_map_square( self ):
+        """ Gets a list of stars in the next map square.  
+
+        Map squares start from the innermost ring.  When all squares (cells) in 
+        a ring have been returned, we move to the NW cell, one ring out, and 
+        then return all cells in that ring, etc.
+
+        Which ring and cell we're on currently is maintained by ``self``, so no 
+        arguments need to be passed in.
+
+        Returns a list of lacuna.map.Star objects.
+
+        See the Cell class for details on cells and rings.
+        """
+        ### Get the next cell in our current ring.  If we've exhausted our 
+        ### current ring, move out one more ring.
+        req_cell = self.ring.get_next_cell()
+        if not req_cell:
+            next_offset = self.ring.ring_offset + 1
+            if next_offset > self.args.max_ring:
+                ### We've exhausted our allowed range, so there are no more 
+                ### excavs to send.
+                self.num_excavs = 0
+                return
+            self.ring = Ring( self.planet, next_offset )
+            req_cell = self.ring.get_next_cell()
+
+        self.client.user_logger.debug( "Original planet is ({}, {})"
+            .format(self.planet.x, self.planet.y) 
+        )
+        self.client.user_logger.debug( "Requested cell {} (offset {}) (row {}, col {}) centerpoint is ({}, {})"
+            .format(req_cell.cell_number, req_cell.ring_offset, req_cell.row, req_cell.col, req_cell.center_x, req_cell.center_y)
+        )
+        self.client.user_logger.debug( "Requested cell top {}, bottom {}, left {}, right {}."
+            .format(req_cell.top, req_cell.bottom, req_cell.left, req_cell.right)
+        )
+
+        star_list = self.map.get_star_map({
+            'top':      req_cell.top,
+            'right':    req_cell.right,
+            'bottom':   req_cell.bottom,
+            'left':     req_cell.left 
+        })
+
+        ### Advance to the next cell.  If at max cell, advance to the next 
+        ### ring.  If at max ring, there are no more excavs to send.
+        self.cell_number += 1
+        if self.cell_number > cells_this_ring:
+            self.cell_number = 1
+            self.ring_offset += 1
+            if self.ring_offset > self.args.max_ring:
+                self.num_excavs = 0
+
+        return star_list
+
+
+
+    def get_map_square_Orig( self ):
+        """ Gets a list of stars in the next map square.  
+
+        Map squares start from the innermost ring.  When all squares (cells) in 
+        a ring have been returned, we move to the NW cell, one ring out, and 
+        then return all cells in that ring, etc.
+
+        Which ring and cell we're on currently is maintained by ``self``, so no 
+        arguments need to be passed in.
+
+        Returns a list of lacuna.map.Star objects.
+
+        See the Cell class for details on cells and rings.
+        """
         center_cell = Cell( self.planet, 0, 1 )
         req_cell    = Cell( self.planet, self.ring_offset, self.cell_number )
 
@@ -205,13 +279,29 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         return False
 
 
-    def send_excavs(self, num:int, excavs:list):
+    def send_excavs(self):
+        """ Sends excavators to the requested planet types in range.
+
+        "requested planet types" and "in range" are both controlled by 
+        command-line arguments.
+
+        Returns the number of excavators sent.
+        """
+        cnt = 0
         while self.num_excavs > 0:
             stars = self.get_map_square()
-            self.send_excavs_to_bodies_orbiting( stars )
+            cnt += self.send_excavs_to_bodies_orbiting( stars )
+        return cnt
 
     def send_excavs_to_bodies_orbiting(self, stars:list):
-        """ Sends excavators to the valid bodies around a list of stars.
+        """ Sends excavators to the bodies around each star in a list, provided 
+        each body is of one of the requested types.
+
+        Arguments:
+            - stars -- list of lacuna.map.Star objects
+
+        Called by ``send_excavs``, so this shouldn't need to be called in a 
+        script.
 
         For each excavator sent, self.num_excavs is decremented.
 
@@ -225,7 +315,14 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         return cnt
 
     def send_excavs_to_bodies(self, bodies:list):
-        """ Tries to send an excavator to each body in a list of bodies.
+        """ Tries to send an excavator to each body in a list of bodies, 
+        provided each body is of one of the requested types.
+
+        Arguments:
+            - bodies -- list of body.Body objects
+
+        Called by ``send_excavs``, so this shouldn't need to be called in a 
+        script.
 
         Returns the integer count of excavators sent.
         """
@@ -239,9 +336,19 @@ class SendExcavs(lacuna.binutils.libbin.Script):
     def send_excav_to_body(self, body):
         """ Tries to send an excavator to a body.
 
-        For each excavator sent, self.num_excavs is decremented.
+        Called by ``send_excavs``, so this shouldn't need to be called in a 
+        script.
 
-        Returns 1 if sent, 0 if not.
+        Arguments:
+            - body -- A lacuna.body.Body object
+
+        If the body is not one of the requested types, or we already have an 
+        excavator there, or the body's star is seized by another alliance's 
+        Space Station and it has Members Only Excavation law set, this will 
+        fail to send an excavator and return 0.
+
+        If everything works out, this will send an excavator, decrement 
+        self.num_excavs, and return 1.
         """
         if body.type == 'habitable planet' and body.surface_type in self.args.ptypes:
             self.client.user_logger.debug("Planet {} is habitable and the correct type." .format(body.name) )
@@ -277,8 +384,192 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.num_excavs -= 1
             return 1
 
+class Ring():
+    """ A ring of cells radiating out from a planet.
+
+    Attributes::
+
+        cell_size           Integer size of the sides of the cells in the ring.
+        cells_per_row       Number of cells per row (3 for a ring_offset of 1)
+        cells_this_ring     Total number of cells in this ring only (8 for a 
+                            ring_offset of 1)
+        center_cell_number  the cell_number of the center cell (1 for a 
+                            ring_offset of 0, 5 for a ring_offset of 1, etc)
+        center_col          The column occupied by the center cell.  0-based. 
+        center_row          The row occupied by the center cell.  0-based. 
+        planet              lacuna.body.MyBody object everything is relative to.
+        ring_offset         Integer offset from the center (center is 0)
+        total_cells         Total number of cells in the square, including all 
+                            rings (9 for a ring_offset of 1)
+
+    cell_size
+        The max area that ``lacuna.map.Map.get_star_map()`` will return is 
+        3001.  The closest square to that is 54x54 (giving an area of 2916), 
+        so the length of any dimension of any cell is hardcoded at 54.
+
+    Rings Diagram
+        The diagram below shows ring_offset 0 and, surrounding it, 
+        ring_offset 1.
+
+        In the diagram, the center_cell_number is either 1 (at ring_offset 0) 
+        or 5 (at ring_offset  1).  The other cells are numbered assuming 
+        ring_offset  1, since those other cells don't exist for ring_offset 0.
+
+        Each increase in ring_offset  will add another layer of cells 
+        around the previous layer, just as ring_offset  1 adds a full 
+        layer of cells wrapped around the single cell at ring_offset  0::
+
+            +----------+ +----------+ +----------+
+            | offset 1 | | offset 1 | | offset 1 |
+            |          | |          | |          |
+            | count 1  | | count 2  | | count 3  |
+            +----------+ +----------+ +----------+
+            +----------+ +----------+ +----------+
+            | offset 1 | |offset 0/1| | offset 1 |
+            |          | |    o     | |          |
+            | count 4  | |count 1/5 | | count 6  |
+            +----------+ +----------+ +----------+
+            +----------+ +----------+ +----------+
+            | offset 1 | | offset 1 | | offset 1 |
+            |          | |          | |          |
+            | count 7  | | count 8  | | count 9  |
+            +----------+ +----------+ +----------+
+
+    """
+    def __init__( self, planet, ring_offset:int = 0 ):
+        self.planet                         = planet
+        self.ring_offset                    = ring_offset
+        self.cells_this_ring                = int( 8 * self.ring_offset )
+        self.cells_per_row                  = int( (2 * self.ring_offset + 1) )
+        self.total_cells                    = int( cells_per_row**2 )
+        self.center_cell_number             = int( (total_cells + 1) / 2 )
+        self.cell_size                      = 54
+        self._set_center_location()
+        
+    def _set_center_location(self):
+        self.center_row = 0
+        self.center_col = self.center_cell_number - 1 # cell numbers start at 1
+        while( self.center_col > self.cells_per_row ):
+            self.center_row += 1
+            self.center_col -= self.cells_per_row
+
+    def _get_cell_location(self, num):
+        row         = 0
+        col         = num - 1
+        center_x    = 0
+        center_y    = 0
+        while( col > self.cells_per_row ):
+            row += 1
+            col -= self.cells_per_row
+        if row < self.center_row:
+            center_y = (self.planet.y - self.cell_size) * (self.center_row - row)
+        elif row > self.center_row:
+            center_y = (self.planet.y + self.cell_size) * (row - self.center_row)
+        if col < self.center_col:
+            center_x = (self.planet.x - self.cell_size) * (self.center_col - col)
+        elif col > self.center_col:
+            center_x = (self.planet.x + self.cell_size) * (col - self.center_col)
+        return( col, row, center_x, center_y )
+
+    def get_next_cell(self):
+        """ Gets the next cell in the ring.
+
+        Starts at cell 1, the upper-left-most cell on the first call, then 
+        proceeds left-to-right, top-to-bottom on successive calls.
+
+        After returning the final cell in the ring, the next call will return 
+        False and then reset the count.
+        """
+        if not hasattr(self, 'next_cell'):
+            self.next_cell = self._gen_next_cell()
+
+        try:
+            return next(self.next_cell)
+        except StopIteration:
+            self.next_cell = self._gen_next_cell()
+            return False
+
+    def _gen_next_cell(self):
+        for i in range(1, self.total_cells + 1):
+            col, row, x, y = self._get_cell_location( i )
+            yield Cell( col, row, x, y, self.cell_size )
+
 class Cell():
     """
+
+    Attributes::
+
+        bottom              Y coordinate of the bottom boundary of the cell
+        center_x            X coordinate of the center point of the cell.
+        center_y            Y coordinate of the center point of the cell.
+        col                 The column occupied by the current cell.  0-based.
+        left                X coordinate of the left boundary of the cell
+        cell_size           Size of the sides of the cell
+        right               X coordinate of the right boundary of the cell
+        row                 The row occupied by the current cell.  0-based.
+        top                 Y coordinate of the top boundary of the cell
+
+    **Cell Diagram**
+    In ring.ring_offset == 0::
+
+        +--------+
+        | cell 1 |
+        | col 0  |
+        | row 0  |
+        +--------+
+
+    cell 1 from the ring_offset == 0 above becomes cell 5 when ring_offset 
+    == 1::
+
+        +--------++--------++--------+
+        | cell 1 || cell 2 || cell 3 |
+        | col 0  || col 1  || col 2  |
+        | row 0  || row 0  || row 0  |
+        +--------++--------++--------+
+        +--------++--------++--------+
+        | cell 4 || cell 5 || cell 6 |
+        | col 0  || col 1  || col 2  |
+        | row 1  || row 1  || row 1  |
+        +--------++--------++--------+
+        +--------++--------++--------+
+        | cell 7 || cell 8 || cell 9 |
+        | col 0  || col 1  || col 2  |
+        | row 2  || row 2  || row 2  |
+        +--------++--------++--------+
+    """
+
+    def __init__( self, col, row, x, y, cell_size ):
+        self.col        = col
+        self.row        = row
+        self.center_x   = x
+        self.center_y   = y
+        self.cell_size  = cell_size
+        self._set_bounding_points()
+
+    def _set_bounding_points(self):
+        self.left    = self.center_x - (self.cell_size / 2)
+        self.right   = self.center_x + (self.cell_size / 2)
+        self.top     = self.center_y + (self.cell_size / 2)
+        self.bottom  = self.center_y - (self.cell_size / 2)
+
+        if self.top < -1500 or self.bottom > 1500 or self.left > 1500 or self.right < -1500:
+            ### CHECK this needs to do something more reasonable than bailing.
+            self.client.user_logger.debug( "This cell is entirely out of bounds." )
+            quit()
+        ### At least part of the cell is in bounds.  But parts of it might lap 
+        ### over the boundaries -- fix anything outside the limits of the map.
+        self.top     =  1500 if self.top     > 1500 else self.top
+        self.right   =  1500 if self.right  >  1500 else self.right
+        self.bottom  = -1500 if self.bottom < -1500 else self.bottom
+        self.left    = -1500 if self.left   < -1500 else self.left
+
+
+
+class CellOrig():
+    """
+    CHECK
+    After testing out Ring and Cell above, get rid of this.
+
     Most of this is dealing with zero-based offsets.
     ``ring_offset`` _is_ zero-based; the center 'ring' is offset 0.
 
@@ -291,7 +582,7 @@ class Cell():
 
     CHECK
         This object probably knows a bit too much about its surroundings.  In 
-        a perfect world, there should be a Ring object that knows about cell 
+        a perfect world, there would be a Ring object that knows about cell 
         placement (col and row), where the center cell is, etc.
 
     Attributes
