@@ -17,3 +17,7 @@ For complete help, see the script's help documentation:
 
     >>> python bin/recall_all_spies.py -h
 
+.. autoclass:: lacuna.binutils.librecall_all_spies.RecallAllSpies
+   :members:
+   :show-inheritance:
+

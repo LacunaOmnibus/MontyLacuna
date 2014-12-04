@@ -18,10 +18,11 @@ For complete help, see the script's help documentation:
     >>> python bin/recall_all_spies.py -h
 
 
-.. autoclass:: binutils.libsend_excavs.SendExcavs
+.. autoclass:: lacuna.binutils.libsend_excavs.SendExcavs
    :members:
    :show-inheritance:
 
-.. autoclass:: binutils.libsend_excavs.Cell
+.. autoclass:: lacuna.binutils.libsend_excavs.Cell
    :members:
    :show-inheritance:
+

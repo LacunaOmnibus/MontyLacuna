@@ -27,3 +27,7 @@ For complete help, see the script's help documentation:
 
     >>> python bin/build_ships.py -h
 
+.. autoclass:: lacuna.binutils.libbuild_ships.BuildShips
+   :members:
+   :show-inheritance:
+
