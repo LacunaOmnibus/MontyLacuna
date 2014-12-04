@@ -84,6 +84,18 @@ class FoundAlliance(lacuna.bc.SubClass):
     """
 
 
+class SeizingAlliance(lacuna.bc.SubClass):
+    """ When viewing a star in the starmap, if the star has been seized, it will 
+    have been seized by a SeizingAlliance object.
+
+    Attributes::
+
+        id          1234
+        name        United Union of Federated Allied Groups
+        image       "us1/logo_1234_001"
+    """
+
+
 class Member(lacuna.bc.SubClass):
     """ An alliance member.
 

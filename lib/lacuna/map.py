@@ -178,10 +178,9 @@ class Star(lacuna.bc.SubClass):
         zone        '0|0',
         bodies:     List of body.Body objects.  If you don't have the star 
                     probed or oracled, this list will be empty.
+        station:    lacuna.map.Station object (only if this star is under control of a station)
     """
     def __init__( self, client, star_dict:dict, *args, **kwargs ):
-        self.client = client
-
         if 'status' in star_dict:
             del( star_dict['status'] )
 
@@ -192,8 +191,10 @@ class Star(lacuna.bc.SubClass):
             del( star_dict['bodies'] )
         self.bodies = body_objs
 
-        for k, v in star_dict.items():
-            setattr(self, k, v)
+        if 'station' in star_dict:
+            star_dict['station'] = Station(client, star_dict['station'])
+
+        super().__init__(client, star_dict)
 
 class StationStar(lacuna.bc.SubClass):
     """ A star in the jurisdiction of a space station, as returned by 
@@ -208,15 +209,49 @@ class StationStar(lacuna.bc.SubClass):
         zone        "0|1",
     """
 
+
 class Station(lacuna.bc.SubClass):
     """
     Attributes::
 
-        id      "id-goes-here",
-        x       143,
-        y       -27,
-        name    "The Death Star"
+        id          "id-goes-here",
+        x           143,
+        y           -27,
+        name        "The Death Star"
+        alliance    lacuna.alliance.SeizingAlliance object.
     """
+    def __init__(self, client, mydict):
+        if 'alliance' in mydict:
+            mydict['alliance'] = lacuna.alliance.SeizingAlliance(client, mydict['alliance'])
+        super().__init__(client, mydict)
+
+    def view_laws( self, *args, **kwargs ):
+        """ Returns a list of lacuna.parliament.Law objects.  Otherwise returns 
+        an empty list.
+
+        DOES NOT WORK if your alliance doesn't own the station.
+        """
+        ### This is still hokey.  See the comments in 
+        ### lacuna.body.Body.view_laws().  This is a copy/paste of that.
+        ###
+        ### As of 12/03/2014, this is in the production docs as working, but 
+        ### it doesn't work (and that fact has been known and commented on as 
+        ### long as four months ago.  That's what I get for believing docs.  
+        ### Sigh.)
+        ###
+        ### For whatever reason, Python won't let this Station class inherit 
+        ### from lacuna.body.Body - it tells me that the 'lacuna' object has 
+        ### no attribute 'body'.  I think Python is sniffing glue.  Anyway, 
+        ### I'm done fucking around with trying to figure out why that's 
+        ### breaking, so here's a pasted (and then massaged) method.
+        mylist = []
+        myargs = (self.client.session_id, self.id)
+        rslt = self.client.send( 'parliament', 'view_laws', myargs )
+        for i in rslt['laws']:
+            mylist.append( lacuna.buildings.ss_modules.parliament.Law(self.client, i) )
+        return mylist
+
+
 
 class Fissure(lacuna.bc.SubClass):
     """

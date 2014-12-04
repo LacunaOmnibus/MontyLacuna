@@ -4,6 +4,7 @@ import lacuna.bc
 import lacuna.alliance
 import lacuna.building
 import lacuna.buildings
+import lacuna.buildings.ss_modules.parliament
 import lacuna.empire
 import lacuna.map
 import lacuna.resource
@@ -41,6 +42,9 @@ class Body(lacuna.bc.LacunaObject):
 
         super().__init__( client, attrs )
         self._set_status_attr( attrs )
+        ### Depending upon how the Body object was created, we may or may not 
+        ### have an image attribute.  If we do, this will set the surface_type 
+        ### attribute as well.
         self._derive_surface_type()
 
     def _derive_surface_type(self):
@@ -141,6 +145,44 @@ class Body(lacuna.bc.LacunaObject):
         return status
 
 
+    def view_laws( self, *args, **kwargs ):
+        """ If the current body is a Space Station, this returns a list of 
+        lacuna.parliament.Law objects.  Otherwise returns an empty list.
+
+        DOES NOT WORK if your alliance doesn't own the station.
+        """
+        ### This is pretty hokey.
+        ###
+        ### view_laws() is a method of the parliament building.  But somebody 
+        ### figured out, after the fact, that any empire should be able to 
+        ### view any station's published laws.
+        ###
+        ### As of 12/03/2014, this is in the production docs as working, but 
+        ### it doesn't work (and that fact has been known and commented on as 
+        ### long as four months ago.  That's what I get for believing docs.  
+        ### Sigh.)
+        ###
+        ### So parliament's view_laws() now requires only a body_id, no 
+        ### building_id.  BUT, the way this whole thing is set up to this 
+        ### point, I'd need to be able to get at the parliament building in 
+        ### the first place to be able to call parliament methods, and I can't 
+        ### get that parliament building unless my alliance owns the station.
+        ###
+        ### So this method skips all decorators and makes the send() call 
+        ### itself, forcing the path arg to 'parliament'.
+        ###
+        ### To make matters worse, I had to copy this method, again, to 
+        ### lacuna/map.py.
+        mylist = []
+        if not self.type == 'space station':
+            return mylist
+        myargs = (self.client.session_id, self.body_id)
+        rslt = self.client.send( 'parliament', 'view_laws', myargs )
+        for i in rslt['laws']:
+            mylist.append( lacuna.buildings.ss_modules.parliament.Law(self.client, i) )
+        return mylist
+
+
 class MyBody(Body):
     """ A MyBody object is a planet or space station owned by the current 
     empire.  It has all of the attributes of a Body object, plus::
@@ -209,8 +251,9 @@ class MyBody(Body):
     ###             - So it's not till now that we've got a full MyBody object 
     ###               with actual data in it.
     ###
-    ###     - So we can't derive the surface type (eg 'p35' from the image 
-    ###       attribute (eg 'p35-2') until after we call _set_buildings().)
+    ###     - So we usually can't _derive_surface_type (eg 'p35' from the 
+    ###       image attribute (eg 'p35-2') until after we call 
+    ###       _set_buildings().)
     ###       
 
     def __init__( self, client:object, attrs:dict = {} ):
@@ -221,7 +264,7 @@ class MyBody(Body):
         ### calling get_buildings()) and get both the status data and the 
         ### building data in a single shot.
         self._set_buildings()
-        #self._derive_surface_type()
+        self._derive_surface_type()
 
     @Body._set_body_status
     @lacuna.bc.LacunaObject.call_body_meth

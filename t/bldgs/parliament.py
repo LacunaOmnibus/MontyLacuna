@@ -8,17 +8,38 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'my_real',
+    config_section = 'real',
 )
 
-my_station = glc.get_body_byname( 'Some Station' )
+#my_station = glc.get_body_byname( 'Some Station' )
+my_station = glc.get_body_byname( 'SASS bmots 01' )
 parl = my_station.get_buildings_bytype( 'parliament' )[0]
 
 
 
-### View laws
-### 
+### View laws using parliament building
+### If you've already got a parl building for one of your own stations, as we 
+### do here, you can call view_laws() on that building.
+###
 #laws = parl.view_laws( my_station.id )
+#for i in laws:
+#    if re.match("^Seize", i.name):
+#        ### Don't list all the seizure laws.
+#        continue
+#    print( "{} is described as {}, and was enacted on {}."
+#        .format(i.name, i.description, i.date_enacted)
+#    )
+
+
+### View laws using the station
+### If you're looking at some other alliance's space station (eg you're 
+### browsing through a list of stars using the lacuna.Map object), you won't 
+### have access to that station's Parliament building.  In that case, you can 
+### just call view_laws() on the space station itself, since laws are public.
+###
+### Which sounds perfectly cromulent, but this absolutely does not work unless 
+### your alliance owns the station in question.
+#laws = my_station.view_laws()
 #for i in laws:
 #    if re.match("^Seize", i.name):
 #        ### Don't list all the seizure laws.

@@ -12,8 +12,7 @@ pp = pprint.PrettyPrinter( indent = 4 )
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'play_test',
-    #config_section = 'my_sitter',
+    config_section = 'sitter',
 )
 
 

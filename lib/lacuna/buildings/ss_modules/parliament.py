@@ -17,12 +17,10 @@ class parliament(lacuna.building.MyBuilding):
             - body_id -- Integer ID of the Space Station (not of the parliament 
               building.)
 
-        This method is really being called against the station itself rather 
-        than against the parliament building in particular.
-
-        This means that anybody can call this method on any space station to 
-        see what laws have been enacted on that station; these laws are public 
-        information.
+        This method can be called against either the Parliament building or the 
+        station itself.  Allowing it to be called against the station means that 
+        empires who are not members of the owning alliance can see what laws are 
+        in effect.
 
         Returns a list of lacuna.parliament.Law objects.
         """

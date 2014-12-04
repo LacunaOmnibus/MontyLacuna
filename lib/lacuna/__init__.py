@@ -3,6 +3,7 @@ import lacuna.version
 version = lacuna.version.__version__
 
 import lacuna.alliance
+import lacuna.bc
 import lacuna.body
 import lacuna.building
 import lacuna.captcha

@@ -238,7 +238,8 @@ class spaceport(lacuna.building.MyBuilding):
         Arguments
             - target -- Dict, identical to the one in get_my_fleet_for()
             - types -- List of shiptype dicts
-            - arrival -- Dict to specify arrival time
+            - arrival -- Optional dict to specify arrival time.  If not sent, 
+              ships will be sent at maximum speed.
 
         Shiptype dicts
             You can specify ships to send not just by the shiptype, 
