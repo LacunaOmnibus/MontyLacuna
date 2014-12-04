@@ -19,7 +19,7 @@ libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
 import lacuna
-import binutils.libsend_excavs as lib
+import lacuna.binutils.libsend_excavs as lib
 
 ### Get library class instance
 send = lib.SendExcavs()

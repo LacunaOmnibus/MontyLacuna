@@ -6,16 +6,6 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
-- Despite the fact that most MontyLacuna methods use named arguments, they mirror TLE 
-  methods, most of which use positional arguments.
-    - MontyLacuna sees this just fine:
-        sp.view_all_ships( filter = {'type': 'excavator'} )
-    - But it passes along that single filter argument as the first arg to TLE's 
-      view_all_ships, which is expecting 'paging' as its first argument.
-    - I either need to modify my decorators, or explain to the user not to use named args.
-
-- The binutils/ directory should probably be a child of lacuna/, not a sibling.
-
 - Most of the script documentation is too hard-coded.  See send_excavs.rst for an example
   of pulling in the lib docs - that needs to be spread to the docs for the other scripts.
 
@@ -26,8 +16,8 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
     Windows to make sure the docs are correct.
 
 - Ack through everything for "CHECK" and fix.
-  - Even if you finish this, leave this list item here.  I have a tendency to re-add these 
-    marks.
+  - Even if you find no CHECK marks, leave this list item here.  I have a tendency to 
+    re-add these marks.
 
 ## Building the Documentation
 http://sphinx-doc.org/tutorial.html

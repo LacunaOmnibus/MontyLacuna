@@ -1,13 +1,13 @@
 
-import binutils.libbin
-import argparse, lacuna, os, sys
+import lacuna, lacuna.binutils.libbin
+import argparse, os, sys
 
 """
 python bin/send_excavs.py --t p23 --t p24 --t p25 --max_ring 3 Earth
     This doesn't build excavs; you have to manage that manually or with another script.
 """
 
-class SendExcavs(binutils.libbin.Script):
+class SendExcavs(lacuna.binutils.libbin.Script):
     """
     Attributes::
 
@@ -62,20 +62,25 @@ class SendExcavs(binutils.libbin.Script):
         )
         super().__init__(parser)
 
-        self.ring_offset    = 1
-        self.cell_number    = 1
-        self.num_excavs     = 0
-        self.excav_sites    = []
-        self.map            = self.client.get_map()
-        self.planet         = self.client.get_body_byname( self.args.name )
-
-        self.arch   = self.planet.get_buildings_bytype( 'archaeology', efficiency = 100 )[0]
-        self.sp     = self.planet.get_buildings_bytype( 'space port', efficiency = 100 )[0]
-
         if not self.args.quiet:
             ### CHECK
             self.client.user_log_stream_handler.setLevel('DEBUG')
             #self.client.user_log_stream_handler.setLevel('INFO')
+
+        self.ring_offset    = 1
+        self.cell_number    = 1
+        self.num_excavs     = 0
+        self.excav_sites    = []
+        self.client.user_logger.debug( "Getting star map." )
+        self.map            = self.client.get_map()
+        self.client.user_logger.debug( "Getting planet " + self.args.name + "." )
+        self.planet         = self.client.get_body_byname( self.args.name )
+
+        self.client.user_logger.debug( "Getting Arch Min." )
+        self.arch   = self.planet.get_buildings_bytype( 'archaeology', 1, 1, 100 )[0]
+        self.client.user_logger.debug( "Getting Space Port." )
+        self.sp     = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
+
 
     def get_excav_count( self ):
         """ Get number of excavs this planet is able to send right now, and 

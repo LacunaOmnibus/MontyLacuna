@@ -1,8 +1,8 @@
 
-import binutils.libbin
-import argparse, lacuna, os, sys
+import lacuna, lacuna.binutils.libbin
+import argparse, os, sys
 
-class RecallAllSpies(binutils.libbin.Script):
+class RecallAllSpies(lacuna.binutils.libbin.Script):
 
     def __init__(self):
         self.version = '0.1'

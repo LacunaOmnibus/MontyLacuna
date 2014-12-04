@@ -8,7 +8,7 @@ sys.path.append(libdir)
 import logging
 
 import lacuna
-import binutils.libbuild_ships as lib
+import lacuna.binutils.libbuild_ships as lib
 
 bs  = lib.BuildShips()
 l   = bs.client.user_logger

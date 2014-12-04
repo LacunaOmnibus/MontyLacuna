@@ -5,22 +5,16 @@ bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
-import lacuna, logging
-import binutils.librecall_all_spies as lib
+import lacuna
+import lacuna.binutils.librecall_all_spies as lib
 
 
 recall  = lib.RecallAllSpies()
 l       = recall.client.user_logger
 
-if not recall.args.quiet:
-    recall.client.user_log_stream_handler.setLevel(logging.INFO)
-
+### Turn on caching, get planet
 recall.client.cache_on("my_planets", 3600)
 planet = recall.client.get_body_byname( recall.args.name )
-print( planet.name )
-quit()
-
-recall.client.cache_on("nothome_spies", 3600)
 
 ### Get IntMin
 intmin = planet.get_buildings_bytype( 'intelligence', 1, 1 )[0]
