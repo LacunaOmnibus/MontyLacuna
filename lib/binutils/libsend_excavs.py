@@ -144,21 +144,21 @@ class SendExcavs(binutils.libbin.Script):
         excavators to that star's planets.
 
         **NO WORKY WORKY**
-        This whole method assumes that you can call view_laws() on a station 
-        your alliance doesn't own.  The docs say you can do that, but you can't.
+            This whole method assumes that you can call ``view_laws()`` on a 
+            station your alliance doesn't own.  The docs say you can do that, 
+            but you can't.
 
-        So this in no way works.
+            So this in no way works.
 
-        If the view_laws() thing ever gets fixed, this method should be just 
-        about ready to go, so I'm leaving it in.
-        **NO WORKY WORKY**
+            If the ``view_laws()`` thing ever gets fixed, this method should 
+            be just about ready to go, so I'm leaving it here.
 
         Arguments:
             - star -- lacuna.map.Star object
             - stations -- Dict.  Keeps track of stations that have already had 
               their laws checked, so any given station only has to have its 
-              view_laws() method called once.  This should start out as an empty 
-              dict.
+              ``view_laws()`` method called once.  This should start out as an 
+              empty dict.
             - my_alliance -- Optional lacuna.alliance.MyAlliance object.  This 
               is only 'optional' in that, if the user is not a member of an 
               alliance, it can be omitted.  But if the user is a member of an 
@@ -275,69 +275,77 @@ class SendExcavs(binutils.libbin.Script):
 class Cell():
     """
     Most of this is dealing with zero-based offsets.
-    'ring_offset' _is_ zero-based; the center 'ring' is offset 0.
+    ``ring_offset`` _is_ zero-based; the center 'ring' is offset 0.
 
-    However, 'cell_number' is NOT zero-based.  The upper-left cell is number 1.
+    However, ``cell_number`` is NOT zero-based.  The upper-left cell is number 
+    1.
 
-    Max requested area allowed by get_star_map() is 3001.  The closest square 
-    I can get to that is 54x54, giving an area of 2916, so length of a cell 
-    (that's the length of any dimension) is hardcoded at 54.
+    Max requested area allowed by ``lacuna.map.Map.get_star_map()`` is 3001.  
+    The closest square to that is 54x54, giving an area of 2916, so length of 
+    any dimension of any cell is hardcoded at 54.
 
-    Attributes:
-        area                length**2, or 2916.
-        cell_number         Number of the current cell
-        cells_per_row       Number of cells per row (3 for a ring_offset of 1)
-        cells_this_ring     Total number of cells in this ring only (8 for a 
-                            ring_offset of 1)
-        center_cell_number  the cell_number of the center cell (1 for a 
-                            ring_offset of 0, 5 for a ring_offset of 1, etc)
-        center_col          The column occupied by the center cell.  0-based. 
-        center_row          The row occupied by the center cell.  0-based. 
-        col                 The column occupied by the current cell.  0-based.
-        length              54
-        planet              lacuna.body.MyBody object everything is relative to.
-        ring_offset         Integer offset from the center (center is 0)
-        row                 The row occupied by the current cell.  0-based.
-        total_cells         Total number of cells in the square, including all 
-                            rings (9 for a ring_offset of 1)
+    CHECK
+        This object probably knows a bit too much about its surroundings.  In 
+        a perfect world, there should be a Ring object that knows about cell 
+        placement (col and row), where the center cell is, etc.
 
-    Rings and Cells
-    ---------------
-    The diagram below shows ring offsets 0 and 1.
+    Attributes
+        ::
 
-    The center cell contains the target planet in its center.  That center 
-    cell's count is either 1 (at ring_offset 0) or 5 (at ring_offset 1).  The 
-    other cells are numbered assuming ring_offset 1.
+            area                length**2, or 2916.
+            cell_number         Number of the current cell
+            cells_per_row       Number of cells per row (3 for a ring_offset of 1)
+            cells_this_ring     Total number of cells in this ring only (8 for a 
+                                ring_offset of 1)
+            center_cell_number  the cell_number of the center cell (1 for a 
+                                ring_offset of 0, 5 for a ring_offset of 1, etc)
+            center_col          The column occupied by the center cell.  0-based. 
+            center_row          The row occupied by the center cell.  0-based. 
+            col                 The column occupied by the current cell.  0-based.
+            length              54
+            planet              lacuna.body.MyBody object everything is relative to.
+            ring_offset         Integer offset from the center (center is 0)
+            row                 The row occupied by the current cell.  0-based.
+            total_cells         Total number of cells in the square, including all 
+                                rings (9 for a ring_offset of 1)
 
-    Each increase in ring_offset will add another layer of cells around the 
-    previous layer, just as ring_offset 1 adds a full layer of cells wrapped 
-    around the single cell at ring_offset 0.
+    **Rings and Cells**
+        The diagram below shows ring offsets 0 and 1.
 
+        The center cell contains the target planet in its center.  In the 
+        example diagram, that center cell's count is either 1 (at 
+        ``ring_offset`` 0) or 5 (at ``ring_offset``  1).  The other cells are 
+        numbered assuming ``ring_offset``  1.
 
-        <---- 54 ----> <---- 54 ----> <---- 54 ---->
-     ^^ +------------+ +------------+ +------------+
-     || |  offset 1  | |  offset 1  | |  offset 1  |
-        |            | |            | |            |
-     54 |            | |            | |            |
-        |            | |            | |            |
-     || |  count 1   | |  count 2   | |  count 3   |
-     VV +------------+ +------------+ +------------+
+        Each increase in ``ring_offset``  will add another layer of cells 
+        around the previous layer, just as ``ring_offset``  1 adds a full 
+        layer of cells wrapped around the single cell at ``ring_offset``  0::
 
-     ^^ +------------+ +------------+ +------------+
-     || |  offset 1  | | offset 0/1 | |  offset 1  |
-        |            | |            | |            |
-     54 |            | |     o      | |            |
-        |            | |            | |            |
-     || |  count 4   | | count 1/5  | |  count 6   |
-     VV +------------+ +------------+ +------------+
+               <---- 54 ----> <---- 54 ----> <---- 54 ---->
+            ^^ +------------+ +------------+ +------------+
+            || |  offset 1  | |  offset 1  | |  offset 1  |
+               |            | |            | |            |
+            54 |            | |            | |            |
+               |            | |            | |            |
+            || |  count 1   | |  count 2   | |  count 3   |
+            VV +------------+ +------------+ +------------+
 
-     ^^ +------------+ +------------+ +------------+
-     || |  offset 1  | |  offset 1  | |  offset 1  |
-        |            | |            | |            |
-     54 |            | |            | |            |
-        |            | |            | |            |
-     || |  count 7   | |  count 8   | |  count 9   |
-     VV +------------+ +------------+ +------------+
+            ^^ +------------+ +------------+ +------------+
+            || |  offset 1  | | offset 0/1 | |  offset 1  |
+               |            | |            | |            |
+            54 |            | |     o      | |            |
+               |            | |            | |            |
+            || |  count 4   | | count 1/5  | |  count 6   |
+            VV +------------+ +------------+ +------------+
+
+            ^^ +------------+ +------------+ +------------+
+            || |  offset 1  | |  offset 1  | |  offset 1  |
+               |            | |            | |            |
+            54 |            | |            | |            |
+               |            | |            | |            |
+            || |  count 7   | |  count 8   | |  count 9   |
+            VV +------------+ +------------+ +------------+
+
     """
 
     def __init__( self, planet, ring_offset:int = 0, cell_number:int = 1 ):

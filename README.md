@@ -8,15 +8,13 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 ## TBD
 - Despite the fact that most MontyLacuna methods use named arguments, they mirror TLE 
   methods, most of which use positional arguments.
-
     - MontyLacuna sees this just fine:
         sp.view_all_ships( filter = {'type': 'excavator'} )
-
     - But it passes along that single filter argument as the first arg to TLE's 
       view_all_ships, which is expecting 'paging' as its first argument.
-
     - I either need to modify my decorators, or explain to the user not to use named args.
 
+- The binutils/ directory should probably be a child of lacuna/, not a sibling.
 
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
