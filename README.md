@@ -16,8 +16,8 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
     Windows to make sure the docs are correct.
 
 - Ack through everything for "CHECK" and fix.
-  - Even if you find no CHECK marks, leave this list item here.  I have a tendency to 
-    re-add these marks.
+  - Even if you find no CHECK marks, leave this list item here.  I have a 
+    tendency to re-add these marks;
 
 ## Building the Documentation
 http://sphinx-doc.org/tutorial.html

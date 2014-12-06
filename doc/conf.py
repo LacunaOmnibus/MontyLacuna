@@ -102,23 +102,27 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#html_theme = 'default'  # nav bar on the left, which is a problem.
 #html_theme = 'scrolls'  # OK, simple clean layout.  But Times New Roman?
 #html_theme = 'traditional'  # Welcome to 1997.  Here's your Times New Roman.  Fail.
-#html_theme = 'nature'  # Nice looking, but nav on left so text overruns.
 #html_theme = 'haiku'  # A little too simple, and a little too orange.
 #html_theme = 'pyramid'  # too simple, left nav.
 
+# a little too rudimentary.
+#html_theme = 'default'
 
-### not bad.  nav on the right, so long package names don't overwrite text.
+# Not bad, still a bit rudimentary
+#html_theme = 'nature'
+
+### Really pretty good.  A little too simple for MontyLacuna, but a nice clean 
+### look - might be better for a smaller project?
 ### I think I like agogo's look just a little better, but this handles TOC 
 ### lists better.
 #html_theme = 'sphinxdoc'
 
-### Nav on right, does not list each building mod in that nav.  Pretty, easy 
-### to read.  Doesn't handle TOC lists so well.
-### Bah I really like the overall layout of this, but can't get past the bad 
-### TOC lists.
+### Pretty, easy to read.
+### Doesn't handle TOC lists so well - the spacing is flat-out wrong.
+### This one is nice looking enough that it might be worth climbing into the 
+### CSS to figure out what the problem is and fix it.
 #html_theme = 'agogo'
 
 ### Theme downloaded using pip.
