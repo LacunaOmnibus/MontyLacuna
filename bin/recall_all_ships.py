@@ -6,7 +6,7 @@ libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
 import lacuna
-import binutils.librecall_all_ships as lib
+import lacuna.binutils.librecall_all_ships as lib
 
 ### Get library class instance
 recall = lib.RecallShips()

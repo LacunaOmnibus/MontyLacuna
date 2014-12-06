@@ -12,13 +12,14 @@ Fix all instances of "CHECK" below (and delete this line).
 
 
 ### This is the binutils lib to import.
-import binutils.CHECK as lib
+import lacuna.binutils.CHECK as lib
 
 
 
-### The 'CHECK' below is the name of the class in the binutils/lib* you're 
-### importing.  Change that, and change OBJECT to something more reasonable.  
-### You have to change OBJECT several times.
+### The 'CHECK' below is the name of the class in the lacuna/binutils/lib* 
+### you're importing.  Change that, and change OBJECT to something more 
+### reasonable (it can be whatever you want; you can leave it as OBJECT if 
+### you're feeling particularly lazy).
 OBJECT  = lib.CHECK()
 
 

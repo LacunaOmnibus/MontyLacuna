@@ -1,8 +1,8 @@
 
-import binutils.libbin
-import argparse, lacuna, os, sys
+import lacuna, lacuna.binutils.libbin
+import argparse, os, sys
 
-class RecallShips(binutils.libbin.Script):
+class RecallShips(lacuna.binutils.libbin.Script):
 
     def __init__(self):
         self.version = '0.1'
@@ -26,6 +26,12 @@ class RecallShips(binutils.libbin.Script):
             self.client.user_log_stream_handler.setLevel('INFO')
 
     def show_report(self, ships):
+        """ Displays a report on what ships have been recalled.
+
+        Arguments:
+            - ships -- A list of ``lacuna.ship.IncomingShip`` objects as returned by 
+              ``lacuna.building.spaceport.recall_all()``
+        """
         l = self.client.user_logger
         if ships:
             shiptypes = {}

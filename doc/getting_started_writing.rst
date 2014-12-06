@@ -79,6 +79,28 @@ methods are mirrors of TLE API methods, but not all.  To check if a given
 method is a published TLE API method, check out the TLE API documentation:
 https://us1.lacunaexpanse.com/api/
 
+Method Calling
+--------------
+Almost all MontyLacuna methods require positional, not named, arguments.  
+
+The method documentation includes argument names and types for clarity of what 
+data types need to be sent, not as an indication that named arguments can be 
+used.
+
+eg The documentation for the Embassy's ``accept_invite`` method looks like 
+this:
+
+    **accept_invite(invite_id: int, message: str='', \**kwargs)**
+
+So, to call ``accept_invite``, you'd do something like this::
+
+    embassy.accept_invite( 12345, "Come join my alliance!" )
+
+But you wouldn't do this, because the invite_id has to come before the 
+message::
+
+    ### GONNNNG!  Don't do this.
+    embassy.accept_invite( message = "Come join my alliance!", invite_id = 12345 )
 
 Example Snippets
 ----------------

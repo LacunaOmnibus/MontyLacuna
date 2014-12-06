@@ -1,8 +1,8 @@
 
-import binutils.libbin
-import argparse, lacuna, os, sys
+import lacuna, lacuna.binutils.libbin
+import argparse, os, sys
 
-class BuildShips(binutils.libbin.Script):
+class BuildShips(lacuna.binutils.libbin.Script):
 
     def __init__(self):
         self.version = '0.1'
@@ -56,6 +56,9 @@ class BuildShips(binutils.libbin.Script):
     def determine_buildable(self, yards):
         """ Ensures we can actually build the requested ship type, and figures 
         out how many of them we should build.
+
+        Arguments:
+            - yards -- list of lacuna.building.shipyard.shipyard objects
 
         Returns the number of ships we should queue across all shipyards.
 

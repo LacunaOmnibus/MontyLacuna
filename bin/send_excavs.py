@@ -19,7 +19,7 @@ libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
 import lacuna
-import binutils.libsend_excavs as lib
+import lacuna.binutils.libsend_excavs as lib
 
 ### Get library class instance
 send = lib.SendExcavs()
@@ -34,7 +34,7 @@ send.client.cache_on("my_planets", 3600)
 #planet = send.client.get_body_byname( send.args.name )
 
 ### Figure out how many excavs we need to send
-send.get_excav_count( planet )
+send.get_excav_count()
 
 ### Fire the BFG at Norway.
 ###

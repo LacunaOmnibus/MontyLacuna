@@ -1,8 +1,8 @@
 
-import binutils.libbin
-import argparse, lacuna, os, sys
+import lacuna, lacuna.binutils.libbin
+import argparse, os, sys
 
-class RecallAllSpies(binutils.libbin.Script):
+class RecallAllSpies(lacuna.binutils.libbin.Script):
 
     def __init__(self):
         self.version = '0.1'
@@ -29,12 +29,19 @@ class RecallAllSpies(binutils.libbin.Script):
 
     
     def find_nothome_spies( self, home_id:int, intmin ):
-        """
-        Returns a dict of all of the bodies where you've got spies assigned, 
-        not including your current planet (home_id).
+        """ Finds all of the bodies where you've got spies assigned, 
+        not including your current planet.
 
-        The returned dict is:
-            planet_id: planet_name
+        Arguments:
+            - home_id -- Integer ID of the planet to consider 'home'
+            - intmin -- ``lacuna.buildings.intelligence.intelligence`` object; 
+              the Int Min located on ``home_id``.
+
+        Returns a dict of planets hosting spies whose home is ``home_id``::
+
+            {   planet_id_1: planet_name_1,
+                planet_id_2: planet_name_2,
+                etc     }
         """
         bodies = {}
         spies = intmin.view_all_spies()
