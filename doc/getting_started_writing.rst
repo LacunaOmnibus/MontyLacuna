@@ -52,7 +52,7 @@ to live somewhere other than ``INSTALLDIR/bin/``.
 
 Please keep in mind that many of the people using your script may not be very 
 technically inclined.  The config file creation script that comes with 
-MontyLacuna creates config file sections named ``real`` and ``sitter``; if 
+MontyLacuna creates config file sections named ``real`` and ``sitter``.  If 
 your script is meant for distribution, it's strongly suggested that you 
 specify one of those two names as your ``config_section``.
 
