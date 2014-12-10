@@ -116,7 +116,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """
         self.client.cache_off() # we need fresh data for this method
 
-        excav_sites, max, num_travelling = self.arch.view_excavators()
+        excav_sites, excav_max, num_travelling = self.arch.view_excavators()
         ### Omit the first excav site; it's our current planet.
         self.excav_sites = excav_sites[1:]
 
@@ -128,21 +128,27 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 self.travelling[ s.to.id ] = 1
 
         filter = {'type': 'excavator'}
-        ships, excavs_built = self.sp.view_all_ships( paging, filter )
+        ships, excavs = self.sp.view_all_ships( paging, filter )
+        excavs_built = []
+        for i in ships:
+            if i.task == 'Docked':
+                excavs_built.append(i)
+        num_excavs_ready = len(excavs_built)
 
-        ### 'excavs_built' is all of the excavators taking up dock space.  
-        ### This includes those currently travelling; we don't want to include 
-        ### those.
-        self.num_excavs = (max - (len(self.excav_sites) + num_travelling) )
-        excavs_built -= num_travelling
+        ### At this point, num_excavs is the number of excavators we can send 
+        ### out, according to the Arch Min's limits.
+        self.num_excavs = (excav_max - (len(self.excav_sites) + num_travelling) )
 
         self.client.user_logger.debug( "Arch min has {} slots available.".format(self.num_excavs) )
         if self.num_excavs <= 0:
             return
 
-        self.client.user_logger.debug( "Space port has {} excavators ready.".format(excavs_built) )
-        if excavs_built < self.num_excavs:
-            self.num_excavs = excavs_built
+        ### If we have fewer excavators ready to go than the Arch Min has 
+        ### slots available, we'll shorten self.num_excavs - can't send what 
+        ### we don't have.
+        self.client.user_logger.debug( "Space port has {} excavators ready.".format(num_excavs_ready) )
+        if num_excavs_ready < self.num_excavs:
+            self.num_excavs = num_excavs_ready
         self.client.user_logger.info( "We're ready to send out {} more excavators.".format(self.num_excavs) )
 
     def get_map_square( self ):
