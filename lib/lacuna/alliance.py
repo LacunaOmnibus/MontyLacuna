@@ -9,7 +9,7 @@ class Alliance(lacuna.bc.LacunaObject):
     path = 'alliance'
 
     @lacuna.bc.LacunaObject.call_returning_meth
-    def view_profile( self, alliance_id: int, *args, **kwargs ):
+    def view_profile( self, alliance_id:int, *args, **kwargs ):
         """ Get publicly-available information on an alliance.
 
         Requires an integer alliance ID.

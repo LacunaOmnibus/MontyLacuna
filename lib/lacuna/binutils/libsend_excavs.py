@@ -1,10 +1,24 @@
 
-import lacuna, lacuna.binutils.libbin
+import lacuna, lacuna.exceptions, lacuna.binutils.libbin
 import argparse, os, sys
 
 """
 python bin/send_excavs.py --t p23 --t p24 --t p25 --max_ring 3 Earth
     This doesn't build excavs; you have to manage that manually or with another script.
+
+Current issues with this:
+    - If you send an excav from Earth to Target_A, then run this for Mars, and 
+      it also tries to send an excav to Target_A, the send from Mars will be 
+      disallowed (because you already have an excav from your empire on the 
+      way).  This will be mis-interpreted as being because of a MO Excavation 
+      law.  The station that has seized Target_A will then be added to the 
+      list of "bad_stations", and no more excavs will be sent to any planet 
+      under that station's jurisdiction.  And that station may well be your 
+      own station, so perfectly valid planets will be skipped.
+
+Other than that, this seems to be working.  I'd like to return to it once the 
+view_laws() thing is straightened out.
+
 """
 
 class SendExcavs(lacuna.binutils.libbin.Script):
@@ -14,9 +28,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         arch            The Archaeology Ministry on self.planet.
         args            Command-line arguments; the result of
                         self.parser.parse_args()
+        bad_stations    Dict of names ( {name: 1} ) of stations we've 
+                        encountered that won't accept excavs (MO laws).
         cell_number     The cell we're working on.  Starts at 1.
         client          lacuna.clients.Member object
-        excav_sites     A list of sites currently being excavated.  Starts
+        excav_sites     A list of lacuna.ship.Excavator objects.  Starts
                         as an empty list, set to the correct value by 
                         get_excav_count().
         map             lacuna.map.Map object
@@ -27,6 +43,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                         at the command line.
         ring_offset     The ring offset we're working on.  Starts at 0.
         sp              A Space Port on self.planet (doesn't matter which one).
+        travelling      Dict of bodies we have excavators on their way to right 
+                        now.  { destination_body_id: 1 }
         version         '0.1'
     """
 
@@ -67,16 +85,15 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.client.user_log_stream_handler.setLevel('DEBUG')
             #self.client.user_log_stream_handler.setLevel('INFO')
 
-        self.num_excavs     = 0
         self.excav_sites    = []
+        self.bad_stations   = {}
         self.client.user_logger.debug( "Getting star map." )
         self.map            = self.client.get_map()
+        self.num_excavs     = 0
         self.client.user_logger.debug( "Getting planet " + self.args.name + "." )
         self.planet         = self.client.get_body_byname( self.args.name )
-
         self.ring           = Ring(self.planet, 0)
-        #self.ring_offset    = 1
-        #self.cell_number    = 1
+        self.travelling     = {}
 
         self.client.user_logger.debug( "Getting Arch Min." )
         self.arch   = self.planet.get_buildings_bytype( 'archaeology', 1, 1, 100 )[0]
@@ -97,23 +114,36 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         This does *not* take into account the destinations of excavs that are 
         currently in the air on the way to excavate a planet.
         """
-        self.out, max, trav = self.arch.view_excavators()
-        self.num_excavs = (max - (len(out) + trav) )
+        self.client.cache_off() # we need fresh data for this method
+
+        excav_sites, max, num_travelling = self.arch.view_excavators()
+        ### Omit the first excav site; it's our current planet.
+        self.excav_sites = excav_sites[1:]
+
+        paging = {}
+        filter = {'task': 'Travelling'}
+        travelling_ships, travelling_count = self.sp.view_all_ships( paging, filter )
+        for s in travelling_ships:
+            if s.type == 'excavator':
+                self.travelling[ s.to.id ] = 1
+
+        filter = {'type': 'excavator'}
+        ships, excavs_built = self.sp.view_all_ships( paging, filter )
+
+        ### 'excavs_built' is all of the excavators taking up dock space.  
+        ### This includes those currently travelling; we don't want to include 
+        ### those.
+        self.num_excavs = (max - (len(self.excav_sites) + num_travelling) )
+        excavs_built -= num_travelling
+
         self.client.user_logger.debug( "Arch min has {} slots available.".format(self.num_excavs) )
         if self.num_excavs <= 0:
             return
 
-        paging = {}
-        filter = {'type': 'excavator'}
-        self.excav_sites, count = self.sp.view_all_ships( paging, filter )
-
-        self.client.user_logger.debug( "Space port has {} excavators ready.".format(count) )
-        if count < self.num_excavs:
-            self.num_excavs = count
-        self.client.user_logger.debug( "So we're ready to send out {} more excavators.".format(self.num_excavs) )
-
-        return
-
+        self.client.user_logger.debug( "Space port has {} excavators ready.".format(excavs_built) )
+        if excavs_built < self.num_excavs:
+            self.num_excavs = excavs_built
+        self.client.user_logger.info( "We're ready to send out {} more excavators.".format(self.num_excavs) )
 
     def get_map_square( self ):
         """ Gets a list of stars in the next map square.  
@@ -145,8 +175,16 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self.client.user_logger.debug( "Original planet is ({}, {})"
             .format(self.planet.x, self.planet.y) 
         )
-        self.client.user_logger.debug( "Requested cell {} (offset {}) (row {}, col {}) centerpoint is ({}, {})"
-            .format(req_cell.cell_number, req_cell.ring_offset, req_cell.row, req_cell.col, req_cell.center_x, req_cell.center_y)
+        self.client.user_logger.debug( 
+            "Requested cell {} offset {}, row {}, col {}, centerpoint is ({}, {})."
+            .format(
+                self.ring.this_cell_number, 
+                self.ring.ring_offset, 
+                req_cell.row, 
+                req_cell.col, 
+                req_cell.center_x, 
+                req_cell.center_y
+            )
         )
         self.client.user_logger.debug( "Requested cell top {}, bottom {}, left {}, right {}."
             .format(req_cell.top, req_cell.bottom, req_cell.left, req_cell.right)
@@ -158,63 +196,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             'bottom':   req_cell.bottom,
             'left':     req_cell.left 
         })
-
-        ### Advance to the next cell.  If at max cell, advance to the next 
-        ### ring.  If at max ring, there are no more excavs to send.
-        self.cell_number += 1
-        if self.cell_number > cells_this_ring:
-            self.cell_number = 1
-            self.ring_offset += 1
-            if self.ring_offset > self.args.max_ring:
-                self.num_excavs = 0
-
-        return star_list
-
-
-
-    def get_map_square_Orig( self ):
-        """ Gets a list of stars in the next map square.  
-
-        Map squares start from the innermost ring.  When all squares (cells) in 
-        a ring have been returned, we move to the NW cell, one ring out, and 
-        then return all cells in that ring, etc.
-
-        Which ring and cell we're on currently is maintained by ``self``, so no 
-        arguments need to be passed in.
-
-        Returns a list of lacuna.map.Star objects.
-
-        See the Cell class for details on cells and rings.
-        """
-        center_cell = Cell( self.planet, 0, 1 )
-        req_cell    = Cell( self.planet, self.ring_offset, self.cell_number )
-
-        self.client.user_logger.debug( "Original planet (cell {}) is ({}, {})"
-            .format(center_cell.cell_number, self.planet.x, self.planet.y) 
-        )
-        self.client.user_logger.debug( "Requested cell {} (offset {}) (row {}, col {}) centerpoint is ({}, {})"
-            .format(req_cell.cell_number, req_cell.ring_offset, req_cell.row, req_cell.col, req_cell.center_x, req_cell.center_y)
-        )
-        self.client.user_logger.debug( "Requested cell top {}, bottom {}, left {}, right {}."
-            .format(req_cell.top, req_cell.bottom, req_cell.left, req_cell.right)
-        )
-
-        star_list = self.map.get_star_map({
-            'top':      req_cell.top,
-            'right':    req_cell.right,
-            'bottom':   req_cell.bottom,
-            'left':     req_cell.left 
-        })
-
-        ### Advance to the next cell.  If at max cell, advance to the next 
-        ### ring.  If at max ring, there are no more excavs to send.
-        self.cell_number += 1
-        if self.cell_number > cells_this_ring:
-            self.cell_number = 1
-            self.ring_offset += 1
-            if self.ring_offset > self.args.max_ring:
-                self.num_excavs = 0
-
         return star_list
 
 
@@ -223,6 +204,16 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         excavators to that star's planets.
 
         **NO WORKY WORKY**
+            CHECK
+            12/10/2014 - Norway just told me that view_laws() is now working 
+            when called from the body on PT.  
+
+            ...and he just realized that, in the case where a station is 
+            controlled by another station, it's going to be confusing as to 
+            which laws get returned.  He's now going to look at making 
+            view_laws() a Star method -- it'll return the laws that currently 
+            affect a given star, which should reduce confusion.
+
             This whole method assumes that you can call ``view_laws()`` on a 
             station your alliance doesn't own.  The docs say you can do that, 
             but you can't.
@@ -309,12 +300,17 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """
         cnt = 0
         for s in stars:
+            if hasattr(s, 'station') and s.station.name in self.bad_stations:
+                self.client.user_logger.debug("Station {} has MO Excav law on.  Skipping." .format(s.station.name) )
+                continue
             ### This is where we'd call star_seizure_forbids_excav() if 
             ### view_laws() worked.
-            cnt += self.send_excavs_to_bodies( s.bodies )
+            cnt += self.send_excavs_to_bodies( s, s.bodies )
+            if self.num_excavs <= 0:
+                return cnt
         return cnt
 
-    def send_excavs_to_bodies(self, bodies:list):
+    def send_excavs_to_bodies(self, star, bodies:list):
         """ Tries to send an excavator to each body in a list of bodies, 
         provided each body is of one of the requested types.
 
@@ -327,13 +323,30 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         Returns the integer count of excavators sent.
         """
         cnt = 0
-        for b in s.bodies:
-            cnt += self.send_excav_to_body(b)
+        for b in bodies:
+            cnt += self.send_excav_to_matching_body(star, b)
             if self.num_excavs <= 0:
                 return cnt
         return cnt
 
-    def send_excav_to_body(self, body):
+    def get_available_excav_for( self, target:dict ):
+        """ Finds a single excavator to be sent to target.
+
+        Arguments:
+            - target -- Standard target dict
+
+        Returns
+            - excavator -- Either a single lacuna.ship.ExistingShip object 
+              representing an excavator, or False if no available excavators 
+              could be found.
+        """
+        avail = self.sp.get_available_ships_for( target )
+        for s in avail:
+            if s.type == 'excavator':
+                return s
+        return False
+
+    def send_excav_to_matching_body(self, star, body):
         """ Tries to send an excavator to a body.
 
         Called by ``send_excavs``, so this shouldn't need to be called in a 
@@ -350,16 +363,44 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         If everything works out, this will send an excavator, decrement 
         self.num_excavs, and return 1.
         """
+        if hasattr(body, 'empire'):
+            self.client.user_logger.debug("Planet {} ({},{}) is inhabited.  Next!" .format(body.name, body.x, body.y) )
+            return 0
+
+        if body.id in self.travelling:
+            self.client.user_logger.info("We already have an excav on the way to {}.  Next!" .format(body.name) )
+            return 0
+
         if body.type == 'habitable planet' and body.surface_type in self.args.ptypes:
-            self.client.user_logger.debug("Planet {} is habitable and the correct type." .format(body.name) )
+            self.client.user_logger.debug("Planet {} ({},{}) is habitable, uninhabited, and the correct type." .format(body.name, body.x, body.y) )
+        else:
+            self.client.user_logger.debug("Planet {} is either not habitable or not the correct type." .format(body.name) )
+            return 0
+
         for e in self.excav_sites:
             if e.body == body.name:
                 self.client.user_logger.debug("We already have an excav at {}." .format(body.name) )
                 return 0
+
+        target  = { "body_name": body.name }
+        excav = self.get_available_excav_for( target )
+        if not excav:
+            ### CHECK view_laws(), when put in place, should deal with this.
+            ### The other reason we could get to here is if we've already got 
+            ### an excavator headed to this body from one of our other 
+            ### colonies.
+            self.client.user_logger.debug("We can't send an excavator.  Probably MO Excav law.  Adding to bad stations dict.")
+            if hasattr(star, 'station'):
+                self.bad_stations[star.station.name] = 1
+            return 0
+
         try:
-            target  = { "body_name": body.name, "quantity": 1 }
-            types   = [{ "type": "excavator" }]
-            self.sp.send_my_ship_types( target, types )
+            self.sp.send_ship( excav.id, target )
+        except lacuna.exceptions.ServerError as e:
+            self.client.user_logger.debug("Encountered ServerError code {}, message {}."
+                .format(e.code, e.text)
+            )
+            return 0
         except Exception as e:
             ### Probably either MO excavation is on or if we already have an 
             ### excavator en route to this body.
@@ -375,12 +416,15 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             ### got an excav on the way), the target planet is bad, so we'd 
             ### just return 0, not mangle self.num_excavs, and get on with it.
             ###
-            self.client.user_logger.debug("Encountered {} trying to send excav to {}."
-                .format(type(e), body.name)
+            self.client.user_logger.debug("Encountered {}, ({}) trying to send excav to {} ({}, {})."
+                .format(type(e), e, body.name, body.x, body.y)
             )
             return 0
         else:
-            ### Yay it sent.
+            ### It probably sent.  If we already had an excav on the way to 
+            ### this planet, no exception gets thrown, and it looks like we 
+            ### sent one, but we really didn't.
+            self.client.user_logger.info( "We just sent an excavator to {} ({},{}).".format(body.name, body.x, body.y) )
             self.num_excavs -= 1
             return 1
 
@@ -396,8 +440,12 @@ class Ring():
         center_cell_number  the cell_number of the center cell (1 for a 
                             ring_offset of 0, 5 for a ring_offset of 1, etc)
         center_col          The column occupied by the center cell.  0-based. 
-        center_row          The row occupied by the center cell.  0-based. 
-        planet              lacuna.body.MyBody object everything is relative to.
+        center_row          The row occupied by the center cell.  0-based.  
+        this_cell_number    Integer number of the cell just returned by
+                            get_next_cell().  Starts at 0, which is not a 
+                            valid cell number.
+        planet              lacuna.body.MyBody object everything is relative 
+        to.
         ring_offset         Integer offset from the center (center is 0)
         total_cells         Total number of cells in the square, including all 
                             rings (9 for a ring_offset of 1)
@@ -441,11 +489,12 @@ class Ring():
         self.ring_offset                    = ring_offset
         self.cells_this_ring                = int( 8 * self.ring_offset )
         self.cells_per_row                  = int( (2 * self.ring_offset + 1) )
-        self.total_cells                    = int( cells_per_row**2 )
-        self.center_cell_number             = int( (total_cells + 1) / 2 )
+        self.total_cells                    = int( self.cells_per_row**2 )
+        self.center_cell_number             = int( (self.total_cells + 1) / 2 )
+        self.next_cell_number               = 0
         self.cell_size                      = 54
         self._set_center_location()
-        
+
     def _set_center_location(self):
         self.center_row = 0
         self.center_col = self.center_cell_number - 1 # cell numbers start at 1
@@ -482,7 +531,6 @@ class Ring():
         """
         if not hasattr(self, 'next_cell'):
             self.next_cell = self._gen_next_cell()
-
         try:
             return next(self.next_cell)
         except StopIteration:
@@ -491,6 +539,7 @@ class Ring():
 
     def _gen_next_cell(self):
         for i in range(1, self.total_cells + 1):
+            self.this_cell_number = i
             col, row, x, y = self._get_cell_location( i )
             yield Cell( col, row, x, y, self.cell_size )
 

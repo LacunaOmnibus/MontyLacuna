@@ -84,8 +84,8 @@ class ExistingShip(Ship):
         can_scuttle     "1",
         max_occupants   120                             # attribute will always exist, but will 
                                                         # sometimes be '0'.
-        origin          lacuna.ship.ShipDest object
-        to              lacuna.ship.ShipDest object     # Will only appear if the ship is currently
+        origin          lacuna.body.ShipDest object
+        to              lacuna.body.ShipDest object     # Will only appear if the ship is currently
                                                         # travelling somewhere:
         orbiting        lacuna.ship.ShipHub object
     """

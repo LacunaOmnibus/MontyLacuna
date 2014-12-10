@@ -161,7 +161,7 @@ class spaceport(lacuna.building.MyBuilding):
 
         avail_list = []
         for i in kwargs['rslt']['available']:
-            avail_list.append( lacuna.ship.FleetShip(self.client, i) )
+            avail_list.append( lacuna.ship.ExistingShip(self.client, i) )
 
         unavail_list = []
         for i in kwargs['rslt']['unavailable']:
@@ -197,7 +197,7 @@ class spaceport(lacuna.building.MyBuilding):
 
         Returns a tuple:
             - incoming -- List of lacuna.ship.IncomingShip objects
-            - available -- List of lacuna.ship.FleetShip objects
+            - available -- List of lacuna.ship.ExistingShip objects
             - unavailable -- List of lacuna.ship.UnavailableShip objects
             - orbiting -- List of lacuna.ship.ExistingShip objects
             - mining_platforms -- List of lacuna.buildings.spaceport.MiningPlatform objects
@@ -238,8 +238,7 @@ class spaceport(lacuna.building.MyBuilding):
         Arguments
             - target -- Dict, identical to the one in get_my_fleet_for()
             - types -- List of shiptype dicts
-            - arrival -- Optional dict to specify arrival time.  If not sent, 
-              ships will be sent at maximum speed.
+            - arrival -- Dict to specify arrival time.
 
         Shiptype dicts
             You can specify ships to send not just by the shiptype, 

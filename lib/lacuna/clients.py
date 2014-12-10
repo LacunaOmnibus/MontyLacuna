@@ -522,10 +522,18 @@ class Member(Guest):
             - name -- String namespace to use for caching data
             - expiry -- Integer seconds after which cached data is no longer 
               valid.  Defaults to 3600 (one hour).
+
+        Returns:
+            - old_name -- String namespace that had previously been set.  Empty 
+              string if no cache had previously been on.
         """
         self._cache_exp = expiry
+        old_name = ''
+        if hasattr(self, '_cache_name'):
+            old_name = self._cache_name
         self._cache_name = name
         self._cache_on = True
+        return old_name
 
     def cache_off(self):
         """ Turn caching off.

@@ -73,9 +73,14 @@ class archaeology(lacuna.building.MyBuilding):
         """ Gets info on working excavators.
 
         Returns a tuple:
-            - excavators -- List of lacuna.ship.Excavator objects
+            - excavators -- List of lacuna.ship.Excavator objects.  This list
+              includes the current planet!  The Archaeology Ministry itself 
+              counts as an excavator.  If you're trying to get just a list of 
+              the foreign excavator sites you have out, don't forget to drop 
+              the first member of this list, which will be your own planet.
             - max -- Integer max excavators this arch min can support
-            - travelling -- Integer number of excavators currently in the air on the way to a body to begin work.
+            - travelling -- Integer number of excavators currently in the air 
+              on the way to a body to begin work.
         """
         mylist = []
         for i in kwargs['rslt']['excavators']:
