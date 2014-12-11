@@ -8,7 +8,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'This will build as many of a single type of ship as you want, up to the maximum that can be built across all shipyards on your planet.  If there are already ships in your build queue, this will figure that out and only build what it can.',
-            epilog      = 'EXAMPLE: python bin/build_ships.py "Earth" sweeper (fills the build queues of all shipyards on Earth with sweepers).',
+            epilog      = "EXAMPLE this will fill all shipyards' build queues on Earth with sweepers: python bin/build_ships.py Earth sweeper",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
@@ -35,6 +35,11 @@ class BuildShips(lacuna.binutils.libbin.Script):
             default     = 1,
             help        = 'Minimum shipyard level to use for building.  Defaults to 1.'
         )
+        parser.add_argument( '--topoff', 
+            dest        = 'topoff',
+            action      = 'store_true',
+            help        = "If --topoff is sent, instead of building --num new ships, we'll make sure that we have at least --num ships in stock."
+        )
         parser.add_argument( '--quiet', 
             dest        = 'quiet',
             action      = 'store_true',
@@ -45,9 +50,11 @@ class BuildShips(lacuna.binutils.libbin.Script):
         if not self.args.quiet:
             self.client.user_log_stream_handler.setLevel('INFO')
 
+        self.planet = self.client.get_body_byname( self.args.name )
 
-    def get_shipyards( self, planet ):
-        yards = planet.get_buildings_bytype( 'shipyard', self.args.min_lvl )
+
+    def get_shipyards( self ):
+        yards = self.planet.get_buildings_bytype( 'shipyard', self.args.min_lvl )
         if not yards:
             raise RuntimeError("You don't have any shipyards of the required level.")
         return( yards )
@@ -81,6 +88,24 @@ class BuildShips(lacuna.binutils.libbin.Script):
         ### building what we can.
         num_to_build = requested_num if requested_num < build_queue_max else build_queue_max
         num_to_build = docks_avail if docks_avail < build_queue_max else build_queue_max
-        return num_to_build
 
+        if self.args.topoff:
+            old_cache = self.client.cache_off()
+            sp = self.planet.get_buildings_bytype( 'spaceport', self.args.min_lvl, 1, 100 )[0]
+            paging = {}
+            filter = { 'type': self.args.type }
+            ships, number = sp.view_all_ships( paging, filter )
+            if number >= requested_num:
+                self.client.user_logger.info( "You already have {} {}s built, no need to top off."
+                    .format(number, self.args.type)
+                )
+                quit()
+            topoff_num = (requested_num - num_to_build)
+            if topoff_num > num_to_build:
+                self.client.user_logger.info( "We should build {} more ships to top off, but only have slots for {} more."
+                    .format(topoff_num, num_to_build)
+                )
+            else:
+                num_to_build = topoff_num
+        return num_to_build
 

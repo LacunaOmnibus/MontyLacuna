@@ -30,11 +30,10 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     them in your existing docu, and then get rid of test/.
 
 - To publish the docs generated on the master branch to gh-pages:
-  - This procedure will remove any files in the master branch's .gitignore 
-    file.  This includes your logs and lacuna.cfg file.
-    - You probably don't care too much about the logs, but having to re-generate your 
-      lacuna.cfg each time is a bit of a pain.  So before continuing, copy that config 
-      file to your desktop.
+  - This procedure will remove any files in the master branch's .gitignore file.  This 
+    includes your logs and lacuna.cfg file.  The procedure below assumes you don't care 
+    too much about the log files; those are going to go away.  But re-creating your 
+    lacuna.cfg file each time is a pain, so that gets backed up and restored.
 
   - ``$ cd doc``
   - ``$ make html``
@@ -52,15 +51,13 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
   - ``$ rm -rf *``
     - ya rly
   - ``$ mv ~/Desktop/html/*``
+  - ``$ mv ~/Desktop/lacuna.cfg ./etc/``
   - ``$ git add -A .``
   - ``$ git commit -m docs``
   - ``$ git push origin gh-pages``
     - It'll take anywhere from a few seconds to up to 10 minutes for github 
       pages to refresh
   - ``$ git co master``
-    - If you backed up your lacuna.cfg file in the first step, pull it back 
-      again.
-    - ``$ mv ~/Desktop/lacuna.cfg ./etc/``
 
 
 

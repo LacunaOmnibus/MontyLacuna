@@ -1,7 +1,7 @@
 
 .. _logging:
 
-Logging
+logging
 =======
 
 Logging is performed using Python's core `logging library 

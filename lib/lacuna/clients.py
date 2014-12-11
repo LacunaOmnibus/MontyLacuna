@@ -538,8 +538,10 @@ class Member(Guest):
     def cache_off(self):
         """ Turn caching off.
         Does not clear any existing caches, only stops pulling data from them.
+        Returns the name of the cache that had been in use.
         """
         self._cache_on = False
+        return self._cache_name
 
     def cache_clear(self, name:str = ''):
         """ Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.

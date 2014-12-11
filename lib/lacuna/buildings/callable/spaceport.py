@@ -68,14 +68,14 @@ class spaceport(lacuna.building.MyBuilding):
         """ Show all ships on the planet.
 
         All three arguments are optional.  If sent, they are:
-            - filter -- A dict of filter critera, which can contain the keys 'task', 'type', and/or 'tag'.
-                - task -- Building, Defend, Docked, Mining, Orbiting, Supply Chain, Travelling, Waiting on Trade, Waste Chain
-                - type -- Any of the existing ship types (eg "placebo5", "scow_fast", etc)
-                - tag -- Colonization, Exploration, Intelligence, Mining, Trade, War
             - paging -- A dict of paging criteria
                 - no_paging -- true, all ships will be returned, and all other paging options will be ignored.
                 - page_number -- page number to view
                 - items_per_page -- number of items per page
+            - filter -- A dict of filter critera, which can contain the keys 'task', 'type', and/or 'tag'.
+                - task -- Building, Defend, Docked, Mining, Orbiting, Supply Chain, Travelling, Waiting on Trade, Waste Chain
+                - type -- Any of the existing ship types (eg "placebo5", "scow_fast", etc)
+                - tag -- Colonization, Exploration, Intelligence, Mining, Trade, War
             - sort -- A string to specify what to sort the results on.  Defaults to 'type'.  Valid options:
                 - combat
                 - name
