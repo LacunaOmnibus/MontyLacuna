@@ -2,25 +2,6 @@
 import lacuna, lacuna.exceptions, lacuna.binutils.libbin
 import argparse, os, sys
 
-"""
-python bin/send_excavs.py --t p23 --t p24 --t p25 --max_ring 3 Earth
-    This doesn't build excavs; you have to manage that manually or with another script.
-
-Current issues with this:
-    - If you send an excav from Earth to Target_A, then run this for Mars, and 
-      it also tries to send an excav to Target_A, the send from Mars will be 
-      disallowed (because you already have an excav from your empire on the 
-      way).  This will be mis-interpreted as being because of a MO Excavation 
-      law.  The station that has seized Target_A will then be added to the 
-      list of "bad_stations", and no more excavs will be sent to any planet 
-      under that station's jurisdiction.  And that station may well be your 
-      own station, so perfectly valid planets will be skipped.
-
-Other than that, this seems to be working.  I'd like to return to it once the 
-view_laws() thing is straightened out.
-
-"""
-
 class SendExcavs(lacuna.binutils.libbin.Script):
     """
     Attributes::
@@ -34,7 +15,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         client          lacuna.clients.Member object
         excav_sites     A list of lacuna.ship.Excavator objects.  Starts
                         as an empty list, set to the correct value by 
-                        get_excav_count().
+                        get_excav_count().  Does not include the current planet 
+                        in the list.
         map             lacuna.map.Map object
         num_excavs      Number of excavs to be sent from self.planet.  Starts
                         at 0, set to the correct value by get_excav_count().
@@ -51,39 +33,56 @@ class SendExcavs(lacuna.binutils.libbin.Script):
     def __init__(self):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
-            description = 'I SHOW UP ABOVE THE OPTIONS SECTION IN HELP',
-            epilog      = 'I SHOW UP BELOW THE OPTIONS SECTION IN HELP',
+            description = '''
+                    Sends available excavators out to nearby planets of the 
+                    requested type or types.
+                ''',
+            epilog = 'Example: python bin/send_excavs.py -tp33 -tp35 Earth',
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
             action      = 'store',
-            help        = 'All spies from this planet will be recalled.'
+            help        = 'The planet from which to send excavators.'
         )
-        parser.add_argument( '--t', 
+        parser.add_argument( '-t', '--t',
             dest        = 'ptypes',
             metavar     = '<ptype>',
             action      = 'append',
             choices     = [ 'p'+ str(i) for i in range(1,41) ],
-            help        = 'All spies from this planet will be recalled.'
+            help        = 'The types of planets to send excavators towards.  You can include multiple planets by repeating "-t <ptype>" for each type you want to send to.'
         )
         parser.add_argument( '--max_ring', 
             metavar     = '<max_ring>',
             action      = 'store',
             type        = int,
-            default     = 2,
-            help        = 'This might be tough to explain to the user'
+            default     = 3,
+            help        = "Each 'ring' represents a 54 unit square ring around the original planet.  The bigger max_ring is, the farther away we'll send excavators.  Defaults to 3."
+        )
+        parser.add_argument( '--max_send', 
+            metavar     = '<max_send>',
+            action      = 'store',
+            type        = int,
+            default     = 99,
+            help        = "Will send this number of excavators, maximum.  If you want to send an even number of excavators to, say, p11 and p12 planets, run this program once for each type, with a max_send of 10 for each."
         )
         parser.add_argument( '--quiet', 
             dest        = 'quiet',
             action      = 'store_true',
-            help        = "Silence all output."
+            help        = "By default, information on what's happening gets displayed to the screen.  Including this will silence all output.  Overrides '-v'."
         )
+        parser.add_argument( '-v', 
+            dest        = 'verbose',
+            action      = 'count',
+            help        = "Increase output verbosity level -- produces more in-depth screen reporting on what's happening.  Has no effect if --quiet is used."
+        )
+
         super().__init__(parser)
 
         if not self.args.quiet:
-            ### CHECK
-            self.client.user_log_stream_handler.setLevel('DEBUG')
-            #self.client.user_log_stream_handler.setLevel('INFO')
+            if self.args.verbose:
+                self.client.user_log_stream_handler.setLevel('DEBUG')
+            else:
+                self.client.user_log_stream_handler.setLevel('INFO')
 
         self.excav_sites    = []
         self.bad_stations   = {}
@@ -99,27 +98,29 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self.arch   = self.planet.get_buildings_bytype( 'archaeology', 1, 1, 100 )[0]
         self.client.user_logger.debug( "Getting Space Port." )
         self.sp     = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
+        self.client.user_logger.debug( "Making note of travelling excavs." )
+        self.note_travelling_excavators()
+        self.client.user_logger.debug( "Getting usable excav count." )
+        self.get_excav_count()
 
 
-    def get_excav_count( self ):
-        """ Get number of excavs this planet is able to send right now, and 
-        locations of its existing excavs.
-
-        "Able to send right now" means the lower of "how many available excav 
-        slots are there in my Arch Min" and "how many excavators do I have built 
-        and ready to go".
-
-        Returns nothing, but sets ``self.num_excavs``.
-
-        This does *not* take into account the destinations of excavs that are 
-        currently in the air on the way to excavate a planet.
+    def get_ready_excavators(self):
+        """ Returns the number of excavators onsite that have completed building
         """
-        self.client.cache_off() # we need fresh data for this method
+        paging = {}
+        filter = {'type': 'excavator'}
+        ships, excavs = self.sp.view_all_ships( paging, filter )
+        excavs_built = []
+        for i in ships:
+            if i.task == 'Docked':
+                excavs_built.append(i)
+        return len(excavs_built)
 
-        excav_sites, excav_max, num_travelling = self.arch.view_excavators()
-        ### Omit the first excav site; it's our current planet.
-        self.excav_sites = excav_sites[1:]
 
+    def note_travelling_excavators(self):
+        """ Makes a note of any planets we currently have excavators travelling 
+        to.  Returns nothing, but sets self.travelling.
+        """
         paging = {}
         filter = {'task': 'Travelling'}
         travelling_ships, travelling_count = self.sp.view_all_ships( paging, filter )
@@ -127,43 +128,50 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             if s.type == 'excavator':
                 self.travelling[ s.to.id ] = 1
 
-        filter = {'type': 'excavator'}
-        ships, excavs = self.sp.view_all_ships( paging, filter )
-        excavs_built = []
-        for i in ships:
-            if i.task == 'Docked':
-                excavs_built.append(i)
-        num_excavs_ready = len(excavs_built)
 
-        ### At this point, num_excavs is the number of excavators we can send 
-        ### out, according to the Arch Min's limits.
+    def get_excav_count( self ):
+        """ Set the number of excavs this planet is able to send right now.
+
+        Returns nothing, but sets ``self.num_excavs``.
+        """
+        self.client.cache_off() # we need fresh data for this method
+
+        ### Omit the first excav site; it's our current planet.
+        excav_sites, excav_max, num_travelling = self.arch.view_excavators()
+        self.excav_sites = excav_sites[1:]
+
+        ### Get count of built and ready excavators onsite
+        num_excavs_ready = self.get_ready_excavators()
+
+        ### Here, num_excavs is the number of additional excavators that the 
+        ### Arch Min has room for, taking into account its available slots and 
+        ### what's out there travelling.
         self.num_excavs = (excav_max - (len(self.excav_sites) + num_travelling) )
-
-        self.client.user_logger.debug( "Arch min has {} slots available.".format(self.num_excavs) )
+        self.client.user_logger.info( "Arch min has {} slots available.".format(self.num_excavs) )
         if self.num_excavs <= 0:
             return
 
         ### If we have fewer excavators ready to go than the Arch Min has 
-        ### slots available, we'll shorten self.num_excavs - can't send what 
-        ### we don't have.
+        ### slots available, shorten self.num_excavs.
         self.client.user_logger.debug( "Space port has {} excavators ready.".format(num_excavs_ready) )
         if num_excavs_ready < self.num_excavs:
             self.num_excavs = num_excavs_ready
         self.client.user_logger.info( "We're ready to send out {} more excavators.".format(self.num_excavs) )
 
+        ### Last, if the user specified a max_send, make sure we're limiting 
+        ### the number to send this run to the user's spec.
+        if self.num_excavs > self.args.max_send:
+            self.client.user_logger.debug( "We have more excavators ready than you wanted to use - limiting to your spec." )
+            self.num_excavs = self.args.max_send
+
+
     def get_map_square( self ):
         """ Gets a list of stars in the next map square.  
 
-        Map squares start from the innermost ring.  When all squares (cells) in 
-        a ring have been returned, we move to the NW cell, one ring out, and 
-        then return all cells in that ring, etc.
-
-        Which ring and cell we're on currently is maintained by ``self``, so no 
-        arguments need to be passed in.
+        ``self.ring`` keeps track of which map square is "next", so no arguments 
+        need be passed in.
 
         Returns a list of lacuna.map.Star objects.
-
-        See the Cell class for details on cells and rings.
         """
         ### Get the next cell in our current ring.  If we've exhausted our 
         ### current ring, move out one more ring.
@@ -178,18 +186,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.ring = Ring( self.planet, next_offset )
             req_cell = self.ring.get_next_cell()
 
-        self.client.user_logger.debug( "Original planet is ({}, {})"
-            .format(self.planet.x, self.planet.y) 
-        )
         self.client.user_logger.debug( 
             "Requested cell {} offset {}, row {}, col {}, centerpoint is ({}, {})."
             .format(
-                self.ring.this_cell_number, 
-                self.ring.ring_offset, 
-                req_cell.row, 
-                req_cell.col, 
-                req_cell.center_x, 
-                req_cell.center_y
+                self.ring.this_cell_number, self.ring.ring_offset, 
+                req_cell.row, req_cell.col, req_cell.center_x, req_cell.center_y
             )
         )
         self.client.user_logger.debug( "Requested cell top {}, bottom {}, left {}, right {}."
@@ -197,10 +198,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         )
 
         star_list = self.map.get_star_map({
-            'top':      req_cell.top,
-            'right':    req_cell.right,
-            'bottom':   req_cell.bottom,
-            'left':     req_cell.left 
+            'top':      req_cell.top,   'right':    req_cell.right,
+            'bottom':   req_cell.bottom, 'left':    req_cell.left 
         })
         return star_list
 
@@ -276,31 +275,12 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         return False
 
 
-    def send_excavs(self):
-        """ Sends excavators to the requested planet types in range.
-
-        "requested planet types" and "in range" are both controlled by 
-        command-line arguments.
-
-        Returns the number of excavators sent.
-        """
-        cnt = 0
-        while self.num_excavs > 0:
-            stars = self.get_map_square()
-            cnt += self.send_excavs_to_bodies_orbiting( stars )
-        return cnt
-
     def send_excavs_to_bodies_orbiting(self, stars:list):
         """ Sends excavators to the bodies around each star in a list, provided 
         each body is of one of the requested types.
 
         Arguments:
             - stars -- list of lacuna.map.Star objects
-
-        Called by ``send_excavs``, so this shouldn't need to be called in a 
-        script.
-
-        For each excavator sent, self.num_excavs is decremented.
 
         Returns the number of excavators sent.
         """
@@ -316,15 +296,13 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 return cnt
         return cnt
 
+
     def send_excavs_to_bodies(self, star, bodies:list):
         """ Tries to send an excavator to each body in a list of bodies, 
         provided each body is of one of the requested types.
 
         Arguments:
             - bodies -- list of body.Body objects
-
-        Called by ``send_excavs``, so this shouldn't need to be called in a 
-        script.
 
         Returns the integer count of excavators sent.
         """
@@ -354,9 +332,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
 
     def send_excav_to_matching_body(self, star, body):
         """ Tries to send an excavator to a body.
-
-        Called by ``send_excavs``, so this shouldn't need to be called in a 
-        script.
 
         Arguments:
             - body -- A lacuna.body.Body object
@@ -394,7 +369,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             ### CHECK view_laws(), when put in place, should deal with this.
             ### The other reason we could get to here is if we've already got 
             ### an excavator headed to this body from one of our other 
-            ### colonies.
+            ### colonies.  That's absolutely going to happen if we're trying 
+            ### to run this for every planet in a ROF.
             self.client.user_logger.debug("We can't send an excavator.  Probably MO Excav law.  Adding to bad stations dict.")
             if hasattr(star, 'station'):
                 self.bad_stations[star.station.name] = 1
@@ -415,9 +391,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             )
             return 0
         else:
-            ### It probably sent.  If we already had an excav on the way to 
-            ### this planet, no exception gets thrown, and it looks like we 
-            ### sent one, but we really didn't.
             self.client.user_logger.info( "We just sent an excavator to {} ({},{}).".format(body.name, body.x, body.y) )
             self.num_excavs -= 1
             return 1

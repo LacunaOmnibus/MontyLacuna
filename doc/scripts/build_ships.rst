@@ -1,4 +1,6 @@
 
+.. _build_ships:
+
 Build Ships
 ===========
 

@@ -18,16 +18,21 @@ send = lib.SendExcavs()
 ### Get logger
 l = send.client.user_logger
 
-### Figure out how many excavs we need to send
-send.get_excav_count()
+### Send 'em
+cnt = 0
+while send.num_excavs > 0:
+    stars = send.get_map_square()
+    cnt += send.send_excavs_to_bodies_orbiting( stars )
+l.info( "Sent out {} excavators.".format(cnt) )
 
-### Fire the BFG at Norway.
-###
-### No, just kidding.  This sends excavs!
-send.send_excavs()
+
+
 
 """
-python bin/send_excavs.py --t p35 --max_ring 3 bmots01
+All versions work.
+    python bin/send_excavs.py -tp35 -v --max_ring 3 bmots01
+    python bin/send_excavs.py -t p35 --max_ring 3 bmots01
+    python bin/send_excavs.py --t p35 --max_ring 3 bmots01
 """
 
 
