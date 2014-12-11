@@ -35,7 +35,6 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
     - You probably don't care too much about the logs, but having to re-generate your 
       lacuna.cfg each time is a bit of a pain.  So before continuing, copy that config 
       file to your desktop.
-    - ``cp etc/lacuna.cfg ~/Desktop``
 
   - ``$ cd doc``
   - ``$ make html``
@@ -45,6 +44,7 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
       files from dirs starting with underscores.  These underscore directories and the 
       links to them are what fix_underscores.pl is fixing.
   - ``$ cp -Rip {underscore}build/html ~/Desktop``
+  - ``cp etc/lacuna.cfg ~/Desktop``
   - ``$ cd ..``
   - ``$ git status``
     - Commit any changes to master
@@ -62,3 +62,30 @@ https://pythonhosted.org/an_example_pypi_project/sphinx.html#full-code-example
       again.
     - ``$ mv ~/Desktop/lacuna.cfg ./etc/``
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+k
