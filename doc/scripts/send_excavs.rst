@@ -4,6 +4,8 @@
 Send Excavs
 ===========
 
+(Not quite ready for prime time yet).
+
 Sends out excavators from a planet to the nearby planets of whatever type or 
 types you want to excavate.  This does not build excavators for you; you have 
 to have those ready to go before running this; see :ref:`build_ships` if you 
