@@ -65,24 +65,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             default     = 99,
             help        = "Will send this number of excavators, maximum.  If you want to send an even number of excavators to, say, p11 and p12 planets, run this program once for each type, with a max_send of 10 for each."
         )
-        parser.add_argument( '--quiet', 
-            dest        = 'quiet',
-            action      = 'store_true',
-            help        = "By default, information on what's happening gets displayed to the screen.  Including this will silence all output.  Overrides '-v'."
-        )
-        parser.add_argument( '-v', 
-            dest        = 'verbose',
-            action      = 'count',
-            help        = "Increase output verbosity level -- produces more in-depth screen reporting on what's happening.  Has no effect if --quiet is used."
-        )
 
         super().__init__(parser)
-
-        if not self.args.quiet:
-            if self.args.verbose:
-                self.client.user_log_stream_handler.setLevel('DEBUG')
-            else:
-                self.client.user_log_stream_handler.setLevel('INFO')
 
         self.excav_sites    = []
         self.bad_stations   = {}

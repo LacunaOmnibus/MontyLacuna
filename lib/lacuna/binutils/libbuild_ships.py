@@ -40,15 +40,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
             action      = 'store_true',
             help        = "If --topoff is sent, instead of building --num new ships, we'll make sure that we have at least --num ships in stock."
         )
-        parser.add_argument( '--quiet', 
-            dest        = 'quiet',
-            action      = 'store_true',
-            help        = "Silence all output."
-        )
         super().__init__(parser, 'real')
-
-        if not self.args.quiet:
-            self.client.user_log_stream_handler.setLevel('INFO')
 
         self.planet = self.client.get_body_byname( self.args.name )
 

@@ -15,17 +15,7 @@ class RecallAllSpies(lacuna.binutils.libbin.Script):
             action      = 'store',
             help        = 'All spies from this planet will be recalled.'
         )
-        parser.add_argument( '--quiet', 
-            dest        = 'quiet',
-            action      = 'store_true',
-            help        = "Silence all output."
-        )
         super().__init__(parser, 'real')
-
-        ### If you need to work on this, change INFO to DEBUG below, but 
-        ### remember to change it back again when you're done.
-        if not self.args.quiet:
-            self.client.user_log_stream_handler.setLevel('INFO')
 
     
     def find_nothome_spies( self, home_id:int, intmin ):

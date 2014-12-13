@@ -56,7 +56,6 @@ class Script:
             default     = self.bindir + "/../etc/lacuna.cfg",
             help        = "Path to the config file.  Defaults to 'ROOT/etc/lacuna.cfg'"
         )
-
         parser.add_argument( '--section', 
             dest        = 'config_section',
             metavar     = '<section>',
@@ -64,7 +63,27 @@ class Script:
             default     = section,
             help        = "Config file section.  Defaults to '" + section + "'."
         )
+        parser.add_argument( '--quiet', 
+            dest        = 'quiet',
+            action      = 'store_true',
+            help        = "By default, information on what's happening gets displayed to the screen.  Including this will silence all output.  Overrides '-v'."
+        )
+        parser.add_argument( '-v', 
+            dest        = 'verbose',
+            action      = 'count',
+            help        = "Increase output verbosity level -- produces more in-depth screen reporting on what's happening.  Has no effect if --quiet is used."
+        )
+        self.args   = parser.parse_args()
+        self.client = self.connect()
 
+        ### Set log level
+        if not self.args.quiet:
+            if self.args.verbose:
+                self.client.user_log_stream_handler.setLevel('DEBUG')
+            else:
+                self.client.user_log_stream_handler.setLevel('INFO')
+
+        ### Set version
         vers = '0.1'
         if hasattr(self, 'version'):
             vers = self.version
@@ -76,8 +95,6 @@ class Script:
             help        = "Print program version and quit"
         )
 
-        self.args   = parser.parse_args()
-        self.client = self.connect()
 
     def connect( self ):
         try:

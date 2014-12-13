@@ -15,15 +15,7 @@ class RecallShips(lacuna.binutils.libbin.Script):
             action      = 'store',
             help        = 'All spies from this planet will be recalled.'
         )
-        parser.add_argument( '--quiet', 
-            dest        = 'quiet',
-            action      = 'store_true',
-            help        = "Silence all output."
-        )
         super().__init__(parser)
-
-        if not self.args.quiet:
-            self.client.user_log_stream_handler.setLevel('INFO')
 
     def show_report(self, ships):
         """ Displays a report on what ships have been recalled.

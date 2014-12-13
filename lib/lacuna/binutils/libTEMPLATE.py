@@ -23,12 +23,8 @@ class CHECK(lacuna.binutils.libbin.Script):
             action      = 'store',
             help        = 'All spies from this planet will be recalled.'
         )
-        parser.add_argument( '--quiet', 
-            dest        = 'quiet',
-            action      = 'store_true',
-            help        = "Silence all output."
-        )
         super().__init__(parser)
+
         ###
         ### If your script requires a real, not sitter, password, use the 
         ### __init__ call below instead of the one above. Otherwise, remove 
