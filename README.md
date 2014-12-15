@@ -1,9 +1,20 @@
 MontyLacuna
 ===========
 
-a Python Client for The Lacuna Expanse.
+A Python Client for The Lacuna Expanse.
 
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
+
+
+"""
+AS Python installer does NOT have "register as default python" checked by 
+default - this is what adds python to the PATH.  Include instructions to the 
+user to fix that setting that during the install wizard.
+"""
+
+
+
+
 
 ## Currently working on 
 - bin/send_excavs.py
