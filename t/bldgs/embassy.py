@@ -112,18 +112,21 @@ stats = leader_client.get_stats()
 ### Set a new alliance leader
 ###
 #my_ally = leader_client.get_my_alliance()
-#print( "{}'s current leader's ID is {}.".format(my_ally.name, my_ally.leader_id) )
-#new_leader = ''
-#for i in my_ally.members:
-#    if i.id != my_ally.leader_id:
-#        print( "My new leader will be {} (ID {}).".format(i.name, i.id) )
-#        new_leader = i
-#if not new_leader:
-#    raise KeyError("I was unable to find a new leader.")
-#my_ally_now = leader_emb.assign_alliance_leader( new_leader.id )
-#print( "The new leader of {} has an ID of {}."
-#    .format(my_ally_now.name, my_ally_now.leader_id)
-#)
+#if my_ally:
+#    print( "{}'s current leader's ID is {}.".format(my_ally.name, my_ally.leader_id) )
+#    new_leader = ''
+#    for i in my_ally.members:
+#        if i.id != my_ally.leader_id:
+#            print( "My new leader will be {} (ID {}).".format(i.name, i.id) )
+#            new_leader = i
+#    if not new_leader:
+#        raise KeyError("I was unable to find a new leader.")
+#    my_ally_now = leader_emb.assign_alliance_leader( new_leader.id )
+#    print( "The new leader of {} has an ID of {}."
+#        .format(my_ally_now.name, my_ally_now.leader_id)
+#    )
+#else:
+#    print( "You are not in an alliance." )
 
 
 ###

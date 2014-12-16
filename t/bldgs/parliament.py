@@ -158,13 +158,16 @@ parl = my_station.get_buildings_bytype( 'parliament' )[0]
 ### Propose transferring station ownership
 ### 
 #my_ally = glc.get_my_alliance()
-#new_owner = ''
-#for i in my_ally.members:
-#    if i.name == 'The Name of the Empire to Take Over Control':
-#        new_owner = i
-#        break
-#prop = parl.propose_transfer_station_ownership( i.id )
-#print( "I just proposed {}.".format(prop.description) )
+if my_ally:
+    new_owner = ''
+    for i in my_ally.members:
+        if i.name == 'The Name of the Empire to Take Over Control':
+            new_owner = i
+            break
+    prop = parl.propose_transfer_station_ownership( i.id )
+    print( "I just proposed {}.".format(prop.description) )
+else:
+    print( "You are not in an alliance." )
 
 
 

@@ -1,6 +1,8 @@
 
 import lacuna.bc
+import lacuna.alliance
 import lacuna.body
+import re
 
 class Map(lacuna.bc.LacunaObject):
     """ Provides access to the starmap.  """
@@ -191,10 +193,54 @@ class Star(lacuna.bc.SubClass):
             del( star_dict['bodies'] )
         self.bodies = body_objs
 
-        if 'station' in star_dict:
+        if 'station' in star_dict and type(star_dict['station']) is dict:
             star_dict['station'] = Station(client, star_dict['station'])
 
         super().__init__(client, star_dict)
+
+
+    ### There's no actual Star class on the server, and trying to shoehorn 
+    ### this class under Map or Body just so we can use the decorators there 
+    ### is bogus, so we're making the actual server call here rather than 
+    ### using a decorator.
+    def view_laws(self, *args, **kwargs):
+        """ View the laws affecting this star.
+
+        If the star is not under the control of a space station, a single 
+        'law' with the name "Not controlled by a station" will be returned.
+
+        Note - I don't see any reason why a station couldn't pass a writ named 
+        "Not controlled by a station", so be careful about just looking for a 
+        law with that name and assuming it means that the star is really not 
+        controlled by a station.
+
+        Returns a list of lacuna.alliance.Law objects.
+        """
+        myargs = (self.client.session_id, self.id)
+        rslt = self.client.send( 'map', 'view_laws', myargs )
+
+        mylist = []
+        for i in rslt['laws']:
+            mylist.append( lacuna.alliance.Law(self.client, i) )
+        return mylist
+
+    def view_nonseizure_laws(self, *args, **kwargs):
+        """ View the laws affecting this star other than seizure laws.
+
+        The bulk of the laws passed by most stations will be star seizure 
+        laws, and these are almost always *not* what you're interested in when 
+        checking laws.  So this method filters out the seizure laws and just 
+        returns you the good stuff.
+
+        Returns a list of lacuna.alliance.Law objects.
+        """
+        laws = self.view_laws()
+        interesting_laws = []
+        for l in laws:
+            if not re.match('^Seize', l.name):
+                interesting_laws.append(l)
+        return interesting_laws
+
 
 class StationStar(lacuna.bc.SubClass):
     """ A star in the jurisdiction of a space station, as returned by 

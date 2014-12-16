@@ -12,26 +12,38 @@ pp = pprint.PrettyPrinter( indent = 4 )
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'sitter',
+    #config_section = 'sitter',
+    config_section = 'play_test',
 )
 
 
 mymap = glc.get_map();
 
 
-### View all stars in a chunk of space using named arguments
+### View all stars in a chunk of space using named arguments.
+### Since we're calling view_laws() on each returned star for this test, you 
+### should use a small chunk of space in your star_dict.
 ###
 #star_dict = {
-#    'left': -1500,
-#    'right': 1500,
-#    'top': -1498,
-#    'bottom': -1499
+#    'left': 1197,
+#    'right': 1197,
+#    'top': 1198,
+#    'bottom': 1198
 #}
 #stars = mymap.get_star_map(star_dict)
 #for s in stars[0:5]:
 #    print( "{} ({}, {}) is {} and, as far as my probes can tell, is orbited by {} bodies."
 #        .format(s.name, s.x, s.y, s.color, len(s.bodies))
 #    )
+#    if hasattr(s, 'station'):
+#        print( "This star has been claimed by station {} (id {}).".format(s.station.name, s.station.id) )
+#    ###
+#    ### Any star not under control of a station will have the single law "Not 
+#    ### controlled by a station".
+#    ###
+#    laws = s.view_nonseizure_laws()
+#    for l in laws:
+#        print( "Law '{}' is in effect.".format(l.name) )
 
 
 ### View all stars in a chunk of space using positional arguments

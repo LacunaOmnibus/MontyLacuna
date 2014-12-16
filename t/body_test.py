@@ -25,6 +25,14 @@ glc = lacuna.clients.Member(
 #    print( "This planet is under the control of", p.station.name )
 
 
+### View any nonseizure laws affecting this planet
+###
+#p = glc.get_body_byname( 'bmots01' )
+#laws = p.view_nonseizure_laws()
+#for l in laws:
+#    print( "Law '{}' is in effect.".format(l.name) )
+
+
 ### Get the building at a specific coordinate on your planet's surface
 ###
 #my_planet = glc.get_body_byname( 'bmots support 02' )

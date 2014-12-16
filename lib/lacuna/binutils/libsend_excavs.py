@@ -6,8 +6,10 @@ class SendExcavs(lacuna.binutils.libbin.Script):
     """
     Attributes::
 
+        ally            The user's lacuna.alliance.MyAlliance object, or False 
+                        if the user is not in an alliance.
         arch            The Archaeology Ministry on self.planet.
-        args            Command-line arguments; the result of
+        args            Command-line arguments set by the user; the result of
                         self.parser.parse_args()
         bad_stations    Dict of names ( {name: 1} ) of stations we've 
                         encountered that won't accept excavs (MO laws).
@@ -68,6 +70,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
 
         super().__init__(parser)
 
+        self.client.user_logger.debug( "Getting user's alliance." )
+        self.ally           = self.client.get_my_alliance()
         self.excav_sites    = []
         self.bad_stations   = {}
         self.client.user_logger.debug( "Getting star map." )
@@ -188,74 +192,38 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         return star_list
 
 
-    def star_seizure_forbids_excav( self, star, stations:dict, my_alliance = '' ):
+    def star_seizure_forbids_excav( self, star ):
         """ Lets you know if the laws affecting a star forbid you from sending 
         excavators to that star's planets.
 
         **NO WORKY WORKY**
-            CHECK
-            12/10/2014 - Norway just told me that view_laws() is now working 
-            when called from the body on PT.  
-
-            ...and he just realized that, in the case where a station is 
-            controlled by another station, it's going to be confusing as to 
-            which laws get returned.  He's now going to look at making 
-            view_laws() a Star method -- it'll return the laws that currently 
-            affect a given star, which should reduce confusion.
-
-            This whole method assumes that you can call ``view_laws()`` on a 
-            station your alliance doesn't own.  The docs say you can do that, 
-            but you can't.
-
-            So this in no way works.
-
-            If the ``view_laws()`` thing ever gets fixed, this method should 
-            be just about ready to go, so I'm leaving it here.
+            This currently (12/16/2014) works on PT, but not on US1 yet.
 
         Arguments:
             - star -- lacuna.map.Star object
-            - stations -- Dict.  Keeps track of stations that have already had 
-              their laws checked, so any given station only has to have its 
-              ``view_laws()`` method called once.  This should start out as an 
-              empty dict.
-            - my_alliance -- Optional lacuna.alliance.MyAlliance object.  This 
-              is only 'optional' in that, if the user is not a member of an 
-              alliance, it can be omitted.  But if the user is a member of an 
-              alliance, and this doesn't get passed in, any stations owned by 
-              the user's alliance that have Members Only Excavation laws in 
-              effect will be reported as not being excavate-able.
 
         Returns True if the star's laws forbids you from excavating its planets, 
         False otherwise.
         """
-
-        ### return False unless star owned by a station
-        if not hasattr( star, 'station' ):
+        if not hasattr(star, 'station'):
             return False
-        self.client.user_logger.debug( "{} is owned by an alliance.".format(star.name) )
 
-        ### return False if that's my alliance
-        if my_alliance:
-            if star.station.id == my_alliance.id:
-                self.client.user_logger.debug( "Good - it's my alliance." )
+        if star.station.name in self.bad_stations:
+            self.client.user_logger.debug("This star's station has already been found to have MO Excav law turned on." )
+            return True
+
+        if self.ally:
+            if star.station.id == self.ally.id:
+                self.client.user_logger.debug("This star has been seized, but it's by my alliance." )
                 return False
-        self.client.user_logger.debug( "Maybe bad - it's not my alliance." )
 
-        ### if station id is in stations dict, return the value
-        if star.station.id in stations:
-            self.client.user_logger.debug( "We've already checked out this station." )
-            return stations[ star.station.id ]
-
-        ### View laws on station.  Set stations dict and return.
-        laws = star.station.view_laws()
-        for i in laws:
-            if i.name == 'Members Only Excavation':
-                stations[ star.station.id ] = True
-                self.client.user_logger.debug( "This foreign station forbids MO excavation." )
+        laws = star.view_nonseizure_laws()
+        for l in laws:
+            if l.name == 'Members Only Excavation':
+                self.client.user_logger.debug("Whoops - this star has MO Excav law turned on, and not by my alliance.  Skipping." )
+                self.bad_stations[star.station.name] = 1
                 return True
 
-        self.client.user_logger.debug( "This foreign station allows MO excavation." )
-        stations[ star.station.id ] = False
         return False
 
 
@@ -270,11 +238,9 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """
         cnt = 0
         for s in stars:
-            if hasattr(s, 'station') and s.station.name in self.bad_stations:
+            if self.star_seizure_forbids_excav( s ):
                 self.client.user_logger.debug("Station {} has MO Excav law on.  Skipping." .format(s.station.name) )
                 continue
-            ### This is where we'd call star_seizure_forbids_excav() if 
-            ### view_laws() worked.
             cnt += self.send_excavs_to_bodies( s, s.bodies )
             if self.num_excavs <= 0:
                 return cnt
@@ -336,10 +302,14 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.client.user_logger.info("We already have an excav on the way to {}.  Next!" .format(body.name) )
             return 0
 
-        if body.type == 'habitable planet' and body.surface_type in self.args.ptypes:
+        if body.type != 'habitable planet':
+            self.client.user_logger.debug("Planet {} is not habitable." .format(body.name) )
+            return 0
+
+        if body.surface_type in self.args.ptypes:
             self.client.user_logger.debug("Planet {} ({},{}) is habitable, uninhabited, and the correct type." .format(body.name, body.x, body.y) )
         else:
-            self.client.user_logger.debug("Planet {} is either not habitable or not the correct type." .format(body.name) )
+            self.client.user_logger.debug("Planet {} is not the correct type." .format(body.name) )
             return 0
 
         for e in self.excav_sites:
@@ -350,14 +320,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         target  = { "body_name": body.name }
         excav = self.get_available_excav_for( target )
         if not excav:
-            ### CHECK view_laws(), when put in place, should deal with this.
-            ### The other reason we could get to here is if we've already got 
-            ### an excavator headed to this body from one of our other 
-            ### colonies.  That's absolutely going to happen if we're trying 
-            ### to run this for every planet in a ROF.
-            self.client.user_logger.debug("We can't send an excavator.  Probably MO Excav law.  Adding to bad stations dict.")
-            if hasattr(star, 'station'):
-                self.bad_stations[star.station.name] = 1
+            self.client.user_logger.debug("We can't send an excavator to this target.  We probably already sent an excav from a previous run.")
             return 0
 
         try:
@@ -370,6 +333,9 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         except Exception as e:
             ### Probably either MO excavation is on or if we already have an 
             ### excavator en route to this body.
+            ### MO Excav laws _should_ have already been checked, but a race 
+            ### condition exists here; it's possible the law was just now 
+            ### passed, after the check was performed.
             self.client.user_logger.debug("Encountered {}, ({}) trying to send excav to {} ({}, {})."
                 .format(type(e), e, body.name, body.x, body.y)
             )

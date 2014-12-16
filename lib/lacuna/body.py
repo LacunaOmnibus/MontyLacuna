@@ -446,7 +446,7 @@ class MyBody(Body):
                         'y':  integer y coordinate to move to,  },
                   { another building to move, same format as above },     ]
 
-        Returns a list of body.Arrangement objects.
+        Returns a list of body.SimpleBody objects.
 
         Attempting to make an illegal move (moving a building out of -5..5 
         bounds, moving it on top of another building, moving the PCC at all, 
@@ -455,8 +455,65 @@ class MyBody(Body):
         """
         mylist = []
         for i in kwargs['rslt']['moved']:
-            mylist.append( Arrangement(self.client, i) )
+            mylist.append( SimpleBody(self.client, i) )
         return mylist
+
+
+    ### To view the laws from a planet, we have to pass the ID of the station 
+    ### controlling the planet, not the ID of the planet itself, and none of 
+    ### the existing decorators work that way.  Don't try to force some new 
+    ### bogus one-off decorator, just make the call from here.
+    def view_laws( self, *args, **kwargs ):
+        """ View the laws affecting this planet.
+
+        If the planet is not under the control of a space station, a single 
+        'law' with the name "Not controlled by a station" will be returned.
+
+        Note - I don't see any reason why a station couldn't pass a writ named 
+        "Not controlled by a station", so be careful about just looking for a 
+        law with that name and assuming it means that the star is really not 
+        controlled by a station.
+
+        Returns a list of lacuna.alliance.Law objects.
+        """
+
+        mylist = [
+            lacuna.alliance.Law(self.client, {
+                'id':           0,
+                'name':         'Not controlled by a station',
+                'description':  'This planet is not under the control of a space station',
+                'date_enacted': '12 31 1969 23:59:59 +0000',
+            })
+        ]
+        if not hasattr(self, 'station'):
+            return mylist
+
+        myargs  = (self.client.session_id, self.station.id)
+        mylist  = []
+        rslt    = self.client.send( 'body', 'view_laws', myargs )
+
+        for i in rslt['laws']:
+            mylist.append( lacuna.alliance.Law(self.client, i) )
+        return mylist
+
+
+    def view_nonseizure_laws(self, *args, **kwargs):
+        """ View the laws affecting this planet other than seizure laws.
+
+        The bulk of the laws passed by most stations will be star seizure 
+        laws, and these are almost always *not* what you're interested in when 
+        checking laws.  So this method filters out the seizure laws and just 
+        returns you the good stuff.
+
+        Returns a list of lacuna.alliance.Law objects.
+        """
+        laws = self.view_laws()
+        interesting_laws = []
+        for l in laws:
+            if not re.match('^Seize', l.name):
+                interesting_laws.append(l)
+        return interesting_laws
+
 
     @lacuna.bc.LacunaObject.call_returning_body_meth
     def get_buildable( self, x:int, y:int, tag:str = '', *args, **kwargs ):
@@ -682,18 +739,4 @@ class ShipHub(lacuna.bc.SubClass):
         x           100
         y           250
     """
-
-
-class Arrangement(lacuna.bc.SubClass):
-    """ This comes back after rearranging buildings.
-
-    Attributes::
-
-        id          "id-goes-here",
-        name        "Earth"
-        x           100
-        y           -250
-        image       "p35"
-    """
-            
 

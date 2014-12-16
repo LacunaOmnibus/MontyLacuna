@@ -29,7 +29,10 @@ client.cache_on('ally_test', 3600)
 ### client is not in an alliance, this will raise a GDIError.
 ###
 #my_all = client.get_my_alliance();
-#print( "My alliance is named '{}'; here are some of the members:".format(my_all.name) )
-#for i in my_all.members[0:10]:
-#    print( "\t", i.name )
+#if my_all:
+#    print( "My alliance is named '{}'; here are some of the members:".format(my_all.name) )
+#    for i in my_all.members[0:10]:
+#        print( "\t", i.name )
+#else:
+#    print( "You are not in an alliance." )
 

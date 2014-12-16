@@ -115,6 +115,19 @@ class Influence(lacuna.bc.SubClass):
         spent   25
     """
 
+
+class Law(lacuna.bc.SubClass):
+    """ A law affecting the current planet or star.
+
+    Attributes::
+
+        id              "id-goes-here",
+        name            "Censure of Jamie Vrbsky",
+        description     "Jamie Vrbsky is bad at playing Lacuna!",
+        date_enacted    "01 31 2010 13:09:05 +0600"
+    """
+
+
 class Profile(lacuna.bc.SubClass):
     """
     Attributes::

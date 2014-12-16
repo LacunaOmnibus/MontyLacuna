@@ -84,7 +84,7 @@ class Guest(lacuna.bc.SubClass):
         if config_file and config_section and os.path.isfile(config_file):
             self.config_file    = config_file
             self.config_section = config_section
-            self.config         = self.read_config_file( config_file )
+            self.config         = self._read_config_file( config_file )
             for i in self.config_list:
                 if i in self.config[config_section]:
                     setattr( self, i, self.config[config_section][i] )
@@ -235,7 +235,7 @@ class Guest(lacuna.bc.SubClass):
             l.addHandler(fh)
         self.request_logger = l
 
-    def read_config_file( self, conf, default = 'DEFAULT' ):
+    def _read_config_file( self, conf, default = 'DEFAULT' ):
         cp = configparser.ConfigParser( interpolation=configparser.ExtendedInterpolation() )
         cp.read( conf )
         for section in cp:
@@ -247,6 +247,15 @@ class Guest(lacuna.bc.SubClass):
         return cp
 
     def write_default_config_file( self, path ):
+        """ Writes initial data to a file to be used as a MontyLacuna config file.
+
+        This method does no safety checking of any kind, and will clobber the 
+        contents of any file passed to it.  So check to make sure you're not 
+        overwriting some existing file before calling this.
+
+        Arguments:
+            - path -- Path to the file to write
+        """
         cp = configparser.ConfigParser()
         cp['DEFAULT'] = {
             'host': 'us1.lacunaexpanse.com',
@@ -269,9 +278,19 @@ class Guest(lacuna.bc.SubClass):
         return url
 
     def get_stats(self):
+        """ Get a Stats object """
         return lacuna.stats.Stats( self )
 
     def is_name_available(self, name):
+        """ Check if a given string is available to be registered as a new 
+        empire name.
+
+        Arguments:
+            - name -- The string to check for availablility.
+
+        Returns True if the string can be used as a new empire name, False
+        otherwise.
+        """
         try:
             rslt = self.send( 'empire', 'is_name_available', (name,) )
         except lacuna.exceptions.ServerError as e:
@@ -284,7 +303,7 @@ class Guest(lacuna.bc.SubClass):
                 exit()
         return True
 
-    def looks_like_json( self, json_candidate:str ):
+    def _looks_like_json( self, json_candidate:str ):
         return True if re.match("^{.*}$", json_candidate) else False
 
     def _determine_empname(self):
@@ -385,9 +404,9 @@ class Guest(lacuna.bc.SubClass):
         ### just checking that _should_ be enough.  But in the spirit of CYA, 
         ### I still want to confirm that the supposedly JSON string I'm 
         ### receiving when the content type indicates JSON, is actually JSON.  
-        ### Hence the looks_like_json() check.
+        ### Hence the _looks_like_json() check.
         if resp.headers['content-type'] != 'application/json-rpc' or not \
-            self.looks_like_json(resp.text):
+            self._looks_like_json(resp.text):
                 self.request_logger.error('Response is not JSON', extra=log_opts)
                 raise lacuna.exceptions.NotJsonError( "Response from server is not json: " + resp.text )
 
@@ -538,10 +557,10 @@ class Member(Guest):
     def cache_off(self):
         """ Turn caching off.
         Does not clear any existing caches, only stops pulling data from them.
-        Returns the name of the cache that had been in use.
+        Returns the name of the cache that had been in use, or False if none.
         """
         self._cache_on = False
-        return self._cache_name
+        return self._cache_name if hasattr(self, '_cache_name') else False
 
     def cache_clear(self, name:str = ''):
         """ Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.
@@ -572,13 +591,29 @@ class Member(Guest):
         return True
 
     def get_alliance(self):
+        """ Get an alliance object.
+        """
         return lacuna.alliance.Alliance( self )
 
     def get_body(self, body_id):
+        """ Get a body object by body ID.
+
+        Arguments:
+            - body_id -- Integer ID of the body
+
+        Returns a lacuna.body.Body object.
+        """
         attrs = { 'id': body_id, }
         return lacuna.body.Body( self, attrs )
 
     def get_body_byname(self, body_name):
+        """ Get one of your empire's bodies (planet or station) by name.
+
+        Arguments:
+            - body_name -- String name of the body
+
+        Returns a lacuna.body.MyBody object.
+        """
         for bid, name in self.empire.planets.items():
             if name == body_name:
                 attrs = {
@@ -590,16 +625,32 @@ class Member(Guest):
             raise lacuna.exceptions.NoSuchMyBodyError("No body with the name '{}' was found.".format(body_name))
 
     def get_captcha(self):
+        """ Get a Captcha object.
+        """
         return lacuna.captcha.Captcha( self )
 
     def get_inbox(self):
+        """ Get an Inbox object.
+        """
         return lacuna.inbox.Inbox( self )
 
     def get_map(self):
+        """ Get a Map object.
+        """
         return lacuna.map.Map( self )
 
     def get_my_alliance(self):
-        return lacuna.alliance.MyAlliance( self )
+        """ Get a MyAlliance object.
+
+        Returns a lacuna.alliance.MyAlliance object if the current empire is a 
+        member of an alliance.  Otherwise returns false.
+        """
+        my_ally = False
+        try:
+            my_ally = lacuna.alliance.MyAlliance( self )
+        except lacuna.exceptions.GDIError as e:
+            return my_ally
+        return my_ally
 
     def login(self):
         """ Ensures the current client is logged in.
@@ -633,7 +684,7 @@ class Member(Guest):
 
         if hasattr( self, 'config' ):
             self.config[self.config_section]['session_id'] = self.session_id
-            self.update_config_file()
+            self._update_config_file()
 
     def _write_empire_status(self, mydict:dict):
         """ This is almost, but not quite the same, as 
@@ -643,7 +694,7 @@ class Member(Guest):
             setattr( self.empire, i, mydict[i] )
         self.empire.planet_names = {name: id for id, name in self.empire.planets.items()}
 
-    def update_config_file(self):
+    def _update_config_file(self):
         if not hasattr(self, 'config'):
             return False
         with open(self.config_file, 'w') as handle:
@@ -672,6 +723,6 @@ class Member(Guest):
         if hasattr( self, 'config' ) and hasattr( self, 'config_section'):
             if 'session_id' in self.config[self.config_section]:
                 del( self.config[self.config_section]['session_id'] )
-                self.update_config_file()
+                self._update_config_file()
         return rslt
 

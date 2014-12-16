@@ -11,6 +11,10 @@ AS Python installer does NOT have "register as default python" checked by
 default - this is what adds python to the PATH.  Include instructions to the 
 user to fix that setting that during the install wizard.
     I added a blurb, but I need a screenshot and correct verbiage.
+
+Try to pass a writ named "Not controlled by a station" at one of our stations and see if 
+that shows up any differently than the retval from a star that's really not being 
+controlled by a station.
 """
 
 

@@ -133,10 +133,16 @@ tmt = lac.clients.Member(
 ### From a logged-in client, you have access to most other objects via get_*() methods:
 ### 
 # alliance = tmt.get_alliance()                   # Generic Alliance object, NOT set to any specific alliance.
-# my_alliance = tmt.get_my_alliance()             # This one is set to my empire's alliance.
 # body1 = tmt.get_body( integer body ID )         # Gotta go dig up the planet's ID.  Ugh.
 # body2 = tmt.get_body_byname( Name of a body )   # Yay, I already know my planet's name.
 # inbox = tmt.get_inbox()                         # My empire's mail inbox
 # mymap = tmt.get_map()                           # Starmap
 # mystats = tmt.get_stats()                       # Stats
+
+#my_alliance = tmt.get_my_alliance()             # This one is set to my empire's alliance.
+#if my_alliance:
+#    print( "You are in the alliance named {}.".format(my_alliance.name) )
+#else:
+#    print( "You are not in an alliance." )
+
 
