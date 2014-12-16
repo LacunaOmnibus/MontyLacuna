@@ -45,7 +45,7 @@ class Inbox(lacuna.bc.LacunaObject):
         return 0 messages.
 
         Returns a tuple:
-            - messages -- List of inbox.MessageSummary objects
+            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
             - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
@@ -81,7 +81,7 @@ class Inbox(lacuna.bc.LacunaObject):
 
         Requires a single integer message ID.
         
-        Returns an inbox.Message object.
+        Returns an :class:`lacuna.inbox.Message` object.
         """
         return Message(self.client, kwargs['rslt']['message'])
 

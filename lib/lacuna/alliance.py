@@ -14,7 +14,7 @@ class Alliance(lacuna.bc.LacunaObject):
 
         Requires an integer alliance ID.
 
-        Returns a lacuna.alliance.Profile object.
+        Returns a :class:`lacuna.alliance.Profile` object.
         """
         return Profile(self.client, kwargs['rslt']['profile'])
 
@@ -24,7 +24,7 @@ class Alliance(lacuna.bc.LacunaObject):
 
         Requires a standard TLE search string.  See :ref:`glossary`.
 
-        Returns a list of alliance.FoundAlliance objects.
+        Returns a list of :class:`lacuna.alliance.FoundAlliance` objects.
         """
         mylist = []
         for i in kwargs['rslt']['alliances']:
@@ -47,8 +47,11 @@ class MyAlliance(Alliance):
         leader_id       67890
         date_created    "01 31 2010 13:09:05 +0000",
         influence       0
-        members         List of alliance.Member objects
+        members         List of lacuna.alliance.Member objects
         space_stations  List of lacuna.body.SpaceStation objects
+
+    - :class:`lacuna.alliance.Member`
+    - :class:`lacuna.body.SpaceStation`
     """
 
     def __init__( self, client:object ):
@@ -137,8 +140,8 @@ class Profile(lacuna.bc.SubClass):
         description     "Blah blah blah blah...",
         leader_id       "id-goes-here",
         date_created    "01 31 2010 13:09:05 +0600",
-        members         List of alliance.Member objects,
-        space_stations  List of ship.SpaceStation objects,
+        members         List of :class:`lacuna.alliance.Member` objects,
+        space_stations  List of :class:`lacuna.ship.SpaceStation` objects,
         influence       0
     """
     def __init__(self, client, mydict:dict):

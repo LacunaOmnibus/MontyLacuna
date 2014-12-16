@@ -48,12 +48,14 @@ class Excavator(Ship):
     Attributes::
 
         id              "id-goes-here",
-        body            Body object
+        body            lacuna.body.Body object
         artifact        5,
         glyph           30,
         plan            7,
         resource        53
         date_landed     Date excav started at location
+
+    - :class:`lacuna.body.Body`
     """
     def __init__( self, client, mydict:dict, *args, **kwargs ):
         mydict['body'] = lacuna.body.Body(client, mydict['body'])
@@ -88,6 +90,9 @@ class ExistingShip(Ship):
         to              lacuna.body.ShipDest object     # Will only appear if the ship is currently
                                                         # travelling somewhere:
         orbiting        lacuna.ship.ShipHub object
+
+    - :class:`lacuna.body.ShipDest`
+    - :class:`lacuna.body.ShipHub`
     """
     def __init__(self, client, mydict):
         if not 'max_occupants' in mydict:
@@ -169,7 +174,7 @@ class IncomingShip(Ship):
 class IncomingToBodyShip(Ship):
     """ An IncomingShip is what you can see from your Space Port or Police 
     Station, while an IncomingToBodyShip is the much reduced information you 
-    can get from a MyBody object.
+    can get from a :class:`lacuna.body.MyBody` object.
 
     Attributes::
 

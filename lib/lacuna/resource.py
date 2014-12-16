@@ -214,6 +214,8 @@ class SupplyChain(lacuna.bc.SubClass):
         resource_type           'water',
         percent_transferred     95,
         stalled                 0,
+
+    - :class:`lacuna.body.SimpleBody`
     """
     def __init__(self, client, mydict:dict):
         if 'from_body' in mydict:

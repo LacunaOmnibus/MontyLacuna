@@ -24,6 +24,9 @@ class Spy(lacuna.bc.SubClass):
         seconds_remaining      45,
         assigned_to            SpyBody object
         based_from             SpyBody object
+
+    - :class:`lacuna.spy.Assignment`
+    - :class:`lacuna.spy.SpyBody`
     """
 
     def __init__( self, client, mydict:dict, *args, **kwargs ):
@@ -56,64 +59,36 @@ class Assignment(lacuna.bc.SubClass):
             recovery    0,          # in seconds
             skill       "none"
 
-    Tasks:
-        Idle
-            Don't do anything.
-        Counter Espionage.
-            Passively defend against all attackers.
-        Security Sweep
-            Round up attackers.
-        Intel Training
-            Train in Intelligence skill
-        Mayhem Training
-            Train in Mayhem skill
-        Politics Training
-            Train in Politics skill
-        Theft Training
-            Train in Theft skill
-        Political Propaganda
-            Give happiness generation a boost. Especially effective on unhappy 
-            colonies, but hastens an agent toward retirement.
-        Gather Resource Intelligence
-            Find out what's up for trade, what ships are available, what ships 
-            are being built, where ships are travelling to, etc.
-        Gather Empire Intelligence
-            Find out what is built on this planet, the resources of the 
-            planet, what other colonies this Empire has, etc.
-        Gather Operative Intelligence
-            Find out what spies are on this planet, where they are from, what 
-            they are doing, etc.
-        Hack Network 19
-            Attempts to besmirch the good name of the empire controlling this 
-            planet, and deprive them of a small amount of happiness.
-        Sabotage Probes
-            Destroy probes controlled by this empire.
-        Rescue Comrades
-            Break spies out of prison.
-        Sabotage Resources
-            Destroy ships being built, docked, en route to mining platforms, 
-            etc.
-        Appropriate Resources
-            Steal empty ships, ships full of resources, ships full of trade 
-            goods, etc.
-        Assassinate Operatives
-            Kill spies.
-        Sabotage Infrastructure
-            Destroy buildings.
-        Sabotage BHG
-            Prevent enemy planet from using Black Hole Generator.
-        Incite Mutiny
-            Turn spies. If successful they come work for you.
-        Abduct Operatives
-            Kidnap a spy and bring him back home.
-        Appropriate Technology
-            Steal plans for buildings that this empire has built, or has in 
-            inventory.
-        Incite Rebellion
-            Obliterate the happiness of a planet. If done long enough, it can 
-            shut down a planet.
-        Incite Insurrection
-            Steal a planet.
+    ==============================  ===========================================
+    Tasks
+    ---------------------------------------------------------------------------
+    Name                            Description
+    ==============================  ===========================================
+    Abduct Operatives               Kidnap a spy and bring him back home.
+    Assassinate Operatives          Kill spies.
+    Appropriate Resources           Steal empty ships, ships full of resources, ships full of trade goods, etc.
+    Appropriate Technology          Steal plans for buildings that this empire has built, or has in inventory.
+    Counter Espionage               Passively defend against all attackers.
+    Gather Resource Intelligence    Find out what's up for trade, what ships are available, what ships are being built, where ships are travelling to, etc.
+    Gather Empire Intelligence      Find out what is built on this planet, the resources of the planet, what other colonies this Empire has, etc.
+    Gather Operative Intelligence   Find out what spies are on this planet, where they are from, what they are doing, etc.
+    Hack Network 19                 Attempts to besmirch the good name of the empire controlling this planet, and deprive them of a small amount of happiness.
+    Idle                            Don't do anything.
+    Incite Insurrection             Steal a planet.
+    Incite Mutiny                   Turn spies. If successful they come work for you.
+    Incite Rebellion                Obliterate the happiness of a planet. If done long enough, it can shut down a planet.
+    Intel Training                  Train in Intelligence skill
+    Mayhem Training                 Train in Mayhem skill
+    Political Propaganda            Give happiness generation a boost.  Especially effective on unhappy colonies, but hastens an agent toward retirement.
+    Politics Training               Train in Politics skill
+    Rescue Comrades                 Break spies out of prison.
+    Sabotage BHG                    Prevent enemy planet from using Black Hole Generator.
+    Sabotage Infrastructure         Destroy buildings.
+    Sabotage Probes                 Destroy probes controlled by this empire.
+    Sabotage Resources              Destroy ships being built, docked, en route to mining platforms, etc.
+    Security Sweep                  Round up attackers.
+    Theft Training                  Train in Theft skill
+    ==============================  ===========================================
 
     Recovery:
         The spy is currently recovering from running his previous task.  This 
@@ -158,6 +133,8 @@ class IntelView(lacuna.bc.SubClass):
         current             1,
         in_training         1,
         training_costs      lacuna.spy.TrainingCosts object
+
+    - :class:`lacuna.spy.TrainingCosts`
     """
     def __init__(self, client, mydict:dict):
         if ['training_costs'] in mydict:
@@ -244,7 +221,7 @@ class Training(lacuna.building.MyBuilding):
         """ Returns info on how many points this training building can confer, 
         and how many spies are currently training.
 
-        Returns a single TrainingView object.
+        Returns a single :class:`lacuna.spy.TrainingView` object.
         """
         lacuna.building.MyBuilding._write_building_status( self, kwargs['rslt'] )
         view = TrainingView( self.client, kwargs['rslt']['spies'] )

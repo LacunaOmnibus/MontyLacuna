@@ -11,11 +11,12 @@ class Building(lacuna.bc.SubClass):
     a list of dicts, from such things as checking on the Development 
     Ministry’s build queue via its view() method.
 
-    A Building object will probably, but not necessarily, have a building ID, 
-    and may or may not belong to the current empire.
+    A :class:`lacuna.building.Building` object will probably, but not 
+    necessarily, have a building ID, and may or may not belong to the current 
+    empire.
 
-    Most buildings you deal with will be MyBuilding objects, not Building 
-    objects.
+    Most buildings you deal with will be :class:`lacuna.building.MyBuilding` 
+    objects, not :class:`lacuna.building.Building` objects.
     """
 
 class InBuildQueue(Building):
@@ -49,6 +50,8 @@ class MyBuilding(lacuna.bc.LacunaObject):
         efficiency      95,
         pending_build   lacuna.building.Working object
         work            lacuna.building.Working object
+
+    - :class:`lacuna.building.Working`
 
     MontyLacuna attempts to provide method calls that mirror all of the method 
     calls documented by the TLE API.  However, MyBuilding had to violate that 
@@ -364,6 +367,9 @@ class Working(lacuna.bc.SubClass):
         end         "01 31 2010 18:09:05 +0600"
         end_dt      datetime.datetime object representing the value in end.
 
+    - :class:`lacuna.bc.ElapsedTime`
+    - `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_
+
     """
     def __init__(self, client, mydict:dict):
         if type(mydict['seconds_remaining']) is not int or mydict['seconds_remaining'] <= 0:
@@ -383,6 +389,4 @@ class Working(lacuna.bc.SubClass):
         mydict['seconds'] = mydict['seconds_remaining']
 
         super().__init__(client, mydict)
-
-
 

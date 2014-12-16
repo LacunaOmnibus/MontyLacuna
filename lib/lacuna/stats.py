@@ -52,9 +52,10 @@ class Stats(lacuna.bc.LacunaObject):
               page.  Defaults to 1.
 
         Return a tuple:
-            - alliances -- List of stats.AllianceInfo objects
+            - alliances -- List of :class:`lacuna.stats.AllianceInfo` objects
             - total_alliances -- Integer count.
             - page_number -- What page we're displaying (defaults to 1)
+
         """
         mylist = []
         for i in kwargs['rslt']['alliances']:
@@ -73,7 +74,8 @@ class Stats(lacuna.bc.LacunaObject):
             - sort_by -- same options as for alliance_rank()
             - alliance_name -- Standard TLE search string
 
-        Returns list of limited stats.AllianceInfo objects containing only the attributes:
+        Returns list of limited :class:`lacuna.stats.AllianceInfo` objects 
+        containing only the attributes:
             - alliance_id
             - alliance_name
             - page_number
@@ -101,7 +103,7 @@ class Stats(lacuna.bc.LacunaObject):
                 - dirtiest_rank
         
         Returns a tuple:
-            - empires -- List of up to 25 stats.EmpireInfo objects.
+            - empires -- List of up to 25 :class:`lacuna.stats.EmpireInfo` objects.
             - empire count -- Integer total number of empires in the game.
             - page number -- Integer page we're looking at.  Should be the same 
               as the page_number argument you passed in.
@@ -129,7 +131,7 @@ class Stats(lacuna.bc.LacunaObject):
 
         So remember that this is returning is list, not a single object.
 
-        Returns list of stats.EmpireInfo objects.
+        Returns list of :class:`lacuna.stats.EmpireInfo` objects.
         """
         mylist = []
         for i in kwargs['rslt']['empires']:
@@ -147,7 +149,7 @@ class Stats(lacuna.bc.LacunaObject):
               legal value.  Passing any unrecognized value falls back to using 
               the default.  So pretend this method takes no arguments.
 
-        Returns a list of stats.ColonyInfo objects.
+        Returns a list of :class:`lacuna.stats.ColonyInfo` objects.
         """
         mylist = []
         for i in kwargs['rslt']['colonies']:
@@ -163,7 +165,7 @@ class Stats(lacuna.bc.LacunaObject):
             - success_rate_rank
             - dirtiest_rank
 
-        Returns a list of stats.SpyInfo objects.
+        Returns a list of :class:`lacuna.stats.SpyInfo` objects.
 
         **CAUTION**
         This method has been included only for API completeness; you should 
@@ -188,7 +190,7 @@ class Stats(lacuna.bc.LacunaObject):
     def weekly_medal_winners( self, *args, **kwargs ):
         """ View medal winners
 
-        Returns a list of stats.MedalWinner objects.
+        Returns a list of :class:`lacuna.stats.MedalWinner` objects.
         """
         mylist = []
         for i in kwargs['rslt']['winners']:

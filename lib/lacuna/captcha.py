@@ -42,7 +42,7 @@ class Captcha(lacuna.bc.LacunaObject):
 
         This mirrors the TLE API, but you generally don't need to call this.
 
-        Returns a Puzzle object.
+        Returns a :class:`lacuna.captcha.Puzzle` object.
         """
         return Puzzle( self.client, kwargs['rslt'] )
 

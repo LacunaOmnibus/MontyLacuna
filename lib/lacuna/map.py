@@ -24,7 +24,7 @@ class Map(lacuna.bc.LacunaObject):
         3001 units.  The TLE documentation states 1001 units, but thats old 
         information; the limit has been raised to 3001 units.
 
-        Returns a list of map.Star objects.
+        Returns a list of :class:`lacuna.map.Star` objects.
 
         Raises ServerError 1003 if your selected area is too large.
         """
@@ -51,7 +51,7 @@ class Map(lacuna.bc.LacunaObject):
             - right -- Coordinate
             - bottom -- Coordinate
 
-        Returns a list of map.Star objects.
+        Returns a list of :class:`lacuna.map.Star` objects.
 
         Raises ServerError 1003 if your selected area is too large.
         """
@@ -79,7 +79,7 @@ class Map(lacuna.bc.LacunaObject):
         Arguments:
             - star_id -- Integer ID of the star
 
-        Returns a map.Star object.  
+        Returns a :class:`lacuna.map.Star` object.  
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return(star)
@@ -92,7 +92,7 @@ class Map(lacuna.bc.LacunaObject):
             - star_name -- String name of the star.  This is NOT a "standard 
               TLE search string", but the full name of the star.
 
-        Returns a map.Star object.  
+        Returns a :class:`lacuna.map.Star` object.  
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return star
@@ -105,7 +105,7 @@ class Map(lacuna.bc.LacunaObject):
             - x -- Integer X coordinate
             - y -- Integer Y coordinate
 
-        Returns a map.Star object.  
+        Returns a :class:`lacuna.map.Star` object.  
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return star
@@ -118,7 +118,7 @@ class Map(lacuna.bc.LacunaObject):
             - search_string -- A standard TLE search string.  See 
               :ref:`glossary`.
 
-        Returns a list of map.Star objects.
+        Returns a list of :class:`lacuna.map.Star` objects.
         """
         mylist = []
         for i in kwargs['rslt']['stars']:
@@ -132,7 +132,7 @@ class Map(lacuna.bc.LacunaObject):
         Requires a single dict argument containing the key:
             - zone -- '0|0'
 
-        Returns a list of map.Fissure objects.
+        Returns a list of :class:`lacuna.map.Fissure` objects.
         """
         ### kwargs['rslt']['fissures'] is either a dict
         ### (fissure_id: fissure_dict) OR it points to nothing.  Not an empty 
@@ -155,7 +155,7 @@ class Map(lacuna.bc.LacunaObject):
             - star_name -- String name of a star
             - planet_name -- String name of a planet orbiting that star
 
-        Returns a body.Body object
+        Returns a :class:`lacuna.body.Body` object
         """
         my_map = self.client.get_map()
         star = my_map.get_star_by_name(star_name)
@@ -181,6 +181,9 @@ class Star(lacuna.bc.SubClass):
         bodies:     List of body.Body objects.  If you don't have the star 
                     probed or oracled, this list will be empty.
         station:    lacuna.map.Station object (only if this star is under control of a station)
+
+    - :class:`lacuna.body.Body`
+    - :class:`lacuna.map.Station`
     """
     def __init__( self, client, star_dict:dict, *args, **kwargs ):
         if 'status' in star_dict:
@@ -214,7 +217,7 @@ class Star(lacuna.bc.SubClass):
         law with that name and assuming it means that the star is really not 
         controlled by a station.
 
-        Returns a list of lacuna.alliance.Law objects.
+        Returns a list of :class:`lacuna.alliance.Law` objects.
         """
         myargs = (self.client.session_id, self.id)
         rslt = self.client.send( 'map', 'view_laws', myargs )
@@ -232,7 +235,7 @@ class Star(lacuna.bc.SubClass):
         checking laws.  So this method filters out the seizure laws and just 
         returns you the good stuff.
 
-        Returns a list of lacuna.alliance.Law objects.
+        Returns a list of :class:`lacuna.alliance.Law` objects.
         """
         laws = self.view_laws()
         interesting_laws = []
@@ -265,6 +268,8 @@ class Station(lacuna.bc.SubClass):
         y           -27,
         name        "The Death Star"
         alliance    lacuna.alliance.SeizingAlliance object.
+
+    - :class:`lacuna.alliance.SeizingAlliance`
     """
     def __init__(self, client, mydict):
         if 'alliance' in mydict:
@@ -272,7 +277,7 @@ class Station(lacuna.bc.SubClass):
         super().__init__(client, mydict)
 
     def view_laws( self, *args, **kwargs ):
-        """ Returns a list of lacuna.parliament.Law objects.  Otherwise returns 
+        """ Returns a list of :class:`lacuna.parliament.Law` objects.  Otherwise returns 
         an empty list.
 
         DOES NOT WORK if your alliance doesn't own the station.

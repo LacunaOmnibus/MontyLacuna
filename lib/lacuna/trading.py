@@ -21,7 +21,7 @@ class TradeBldg(lacuna.building.MyBuilding):
         necessarily carry a trade.
 
         Returns a tuple:
-            - ships -- List of TradeableShip objects.
+            - ships -- List of :class:`lacuna.ship.TradeableShip` objects.
             - space_used -- Amount of cargo space used by each ship.  Always 
               10000.
         """
@@ -38,7 +38,7 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Get prisoners available to be added to a trade as merchandise.
 
         Returns a tuple:
-            - prisoners -- List of Prisoner objects.
+            - prisoners -- List of :class:`lacuna.spy.Prisoner` objects.
             - space_used -- Amount of cargo space used by each prisoner.  
               Always 350.
         """
@@ -55,7 +55,7 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Get plans available to be added to a trade as merchandise.
 
         Returns a tuple:
-            - plans -- List of OwnedPlan objects.
+            - plans -- List of :class:`lacuna.plan.OwnedPlan` objects.
             - space_used -- Amount of cargo space used by each prisoner.  
               Always 10000.
         """
@@ -72,7 +72,7 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Get glyphs available to be added to a trade as merchandise.
 
         Returns a tuple:
-            - glyphs -- List of lacuna.glyph.OwnedGlyph objects.
+            - glyphs -- List of :class:`lacuna.glyph.OwnedGlyph` objects.
             - space_used -- Amount of cargo space used by each prisoner.  
               Always 10000.
         """
@@ -93,7 +93,7 @@ class TradeBldg(lacuna.building.MyBuilding):
               - shown per page.  Defaults to 1. 
 
         Returns a tuple:
-            - trades -- List of trading.ExistingTrade objects
+            - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
             - count -- Total number of trades you have up
             - page_number -- The page that the "trades" list appeared on.  
               Same value that you passed as an argument, or 1.
@@ -140,7 +140,7 @@ class TradeBldg(lacuna.building.MyBuilding):
                 - water 
 
         Returns a tuple:
-            - trades -- List of trading.ExistingTrade objects
+            - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
             - count -- Total number of trades you have up
             - page_number -- The page that the "trades" list appeared on.  
               Same value that you passed as an argument, or 1.
@@ -173,7 +173,7 @@ class TradeBldg(lacuna.building.MyBuilding):
     def get_stored_resources( self, *args, **kwargs ):
         """ Get resources stored onsite and available for trading.
 
-        Returns a lacuna.resource.StoredResources object.
+        Returns a :class:`lacuna.resource.StoredResources` object.
         """
         return lacuna.resource.StoredResources(self.client, kwargs['rslt']['resources'])
 
@@ -210,7 +210,7 @@ class MercTrade(lacuna.bc.SubClass):
     """
     Attributes::
 
-        origin          mercenariesguild.MercTradeOrigin object
+        origin          :class:`lacuna.mercenariesguild.MercTradeOrigin` object
         date_offered    "01 31 2010 13:09:05 +0600",
         id              "id-goes-here",
         ask             25,                         # essentia cost

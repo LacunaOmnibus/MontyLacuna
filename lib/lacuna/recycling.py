@@ -12,7 +12,7 @@ class RecycleBldg(lacuna.building.MyBuilding):
     def view( self, *args, **kwargs ):
         """ Get ships available to be added to a trade as merchandise.
 
-        Returns a single RecycleJob object.
+        Returns a single :class:`lacuna.recycling.RecycleJob` object.
         """
         return RecycleJob(self.client, kwargs['rslt']['recycle'])
         pass

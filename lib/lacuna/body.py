@@ -33,6 +33,10 @@ class Body(lacuna.bc.LacunaObject):
                         Only exists if the body is inhabited
         station         lacuna.map.Station object
                         Only exists if the body is under the control of a space station.
+
+    - :class:`lacuna.resource.AvailableOre`
+    - :class:`lacuna.empire.OwningEmpire`
+    - :class:`lacuna.map.Station`
     """
 
     path = 'body'
@@ -145,47 +149,9 @@ class Body(lacuna.bc.LacunaObject):
         return status
 
 
-    def view_laws( self, *args, **kwargs ):
-        """ If the current body is a Space Station, this returns a list of 
-        lacuna.parliament.Law objects.  Otherwise returns an empty list.
-
-        DOES NOT WORK if your alliance doesn't own the station.
-        """
-        ### This is pretty hokey.
-        ###
-        ### view_laws() is a method of the parliament building.  But somebody 
-        ### figured out, after the fact, that any empire should be able to 
-        ### view any station's published laws.
-        ###
-        ### As of 12/03/2014, this is in the production docs as working, but 
-        ### it doesn't work (and that fact has been known and commented on as 
-        ### long as four months ago.  That's what I get for believing docs.  
-        ### Sigh.)
-        ###
-        ### So parliament's view_laws() now requires only a body_id, no 
-        ### building_id.  BUT, the way this whole thing is set up to this 
-        ### point, I'd need to be able to get at the parliament building in 
-        ### the first place to be able to call parliament methods, and I can't 
-        ### get that parliament building unless my alliance owns the station.
-        ###
-        ### So this method skips all decorators and makes the send() call 
-        ### itself, forcing the path arg to 'parliament'.
-        ###
-        ### To make matters worse, I had to copy this method, again, to 
-        ### lacuna/map.py.
-        mylist = []
-        if not self.type == 'space station':
-            return mylist
-        myargs = (self.client.session_id, self.body_id)
-        rslt = self.client.send( 'parliament', 'view_laws', myargs )
-        for i in rslt['laws']:
-            mylist.append( lacuna.buildings.ss_modules.parliament.Law(self.client, i) )
-        return mylist
-
-
 class MyBody(Body):
     """ A MyBody object is a planet or space station owned by the current 
-    empire.  It has all of the attributes of a Body object, plus::
+    empire.  It has all of the attributes of a :class:`lacuna.body.Body` object, plus::
 
         needs_surface_refresh       1,  # client needs to call get_buildings() 
                                         # because something has changed
@@ -232,6 +198,10 @@ class MyBody(Body):
         ### 
         alliance                    Lacuna.alliance.FoundAlliance object
         influence                   Lacuna.alliance.Influence object
+
+    - :class:`lacuna.ship.IncomingToBodyShip`
+    - :class:`lacuna.alliance.FoundAlliance`
+    - :class:`lacuna.alliance.Influence`
     """
     ###
     ### The flow here, because it's mildly confusing:
@@ -426,7 +396,7 @@ class MyBody(Body):
             - ids_to_repair -- A list of integer IDs of buildings to attempt to 
               repair.
 
-        Returns a list of lacuna.building.Building objects.
+        Returns a list of :class:`lacuna.building.Building` objects.
         """
         pass
         mylist = []
@@ -446,7 +416,7 @@ class MyBody(Body):
                         'y':  integer y coordinate to move to,  },
                   { another building to move, same format as above },     ]
 
-        Returns a list of body.SimpleBody objects.
+        Returns a list of :class:`lacuna.body.SimpleBody` objects.
 
         Attempting to make an illegal move (moving a building out of -5..5 
         bounds, moving it on top of another building, moving the PCC at all, 
@@ -474,9 +444,8 @@ class MyBody(Body):
         law with that name and assuming it means that the star is really not 
         controlled by a station.
 
-        Returns a list of lacuna.alliance.Law objects.
+        Returns a list of :class:`lacuna.alliance.Law` objects.
         """
-
         mylist = [
             lacuna.alliance.Law(self.client, {
                 'id':           0,
@@ -505,7 +474,7 @@ class MyBody(Body):
         checking laws.  So this method filters out the seizure laws and just 
         returns you the good stuff.
 
-        Returns a list of lacuna.alliance.Law objects.
+        Returns a list of :class:`lacuna.alliance.Law` objects.
         """
         laws = self.view_laws()
         interesting_laws = []
@@ -529,7 +498,7 @@ class MyBody(Body):
         an invalid tag as an argument is not an error, but zero results will be 
         returned.
 
-        Returns a list of lacuna.body.Buildable objects.
+        Returns a list of :class:`lacuna.body.Buildable` objects.
 
         Raises ServerError 1009 if the passed coords are illegal for any reason (already 
         occupied, out-of-bounds, etc)
@@ -589,6 +558,8 @@ class Planet(lacuna.bc.SubClass):
         water_stored        9929,
         water_hour          295,
         water_capacity      51050
+
+    - :class:`lacuna.resource.AvailableOre`
     """
     def __init__(self, client, mydict:dict):
         if 'ore' in mydict:
@@ -621,6 +592,9 @@ class JurisdictionPlanet(lacuna.bc.SubClass):
         ### a space station.
         station     lacuna.map.Station object
 
+    - :class:`lacuna.resource.AvailableOre`
+    - :class:`lacuna.map.Station`
+
     """
     def __init__(self, client, mydict:dict):
         mydict['station']   = lacuna.map.Station(client, mydict['station'])
@@ -646,6 +620,9 @@ class Buildable(lacuna.bc.SubClass):
         tags                List of build tags applying to this building (see below)
         cost                lacuna.resource.BuildCost object
         production          lacuna.resource.Production object
+
+    - :class:`lacuna.resource.BuildCost`
+    - :class:`lacuna.resource.Production`
 
     Possible build tags:
         - **Now** -- Can be built right now.

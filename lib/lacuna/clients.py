@@ -278,7 +278,7 @@ class Guest(lacuna.bc.SubClass):
         return url
 
     def get_stats(self):
-        """ Get a Stats object """
+        """ Get a :class:`lacuna.Stats` object """
         return lacuna.stats.Stats( self )
 
     def is_name_available(self, name):
@@ -591,17 +591,17 @@ class Member(Guest):
         return True
 
     def get_alliance(self):
-        """ Get an alliance object.
+        """ Get an :class:`lacuna.alliance` object.
         """
         return lacuna.alliance.Alliance( self )
 
     def get_body(self, body_id):
-        """ Get a body object by body ID.
+        """ Get a :class:`lacuna.body` object by body ID.
 
         Arguments:
             - body_id -- Integer ID of the body
 
-        Returns a lacuna.body.Body object.
+        Returns a :class:`lacuna.body.Body` object.
         """
         attrs = { 'id': body_id, }
         return lacuna.body.Body( self, attrs )
@@ -612,7 +612,7 @@ class Member(Guest):
         Arguments:
             - body_name -- String name of the body
 
-        Returns a lacuna.body.MyBody object.
+        Returns a :class:`lacuna.body.MyBody` object.
         """
         for bid, name in self.empire.planets.items():
             if name == body_name:
@@ -625,24 +625,24 @@ class Member(Guest):
             raise lacuna.exceptions.NoSuchMyBodyError("No body with the name '{}' was found.".format(body_name))
 
     def get_captcha(self):
-        """ Get a Captcha object.
+        """ Get a :class:`lacuna.captcha.Captcha` object.
         """
         return lacuna.captcha.Captcha( self )
 
     def get_inbox(self):
-        """ Get an Inbox object.
+        """ Get an :class:`lacuna.inbox.Inbox` object.
         """
         return lacuna.inbox.Inbox( self )
 
     def get_map(self):
-        """ Get a Map object.
+        """ Get a :class:`lacuna.map.Map` object.
         """
         return lacuna.map.Map( self )
 
     def get_my_alliance(self):
-        """ Get a MyAlliance object.
+        """ Get a :class:`lacuna.alliance.MyAlliance` object.
 
-        Returns a lacuna.alliance.MyAlliance object if the current empire is a 
+        Returns an object if the current empire is a 
         member of an alliance.  Otherwise returns false.
         """
         my_ally = False

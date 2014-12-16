@@ -109,7 +109,7 @@ class MyEmpire( Empire ):
         """ View your own empire's profile.  Requires login with your real, not 
         sitter, password,
 
-        Returns an empire.OwnProfile object.
+        Returns a :class:`lacuna.empire.OwnProfile` object.
 
         Throws 1015 (Sitters cannot modify preferences) if the user is 
         logged in with their sitter.
@@ -123,7 +123,7 @@ class MyEmpire( Empire ):
         Arguments:
             - empire_id -- Integer ID of the empire to view.
 
-        Returns an empire.PublicProfile object.
+        Returns an :class:`lacuna.empire.PublicProfile` object.
         """
         return PublicProfile(self.client, kwargs['rslt']['profile'])
 
@@ -184,7 +184,7 @@ class MyEmpire( Empire ):
         Arguments:
             - name -- Standard TLE search string.  See :ref:`glossary`.
 
-        Returns a list of empire.FoundEmpire objects.
+        Returns a list of :class:`lacuna.empire.FoundEmpire` objects.
         """
         mylist = []
         for i in kwargs['rslt']['empires']:
@@ -205,7 +205,7 @@ class MyEmpire( Empire ):
     def view_boosts( self, *args, **kwargs ):
         """ Shows your current boosts and their expiration dates.
         
-        Returns an empire. Boosts object.
+        Returns an :class:`lacuna.empire.Boosts` object.
         """
         return Boosts( self.client, kwargs['rslt']['boosts'] )
 
@@ -357,7 +357,7 @@ class MyEmpire( Empire ):
     def view_species_stats( self, *args, **kwargs ):
         """ Returns information about your empire's species.
         
-        Returns a single empire.Species object.
+        Returns a single :class:`lacuna.empire.Species` object.
         """
         return Species(self.client, kwargs['rslt']['species'])
 
@@ -366,7 +366,7 @@ class MyEmpire( Empire ):
         """ Get the species templates that are presented to a new player upon 
         initial species creation (Average, Warmonger, Resilient, Viral, etc).
         
-        Returns a list of empire.SpeciesTemplate objects.
+        Returns a list of :class:`lacuna.empire.SpeciesTemplate` objects.
         """
         mylist = []
         for i in kwargs['rslt']:

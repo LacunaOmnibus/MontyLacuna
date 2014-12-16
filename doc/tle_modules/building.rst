@@ -1,6 +1,6 @@
 
 Building
-=====================
+========
 
 The various building modules all inherit from either the ``Building`` or, more 
 often, ``MyBuilding`` classes.

@@ -60,7 +60,7 @@ class SubClass():
 
 
     def tle2time(self, tle_time:str):
-        """ Converts a TLE datetime string into a datetime.datetime object.
+        """ Converts a TLE datetime string into a datetime object.
 
         Arguments:
             - tle_datetime -- A TLE datetime string
@@ -70,20 +70,7 @@ class SubClass():
                             this method is ignoring it, and it could actually 
                             be omitted from the passed-in string.
 
-        Returns a datetime.datetime object, with the attributes::
-
-            year        Four-digit year
-            month       The month number, not zero-offset, so January is 1.  You can 
-                        get the month name or abbreviation via:
-                            import calendar
-                            d = tle2time( "30 11 2014 21:40:31 +0000" )
-                            print( calendar.month_name[d.month] )           # November
-                            print( calendar.month_abbr[d.month] )           # Nov
-            day
-            hour
-            minute
-            second      Each of these always consists of two digits.
-
+        Returns a `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_ object
         """
         m = re.match("^(\d\d) (\d\d) (\d{4}) (\d\d):(\d\d):(\d\d)", tle_time)
         if m:
@@ -104,7 +91,7 @@ class SubClass():
         Arguments:
             - seconds -- Integer seconds to convert
 
-        Returns a lacuna.bc.ElapsedTime object.
+        Returns a :class:`lacuna.bc.ElapsedTime` object.
         """
         ### http://stackoverflow.com/questions/4048651/python-function-to-convert-seconds-into-minutes-hours-and-days
         ###
@@ -332,7 +319,8 @@ class ElapsedTime():
         - minutes
         - seconds
 
-    This is awfully close to a datetime.datetime object, except:
+    This is awfully close to a `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_
+    object, except:
         - The attributes are plural - "days" instead of "day"
         - The number of days elapsed is correct as-is.  datetime.day would 
           actually be one too high, and the user would need to subtract 
