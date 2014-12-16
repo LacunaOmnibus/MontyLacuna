@@ -10,10 +10,7 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 AS Python installer does NOT have "register as default python" checked by 
 default - this is what adds python to the PATH.  Include instructions to the 
 user to fix that setting that during the install wizard.
-
-In the build_ships.py docs, include a list of all ships in-game.  The shiptype 
-arg has to be the machine name of the ship ("sweeper", "snark3", etc).  Make a 
-list of all those so the user doesn't have to guess.
+    I added a blurb, but I need a screenshot and correct verbiage.
 """
 
 

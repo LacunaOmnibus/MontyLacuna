@@ -6,6 +6,9 @@ Build Ships
 
 Builds ships at multiple shipyards on a given planet.
 
+When passing the name of a ship, you must use the ship's "system" name.  A 
+complete list can be found here: :ref:`ships_list`
+
 The easiest way to run it will fill all of the available build queues on all 
 of the shipyards on your planet::
 

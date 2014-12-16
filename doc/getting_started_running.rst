@@ -10,6 +10,12 @@ If you're on Windows, you can download Python 3 from `ActiveState's website.
 <http://www.activestate.com/activepython/downloads>`_  Make sure you download 
 version **3.whatever**, *not* version **2.whatever**.
 
+That's a standard Windows installer program - run it and follow the wizard.  
+However, one of the steps **NEED SCREENSHOT** tells you what components will 
+be installed.  The "Make this the default Python" **NEED ACTUAL QUOTE** item 
+may be marked with a red "X", meaning that won't happen.  If it is marked with 
+that red "X", click it and chose to include it with the install.
+
 If you're on Linux or Mac, you probably already have Python installed.  But 
 make sure that you've got Python 3.  Many systems come with Python 2, not 3, 
 and MontyLacuna will not work with Python 2.  Python 3 should be available via 
