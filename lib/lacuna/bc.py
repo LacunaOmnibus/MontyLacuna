@@ -16,7 +16,7 @@ class SubClass():
             setattr( self, k, self.get_type(v) )
 
     def get_type( self, cand ):
-        """ Duck-types looks-like-numbers into numbers.
+        """ Changes strings that look like numbers into numbers.
 
         Since all communications with the server is via JSON, which is a text 
         transport, all values that look like numbers are actually strings. 

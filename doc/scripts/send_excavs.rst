@@ -12,10 +12,10 @@ working on US1.  So attempting to run this script on US1 will likely explode
 spectacularly.  The law-checking ability should be coming to US1 soon, at 
 which point this will work there.
 
-Sends out excavators from a planet to the nearby planets of whatever type or 
-types you want to excavate.  This does not build excavators for you; you have 
-to have those ready to go before running this; see :ref:`build_ships` if you 
-haven't got excavators ready to go yet.
+Sends out excavators from one of your colonies to the nearby planets of 
+whatever type or types you want to excavate.  This does not build excavators 
+for you; you have to have those ready to go before running this; see 
+:ref:`build_ships` if you haven't got excavators ready to go yet.
 
     >>> python bin/send_excavs.py -tp33 -t p35 Earth
 
