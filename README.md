@@ -15,7 +15,7 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
       attempt to build 0 ships).
     - on 1.3 I have 4 SYs and no excavs built.  The same topoff 30 tried to 
       build -90 ships, which is a problem.  I think I'm seeing a pattern 
-      here....
+      here...
 
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
