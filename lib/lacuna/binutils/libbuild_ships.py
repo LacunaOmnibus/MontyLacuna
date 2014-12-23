@@ -74,6 +74,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
             raise KeyError("All of your build queue slots are occupied.")
         if not len([ i for i in ships if i.type == self.args.type ]):
             raise KeyError( "The type of ship requested, {}, cannot be built.".format(self.args.type) )
+
         ### If the 'num to build' arg is 0, that means "build max"
         requested_num = self.args.num if self.args.num > 0 else build_queue_max
         ### If we were asked to build more than we can, back off to just 
@@ -86,13 +87,13 @@ class BuildShips(lacuna.binutils.libbin.Script):
             sp = self.planet.get_buildings_bytype( 'spaceport', self.args.min_lvl, 1, 100 )[0]
             paging = {}
             filter = { 'type': self.args.type }
-            ships, number = sp.view_all_ships( paging, filter )
-            if number >= requested_num:
+            ships, currently_in_stock = sp.view_all_ships( paging, filter )
+            if currently_in_stock >= requested_num:
                 self.client.user_logger.info( "You already have {} {}s built, no need to top off."
-                    .format(number, self.args.type)
+                    .format(currently_in_stock, self.args.type)
                 )
                 quit()
-            topoff_num = (requested_num - num_to_build)
+            topoff_num = (requested_num - currently_in_stock)
             if topoff_num > num_to_build:
                 self.client.user_logger.info( "We should build {} more ships to top off, but only have slots for {} more."
                     .format(topoff_num, num_to_build)

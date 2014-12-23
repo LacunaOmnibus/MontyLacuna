@@ -27,8 +27,6 @@ requested = 'max' if bs.args.num == 0 else bs.args.num
 l.info( "You requested to build {} ships.  I'm going to try to build {:,} ships."
     .format(requested, num_to_build)
 )
-print( requested, num_to_build )
-quit()
 
 ### Doo eet.
 left_to_build = num_to_build
@@ -41,7 +39,7 @@ for y in shipyards:
     l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
     if num_to_build_here > 25:
         l.info( "Remember that the Shipyard build queue in game will only ever display the first " )
-        l.info( "25 ships being built.  I'm definitely building {}.".format(num_to_build_here) )
+        l.info( "\t25 ships being built.  I'm definitely building {}.".format(num_to_build_here) )
     elif left_to_build <= 0:
         break
 
@@ -50,7 +48,7 @@ if left_to_build != 0:
     l.info( "I wanted to build {} more ships, but the build queues were already working when I started.".format(left_to_build) )
     built = num_to_build - left_to_build
 
-l.info( "I am now building {:,} {} in various shipyards on {}.".format(built, bs.args.type, bs.planet.name) )
+l.info( "I am now building {:,} {} on {}.".format(built, bs.args.type, bs.planet.name) )
 
 
 
