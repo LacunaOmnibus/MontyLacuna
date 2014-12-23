@@ -177,6 +177,9 @@ class LacunaObject(SubClass):
         for i in mydict:
             setattr( self.client.empire, i, self.get_type(mydict[i]) )
         self.client.empire.planet_names = {name: id for id, name in self.client.empire.planets.items()}
+        self.client.empire.colony_names = {name: id for id, name in self.client.empire.colonies.items()}
+        if hasattr(self.client.empire, 'stations'):
+            self.client.empire.station_names = {name: id for id, name in self.client.empire.stations.items()}
 
     def call_guest_meth(func):
         """Decorator.  
@@ -319,9 +322,8 @@ class ElapsedTime():
         - minutes
         - seconds
 
-    This is awfully close to a `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_
-    object, except:
-        - The attributes are plural - "days" instead of "day"
+    This is awfully close to a `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_ object, except:
+        - The attributes are plural: "days" instead of "day"
         - The number of days elapsed is correct as-is.  datetime.day would 
           actually be one too high, and the user would need to subtract 
           one, and he's going to forget to do that 90% of the time.

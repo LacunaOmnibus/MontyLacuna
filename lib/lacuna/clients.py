@@ -693,6 +693,8 @@ class Member(Guest):
         for i in mydict:
             setattr( self.empire, i, mydict[i] )
         self.empire.planet_names = {name: id for id, name in self.empire.planets.items()}
+        self.empire.colony_names = {name: id for id, name in self.empire.colonies.items()}
+        self.empire.station_names = {name: id for id, name in self.empire.stations.items()}
 
     def _update_config_file(self):
         if not hasattr(self, 'config'):

@@ -8,9 +8,9 @@ import lacuna as lac
 
 guest = lac.clients.Guest()
 
-tmt = lac.clients.Member(
+client = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'my_sitter',
+    config_section = 'sitter',
 )
 
 ### Using a non-logged-in guest account
@@ -27,20 +27,20 @@ tmt = lac.clients.Member(
 ### View my own empire's profile.
 ### This only works if you're logged in with your real, not sitter, password.
 ###
-#pro = tmt.empire.view_profile()
+#pro = client.empire.view_profile()
 #print( "I am from {} in {}, and my player name is {}.  I have won {} medals."
 #    .format(pro.city, pro.country, pro.player_name, len(pro.medals.keys()))
 #)
 
 
-### Separate out stations from planets
+### View 10 colonies, and then 10 stations, just to show that they're 
+### separate.
 ###
-#tmt.empire.separate_stations( "^(S|Z)ASS" )
-#print( "10 of my planets:" )
-#for pid, pname in list( itertools.islice(tmt.empire.colonized.items(), 10) ):
+#print( "10 of my colonies:" )
+#for pid, pname in list( itertools.islice(client.empire.colonies.items(), 10) ):
 #    print( "\t{} has ID {}.".format(pname, pid) )
 #print( "10 of my stations:" )
-#for pid, pname in list( itertools.islice(tmt.empire.stations.items(), 10) ):
+#for pid, pname in list( itertools.islice(client.empire.stations.items(), 10) ):
 #    print( "\t{} has ID {}.".format(pname, pid) )
 
 
@@ -48,20 +48,20 @@ tmt = lac.clients.Member(
 ### See how many RPCs you've used so far.
 ### This does not use any RPCs, so you can check it as often as you'd like.
 ###
-#print( "Number of RPCs used today by {} is {}". format(tmt.empire.name, tmt.empire.rpc_count) )
+#print( "Number of RPCs used today by {} is {}". format(client.empire.name, client.empire.rpc_count) )
 
 
 ### Find a list of empires by name
 ###
-#empires = tmt.empire.find( "Inf" )
+#empires = client.empire.find( "Inf" )
 #for i in empires:
 #    print( "I found", i.name )
 
 
 ### View some other empire's profile.
 ###
-#jt = tmt.empire.find( "Jandor Trading" )[0]
-#pro = tmt.empire.view_public_profile( jt.id )
+#jt = client.empire.find( "Jandor Trading" )[0]
+#pro = client.empire.view_public_profile( jt.id )
 #print( "{}'s player name is {}, and they last logged in on {}."
 #    .format(pro.name, pro.player_name, pro.last_login)
 #)
@@ -70,17 +70,17 @@ tmt = lac.clients.Member(
 ### Edit your profile
 ###
 #mydict = { 'status_message': 'This was set by empire_test.py' }
-#tmt.empire.edit_profile( mydict )
+#client.empire.edit_profile( mydict )
 
 
 ### Change your password
 ###
-#tmt.empire.change_password( 'foobar', 'foobar' )
+#client.empire.change_password( 'foobar', 'foobar' )
 
 
 ### See info on your species
 ###
-#spec = tmt.empire.view_species_stats()
+#spec = client.empire.view_species_stats()
 #print( "My species, {}, is described as {}, and can inhabit orbits {}-{}"
 #    .format(spec.name, spec.description, spec.min_orbit, spec.max_orbit)
 #)
@@ -88,13 +88,13 @@ tmt = lac.clients.Member(
 
 ### See what boosts you have turned on
 ###
-#boosts = tmt.empire.view_boosts()
+#boosts = client.empire.view_boosts()
 #print( "My building boost expires at {}.".format(boosts.building) )
 
 
 ### See the initial species templates
 ###
-#tmpls = tmt.empire.get_species_templates()
+#tmpls = client.empire.get_species_templates()
 #for i in tmpls:
 #    print( "{} is described as {}" .format(i.name, i.description) )
 
@@ -121,25 +121,25 @@ tmt = lac.clients.Member(
 #    'growth_affinity':          7,
 #}
 #raise KeyError("This is really going to spend 100 E - make real sure you're on a test account!")
-#tmt.empire.redefine_species( new_species )
+#client.empire.redefine_species( new_species )
 
 
 ### Redeem an essentia code
 ### 
-#tmt.empire.redeem_essentia_code( '56cc359e-8ba7-4db7-b608-8cb861c65510' )
+#client.empire.redeem_essentia_code( '56cc359e-8ba7-4db7-b608-8cb861c65510' )
 
 
 ### 
 ### From a logged-in client, you have access to most other objects via get_*() methods:
 ### 
-# alliance = tmt.get_alliance()                   # Generic Alliance object, NOT set to any specific alliance.
-# body1 = tmt.get_body( integer body ID )         # Gotta go dig up the planet's ID.  Ugh.
-# body2 = tmt.get_body_byname( Name of a body )   # Yay, I already know my planet's name.
-# inbox = tmt.get_inbox()                         # My empire's mail inbox
-# mymap = tmt.get_map()                           # Starmap
-# mystats = tmt.get_stats()                       # Stats
+# alliance = client.get_alliance()                   # Generic Alliance object, NOT set to any specific alliance.
+# body1 = client.get_body( integer body ID )         # Gotta go dig up the planet's ID.  Ugh.
+# body2 = client.get_body_byname( Name of a body )   # Yay, I already know my planet's name.
+# inbox = client.get_inbox()                         # My empire's mail inbox
+# mymap = client.get_map()                           # Starmap
+# mystats = client.get_stats()                       # Stats
 
-#my_alliance = tmt.get_my_alliance()             # This one is set to my empire's alliance.
+#my_alliance = client.get_my_alliance()             # This one is set to my empire's alliance.
 #if my_alliance:
 #    print( "You are in the alliance named {}.".format(my_alliance.name) )
 #else:

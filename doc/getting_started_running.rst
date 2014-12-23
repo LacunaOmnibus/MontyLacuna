@@ -1,46 +1,87 @@
 
+.. |as_python_default| image:: images/as_python_default.png
+.. |as_python_fixed| image:: images/as_python_fixed.png
+
 .. _getting_started_running:
 
 Getting Started Running Scripts
 ===============================
 
+Overview of Steps
+-----------------
+
+To get MontyLacuna working, you'll have to follow a few steps.  These are 
+similar to the steps necessary to setting up the standard Lacuna scripts 
+written in Perl, but these steps should be simpler.
+
+- Install Python 3
+- Install MontyLacuna
+- Install Python libraries
+- Create a config file
+
 Install Python 3
 ----------------
-If you're on Windows, you can download Python 3 from `ActiveState's website.  
+
+Windows
+~~~~~~~
+You can download Python 3 from `ActiveState's website.  
 <http://www.activestate.com/activepython/downloads>`_  Make sure you download 
 version **3.whatever**, *not* version **2.whatever**.
 
-That's a standard Windows installer program - run it and follow the wizard.  
-However, one of the steps **NEED SCREENSHOT** tells you what components will 
-be installed.  The "Make this the default Python" **NEED ACTUAL QUOTE** item 
-may be marked with a red "X", meaning that won't happen.  If it is marked with 
-that red "X", click it and chose to include it with the install.
+During installation, the installer will show you what features will be 
+installed, in a window that looks like this:
+
+    |as_python_default|
+
+In some cases, that *Register as Default Python* will be unselected, as 
+indicated by the red X.  We want that turned on.  Click on the little down 
+arrow just to the right of the red X, and set this feature to be installed.  
+When you're done, the window should look like this:
+
+    |as_python_fixed|
+
+From here on, just click the Next button until the installer completes.
+
+After the installer is complete, open up a ``CMD`` window and type::
+
+    python --version
+
+That should respond with something like this::
+
+    Python 3.4.0
+
+If that's what you see, then Python has been installed successfully.
+
+Non-Windows
+~~~~~~~~~~~
 
 If you're on Linux or Mac, you probably already have Python installed.  But 
 make sure that you've got Python 3.  Many systems come with Python 2, not 3, 
 and MontyLacuna will not work with Python 2.  Python 3 should be available via 
 your package manager.
 
-Install MontyLacuna (DOWNLOADS HERE)
-------------------------------------
+Install MontyLacuna
+-------------------
 Download your preferred filetype.  For most people, that will be the "zip" 
 file.
 
     ====  ===============
     Type  Link
     ====  ===============
-    Zip   `Download <https://github.com/tmtowtdi/MontyLacuna/zipball/master>`_
-    Tar   `Download <https://github.com/tmtowtdi/MontyLacuna/tarball/master>`_
+    Zip   `Download zip file <https://github.com/tmtowtdi/MontyLacuna/zipball/master>`_
+    Tar   `Download tar file <https://github.com/tmtowtdi/MontyLacuna/tarball/master>`_
     ====  ===============
 
 - Open the ``zip`` file using whatever unzip tool you like.  It contains just 
   one folder, named something like ``tmtowtdi-MontyLacuna-1234abc``.  Drag 
   that out to ``My Documents`` on your computer.
 
-- You can leave that as is or rename it to whatever you want, but I strongly 
-  suggest you just rename it to ``MontyLacuna``.
+  - On Windows, you don't need to go download an unzip tool.  Just 
+    double-click on the .zip file after you've downloaded it, and Windows will 
+    open it up just like it's a regular folder.
 
-  - The rest of this documentation will assume that's what you named it.
+- After dragging that oddly-named folder into ``My Documents``, rename it to 
+  just ``MontyLacuna``.
 
 Install pip and Prerequisite Libraries
 --------------------------------------
@@ -56,7 +97,8 @@ installer script::
 pip is now installed.
 
 There are only two Python libraries to install, ``requests`` and ``beaker``, 
-and you install both of them using ``pip``::
+and you install both of them using ``pip`` by typing these two commands one at 
+a time::
 
     pip install requests
     pip install beaker

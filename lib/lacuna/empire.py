@@ -47,8 +47,22 @@ class MyEmpire( Empire ):
         has_new_messages        4,
         latest_message_id       1234,
         essentia                0,
-        planets                 {   "id-goes-here" : "Earth",
-                                    "id-goes-here" : "Mars,  },
+        planets                 Dict of all of the bodies that belong to you, 
+                                keyed off ID.  This includes both colonies and 
+                                space stations.
+                                {   "id-goes-here" : "Earth",
+                                    "id-goes-here" : "Mars",  
+                                    "id-goes-here" : "ISS",  
+                                    "id-goes-here" : "Halo",  },
+        planet_names            The reverse of planets; a dict keyed on the name.
+        colonies                Dict of just your colonies, keyed off ID.
+                                {   "id-goes-here" : "Earth",
+                                    "id-goes-here" : "Mars",  },
+        colony_names            The reverse of colonies; a dict keyed on the name.
+        stations                Dict of just your space stations, keyed off ID.
+                                {   "id-goes-here" : "ISS",
+                                    "id-goes-here" : "Halo",  },
+        station_names           The reverse of stations; a dict keyed on the name.
         tech_level"             20,         # Highest level university has gotten to.
         self_destruct_active    0,
         self_destruct_date      ""
@@ -372,57 +386,6 @@ class MyEmpire( Empire ):
         for i in kwargs['rslt']:
             mylist.append( SpeciesTemplate(self.client, i) )
         return mylist
-
-    def separate_stations(self, regex:str):
-        """ Separates space stations from planets.
-
-        Arguments:
-            - regex -- Required string.  Will be compiled as a regex and 
-              applied to the names of all of the current empire's planets; any 
-              names that match the regex will be assumed to be stations.
-
-        Returns:
-            - The integer count of space stations found.  Also creates the 
-              attributes ``station`` and ``colonized`` on the current empire 
-              object.
-
-        The ``MyEmpire.planets`` attribute is a dict (id:name) of all of the 
-        bodies that belong to the current empire.  However, "all of the 
-        bodies" includes planets you've colonized as well as space stations 
-        owned by your alliance.
-
-        Not having colonies and space stations separate from each other can be 
-        confusing, so it's common practice amongst alliances to name their 
-        space stations in a way that makes them easy to distinguish from 
-        colonized planets.
-
-        This looks through the list of your empire's planets, and creates two 
-        new MyEmpire attributes: ``stations`` and ``colonized``.  Both follow 
-        the same format as the comprehensive ``planets`` dict, but 
-        ``stations`` will contain the bodies we think are space stations, and 
-        ``colonized`` will contain the rest.
-
-        **CAUTION** -- This method is neither perfect nor authoritative!  
-        Since a space station needs to have its Parliament up to level 3 
-        before it can be renamed, it's likely that you'll occasionally get a 
-        brand new station showing up in the ``colonized`` dict.  And if you're 
-        not paying attention and name one of your planets so that it matches 
-        your regex, it'll show up in the ``stations`` dict.  So be careful 
-        with how you use this.
-        """
-        re_obj      = re.compile(regex)
-        colonized   = {}
-        stations    = {}
-        cnt         = 0
-        for pid, pname in self.planets.items():
-            if re_obj.match(pname):
-                cnt += 1
-                stations[pid] = pname
-            else:
-                colonized[pid] = pname
-        self.stations   = stations
-        self.colonized  = colonized
-        return cnt
 
 
 class Species(lacuna.bc.SubClass):
