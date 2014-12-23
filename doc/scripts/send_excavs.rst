@@ -14,8 +14,9 @@ which point this will work there.
 
 Sends out excavators from one of your colonies to the nearby planets of 
 whatever type or types you want to excavate.  This does not build excavators 
-for you; you have to have those ready to go before running this; see 
-:ref:`build_ships` if you haven't got excavators ready to go yet.
+For you; you have to have those ready to go before running this; see 
+:ref:`build_ships` and :ref:`topoff_ships_all` if you haven't got excavators 
+ready to go yet.
 
     >>> python bin/send_excavs.py -tp33 -t p35 Earth
 
