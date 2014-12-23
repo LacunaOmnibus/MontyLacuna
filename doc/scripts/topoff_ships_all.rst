@@ -5,7 +5,12 @@ Topoff Ships on All Planets
 ===========================
 
 Makes sure you have a minimum number of a certain type of ship at all of your 
-planets.  Most often used to ensure you have excavators lying around.
+planets.  
+
+While this is most often used to ensure you have excavators lying around, you 
+can use it for any ship type that you want to always have a minimum of in 
+stock -- maybe you like having 2 supply pods, or 10 smugglers, or 30 scows, or 
+whatever, on all of your planets.  This will do the job.
 
 This actually calls :ref:`build_ships` with the --topoff argument, once for 
 each of your planets.
