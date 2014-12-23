@@ -9,13 +9,6 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 - bin/send_excavs.py
 
 ## TBD
-- build_ships.py
-    - on 08, I have 1 sy and no excavs built.  --topoff --num 30  resulted in 
-      trying to build 0 ships, which resulted in a server error (you can't 
-      attempt to build 0 ships).
-    - on 1.3 I have 4 SYs and no excavs built.  The same topoff 30 tried to build -90 
-      ships, which is a problem.  I think I'm seeing a pattern here....
-
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.

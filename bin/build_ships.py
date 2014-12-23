@@ -13,12 +13,9 @@ import lacuna.binutils.libbuild_ships as lib
 bs  = lib.BuildShips()
 l   = bs.client.user_logger
 
-bs.client.cache_on("shipyards_for_building", 30)
-bs.client.cache_clear( "shipyards_for_building" )
-
 ### Get a list of shipyards that match the user's CLI args
 shipyards = bs.get_shipyards()
-l.info( "You have {} shipyards of the correct level.".format(len(shipyards)) )
+l.info( "{} has {} shipyards of the correct level.".format(bs.planet.name, len(shipyards)) )
 
 ### Ensure building the requested ship type is possible, and figure out how 
 ### many should be built.

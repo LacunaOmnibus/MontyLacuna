@@ -40,7 +40,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
             action      = 'store_true',
             help        = "If --topoff is sent, instead of building --num new ships, we'll make sure that we have at least --num ships in stock."
         )
-        super().__init__(parser, 'real')
+        super().__init__(parser)
 
         self.planet = self.client.get_body_byname( self.args.name )
 
@@ -83,7 +83,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
         num_to_build = docks_avail if docks_avail < build_queue_max else build_queue_max
 
         if self.args.topoff:
-            old_cache = self.client.cache_off()
+            old_cache = self.client.cache_off() # be sure this is off.
             sp = self.planet.get_buildings_bytype( 'spaceport', self.args.min_lvl, 1, 100 )[0]
             paging = {}
             filter = { 'type': self.args.type }
