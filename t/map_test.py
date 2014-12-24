@@ -12,12 +12,32 @@ pp = pprint.PrettyPrinter( indent = 4 )
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    #config_section = 'sitter',
-    config_section = 'play_test',
+    config_section = 'sitter',
+    #config_section = 'play_test',
 )
 
 
 mymap = glc.get_map();
+
+
+### View the laws reported by a given star.
+###
+### (-5,-1) is the first star I found near (0,0) that was seized.  It's a 
+### Culture-seized star, and the point of this test is to ensure that you can 
+### view laws passed by another alliance.  So if you're in Culture, go find a 
+### star that's been seized by some other alliance, and use its coords below 
+### instead.
+###
+#star_dict = {
+#    'left': -5, 'right': -5,
+#    'top': -1, 'bottom': -1
+#}
+#star = mymap.get_star_map(star_dict)[0]
+#if hasattr(star, 'station'):
+#    laws = star.view_nonseizure_laws()
+#    print( "Laws passed by {}".format(star.station.name) )
+#    for l in laws:
+#        print( l.name )
 
 
 ### View all stars in a chunk of space using named arguments.
@@ -25,10 +45,10 @@ mymap = glc.get_map();
 ### should use a small chunk of space in your star_dict.
 ###
 #star_dict = {
-#    'left': 1197,
-#    'right': 1197,
-#    'top': 1198,
-#    'bottom': 1198
+#    'left': -5,
+#    'right': -5,
+#    'top': -1,
+#    'bottom': -1
 #}
 #stars = mymap.get_star_map(star_dict)
 #for s in stars[0:5]:
