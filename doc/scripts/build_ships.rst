@@ -4,8 +4,8 @@
 Build Ships
 ===========
 
-Builds ships at multiple shipyards on a given planet, or on all of your 
-planets at once.
+Builds or tops off ships at multiple shipyards on a given planet, or on all of 
+your planets at once.
 
 When passing the name of a ship, you must use the ship's "system" name.  A 
 complete list can be found here: :ref:`ships_list`
