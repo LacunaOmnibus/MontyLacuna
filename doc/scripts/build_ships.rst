@@ -4,10 +4,17 @@
 Build Ships
 ===========
 
-Builds ships at multiple shipyards on a given planet.
+Builds ships at multiple shipyards on a given planet, or on all of your 
+planets at once.
 
 When passing the name of a ship, you must use the ship's "system" name.  A 
 complete list can be found here: :ref:`ships_list`
+
+When passing the name of a planet, remember to use double quotes around the 
+name if there are any space in it.  And if you want to build the same number 
+of ships on all of your planets, you can pass in the special planet name 
+'all'.  (If you have a planet actually named 'all', you chose poorly.  Go 
+rename it, or accept that this won't work properly for that planet.)
 
 The easiest way to run it will fill all of the available build queues on all 
 of the shipyards on your planet::
@@ -27,6 +34,11 @@ number in stock.  The following will build however many excavators it takes to
 get to a total of 20, and will just quit if you've already got 20 or more::
 
     >>> python bin/build_ships.py --num 20 --level 30 --topoff Earth excavator
+
+When topping off excavators, you may well want to just top them off at all of 
+your planets in one shot::
+
+    >>> python bin/build_ships.py --num 20 --level 30 --topoff all excavator
 
 If you want to run this from a scheduled task, or a batch file/shell script, 
 or any other situation where you don't want to see the script's running 

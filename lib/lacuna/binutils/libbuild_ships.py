@@ -42,8 +42,17 @@ class BuildShips(lacuna.binutils.libbin.Script):
         )
         super().__init__(parser)
 
-        self.planet = self.client.get_body_byname( self.args.name )
+        self.client.cache_on( 'my_colonies', 3600 )
+        self.planets = []
+        if self.args.name == 'all':
+            for colname in self.client.empire.colony_names.keys():
+                self.planets.append(colname)
+        else:
+            self.planets = self.args.name
+        self.client.cache_off()
 
+    def set_planet( self, pname:str ):
+        self.planet = self.client.get_body_byname( pname )
 
     def get_shipyards( self ):
         yards = self.planet.get_buildings_bytype( 'shipyard', self.args.min_lvl )
@@ -92,7 +101,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
                 self.client.user_logger.info( "You already have {} {}s built, no need to top off."
                     .format(currently_in_stock, self.args.type)
                 )
-                quit()
+                num_to_build = 0
             topoff_num = (requested_num - currently_in_stock)
             if topoff_num > num_to_build:
                 self.client.user_logger.info( "We should build {} more ships to top off, but only have slots for {} more."
