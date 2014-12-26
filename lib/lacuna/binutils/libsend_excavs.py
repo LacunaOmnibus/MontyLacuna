@@ -70,6 +70,15 @@ class SendExcavs(lacuna.binutils.libbin.Script):
 
         super().__init__(parser)
 
+        self.client.cache_on( 'my_colonies', 3600 )
+        self.planets = []
+        if self.args.name == 'all':
+            for colname in self.client.empire.colony_names.keys():
+                self.planets.append(colname)
+        else:
+            self.planets = self.args.name
+        self.client.cache_off()
+
         self.client.user_logger.debug( "Getting user's alliance." )
         self.ally           = self.client.get_my_alliance()
         self.excav_sites    = []
@@ -77,12 +86,15 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self.client.user_logger.debug( "Getting star map." )
         self.map            = self.client.get_map()
         self.num_excavs     = 0
-        self.client.user_logger.debug( "Getting planet " + self.args.name + "." )
-        self.planet         = self.client.get_body_byname( self.args.name )
-        self.ring           = Ring(self.planet, 0)
         self.travelling     = {}
 
-        self.client.user_logger.debug( "Getting Arch Min." )
+
+    def set_planet( self, pname:str ):
+        self.planet = self.client.get_body_byname( pname )
+        self.client.user_logger.info( "----- Sending excavs from " + pname + "." )
+        self.planet = self.client.get_body_byname( pname )
+        self.ring   = Ring(self.planet, 0)
+        self.client.user_logger.debug( "Getting Arch Min for {}.".format(pname) )
         self.arch   = self.planet.get_buildings_bytype( 'archaeology', 1, 1, 100 )[0]
         self.client.user_logger.debug( "Getting Space Port." )
         self.sp     = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
@@ -207,25 +219,20 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """
         if not hasattr(star, 'station'):
             return False
-
         if star.station.name in self.bad_stations:
             self.client.user_logger.debug("This star's station has already been found to have MO Excav law turned on." )
             return True
-
         if self.ally:
             if star.station.id == self.ally.id:
                 self.client.user_logger.debug("This star has been seized, but it's by my alliance." )
                 return False
-
         laws = star.view_nonseizure_laws()
         for l in laws:
             if l.name == 'Members Only Excavation':
                 self.client.user_logger.debug("Whoops - this star has MO Excav law turned on, and not by my alliance.  Skipping." )
                 self.bad_stations[star.station.name] = 1
                 return True
-
         return False
-
 
     def send_excavs_to_bodies_orbiting(self, stars:list):
         """ Sends excavators to the bodies around each star in a list, provided 

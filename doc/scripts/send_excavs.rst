@@ -4,7 +4,7 @@
 Send Excavs
 ===========
 
-Sends out excavators from one of your colonies to the nearby planets of 
+Sends out excavators from one or all of your colonies to the nearby planets of 
 whatever type or types you want to excavate.
 
 This does not build excavators for you; you have to have those ready to go 
@@ -15,6 +15,10 @@ To send all excavators possible from Earth to the nearest p33 and/or p35
 planets available::
 
     >>> python bin/send_excavs.py -tp33 -t p35 Earth
+
+To send excavators from all of your colonies, instead of just one::
+
+    >>> python bin/send_excavs.py -tp33 -t p35 all
 
 Note that both formats, *-tp33* and *-t p35*, will work fine.
 
