@@ -29,7 +29,7 @@ for pname in send.planets:
     while send.num_excavs > 0:
         stars = send.get_map_square()
         cnt += send.send_excavs_to_bodies_orbiting( stars )
-    l.info( "Sent out {} excavators.".format(cnt) )
+    l.info( "{} sent out {} excavators.".format(send.planet.name, cnt) )
 
 
 

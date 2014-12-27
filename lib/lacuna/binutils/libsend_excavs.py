@@ -8,6 +8,9 @@ class SendExcavs(lacuna.binutils.libbin.Script):
 
         ally            The user's lacuna.alliance.MyAlliance object, or False 
                         if the user is not in an alliance.
+        ally_members    List of Strings; the names of the members of my 
+                        alliance.  Used to determine if an inhabited planet is 
+                        hostile or not.
         arch            The Archaeology Ministry on self.planet.
         args            Command-line arguments set by the user; the result of
                         self.parser.parse_args()
@@ -76,11 +79,14 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             for colname in self.client.empire.colony_names.keys():
                 self.planets.append(colname)
         else:
-            self.planets = self.args.name
+            self.planets = [ self.args.name ]
         self.client.cache_off()
 
         self.client.user_logger.debug( "Getting user's alliance." )
         self.ally           = self.client.get_my_alliance()
+        if self.ally:
+            self._set_alliance_members()
+
         self.excav_sites    = []
         self.bad_stations   = {}
         self.client.user_logger.debug( "Getting star map." )
@@ -88,10 +94,16 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self.num_excavs     = 0
         self.travelling     = {}
 
+    
+    def _set_alliance_members(self):
+        self.ally_members = []
+        for m in self.ally.members:
+            self.ally_members.append( m.name )
+
 
     def set_planet( self, pname:str ):
         self.planet = self.client.get_body_byname( pname )
-        self.client.user_logger.info( "----- Sending excavs from " + pname + "." )
+        self.client.user_logger.info( "Sending excavs from " + pname + "." )
         self.planet = self.client.get_body_byname( pname )
         self.ring   = Ring(self.planet, 0)
         self.client.user_logger.debug( "Getting Arch Min for {}.".format(pname) )
@@ -208,9 +220,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """ Lets you know if the laws affecting a star forbid you from sending 
         excavators to that star's planets.
 
-        **NO WORKY WORKY**
-            This currently (12/16/2014) works on PT, but not on US1 yet.
-
         Arguments:
             - star -- lacuna.map.Star object
 
@@ -223,7 +232,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.client.user_logger.debug("This star's station has already been found to have MO Excav law turned on." )
             return True
         if self.ally:
-            if star.station.id == self.ally.id:
+            if star.station.alliance.id == self.ally.id:
                 self.client.user_logger.debug("This star has been seized, but it's by my alliance." )
                 return False
         laws = star.view_nonseizure_laws()
@@ -248,10 +257,36 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             if self.star_seizure_forbids_excav( s ):
                 self.client.user_logger.debug("Station {} has MO Excav law on.  Skipping." .format(s.station.name) )
                 continue
+            if self.system_contains_hostiles( s ):
+                self.client.user_logger.debug("Star {} has at least one hostile colony that would shoot down our excav.  Skipping." .format(s.name) )
+                continue
             cnt += self.send_excavs_to_bodies( s, s.bodies )
             if self.num_excavs <= 0:
                 return cnt
         return cnt
+
+    
+    def system_contains_hostiles( self, star ):
+        """ Checks if any of the planets orbiting a star is owned by a hostile 
+        empire.
+
+        Arguments:
+            - star -- lacuna.Map.Star object
+
+        Returns True if there's a hostile colony orbiting the star, False 
+        otherwise.
+        """
+        if not hasattr(star, 'bodies'): # Pretty rare, but possible, I guess.
+            return False
+        for b in star.bodies:
+            if not hasattr(b, 'empire'):
+                continue
+            if b.empire.name in self.ally_members:
+                continue
+            else:
+                return True
+        return False
+            
 
 
     def send_excavs_to_bodies(self, star, bodies:list):
@@ -320,7 +355,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             return 0
 
         for e in self.excav_sites:
-            if e.body == body.name:
+            if e.body.name == body.name:
                 self.client.user_logger.debug("We already have an excav at {}." .format(body.name) )
                 return 0
 
@@ -469,7 +504,6 @@ class Ring():
 
 class Cell():
     """
-
     Attributes::
 
         bottom              Y coordinate of the bottom boundary of the cell
@@ -481,6 +515,9 @@ class Cell():
         right               X coordinate of the right boundary of the cell
         row                 The row occupied by the current cell.  0-based.
         top                 Y coordinate of the top boundary of the cell
+
+    Constructor will raise Cell.OutOfBoundsError if the entire cell is out of 
+    bounds, so be sure to create a new cell in a try block.
 
     **Cell Diagram**
     In ring.ring_offset == 0::
@@ -511,6 +548,13 @@ class Cell():
         +--------++--------++--------+
     """
 
+    class OutOfBoundsError(Exception):
+        """ The entire cell is out of bounds """
+        def __init__(self, value):
+            self.value = value
+        def __str__(self):
+            return repr(self.value)
+
     def __init__( self, col, row, x, y, cell_size ):
         self.col        = col
         self.row        = row
@@ -526,11 +570,17 @@ class Cell():
         self.bottom  = self.center_y - (self.cell_size / 2)
 
         if self.top < -1500 or self.bottom > 1500 or self.left > 1500 or self.right < -1500:
-            ### CHECK this needs to do something more reasonable than bailing.
-            self.client.user_logger.debug( "This cell is entirely out of bounds." )
-            quit()
-        ### At least part of the cell is in bounds.  But parts of it might lap 
-        ### over the boundaries -- fix anything outside the limits of the map.
+            ### The cell is completely out of bounds.  But we don't want to 
+            ### stop iteration.  eg the top row of cells could be out of 
+            ### bounds, leaving the other rows in bounds.  If we stopped 
+            ### iteration, we'd never process the following in-bounds cells.  
+            ### So for out-of-bounds cells, just return a single point that's 
+            ### in bounds, but which won't contain any stars.  ie don't do 
+            ### anything different.
+            pass
+        ### Limit any part of the cell that laps out of bounds to being just 
+        ### barely in-bounds.  Making TLE Map module requests with 
+        ### out-of-bounds coords is an error.
         self.top     =  1500 if self.top     > 1500 else self.top
         self.right   =  1500 if self.right  >  1500 else self.right
         self.bottom  = -1500 if self.bottom < -1500 else self.bottom
