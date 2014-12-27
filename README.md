@@ -11,8 +11,8 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
     - At the same time, we want the contents of the 2 cache dirs, plus all logs and 
       rotated logs, to be omitted from commits.
 - Send excavs should cache tested planet and star info.  When running for 'all' planets, 
-  if multiple planets are ROFd, it's re-testing the same systems and planets over and over 
-    again.
+  if multiple planets are ROFd, it's re-testing the same systems and planets 
+    over and over again.  Fix.
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
