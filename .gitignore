@@ -1,5 +1,6 @@
 *.swp
 *.swo
+captcha.py
 test.py
 test.txt
 __pycache__/
