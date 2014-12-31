@@ -32,13 +32,10 @@ for pname in send.planets:
     l.info( "{} sent out {} excavators.".format(send.planet.name, cnt) )
 
 
-
-
 """
 All versions work.
     python bin/send_excavs.py -tp35 -v --max_ring 3 bmots01
     python bin/send_excavs.py -t p35 --max_ring 3 bmots01
     python bin/send_excavs.py --t p35 --max_ring 3 bmots01
 """
-
 

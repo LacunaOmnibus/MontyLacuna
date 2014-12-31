@@ -1,6 +1,54 @@
 
 import lacuna, lacuna.exceptions, lacuna.binutils.libbin
 import argparse, os, sys
+from enum import Enum
+
+class BodyCache():
+    """ We don't want to use a request cache for any part of send_excavs, but we 
+    do want to keep track of stations, stars, and bodies that we know are no 
+    good for whatever reason.
+    """
+    def __init__(self):
+        self.stations   = {}
+        self.stars      = {}
+        self.planets    = {}
+
+    def is_bad(self, body_name, type = 'planet'):
+        """ Checks to see if a given body is known to be bad.
+
+        Arguments:
+            - body_name -- Str name of the body to mark as bad.
+            - type -- Str type of body.  Either 'star', 'station', or 'planet'.  
+              Defaults to 'planet'.
+
+        Returns a boolean.  True if the body is known to be bad.
+        """
+        if body_name in self.stations:
+            return True
+        elif body_name in self.stars:
+            return True
+        elif body_name in self.planets:
+            return True
+        return False
+
+    def mark_as_bad(self, body_name, type = 'planet'):
+        """ Marks a given body as 'bad' in the cache.
+
+        Arguments:
+            - body_name -- Str name of the body to mark as bad.
+            - type -- Str type of body.  Either 'star', 'station', or 'planet'.
+              Defaults to 'planet'.
+        """
+        if type == 'planet':
+            self.planets[body_name] = True
+        elif type == 'station':
+            self.stations[body_name] = True
+        elif type == 'star':
+            self.stars[body_name] = True
+        else:
+            raise Exception("{}: illegal type.".format(type))
+        return False
+
 
 class SendExcavs(lacuna.binutils.libbin.Script):
     """
@@ -14,17 +62,16 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         arch            The Archaeology Ministry on self.planet.
         args            Command-line arguments set by the user; the result of
                         self.parser.parse_args()
-        bad_stations    Dict of names ( {name: 1} ) of stations we've 
-                        encountered that won't accept excavs (MO laws).
+        body_cache      A libsend_excavs.BodyCache object.
         cell_number     The cell we're working on.  Starts at 1.
         client          lacuna.clients.Member object
         excav_sites     A list of lacuna.ship.Excavator objects.  Starts
                         as an empty list, set to the correct value by 
-                        get_excav_count().  Does not include the current planet 
+                        set_excav_count().  Does not include the current planet 
                         in the list.
         map             lacuna.map.Map object
         num_excavs      Number of excavs to be sent from self.planet.  Starts
-                        at 0, set to the correct value by get_excav_count().
+                        at 0, set to the correct value by set_excav_count().
         parser          argparse.ArgumentParser object
         planet          lacuna.body.MyBody object for the planet name passed
                         at the command line.
@@ -87,10 +134,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         if self.ally:
             self._set_alliance_members()
 
-        self.excav_sites    = []
-        self.bad_stations   = {}
         self.client.user_logger.debug( "Getting star map." )
         self.map            = self.client.get_map()
+
+        self.excav_sites    = []
+        self.body_cache     = BodyCache()
         self.num_excavs     = 0
         self.travelling     = {}
 
@@ -106,14 +154,25 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self.client.user_logger.info( "Sending excavs from " + pname + "." )
         self.planet = self.client.get_body_byname( pname )
         self.ring   = Ring(self.planet, 0)
+
         self.client.user_logger.debug( "Getting Arch Min for {}.".format(pname) )
         self.arch   = self.planet.get_buildings_bytype( 'archaeology', 1, 1, 100 )[0]
+
+        ### Get the number of excav slots before doing anything else - if we 
+        ### have no available slots left, there's no need to continue.
+        excav_sites, excav_max, num_travelling = self.arch.view_excavators()
+        self.excav_sites = excav_sites[1:] # Omit the first excav site; it's our current planet.
+        self.num_excavs = (excav_max - (len(self.excav_sites) + num_travelling) )
+        self.client.user_logger.info( "Arch min has {} slots available.".format(self.num_excavs) )
+        if self.num_excavs <= 0:
+            return
+
         self.client.user_logger.debug( "Getting Space Port." )
         self.sp     = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
         self.client.user_logger.debug( "Making note of travelling excavs." )
         self.note_travelling_excavators()
         self.client.user_logger.debug( "Getting usable excav count." )
-        self.get_excav_count()
+        self.set_excav_count()
 
 
     def get_ready_excavators(self):
@@ -141,27 +200,15 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 self.travelling[ s.to.id ] = 1
 
 
-    def get_excav_count( self ):
+    def set_excav_count( self ):
         """ Set the number of excavs this planet is able to send right now.
 
         Returns nothing, but sets ``self.num_excavs``.
         """
         self.client.cache_off() # we need fresh data for this method
 
-        ### Omit the first excav site; it's our current planet.
-        excav_sites, excav_max, num_travelling = self.arch.view_excavators()
-        self.excav_sites = excav_sites[1:]
-
         ### Get count of built and ready excavators onsite
         num_excavs_ready = self.get_ready_excavators()
-
-        ### Here, num_excavs is the number of additional excavators that the 
-        ### Arch Min has room for, taking into account its available slots and 
-        ### what's out there travelling.
-        self.num_excavs = (excav_max - (len(self.excav_sites) + num_travelling) )
-        self.client.user_logger.info( "Arch min has {} slots available.".format(self.num_excavs) )
-        if self.num_excavs <= 0:
-            return
 
         ### If we have fewer excavators ready to go than the Arch Min has 
         ### slots available, shorten self.num_excavs.
@@ -228,7 +275,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """
         if not hasattr(star, 'station'):
             return False
-        if star.station.name in self.bad_stations:
+        if self.body_cache.is_bad(star.station.name, 'station'):
             self.client.user_logger.debug("This star's station has already been found to have MO Excav law turned on." )
             return True
         if self.ally:
@@ -239,9 +286,10 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         for l in laws:
             if l.name == 'Members Only Excavation':
                 self.client.user_logger.debug("Whoops - this star has MO Excav law turned on, and not by my alliance.  Skipping." )
-                self.bad_stations[star.station.name] = 1
+                self.body_cache.mark_as_bad(star.station.name, 'station')
                 return True
         return False
+
 
     def send_excavs_to_bodies_orbiting(self, stars:list):
         """ Sends excavators to the bodies around each star in a list, provided 
@@ -254,11 +302,18 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """
         cnt = 0
         for s in stars:
+            self.client.user_logger.info("Checking on star '{}'." .format(s.name) )
+            if self.body_cache.is_bad(s.name, 'star'):
+                self.client.user_logger.debug("We've already discovered that the star {} is no good.  Skipping." .format(s.name) )
+                continue
             if self.star_seizure_forbids_excav( s ):
                 self.client.user_logger.debug("Station {} has MO Excav law on.  Skipping." .format(s.station.name) )
+                self.body_cache.mark_as_bad(s.name, 'star')
+                self.body_cache.mark_as_bad(s.station.name, 'station')
                 continue
             if self.system_contains_hostiles( s ):
                 self.client.user_logger.debug("Star {} has at least one hostile colony that would shoot down our excav.  Skipping." .format(s.name) )
+                self.body_cache.mark_as_bad(s.name, 'star')
                 continue
             cnt += self.send_excavs_to_bodies( s, s.bodies )
             if self.num_excavs <= 0:
@@ -284,6 +339,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             if b.empire.name in self.ally_members:
                 continue
             else:
+                self.body_cache.mark_as_bad(star.name, 'star')
                 return True
         return False
             
@@ -301,6 +357,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         cnt = 0
         for b in bodies:
             cnt += self.send_excav_to_matching_body(star, b)
+            if self.body_cache.is_bad(star.name, 'star'):
+                ### send_excav_to_matching_body() found that a planet in this 
+                ### system is inhabited, so the whole star is bad.  No need to 
+                ### continue checking this system.
+                return cnt
             if self.num_excavs <= 0:
                 return cnt
         return cnt
@@ -336,33 +397,46 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         If everything works out, this will send an excavator, decrement 
         self.num_excavs, and return 1.
         """
+        if self.body_cache.is_bad(body.name, 'planet'):
+            self.client.user_logger.debug("A previous check showed that {} is no good.  Next!" .format(body.name) )
+            return 0
+
         if hasattr(body, 'empire'):
             self.client.user_logger.debug("Planet {} ({},{}) is inhabited.  Next!" .format(body.name, body.x, body.y) )
+            ### A body in the system is inhabited; this makes the entire 
+            ### system bad, so mark the star, not just the body.
+            self.body_cache.mark_as_bad(body.star_name, 'star')
+            self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
 
         if body.id in self.travelling:
             self.client.user_logger.info("We already have an excav on the way to {}.  Next!" .format(body.name) )
+            self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
 
         if body.type != 'habitable planet':
             self.client.user_logger.debug("Planet {} is not habitable." .format(body.name) )
+            self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
 
         if body.surface_type in self.args.ptypes:
             self.client.user_logger.debug("Planet {} ({},{}) is habitable, uninhabited, and the correct type." .format(body.name, body.x, body.y) )
         else:
             self.client.user_logger.debug("Planet {} is not the correct type." .format(body.name) )
+            self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
 
         for e in self.excav_sites:
             if e.body.name == body.name:
                 self.client.user_logger.debug("We already have an excav at {}." .format(body.name) )
+                self.body_cache.mark_as_bad(body.name, 'planet')
                 return 0
 
-        target  = { "body_name": body.name }
+        target  = { "body_id": body.id }    # don't use body_name to avoid unicode names.
         excav = self.get_available_excav_for( target )
         if not excav:
-            self.client.user_logger.debug("We can't send an excavator to this target.  We probably already sent an excav from a previous run.")
+            self.client.user_logger.debug("We can't send an excavator to this target.  We probably already have an excav there.")
+            self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
 
         try:
@@ -381,6 +455,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.client.user_logger.debug("Encountered {}, ({}) trying to send excav to {} ({}, {})."
                 .format(type(e), e, body.name, body.x, body.y)
             )
+            self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
         else:
             self.client.user_logger.info( "We just sent an excavator to {} ({},{}).".format(body.name, body.x, body.y) )

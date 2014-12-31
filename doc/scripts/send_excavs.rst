@@ -42,6 +42,10 @@ For complete help, see the script's help documentation:
    :members:
    :show-inheritance:
 
+.. autoclass:: lacuna.binutils.libsend_excavs.BodyCache
+   :members:
+   :show-inheritance:
+
 .. autoclass:: lacuna.binutils.libsend_excavs.Cell
    :members:
    :show-inheritance:
