@@ -6,4 +6,6 @@ test.txt
 __pycache__/
 doc/_build/
 etc/*cfg*
-var/*
+var/cache/*
+var/cachelck/*
+var/*log*
