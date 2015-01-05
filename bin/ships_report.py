@@ -13,7 +13,6 @@ import lacuna.binutils.libships_report as lib
 sr  = lib.ShipsReport()
 l   = sr.client.user_logger
 
-
 ### sr.planets will be a list, containing either just the planet name passed 
 ### in by the user, or all of the user's planet names if 'all' was passed in.
 for pname in sr.planets:
@@ -27,6 +26,6 @@ for pname in sr.planets:
     sr.gather_ship_data()
 
 
-sr.produce_report()
+sr.display_full_report()
 
 

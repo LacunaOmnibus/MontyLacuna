@@ -10,7 +10,7 @@ import lacuna.spy
 class spaceport(lacuna.building.MyBuilding):
     """
     Multiple spaceport buildings on a single planet work together as a single 
-    unit.  So calling view_all_ships() on one spaceport building will return 
+    unit.  So calling :py:meth:`view_all_ships` on one spaceport building will return 
     exactly the same list as calling it on a different spaceport building (on the 
     same planet).
 
@@ -37,7 +37,9 @@ class spaceport(lacuna.building.MyBuilding):
         Returns a tuple:
             - max_ships -- Integer maximum ships that can be stored
             - docks_available -- Integer; how many more ships can be stored
-            - docked_ships -- Dict; summary of counts of ships currently at dock::
+            - docked_ships -- Dict; summary of counts of ships currently at dock
+            
+            docked_ships dict::
 
                 {
                     "probe": 3,
@@ -77,12 +79,7 @@ class spaceport(lacuna.building.MyBuilding):
                 - type -- Any of the existing ship types (eg "placebo5", "scow_fast", etc)
                 - tag -- Colonization, Exploration, Intelligence, Mining, Trade, War
             - sort -- A string to specify what to sort the results on.  Defaults to 'type'.  Valid options:
-                - combat
-                - name
-                - speed
-                - stealth
-                - task
-                - type
+                - combat, name, speed, stealth, task, type
 
         Filter critera are joined with 'or', not 'and'.  So this filter dict may 
         not be what you really mean::
@@ -96,7 +93,7 @@ class spaceport(lacuna.building.MyBuilding):
         which may be more than you were expecting.
 
         Returns a tuple:
-            - ships -- list of lacuna.ship.ExistingShip objects.
+            - ships -- list of :class:`lacuna.ship.ExistingShip` objects.
             - number_of_ships -- is the total number that result from your filter, ignoring your pagin
         """
 
@@ -116,7 +113,7 @@ class spaceport(lacuna.building.MyBuilding):
         show.
 
         Returns a tuple:
-            - ships -- List of lacuna.ship.IncomingShip objects
+            - ships -- List of :class:`lacuna.ship.IncomingShip` objects
             - number_of_ships -- Integer count of incoming ships
         """
         ship_list = []
@@ -129,7 +126,7 @@ class spaceport(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
     def get_fleet_for( self, from_body_id:int, target:dict, *args, **kwargs ):
-        """ See docs for get_my_fleet_for().  """
+        """ See docs for :py:meth:`get_my_fleet_for`.  """
         ship_list = []
         for i in kwargs['rslt']['ships']:
             ship_list.append( lacuna.ship.ExistingShip(self.client, i) )
@@ -142,8 +139,8 @@ class spaceport(lacuna.building.MyBuilding):
 
         Returns a list of lacuna.ship.FleetShip objects.
                     
-        This method is syntactic sugar for calling get_fleet_for(), which 
-        requires that the sending body ID be passed.  Since that sending 
+        This method is syntactic sugar for calling :py:meth:`get_fleet_for`, 
+        which requires that the sending body ID be passed.  Since that sending 
         body ID is an attribute of the spaceport object itself, specifically 
         sending it as an argument is silly.
 
@@ -153,7 +150,7 @@ class spaceport(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
     def get_ships_for( self, from_body_id:int, target:dict, *args, **kwargs ):
-        """ See docs for get_my_ships_for()."""
+        """ See docs for :py:meth:`get_my_ships_for`."""
 
         inc_list = []
         for i in kwargs['rslt']['incoming']:
@@ -190,17 +187,20 @@ class spaceport(lacuna.building.MyBuilding):
         """ Gets ships available to send to a target, as well as a list of 
         incoming ships for some reason.
 
-        'target' is a dict, identical to that required by get_my_fleet_for().
+        'target' is a dict, identical to that required by 
+        :py:meth:`get_my_fleet_for`.
 
-        As with get_my_fleet_for(), this method is sugar for the actual API
+        As with :py:meth:`get_my_fleet_for`, this method is sugar for the 
+        actual API
         method.
 
         Returns a tuple:
-            - incoming -- List of lacuna.ship.IncomingShip objects
-            - available -- List of lacuna.ship.ExistingShip objects
-            - unavailable -- List of lacuna.ship.UnavailableShip objects
-            - orbiting -- List of lacuna.ship.ExistingShip objects
-            - mining_platforms -- List of lacuna.buildings.spaceport.MiningPlatform objects
+            - incoming -- List of :class:`lacuna.ship.IncomingShip` objects
+            - available -- List of :class:`lacuna.ship.ExistingShip` objects
+            - unavailable -- List of :class:`lacuna.ship.UnavailableShip` 
+              objects
+            - orbiting -- List of :class:`lacuna.ship.ExistingShip` objects
+            - mining_platforms -- List of :class:`MiningPlatform` objects
             - fleet_send_limit -- Always integer 20.
 
         """
@@ -214,9 +214,11 @@ class spaceport(lacuna.building.MyBuilding):
 
         Arguments:
             - ship_id -- Integer ID of the ship to send
-            - target -- Dict, identical to the one in get_my_fleet_for()
+            - target -- Dict, identical to the one in 
+              :py:meth:`get_my_fleet_for`
 
-        Returns a lacuna.ship.IncomingShip object for the single sent ship.
+        Returns a :class:`lacuna.ship.IncomingShip` object for the single sent 
+        ship.
         """
         return lacuna.ship.IncomingShip(self.client, kwargs['rslt']['ship'])
 
@@ -236,7 +238,8 @@ class spaceport(lacuna.building.MyBuilding):
         ID of the sending body.
 
         Arguments
-            - target -- Dict, identical to the one in get_my_fleet_for()
+            - target -- Dict, identical to the one in 
+              :py:meth:`get_my_fleet_for`
             - types -- List of shiptype dicts
             - arrival -- Dict to specify arrival time.
 
@@ -307,8 +310,8 @@ class spaceport(lacuna.building.MyBuilding):
         ships orbiting a specific target - this is recalling ALL ships from 
         this planet that are orbiting anywhere.
 
-        Returns a list of lacuna.ship.IncomingShip objects, with the following additional 
-        attributes::
+        Returns a list of :class:`lacuna.ship.IncomingShip` objects, with the 
+        following additional attributes::
 
             returning_from:    {  # This is the planet the ships are being recalled from
                                     "id" : "id-goes-here",
@@ -387,10 +390,10 @@ class spaceport(lacuna.building.MyBuilding):
     def view_ships_travelling( self, *args, **kwargs ):
         """ Shows all ships travelling from this planet.
 
-        "Travelling" contains two of the letter "l".
+        "Travelling" contains *two* of the letter "l".
 
         Returns a tuple:
-            - ships -- List of lacuna.ship.TravellingShip objects
+            - ships -- List of :class:`lacuna.ship.TravellingShip` objects
             - number -- Integer count of ships in the air
         """
         ship_list = []
@@ -407,10 +410,10 @@ class spaceport(lacuna.building.MyBuilding):
         """ Shows all FOREIGN ships currently orbiting THIS planet, dependent 
         upon the stealth levels of those orbiting ships.
 
-        "Orbiting" contains one of the letter "t".
+        "Orbiting" contains *one* of the letter "t".
 
         Returns a tuple:
-            - ships -- List of lacuna.ship.ForeignOrbiting objects
+            - ships -- List of :class:`lacuna.ship.ForeignOrbiting` objects
             - number_of_ships -- Integer
         """
         ### Returned keys here are 'ships' and 'number_of_ships' - these names 
@@ -426,17 +429,15 @@ class spaceport(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
     def prepare_send_spies( self, on_body_id:int, to_body_id:int, *args, **kwargs ):
-        """ Gathers the info needed to call send_spies().
-
-                rv = sp.prepare_send_spies( my_planet_id, target_planet_id )
+        """ Gathers the info needed to call :py:meth:`send_spies`.
 
         Arguments:
             - on_body_id -- Integer ID of the body the spies are currently on
             - to_body_id -- Integer ID of the body to which you wish to send the spies
 
         Returns a tuple:
-            - ships -- List of lacuna.ship.ExistingShip objects
-            - spies -- List of lacuna.spy.Spy objects
+            - ships -- List of :class:`lacuna.ship.ExistingShip` objects
+            - spies -- List of :class:`lacuna.spy.Spy` objects
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -453,8 +454,6 @@ class spaceport(lacuna.building.MyBuilding):
     def send_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Sends spies to a target.
 
-        ``rv = sp.send_spies( my_planet_id, target_planet_id, ship_id, spy_ids )``
-
         Arguments:
             - on_body_id -- Integer ID of the body the spies are currently on.
             - to_body_id -- Integer ID of the body to which you wish to send the spies.
@@ -464,7 +463,7 @@ class spaceport(lacuna.building.MyBuilding):
         Returns a tuple:
             - spies_sent -- List of IDs of sent spies (not Spy objects)
             - spies_not_sent -- List of IDs of sent spies (not Spy objects) This should only have contents if you're cheating.
-            - ship -- lacuna.ship.TravellingShip object
+            - ship -- :class:`lacuna.ship.TravellingShip` object
         """
         sent_list = []
         for id in kwargs['rslt']['spies_sent']:
@@ -488,8 +487,8 @@ class spaceport(lacuna.building.MyBuilding):
             - to_body_id -- Integer ID of the body to which you wish to send the spies (their home planet)
         
         Returns a tuple:
-            - ship_list -- List of lacuna.ship.ExistingShip objects
-            - spy_list -- List of lacuna.spy.Spy objects
+            - ship_list -- List of :class:`lacuna.ship.ExistingShip` objects
+            - spy_list -- List of :class:`lacuna.spy.Spy` objects
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -506,13 +505,13 @@ class spaceport(lacuna.building.MyBuilding):
     def fetch_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Fetches spies back home again.
 
-        Arguments are the same as for send_spies().  But remember that, like 
-        prepare_fetch_spies(), on_body_id is the body the spies are on now 
-        (foreign), and to_body_id is the body they're being fetched to (your 
-        planet, their home).
+        Arguments are the same as for :py:meth:`send_spies()`.  But remember 
+        that, like :py:meth:`prepare_fetch_spies()`, on_body_id is the body 
+        the spies are on now (foreign), and to_body_id is the body they're 
+        being fetched to (your planet, their home).
 
-        Returns the lacuna.ship.TravellingShip object of the ship fetching the 
-        spies.
+        Returns the :class:`lacuna.ship.TravellingShip` object of the ship 
+        fetching the spies.
         """
         return lacuna.ship.TravellingShip(self.client, kwargs['rslt']['ship'])
 
@@ -521,10 +520,11 @@ class spaceport(lacuna.building.MyBuilding):
         """ View battle logs.
 
         Arguments:
-            - page_number -- Optional nteger number of page to view.  25 log entries displayed per page.  Defaults to 1.
+            - page_number -- Optional integer number of page to view.  25 log 
+              entries displayed per page.  Defaults to 1.
 
         Returns a tuple:
-            - battle_log -- List of spaceport.BattleLog objects
+            - battle_log -- List of :class:`BattleLog` objects
             - number_of_logs -- Integer total number of entries in the logbook.
         """
         mylist = []
@@ -595,7 +595,7 @@ class spaceport(lacuna.building.MyBuilding):
               be used.
 
         Returns a tuple:
-            - ship -- lacuna.ship.TravellingShip object
+            - ship -- :class:`lacuna.ship.TravellingShip` object
             - spy_ids -- List of integer IDs of spies being fetched NOT a list 
               of Spy objects.
 

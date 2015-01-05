@@ -46,4 +46,5 @@ if your arguments contain spaces, you have to quote them::
    recall_all_ships
    recall_all_spies
    send_excavs
+   ships_report
 
