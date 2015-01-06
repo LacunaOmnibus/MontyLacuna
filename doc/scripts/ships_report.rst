@@ -26,24 +26,34 @@ altogether::
 
     >>> python bin/ships_report.py Earth
 
+Running for all Planets
+-----------------------
+
 Any of those combinations of tags can be used to report on all of the ships 
 across your empire::
 
     >>> python bin/ships_report.py all
 
-When running a report, ship data get cached so retrieving it on the next run 
+Force Fresh Data
+----------------
+
+When running a report, ship data gets cached so retrieving it on the next run 
 will be quicker.  This way you can conveniently run a report multiple times 
 without having to wait or waste your RPCs.  
 
 However, if you run the report on a planet, then go build a bunch of ships and 
 want to run the same report again to see your new ships, you won't want to 
-look data cached from the first run (before you built the ships).  In that 
+look at data cached from the first run (before you built the ships).  In that 
 case, pass the ``--fresh`` option::
 
     >>> python bin/ships_report.py --fresh Earth
 
-By default, the report is delivered to the screen in a human-readable format.  
-However, you might prefer to create a spreadsheet from the report data::
+Produce CSV Output
+------------------
+
+By default, the report is delivered to the screen in a summarized, 
+human-readable format.  However, you can instead create a spreadsheet, which 
+will contain full data on each individual ship::
 
     >>> python bin/ships_report.py --tag War --format csv Earth
 
@@ -55,6 +65,9 @@ file::
 
 Now, you can open ``myfile.csv`` using Excel or whatever spreadsheet software 
 you like.
+
+Full Documentation
+------------------
 
 For complete help, see the script's help documentation:
 

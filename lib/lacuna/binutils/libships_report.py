@@ -18,9 +18,9 @@ class PlanetShipData():
             else:
                 self.counts[ s.type_human ] = 1
 
-    def display_report( self, format ):
-        if format == 'csv':
-            self.display_csv_report()
+    def display_report( self, sr ):
+        if sr.args.format == 'csv':
+            self.display_csv_report( sr )
         else:
             self.display_cli_report()
 
@@ -34,13 +34,29 @@ class PlanetShipData():
             print( "\t{:<30} {: >6,}".format(type, self.counts[type]) )
         print( '' )
 
-    def display_csv_report( self ):
+    def display_csv_report( self, sr ):
         """ Displays a CSV report on the ships on a single planet on the terminal.
         """
-        self._organize_counts()
+        #self._organize_counts()
+        #for type in sorted( self.counts.keys() ):
+        #    writer.writerow([ self.pname, type, self.counts[type] ])
+
         writer = csv.writer( sys.stdout ) 
-        for type in sorted( self.counts.keys() ):
-            writer.writerow([ self.pname, type, self.counts[type] ])
+
+        if not sr.header_written:
+            row = [ "Planet Name", "ID", "Name", "Type", "Task", "Speed", "Hold Size", 
+                "Berth Level", "Date Available", "Max Occupants", "Destination" ]
+            writer.writerow( row )
+            sr.header_written = True
+
+        for s in self.ships:
+            row = [ self.pname, s.id, s.name, s.type, s.task, s. speed, s.hold_size, 
+                s.berth_level, s.date_available, s.max_occupants, ]
+            if hasattr(s, "to"):
+                row.append( s.to.name )
+            else:
+                row.append( '' )
+            writer.writerow( row )
         
 
 class ShipsReport(lacuna.binutils.libbin.Script):
@@ -76,14 +92,15 @@ class ShipsReport(lacuna.binutils.libbin.Script):
             choices     = [ 'Colonization', 'Exploration', 'Intelligence', 'Mining', 'Trade', 'War' ],
             type        = str,
             default     = [],
-            help        = "Report on ships with this tag.  Omit to report on all tags."
+            help        = "Report on ships with this tag.  Omit to report on all tags.  Valid tags are: 'Colonization', 'Exploration', 'Intelligence', 'Mining', 'Trade', 'War'."
         )
         super().__init__(parser)
 
-        self.planet     = ''
-        self.planets    = []
-        self.port       = ''
-        self.ship_data  = {}    # planet_id => PlanetShipData object
+        self.header_written = False
+        self.planet         = ''
+        self.planets        = []
+        self.port           = ''
+        self.ship_data      = {}    # planet_id => PlanetShipData object
 
         if self.args.fresh:
             self.client.cache_clear( 'ships_report' )
@@ -142,6 +159,6 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         the user.
         """
         for pname in sorted( self.ship_data.keys() ):
-            self.ship_data[pname].display_report( self.args.format )
+            self.ship_data[pname].display_report( self )
 
 
