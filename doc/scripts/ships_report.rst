@@ -17,6 +17,9 @@ An example report on just warships on Earth::
             Snark                             500
             Sweeper                         1,500
 
+Note that this style report only contains ship types and counts.  If you want 
+a more complete report, see the section below on CSV format.
+
 To report on both trade- and war- ships on a single planet::
 
     >>> python bin/ships_report.py --tag War --tag Trade Earth

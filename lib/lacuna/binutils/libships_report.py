@@ -37,10 +37,6 @@ class PlanetShipData():
     def display_csv_report( self, sr ):
         """ Displays a CSV report on the ships on a single planet on the terminal.
         """
-        #self._organize_counts()
-        #for type in sorted( self.counts.keys() ):
-        #    writer.writerow([ self.pname, type, self.counts[type] ])
-
         writer = csv.writer( sys.stdout ) 
 
         if not sr.header_written:
