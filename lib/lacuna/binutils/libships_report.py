@@ -1,6 +1,6 @@
 
 import lacuna, lacuna.binutils.libbin
-import argparse, os, sys
+import argparse, csv, os, sys
 
 class PlanetShipData():
     """ Contains the data gathered on ships living at a single planet.
@@ -13,23 +13,34 @@ class PlanetShipData():
     def _organize_counts( self ):
         self.counts = {}
         for s in self.ships:
-            print( s.date_available )
-            print( s.date_started )
-            print( s.date_arrives )
-            quit()
             if s.type_human in self.counts:
                 self.counts[ s.type_human ] += 1
             else:
                 self.counts[ s.type_human ] = 1
 
+    def display_report( self, format ):
+        if format == 'csv':
+            self.display_csv_report()
+        else:
+            self.display_cli_report()
+
     def display_cli_report( self ):
-        """ Displays a report on the ships on a single planet on the terminal.
+        """ Displays a human-readable report on the ships on a single planet on 
+        the terminal.
         """
         self._organize_counts()
         print( "There are {:,} total ships on {}.".format(self.num, self.pname) )
         for type in sorted( self.counts.keys() ):
             print( "\t{:<30} {: >6,}".format(type, self.counts[type]) )
         print( '' )
+
+    def display_csv_report( self ):
+        """ Displays a CSV report on the ships on a single planet on the terminal.
+        """
+        self._organize_counts()
+        writer = csv.writer( sys.stdout ) 
+        for type in sorted( self.counts.keys() ):
+            writer.writerow([ self.pname, type, self.counts[type] ])
         
 
 class ShipsReport(lacuna.binutils.libbin.Script):
@@ -131,6 +142,6 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         the user.
         """
         for pname in sorted( self.ship_data.keys() ):
-            self.ship_data[pname].display_cli_report()
+            self.ship_data[pname].display_report( self.args.format )
 
 

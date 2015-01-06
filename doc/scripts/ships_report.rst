@@ -35,17 +35,30 @@ When running a report, ship data get cached so retrieving it on the next run
 will be quicker.  This way you can conveniently run a report multiple times 
 without having to wait or waste your RPCs.  
 
-However, if you, for example, run the report on a planet, then go build a 
-bunch of ships and want to run the same report again to see your new ships, 
-you won't want to look data cached from the first run (before you built the 
-ships).  In that case, pass the ``--fresh`` option:
+However, if you run the report on a planet, then go build a bunch of ships and 
+want to run the same report again to see your new ships, you won't want to 
+look data cached from the first run (before you built the ships).  In that 
+case, pass the ``--fresh`` option::
 
     >>> python bin/ships_report.py --fresh Earth
+
+By default, the report is delivered to the screen in a human-readable format.  
+However, you might prefer to create a spreadsheet from the report data::
+
+    >>> python bin/ships_report.py --tag War --format csv Earth
+
+That will produce the output in CSV format, on the screen.  Since CSV format 
+on the screen isn't really very helpful, you should redirect that into a 
+file::
+
+    >>> python bin/ships_report.py --tag War --format csv Earth > myfile.csv
+
+Now, you can open ``myfile.csv`` using Excel or whatever spreadsheet software 
+you like.
 
 For complete help, see the script's help documentation:
 
     >>> python bin/ships_report.py -h
-
 
 .. autoclass:: lacuna.binutils.libships_report.ShipsReport
    :members:
