@@ -42,7 +42,7 @@ if your arguments contain spaces, you have to quote them::
     >>> python bin/scriptname.py --planet "My Planet Name"
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    build_ships
    recall_all_ships
