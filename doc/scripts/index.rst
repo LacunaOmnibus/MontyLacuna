@@ -9,8 +9,10 @@ Starter Scripts
 
 There are a few scripts that help with the initial MontyLacuna setup.  By the 
 time you're reading this, you've probably run them already as you were 
-following through the setup process.  Once these scripts have been run once, 
-they probably don't need to be run again.
+following through the setup process.
+
+They're being listed below for completeness, but if you've already run these 
+scripts, you shouldn't need to run them again.
 
 .. toctree::
    :maxdepth: 2

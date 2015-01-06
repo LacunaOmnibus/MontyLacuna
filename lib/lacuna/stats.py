@@ -2,7 +2,9 @@
 import lacuna.bc
 
 class Stats(lacuna.bc.LacunaObject):
-    """ Provides access to game stats and rankings.  """
+    """ Provides access to game stats and rankings.
+    blargle flurble blah
+    """
 
     path = 'stats'
 
@@ -17,12 +19,9 @@ class Stats(lacuna.bc.LacunaObject):
 
             'Game Support'  [   'Plain Black Corporation / plainblack.com',
                                 'Mary Hoerr',
-                                'United Federation' 
-                            ],
-            'Game Design':  [
-                                'JT Smith',
-                                'Jamie Vrbsky'
-                            ],
+                                'United Federation'     ],
+            'Game Design':  [   'JT Smith',
+                                'Jamie Vrbsky'   ],
             etc
         """
         ### Why the retval from TLE is a list of dicts instead of just a 
@@ -74,12 +73,11 @@ class Stats(lacuna.bc.LacunaObject):
             - sort_by -- same options as for alliance_rank()
             - alliance_name -- Standard TLE search string
 
-        Returns list of limited :class:`lacuna.stats.AllianceInfo` objects 
-        containing only the attributes:
+        Returns list of limited :class:`lacuna.stats.AllianceInfo` objects containing only the attributes:
             - alliance_id
             - alliance_name
             - page_number
-        
+
         This list will usually contain only a single alliance, but occasionally 
         more than one alliance will match your passed-in alliance_name.
         """
