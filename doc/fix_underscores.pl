@@ -13,6 +13,7 @@ use File::Temp;
 #File::Copy::mv( '_build/html/_modules', '_build/html/modules' );
 File::Copy::mv( '_build/html/_sources', '_build/html/sources' );
 File::Copy::mv( '_build/html/_static',  '_build/html/static'  );
+File::Copy::mv( '_build/html/_images',  '_build/html/images'  );
 
 my $files_fixed = 0;
 find( \&wanted, '_build/html' );
@@ -35,6 +36,7 @@ sub wanted {
     #$input =~ s{_modules}{modules}g;
     $input =~ s{_sources}{sources}g;
     $input =~ s{_static}{static}g;
+    $input =~ s{"_images}{"images}g;
     File::Slurp::write_file( $tmp_fn, $input );
 
     File::Copy::mv( $tmp_fn, $_) or die $!;

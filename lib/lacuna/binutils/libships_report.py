@@ -13,6 +13,10 @@ class PlanetShipData():
     def _organize_counts( self ):
         self.counts = {}
         for s in self.ships:
+            print( s.date_available )
+            print( s.date_started )
+            print( s.date_arrives )
+            quit()
             if s.type_human in self.counts:
                 self.counts[ s.type_human ] += 1
             else:
@@ -46,6 +50,13 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         parser.add_argument( '--fresh', 
             action      = 'store_true',
             help        = "Ship data is cached so you can run the report multiple times, quickly.  But if you run it once, then go build ships and want a new report that includes those ships, you'll want fresh, not cached data.  In that case, pass this option on the second run."
+        )
+        parser.add_argument( '--format', 
+            metavar     = '<format>',
+            action      = 'store',
+            choices     = [ 'cli', 'csv' ],
+            default     = 'cli',
+            help        = "What format do you want your output?  Choices include 'cli' and 'csv'.  Defaults to 'cli'."
         )
         parser.add_argument( '--tag', 
             metavar     = '<tag>',
