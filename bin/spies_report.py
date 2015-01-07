@@ -8,9 +8,10 @@ sys.path.append(libdir)
 import logging
 
 import lacuna
-import lacuna.binutils.libships_report as lib
+import lacuna.exceptions as err
+import lacuna.binutils.libspies_report as lib
 
-sr  = lib.ShipsReport()
+sr  = lib.SpiesReport()
 l   = sr.client.user_logger
 
 ### sr.planets will be a list, containing either just the planet name passed 
@@ -18,12 +19,15 @@ l   = sr.client.user_logger
 for pname in sr.planets:
 
     ### Set the current planet name as our 'working' planet
-    sr.set_planet( pname )
+    try:
+        sr.set_planet( pname )
+    except err.NoSuchBuildingError as e:
+        l.info( "{} does not have a working Intelligence Ministry.  Skipping.".format(sr.planet.name) )
+        continue
 
-    ### Get data on ships at this planet
-    l.info( "Gathering ship data on {}.".format(sr.planet.name) )
-    sr.gather_ship_data()
-
+    ### Get data on spies at this planet
+    l.info( "Gathering spy data on {}.".format(sr.planet.name) )
+    sr.gather_spy_data()
 
 sr.display_full_report()
 

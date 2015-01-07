@@ -62,7 +62,7 @@ class ShipsReport(lacuna.binutils.libbin.Script):
     def __init__(self):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
-            description = 'Displays a report on built ships and availability of space ports.',
+            description = 'Displays a report on built ships.',
             epilog      = "EXAMPLE: python bin/ships_report.py --tag War Earth",
         )
         parser.add_argument( 'name', 

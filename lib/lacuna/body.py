@@ -6,6 +6,7 @@ import lacuna.building
 import lacuna.buildings
 import lacuna.buildings.ss_modules.parliament
 import lacuna.empire
+import lacuna.exceptions as err
 import lacuna.map
 import lacuna.resource
 import lacuna.ship
@@ -323,11 +324,11 @@ class MyBody(Body):
 
         Each building returned will have its ``view()`` method called 
         automatically.  So if you're going to get 10 buildings back, that's 
-        10 ``view()`` calls that need to be made, and that's going to slow things 
-        down a bit.  So keep that in mind, and turn caching on.
+        10 ``view()`` calls that need to be made, and that's going to slow 
+        things down a bit.  So keep that in mind, and turn caching on.
 
-        Raises KeyError if you don't have any buildings of the requested type 
-        and level.
+        Raises lacuna.exceptions.NoSuchBuildingError if you don't have any 
+        buildings of the requested type and level.
         """
         mylist = []
         for bid in sorted( self.buildings_id.keys() ):  # get the building IDs back in the same order every time - helps with caching.
@@ -339,7 +340,7 @@ class MyBody(Body):
                 if limit and len(mylist) >= limit:
                     break
         if not len(mylist):
-            raise KeyError("You don't have a {} building on {}.".format(btype, self.name))
+            raise err.NoSuchBuildingError("You don't have a {} building on {}.".format(btype, self.name))
         return mylist
 
 

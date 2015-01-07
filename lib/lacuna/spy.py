@@ -209,11 +209,18 @@ class SpyBody(lacuna.bc.SubClass):
 
     Attributes::
 
+        id          id-goes-here",
         body_id     id-goes-here",
         name        Earth",
         x           40,
         y           -71
+
+    ``id`` and ``body_id`` both contain the same value.
     """
+    def __init__( self, client, mydict:dict, *args, **kwargs ):
+        if 'body_id' in mydict:
+            mydict['id'] = mydict['body_id']
+        super().__init__(client, mydict)
 
 class Training(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_returning_meth
