@@ -44,6 +44,7 @@ if your arguments contain spaces, you have to quote them::
 .. toctree::
    :maxdepth: 1
 
+   assign_spies
    build_ships
    recall_all_ships
    recall_all_spies

@@ -54,7 +54,9 @@ class Captcha(lacuna.bc.LacunaObject):
         this is not necessary.  ``showit()`` will call fetch for you.
         """
         if not hasattr(self,'url') or not hasattr(self,'guid'):
-            self.fetch()
+            puzzle      = self.fetch()
+            self.url    = puzzle.url
+            self.guid   = puzzle.guid
 
         img_resp = requests.get( self.url )
         if img_resp.status_code != 200:
@@ -121,5 +123,4 @@ class Puzzle(lacuna.bc.SubClass):
         guid    uuid attached to the puzzle; must be passed back along with 
                 the solution.
     """
-
 

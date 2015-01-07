@@ -120,7 +120,7 @@ class SpiesReport(lacuna.binutils.libbin.Script):
         )
         parser.add_argument( '--fresh', 
             action      = 'store_true',
-            help        = "Ship data is cached so you can run the report multiple times, quickly.  But if you run it once, then go build ships and want a new report that includes those ships, you'll want fresh, not cached data.  In that case, pass this option on the second run."
+            help        = "Spy data is cached so you can run the report multiple times, quickly.  But if you run it once, then go assign or train spies and want a new report that includes those spies, you'll want fresh, not cached data.  In that case, pass this option on the second run."
         )
         parser.add_argument( '--format', 
             metavar     = '<format>',
@@ -138,12 +138,12 @@ class SpiesReport(lacuna.binutils.libbin.Script):
         self.spy_data       = {}    # planet_id => PlanetSpyData object
 
         if self.args.fresh:
-            self.client.cache_clear( 'spies_report' )
+            self.client.cache_clear( 'spies' )
 
         self._set_planets()
 
     def _set_planets( self ):
-        self.client.cache_on( 'spies_report', 3600 )
+        self.client.cache_on( 'spies', 3600 )
         self.planets = []
         if self.args.name == 'all':
             for colname in sorted( self.client.empire.colony_names.keys() ):
@@ -162,7 +162,7 @@ class SpiesReport(lacuna.binutils.libbin.Script):
         Raises :class:`lacuna.exceptions.NoSuchBuildingError` if the planet 
         being set does not have a working Intelligence Ministry.
         """
-        self.client.cache_on( 'spies_report', 3600 )
+        self.client.cache_on( 'spies', 3600 )
         self.planet = self.client.get_body_byname( pname )
         self._set_intmin()
         self.client.cache_off()
@@ -180,7 +180,7 @@ class SpiesReport(lacuna.binutils.libbin.Script):
         """ Get data on all of the spies at our planet.  Must be called after 
         :meth:`lacuna.binutils.libspies_report.SpiesReport.set_planet`.
         """
-        self.client.cache_on( 'spies_report', 3600 )
+        self.client.cache_on( 'spies', 3600 )
         spies = self.intmin.view_all_spies()
         self.spy_data[ self.planet.name ] = PlanetSpyData( self.planet.name, spies )
         self.client.cache_off()

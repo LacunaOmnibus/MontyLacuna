@@ -6,7 +6,12 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## Working On
-spies_report.py
+assign_spies.py.  This works as-is right now, but I'd like to add some sort of special 
+argument that assigns all idle spies on all planets to Counter Espionage.
+
+No point in having Idle spies, and I don't want to have to re-run this damn thing manually 
+for every planet.
+
 
 ## TBD
 - Everything needs to be tested on Windows.  In particular:

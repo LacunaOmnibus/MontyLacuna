@@ -9,7 +9,7 @@ class Spy(lacuna.bc.SubClass):
         id                     "id-goes-here",
         name                   "Jason Bourne",
         assignment             "Idle",
-        possible_assignments   List of Assignment objects
+        possible_assignments   List of lacuna.spy.Assignment objects
         level                  9,
         politics               0,
         mayhem                 20,
@@ -34,19 +34,16 @@ class Spy(lacuna.bc.SubClass):
             assignment_list = []
             for i in mydict['possible_assignments']:
                 assignment_list.append( Assignment(client, i) )
-            del mydict['possible_assignments']
+            mydict['possible_assignments'] = assignment_list
 
         if 'assigned_to' in mydict:
-            self.assigned_to = SpyBody(client, mydict['assigned_to'])
-            del mydict['assigned_to']
+            mydict['assigned_to'] = SpyBody(client, mydict['assigned_to'])
 
         if 'based_from' in mydict:
-            self.based_from = SpyBody(client, mydict['based_from'])
-            del mydict['based_from']
+            mydict['based_from'] = SpyBody(client, mydict['based_from'])
 
         if 'mission_count' in mydict:
-            self.mission_count = MissionCount(client, mydict['mission_count'])
-            del mydict['mission_count']
+            mydict['mission_count'] = MissionCount(client, mydict['mission_count'])
 
         super().__init__(client, mydict)
 
