@@ -14,7 +14,7 @@ class intelligence(lacuna.building.MyBuilding):
         """ View stats on current spy numbers, as well as costs to train new 
         spies.
 
-        Returns a single lacuna.spy.IntelView object.
+        Returns a single :class:`lacuna.spy.IntelView` object.
         """
         return lacuna.spy.IntelView(self.client, kwargs['rslt']['spies'])
 
@@ -41,7 +41,7 @@ class intelligence(lacuna.building.MyBuilding):
         
         To get info on all of your spies at once, see also view_all_spies().
 
-        Returns a list of up to 30 lacuna.spy.Spy objects.
+        Returns a list of up to 30 :class:`lacuna.spy.Spy` objects.
         """
         spy_list = []
         for i in kwargs['rslt']['spies']:
@@ -53,7 +53,7 @@ class intelligence(lacuna.building.MyBuilding):
         """ Returns information on all of the spies controlled from this 
         planet.
 
-        Returns a list of up to 90 lacuna.spy.Spy objects.
+        Returns a list of up to 90 :class:`lacuna.spy.Spy` objects.
         """
         spy_list = []
         for i in kwargs['rslt']['spies']:
@@ -83,8 +83,8 @@ class intelligence(lacuna.building.MyBuilding):
         Requires captcha.
 
         Returns a tuple:
-            - spy -- lacuna.spy.Spy object
-            - mission_result -- lacuna.spy.MissionResult object
+            - spy -- :class:`lacuna.spy.Spy` object
+            - mission_result -- :class:`lacuna.spy.MissionResult` object
         """
         spy     = lacuna.spy.Spy( self.client, kwargs['rslt']['spy'] )
         rslt    = lacuna.spy.MissionResult( self.client, kwargs['rslt']['mission'] )
