@@ -79,7 +79,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
 
         parser = argparse.ArgumentParser(
             description = 'Assigns spies to a new task, in bulk.',
-            epilog      = "EXAMPLE CHECK python bin/assign_spies.py Earth sweeper",
+            epilog      = "EXAMPLE python bin/assign_spies.py Earth counter",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
@@ -135,9 +135,22 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         if not self.args.on:
             self.args.on = self.args.name
 
+        if self.args.name == 'all' and self.get_task() == 'Counter Espionage':
+            ### CHECK
+            ### This might not be exactly the right way to do this, and the 
+            ### method below doesn't exist yet, but it's the general idea of 
+            ### what I want to add.
+            self.assign_all_idle_to_counter()
+            quit()
+
         self._set_planet( self.args.name )
         self._set_intmin( )
         self._gather_spy_data( )
+
+    def get_task( self ):
+        if self.args.task.lower() in self.tasks:
+            return self.tasks[ self.args.task.lower() ]
+        raise Exception("'{}' is not a valid task or abbreviation.".format(self.args.task))
 
     def _set_planet( self, pname:str ):
         self.planet = self.client.get_body_byname( pname )
@@ -178,7 +191,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         valid = []
         for s in self.spies:
             for a in s.possible_assignments:
-                if self.args.task.lower() == a.task.lower():
+                if self.get_task() == a.task.lower():
                     valid.append( s )
         if not valid:
             raise Exception("You have no usable spies able to perform the {} task.".format(self.args.task))
@@ -190,7 +203,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         """
         valid = []
         for s in self.spies:
-            if s.assignment.lower() == self.tasks[ self.args.doing.lower() ]:
+            if s.assignment.lower() == self.self.get_task():
                 valid.append( s )
         if not valid:
             raise Exception("You have no usable spies currently performing the {} task.".format(self.args.doing))
@@ -215,7 +228,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         cnt = 0
         for s in self.spies:
             try:
-                self.intmin.assign_spy( s.id, self.tasks[ self.args.task.lower() ] )
+                self.intmin.assign_spy( s.id, self.get_task() )
                 cnt += 1
             except err.ServerError as e:
                 self.client.user_logger.info( "Spy {} could not be assigned to {} because {}.".format(s.name, self.args.task, e.text) )

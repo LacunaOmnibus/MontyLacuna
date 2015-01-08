@@ -12,6 +12,9 @@ argument that assigns all idle spies on all planets to Counter Espionage.
 No point in having Idle spies, and I don't want to have to re-run this damn thing manually 
 for every planet.
 
+Also, I have virtually no logging in assign_spies.py, and spies_report.py might be short 
+on the same -- update both of those to add some more status info.
+
 
 ## TBD
 - Everything needs to be tested on Windows.  In particular:
