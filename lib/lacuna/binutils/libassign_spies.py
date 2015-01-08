@@ -14,12 +14,22 @@ class AssignSpies(lacuna.binutils.libbin.Script):
 
     def __init__(self):
         self.version = '0.1'
+
+        ### The planet that the spies need to be on to perform the requested 
+        ### task.  This will usually be the same as self.args.on, or 
+        ### self.args.name (if the --on argument was not sent).
+        ### However, if the user passed 'all' as the planet name in --on, we 
+        ### need to translate that into an actual planet name.
+        ### So self.args.on is not guaranteed to be a planet name, but self.on 
+        ### is.
+        self.on = ''
+
+        ### The maximum number of spies from any given planet to assign to the 
+        ### task.  If --topoff is not sent, this stays at 90 (the max).
+        self.max = 90
+
         self.tasks = {
-            ### 'lower case': 'proper casing'
-            ###
-            ### Asking people to spell and case these things correctly is 
-            ### likely to cause all kinds of issues.  Provide aliases using 
-            ### likely misspellings and abbreviations.
+            ### 'lower case or abbreviation': 'Full taskname, properly cased'
             ###
             ### Training tasks omitted -- training should be its own script.
             'idle': 'Idle',
@@ -89,7 +99,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         parser.add_argument( 'task', 
             metavar     = '<task>',
             action      = 'store',
-            choices     = self.tasks.values(),
+            choices     = self.tasks.keys(),
             help        = "Task spies should be assigned to."
         )
         parser.add_argument( '--num', 
@@ -106,6 +116,11 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             default     = 'Idle',
             help        = "Only assigns spies who are currently doing this task.  Usually only Idle spies can be assigned, but if you're wanting to eg set your Counter Espionage spies to Idle, pass 'Counter Espionage' here.  Defaults to 'Idle'."
         )
+        parser.add_argument( '--topoff', 
+            dest        = 'topoff',
+            action      = 'store_true',
+            help        = "If --topoff is sent, the script will ensure that at least --num spies are performing the requested task."
+        )
         parser.add_argument( '--on', 
             metavar     = '<planet_name>',
             action      = 'store',
@@ -117,43 +132,22 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             action      = 'store',
             type        = str,
             default     = 'level',
-            choices     = [
-                            'level',
-                            'politics',
-                            'mayhem',
-                            'theft',
-                            'intel',
-                            'offense_rating',
-                            'defense_rating',
-                          ],
+            choices     = [ 'level', 'politics', 'mayhem', 'theft',
+                            'intel', 'offense_rating', 'defense_rating', ],
             help        = "If you have more spies available than you're assigning, this determines which spies get assigned.  Sending a --top of 'intel' will available spies with the highest intel score to the requested task.  Defaults to 'level'."
         )
         super().__init__(parser)
+        self._set_planets()
 
-        ### If the user didn't specify where the spies should be located, he 
-        ### means the spies at home.
-        if not self.args.on:
-            self.args.on = self.args.name
-
-        if self.args.name == 'all' and self.get_task() == 'Counter Espionage':
-            ### CHECK
-            ### This might not be exactly the right way to do this, and the 
-            ### method below doesn't exist yet, but it's the general idea of 
-            ### what I want to add.
-            self.assign_all_idle_to_counter()
-            quit()
-
-        self._set_planet( self.args.name )
-        self._set_intmin( )
-        self._gather_spy_data( )
-
-    def get_task( self ):
-        if self.args.task.lower() in self.tasks:
-            return self.tasks[ self.args.task.lower() ]
-        raise Exception("'{}' is not a valid task or abbreviation.".format(self.args.task))
-
-    def _set_planet( self, pname:str ):
-        self.planet = self.client.get_body_byname( pname )
+    def _set_planets( self ):
+        self.client.cache_on( 'spies', 3600 )
+        self.planets = []
+        if self.args.name == 'all':
+            for colname in sorted( self.client.empire.colony_names.keys() ):
+                self.planets.append(colname)
+        else:
+            self.planets = [self.args.name]
+        self.client.cache_off()
 
     def _set_intmin( self ):
         """ Finds the Intelligence Ministry on the current planet.  Must be 
@@ -165,7 +159,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         self.intmin = self.planet.get_buildings_bytype( 'intelligence', 1, 1, 100 )[0]
 
     def _gather_spy_data( self ):
-        """ Get data on all of the spies at our planet.  Must be called after 
+        """ Get data on all of the spies at the planet set by 
         :meth:`lacuna.binutils.libspies_report.SpiesReport.set_planet`.
         """
         self.client.cache_on( 'spies', 3600 )
@@ -173,16 +167,64 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         self.spies      = self.all_spies                # changes based on filters
         self.client.cache_off()
 
+    def set_planet( self, pname:str ):
+        """ Sets the current working planet by name.
+
+        Arguments:
+            - pname -- String name of the planet to set.
+        """
+        self.client.cache_on( 'spies', 3600 )
+        self.planet = self.client.get_body_byname( pname )
+        self.client.cache_off()
+        self._set_intmin( )
+        self._gather_spy_data( )
+        ### If the user didn't specify where the spies should be located, he 
+        ### means those located at their home planets.
+        if self.args.on:
+            self.on = self.args.on
+        else:
+            self.on = pname
+        self.max = 90           # gotta reset in case the last planet mangled this.
+
+    def check_topoff( self ):
+        """ If the user just wants to topoff, usually for Counter Espionage, 
+        check how many spies are already performing that task and set how many 
+        more should be assigned.
+        """
+        if not self.args.topoff:
+            return
+        currently_on_requested_task = 0
+        for spy in self.all_spies:
+            if spy.assignment == self.get_task( self.args.task ) and spy.assigned_to.name == self.on:
+                currently_on_requested_task += 1
+        self.max = self.args.num - currently_on_requested_task
+        if self.max <= 0:
+            raise err.TopoffError(currently_on_requested_task, "Over topoff limit.")
+
+    def get_task( self, task_cand:str ):
+        """ Gets the full TLE name of a task, correcting for abbreviations and 
+        incorrect casing.
+
+        Arguments:
+            - task_cand -- String taskname as provided by the user.  May be an 
+              abbreviation and casing does not matter.
+
+        Returns a string -- the properly cased and spelled TLE Spy task name.
+        """
+        if task_cand.lower() in self.tasks:
+            return self.tasks[ task_cand.lower() ]
+        raise Exception("'{}' is not a valid task or abbreviation.".format(task_cand))
+
     def set_spies_on_target( self ):
         """ Set spies located on the target specified by the ``--on`` option, 
         or the current planet if no ``--on`` option was passed.
         """
         valid = []
         for s in self.spies:
-            if s.assigned_to.name.lower() == self.args.on.lower():
+            if s.assigned_to.name.lower() == self.on.lower():
                 valid.append( s )
         if not valid:
-            raise Exception("You have no usable spies on {}.".format(self.args.on))
+            raise err.NoUsableSpiesError("You have no usable spies on {}.".format(self.on))
         self.spies = valid
 
     def set_able_spies( self ):
@@ -191,10 +233,10 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         valid = []
         for s in self.spies:
             for a in s.possible_assignments:
-                if self.get_task() == a.task.lower():
+                if self.get_task( self.args.task ) == a.task:
                     valid.append( s )
         if not valid:
-            raise Exception("You have no usable spies able to perform the {} task.".format(self.args.task))
+            raise err.NoUsableSpiesError("You have no usable spies able to perform the {} task.".format(self.args.task))
         self.spies = valid
 
     def set_spies_doing_correct_task( self ):
@@ -203,10 +245,10 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         """
         valid = []
         for s in self.spies:
-            if s.assignment.lower() == self.self.get_task():
+            if self.get_task( self.args.doing ) == s.assignment:
                 valid.append( s )
         if not valid:
-            raise Exception("You have no usable spies currently performing the {} task.".format(self.args.doing))
+            raise err.NoUsableSpiesError("You have no usable spies currently performing the {} task.".format(self.args.doing))
         self.spies = valid
 
     def set_best_spies( self ):
@@ -215,7 +257,9 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         """
         if len(self.spies) > self.args.num:
             end = self.args.num if self.args.num else None
-            self.spies = sorted( self.spies, key=operator.attrgetter(self.args.top) )[0:end]
+            ### Sort in reverse order so the guys with the best --top score 
+            ### show first in the list.
+            self.spies = sorted( self.spies, key=operator.attrgetter(self.args.top), reverse=True )[0:end]
 
     def assign_spies( self ):
         """ Assigns our spies to the requested task.  Assumes all desired 
@@ -226,9 +270,11 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             ### "shouldn't" have ever happened, happened.
             raise Exception("You have no spies able to be assigned.")
         cnt = 0
-        for s in self.spies:
+        spies_to_assign = self.spies[0:self.max]
+        for s in spies_to_assign:
             try:
-                self.intmin.assign_spy( s.id, self.get_task() )
+                self.intmin.assign_spy( s.id, self.get_task(self.args.task) )
+                self.client.user_logger.debug( "Assigning spy on {} to {}.".format(self.on, self.args.task) )
                 cnt += 1
             except err.ServerError as e:
                 self.client.user_logger.info( "Spy {} could not be assigned to {} because {}.".format(s.name, self.args.task, e.text) )

@@ -599,6 +599,16 @@ class spaceport(lacuna.building.MyBuilding):
             - spy_ids -- List of integer IDs of spies being fetched NOT a list 
               of Spy objects.
 
+        WARNING - the returned list of spy_ids will only ever contain a maximum 
+        of 100 spies.  In the situation where you've sent hundreds of spies from 
+        multiple planets all to the same target (eg to defend a space station 
+        that's under attack), the spies from this planet may not be included in 
+        the list of spy_ids.
+
+        What you need to do in this case is to just fetch the spies who _are_ 
+        showing up in that list, wait for the ship to actually pick them up and 
+        remove them from the target planet, then try again.
+
         Raises KeyError if you don't have any ships capable of grabbing all of 
         the spies on the target planet in one shot, or if you don't have any 
         spies on foreign soil ready to be picked up (remember that a spy has to 

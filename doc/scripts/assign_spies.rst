@@ -19,24 +19,44 @@ Assign all Idle spies on Earth to Counter Espionage::
 
 Assign only 20 spies on Earth to Counter Espionage::
 
-    >>> python bin/assign_spies.py --num 20 Earth "Counter Espionage"
+    >>> python bin/assign_spies.py --num 20 Earth counter 
+
+    See the section below on Task Abbreviations for an explanation on why we 
+    can get away with just using 'counter' for the task name.
 
 Assign only your 20 highest-level spies on Earth to Counter Espionage::
 
-    >>> python bin/assign_spies.py --num 20 --top level Earth "Counter Espionage"
+    >>> python bin/assign_spies.py --num 20 --top level Earth counter
 
-    (This is actually exactly the same as the previous example, since 'level'
-    is the default value for the --top option.)
+    This is actually exactly the same as the previous example, since 'level'
+    is the default value for the --top option.
+
+The special planet name 'all' will rotate through all of your planets, making 
+the same assignments on each one.  This usually doesn't make much sense, 
+except in the case of Counter Espionage.  If you want to assign all of your 
+Idle spies on all of your planets to Counter Espionage::
+
+    >>> python bin/assign_spies.py all counter
+
+On the other hand, maybe you don't want *all* of your idle spies assigned to 
+Counter Espionage.  Instead, say you want a maximum of 20 assigned to Counter 
+on each planet::
+
+    >>> python bin/assign_spies.py --num 20 --topoff all counter
+
+    So if one planet already has 11 guys on counter, 9 more will be set to 
+    counter.  If the next planet has nobody on counter, it'll get 20
+    assigned, etc.
 
 Assign 20 spies who are currently doing Counter Espionage to Idle::
 
-    >>> python bin/assign_spies.py --num 20 --doing "Counter Espionage" Earth "Idle"
+    >>> python bin/assign_spies.py --num 20 --doing counter Earth idle
 
 Assume you've sent all 90 of your spies from your planet, Earth, to Mars, your 
 mortal enemy.  You want to have 20 of those spies run assassinate operatives, 
 but you only want your best Mayhem spies to try those assassinations::
 
-    >>> python bin/assign_spies.py --num 20 --on Mars --top mayhem Earth "Assassinate Operatives"
+    >>> python bin/assign_spies.py --num 20 --on Mars --top mayhem Earth kill
 
 Valid "Top" Settings
 --------------------
@@ -181,18 +201,14 @@ for tasks have been added:
       - insurrect
       - insurect (because somebody is going to miss that second ``r``.)
 
-Because of these abbreviations, we could shorten the previous example about 
-assassinating operatives to::
-
-    >>> python bin/assign_spies.py --num 20 --on Mars --top mayhem Earth kill
-
 Force Fresh Data
 ----------------
 
 Most of the time, before you assign spies, you'll probably first run
-:ref:`spies_report` to see what your spies are doing.  This script shares 
-cache data with that spies report script, so this doesn't have to re-look-up 
-the spy data that the spy report almost certainly just looked up.
+:ref:`spies_report` to see what your spies are doing.  This task assignment 
+script shares cache data with that spies report script, so this doesn't have 
+to re-look-up the spy data that the spy report almost certainly just looked 
+up.
 
 However, after this script completes, if it assigned any spies, it will clear 
 that cache automatically.  This way, you can go back and re-run the spy report 

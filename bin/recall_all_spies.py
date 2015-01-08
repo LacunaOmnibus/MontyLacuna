@@ -13,21 +13,22 @@ recall  = lib.RecallAllSpies()
 l       = recall.client.user_logger
 
 ### Turn on caching, get planet
-recall.client.cache_on("my_planets", 3600)
+recall.client.cache_on("recall_spies", 3600)
 planet = recall.client.get_body_byname( recall.args.name )
+recall.client.cache_off()
 
 ### Get IntMin
 intmin = planet.get_buildings_bytype( 'intelligence', 1, 1 )[0]
 l.debug("Got intmin")
 
 ### Get bodies where my spies who are out are located.  'id': 'name'
-recall.client.cache_off()
 foreign_bodies = recall.find_nothome_spies( planet.id, intmin )
 l.debug( "Got {} bodies containing my nothome spies.".format(len(foreign_bodies.keys())) )
 
 ### Get SpacePort
-recall.client.cache_on("buildings", 3600)
+recall.client.cache_on("recall_spies", 3600)
 sp = planet.get_buildings_bytype( 'spaceport', 1, 1 )[0]
+recall.client.cache_off()
 l.debug("Got spaceport")
 
 ### Do eet.

@@ -52,6 +52,13 @@ class NotJsonError(Exception):
     def __str__(self):
         return repr(self.value)
 
+class NoUsableSpiesError(Exception):
+    """ No spies onsite satisfy the requirements. """
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
 class NoSuchMyBodyError(Exception):
     """ The body requested does not exist in my empire."""
     def __init__(self, value):
@@ -83,11 +90,23 @@ class RequestError(Exception):
         return repr(self.value)
 
 class ServerError(Exception):
-    """ The TLE server returned a 500 and a JSON error string"""
+    """ The TLE server returned a 500 and a JSON error string
+    """
     def __init__(self, code:int, message:str):
         self.code       = code
         self.message    = message
         self.text       = message
     def __str__(self):
         return repr("Server error " + str(self.code) + ": " + self.message)
+
+class TopoffError(Exception):
+    """ A script got a --topoff argument, but we're already over the requested number.
+    """
+    def __init__(self, number:int, message:str):
+        self.number     = number
+        self.message    = message
+        self.text       = message
+    def __str__(self):
+        return repr("Topoff error - we're already above" + str(self.number) + ": " + self.message)
+
 
