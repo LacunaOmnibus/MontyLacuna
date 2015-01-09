@@ -8,6 +8,8 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 ## Working on
 assign_spies.py looks like it's working well, but could use a bit more testing to be sure.
 
+Starting to work on post_starter_kits.py
+
 
 ## TBD
 - Everything needs to be tested on Windows.  In particular:
