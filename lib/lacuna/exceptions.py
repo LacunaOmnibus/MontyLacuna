@@ -36,6 +36,13 @@ class GDIError(Exception):
     def __str__(self):
         return repr(self.value)
 
+class MissingResourceError(Exception):
+    """ Some TLE resource required to do whatever it is you were attempting to do is missing. """
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
 class NoAvailableShipsError(Exception):
     """ We attempted to do something that requires one or more ships (eg fetch 
     spies), but no ships were available.

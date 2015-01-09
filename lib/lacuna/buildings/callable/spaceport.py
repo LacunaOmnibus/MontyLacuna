@@ -3,7 +3,7 @@ import operator
 
 import lacuna.bc
 import lacuna.building
-import lacuna.exceptions
+import lacuna.exceptions as err
 import lacuna.ship
 import lacuna.spy
 
@@ -609,15 +609,20 @@ class spaceport(lacuna.building.MyBuilding):
         showing up in that list, wait for the ship to actually pick them up and 
         remove them from the target planet, then try again.
 
-        Raises KeyError if you don't have any ships capable of grabbing all of 
-        the spies on the target planet in one shot, or if you don't have any 
-        spies on foreign soil ready to be picked up (remember that a spy has to 
-        be Idle to be picked up).
+        Raises :class:`lacuna.exceptions.MissingResourceError` if no spies can 
+        be found to be picked up.  This is usually because of the warning 
+        mentioned above.
+
+        Raises :class:`lacuna.exceptions.NoAvailableShipError` if you don't 
+        have any ships capable of grabbing all of the spies on the target 
+        planet in one shot, or if you don't have any spies on foreign soil 
+        ready to be picked up (remember that a spy has to be Idle to be picked 
+        up).
         """
         ships, spies = self.prepare_fetch_spies( from_id, self.body_id )
 
         if len(ships) <= 0:
-            raise lacuna.exceptions.NoAvailableShipError("No ships are available to pick up spies.")
+            raise err.NoAvailableShipError("No ships are available to pick up spies.")
 
         ship_id = 0
         if ship_name:
@@ -628,10 +633,6 @@ class spaceport(lacuna.building.MyBuilding):
         else:
             ships.sort( key=operator.attrgetter('speed'), reverse=True )
 
-            ### CHECK
-            ### I haven't got 'max_occupants' listed as a possible 
-            ### ExistingShip attribute.  I think it'll be there -- update the 
-            ### ExistingShip docs if it is.
             ship = ''
             for s in ships:
                 if hasattr(s, 'max_occupants'):
@@ -639,7 +640,7 @@ class spaceport(lacuna.building.MyBuilding):
                         ship = s
                         break
             if not ship:
-                raise KeyError("You have no ships capable of carrying all of your spies.")
+                raise err.NoAvailableShipError("You have no ships capable of carrying all of your spies.")
             ship_id = ships.pop().id
 
         spy_ids = []
@@ -649,7 +650,7 @@ class spaceport(lacuna.building.MyBuilding):
         if len(spy_ids):
             ship = self.fetch_spies( from_id, self.body_id, ship_id, spy_ids )
         else:
-            raise KeyError("I couldn't find any spies to pick up.")
+            raise err.MissingResourceError("I couldn't find any spies to pick up.")
 
         return(
             ship,
