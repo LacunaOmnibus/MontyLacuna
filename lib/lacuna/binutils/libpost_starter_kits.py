@@ -1,99 +1,122 @@
 
+### Search on CHECK
+
 import lacuna, lacuna.binutils.libbin
+from lacuna.plan import OwnedPlan
 import lacuna.exceptions as err
-import argparse, os, sys
+import argparse, os, re, sys
 
 class StarterKit():
     """ Base class for starter kits
     """
-    def __init__( self, price:float, plans:dict ):
+    def __init__( self, client, price:float, plans:list ):
+        self.client = price
         self.price  = price
         self.plans  = plans
 
-    def update_all_levels( self, level:int ):
-        for plan in self.plans:
-            self.plans[ plan ] = level
+    def update_all_levels( self, level:int = 1, ebl:int = 0  ):
+        for p in self.plans:
+            p.level = level
+            p.extra_build_level = ebl
 
 class ResKit( StarterKit ):
-    def __init__( self, price:float = 0.1 ):
-        plans = {
-            'Algae Pond':       1,
-            'Amalgus Meadow':   1,
-            'Beeldeban Nest':   1,
-            'Denton Brambles':  1,
-            'Geo Thermal Vent': 1,
-            'Lapis Forest':     1,
-            'Malcud Field':     1,
-            'Natural Spring':   1,
-            'Volcano':          1,
-        }
-        super().__init__( price, plans );
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Algae Pond', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Amalgus Meadow', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beeldeban Nest', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Denton Brambles', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Geo Thermal Vent', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Lapis Forest', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Malcud Field', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Natural Spring', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Volcano', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+        ]
+        super().__init__( client, price, plans );
 
 class StorageKit( StarterKit ):
-    def __init__( self, price:float = 0.1 ):
-        plans = {
-            'Interdimensional Rift':    1,
-            'Ravine':                   1,
-        }
-        super().__init__( price, plans );
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Interdimensional Rift', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Ravine', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+        ]
+        super().__init__( client, price, plans );
 
 class MilitaryKit( StarterKit ):
     """ These aren't all necessarily military, but have some relation to either 
     offense or defense.
     """
-    def __init__( self, price:float = 0.1 ):
-        plans = {
-            'Citadel of Knope':    1,
-            'Crashed Ship Site':   1,
-            "Gratch's Gauntlet":   1,
-            'Kalavian Ruins':   1,
-        }
-        super().__init__( price, plans );
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Citadel of Knope', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Crashed Ship Site', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': "Gratch's Gauntlet", 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Kalavian Ruins', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+        ]
+        super().__init__( client, price, plans );
 
 class UtilityKit( StarterKit ):
-    def __init__( self, price:float = 0.1 ):
-        plans = {
-            'Black Hole Generator':     1,
-            'Library of Jith':          1,
-            'Oracle of Anid':           1,
-            'Pantheon of Hagness':      1,
-            'Temple of the Drajilites': 1,
-        }
-        super().__init__( price, plans );
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Black Hole Generator', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Library of Jith', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Oracle of Anid', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Pantheon of Hagness', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Temple of the Drajilites', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+        ]
+        super().__init__( client, price, plans );
+
+class BeachKit( StarterKit ):
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Beach [1]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [2]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [3]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [4]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [5]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [6]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [7]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [8]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [9]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [10]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [11]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [12]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Beach [13]', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+        ]
+        super().__init__( client, price, plans );
 
 class DecoKit( StarterKit ):
-    def __init__( self, price:float = 0.1 ):
-        plans = {
-            'Beach [1]':            1,
-            'Beach [2]':            1,
-            'Beach [3]':            1,
-            'Beach [4]':            1,
-            'Beach [5]':            1,
-            'Beach [6]':            1,
-            'Beach [7]':            1,
-            'Beach [8]':            1,
-            'Beach [9]':            1,
-            'Beach [10]':           1,
-            'Beach [11]':           1,
-            'Beach [12]':           1,
-            'Beach [13]':           1,
-            'Crater':               1,
-            'Grove of Trees':       1,
-            'Lagoon':               1,
-            'Lake':                 1,
-            'Patch of Sand':        1,
-            'Rocky Outcropping':    1,
-        }
-        super().__init__( price, plans );
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Crater', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Grove of Trees', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Lagoon', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Lake', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Patch of Sand', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+            OwnedPlan( client, {'name': 'Rocky Outcropping', 'level': 1, 'extra_build_level': 0, 'quantity': 1} ),
+        ]
+        super().__init__( client, price, plans );
 
 class ComboKit( StarterKit ):
-    def __init__( self, kits:list, price:float = 0 ):
-        self.price = price if price else 0
+    def __init__( self, kits:list, force_combo_price:float = 0 ):
+        self.price = force_combo_price if force_combo_price else 0
         for k in kits:
-            if not price:
+            if not force_combo_price:
                 self.price += k.price
-            for plan, level in k.plans.items():
-                self.plans[ plan ] = level
+            for p in k.plans:
+                self.plans.append( p )
+
+class FullBasicKit( ComboKit ):
+    """ A combination of the ResKit and StorageKit
+    """
+    def __init__( self, client, price:float = 0.1 ):
+        super().__init__( [ResKit(client), StorageKit(client)], 0.1 )
+
+class BigKit( ComboKit ):
+    """ A combination of ResKit, StorageKit, MilitaryKit, and UtilityKit
+    """
+    def __init__( self, client, price:float = 0.1 ):
+        super().__init__( [ResKit(client), StorageKit(client), MilitaryKit(client), UtilityKit(client)], 0.1 )
 
 
 class PostStarterKit(lacuna.binutils.libbin.Script):
@@ -111,6 +134,21 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             action      = 'store',
             help        = "Produce report on spies at this planet.  'all' to report on all planets."
         )
+        parser.add_argument( 'kit', 
+            metavar     = '<name>',
+            action      = 'store',
+            default     = 'res',
+            choices     = [
+                            'resource', 'res',
+                            'storage', 'store', 'stor',
+                            'military', 'mil',
+                            'utility', 'util', 'ute',
+                            'deco',
+                            'fullbasic', 'full_basic', 'full',
+                            'big'
+                          ],
+            help        = "Which kit should we post?  See the online docs for a list of kit names.  Defaults to 'res'."
+        )
         parser.add_argument( '--num', 
             metavar     = '<num>',
             action      = 'store',
@@ -120,8 +158,12 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         parser.add_argument( '--level', 
             metavar     = '<level>',
             action      = 'store',
-            default     = 1,
-            help        = "What level plans should be in your kit?  Defaults to 1."
+            help        = "What level plans should be in your kit?  Most kits use level 1 plans by default."
+        )
+        parser.add_argument( '--ebl', 
+            metavar     = '<extra build level>',
+            action      = 'store',
+            help        = "Do you want your plans to include an extra build level (the 'x' in a '1+x' plan)?  Most kits use no extra build level by default."
         )
         parser.add_argument( '--sst', 
             action      = 'store_true',
@@ -136,25 +178,94 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         )
         super().__init__(parser)
 
+        self._set_kit()
+        self._set_planet()
+        self._set_trade()
+
+    def _set_kit( self ):
+        m_bea   = re.compile("^bea", re.I)
+        m_big   = re.compile("^big", re.I)
+        m_dec   = re.compile("^dec", re.I)
+        m_ful   = re.compile("^ful", re.I)
+        m_mil   = re.compile("^mil", re.I)
+        m_res   = re.compile("^res", re.I)
+        m_stor  = re.compile("^stor", re.I)
+        m_ute   = re.compile("^ut", re.I)
+
+        if m_res.match(self.args.kit):
+            self.kit = ResKit( self.client, self.args.price )
+        elif m_stor.match(self.args.kit):
+            self.kit = StorageKit( self.client, self.args.price )
+        elif m_mil.match(self.args.kit):
+            self.kit = MilitaryKit( self.client, self.args.price )
+        elif m_ute.match(self.args.kit):
+            self.kit = UtilityKit( self.client, self.args.price )
+        elif m_dec.match(self.args.kit):
+            self.kit = DecoKit( self.client, self.args.price )
+        elif m_bea.match(self.args.kit):
+            self.kit = BeachKit( self.client, self.args.price )
+        elif m_ful.match(self.args.kit):
+            self.kit = FullBasicKit( self.client, self.args.price )
+        elif m_big.match(self.args.kit):
+            self.kit = BigKit( self.client, self.args.price )
+
+        if not self.kit:
+            raise KeyError("What are you doing, Dave?  That's not a legal kit and I don't know how you managed that.")
+
+        if self.args.level or self.args.ebl:
+            self.kit.update_all_levels( self.args.level, self.args.ebl )
+
+    def _set_planet( self ):
+        self.client.cache_on( 'post_kits', 3600 )
+        self.planet = self.client.get_body_byname( self.args.name )
+        self.client.cache_off()
+
+    def _set_trade( self ):
+        """ Sets self.trade to either a trade ministry or SST object, depending 
+        on what the user asked for.  Requires that _set_planet() already be 
+        called.
+        """
         if self.args.sst:
-            self._set_sst()
+            self.trade = self.planet.get_buildings_bytype( 'transporter', 1, 1, 100 )[0]
         else:
-            self._set_trademin()
+            self.trade = self.planet.get_buildings_bytype( 'trade', 1, 1, 100 )[0]
 
-
-    def _set_trademin( self ):
-        """ Finds the Trade Ministry on the current planet.
-
-        Raises :class:`lacuna.exceptions.NoSuchBuildingError` if the planet 
-        being set does not have a working Trade Ministry.
+    def post_kit(self):
+        """ Actually posts the chosen kit to the chosen trade building.
         """
-        self.trade = self.planet.get_buildings_bytype( 'trade', 1, 1, 100 )[0]
+        pass
+        ### CHECK
+        ### neither of the post_*() methods below work (or exist) yet.
+        #if type(self.trade) is lacuna.buildings.callable.trade.trade:
+        #    self.post_tm_trade()
+        #elif type(self.trade) is lacuna.buildings.callable.trade.transporter:
+        #    self.post_sst_trade()
 
-    def _set_sst( self ):
-        """ Finds the Subspace Transporter on the current planet.
 
-        Raises :class:`lacuna.exceptions.NoSuchBuildingError` if the planet 
-        being set does not have a working Subspace Transporter.
+    def validate_plans(self):
+        """ Checks that you actually have on-hand the plans required by the 
+        current kit.  Requires that _set_kit() and _set_trade() already be 
+        called.
+
+        Raises :class:`lacuna.exceptions.MissingResourceError` if your kit 
+        requires a plan you haven't got in stock.
         """
-        self.trade = self.planet.get_buildings_bytype( 'transporter', 1, 1, 100 )[0]
+        def getkey(plan):
+            ebl = plan.extra_build_level
+            key = plan.name + ':' + str(plan.level) + ':' + str(ebl)
+            return key
+
+        plans, space = self.trade.get_plan_summary()
+        gotplans = {}
+        for p in plans:
+            key = getkey(p)
+            gotplans[ key ] = 1
+        for p in self.kit.plans:
+            key = getkey(p)
+            if not key in gotplans:
+                raise err.MissingResourceError("Your kit requires a {}+{} {} plan, but you don't have one on hand."
+                    .format(p.level, p.extra_build_level, p.name)
+                )
+        return True
+
 

@@ -14,6 +14,10 @@ class OwnedPlan(Plan):
         extra_build_level   5
         quantity            23
     """
+    def __init__(self, client, mydict, *args, **kwargs):
+        if not 'extra_build_level' in mydict:
+            mydict['extra_build_level'] = 0
+        super().__init__(client, mydict)
 
 class PotentialSSPlan(Plan):
     """ Returned from viewing plans you can build, as in your Space Station Lab
