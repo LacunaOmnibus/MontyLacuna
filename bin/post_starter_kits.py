@@ -5,10 +5,7 @@ bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
-import logging
-
 import lacuna
-import lacuna.exceptions as err
 import lacuna.binutils.libpost_starter_kits as lib
 
 sk  = lib.PostStarterKit()
