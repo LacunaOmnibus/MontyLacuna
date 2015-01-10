@@ -133,12 +133,11 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         parser.add_argument( 'name', 
             metavar     = '<planet>',
             action      = 'store',
-            help        = "Produce report on spies at this planet.  'all' to report on all planets."
+            help        = "Post a kit from this planet."
         )
         parser.add_argument( 'kit', 
             metavar     = '<name>',
             action      = 'store',
-            default     = 'res',
             choices     = [
                             'resources', 'resource', 'res',
                             'storage', 'store', 'stor',
@@ -149,7 +148,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
                             'fullbasic', 'full_basic', 'full',
                             'big'
                           ],
-            help        = "Which kit should we post?  See the online docs for a list of kit names.  Defaults to 'res'."
+            help        = "Which kit should we post?  See the online docs for a list of kit names."
         )
         parser.add_argument( '--num', 
             metavar     = '<num>',
