@@ -140,11 +140,11 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             action      = 'store',
             default     = 'res',
             choices     = [
-                            'resource', 'res',
+                            'resources', 'resource', 'res',
                             'storage', 'store', 'stor',
                             'military', 'mil',
                             'utility', 'util', 'ute',
-                            'deco',
+                            'decoration', 'deco',
                             'beach',
                             'fullbasic', 'full_basic', 'full',
                             'big'

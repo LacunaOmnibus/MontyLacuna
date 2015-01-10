@@ -23,8 +23,13 @@ post_starter_kits.py
         - py bin/post_starter_kits.py bmots01 --price "2.2" beach
         - py bin/post_starter_kits.py bmots01 --price 2.2 beach
 
+    - I have not tested changing the plan levels.
+
     - Once it's fully working, I need to figure out some reasonable facility for allowing 
       the user to create his own kit combos.
+
+    ~ The documentation file exists and has been started, but it's absolutely not 
+    finished.
 
 
 ## TBD

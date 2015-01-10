@@ -6,7 +6,7 @@ libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
 import lacuna
-import lacuna.binutils.libpost_starter_kits as lib
+import lacuna.binutils.libpost_starter_kit as lib
 
 sk  = lib.PostStarterKit()
 l   = sk.client.user_logger
