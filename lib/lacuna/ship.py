@@ -243,6 +243,22 @@ class TradeTransportShip(Ship):
         type                    "smuggler_ship",
         name                    "My Trade Smug",
         estimated_travel_time   "3654",
+        berth_level             30,
+        can_recall              0,
+        can_scuttle             1,
+        combat                  '0',
+        date_available          '05 01 2015 09:04:05 +0000',
+        date_started            '15 12 2014 12:46:25 +0000',
+        fleet_speed             '0',
+        hold_size               '100018800',
+        id                      '37733415',
+        max_occupants           285768,
+        name                    'Hulk Huge 30',
+        payload                 [],
+        speed                   '1862',
+        stealth                 '0',
+        task                    'Docked',
+
     """
 
 class TravellingShip(Ship):

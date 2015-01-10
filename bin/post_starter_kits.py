@@ -17,24 +17,25 @@ sk.validate_plans()
 
 ### Post the kit to whichever trade building the user requested.
 l.info( "Posting your kit to your {}.".format(sk.trade.name) )
-sk.post_kit()
+trade_id = sk.post_kit()
+
+l.info( "Your kit was posted; the trade ID is {}.".format(trade_id) )
 
 """
 
-This doesn't work yet, but it's what I'm working towards.
+All of the named kits have been tested:
+    res
+    stor
+    mil
+    ute
+    beach
+    deco
+    full
+    big
 
-    >>> py bin/post_starter_kit.py --kit res --level 2 --num 5 --price 0.3 Earth
+You can set the price with or without quotes - tested both of these:
+    py bin/post_starter_kits.py bmots01 --price "2.2" beach
+    py bin/post_starter_kits.py bmots01 --price 2.2 beach
 
-        Post 5 instances of ResKit from the TM on Earth. 
-        All plans contained in each kit at level 2.  
-        Charge 0.3 E for each trade.
-
-    >>> py bin/post_starter_kit.py --kit storage --level 5 --sst --num 2 --price 5 Earth
-
-        Post 2 instances of StorageKit from the SST on Earth. 
-        All plans contained in each kit at level 5.  
-        Charge 5.0 E for each trade.
-
-etc
 """
 

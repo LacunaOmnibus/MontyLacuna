@@ -7,10 +7,23 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 
 ## Working on
 post_starter_kits.py
-    - Need trade posting methods for both TM and SST, but it looks like most of the rest 
-      of the script structure is in place.
+    - Need trade posting methods for SST, but it's working for the TM now.
 
-    - Once it's all working, I need to figure out some reasonable facility for allowing 
+    - All of the named kits have been tested:
+        - res
+        - stor
+        - mil
+        - ute
+        - beach
+        - deco
+        - full
+        - big
+
+    - You can set the price with or without quotes - tested both of these:
+        - py bin/post_starter_kits.py bmots01 --price "2.2" beach
+        - py bin/post_starter_kits.py bmots01 --price 2.2 beach
+
+    - Once it's fully working, I need to figure out some reasonable facility for allowing 
       the user to create his own kit combos.
 
 

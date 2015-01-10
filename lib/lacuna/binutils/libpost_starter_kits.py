@@ -100,6 +100,7 @@ class DecoKit( StarterKit ):
 class ComboKit( StarterKit ):
     def __init__( self, kits:list, force_combo_price:float = 0 ):
         self.price = force_combo_price if force_combo_price else 0
+        self.plans = []
         for k in kits:
             if not force_combo_price:
                 self.price += k.price
@@ -144,6 +145,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
                             'military', 'mil',
                             'utility', 'util', 'ute',
                             'deco',
+                            'beach',
                             'fullbasic', 'full_basic', 'full',
                             'big'
                           ],
@@ -177,6 +179,13 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             help        = "How much should we charge for your kit?  Defaults to 0.1."
         )
         super().__init__(parser)
+
+        self.plan_size = 0      # set by validate_plans()
+
+        ### The plan named "Algae Pond" is of type "Permanent_AlgaePond", 
+        ### which is what we have to send.  This will translate "Algae Pond" 
+        ### to the required "Permanent_AlgaePond".  Set by validate_plans()
+        self.type_translator = {}
 
         self._set_kit()
         self._set_planet()
@@ -235,12 +244,66 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         """
         pass
         ### CHECK
-        ### neither of the post_*() methods below work (or exist) yet.
-        #if type(self.trade) is lacuna.buildings.callable.trade.trade:
-        #    self.post_tm_trade()
-        #elif type(self.trade) is lacuna.buildings.callable.trade.transporter:
-        #    self.post_sst_trade()
+        ### post_sst_trade doesn't do anything yet.
+        id = None
+        if type(self.trade) is lacuna.buildings.callable.trade.trade:
+            trade_id = self._post_tm_trade()
+        elif type(self.trade) is lacuna.buildings.callable.trade.transporter:
+            trade_id = self._post_sst_trade()
+        return trade_id
 
+    def _post_tm_trade(self):
+        offer, size = self._make_offer()
+        ship = self._find_fastest_ship(size)
+        trade_id = self.trade.add_to_market(
+                        offer,
+                        self.args.price,
+                        { 'ship_id': ship.id }
+                    )
+        return trade_id
+
+    def _post_sst_trade(self):
+        pass
+
+    def _make_offer(self):
+        """ Creates the 'offer' list of dicts required by both the TM and SST.
+
+        Returns a tuple:
+            - offer -- list of dicts containing your trade item details
+            - size -- integer total size of the trade
+        """
+        offer = [] 
+        size = 0
+        for p in self.kit.plans:
+            size += self.plan_size
+            offer.append(
+                {
+                    'type':                 'plan',
+                    'plan_type':            self.type_translator[ p.name ],
+                    'level':                p.level,
+                    'extra_build_level':    p.extra_build_level,
+                    'quantity':             1
+                }
+            )
+        return(offer, size)
+
+    def _find_fastest_ship(self, size:int):
+        """ Finds the fastest trade ship available that's capable of carrying 
+        your kit.
+
+        Arguments:
+            - size -- Integer size of your kit
+        """
+        fastest = 0
+        ship    = ''
+        ships   = self.trade.get_trade_ships()
+        for s in ships:
+            if s.hold_size > size and s.task == 'Docked' and s.speed > fastest:
+                ship = s
+                fastest = s.speed
+        if not ship:
+            raise err.MissingResourceError("You haven't got a trade ship capable of carrying your kit.")
+        return ship
 
     def validate_plans(self):
         """ Checks that you actually have on-hand the plans required by the 
@@ -255,9 +318,10 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             key = plan.name + ':' + str(plan.level) + ':' + str(ebl)
             return key
 
-        plans, space = self.trade.get_plan_summary()
+        plans, self.plan_size = self.trade.get_plan_summary()
         gotplans = {}
         for p in plans:
+            self.type_translator[ p.name ] = p.plan_type
             key = getkey(p)
             gotplans[ key ] = 1
         for p in self.kit.plans:

@@ -88,7 +88,7 @@ class trade(lacuna.trading.TradeBldg):
             - target_id -- Optional ID of the target receiving the trade.  If 
               included, the ships' estimated_travel_time attribute will be set.
 
-        Returns a list of lacuna.ship.TradeTransportShip objects.
+        Returns a list of :class:`lacuna.ship.TradeTransportShip` objects.
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -100,7 +100,7 @@ class trade(lacuna.trading.TradeBldg):
         """ Returns a list of waste ships either currently on or available for 
         waste disposal duty.
 
-        Returns a list of lacuna.ship.ChainShip objects.
+        Returns a list of :class:`lacuna.ship.ChainShip` objects.
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -112,7 +112,7 @@ class trade(lacuna.trading.TradeBldg):
         """ Returns a list of supply ships either currently on or available for 
         supply disposal duty.
 
-        Returns a list of lacuna.ship.ChainShip objects.
+        Returns a list of :class:`lacuna.ship.ChainShip` objects.
         """
         ship_list = []
         for i in kwargs['rslt']['ships']:
@@ -154,7 +154,7 @@ class trade(lacuna.trading.TradeBldg):
             - items -- List of item dicts.  See add_to_market().
             - options -- Required (not optional) dict.  See add_to_market().
 
-        Returns a single lacuna.ship.TravellingShip object.
+        Returns a single :class:`lacuna.ship.TravellingShip` object.
         """
         return lacuna.ship.TravellingShip(self.client, kwargs['rslt']['ship'])
 
