@@ -60,8 +60,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,9 +101,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
@@ -145,9 +159,10 @@
 </div>
           <div role="main">
             
-  <div class="section" id="module-lacuna.stats">
-<span id="stats"></span><h1>Stats<a class="headerlink" href="#module-lacuna.stats" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+  <div class="section" id="stats">
+<h1>Stats<a class="headerlink" href="#stats" title="Permalink to this headline">¶</a></h1>
+<p>Access to various game statistics as shown in the Stats panel in-game.</p>
+<span class="target" id="module-lacuna.stats"></span><dl class="class">
 <dt id="lacuna.stats.AllianceInfo">
 <em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">AllianceInfo</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.stats.AllianceInfo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
@@ -233,7 +248,8 @@ dirtiest        &quot;7941&quot;,                 # the number of times a spy ha
 <dt id="lacuna.stats.Stats">
 <em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">Stats</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
-<p>Provides access to game stats and rankings.</p>
+<p>Provides access to game stats and rankings.
+blargle flurble blah</p>
 <dl class="method">
 <dt id="lacuna.stats.Stats.alliance_rank">
 <tt class="descname">alliance_rank</tt><big>(</big><em>sort_by='influence desc</em>, <em>population desc'</em>, <em>page_number=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.alliance_rank" title="Permalink to this definition">¶</a></dt>
@@ -257,7 +273,7 @@ page.  Defaults to 1.</li>
 </dd>
 <dt>Return a tuple:</dt>
 <dd><ul class="first last simple">
-<li>alliances &#8211; List of stats.AllianceInfo objects</li>
+<li>alliances &#8211; List of <a class="reference internal" href="#lacuna.stats.AllianceInfo" title="lacuna.stats.AllianceInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.AllianceInfo</span></tt></a> objects</li>
 <li>total_alliances &#8211; Integer count.</li>
 <li>page_number &#8211; What page we&#8217;re displaying (defaults to 1)</li>
 </ul>
@@ -280,7 +296,7 @@ the default.  So pretend this method takes no arguments.</li>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of stats.ColonyInfo objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.stats.ColonyInfo" title="lacuna.stats.ColonyInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.ColonyInfo</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -292,12 +308,9 @@ the default.  So pretend this method takes no arguments.</li>
 a list of people or entities having that credit:</p>
 <div class="highlight-python"><div class="highlight"><pre>&#39;Game Support&#39;  [   &#39;Plain Black Corporation / plainblack.com&#39;,
                     &#39;Mary Hoerr&#39;,
-                    &#39;United Federation&#39; 
-                ],
-&#39;Game Design&#39;:  [
-                    &#39;JT Smith&#39;,
-                    &#39;Jamie Vrbsky&#39;
-                ],
+                    &#39;United Federation&#39;     ],
+&#39;Game Design&#39;:  [   &#39;JT Smith&#39;,
+                    &#39;Jamie Vrbsky&#39;   ],
 etc
 </pre></div>
 </div>
@@ -326,7 +339,7 @@ etc
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>empires &#8211; List of up to 25 stats.EmpireInfo objects.</li>
+<li>empires &#8211; List of up to 25 <a class="reference internal" href="#lacuna.stats.EmpireInfo" title="lacuna.stats.EmpireInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.EmpireInfo</span></tt></a> objects.</li>
 <li>empire count &#8211; Integer total number of empires in the game.</li>
 <li>page number &#8211; Integer page we&#8217;re looking at.  Should be the same 
 as the page_number argument you passed in.</li>
@@ -346,7 +359,7 @@ as the page_number argument you passed in.</li>
 <li>alliance_name &#8211; Standard TLE search string</li>
 </ul>
 </dd>
-<dt>Returns list of limited stats.AllianceInfo objects containing only the attributes:</dt>
+<dt>Returns list of limited <a class="reference internal" href="#lacuna.stats.AllianceInfo" title="lacuna.stats.AllianceInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.AllianceInfo</span></tt></a> objects containing only the attributes:</dt>
 <dd><ul class="first last simple">
 <li>alliance_id</li>
 <li>alliance_name</li>
@@ -374,7 +387,7 @@ more than one alliance will match your passed-in alliance_name.</p>
 empires; an empire_name argument of &#8220;inf&#8221; will return both &#8220;Infinate 
 Ones&#8221; and &#8220;Infinitus Imperium&#8221;.</p>
 <p>So remember that this is returning is list, not a single object.</p>
-<p>Returns list of stats.EmpireInfo objects.</p>
+<p>Returns list of <a class="reference internal" href="#lacuna.stats.EmpireInfo" title="lacuna.stats.EmpireInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.EmpireInfo</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -390,7 +403,7 @@ Ones&#8221; and &#8220;Infinitus Imperium&#8221;.</p>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of stats.SpyInfo objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.stats.SpyInfo" title="lacuna.stats.SpyInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.SpyInfo</span></tt></a> objects.</p>
 <p><strong>CAUTION</strong>
 This method has been included only for API completeness; you should 
 probably never use it.</p>
@@ -407,7 +420,7 @@ those first 25 spies.</p>
 <dt id="lacuna.stats.Stats.weekly_medal_winners">
 <tt class="descname">weekly_medal_winners</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.weekly_medal_winners" title="Permalink to this definition">¶</a></dt>
 <dd><p>View medal winners</p>
-<p>Returns a list of stats.MedalWinner objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.stats.MedalWinner" title="lacuna.stats.MedalWinner"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.MedalWinner</span></tt></a> objects.</p>
 </dd></dl>
 
 </dd></dl>

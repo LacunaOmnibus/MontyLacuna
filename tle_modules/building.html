@@ -60,8 +60,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,9 +101,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
@@ -156,7 +170,7 @@ often, <tt class="docutils literal"><span class="pre">MyBuilding</span></tt> cla
 <li class="toctree-l1"><a class="reference internal" href="buildings/permanent/index.html">Permanent (Glyph) Buildings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="buildings/ss_modules/index.html">Space Station Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="buildings/callable/index.html">Miscellaneous Buildings with Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings without Methods</a></li>
 </ul>
 </div>
 <span class="target" id="module-lacuna.building"></span><dl class="class">
@@ -167,10 +181,11 @@ often, <tt class="docutils literal"><span class="pre">MyBuilding</span></tt> cla
 usually one that’s handed back to you from the server as a dict, often in 
 a list of dicts, from such things as checking on the Development 
 Ministry’s build queue via its view() method.</p>
-<p>A Building object will probably, but not necessarily, have a building ID, 
-and may or may not belong to the current empire.</p>
-<p>Most buildings you deal with will be MyBuilding objects, not Building 
-objects.</p>
+<p>A <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> object will probably, but not 
+necessarily, have a building ID, and may or may not belong to the current 
+empire.</p>
+<p>Most buildings you deal with will be <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a> 
+objects, not <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="class">
@@ -233,6 +248,9 @@ pending_build   lacuna.building.Working object
 work            lacuna.building.Working object
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="#lacuna.building.Working" title="lacuna.building.Working"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Working</span></tt></a></li>
+</ul>
 <p>MontyLacuna attempts to provide method calls that mirror all of the method 
 calls documented by the TLE API.  However, MyBuilding had to violate that 
 for two methods:</p>
@@ -400,6 +418,10 @@ end         &quot;01 31 2010 18:09:05 +0600&quot;
 end_dt      datetime.datetime object representing the value in end.
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="../bc.html#lacuna.bc.ElapsedTime" title="lacuna.bc.ElapsedTime"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.ElapsedTime</span></tt></a></li>
+<li><a class="reference external" href="https://docs.python.org/3.4/library/datetime.html">datetime.datetime</a></li>
+</ul>
 </dd></dl>
 
 </div>

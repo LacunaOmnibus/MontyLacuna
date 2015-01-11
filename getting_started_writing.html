@@ -83,6 +83,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -186,7 +187,7 @@ location of your script.  Adjust the path accordingly if your script is going
 to live somewhere other than <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>.</p>
 <p>Please keep in mind that many of the people using your script may not be very
 technically inclined.  The config file creation script that comes with
-MontyLacuna creates config file sections named <tt class="docutils literal"><span class="pre">real</span></tt> and <tt class="docutils literal"><span class="pre">sitter</span></tt>; if
+MontyLacuna creates config file sections named <tt class="docutils literal"><span class="pre">real</span></tt> and <tt class="docutils literal"><span class="pre">sitter</span></tt>.  If
 your script is meant for distribution, it&#8217;s strongly suggested that you
 specify one of those two names as your <tt class="docutils literal"><span class="pre">config_section</span></tt>.</p>
 </div>
@@ -211,6 +212,27 @@ allow you to inspect the JSON dump.</p>
 methods are mirrors of TLE API methods, but not all.  To check if a given
 method is a published TLE API method, check out the TLE API documentation:
 <a class="reference external" href="https://us1.lacunaexpanse.com/api/">https://us1.lacunaexpanse.com/api/</a></p>
+</div>
+<div class="section" id="method-calling">
+<h2>Method Calling<a class="headerlink" href="#method-calling" title="Permalink to this headline">¶</a></h2>
+<p>Almost all MontyLacuna methods require positional, not named, arguments.</p>
+<p>The method documentation includes argument names and types for clarity of what
+data types need to be sent, not as an indication that named arguments can be
+used.</p>
+<p>eg The documentation for the Embassy&#8217;s <tt class="docutils literal"><span class="pre">accept_invite</span></tt> method looks like
+this:</p>
+<blockquote>
+<div><strong>accept_invite(invite_id: int, message: str=&#8217;&#8216;, **kwargs)</strong></div></blockquote>
+<p>So, to call <tt class="docutils literal"><span class="pre">accept_invite</span></tt>, you&#8217;d do something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="mi">12345</span><span class="p">,</span> <span class="s">&quot;Come join my alliance!&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>But you wouldn&#8217;t do this, because the invite_id has to come before the
+message:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">### GONNNNG!  Don&#39;t do this.</span>
+<span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Come join my alliance!&quot;</span><span class="p">,</span> <span class="n">invite_id</span> <span class="o">=</span> <span class="mi">12345</span> <span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="example-snippets">
 <h2>Example Snippets<a class="headerlink" href="#example-snippets" title="Permalink to this headline">¶</a></h2>

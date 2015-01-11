@@ -60,8 +60,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,9 +101,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
@@ -148,21 +162,6 @@
   <div class="section" id="module-lacuna.body">
 <span id="body"></span><h1>Body<a class="headerlink" href="#module-lacuna.body" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="lacuna.body.Arrangement">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Arrangement</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.Arrangement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>This comes back after rearranging buildings.</p>
-<p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
-name        &quot;Earth&quot;
-x           100
-y           -250
-image       &quot;p35&quot;
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="class">
 <dt id="lacuna.body.Body">
 <em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Body</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.Body" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
@@ -176,6 +175,7 @@ orbit           3,
 type            &quot;habitable planet&quot;,
 name            &quot;Earth&quot;,
 image           &quot;p13-3&quot;,
+surface_type    &quot;p13&quot;,      # derived from &#39;image&#39;
 size            67,
 water           900,
 ore             lacuna.resource.AvailableOre object
@@ -185,6 +185,11 @@ station         lacuna.map.Station object
                 Only exists if the body is under the control of a space station.
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a></li>
+<li><a class="reference internal" href="empire.html#lacuna.empire.OwningEmpire" title="lacuna.empire.OwningEmpire"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.OwningEmpire</span></tt></a></li>
+<li><a class="reference internal" href="map.html#lacuna.map.Station" title="lacuna.map.Station"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="class">
@@ -209,6 +214,10 @@ cost                lacuna.resource.BuildCost object
 production          lacuna.resource.Production object
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="../resource.html#lacuna.resource.BuildCost" title="lacuna.resource.BuildCost"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.BuildCost</span></tt></a></li>
+<li><a class="reference internal" href="../resource.html#lacuna.resource.Production" title="lacuna.resource.Production"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.Production</span></tt></a></li>
+</ul>
 <dl class="docutils">
 <dt>Possible build tags:</dt>
 <dd><ul class="first last simple">
@@ -265,6 +274,10 @@ type        &#39;asteroid&#39;
 station     lacuna.map.Station object
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a></li>
+<li><a class="reference internal" href="map.html#lacuna.map.Station" title="lacuna.map.Station"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="class">
@@ -272,7 +285,7 @@ station     lacuna.map.Station object
 <em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">MyBody</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></p>
 <p>A MyBody object is a planet or space station owned by the current 
-empire.  It has all of the attributes of a Body object, plus:</p>
+empire.  It has all of the attributes of a <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a> object, plus:</p>
 <div class="highlight-python"><div class="highlight"><pre>needs_surface_refresh       1,  # client needs to call get_buildings() 
                                 # because something has changed
 building_count              7,
@@ -320,6 +333,11 @@ alliance                    Lacuna.alliance.FoundAlliance object
 influence                   Lacuna.alliance.Influence object
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="../ship.html#lacuna.ship.IncomingToBodyShip" title="lacuna.ship.IncomingToBodyShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingToBodyShip</span></tt></a></li>
+<li><a class="reference internal" href="alliance.html#lacuna.alliance.FoundAlliance" title="lacuna.alliance.FoundAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.FoundAlliance</span></tt></a></li>
+<li><a class="reference internal" href="alliance.html#lacuna.alliance.Influence" title="lacuna.alliance.Influence"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Influence</span></tt></a></li>
+</ul>
 <dl class="method">
 <dt id="lacuna.body.MyBody.abandon">
 <tt class="descname">abandon</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.abandon" title="Permalink to this definition">¶</a></dt>
@@ -342,7 +360,7 @@ influence                   Lacuna.alliance.Influence object
 <p>See the lacuna.body.Buildable class for a list of valid tags.  Passing 
 an invalid tag as an argument is not an error, but zero results will be 
 returned.</p>
-<p>Returns a list of lacuna.body.Buildable objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.body.Buildable" title="lacuna.body.Buildable"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Buildable</span></tt></a> objects.</p>
 <p>Raises ServerError 1009 if the passed coords are illegal for any reason (already 
 occupied, out-of-bounds, etc)</p>
 </dd></dl>
@@ -395,7 +413,7 @@ values are building dicts.</p>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_buildings_bytype">
-<tt class="descname">get_buildings_bytype</tt><big>(</big><em>btype: str</em>, <em>min_level: int=1</em>, <em>limit: int=0</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildings_bytype" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_buildings_bytype</tt><big>(</big><em>btype: str</em>, <em>min_level: int=1</em>, <em>limit: int=0</em>, <em>efficiency: int=0</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildings_bytype" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of buildings of a specific type and minimum level.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
@@ -409,16 +427,19 @@ Defaults to 1.</li>
 <li>limit &#8211; Integer max number of this building you want returned.  
 Defaults to 0 (returns all buildings of this type).
 This method returns a list, even if <tt class="docutils literal"><span class="pre">limit</span></tt> is set to 1.</li>
+<li>efficiency &#8211; Integer minimum efficiency of the buildings to 
+return.  If you&#8217;re planning on actually using the buildings, 
+you&#8217;ll want to set this to 100.  Defaults to 0.</li>
 </ul>
 </dd>
 </dl>
 <p>Returns a list of the requested buildings.</p>
 <p>Each building returned will have its <tt class="docutils literal"><span class="pre">view()</span></tt> method called 
 automatically.  So if you&#8217;re going to get 10 buildings back, that&#8217;s 
-10 <tt class="docutils literal"><span class="pre">view()</span></tt> calls that need to be made, and that&#8217;s going to slow things 
-down a bit.  So keep that in mind, and turn caching on.</p>
-<p>Raises KeyError if you don&#8217;t have any buildings of the requested type 
-and level.</p>
+10 <tt class="docutils literal"><span class="pre">view()</span></tt> calls that need to be made, and that&#8217;s going to slow 
+things down a bit.  So keep that in mind, and turn caching on.</p>
+<p>Raises lacuna.exceptions.NoSuchBuildingError if you don&#8217;t have any 
+buildings of the requested type and level.</p>
 </dd></dl>
 
 <dl class="method">
@@ -467,7 +488,7 @@ attributes, there should <strong>never be a need to call this method.</strong></
 </ul>
 </dd>
 </dl>
-<p>Returns a list of body.Arrangement objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.body.SimpleBody" title="lacuna.body.SimpleBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.SimpleBody</span></tt></a> objects.</p>
 <p>Attempting to make an illegal move (moving a building out of -5..5 
 bounds, moving it on top of another building, moving the PCC at all, 
 etc) raises ServerError 1013 and no moves are made, even if others in 
@@ -493,7 +514,31 @@ repair.</li>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of lacuna.building.Building objects.</p>
+<p>Returns a list of <a class="reference internal" href="building.html#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.view_laws">
+<tt class="descname">view_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.view_laws" title="Permalink to this definition">¶</a></dt>
+<dd><p>View the laws affecting this planet.</p>
+<p>If the planet is not under the control of a space station, a single 
+&#8216;law&#8217; with the name &#8220;Not controlled by a station&#8221; will be returned.</p>
+<p>Note - I don&#8217;t see any reason why a station couldn&#8217;t pass a writ named 
+&#8220;Not controlled by a station&#8221;, so be careful about just looking for a 
+law with that name and assuming it means that the star is really not 
+controlled by a station.</p>
+<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.body.MyBody.view_nonseizure_laws">
+<tt class="descname">view_nonseizure_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.view_nonseizure_laws" title="Permalink to this definition">¶</a></dt>
+<dd><p>View the laws affecting this planet other than seizure laws.</p>
+<p>The bulk of the laws passed by most stations will be star seizure 
+laws, and these are almost always <em>not</em> what you&#8217;re interested in when 
+checking laws.  So this method filters out the seizure laws and just 
+returns you the good stuff.</p>
+<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
 </dd></dl>
 
 </dd></dl>
@@ -536,6 +581,9 @@ water_hour          295,
 water_capacity      51050
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="class">

@@ -1,7 +1,7 @@
 
 .. _caching:
 
-Caching
+caching
 =======
 
 Overview

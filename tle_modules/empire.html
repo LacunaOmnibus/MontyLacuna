@@ -60,8 +60,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,9 +101,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
@@ -209,8 +223,22 @@ home_planet_id          &quot;id-goes-here&quot;,
 has_new_messages        4,
 latest_message_id       1234,
 essentia                0,
-planets                 {   &quot;id-goes-here&quot; : &quot;Earth&quot;,
-                            &quot;id-goes-here&quot; : &quot;Mars,  },
+planets                 Dict of all of the bodies that belong to you, 
+                        keyed off ID.  This includes both colonies and 
+                        space stations.
+                        {   &quot;id-goes-here&quot; : &quot;Earth&quot;,
+                            &quot;id-goes-here&quot; : &quot;Mars&quot;,  
+                            &quot;id-goes-here&quot; : &quot;ISS&quot;,  
+                            &quot;id-goes-here&quot; : &quot;Halo&quot;,  },
+planet_names            The reverse of planets; a dict keyed on the name.
+colonies                Dict of just your colonies, keyed off ID.
+                        {   &quot;id-goes-here&quot; : &quot;Earth&quot;,
+                            &quot;id-goes-here&quot; : &quot;Mars&quot;,  },
+colony_names            The reverse of colonies; a dict keyed on the name.
+stations                Dict of just your space stations, keyed off ID.
+                        {   &quot;id-goes-here&quot; : &quot;ISS&quot;,
+                            &quot;id-goes-here&quot; : &quot;Halo&quot;,  },
+station_names           The reverse of stations; a dict keyed on the name.
 tech_level&quot;             20,         # Highest level university has gotten to.
 self_destruct_active    0,
 self_destruct_date      &quot;&quot;
@@ -342,7 +370,7 @@ Calling it simply complains and then immediately quits your script.</p>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of empire.FoundEmpire objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.empire.FoundEmpire" title="lacuna.empire.FoundEmpire"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.FoundEmpire</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -359,7 +387,7 @@ URL.</p>
 <tt class="descname">get_species_templates</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_species_templates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the species templates that are presented to a new player upon 
 initial species creation (Average, Warmonger, Resilient, Viral, etc).</p>
-<p>Returns a list of empire.SpeciesTemplate objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.empire.SpeciesTemplate" title="lacuna.empire.SpeciesTemplate"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.SpeciesTemplate</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -461,48 +489,6 @@ eg &#8220;You have already redefined in the past 30 days&#8221;, etc.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lacuna.empire.MyEmpire.separate_stations">
-<tt class="descname">separate_stations</tt><big>(</big><em>regex: str</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.separate_stations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Separates space stations from planets.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>regex &#8211; Required string.  Will be compiled as a regex and 
-applied to the names of all of the current empire&#8217;s planets; any 
-names that match the regex will be assumed to be stations.</li>
-</ul>
-</dd>
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>The integer count of space stations found.  Also creates the 
-attributes <tt class="docutils literal"><span class="pre">station</span></tt> and <tt class="docutils literal"><span class="pre">colonized</span></tt> on the current empire 
-object.</li>
-</ul>
-</dd>
-</dl>
-<p>The <tt class="docutils literal"><span class="pre">MyEmpire.planets</span></tt> attribute is a dict (id:name) of all of the 
-bodies that belong to the current empire.  However, &#8220;all of the 
-bodies&#8221; includes planets you&#8217;ve colonized as well as space stations 
-owned by your alliance.</p>
-<p>Not having colonies and space stations separate from each other can be 
-confusing, so it&#8217;s common practice amongst alliances to name their 
-space stations in a way that makes them easy to distinguish from 
-colonized planets.</p>
-<p>This looks through the list of your empire&#8217;s planets, and creates two 
-new MyEmpire attributes: <tt class="docutils literal"><span class="pre">stations</span></tt> and <tt class="docutils literal"><span class="pre">colonized</span></tt>.  Both follow 
-the same format as the comprehensive <tt class="docutils literal"><span class="pre">planets</span></tt> dict, but 
-<tt class="docutils literal"><span class="pre">stations</span></tt> will contain the bodies we think are space stations, and 
-<tt class="docutils literal"><span class="pre">colonized</span></tt> will contain the rest.</p>
-<p><strong>CAUTION</strong> &#8211; This method is neither perfect nor authoritative!  
-Since a space station needs to have its Parliament up to level 3 
-before it can be renamed, it&#8217;s likely that you&#8217;ll occasionally get a 
-brand new station showing up in the <tt class="docutils literal"><span class="pre">colonized</span></tt> dict.  And if you&#8217;re 
-not paying attention and name one of your planets so that it matches 
-your regex, it&#8217;ll show up in the <tt class="docutils literal"><span class="pre">stations</span></tt> dict.  So be careful 
-with how you use this.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="lacuna.empire.MyEmpire.set_status_message">
 <tt class="descname">set_status_message</tt><big>(</big><em>message: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.set_status_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets your empire status message.</p>
@@ -525,7 +511,7 @@ with how you use this.</p>
 <dt id="lacuna.empire.MyEmpire.view_boosts">
 <tt class="descname">view_boosts</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.view_boosts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows your current boosts and their expiration dates.</p>
-<p>Returns an empire. Boosts object.</p>
+<p>Returns an <a class="reference internal" href="#lacuna.empire.Boosts" title="lacuna.empire.Boosts"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.Boosts</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -533,7 +519,7 @@ with how you use this.</p>
 <tt class="descname">view_profile</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.view_profile" title="Permalink to this definition">¶</a></dt>
 <dd><p>View your own empire&#8217;s profile.  Requires login with your real, not 
 sitter, password,</p>
-<p>Returns an empire.OwnProfile object.</p>
+<p>Returns a <a class="reference internal" href="#lacuna.empire.OwnProfile" title="lacuna.empire.OwnProfile"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.OwnProfile</span></tt></a> object.</p>
 <p>Throws 1015 (Sitters cannot modify preferences) if the user is 
 logged in with their sitter.</p>
 </dd></dl>
@@ -549,14 +535,14 @@ logged in with their sitter.</p>
 </ul>
 </dd>
 </dl>
-<p>Returns an empire.PublicProfile object.</p>
+<p>Returns an <a class="reference internal" href="#lacuna.empire.PublicProfile" title="lacuna.empire.PublicProfile"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.PublicProfile</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.empire.MyEmpire.view_species_stats">
 <tt class="descname">view_species_stats</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.view_species_stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns information about your empire&#8217;s species.</p>
-<p>Returns a single empire.Species object.</p>
+<p>Returns a single <a class="reference internal" href="#lacuna.empire.Species" title="lacuna.empire.Species"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.Species</span></tt></a> object.</p>
 </dd></dl>
 
 </dd></dl>

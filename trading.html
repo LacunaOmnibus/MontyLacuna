@@ -58,8 +58,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -82,6 +83,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -97,9 +99,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
@@ -178,7 +192,7 @@ delivery        Dict - info on delivery time (in seconds)
 <em class="property">class </em><tt class="descclassname">lacuna.trading.</tt><tt class="descname">MercTrade</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.trading.MercTrade" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>origin          mercenariesguild.MercTradeOrigin object
+<div class="highlight-python"><div class="highlight"><pre>origin          :class:`lacuna.mercenariesguild.MercTradeOrigin` object
 date_offered    &quot;01 31 2010 13:09:05 +0600&quot;,
 id              &quot;id-goes-here&quot;,
 ask             25,                         # essentia cost
@@ -226,7 +240,7 @@ to the &#8216;ask&#8217; price displayed for the trade.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>glyphs &#8211; List of lacuna.glyph.OwnedGlyph objects.</li>
+<li>glyphs &#8211; List of <a class="reference internal" href="glyph.html#lacuna.glyph.OwnedGlyph" title="lacuna.glyph.OwnedGlyph"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.OwnedGlyph</span></tt></a> objects.</li>
 <li>space_used &#8211; Amount of cargo space used by each prisoner.  
 Always 10000.</li>
 </ul>
@@ -241,7 +255,7 @@ Always 10000.</li>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>plans &#8211; List of OwnedPlan objects.</li>
+<li>plans &#8211; List of <a class="reference internal" href="plan.html#lacuna.plan.OwnedPlan" title="lacuna.plan.OwnedPlan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.OwnedPlan</span></tt></a> objects.</li>
 <li>space_used &#8211; Amount of cargo space used by each prisoner.  
 Always 10000.</li>
 </ul>
@@ -256,7 +270,7 @@ Always 10000.</li>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>prisoners &#8211; List of Prisoner objects.</li>
+<li>prisoners &#8211; List of <a class="reference internal" href="spy.html#lacuna.spy.Prisoner" title="lacuna.spy.Prisoner"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Prisoner</span></tt></a> objects.</li>
 <li>space_used &#8211; Amount of cargo space used by each prisoner.  
 Always 350.</li>
 </ul>
@@ -274,7 +288,7 @@ necessarily carry a trade.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ships &#8211; List of TradeableShip objects.</li>
+<li>ships &#8211; List of <a class="reference internal" href="ship.html#lacuna.ship.TradeableShip" title="lacuna.ship.TradeableShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TradeableShip</span></tt></a> objects.</li>
 <li>space_used &#8211; Amount of cargo space used by each ship.  Always 
 10000.</li>
 </ul>
@@ -286,7 +300,7 @@ necessarily carry a trade.</p>
 <dt id="lacuna.trading.TradeBldg.get_stored_resources">
 <tt class="descname">get_stored_resources</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.trading.TradeBldg.get_stored_resources" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get resources stored onsite and available for trading.</p>
-<p>Returns a lacuna.resource.StoredResources object.</p>
+<p>Returns a <a class="reference internal" href="resource.html#lacuna.resource.StoredResources" title="lacuna.resource.StoredResources"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.StoredResources</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -316,7 +330,7 @@ returned.<ul>
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>trades &#8211; List of trading.ExistingTrade objects</li>
+<li>trades &#8211; List of <a class="reference internal" href="#lacuna.trading.ExistingTrade" title="lacuna.trading.ExistingTrade"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.ExistingTrade</span></tt></a> objects</li>
 <li>count &#8211; Total number of trades you have up</li>
 <li>page_number &#8211; The page that the &#8220;trades&#8221; list appeared on.  
 Same value that you passed as an argument, or 1.</li>
@@ -338,7 +352,7 @@ Same value that you passed as an argument, or 1.</li>
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>trades &#8211; List of trading.ExistingTrade objects</li>
+<li>trades &#8211; List of <a class="reference internal" href="#lacuna.trading.ExistingTrade" title="lacuna.trading.ExistingTrade"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.ExistingTrade</span></tt></a> objects</li>
 <li>count &#8211; Total number of trades you have up</li>
 <li>page_number &#8211; The page that the &#8220;trades&#8221; list appeared on.  
 Same value that you passed as an argument, or 1.</li>

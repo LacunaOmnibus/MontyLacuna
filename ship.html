@@ -59,8 +59,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -83,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,9 +100,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
@@ -185,7 +199,7 @@ it does return &#8220;Supply Chain&#8221;, not &#8220;Resource Chain&#8221;.</p>
 the id of the site that&#8217;s currently being excavated (the site_id).</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
-body            Body object
+body            lacuna.body.Body object
 artifact        5,
 glyph           30,
 plan            7,
@@ -193,6 +207,9 @@ resource        53
 date_landed     Date excav started at location
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="class">
@@ -220,12 +237,16 @@ can_recall      &quot;0&quot;,
 can_scuttle     &quot;1&quot;,
 max_occupants   120                             # attribute will always exist, but will 
                                                 # sometimes be &#39;0&#39;.
-origin          lacuna.ship.ShipDest object
-to              lacuna.ship.ShipDest object     # Will only appear if the ship is currently
+origin          lacuna.body.ShipDest object
+to              lacuna.body.ShipDest object     # Will only appear if the ship is currently
                                                 # travelling somewhere:
 orbiting        lacuna.ship.ShipHub object
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.ShipDest" title="lacuna.body.ShipDest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.ShipDest</span></tt></a></li>
+<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.ShipHub" title="lacuna.body.ShipHub"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.ShipHub</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="class">
@@ -307,7 +328,7 @@ will be able to see some, but not all, of the incomings.</p>
 <dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
 <p>An IncomingShip is what you can see from your Space Port or Police 
 Station, while an IncomingToBodyShip is the much reduced information you 
-can get from a MyBody object.</p>
+can get from a <a class="reference internal" href="tle_modules/body.html#lacuna.body.MyBody" title="lacuna.body.MyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></tt></a> object.</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 date_arrives    &quot;01 31 2010 13:09:05 +0600&quot;,
@@ -377,6 +398,21 @@ transport vehicle to add a trade to the Trade Ministry.
 type                    &quot;smuggler_ship&quot;,
 name                    &quot;My Trade Smug&quot;,
 estimated_travel_time   &quot;3654&quot;,
+berth_level             30,
+can_recall              0,
+can_scuttle             1,
+combat                  &#39;0&#39;,
+date_available          &#39;05 01 2015 09:04:05 +0000&#39;,
+date_started            &#39;15 12 2014 12:46:25 +0000&#39;,
+fleet_speed             &#39;0&#39;,
+hold_size               &#39;100018800&#39;,
+id                      &#39;37733415&#39;,
+max_occupants           285768,
+name                    &#39;Hulk Huge 30&#39;,
+payload                 [],
+speed                   &#39;1862&#39;,
+stealth                 &#39;0&#39;,
+task                    &#39;Docked&#39;,
 </pre></div>
 </div>
 </dd></dl>

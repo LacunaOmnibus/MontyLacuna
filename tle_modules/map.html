@@ -60,8 +60,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,9 +101,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
@@ -199,7 +213,7 @@ size     58,
 </ul>
 </dd>
 </dl>
-<p>Returns a body.Body object</p>
+<p>Returns a <a class="reference internal" href="body.html#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a> object</p>
 </dd></dl>
 
 <dl class="method">
@@ -213,7 +227,7 @@ size     58,
 </ul>
 </dd>
 </dl>
-<p>Returns a map.Star object.</p>
+<p>Returns a <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -228,7 +242,7 @@ TLE search string&#8221;, but the full name of the star.</li>
 </ul>
 </dd>
 </dl>
-<p>Returns a map.Star object.</p>
+<p>Returns a <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -243,7 +257,7 @@ TLE search string&#8221;, but the full name of the star.</li>
 </ul>
 </dd>
 </dl>
-<p>Returns a map.Star object.</p>
+<p>Returns a <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -264,7 +278,7 @@ TLE search string&#8221;, but the full name of the star.</li>
 and &lt;= 1500).  The total area covered by these coordinates must be &lt;= 
 3001 units.  The TLE documentation states 1001 units, but thats old 
 information; the limit has been raised to 3001 units.</p>
-<p>Returns a list of map.Star objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> objects.</p>
 <p>Raises ServerError 1003 if your selected area is too large.</p>
 </dd></dl>
 
@@ -288,7 +302,7 @@ units.</p>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of map.Star objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> objects.</p>
 <p>Raises ServerError 1003 if your selected area is too large.</p>
 </dd></dl>
 
@@ -303,7 +317,7 @@ units.</p>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of map.Fissure objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.map.Fissure" title="lacuna.map.Fissure"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Fissure</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -318,7 +332,7 @@ units.</p>
 </ul>
 </dd>
 </dl>
-<p>Returns a list of map.Star objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> objects.</p>
 </dd></dl>
 
 </dd></dl>
@@ -336,21 +350,62 @@ y           &#39;-100&#39;,
 zone        &#39;0|0&#39;,
 bodies:     List of body.Body objects.  If you don&#39;t have the star 
             probed or oracled, this list will be empty.
+station:    lacuna.map.Station object (only if this star is under control of a station)
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="body.html#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></li>
+<li><a class="reference internal" href="#lacuna.map.Station" title="lacuna.map.Station"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></tt></a></li>
+</ul>
+<dl class="method">
+<dt id="lacuna.map.Star.view_laws">
+<tt class="descname">view_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Star.view_laws" title="Permalink to this definition">¶</a></dt>
+<dd><p>View the laws affecting this star.</p>
+<p>If the star is not under the control of a space station, a single 
+&#8216;law&#8217; with the name &#8220;Not controlled by a station&#8221; will be returned.</p>
+<p>Note - I don&#8217;t see any reason why a station couldn&#8217;t pass a writ named 
+&#8220;Not controlled by a station&#8221;, so be careful about just looking for a 
+law with that name and assuming it means that the star is really not 
+controlled by a station.</p>
+<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.map.Star.view_nonseizure_laws">
+<tt class="descname">view_nonseizure_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Star.view_nonseizure_laws" title="Permalink to this definition">¶</a></dt>
+<dd><p>View the laws affecting this star other than seizure laws.</p>
+<p>The bulk of the laws passed by most stations will be star seizure 
+laws, and these are almost always <em>not</em> what you&#8217;re interested in when 
+checking laws.  So this method filters out the seizure laws and just 
+returns you the good stuff.</p>
+<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.map.Station">
-<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Station</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.map.Station" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Station</tt><big>(</big><em>client</em>, <em>mydict</em><big>)</big><a class="headerlink" href="#lacuna.map.Station" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id      &quot;id-goes-here&quot;,
-x       143,
-y       -27,
-name    &quot;The Death Star&quot;
+<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
+x           143,
+y           -27,
+name        &quot;The Death Star&quot;
+alliance    lacuna.alliance.SeizingAlliance object.
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="alliance.html#lacuna.alliance.SeizingAlliance" title="lacuna.alliance.SeizingAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.SeizingAlliance</span></tt></a></li>
+</ul>
+<dl class="method">
+<dt id="lacuna.map.Station.view_laws">
+<tt class="descname">view_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Station.view_laws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <tt class="xref py py-class docutils literal"><span class="pre">lacuna.parliament.Law</span></tt> objects.  Otherwise returns 
+an empty list.</p>
+<p>DOES NOT WORK if your alliance doesn&#8217;t own the station.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">

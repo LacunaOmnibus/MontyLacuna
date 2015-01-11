@@ -60,8 +60,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,9 +101,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../recycling.html">recycling</a></li>
@@ -190,7 +204,7 @@ empire_name     Name of your empire, NOT of the ship
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.spaceport.</tt><tt class="descname">spaceport</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
 <p>Multiple spaceport buildings on a single planet work together as a single 
-unit.  So calling view_all_ships() on one spaceport building will return 
+unit.  So calling <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.view_all_ships" title="lacuna.buildings.callable.spaceport.spaceport.view_all_ships"><tt class="xref py py-meth docutils literal"><span class="pre">view_all_ships()</span></tt></a> on one spaceport building will return 
 exactly the same list as calling it on a different spaceport building (on the 
 same planet).</p>
 <dl class="docutils">
@@ -210,12 +224,12 @@ the following formats:</p>
 <dt id="lacuna.buildings.callable.spaceport.spaceport.fetch_spies">
 <tt class="descname">fetch_spies</tt><big>(</big><em>on_body_id: int</em>, <em>to_body_id: int</em>, <em>ship_id: int</em>, <em>spy_ids: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.fetch_spies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetches spies back home again.</p>
-<p>Arguments are the same as for send_spies().  But remember that, like 
-prepare_fetch_spies(), on_body_id is the body the spies are on now 
-(foreign), and to_body_id is the body they&#8217;re being fetched to (your 
-planet, their home).</p>
-<p>Returns the lacuna.ship.TravellingShip object of the ship fetching the 
-spies.</p>
+<p>Arguments are the same as for <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.send_spies" title="lacuna.buildings.callable.spaceport.spaceport.send_spies"><tt class="xref py py-meth docutils literal"><span class="pre">send_spies()</span></tt></a>.  But remember 
+that, like <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.prepare_fetch_spies" title="lacuna.buildings.callable.spaceport.spaceport.prepare_fetch_spies"><tt class="xref py py-meth docutils literal"><span class="pre">prepare_fetch_spies()</span></tt></a>, on_body_id is the body 
+the spies are on now (foreign), and to_body_id is the body they&#8217;re 
+being fetched to (your planet, their home).</p>
+<p>Returns the <a class="reference internal" href="../../../ship.html#lacuna.ship.TravellingShip" title="lacuna.ship.TravellingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TravellingShip</span></tt></a> object of the ship 
+fetching the spies.</p>
 </dd></dl>
 
 <dl class="method">
@@ -226,7 +240,7 @@ spies.</p>
 <dl class="method">
 <dt id="lacuna.buildings.callable.spaceport.spaceport.get_fleet_for">
 <tt class="descname">get_fleet_for</tt><big>(</big><em>from_body_id: int</em>, <em>target: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.get_fleet_for" title="Permalink to this definition">¶</a></dt>
-<dd><p>See docs for get_my_fleet_for().</p>
+<dd><p>See docs for <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for" title="lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for"><tt class="xref py py-meth docutils literal"><span class="pre">get_my_fleet_for()</span></tt></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -245,8 +259,8 @@ spies.</p>
 <dd><p>Gets ships available for fleet action to the target.</p>
 <p>&#8216;target&#8217; is a standard target dict.</p>
 <p>Returns a list of lacuna.ship.FleetShip objects.</p>
-<p>This method is syntactic sugar for calling get_fleet_for(), which 
-requires that the sending body ID be passed.  Since that sending 
+<p>This method is syntactic sugar for calling <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.get_fleet_for" title="lacuna.buildings.callable.spaceport.spaceport.get_fleet_for"><tt class="xref py py-meth docutils literal"><span class="pre">get_fleet_for()</span></tt></a>, 
+which requires that the sending body ID be passed.  Since that sending 
 body ID is an attribute of the spaceport object itself, specifically 
 sending it as an argument is silly.</p>
 <p>Raises ServerError 1002 if the requested body_id does not exist.</p>
@@ -257,17 +271,20 @@ sending it as an argument is silly.</p>
 <tt class="descname">get_my_ships_for</tt><big>(</big><em>target: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.get_my_ships_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets ships available to send to a target, as well as a list of 
 incoming ships for some reason.</p>
-<p>&#8216;target&#8217; is a dict, identical to that required by get_my_fleet_for().</p>
-<p>As with get_my_fleet_for(), this method is sugar for the actual API
+<p>&#8216;target&#8217; is a dict, identical to that required by 
+<a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for" title="lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for"><tt class="xref py py-meth docutils literal"><span class="pre">get_my_fleet_for()</span></tt></a>.</p>
+<p>As with <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for" title="lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for"><tt class="xref py py-meth docutils literal"><span class="pre">get_my_fleet_for()</span></tt></a>, this method is sugar for the 
+actual API
 method.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>incoming &#8211; List of lacuna.ship.IncomingShip objects</li>
-<li>available &#8211; List of lacuna.ship.FleetShip objects</li>
-<li>unavailable &#8211; List of lacuna.ship.UnavailableShip objects</li>
-<li>orbiting &#8211; List of lacuna.ship.ExistingShip objects</li>
-<li>mining_platforms &#8211; List of lacuna.buildings.spaceport.MiningPlatform objects</li>
+<li>incoming &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.IncomingShip" title="lacuna.ship.IncomingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingShip</span></tt></a> objects</li>
+<li>available &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.ExistingShip" title="lacuna.ship.ExistingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ExistingShip</span></tt></a> objects</li>
+<li>unavailable &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.UnavailableShip" title="lacuna.ship.UnavailableShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.UnavailableShip</span></tt></a> 
+objects</li>
+<li>orbiting &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.ExistingShip" title="lacuna.ship.ExistingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ExistingShip</span></tt></a> objects</li>
+<li>mining_platforms &#8211; List of <a class="reference internal" href="#lacuna.buildings.callable.spaceport.MiningPlatform" title="lacuna.buildings.callable.spaceport.MiningPlatform"><tt class="xref py py-class docutils literal"><span class="pre">MiningPlatform</span></tt></a> objects</li>
 <li>fleet_send_limit &#8211; Always integer 20.</li>
 </ul>
 </dd>
@@ -282,7 +299,7 @@ method.</p>
 <dl class="method">
 <dt id="lacuna.buildings.callable.spaceport.spaceport.get_ships_for">
 <tt class="descname">get_ships_for</tt><big>(</big><em>from_body_id: int</em>, <em>target: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.get_ships_for" title="Permalink to this definition">¶</a></dt>
-<dd><p>See docs for get_my_ships_for().</p>
+<dd><p>See docs for <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.get_my_ships_for" title="lacuna.buildings.callable.spaceport.spaceport.get_my_ships_for"><tt class="xref py py-meth docutils literal"><span class="pre">get_my_ships_for()</span></tt></a>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -301,16 +318,28 @@ be used.</li>
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ship &#8211; lacuna.ship.TravellingShip object</li>
+<li>ship &#8211; <a class="reference internal" href="../../../ship.html#lacuna.ship.TravellingShip" title="lacuna.ship.TravellingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TravellingShip</span></tt></a> object</li>
 <li>spy_ids &#8211; List of integer IDs of spies being fetched NOT a list 
 of Spy objects.</li>
 </ul>
 </dd>
 </dl>
-<p>Raises KeyError if you don&#8217;t have any ships capable of grabbing all of 
-the spies on the target planet in one shot, or if you don&#8217;t have any 
-spies on foreign soil ready to be picked up (remember that a spy has to 
-be Idle to be picked up).</p>
+<p>WARNING - the returned list of spy_ids will only ever contain a maximum 
+of 100 spies.  In the situation where you&#8217;ve sent hundreds of spies from 
+multiple planets all to the same target (eg to defend a space station 
+that&#8217;s under attack), the spies from this planet may not be included in 
+the list of spy_ids.</p>
+<p>What you need to do in this case is to just fetch the spies who _are_ 
+showing up in that list, wait for the ship to actually pick them up and 
+remove them from the target planet, then try again.</p>
+<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.MissingResourceError" title="lacuna.exceptions.MissingResourceError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.MissingResourceError</span></tt></a> if no spies can 
+be found to be picked up.  This is usually because of the warning 
+mentioned above.</p>
+<p>Raises <tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoAvailableShipError</span></tt> if you don&#8217;t 
+have any ships capable of grabbing all of the spies on the target 
+planet in one shot, or if you don&#8217;t have any spies on foreign soil 
+ready to be picked up (remember that a spy has to be Idle to be picked 
+up).</p>
 </dd></dl>
 
 <dl class="method">
@@ -372,8 +401,8 @@ Up to 30 characters are allowed.  &#8220;No profanity or funky characters&#8221;
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ship_list &#8211; List of lacuna.ship.ExistingShip objects</li>
-<li>spy_list &#8211; List of lacuna.spy.Spy objects</li>
+<li>ship_list &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.ExistingShip" title="lacuna.ship.ExistingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ExistingShip</span></tt></a> objects</li>
+<li>spy_list &#8211; List of <a class="reference internal" href="../../../spy.html#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a> objects</li>
 </ul>
 </dd>
 </dl>
@@ -382,9 +411,7 @@ Up to 30 characters are allowed.  &#8220;No profanity or funky characters&#8221;
 <dl class="method">
 <dt id="lacuna.buildings.callable.spaceport.spaceport.prepare_send_spies">
 <tt class="descname">prepare_send_spies</tt><big>(</big><em>on_body_id: int</em>, <em>to_body_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.prepare_send_spies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gathers the info needed to call send_spies().</p>
-<blockquote>
-<div>rv = sp.prepare_send_spies( my_planet_id, target_planet_id )</div></blockquote>
+<dd><p>Gathers the info needed to call <a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.send_spies" title="lacuna.buildings.callable.spaceport.spaceport.send_spies"><tt class="xref py py-meth docutils literal"><span class="pre">send_spies()</span></tt></a>.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
@@ -394,8 +421,8 @@ Up to 30 characters are allowed.  &#8220;No profanity or funky characters&#8221;
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ships &#8211; List of lacuna.ship.ExistingShip objects</li>
-<li>spies &#8211; List of lacuna.spy.Spy objects</li>
+<li>ships &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.ExistingShip" title="lacuna.ship.ExistingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ExistingShip</span></tt></a> objects</li>
+<li>spies &#8211; List of <a class="reference internal" href="../../../spy.html#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a> objects</li>
 </ul>
 </dd>
 </dl>
@@ -409,8 +436,8 @@ Up to 30 characters are allowed.  &#8220;No profanity or funky characters&#8221;
 Note there is no &#8216;target&#8217; argument here; this is not recalling all 
 ships orbiting a specific target - this is recalling ALL ships from 
 this planet that are orbiting anywhere.</p>
-<p>Returns a list of lacuna.ship.IncomingShip objects, with the following additional 
-attributes:</p>
+<p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.IncomingShip" title="lacuna.ship.IncomingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingShip</span></tt></a> objects, with the 
+following additional attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>returning_from:    {  # This is the planet the ships are being recalled from
                         &quot;id&quot; : &quot;id-goes-here&quot;,
                         &quot;type&quot; : &quot;body&quot;,
@@ -472,9 +499,10 @@ ID of the sending body.</p>
 <dl class="docutils">
 <dt>Arguments</dt>
 <dd><ul class="first last simple">
-<li>target &#8211; Dict, identical to the one in get_my_fleet_for()</li>
+<li>target &#8211; Dict, identical to the one in 
+<a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for" title="lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for"><tt class="xref py py-meth docutils literal"><span class="pre">get_my_fleet_for()</span></tt></a></li>
 <li>types &#8211; List of shiptype dicts</li>
-<li>arrival &#8211; Dict to specify arrival time</li>
+<li>arrival &#8211; Dict to specify arrival time.</li>
 </ul>
 </dd>
 <dt>Shiptype dicts</dt>
@@ -519,11 +547,13 @@ the slowest ship in the group can manage at its top speed.</p>
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
 <li>ship_id &#8211; Integer ID of the ship to send</li>
-<li>target &#8211; Dict, identical to the one in get_my_fleet_for()</li>
+<li>target &#8211; Dict, identical to the one in 
+<a class="reference internal" href="#lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for" title="lacuna.buildings.callable.spaceport.spaceport.get_my_fleet_for"><tt class="xref py py-meth docutils literal"><span class="pre">get_my_fleet_for()</span></tt></a></li>
 </ul>
 </dd>
 </dl>
-<p>Returns a lacuna.ship.IncomingShip object for the single sent ship.</p>
+<p>Returns a <a class="reference internal" href="../../../ship.html#lacuna.ship.IncomingShip" title="lacuna.ship.IncomingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingShip</span></tt></a> object for the single sent 
+ship.</p>
 </dd></dl>
 
 <dl class="method">
@@ -536,7 +566,6 @@ the slowest ship in the group can manage at its top speed.</p>
 <dt id="lacuna.buildings.callable.spaceport.spaceport.send_spies">
 <tt class="descname">send_spies</tt><big>(</big><em>on_body_id: int</em>, <em>to_body_id: int</em>, <em>ship_id: int</em>, <em>spy_ids: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.send_spies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends spies to a target.</p>
-<p><tt class="docutils literal"><span class="pre">rv</span> <span class="pre">=</span> <span class="pre">sp.send_spies(</span> <span class="pre">my_planet_id,</span> <span class="pre">target_planet_id,</span> <span class="pre">ship_id,</span> <span class="pre">spy_ids</span> <span class="pre">)</span></tt></p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
@@ -550,7 +579,7 @@ the slowest ship in the group can manage at its top speed.</p>
 <dd><ul class="first last simple">
 <li>spies_sent &#8211; List of IDs of sent spies (not Spy objects)</li>
 <li>spies_not_sent &#8211; List of IDs of sent spies (not Spy objects) This should only have contents if you&#8217;re cheating.</li>
-<li>ship &#8211; lacuna.ship.TravellingShip object</li>
+<li>ship &#8211; <a class="reference internal" href="../../../ship.html#lacuna.ship.TravellingShip" title="lacuna.ship.TravellingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TravellingShip</span></tt></a> object</li>
 </ul>
 </dd>
 </dl>
@@ -562,21 +591,19 @@ the slowest ship in the group can manage at its top speed.</p>
 <dd><p>View the spaceport.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
-<dd><ul class="first last">
-<li><p class="first">max_ships &#8211; Integer maximum ships that can be stored</p>
-</li>
-<li><p class="first">docks_available &#8211; Integer; how many more ships can be stored</p>
-</li>
-<li><p class="first">docked_ships &#8211; Dict; summary of counts of ships currently at dock:</p>
-<div class="highlight-python"><div class="highlight"><pre>{
+<dd><ul class="first simple">
+<li>max_ships &#8211; Integer maximum ships that can be stored</li>
+<li>docks_available &#8211; Integer; how many more ships can be stored</li>
+<li>docked_ships &#8211; Dict; summary of counts of ships currently at dock</li>
+</ul>
+<p>docked_ships dict:</p>
+<div class="last highlight-python"><div class="highlight"><pre>{
     &quot;probe&quot;: 3,
     &quot;cargo_ship&quot;: 0,
     etc     
 }
 </pre></div>
 </div>
-</li>
-</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -589,16 +616,6 @@ the slowest ship in the group can manage at its top speed.</p>
 <dt>All three arguments are optional.  If sent, they are:</dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt>filter &#8211; A dict of filter critera, which can contain the keys &#8216;task&#8217;, &#8216;type&#8217;, and/or &#8216;tag&#8217;.</dt>
-<dd><ul class="first last simple">
-<li>task &#8211; Building, Defend, Docked, Mining, Orbiting, Supply Chain, Travelling, Waiting on Trade, Waste Chain</li>
-<li>type &#8211; Any of the existing ship types (eg &#8220;placebo5&#8221;, &#8220;scow_fast&#8221;, etc)</li>
-<li>tag &#8211; Colonization, Exploration, Intelligence, Mining, Trade, War</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
 <dt>paging &#8211; A dict of paging criteria</dt>
 <dd><ul class="first last simple">
 <li>no_paging &#8211; true, all ships will be returned, and all other paging options will be ignored.</li>
@@ -609,14 +626,19 @@ the slowest ship in the group can manage at its top speed.</p>
 </dl>
 </li>
 <li><dl class="first docutils">
+<dt>filter &#8211; A dict of filter critera, which can contain the keys &#8216;task&#8217;, &#8216;type&#8217;, and/or &#8216;tag&#8217;.</dt>
+<dd><ul class="first last simple">
+<li>task &#8211; Building, Defend, Docked, Mining, Orbiting, Supply Chain, Travelling, Waiting on Trade, Waste Chain</li>
+<li>type &#8211; Any of the existing ship types (eg &#8220;placebo5&#8221;, &#8220;scow_fast&#8221;, etc)</li>
+<li>tag &#8211; Colonization, Exploration, Intelligence, Mining, Trade, War</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
 <dt>sort &#8211; A string to specify what to sort the results on.  Defaults to &#8216;type&#8217;.  Valid options:</dt>
 <dd><ul class="first last simple">
-<li>combat</li>
-<li>name</li>
-<li>speed</li>
-<li>stealth</li>
-<li>task</li>
-<li>type</li>
+<li>combat, name, speed, stealth, task, type</li>
 </ul>
 </dd>
 </dl>
@@ -637,7 +659,7 @@ which may be more than you were expecting.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ships &#8211; list of lacuna.ship.ExistingShip objects.</li>
+<li>ships &#8211; list of <a class="reference internal" href="../../../ship.html#lacuna.ship.ExistingShip" title="lacuna.ship.ExistingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ExistingShip</span></tt></a> objects.</li>
 <li>number_of_ships &#8211; is the total number that result from your filter, ignoring your pagin</li>
 </ul>
 </dd>
@@ -651,12 +673,13 @@ which may be more than you were expecting.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>page_number &#8211; Optional nteger number of page to view.  25 log entries displayed per page.  Defaults to 1.</li>
+<li>page_number &#8211; Optional integer number of page to view.  25 log 
+entries displayed per page.  Defaults to 1.</li>
 </ul>
 </dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>battle_log &#8211; List of spaceport.BattleLog objects</li>
+<li>battle_log &#8211; List of <a class="reference internal" href="#lacuna.buildings.callable.spaceport.BattleLog" title="lacuna.buildings.callable.spaceport.BattleLog"><tt class="xref py py-class docutils literal"><span class="pre">BattleLog</span></tt></a> objects</li>
 <li>number_of_logs &#8211; Integer total number of entries in the logbook.</li>
 </ul>
 </dd>
@@ -672,7 +695,7 @@ show.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ships &#8211; List of lacuna.ship.IncomingShip objects</li>
+<li>ships &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.IncomingShip" title="lacuna.ship.IncomingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingShip</span></tt></a> objects</li>
 <li>number_of_ships &#8211; Integer count of incoming ships</li>
 </ul>
 </dd>
@@ -684,11 +707,11 @@ show.</p>
 <tt class="descname">view_ships_orbiting</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.view_ships_orbiting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows all FOREIGN ships currently orbiting THIS planet, dependent 
 upon the stealth levels of those orbiting ships.</p>
-<p>&#8220;Orbiting&#8221; contains one of the letter &#8220;t&#8221;.</p>
+<p>&#8220;Orbiting&#8221; contains <em>one</em> of the letter &#8220;t&#8221;.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ships &#8211; List of lacuna.ship.ForeignOrbiting objects</li>
+<li>ships &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.ForeignOrbiting" title="lacuna.ship.ForeignOrbiting"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ForeignOrbiting</span></tt></a> objects</li>
 <li>number_of_ships &#8211; Integer</li>
 </ul>
 </dd>
@@ -699,11 +722,11 @@ upon the stealth levels of those orbiting ships.</p>
 <dt id="lacuna.buildings.callable.spaceport.spaceport.view_ships_travelling">
 <tt class="descname">view_ships_travelling</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.spaceport.view_ships_travelling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows all ships travelling from this planet.</p>
-<p>&#8220;Travelling&#8221; contains two of the letter &#8220;l&#8221;.</p>
+<p>&#8220;Travelling&#8221; contains <em>two</em> of the letter &#8220;l&#8221;.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>ships &#8211; List of lacuna.ship.TravellingShip objects</li>
+<li>ships &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.TravellingShip" title="lacuna.ship.TravellingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TravellingShip</span></tt></a> objects</li>
 <li>number &#8211; Integer count of ships in the air</li>
 </ul>
 </dd>

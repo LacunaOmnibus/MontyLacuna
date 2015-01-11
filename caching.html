@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Caching &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>caching &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -28,7 +28,9 @@
   
 
   
-    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/> 
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="next" title="clients" href="clients.html"/>
+        <link rel="prev" title="bc" href="bc.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -55,10 +57,11 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -81,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -96,9 +100,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
@@ -129,7 +145,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Caching</li>
+    <li>caching</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="sources/caching.txt" rel="nofollow"> View page source</a>
@@ -141,7 +157,7 @@
           <div role="main">
             
   <div class="section" id="caching">
-<span id="id1"></span><h1>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Almost every MontyLacuna method call represents a communication with the TLE
@@ -243,6 +259,12 @@ make use of your caches.</p>
 valid.  Defaults to 3600 (one hour).</li>
 </ul>
 </dd>
+<dt>Returns:</dt>
+<dd><ul class="first last simple">
+<li>old_name &#8211; String namespace that had previously been set.  Empty 
+string if no cache had previously been on.</li>
+</ul>
+</dd>
 </dl>
 </dd></dl>
 
@@ -250,7 +272,8 @@ valid.  Defaults to 3600 (one hour).</li>
 <dt>
 <tt class="descclassname">Member.</tt><tt class="descname">cache_off</tt><big>(</big><big>)</big></dt>
 <dd><p>Turn caching off.
-Does not clear any existing caches, only stops pulling data from them.</p>
+Does not clear any existing caches, only stops pulling data from them.
+Returns the name of the cache that had been in use, or False if none.</p>
 </dd></dl>
 
 <dl class="method">
@@ -283,6 +306,15 @@ no cache has yet been used by this client (so there&#8217;s no
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="clients.html" class="btn btn-neutral float-right" title="clients"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bc.html" class="btn btn-neutral" title="bc"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

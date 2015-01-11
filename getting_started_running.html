@@ -59,8 +59,9 @@
         
             <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ready-to-test">Ready to Test</a></li>
@@ -83,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,9 +100,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
@@ -144,24 +158,62 @@
             
   <div class="section" id="getting-started-running-scripts">
 <span id="getting-started-running"></span><h1>Getting Started Running Scripts<a class="headerlink" href="#getting-started-running-scripts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview-of-steps">
+<h2>Overview of Steps<a class="headerlink" href="#overview-of-steps" title="Permalink to this headline">¶</a></h2>
+<p>To get MontyLacuna working, you&#8217;ll have to follow a few steps.  These are
+similar to the steps necessary to setting up the standard Lacuna scripts
+written in Perl, but these steps should be simpler.</p>
+<ul class="simple">
+<li>Install Python 3</li>
+<li>Install MontyLacuna</li>
+<li>Install Python libraries</li>
+<li>Create a config file</li>
+</ul>
+</div>
 <div class="section" id="install-python-3">
 <h2>Install Python 3<a class="headerlink" href="#install-python-3" title="Permalink to this headline">¶</a></h2>
-<p>If you&#8217;re on Windows, you can download Python 3 from <a class="reference external" href="http://www.activestate.com/activepython/downloads">ActiveState&#8217;s website.</a>  Make sure you download
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>You can download Python 3 from <a class="reference external" href="http://www.activestate.com/activepython/downloads">ActiveState&#8217;s website.</a>  Make sure you download
 version <strong>3.whatever</strong>, <em>not</em> version <strong>2.whatever</strong>.</p>
+<p>During installation, the installer will show you what features will be
+installed, in a window that looks like this:</p>
+<blockquote>
+<div><img alt="as_python_default" src="images/as_python_default.png" /></div></blockquote>
+<p>In some cases, that <em>Register as Default Python</em> will be unselected, as
+indicated by the red X.  We want that turned on.  Click on the little down
+arrow just to the right of the red X, and set this feature to be installed.
+When you&#8217;re done, the window should look like this:</p>
+<blockquote>
+<div><img alt="as_python_fixed" src="images/as_python_fixed.png" /></div></blockquote>
+<p>From here on, just click the Next button until the installer completes.</p>
+<p>After the installer is complete, open up a <tt class="docutils literal"><span class="pre">CMD</span></tt> window and type:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>That should respond with something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>Python 3.4.0
+</pre></div>
+</div>
+<p>If that&#8217;s what you see, then Python has been installed successfully.</p>
+</div>
+<div class="section" id="non-windows">
+<h3>Non-Windows<a class="headerlink" href="#non-windows" title="Permalink to this headline">¶</a></h3>
 <p>If you&#8217;re on Linux or Mac, you probably already have Python installed.  But
 make sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3,
 and MontyLacuna will not work with Python 2.  Python 3 should be available via
 your package manager.</p>
 </div>
-<div class="section" id="install-montylacuna-downloads-here">
-<h2>Install MontyLacuna (DOWNLOADS HERE)<a class="headerlink" href="#install-montylacuna-downloads-here" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="install-montylacuna">
+<h2>Install MontyLacuna<a class="headerlink" href="#install-montylacuna" title="Permalink to this headline">¶</a></h2>
 <p>Download your preferred filetype.  For most people, that will be the &#8220;zip&#8221;
 file.</p>
 <blockquote>
 <div><table border="1" class="docutils">
 <colgroup>
-<col width="6%" />
-<col width="94%" />
+<col width="5%" />
+<col width="95%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Type</th>
@@ -170,10 +222,10 @@ file.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Zip</td>
-<td><a class="reference external" href="https://github.com/tmtowtdi/MontyLacuna/zipball/master">Download</a></td>
+<td><a class="reference external" href="https://github.com/tmtowtdi/MontyLacuna/zipball/master">Download zip file</a></td>
 </tr>
 <tr class="row-odd"><td>Tar</td>
-<td><a class="reference external" href="https://github.com/tmtowtdi/MontyLacuna/tarball/master">Download</a></td>
+<td><a class="reference external" href="https://github.com/tmtowtdi/MontyLacuna/tarball/master">Download tar file</a></td>
 </tr>
 </tbody>
 </table>
@@ -181,12 +233,14 @@ file.</p>
 <ul class="simple">
 <li>Open the <tt class="docutils literal"><span class="pre">zip</span></tt> file using whatever unzip tool you like.  It contains just
 one folder, named something like <tt class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></tt>.  Drag
-that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.</li>
-<li>You can leave that as is or rename it to whatever you want, but I strongly
-suggest you just rename it to <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.<ul>
-<li>The rest of this documentation will assume that&#8217;s what you named it.</li>
+that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.<ul>
+<li>On Windows, you don&#8217;t need to go download an unzip tool.  Just
+double-click on the .zip file after you&#8217;ve downloaded it, and Windows will
+open it up just like it&#8217;s a regular folder.</li>
 </ul>
 </li>
+<li>After dragging that oddly-named folder into <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt>, rename it to
+just <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.</li>
 </ul>
 </div>
 <div class="section" id="install-pip-and-prerequisite-libraries">
@@ -201,7 +255,8 @@ installer script:</p>
 </div>
 <p>pip is now installed.</p>
 <p>There are only two Python libraries to install, <tt class="docutils literal"><span class="pre">requests</span></tt> and <tt class="docutils literal"><span class="pre">beaker</span></tt>,
-and you install both of them using <tt class="docutils literal"><span class="pre">pip</span></tt>:</p>
+and you install both of them using <tt class="docutils literal"><span class="pre">pip</span></tt> by typing these two commands one at
+a time:</p>
 <div class="highlight-python"><div class="highlight"><pre>pip install requests
 pip install beaker
 </pre></div>

@@ -12,3 +12,7 @@ For complete help, see the script's help documentation:
 
     >>> python bin/recall_all_ships.py -h
 
+.. autoclass:: lacuna.binutils.librecall_all_ships.RecallShips
+   :members:
+   :show-inheritance:
+

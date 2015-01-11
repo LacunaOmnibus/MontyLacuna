@@ -31,9 +31,11 @@ how to run the various available scripts.  You can ignore everything else.
    tle_modules/index
 
    bc
+   caching
    clients
    exceptions
    glyph
+   logging
    my_validate_email
    plan
    recycling

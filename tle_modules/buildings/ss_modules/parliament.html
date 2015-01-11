@@ -84,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -548,11 +549,10 @@ building.)</li>
 </ul>
 </dd>
 </dl>
-<p>This method is really being called against the station itself rather 
-than against the parliament building in particular.</p>
-<p>This means that anybody can call this method on any space station to 
-see what laws have been enacted on that station; these laws are public 
-information.</p>
+<p>This method can be called against either the Parliament building or the 
+station itself.  Allowing it to be called against the station means that 
+empires who are not members of the owning alliance can see what laws are 
+in effect.</p>
 <p>Returns a list of lacuna.parliament.Law objects.</p>
 </dd></dl>
 

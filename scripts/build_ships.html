@@ -60,8 +60,9 @@
         
             <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna-downloads-here">Install MontyLacuna (DOWNLOADS HERE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
@@ -84,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,9 +101,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
@@ -146,8 +160,16 @@
           <div role="main">
             
   <div class="section" id="build-ships">
-<h1>Build Ships<a class="headerlink" href="#build-ships" title="Permalink to this headline">¶</a></h1>
-<p>Builds ships at multiple shipyards on a given planet.</p>
+<span id="id1"></span><h1>Build Ships<a class="headerlink" href="#build-ships" title="Permalink to this headline">¶</a></h1>
+<p>Builds or tops off ships at multiple shipyards on a given planet, or on all of
+your planets at once.</p>
+<p>When passing the name of a ship, you must use the ship&#8217;s &#8220;system&#8221; name.  A
+complete list can be found here: <a class="reference internal" href="ships.html#ships-list"><em>In-Game Ship Names</em></a></p>
+<p>When passing the name of a planet, remember to use double quotes around the
+name if there are any space in it.  And if you want to build the same number
+of ships on all of your planets, you can pass in the special planet name
+&#8216;all&#8217;.  (If you have a planet actually named &#8216;all&#8217;, you chose poorly.  Go
+rename it, or accept that this won&#8217;t work properly for that planet.)</p>
 <p>The easiest way to run it will fill all of the available build queues on all
 of the shipyards on your planet:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">sweeper</span>
@@ -161,6 +183,17 @@ of the shipyards on your planet:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">60</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="n">Earth</span> <span class="n">sweeper</span>
 </pre></div>
 </div>
+<p>You can also just top off your ships, to make sure you&#8217;ve always got a certain
+number in stock.  The following will build however many excavators it takes to
+get to a total of 20, and will just quit if you&#8217;ve already got 20 or more:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">20</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="o">--</span><span class="n">topoff</span> <span class="n">Earth</span> <span class="n">excavator</span>
+</pre></div>
+</div>
+<p>When topping off excavators, you may well want to just top them off at all of
+your planets in one shot:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">20</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="o">--</span><span class="n">topoff</span> <span class="nb">all</span> <span class="n">excavator</span>
+</pre></div>
+</div>
 <p>If you want to run this from a scheduled task, or a batch file/shell script,
 or any other situation where you don&#8217;t want to see the script&#8217;s running
 commentary, you can tell it to shut up:</p>
@@ -171,6 +204,31 @@ commentary, you can tell it to shut up:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
+<dl class="class">
+<dt id="lacuna.binutils.libbuild_ships.BuildShips">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libbuild_ships.</tt><tt class="descname">BuildShips</tt><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></p>
+<dl class="method">
+<dt id="lacuna.binutils.libbuild_ships.BuildShips.determine_buildable">
+<tt class="descname">determine_buildable</tt><big>(</big><em>yards</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips.determine_buildable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures we can actually build the requested ship type, and figures 
+out how many of them we should build.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>yards &#8211; list of lacuna.building.shipyard.shipyard objects</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the number of ships we should queue across all shipyards.</p>
+<p>This number to be built does not take current build queues into 
+account.  Four level 30 SYs are going to return 120, no matter what 
+those SYs are currently doing.</p>
+<p>Raises KeyError if the shiptype isn&#8217;t buildable for whatever reason.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
