@@ -72,6 +72,7 @@ class transporter(lacuna.trading.TradeBldg):
 
         Returns the ID of the trade just added.
         """
+        del(kwargs['rslt']['status'])
         return self.get_type(kwargs['rslt']['trade_id'])
 
     @lacuna.bc.LacunaObject.set_empire_status

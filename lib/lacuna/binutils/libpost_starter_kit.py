@@ -16,8 +16,8 @@ class StarterKit():
 
     def update_all_levels( self, level:int = 1, ebl:int = 0  ):
         for p in self.plans:
-            p.level = level
-            p.extra_build_level = ebl
+            p.level = level if level else 1
+            p.extra_build_level = ebl if ebl else 0
 
 class ResKit( StarterKit ):
     def __init__( self, client, price:float = 0.1 ):
@@ -97,6 +97,20 @@ class DecoKit( StarterKit ):
         ]
         super().__init__( client, price, plans );
 
+class Halls10Kit( StarterKit ):
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Halls of Vrbansk', 'level': 1, 'extra_build_level': 0, 'quantity': 10} )
+        ]
+        super().__init__( client, price, plans );
+
+class Halls100Kit( StarterKit ):
+    def __init__( self, client, price:float = 0.1 ):
+        plans = [
+            OwnedPlan( client, {'name': 'Halls of Vrbansk', 'level': 1, 'extra_build_level': 0, 'quantity': 100} )
+        ]
+        super().__init__( client, price, plans );
+
 class ComboKit( StarterKit ):
     def __init__( self, kits:list, force_combo_price:float = 0 ):
         self.price = force_combo_price if force_combo_price else 0
@@ -127,8 +141,8 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
     def __init__(self):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
-            description = 'CHECK',
-            epilog      = "EXAMPLE: CHECK python bin/spies_report.py Earth",
+            description = 'Posts one of several starter kits to either the Trade Ministry or the SST on a specific planet.  See the online documentation for a list of the different types of kits available.',
+            epilog      = "EXAMPLE: CHECK python bin/post_starter_kit.py Earth resources",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
@@ -147,14 +161,10 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
                             'beach',
                             'fullbasic', 'full_basic', 'full',
                             'big'
+                            'halls10',  'hall10',  'h10',
+                            'halls100', 'hall100', 'h100',
                           ],
             help        = "Which kit should we post?  See the online docs for a list of kit names."
-        )
-        parser.add_argument( '--num', 
-            metavar     = '<num>',
-            action      = 'store',
-            default     = 1,
-            help        = "How many kits should we post?  Defaults to 1."
         )
         parser.add_argument( '--level', 
             metavar     = '<level>',
@@ -166,7 +176,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             action      = 'store',
             help        = "Do you want your plans to include an extra build level (the 'x' in a '1+x' plan)?  Most kits use no extra build level by default."
         )
-        parser.add_argument( '--sst', 
+        parser.add_argument( '-sst', '--sst', 
             action      = 'store_true',
             help        = "By default, we post kits to the Trade Ministry.  If you pass this argument, we'll post to the SST instead.  CAUTION you will be charged 1 E per kit posted for using this option."
         )
@@ -198,6 +208,8 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         m_mil   = re.compile("^mil", re.I)
         m_res   = re.compile("^res", re.I)
         m_stor  = re.compile("^stor", re.I)
+        m_h10   = re.compile("^h\w*10$", re.I)
+        m_h100  = re.compile("^h\w*100$", re.I)
         m_ute   = re.compile("^ut", re.I)
 
         if m_res.match(self.args.kit):
@@ -216,6 +228,10 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             self.kit = FullBasicKit( self.client, self.args.price )
         elif m_big.match(self.args.kit):
             self.kit = BigKit( self.client, self.args.price )
+        elif m_h10.match(self.args.kit):
+            self.kit = Halls10Kit( self.client, self.args.price )
+        elif m_h100.match(self.args.kit):
+            self.kit = Halls100Kit( self.client, self.args.price )
 
         if not self.kit:
             raise KeyError("What are you doing, Dave?  That's not a legal kit and I don't know how you managed that.")
@@ -242,27 +258,31 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         """ Actually posts the chosen kit to the chosen trade building.
         """
         pass
-        ### CHECK
-        ### post_sst_trade doesn't do anything yet.
         id = None
         if type(self.trade) is lacuna.buildings.callable.trade.trade:
             trade_id = self._post_tm_trade()
-        elif type(self.trade) is lacuna.buildings.callable.trade.transporter:
+        elif type(self.trade) is lacuna.buildings.callable.transporter.transporter:
             trade_id = self._post_sst_trade()
         return trade_id
 
     def _post_tm_trade(self):
         offer, size = self._make_offer()
         ship = self._find_fastest_ship(size)
-        trade_id = self.trade.add_to_market(
+        return self.trade.add_to_market(
                         offer,
                         self.args.price,
                         { 'ship_id': ship.id }
                     )
-        return trade_id
 
     def _post_sst_trade(self):
-        pass
+        offer, size = self._make_offer()
+        sst_max = self.trade.view()
+        if sst_max < size:
+            raise err.InsufficientResourceError(
+                "Your SST has a max trade of {,}, but your kit's size is {,}."
+                .format( sst_max, size )
+            )
+        return self.trade.add_to_market( offer, self.args.price )
 
     def _make_offer(self):
         """ Creates the 'offer' list of dicts required by both the TM and SST.
@@ -274,14 +294,14 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         offer = [] 
         size = 0
         for p in self.kit.plans:
-            size += self.plan_size
+            size += (self.plan_size * p.quantity)
             offer.append(
                 {
                     'type':                 'plan',
                     'plan_type':            self.type_translator[ p.name ],
                     'level':                p.level,
                     'extra_build_level':    p.extra_build_level,
-                    'quantity':             1
+                    'quantity':             p.quantity,
                 }
             )
         return(offer, size)
@@ -313,9 +333,13 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         requires a plan you haven't got in stock.
         """
         def getkey(plan):
-            ebl = plan.extra_build_level
-            key = plan.name + ':' + str(plan.level) + ':' + str(ebl)
+            ebl = plan.extra_build_level if plan.extra_build_level else 0
+            lvl = plan.level if plan.level else 1
+            key = plan.name + ':' + str(lvl) + ':' + str(ebl)
             return key
+
+        if self.args.level and int(self.args.level) > 1 and self.args.ebl:
+            raise KeyError("There's no such thing as a {}+{} plan.".format(self.args.level, self.args.ebl))
 
         plans, self.plan_size = self.trade.get_plan_summary()
         gotplans = {}

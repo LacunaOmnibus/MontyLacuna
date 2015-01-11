@@ -36,6 +36,15 @@ class GDIError(Exception):
     def __str__(self):
         return repr(self.value)
 
+class InsufficientResourceError(Exception):
+    """ The client has some, but not enough, of some resource.  This resource 
+    can be any score, eg a building level that's not high enough.
+    """
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
 class MissingResourceError(Exception):
     """ Some TLE resource required to do whatever it is you were attempting to do is missing. """
     def __init__(self, value):

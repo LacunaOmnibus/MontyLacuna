@@ -23,16 +23,6 @@ l.info( "Your kit was posted; the trade ID is {}.".format(trade_id) )
 
 """
 
-All of the named kits have been tested:
-    res
-    stor
-    mil
-    ute
-    beach
-    deco
-    full
-    big
-
 You can set the price with or without quotes - tested both of these:
     py bin/post_starter_kits.py bmots01 --price "2.2" beach
     py bin/post_starter_kits.py bmots01 --price 2.2 beach
