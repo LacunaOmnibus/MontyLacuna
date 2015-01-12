@@ -14,9 +14,8 @@ class StarterKit():
         self.price  = price
         self.plans  = plans
 
-    def update_all_levels( self, level:int = 1, ebl:int = 0  ):
+    def update_all_levels( self, ebl:int = 0  ):
         for p in self.plans:
-            p.level = level if level else 1
             p.extra_build_level = ebl if ebl else 0
 
 class ResKit( StarterKit ):
@@ -166,15 +165,10 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
                           ],
             help        = "Which kit should we post?  See the online docs for a list of kit names."
         )
-        parser.add_argument( '--level', 
-            metavar     = '<level>',
-            action      = 'store',
-            help        = "What level plans should be in your kit?  Most kits use level 1 plans by default."
-        )
         parser.add_argument( '--ebl', 
             metavar     = '<extra build level>',
             action      = 'store',
-            help        = "Do you want your plans to include an extra build level (the 'x' in a '1+x' plan)?  Most kits use no extra build level by default."
+            help        = "Do you want your plans to include an extra build level (the 'x' in a '1+x' plan)?  Most kits use no extra build level (1+0) by default."
         )
         parser.add_argument( '-sst', '--sst', 
             action      = 'store_true',
@@ -236,8 +230,8 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         if not self.kit:
             raise KeyError("What are you doing, Dave?  That's not a legal kit and I don't know how you managed that.")
 
-        if self.args.level or self.args.ebl:
-            self.kit.update_all_levels( self.args.level, self.args.ebl )
+        if self.args.ebl:
+            self.kit.update_all_levels( self.args.ebl )
 
     def _set_planet( self ):
         self.client.cache_on( 'post_kits', 3600 )
@@ -299,7 +293,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
                 {
                     'type':                 'plan',
                     'plan_type':            self.type_translator[ p.name ],
-                    'level':                p.level,
+                    'level':                1,
                     'extra_build_level':    p.extra_build_level,
                     'quantity':             p.quantity,
                 }
@@ -334,12 +328,8 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         """
         def getkey(plan):
             ebl = plan.extra_build_level if plan.extra_build_level else 0
-            lvl = plan.level if plan.level else 1
-            key = plan.name + ':' + str(lvl) + ':' + str(ebl)
+            key = plan.name + ':' + str(ebl)
             return key
-
-        if self.args.level and int(self.args.level) > 1 and self.args.ebl:
-            raise KeyError("There's no such thing as a {}+{} plan.".format(self.args.level, self.args.ebl))
 
         plans, self.plan_size = self.trade.get_plan_summary()
         gotplans = {}
@@ -350,8 +340,8 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         for p in self.kit.plans:
             key = getkey(p)
             if not key in gotplans:
-                raise err.MissingResourceError("Your kit requires a {}+{} {} plan, but you don't have one on hand."
-                    .format(p.level, p.extra_build_level, p.name)
+                raise err.MissingResourceError("Your kit requires a 1+{} {} plan, but you don't have one on hand."
+                    .format(p.extra_build_level, p.name)
                 )
         return True
 

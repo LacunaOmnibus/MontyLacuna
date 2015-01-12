@@ -28,17 +28,10 @@ This example would offer the Resources Kit with all plans at 1+2::
 
     >>> python bin/post_starter_kit.py --price 10.3 --ebl 2 Earth resources
 
-If you really wanted to, you can change the level, rather than the extra build 
-level, of the plans you're offering.  **HOWEVER**, this is highly not 
-recommended.  Offering level 2 kits to new players is likely to make them 
-think that you're offering plans that will build level 2 buildings from 
-scratch.  This option may well go away without notice since it's subject to be 
-abused.  For now though, to offer all level 2 kits::
-
-    >>> python bin/post_starter_kit.py --price 90 --level 2 Earth resources
-
-You can't use both the ``--level`` and ``--ebl`` arguments, as all ``+X`` 
-plans have to be level 1.  Trying to use both arguments will produce an error.
+You cannot change the default level from 1.  Most players who would benefit 
+from starter kits are not yet going to understand that a level 5 plan does not 
+build a level 5 building from scratch, so changing the primary level is not 
+allowed in the context of posting starter kits.
 
 SST
 ---
