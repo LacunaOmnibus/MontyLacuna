@@ -32,7 +32,7 @@ class StarterKit():
         self.plans.append( OwnedPlan(self.client, {'name': name, 'level': 1, 'extra_build_level': ebl, 'quantity': quantity}) )
 
     def del_plan( self, name, ebl = 0, quantity = 1 ):
-        """ Deletes a plan, by name, from the kit.
+        """ Deletes a plan from the kit.
 
         Arguments:
             - name -- String name of the plan to remove (eg "Algae Pond").
@@ -175,7 +175,7 @@ class CustomKit( StarterKit ):
         super().__init__(client, price, plans)
 
 class PostStarterKit(lacuna.binutils.libbin.Script):
-    """ Gather and report on spy data by planet.
+    """ Post a starter/noob kit to either the TM or SST.
     """
 
     def __init__( self ):
@@ -286,8 +286,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
 
     def _set_trade_building( self ):
         """ Sets self.trade to either a trade ministry or SST object, depending 
-        on what the user asked for.  Requires that _set_planet() already be 
-        called.
+        on what the user asked for.
         """
         if self.args.sst:
             self.trade = self.planet.get_buildings_bytype( 'transporter', 1, 1, 100 )[0]
@@ -295,7 +294,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             self.trade = self.planet.get_buildings_bytype( 'trade', 1, 1, 100 )[0]
 
     def post_kit(self):
-        """ Actually posts the chosen kit to the chosen trade building.
+        """ Posts the chosen kit to the chosen trade building.
         """
         pass
         id = None
@@ -365,9 +364,8 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         return ship
 
     def validate_plans(self):
-        """ Checks that you actually have on-hand the plans required by the 
-        current kit.  Requires that _set_kit() and _set_trade_building() already be 
-        called.
+        """ Checks that you have on-hand the plans required by the 
+        current kit.
 
         Raises :class:`lacuna.exceptions.MissingResourceError` if your kit 
         requires a plan you haven't got in stock or if you haven't set up a kit 

@@ -115,6 +115,10 @@ If you don't want to use any of these pre-rolled kits, see the
   - Patch of Sand
   - Rocky Outcropping
 
+- **Pretty Kit** ('pretty')
+
+  - Combines all plans from the Beach and Decoration kits above.
+
 - **Full Basic Kit** ('fullbasic', 'full_basic', 'full')
 
   - Combines all plans from the Resources and Storage kits above.
