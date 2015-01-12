@@ -161,39 +161,35 @@
             
   <div class="section" id="post-starter-kit">
 <span id="id1"></span><h1>Post Starter Kit<a class="headerlink" href="#post-starter-kit" title="Permalink to this headline">¶</a></h1>
-<p>Posts a specific named starter/noob kit to either the TM or SST for you.  See
-below for a list of all available named kits.</p>
+<p>Posts a specific named starter/noob kit to either the TM or SST for you.  The
+easiest and most common way of running this will be to chose from one of
+several <a class="reference internal" href="#named-kits"><em>pre-set named kits</em></a> and post that.</p>
 <p>Post a Resources kit from Earth:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">resources</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">resources</span> <span class="n">Earth</span>
 </pre></div>
 </div>
 <p>If you want to post 5 resources kits, just run the above command five times.
 Your terminal should automatically repeat the previous command when you press
 the Up arrow key.  So just type the command above once, hit enter, then, after
 it&#8217;s finished running, hit the Up arrow and hit enter again, etc.</p>
-<p>By default, all posted kits cost 0.1 E.  However, you can charge whatever you
-like:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">price</span> <span class="mf">0.5</span> <span class="n">Earth</span> <span class="n">resources</span>
+<p>By default, all posted kits cost 0.1 E, but you can charge whatever you like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="o">--</span><span class="n">price</span> <span class="mf">0.5</span> <span class="n">Earth</span>
 </pre></div>
 </div>
 <p>The named kits all contain level 1+0 plans.  You can change the extra build
 level to offer 1+1 or 1+2 or whatever extra level you like, as long as you
 have the plans on hand, by using the <tt class="docutils literal"><span class="pre">--ebl</span></tt> (Extra Build Level) argument.
 This example would offer the Resources Kit with all plans at 1+2:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">price</span> <span class="mf">10.3</span> <span class="o">--</span><span class="n">ebl</span> <span class="mi">2</span> <span class="n">Earth</span> <span class="n">resources</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="o">--</span><span class="n">price</span> <span class="mf">10.3</span> <span class="o">--</span><span class="n">ebl</span> <span class="mi">2</span> <span class="n">Earth</span>
 </pre></div>
 </div>
-<p>You cannot change the default level from 1.  Most players who would benefit
-from starter kits are not yet going to understand that a level 5 plan does not
-build a level 5 building from scratch, so changing the primary level is not
-allowed in the context of posting starter kits.</p>
 <div class="section" id="sst">
 <h2>SST<a class="headerlink" href="#sst" title="Permalink to this headline">¶</a></h2>
 <p>Kits are normally posted to the Trade Ministry, but sometimes you&#8217;re out of
 range of that desperate new player and you&#8217;re willing to spend the 1E at the
 SST just to get him to stop begging ;)</p>
 <p>To post a regular Resources kit to the SST:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">sst</span> <span class="o">--</span><span class="n">price</span> <span class="mf">1.5</span> <span class="n">Earth</span> <span class="n">resources</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">sst</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="o">--</span><span class="n">price</span> <span class="mf">1.5</span> <span class="n">Earth</span>
 
 <span class="go">***</span>
 <span class="go">Be aware that using this option will automatically charge you the 1E SST</span>
@@ -203,18 +199,19 @@ SST just to get him to stop begging ;)</p>
 </div>
 </div>
 <div class="section" id="named-kits">
-<h2>Named Kits<a class="headerlink" href="#named-kits" title="Permalink to this headline">¶</a></h2>
-<p>When offering a kit for trade, the following named kits are available.  To
-make posting a little easier, kits with longer names have had aliases added.
-These aliases are shown in parentheses below.  So to add (eg) a Resources Kit
-at the default price of 0.1 E, you can do any of the following:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">resources</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">resource</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">res</span>
+<span id="id2"></span><h2>Named Kits<a class="headerlink" href="#named-kits" title="Permalink to this headline">¶</a></h2>
+<p>To make posting a little easier, kits with longer names have aliases, which
+are shown in parentheses below.  So to add (eg) a Resources Kit at the default
+price of 0.1 E, you can do any of the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">resources</span> <span class="n">Earth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">resource</span> <span class="n">Earth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="n">Earth</span>
 </pre></div>
 </div>
+<p>If you don&#8217;t want to use any of these pre-rolled kits, see the
+<a class="reference internal" href="#custom-kits"><em>Creating A Customized Kit</em></a> section below.</p>
 <ul class="simple">
-<li>Resources Kit (&#8216;resources&#8217;, resource&#8217;, &#8216;res&#8217;)<ul>
+<li><strong>Resources Kit</strong> (&#8216;resources&#8217;, resource&#8217;, &#8216;res&#8217;)<ul>
 <li>Algae Pond</li>
 <li>Amalgus Meadow</li>
 <li>Beeldeban Nest</li>
@@ -226,19 +223,19 @@ at the default price of 0.1 E, you can do any of the following:</p>
 <li>Volcano</li>
 </ul>
 </li>
-<li>Storage Kit (&#8216;storage&#8217;, &#8216;store&#8217;, &#8216;stor&#8217;)<ul>
+<li><strong>Storage Kit</strong> (&#8216;storage&#8217;, &#8216;store&#8217;, &#8216;stor&#8217;)<ul>
 <li>Interdimensional Rift</li>
 <li>Ravine</li>
 </ul>
 </li>
-<li>Military Kit (&#8216;military&#8217;, &#8216;mil&#8217;)<ul>
+<li><strong>Military Kit</strong> (&#8216;military&#8217;, &#8216;mil&#8217;)<ul>
 <li>Citadel of Knope</li>
 <li>Crashed Ship Site</li>
 <li>Gratch&#8217;s Gauntlet</li>
 <li>Kalavian Ruins</li>
 </ul>
 </li>
-<li>Utility Kit (&#8216;utility&#8217;, &#8216;util&#8217;, &#8216;ute&#8217;)<ul>
+<li><strong>Utility Kit</strong> (&#8216;utility&#8217;, &#8216;util&#8217;, &#8216;ute&#8217;)<ul>
 <li>Black Hole Generator</li>
 <li>Library of Jith</li>
 <li>Oracle of Anid</li>
@@ -246,8 +243,8 @@ at the default price of 0.1 E, you can do any of the following:</p>
 <li>Temple of the Drajilites</li>
 </ul>
 </li>
-<li>Halls 10 Kit (&#8216;halls10&#8217;, &#8216;hall10&#8217;, &#8216;h10&#8217;)</li>
-<li>Halls 100 Kit (&#8216;halls100&#8217;, &#8216;hall100&#8217;, &#8216;h100&#8217;)<ul>
+<li><strong>Halls 10 Kit</strong> (&#8216;halls10&#8217;, &#8216;hall10&#8217;, &#8216;h10&#8217;)</li>
+<li><strong>Halls 100 Kit</strong> (&#8216;halls100&#8217;, &#8216;hall100&#8217;, &#8216;h100&#8217;)<ul>
 <li>These contain 10 and 100 halls, respectively.</li>
 <li>Yes, I&#8217;m well aware that you&#8217;re dying to post 11 or 99 halls, and are just
 about to send off an email to me asking me to enable that.  No.  These are
@@ -258,11 +255,11 @@ meant to be bulk-posted starter kits, and choices of 10 or 100 are fine.<ul>
 </li>
 </ul>
 </li>
-<li>Beach Kit (&#8216;beach&#8217;)<ul>
+<li><strong>Beach Kit</strong> (&#8216;beach&#8217;)<ul>
 <li>All 13 Beach plans</li>
 </ul>
 </li>
-<li>Decoration (&#8216;decoration&#8217;, deco&#8217;)<ul>
+<li><strong>Decoration Kit</strong> (&#8216;decoration&#8217;, deco&#8217;)<ul>
 <li>Crater</li>
 <li>Grove of Trees</li>
 <li>Lagoon</li>
@@ -271,11 +268,11 @@ meant to be bulk-posted starter kits, and choices of 10 or 100 are fine.<ul>
 <li>Rocky Outcropping</li>
 </ul>
 </li>
-<li>Full Basic Kit (&#8216;fullbasic&#8217;, &#8216;full_basic&#8217;, &#8216;full&#8217;)<ul>
+<li><strong>Full Basic Kit</strong> (&#8216;fullbasic&#8217;, &#8216;full_basic&#8217;, &#8216;full&#8217;)<ul>
 <li>Combines all plans from the Resources and Storage kits above.</li>
 </ul>
 </li>
-<li>Big Kit (&#8216;big&#8217;)<ul>
+<li><strong>Big Kit</strong> (&#8216;big&#8217;)<ul>
 <li>Combines all plans from the Resources, Storage, Military, and Utility kits
 above.</li>
 </ul>
@@ -283,35 +280,50 @@ above.</li>
 </ul>
 </div>
 <div class="section" id="creating-a-customized-kit">
-<h2>Creating A Customized Kit<a class="headerlink" href="#creating-a-customized-kit" title="Permalink to this headline">¶</a></h2>
-<p>The named kits above are just my guess at what kinds of packs most people will
-generally want to be able to post.  I&#8217;m aware that you may want to post some
-slightly different combination of plans that&#8217;s not listed above.</p>
-<p>For now, creating your own kit is going to require that you edit some code.  I
-may come up with some more reasonable facility for creating custom kits in the
-future, but until that happens, code editing is it.</p>
-<p>You&#8217;ll need to edit the script&#8217;s library file,
-<tt class="docutils literal"><span class="pre">lib/lacuna/binutils/libpoststarter_kit.py</span></tt>:</p>
-<blockquote>
-<div><ul class="simple">
-<li>See the existing kit classes, starting with ResKit about line 22.  Copy
-one of those existing kit classes, and edit it so it contains the plans
-you want in your custom kit.  Be sure to change the name of your custom
-kit to something unique that you recognize (eg &#8220;MyCustomKit&#8221;).</li>
-<li>Around line 141 is the list of valid choices that the user can pass in
-as the name of the kit.  Add a name to represent your custom kit, along
-with any aliases you want (just follow the existing examples).</li>
-<li>In _set_kit(), around line 193 (this is going to be the hardest part),
-you&#8217;ll need to create a new regex (see the exising <tt class="docutils literal"><span class="pre">re.compile</span></tt> lines
-as examples), and then you&#8217;ll need to add a new <tt class="docutils literal"><span class="pre">elif</span></tt> block down
-below.  Your <tt class="docutils literal"><span class="pre">elif</span></tt> block will be two lines of code, just as you can
-see in the existing examples.</li>
-</ul>
-</div></blockquote>
-<p>Yes, I&#8217;m aware the above is a bit more technical than some folks are
-comfortable dealing with.  Yes, I&#8217;m OK with that, at least for now.  If you
-can&#8217;t figure out how to add your own custom kit, you&#8217;re stuck with using one
-of the existing named kits.</p>
+<span id="custom-kits"></span><h2>Creating A Customized Kit<a class="headerlink" href="#creating-a-customized-kit" title="Permalink to this headline">¶</a></h2>
+<p>You may want to post some slightly different combination of plans that&#8217;s not
+listed above.  To create your own custom kit, you&#8217;ll need to edit the
+<tt class="docutils literal"><span class="pre">post_starter_kit.py</span></tt> script, but doing so is not hard.</p>
+<p>Open the script in an editor, and find the section near the top that looks
+like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">###</span>
+<span class="c">### Define any custom kits here</span>
+<span class="c">###</span>
+</pre></div>
+</div>
+<p>Right under that, define your customized kit or kits.  For example, here are
+two custom kit definitions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">### Modify a standard ResKit for orbit 1 - remove the food buildings that</span>
+<span class="c">### won&#39;t work in that orbit.</span>
+<span class="n">orb1kit</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">CustomKit</span><span class="p">(</span> <span class="n">sk</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">lib</span><span class="o">.</span><span class="n">ResKit</span><span class="p">(</span><span class="n">sk</span><span class="o">.</span><span class="n">client</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Amalgus Meadow&#39;</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Beeldeban Nest&#39;</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Denton Brambles&#39;</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Lapis Forest&#39;</span> <span class="p">)</span>
+<span class="c">### Since we&#39;re not specifying price, it&#39;ll default to 0.1 E.</span>
+
+<span class="c">### Start with a completely empty kit, and just add a few plans.</span>
+<span class="n">happykit</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">CustomKit</span><span class="p">(</span> <span class="n">sk</span><span class="o">.</span><span class="n">client</span> <span class="p">)</span>
+<span class="n">happykit</span><span class="o">.</span><span class="n">add_plan</span><span class="p">(</span> <span class="s">&#39;Kalavian Ruins&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>             <span class="c"># include a 1+3 Ruins</span>
+<span class="n">happykit</span><span class="o">.</span><span class="n">add_plan</span><span class="p">(</span> <span class="s">&#39;Halls of Vrbansk&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>        <span class="c"># include 5 Halls (with 0 extra build levels)</span>
+<span class="n">happykit</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
+<p>You can define as many custom kits as you want, calling <tt class="docutils literal"><span class="pre">del_plan()</span></tt> and/or
+<tt class="docutils literal"><span class="pre">add_plan()</span></tt> as often as needed to define what you want your kit to contain.
+When you create a new custom kit, there&#8217;s no need to delete any of your old
+kits - might as well leave the old kits&#8217; definitions there in case you want to
+use them in the future.</p>
+<p>To specify which of your custom kits you want to use, just include this line
+after your kit definitions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sk</span><span class="o">.</span><span class="n">kit</span> <span class="o">=</span> <span class="n">happykit</span>
+</pre></div>
+</div>
+<p>...And that&#8217;s it.  When you run the kit poster script, it&#8217;ll post your
+<tt class="docutils literal"><span class="pre">happykit</span></tt> for 1.5 E:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="full-documentation">
 <h2>Full Documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
@@ -334,12 +346,80 @@ of the existing named kits.</p>
 <dt id="lacuna.binutils.libpost_starter_kit.PostStarterKit.validate_plans">
 <tt class="descname">validate_plans</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.PostStarterKit.validate_plans" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that you actually have on-hand the plans required by the 
-current kit.  Requires that _set_kit() and _set_trade() already be 
+current kit.  Requires that _set_kit() and _set_trade_building() already be 
 called.</p>
 <p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.MissingResourceError" title="lacuna.exceptions.MissingResourceError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.MissingResourceError</span></tt></a> if your kit 
-requires a plan you haven&#8217;t got in stock.</p>
+requires a plan you haven&#8217;t got in stock or if you haven&#8217;t set up a kit 
+yet.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libpost_starter_kit.</tt><tt class="descname">StarterKit</tt><big>(</big><em>client</em>, <em>price: float</em>, <em>plans: list</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Base class for starter kits</p>
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit.add_plan">
+<tt class="descname">add_plan</tt><big>(</big><em>name</em>, <em>ebl=0</em>, <em>quantity=1</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit.add_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a plan to the kit.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String name of the plan to add (eg &#8220;Algae Pond&#8221;).</li>
+<li>ebl &#8211; Optional integer.  The extra build level for the plan.</li>
+<li>quantity &#8211; Optional integer.  The number of plans of this type to include.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit.del_plan">
+<tt class="descname">del_plan</tt><big>(</big><em>name</em>, <em>ebl=0</em>, <em>quantity=1</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit.del_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a plan, by name, from the kit.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String name of the plan to remove (eg &#8220;Algae Pond&#8221;).</li>
+<li>ebl &#8211; Optional integer.  The extra build level setting of the plan to remove.</li>
+<li>quantity &#8211; Optional integer.  The quantity value on the plan to remove.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit.update_all_levels">
+<tt class="descname">update_all_levels</tt><big>(</big><em>ebl: int=0</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit.update_all_levels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the extra build level for all plans included in the kit.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>ebl &#8211; Integer extra build level.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.binutils.libpost_starter_kit.CustomKit">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libpost_starter_kit.</tt><tt class="descname">CustomKit</tt><big>(</big><em>client</em>, <em>derived_from: lacuna.binutils.libpost_starter_kit.StarterKit=''</em>, <em>price: float=0.1</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.CustomKit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.binutils.libpost_starter_kit.StarterKit" title="lacuna.binutils.libpost_starter_kit.StarterKit"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libpost_starter_kit.StarterKit</span></tt></a></p>
+<p>A kit defined by the user.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>derived_from &#8211; Optional, any other kit class.  If sent, your custom 
+kit will start out containing the same plans as are found in that 
+other kit class.  From there, you can add or remove plans as needed.</li>
+<li>price &#8211; Optional float.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
