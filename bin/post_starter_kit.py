@@ -11,6 +11,12 @@ import lacuna.binutils.libpost_starter_kit as lib
 sk  = lib.PostStarterKit()
 l   = sk.client.user_logger
 
+### 
+### Define any custom kits here
+###
+
+
+
 ### Make sure the user has in stock the plans required by the selected kit.
 l.info( "Making sure you have the plans needed for the {} kit in stock on {}.".format(sk.args.kit, sk.planet.name) )
 sk.validate_plans()
@@ -20,12 +26,4 @@ l.info( "Posting your kit to your {}.".format(sk.trade.name) )
 trade_id = sk.post_kit()
 
 l.info( "Your kit was posted; the trade ID is {}.".format(trade_id) )
-
-"""
-
-You can set the price with or without quotes - tested both of these:
-    py bin/post_starter_kits.py bmots01 --price "2.2" beach
-    py bin/post_starter_kits.py bmots01 --price 2.2 beach
-
-"""
 

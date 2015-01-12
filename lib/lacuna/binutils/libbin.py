@@ -63,12 +63,12 @@ class Script:
             default     = section,
             help        = "Config file section.  Defaults to '" + section + "'."
         )
-        parser.add_argument( '--quiet', 
+        parser.add_argument( '-q', '--quiet', 
             dest        = 'quiet',
             action      = 'store_true',
             help        = "By default, information on what's happening gets displayed to the screen.  Including this will silence all output.  Overrides '-v'."
         )
-        parser.add_argument( '-v', 
+        parser.add_argument( '-v', '--verbose', 
             dest        = 'verbose',
             action      = 'count',
             help        = "Increase output verbosity level -- produces more in-depth screen reporting on what's happening.  Has no effect if --quiet is used."
