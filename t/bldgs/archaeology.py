@@ -8,7 +8,7 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'play_test',
+    config_section = 'sitter',
 )
 
 my_planet = glc.get_body_byname( 'bmots01' )
@@ -26,6 +26,22 @@ arch = my_planet.get_buildings_bytype( 'archaeology', 0, 1 )[0]
 #else:
 #    print( "Arch min is not searching now." )
 
+
+### Search through an ore type for a glyph.
+### Requires that you have at least 10,000 of ore_type in stock.
+###
+#ore_type = 'rutile'
+#arch.search_for_glyph( ore_type )
+#print( "Arch min is now searching for a {} glyph.".format(ore_type) )
+
+
+### Spend 2 E to subsidize the current search.  Raises a ServerError exception 
+### if no search is happening right now.
+###
+### CAUTION - if you have a search going on, this will spend 2 E.
+###
+#arch.subsidize_search()
+#print( "I just spent 2E to subsidize the current glyph search." )
 
 
 ### Get lists of available glyphs

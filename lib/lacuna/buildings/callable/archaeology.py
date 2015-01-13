@@ -37,7 +37,7 @@ class archaeology(lacuna.building.MyBuilding):
     def get_glyph_summary( self, **kwargs ):
         """ Returns summary of glyphs that may be assembled in this arch min.
 
-        Returns a list of lacuna.glyph.OwnedGlyph objects.
+        Returns a list of :class:`lacuna.glyph.OwnedGlyph` objects.
         """
         mylist = []
         for i in kwargs['rslt']['glyphs']:
@@ -53,18 +53,42 @@ class archaeology(lacuna.building.MyBuilding):
               capitalization matter; "goethite" is valid, "Goethite" is not!
             - quantity -- Integer number of this recipe you want to assemble.
 
-        Returns a glyph.AssembledArtifact object.
+        Returns a :class:`lacuna.glyph.AssembledArtifact` object.
 
         Raises ServerError 1002 if the listed glyphs do not form a valid 
         artifact recipe.
         """
         return lacuna.glyph.AssembledArtifact(self.client, kwargs['rslt']['item_name'], kwargs['rslt']['quantity'] )
 
+
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
+    def search_for_glyph( self, ore_type:str, **kwargs ):
+        """ Searches through an ore for a glyph.
+
+        There must be at least 10,000 of the selected ore onsite to perform 
+        the search, or a ServerError will be raised.
+
+        Arguments:
+            - ore_type -- String name of the ore to search.
+        """
+        pass
+
+    @lacuna.bc.LacunaObject.set_empire_status
+    @lacuna.building.MyBuilding.call_building_meth
+    def subsidize_search( self, **kwargs ):
+        """ Completes the current glyph search immediately.  Costs 2 E.
+
+        Raises ServerError 1010 if no search is going on right now.
+        """
+        pass
+
+
     @lacuna.building.MyBuilding.call_returning_meth
     def get_ores_available_for_processing( self, **kwargs ):
         """ Get ores of sufficient quantity to perform glyph searches on.
 
-        Returns a lacuna.resource.AvailableOre object.
+        Returns a :class:`lacuna.resource.AvailableOre` object.
         """
         return lacuna.resource.AvailableOre(self.client, kwargs['rslt']['ore'])
 
