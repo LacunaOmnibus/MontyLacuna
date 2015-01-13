@@ -48,7 +48,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
             for colname in self.client.empire.colony_names.keys():
                 self.planets.append(colname)
         else:
-            self.planets = self.args.name
+            self.planets = [ self.args.name ]
         self.client.cache_off()
 
     def set_planet( self, pname:str ):

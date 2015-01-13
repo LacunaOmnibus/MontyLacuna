@@ -125,4 +125,13 @@ class TopoffError(Exception):
     def __str__(self):
         return repr("Topoff error - we're already above" + str(self.number) + ": " + self.message)
 
+class WorkingError(Exception):
+    """ The user wanted to begin work on some resource (a building, spy, ship, 
+    etc), but that resource is already doing something and can't be assigned a 
+    new job until it completes the current one.
+    """
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 

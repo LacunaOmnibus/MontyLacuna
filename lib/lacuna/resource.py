@@ -57,13 +57,12 @@ class PlanetaryResource(lacuna.bc.SubClass):
     def my_ores(self):
         """ Generator.  Iterate through all of the ores in the current object:
 
-        >>> ores = <PlanetaryOre object>
-        >>> for name, quantity in ores.my_ores():
-        >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
-        name: anthracite, quantity: 1,200
-        (no bauxite on this planet, so it's not listed)
-        name: beryl, quantity: 2,200
-        ...
+            >>> ores = <PlanetaryOre object>
+            >>> for name, quantity in ores.my_ores():
+            >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
+            name: anthracite, quantity: 1,200
+            (no bauxite on this planet, so it's not listed)
+            name: beryl, quantity: 2,200
         """
         for i in self.all_ores:
             if hasattr(self, i):
@@ -73,13 +72,13 @@ class PlanetaryResource(lacuna.bc.SubClass):
     def my_foods(self):
         """ Generator.  Iterate through all of the foods in the current object:
 
-        >>> foods = <PlanetaryFood object>
-        >>> for name, quantity in foods.my_foods():
-        >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
-        name: algae, quantity: 1,200
-        (no apple on this planet, so it's not listed)
-        name: bean, quantity: 2,200
-        ...
+            >>> foods = <PlanetaryFood object>
+            >>> for name, quantity in foods.my_foods():
+            >>>     print( "name: {}, quantity: {:,}".format(name, quantity) )
+            name: algae, quantity: 1,200
+            (no apple on this planet, so it's not listed)
+            name: bean, quantity: 2,200
+            ...
         """
         for i in self.all_foods:
             if hasattr(self, i):

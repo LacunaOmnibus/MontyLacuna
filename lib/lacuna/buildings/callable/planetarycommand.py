@@ -21,9 +21,9 @@ class planetarycommand(lacuna.building.MyBuilding):
         key. At least on PT, it does not.
 
         Returns a tuple:
-            - food -- List of lacuna.resource.PlanetaryFood objects
-            - ore -- List of lacuna.resource.PlanetaryOre objects
-            - planet -- Single lacuna.body.Planet object
+            - food -- List of :class:`lacuna.resource.PlanetaryFood` objects
+            - ore -- List of :class:`lacuna.resource.PlanetaryOre` objects
+            - planet -- Single :class:`lacuna.body.Planet` object
             - cost -- Cost of your next colony, in happiness
         """
         food    = lacuna.resource.PlanetaryFood(self.client, kwargs['rslt']['food'])
@@ -59,7 +59,7 @@ class planetarycommand(lacuna.building.MyBuilding):
     def view_incoming_supply_chains( self, *args, **kwargs ):
         """ Shows the supply chains coming in to this planet from elsewhere.
 
-        Returns a list of lacuna.resource.SupplyChain objects.
+        Returns a list of :class:`lacuna.resource.SupplyChain` objects.
         """
         mylist = []
         for i in kwargs['rslt']['supply_chains']:
