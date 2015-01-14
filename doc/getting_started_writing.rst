@@ -150,11 +150,17 @@ Check on one of the buildings based on type
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
-    sps = my_planet.get_buildings_bytype( 'spaceport' )
+    min_level = 1
+    min_efficiency = 100
+    sps = my_planet.get_buildings_bytype( 'spaceport', min_level, min_efficiency )
     for s in sps:
         print( "This sp is located at ({},{})",format(s.x, s.y) )
     
-Next Steps
-~~~~~~~~~~
-From here, check on some of the existing sample scripts in ``bin/``, and the 
-full documentation in :ref:`home`
+Script Parent Class
+~~~~~~~~~~~~~~~~~~~
+All scripts in ``bin/`` should inherit from:
+
+.. automodule:: lacuna.binutils.libbin
+   :members:
+   :show-inheritance:
+

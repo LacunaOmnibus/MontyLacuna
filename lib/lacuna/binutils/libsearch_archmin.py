@@ -32,6 +32,16 @@ class SearchArchmin(lacuna.binutils.libbin.Script):
             action      = 'store',
             help        = "Type of ore to search through for glyphs.  You must have at least 10,000 of this ore in storage.  If you use 'needed' as the ore type, a search will be performed for whatever glyph type you have least of."
         )
+        parser.add_argument( '-l', '--list', 
+            action      = 'store_true',
+            help        = "Displays a list of all ores and then quits.  This overrides all other options and can be used on its own."
+        )
+
+        self.skip_argparse = {
+            '-l':       self.list_ores,
+            '--list':   self.list_ores,
+        }
+
         super().__init__(parser)
 
         self.planets        = []    # list (strings) of planet names
@@ -47,6 +57,18 @@ class SearchArchmin(lacuna.binutils.libbin.Script):
         else:
             self.planets = [ self.args.name ]
         self.client.cache_off()
+
+    def list_ores(self):
+        ores = [
+            "anthracite", "bauxite", "beryl", "chromite", "chalcopyrite",
+            "fluorite", "galena", "goethite", "gold", "gypsum", "halite",
+            "kerogen", "magnetite", "methane", "monazite", "rutile", "sulfur",
+            "trona", "uraninite", "zircon",
+        ]
+        print( 'You can search for any of these ores:' )
+        for i in ores:
+            print( "\t", i.title() )
+        quit()
 
     def set_planet( self, pname:str ):
         """ Sets the current working planet by name.
