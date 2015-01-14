@@ -143,7 +143,7 @@ class SpiesReport(lacuna.binutils.libbin.Script):
         self._set_planets()
 
     def _set_planets( self ):
-        self.client.cache_on( 'spies', 3600 )
+        self.client.cache_on( 'my_colonies', 3600 )
         self.planets = []
         if self.args.name == 'all':
             for colname in sorted( self.client.empire.colony_names.keys() ):
@@ -162,7 +162,7 @@ class SpiesReport(lacuna.binutils.libbin.Script):
         Raises :class:`lacuna.exceptions.NoSuchBuildingError` if the planet 
         being set does not have a working Intelligence Ministry.
         """
-        self.client.cache_on( 'spies', 3600 )
+        self.client.cache_on( 'my_colonies', 3600 )
         self.planet = self.client.get_body_byname( pname )
         self._set_intmin()
         self.client.cache_off()

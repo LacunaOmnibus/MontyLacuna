@@ -146,8 +146,8 @@ Check on one of the buildings based on coordinates
     pcc = my_planet.get_building_coords( 0, 0 )
     print( "My PCC's ID is", pcc.id )
 
-Check on one of the buildings based on type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Check on all of the buildings of a certain type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ::
 
     min_level = 1
@@ -155,10 +155,25 @@ Check on one of the buildings based on type
     sps = my_planet.get_buildings_bytype( 'spaceport', min_level, min_efficiency )
     for s in sps:
         print( "This sp is located at ({},{})",format(s.x, s.y) )
+
+Check on just one building of a certain type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+::
+
+    min_level = 1
+    min_efficiency = 100
+    sp = my_planet.get_buildings_bytype( 'spaceport', min_level, min_efficiency )[0]
+
+    ### Or, if you don't care about level or efficiency...
+    sp = my_planet.get_buildings_bytype( 'spaceport' )[0]
+
+    print( "This space port's ID is {}.".format(sp.id) )
+
     
 Script Parent Class
 ~~~~~~~~~~~~~~~~~~~
-All scripts in ``bin/`` should inherit from:
+To create a script similar to the scripts that come bundled with MontyLacuna, 
+including command-line argument parsing, your script should inherit from:
 
 .. automodule:: lacuna.binutils.libbin
    :members:

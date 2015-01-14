@@ -105,7 +105,7 @@ class ShipsReport(lacuna.binutils.libbin.Script):
 
 
     def _set_planets( self ):
-        self.client.cache_on( 'ships_report', 3600 )
+        self.client.cache_on( 'my_colonies', 3600 )
         self.planets = []
         if self.args.name == 'all':
             for colname in sorted( self.client.empire.colony_names.keys() ):
@@ -130,7 +130,7 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         Arguments:
             - pname -- String name of the planet
         """
-        self.client.cache_on( 'ships_report', 3600 )
+        self.client.cache_on( 'my_colonies', 3600 )
         self.planet = self.client.get_body_byname( pname )
         self._set_spaceport()
         self.client.cache_off()

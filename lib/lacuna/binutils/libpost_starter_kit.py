@@ -280,7 +280,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
             self.kit = Halls100Kit( self.client, self.args.price )
 
     def _set_planet( self ):
-        self.client.cache_on( 'post_kits', 3600 )
+        self.client.cache_on( 'my_colonies', 3600 )
         self.planet = self.client.get_body_byname( self.args.name )
         self.client.cache_off()
 

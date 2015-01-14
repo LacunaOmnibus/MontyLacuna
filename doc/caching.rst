@@ -94,6 +94,23 @@ Cached data is saved to local files, so accessing the same named cache between
 different runs of a script, or even between two entirely different scripts, will 
 make use of your caches.
 
+Script Conventions
+------------------
+The scripts that come packaged with MontyLacuna often have to perform many of 
+the same tasks, such as listing out all of your planets.  Those scripts 
+generally use a cache named ``my_colonies`` for this planet-listing work.  
+This means that, after you run one script to get colony data, running any 
+other script using that cache will be faster, as the colony data is already 
+cached.
+
+If you run a MontyLacuna script, then go colonize a new planet, your new 
+planet won't appear in the pre-cached planet list.  In this case, you should 
+just delete the contents of the ``var/cache/`` directory before running 
+another script.
+
+Module Documentation
+--------------------
+
 .. module:: lacuna.clients
 .. automethod:: Member.cache_on
    :noindex:

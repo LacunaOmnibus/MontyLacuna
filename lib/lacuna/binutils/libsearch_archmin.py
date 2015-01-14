@@ -1,6 +1,4 @@
 
-### Search on CHECK
-
 import lacuna, lacuna.binutils.libbin
 import lacuna.exceptions as err
 import argparse, os, sys

@@ -8,9 +8,30 @@ class SubClass():
     for providing utility methods.
 
     Almost all MontyLacuna objects inherit from this class, so any methods of 
-    this class can be called using any MontyLacuna object.
+    this class can be called from (almost) any MontyLacuna object::
+
+        >>> my_planet = glc.get_body_byname( 'Earth' )
+        >>> print( my_planet.client)
+        <lacuna.clients.Member object at 0x7fb19ed863c8>
+
+        >>> arch = my_planet.get_buildings_bytype( 'archaeology', 0, 1 )[0]
+        >>> el = arch.sec2time( 123456 )
+        >>> print( el.days, el.hours, el.minutes, el.seconds )
+        1 10 17 36
+
+    ...etc.
     """
+
     def __init__(self, client, mydict:dict):
+        """ Create a lacuna.bc.SubClass object.
+
+        Arguments:
+            - client -- A :class:`lacuna.clients.Member` or 
+              :class:`lacuna.clients.Guest` object
+            - mydict -- A dict whose keys will become attributes of the 
+              SubClass object (and whose values will become the values of those
+              attributes).
+        """
         self.client = client
         for k, v in mydict.items():
             setattr( self, k, self.get_type(v) )
@@ -22,7 +43,7 @@ class SubClass():
         transport, all values that look like numbers are actually strings. 
         
         eg the '5' in 'ship_count = 5' is a string, not an int, so doing math on 
-        it, or trying to format it as a number, is going to cause problems).
+        it, or trying to format it as a number, is going to cause problems.
 
         This attempts to turn strings that should be either ints or floats into 
         ints or floats.  Any type other than an int or float gets returned 
