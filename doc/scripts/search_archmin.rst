@@ -17,10 +17,9 @@ But if you specify a glyph type yourself, you must make sure that you have
 enough of that ore.  If not, a warning will be issued and the planet will be 
 skipped.
 
-Arch min searches take six hours.  So if you plan to set up this script on a 
-schedule of some sort, you should schedule it to run every six hours.  Even 
-better would be if you could set up your schedule so it runs every (6 hours + 
-5 minutes).
+Arch min searches take five hours, fifty minutes.  So if you plan to set up 
+this script on a schedule of some sort, you should schedule it to run every 
+six hours.  That way, you can get four arch min searches per planet, per day.
 
 To search for rutile glyphs on Earth::
 
