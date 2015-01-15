@@ -1,5 +1,5 @@
 
-import lacuna, lacuna.binutils.libbin
+import lacuna, lacuna.binutils.libbin, lacuna.types
 import lacuna.exceptions as err
 import argparse, os, sys
 
@@ -20,13 +20,6 @@ class SearchArchmin(lacuna.binutils.libbin.Script):
         )
         parser.add_argument( 'glyph', 
             metavar     = '<glyphtype>',
-            choices     = [
-                            "needed",
-                            "anthracite", "bauxite", "beryl", "chromite", "chalcopyrite",
-                            "fluorite", "galena", "goethite", "gold", "gypsum", "halite",
-                            "kerogen", "magnetite", "methane", "monazite", "rutile", "sulfur",
-                            "trona", "uraninite", "zircon",
-                          ],
             action      = 'store',
             help        = "Type of ore to search through for glyphs.  You must have at least 10,000 of this ore in storage.  If you use 'needed' as the ore type, a search will be performed for whatever glyph type you have least of."
         )
@@ -41,6 +34,10 @@ class SearchArchmin(lacuna.binutils.libbin.Script):
         }
 
         super().__init__(parser)
+
+        self.trans = lacuna.types.Translator()
+        if self.args.glyph.lower() != 'needed':
+            self.requested_glyph = self.trans.translate_oretype( self.args.glyph )
 
         self.planets        = []    # list (strings) of planet names
         self.glyphs         = {}    # name: quantity_on_site
@@ -157,12 +154,12 @@ class SearchArchmin(lacuna.binutils.libbin.Script):
             else:
                 self.ore_to_search = self.needed_glyph
         else:
-            if self.ores[ self.args.glyph.lower() ] < self.MIN_ORE_FOR_SEARCH:
+            if self.ores[ self.requested_glyph ] < self.MIN_ORE_FOR_SEARCH:
                 raise err.InsufficientResourceError("You don't have enough {} ore to perform an archmin search."
-                    .format(self.args.glyph)
+                    .format(self.requested_glyph)
                 )
             else:
-                self.ore_to_search = self.args.glyph.lower()
+                self.ore_to_search = self.requested_glyph
 
     def search_for_glyph( self ):
         """ Begins a search in the archmin for whatever glyph type was 

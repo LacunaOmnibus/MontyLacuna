@@ -7,9 +7,8 @@ Build Ships
 Builds or tops off ships at multiple shipyards on a given planet, or on all of 
 your planets at once.
 
-The name of the ship to be built must be translatable by 
-:meth:`lacuna.types.Translator.translate_shiptype`.  This means that most 
-common names will work.
+The name of the ship to be built must be translatable, see 
+:ref:`ship_translations`.
 
 When passing the name of a planet, remember to use double quotes around the 
 name if there are any space in it.  And if you want to build the same number 

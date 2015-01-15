@@ -6,6 +6,75 @@ class Translator():
     resources into the appropriate TLE system name.
     """
 
+    def translate_oretype( self, type:str ):
+        """ Translates recognized ore type misspellings into the system ore 
+        name.
+
+        Arguments:
+            - type -- String, generally passed in by the user.
+
+        Returns the system ore name associated with the type passed in if it 
+        was recognized.  Otherwise raises KeyError.
+
+        Example::
+
+            tr = lacuna.types.Translator()
+            print( tr.translate_shiptype('Anth') )  # 'anthracite'
+        """
+        system = [
+            "anthracite", 
+            "bauxite", 
+            "beryl", 
+            "chromite", 
+            "chalcopyrite",
+            "fluorite", 
+            "galena", 
+            "goethite", 
+            "gold", 
+            "gypsum", 
+            "halite",
+            "kerogen", 
+            "magnetite", 
+            "methane", 
+            "monazite", 
+            "rutile", 
+            "sulfur",
+            "trona", 
+            "uraninite", 
+            "zircon",
+
+        ]
+        if type.lower() in system:
+            return type.lower()
+
+        trans = {
+            "anth": "anthracite",
+            "anthra": "anthracite",
+            "baux": "bauxite", 
+            "chrom": "chromite", 
+            "chrome": "chromite", 
+            "chalc": "chalcopyrite",
+            "chalk": "chalcopyrite",
+            "flor": "fluorite", 
+            "fluor": "fluorite", 
+            "flour": "fluorite", 
+            "fluoride": "fluorite", 
+            "floride": "fluorite", 
+            "flouride": "fluorite", 
+            "gal": "galena", 
+            "goeth": "goethite", 
+            "kero": "kerogen", 
+            "mag": "magnetite", 
+            "mona": "monazite", 
+            "uran": "uraninite", 
+            "urin": "uraninite", 
+            "urine": "uraninite",   # you know somebody's going to type that 'e' out of habit.
+        }
+        if type.lower() in trans:
+            return trans[ type.lower() ]
+        raise KeyError( "{} is not a valid ore type.".format(type) )
+
+
     def translate_shiptype( self, type:str ):
         """ Translates recognized ship type misspellings into the system ship 
         name.
@@ -63,15 +132,26 @@ class Translator():
             "placebo1": "placebo",
             "placebo 1": "placebo",
             "placebo 2": "placebo2",
+            "placeboII": "placebo2",
+            "placebo II": "placebo2",
             "placebo 3": "placebo3",
+            "placeboIII": "placebo3",
+            "placebo III": "placebo3",
             "placebo 4": "placebo4",
+            "placeboIV": "placebo4",
+            "placebo IV": "placebo4",
             "placebo 5": "placebo5",
+            "placeboV": "placebo5",
+            "placebo V": "placebo5",
             "placebo 6": "placebo6",
+            "placeboVI": "placebo6",
+            "placebo VI": "placebo6",
             "scow fast": "scow_fast",
             "scow mega": "scow_mega",
             "sec": "security_ministry_seeker",
             "secmin seeker": "security_ministry_seeker",
             "sec min seeker": "security_ministry_seeker",
+            "security ministry seeker": "security_ministry_seeker",
             "srcs": "short_range_colony_ship",
             "short range colony": "short_range_colony_ship",
             "short range colony ship": "short_range_colony_ship",

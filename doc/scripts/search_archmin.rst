@@ -33,8 +33,8 @@ To search for the most needed glyph type on all of your planets::
 
     >>> python bin/search_archmin.py all needed
 
-See the :ref:`ores_list` for a complete list of ores you can search.  For a 
-quick ore list reminder from the terminal, just include the ``-l`` or 
+See the :ref:`ore_translations` for a complete list of ores you can search.  
+For a quick ore list reminder from the terminal, just include the ``-l`` or 
 ``--list`` argument, which will list out all ores and then quit::
 
     >>> python bin/search_archmin.py -l
