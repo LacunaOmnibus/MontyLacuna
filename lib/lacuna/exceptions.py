@@ -96,6 +96,13 @@ class NoSuchEmpireError(Exception):
     def __str__(self):
         return repr(self.value)
 
+class NoSuchShipError(Exception):
+    """ The ship name used does not exist"""
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
+
 class RequestError(Exception):
     """ A network request is not responding properly.  Generally this means that 
     response.status_code is other than 200.

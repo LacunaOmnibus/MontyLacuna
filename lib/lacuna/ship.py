@@ -74,16 +74,17 @@ class ExistingShip(Ship):
         type_human      "Cargo Ship",
         type            "cargo_ship",
         task            "Travelling",
-        speed           "400",
-        fleet_speed     "0",
-        stealth         "0",
-        hold_size       "1200",
-        berth_level     "1",
+        speed           400,
+        fleet_speed     0,
+        stealth         0,
+        hold_size       1200,
+        combat          0,
+        berth_level     1,
         date_started    "01 31 2010 13:09:05 +0600",
         date_available  "02 01 2010 10:08:33 +0600",
         date_arrives    "02 01 2010 10:08:33 +0600",
-        can_recall      "0",
-        can_scuttle     "1",
+        can_recall      0,
+        can_scuttle     1,
         max_occupants   120                             # attribute will always exist, but will 
                                                         # sometimes be '0'.
         origin          lacuna.body.ShipDest object
@@ -319,4 +320,3 @@ class ChainShip(Ship):
     For ``task``, the TLE documentation says the task is "Resource Chain", but 
     it does return "Supply Chain", not "Resource Chain".
     """
-

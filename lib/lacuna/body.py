@@ -327,8 +327,8 @@ class MyBody(Body):
         10 ``view()`` calls that need to be made, and that's going to slow 
         things down a bit.  So keep that in mind, and turn caching on.
 
-        Raises lacuna.exceptions.NoSuchBuildingError if you don't have any 
-        buildings of the requested type and level.
+        Raises :class:`lacuna.exceptions.NoSuchBuildingError` if you don't have 
+        any buildings of the requested type and level.
         """
         mylist = []
         for bid in sorted( self.buildings_id.keys() ):  # get the building IDs back in the same order every time - helps with caching.

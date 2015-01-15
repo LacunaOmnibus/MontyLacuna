@@ -5,8 +5,6 @@ A Python Client for The Lacuna Expanse.
 
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
-## Working On
-
 ## TBD
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py

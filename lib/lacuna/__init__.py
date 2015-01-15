@@ -14,4 +14,5 @@ import lacuna.inbox
 import lacuna.map
 import lacuna.ship
 import lacuna.stats
+import lacuna.types
 
