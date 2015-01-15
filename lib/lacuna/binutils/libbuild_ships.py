@@ -91,8 +91,20 @@ class BuildShips(lacuna.binutils.libbin.Script):
         requested_num = self.args.num if self.args.num > 0 else build_queue_max
         ### If we were asked to build more than we can, back off to just 
         ### building what we can.
-        num_to_build = requested_num if requested_num < build_queue_max else build_queue_max
-        num_to_build = docks_avail if docks_avail < build_queue_max else build_queue_max
+        num_to_build = requested_num    if requested_num < build_queue_max      else build_queue_max
+
+        if docks_avail < requested_num:
+            if docks_avail < build_queue_max:
+                num_to_build = docks_avail
+            else:
+                num_to_build = build_queue_max
+        elif build_queue_max < requested_num:
+            if docks_avail < build_queue_max:
+                num_to_build = docks_avail
+            else:
+                num_to_build = build_queue_max
+        else:
+            num_to_build = requested_num
 
         if self.args.topoff:
             old_cache = self.client.cache_off() # be sure this is off.
