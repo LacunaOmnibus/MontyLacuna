@@ -42,7 +42,7 @@ for pname in bs.planets:
         num_to_build_here = y.level - building_now
         num_to_build_here = left_to_build if left_to_build < num_to_build_here else num_to_build_here
         left_to_build -= num_to_build_here
-        y.build_ship( bs.args.type, num_to_build_here )
+        y.build_ship( bs.shiptype, num_to_build_here )
         l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
         if num_to_build_here > 25:
             l.info( "Remember that the Shipyard build queue in game will only ever display the first " )
