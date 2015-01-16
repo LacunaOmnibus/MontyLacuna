@@ -87,7 +87,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
 
         parser = argparse.ArgumentParser(
             description = 'Assigns spies to a new task, in bulk.',
-            epilog      = "EXAMPLE python bin/assign_spies.py Earth counter",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/assign_spies.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

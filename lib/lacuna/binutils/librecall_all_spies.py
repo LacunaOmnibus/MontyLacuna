@@ -8,7 +8,7 @@ class RecallAllSpies(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = "Fetch home all spies based on a given planet, regardless of where they're currently located.  Spies will be fetched using the fastest ship you have available that can carry occupants.",
-            epilog      = "EXAMPLE: python3 bin/recall_all_spies Earth",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/recall_all_spies.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

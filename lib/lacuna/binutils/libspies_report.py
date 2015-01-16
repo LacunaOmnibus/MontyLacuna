@@ -111,7 +111,7 @@ class SpiesReport(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Displays a report on spies.',
-            epilog      = "EXAMPLE: python bin/spies_report.py Earth",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/spies_report.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

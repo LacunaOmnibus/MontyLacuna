@@ -8,7 +8,7 @@ class ScuttleShips(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Scuttles ships at a specific planet.',
-            epilog      = "EXAMPLE: python bin/scuttle_ships.py --num 20 --low combat Earth sweeper",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/scuttle_ships.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

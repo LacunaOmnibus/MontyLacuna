@@ -63,7 +63,7 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Displays a report on built ships.',
-            epilog      = "EXAMPLE: python bin/ships_report.py --tag War Earth",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/ships_report.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

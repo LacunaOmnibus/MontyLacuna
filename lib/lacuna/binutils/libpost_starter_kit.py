@@ -182,7 +182,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Posts one of several starter kits to either the Trade Ministry or the SST on a specific planet.  See the online documentation for a list of the different types of kits available.',
-            epilog      = "EXAMPLE: CHECK python bin/post_starter_kit.py Earth resources",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/post_starter_kit.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
@@ -205,7 +205,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
                             'halls10',  'hall10',  'h10',
                             'halls100', 'hall100', 'h100',
                           ],
-            help        = "Which kit should we post?  If you omit this option, you MUST define a custom kit per the docs."
+            help        = "Which kit should we post?  If you omit this option, you MUST define a custom kit per the docs.  Choices are 'res', 'stor', 'mil', 'ute', 'deco', 'beach', 'pretty', 'full', 'big', 'h10', 'h100'.  See the online documentation for full explanations of each."
         )
         parser.add_argument( '--ebl', 
             metavar     = '<extra build level>',

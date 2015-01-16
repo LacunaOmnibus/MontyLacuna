@@ -11,7 +11,7 @@ class SearchArchmin(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Begins an Archaeology Ministry search for a glyph.',
-            epilog      = "EXAMPLE python bin/search_archmin.py Earth bauxite",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/search_archmin.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

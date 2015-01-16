@@ -8,7 +8,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'This will build as many of a single type of ship as you want, up to the maximum that can be built across all shipyards on your planet.  If there are already ships in your build queue, this will figure that out and only build what it can.',
-            epilog      = "EXAMPLE this will fill all shipyards' build queues on Earth with sweepers: python bin/build_ships.py Earth sweeper",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/build_ships.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

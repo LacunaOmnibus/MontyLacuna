@@ -89,7 +89,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                     Sends available excavators out to nearby planets of the 
                     requested type or types.
                 ''',
-            epilog = 'Example: python bin/send_excavs.py -tp33 -tp35 Earth',
+            epilog = 'Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/send_excavs.html',
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',

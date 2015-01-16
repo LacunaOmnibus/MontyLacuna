@@ -8,7 +8,7 @@ class RecallShips(lacuna.binutils.libbin.Script):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Recall all ships that are either orbiting or defending other planets.  This is not selective - it recalls everything the current planet has out.',
-            epilog      = 'EXAMPLE: python bin/recall_all_ships.py Earth',
+            epilog      = 'Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/recall_all_ships.html',
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
