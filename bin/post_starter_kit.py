@@ -13,7 +13,11 @@ l   = sk.client.user_logger
 
 ### 
 ### Define any custom kits here
+### 
+### See the online documentation for how to do so at
+### http://tmtowtdi.github.io/MontyLacuna/scripts/post_starter_kit.html#creating-a-customized-kit
 ###
+
 
 
 
