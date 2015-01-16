@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 
-###
-### There are some CHECK s to be dealt with in the lib.
-### 
-
 import logging, os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
