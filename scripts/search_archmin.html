@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>In-Game Ship Names &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Search Archaeology Ministry &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -28,7 +28,10 @@
   
 
   
-    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/> 
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
+        <link rel="next" title="Ships Report" href="ships_report.html"/>
+        <link rel="prev" title="Send Excavs" href="send_excavs.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -55,7 +58,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -65,9 +68,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="index.html#starter-scripts">Starter Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
@@ -102,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
@@ -120,6 +125,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -143,10 +153,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>In-Game Ship Names</li>
+          <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
+      
+    <li>Search Archaeology Ministry</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../sources/scripts/ships.txt" rel="nofollow"> View page source</a>
+          <a href="../sources/scripts/search_archmin.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -154,177 +166,101 @@
 </div>
           <div role="main">
             
-  <div class="section" id="in-game-ship-names">
-<span id="ships-list"></span><h1>In-Game Ship Names<a class="headerlink" href="#in-game-ship-names" title="Permalink to this headline">¶</a></h1>
-<p>When you pass a ship name to a script, you often have to pass the &#8220;system&#8221;
-name, rather than the &#8220;human&#8221; name (which is what shows up most often in your
-browser client).  To avoid confusion, here are all of the ship names, both
-human and system.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="48%" />
-<col width="52%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Human</th>
-<th class="head">System</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Barge</td>
-<td>barge</td>
-</tr>
-<tr class="row-odd"><td>Bleeder</td>
-<td>bleeder</td>
-</tr>
-<tr class="row-even"><td>Cargo Ship</td>
-<td>cargo_ship</td>
-</tr>
-<tr class="row-odd"><td>Colony Ship</td>
-<td>colony_ship</td>
-</tr>
-<tr class="row-even"><td>Detonator</td>
-<td>detonator</td>
-</tr>
-<tr class="row-odd"><td>Dory</td>
-<td>dory</td>
-</tr>
-<tr class="row-even"><td>Drone</td>
-<td>drone</td>
-</tr>
-<tr class="row-odd"><td>Excavator</td>
-<td>excavator</td>
-</tr>
-<tr class="row-even"><td>Fighter</td>
-<td>fighter</td>
-</tr>
-<tr class="row-odd"><td>Fissure Sealer</td>
-<td>fissure_sealer</td>
-</tr>
-<tr class="row-even"><td>Freighter</td>
-<td>freighter</td>
-</tr>
-<tr class="row-odd"><td>Galleon</td>
-<td>galleon</td>
-</tr>
-<tr class="row-even"><td>Gas Giant Settlement Ship</td>
-<td>gas_giant_settlement_ship</td>
-</tr>
-<tr class="row-odd"><td>Hulk</td>
-<td>hulk</td>
-</tr>
-<tr class="row-even"><td>Hulk Fast</td>
-<td>hulk_fast</td>
-</tr>
-<tr class="row-odd"><td>Hulk Huge</td>
-<td>hulk_huge</td>
-</tr>
-<tr class="row-even"><td>Mining Platform Ship</td>
-<td>mining_platform_ship</td>
-</tr>
-<tr class="row-odd"><td>Observatory Seeker</td>
-<td>observatory_seeker</td>
-</tr>
-<tr class="row-even"><td>Placebo</td>
-<td>placebo</td>
-</tr>
-<tr class="row-odd"><td>Placebo II</td>
-<td>placebo2</td>
-</tr>
-<tr class="row-even"><td>Placebo III</td>
-<td>placebo3</td>
-</tr>
-<tr class="row-odd"><td>Placebo IV</td>
-<td>placebo4</td>
-</tr>
-<tr class="row-even"><td>Placebo V</td>
-<td>placebo5</td>
-</tr>
-<tr class="row-odd"><td>Placebo VI</td>
-<td>placebo6</td>
-</tr>
-<tr class="row-even"><td>Probe</td>
-<td>probe</td>
-</tr>
-<tr class="row-odd"><td>Scanner</td>
-<td>scanner</td>
-</tr>
-<tr class="row-even"><td>Scow</td>
-<td>scow</td>
-</tr>
-<tr class="row-odd"><td>Scow Fast</td>
-<td>scow_fast</td>
-</tr>
-<tr class="row-even"><td>Scow Large</td>
-<td>scow_large</td>
-</tr>
-<tr class="row-odd"><td>Scow Mega</td>
-<td>scow_mega</td>
-</tr>
-<tr class="row-even"><td>Security Ministry Seeker</td>
-<td>security_ministry_seeker</td>
-</tr>
-<tr class="row-odd"><td>Short Range Colony Ship</td>
-<td>short_range_colony_ship</td>
-</tr>
-<tr class="row-even"><td>Smuggler Ship</td>
-<td>smuggler_ship</td>
-</tr>
-<tr class="row-odd"><td>Snark</td>
-<td>snark</td>
-</tr>
-<tr class="row-even"><td>Snark II</td>
-<td>snark2</td>
-</tr>
-<tr class="row-odd"><td>Snark III</td>
-<td>snark3</td>
-</tr>
-<tr class="row-even"><td>Space Station Hull</td>
-<td>space_station</td>
-</tr>
-<tr class="row-odd"><td>Spaceport Seeker</td>
-<td>spaceport_seeker</td>
-</tr>
-<tr class="row-even"><td>Spy Pod</td>
-<td>spy_pod</td>
-</tr>
-<tr class="row-odd"><td>Spy Shuttle</td>
-<td>spy_shuttle</td>
-</tr>
-<tr class="row-even"><td>Stake</td>
-<td>stake</td>
-</tr>
-<tr class="row-odd"><td>Supply Pod</td>
-<td>supply_pod</td>
-</tr>
-<tr class="row-even"><td>Supply Pod II</td>
-<td>supply_pod2</td>
-</tr>
-<tr class="row-odd"><td>Supply Pod III</td>
-<td>supply_pod3</td>
-</tr>
-<tr class="row-even"><td>Supply Pod IV</td>
-<td>supply_pod4</td>
-</tr>
-<tr class="row-odd"><td>Surveyor</td>
-<td>surveyor</td>
-</tr>
-<tr class="row-even"><td>Sweeper</td>
-<td>sweeper</td>
-</tr>
-<tr class="row-odd"><td>Terraforming Platform Ship</td>
-<td>terraforming_platform_ship</td>
-</tr>
-<tr class="row-even"><td>Thud</td>
-<td>thud</td>
-</tr>
-</tbody>
-</table>
+  <div class="section" id="search-archaeology-ministry">
+<span id="search-archmin"></span><h1>Search Archaeology Ministry<a class="headerlink" href="#search-archaeology-ministry" title="Permalink to this headline">¶</a></h1>
+<p>Starts a search through available ore for glyphs at your Archaeology Ministry.
+You can specify what glyph type to search for, or just tell the script to
+search for whatever glyph type is most needed.</p>
+<p>Remember that you must have 10,000 units of ore to be able to search through
+it for a glyph.  If you pass <tt class="docutils literal"><span class="pre">needed</span></tt> as the glyph type, the script will
+find the glyph type that your plant has least of, for which you also have at
+least 10,000 ore.</p>
+<p>But if you specify a glyph type yourself, you must make sure that you have
+enough of that ore.  If not, a warning will be issued and the planet will be
+skipped.</p>
+<p>Arch min searches take five hours, fifty minutes.  So if you plan to set up
+this script on a schedule of some sort, you should schedule it to run every
+six hours.  That way, you can get four arch min searches per planet, per day.</p>
+<p>To search for rutile glyphs on Earth:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">rutile</span>
+</pre></div>
+</div>
+<p>To search for whatever glyph type Earth has the least of:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">needed</span>
+</pre></div>
+</div>
+<p>To search for the most needed glyph type on all of your planets:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="nb">all</span> <span class="n">needed</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../types.html#ore-translations"><em>Ore Translations</em></a> for a complete list of ores you can search.
+For a quick ore list reminder from the terminal, just include the <tt class="docutils literal"><span class="pre">-l</span></tt> or
+<tt class="docutils literal"><span class="pre">--list</span></tt> argument, which will list out all ores and then quit:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">l</span>
+</pre></div>
+</div>
+<p>For complete help, see the script&#8217;s help documentation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsearch_archmin.</tt><tt class="descname">SearchArchmin</tt><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<dl class="method">
+<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph">
+<tt class="descname">search_for_glyph</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begins a search in the archmin for whatever glyph type was 
+determined by validate_ore() to be the one to search.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet">
+<tt class="descname">set_planet</tt><big>(</big><em>pname: str</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current working planet by name.</p>
+<p>Gets the archmin and PCC on this planet, and counts how much of each 
+ore and how many glyphs we have in storage.</p>
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></tt></a> if you don&#8217;t have 
+an Archaeology Ministry or PCC on the planet (although, if you don&#8217;t 
+have a PCC, you probably have bigger problems than not being able to 
+perform an archmin search.)</p>
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.WorkingError" title="lacuna.exceptions.WorkingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.WorkingError</span></tt></a> if the planet&#8217;s archmin 
+is already performing a search.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>pname &#8211; String name of the planet.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore">
+<tt class="descname">validate_ore</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figures out which ore we should be searching through, and ensures 
+that we have enough of that ore to perform a search.</p>
+<p>Sets self.ore_to_search if successful.  Raises 
+<a class="reference internal" href="../exceptions.html#lacuna.exceptions.InsufficientResourceError" title="lacuna.exceptions.InsufficientResourceError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.InsufficientResourceError</span></tt></a> if there&#8217;s not 
+enough ore onsite to perform a search.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ships_report.html" class="btn btn-neutral float-right" title="Ships Report"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="send_excavs.html" class="btn btn-neutral" title="Send Excavs"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

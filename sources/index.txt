@@ -43,6 +43,7 @@ how to run the various available scripts.  You can ignore everything else.
    ship
    spy
    trading
+   types
 
 Indices and tables
 ==================

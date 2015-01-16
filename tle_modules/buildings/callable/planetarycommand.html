@@ -105,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../clients.html">clients</a></li>
@@ -123,6 +125,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -184,9 +191,9 @@ key. At least on PT, it does not.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>food &#8211; List of lacuna.resource.PlanetaryFood objects</li>
-<li>ore &#8211; List of lacuna.resource.PlanetaryOre objects</li>
-<li>planet &#8211; Single lacuna.body.Planet object</li>
+<li>food &#8211; List of <a class="reference internal" href="../../../resource.html#lacuna.resource.PlanetaryFood" title="lacuna.resource.PlanetaryFood"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.PlanetaryFood</span></tt></a> objects</li>
+<li>ore &#8211; List of <a class="reference internal" href="../../../resource.html#lacuna.resource.PlanetaryOre" title="lacuna.resource.PlanetaryOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.PlanetaryOre</span></tt></a> objects</li>
+<li>planet &#8211; Single <a class="reference internal" href="../../body.html#lacuna.body.Planet" title="lacuna.body.Planet"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Planet</span></tt></a> object</li>
 <li>cost &#8211; Cost of your next colony, in happiness</li>
 </ul>
 </dd>
@@ -197,7 +204,7 @@ key. At least on PT, it does not.</p>
 <dt id="lacuna.buildings.callable.planetarycommand.planetarycommand.view_incoming_supply_chains">
 <tt class="descname">view_incoming_supply_chains</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.planetarycommand.planetarycommand.view_incoming_supply_chains" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows the supply chains coming in to this planet from elsewhere.</p>
-<p>Returns a list of lacuna.resource.SupplyChain objects.</p>
+<p>Returns a list of <a class="reference internal" href="../../../resource.html#lacuna.resource.SupplyChain" title="lacuna.resource.SupplyChain"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.SupplyChain</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">

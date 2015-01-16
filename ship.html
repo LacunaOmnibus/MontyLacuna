@@ -104,6 +104,8 @@
 <li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
@@ -122,6 +124,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -225,16 +232,17 @@ name            &quot;CS3&quot;,
 type_human      &quot;Cargo Ship&quot;,
 type            &quot;cargo_ship&quot;,
 task            &quot;Travelling&quot;,
-speed           &quot;400&quot;,
-fleet_speed     &quot;0&quot;,
-stealth         &quot;0&quot;,
-hold_size       &quot;1200&quot;,
-berth_level     &quot;1&quot;,
+speed           400,
+fleet_speed     0,
+stealth         0,
+hold_size       1200,
+combat          0,
+berth_level     1,
 date_started    &quot;01 31 2010 13:09:05 +0600&quot;,
 date_available  &quot;02 01 2010 10:08:33 +0600&quot;,
 date_arrives    &quot;02 01 2010 10:08:33 +0600&quot;,
-can_recall      &quot;0&quot;,
-can_scuttle     &quot;1&quot;,
+can_recall      0,
+can_scuttle     1,
 max_occupants   120                             # attribute will always exist, but will 
                                                 # sometimes be &#39;0&#39;.
 origin          lacuna.body.ShipDest object

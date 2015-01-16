@@ -103,6 +103,8 @@
 <li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
@@ -121,6 +123,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -157,7 +164,8 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
@@ -181,6 +189,16 @@
  | <a href="#W"><strong>W</strong></a>
  
 </div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="bc.html#lacuna.bc.SubClass.__init__">__init__() (lacuna.bc.SubClass method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
@@ -1439,6 +1457,10 @@
   </dt>
 
       
+  <dt><a href="getting_started_writing.html#module-lacuna.binutils.libbin">lacuna.binutils.libbin (module)</a>
+  </dt>
+
+      
   <dt><a href="tle_modules/body.html#module-lacuna.body">lacuna.body (module)</a>
   </dt>
 
@@ -2077,7 +2099,7 @@
   </dt>
 
       
-  <dt><a href="clients.html#module-lacuna.clients">lacuna.clients (module)</a>, <a href="caching.html#module-lacuna.clients">[1]</a>
+  <dt><a href="caching.html#module-lacuna.clients">lacuna.clients (module)</a>, <a href="clients.html#module-lacuna.clients">[1]</a>
   </dt>
 
       
@@ -2126,6 +2148,10 @@
 
       
   <dt><a href="trading.html#module-lacuna.trading">lacuna.trading (module)</a>
+  </dt>
+
+      
+  <dt><a href="types.html#module-lacuna.types">lacuna.types (module)</a>
   </dt>
 
       
@@ -2430,18 +2456,22 @@
   <dt><a href="exceptions.html#lacuna.exceptions.NoAvailableShipsError">NoAvailableShipsError</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="exceptions.html#lacuna.exceptions.NoSuchBuildingError">NoSuchBuildingError</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="exceptions.html#lacuna.exceptions.NoSuchEmpireError">NoSuchEmpireError</a>
   </dt>
 
       
   <dt><a href="exceptions.html#lacuna.exceptions.NoSuchMyBodyError">NoSuchMyBodyError</a>
+  </dt>
+
+      
+  <dt><a href="exceptions.html#lacuna.exceptions.NoSuchShipError">NoSuchShipError</a>
   </dt>
 
       
@@ -3535,11 +3565,37 @@
   </dt>
 
       
+  <dt><a href="getting_started_writing.html#lacuna.binutils.libbin.Script">Script (class in lacuna.binutils.libbin)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/scuttle_ships.html#lacuna.binutils.libscuttle_ships.ScuttleShips.scuttle">scuttle() (lacuna.binutils.libscuttle_ships.ScuttleShips method)</a>
+  </dt>
+
+      
   <dt><a href="tle_modules/buildings/callable/spaceport.html#lacuna.buildings.callable.spaceport.spaceport.scuttle_ship">scuttle_ship() (lacuna.buildings.callable.spaceport.spaceport method)</a>
   </dt>
 
       
+  <dt><a href="scripts/scuttle_ships.html#lacuna.binutils.libscuttle_ships.ScuttleShips">ScuttleShips (class in lacuna.binutils.libscuttle_ships)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/search_archmin.html#lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph">search_for_glyph() (lacuna.binutils.libsearch_archmin.SearchArchmin method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="tle_modules/buildings/callable/archaeology.html#lacuna.buildings.callable.archaeology.archaeology.search_for_glyph">(lacuna.buildings.callable.archaeology.archaeology method)</a>
+  </dt>
+
+      </dl></dd>
+      
   <dt><a href="tle_modules/map.html#lacuna.map.Map.search_stars">search_stars() (lacuna.map.Map method)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/search_archmin.html#lacuna.binutils.libsearch_archmin.SearchArchmin">SearchArchmin (class in lacuna.binutils.libsearch_archmin)</a>
   </dt>
 
       
@@ -3632,6 +3688,10 @@
 
       <dd><dl>
         
+  <dt><a href="scripts/search_archmin.html#lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet">(lacuna.binutils.libsearch_archmin.SearchArchmin method)</a>
+  </dt>
+
+        
   <dt><a href="scripts/ships_report.html#lacuna.binutils.libships_report.ShipsReport.set_planet">(lacuna.binutils.libships_report.ShipsReport method)</a>
   </dt>
 
@@ -3704,6 +3764,8 @@
   <dt><a href="tle_modules/captcha.html#lacuna.captcha.Captcha.solve">solve() (lacuna.captcha.Captcha method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/captcha.html#lacuna.captcha.Captcha.solveit">solveit() (lacuna.captcha.Captcha method)</a>
   </dt>
@@ -3712,8 +3774,6 @@
   <dt><a href="tle_modules/misc_bldgs.html#lacuna.buildings.soup.soup">soup (class in lacuna.buildings.soup)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/misc_bldgs.html#lacuna.buildings.spacejunkpark.spacejunkpark">spacejunkpark (class in lacuna.buildings.spacejunkpark)</a>
   </dt>
@@ -3865,6 +3925,10 @@
   </dt>
 
       
+  <dt><a href="tle_modules/buildings/callable/archaeology.html#lacuna.buildings.callable.archaeology.archaeology.subsidize_search">subsidize_search() (lacuna.buildings.callable.archaeology.archaeology method)</a>
+  </dt>
+
+      
   <dt><a href="tle_modules/buildings/callable/shipyard.html#lacuna.buildings.callable.shipyard.shipyard.subsidize_ship">subsidize_ship() (lacuna.buildings.callable.shipyard.shipyard method)</a>
   </dt>
 
@@ -3956,8 +4020,6 @@
   <dt><a href="ship.html#lacuna.ship.TradeableShip">TradeableShip (class in lacuna.ship)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="trading.html#lacuna.trading.TradeBldg">TradeBldg (class in lacuna.trading)</a>
   </dt>
@@ -3966,6 +4028,8 @@
   <dt><a href="ship.html#lacuna.ship.TradeTransportShip">TradeTransportShip (class in lacuna.ship)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/callable/intelligence.html#lacuna.buildings.callable.intelligence.intelligence.train_spy">train_spy() (lacuna.buildings.callable.intelligence.intelligence method)</a>
   </dt>
@@ -3976,6 +4040,18 @@
 
       
   <dt><a href="spy.html#lacuna.spy.TrainingView">TrainingView (class in lacuna.spy)</a>
+  </dt>
+
+      
+  <dt><a href="types.html#lacuna.types.Translator.translate_oretype">translate_oretype() (lacuna.types.Translator method)</a>
+  </dt>
+
+      
+  <dt><a href="types.html#lacuna.types.Translator.translate_shiptype">translate_shiptype() (lacuna.types.Translator method)</a>
+  </dt>
+
+      
+  <dt><a href="types.html#lacuna.types.Translator">Translator (class in lacuna.types)</a>
   </dt>
 
       
@@ -4038,6 +4114,10 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="my_validate_email.html#my_validate_email.validate_email">validate_email() (in module my_validate_email)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/search_archmin.html#lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore">validate_ore() (lacuna.binutils.libsearch_archmin.SearchArchmin method)</a>
   </dt>
 
       
@@ -4208,12 +4288,12 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/permanent/templeofthedrajilites.html#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.view_planet">view_planet() (lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/callable/planetarycommand.html#lacuna.buildings.callable.planetarycommand.planetarycommand.view_plans">view_plans() (lacuna.buildings.callable.planetarycommand.planetarycommand method)</a>
   </dt>
@@ -4400,6 +4480,10 @@
 
       
   <dt><a href="tle_modules/building.html#lacuna.building.Working">Working (class in lacuna.building)</a>
+  </dt>
+
+      
+  <dt><a href="exceptions.html#lacuna.exceptions.WorkingError">WorkingError</a>
   </dt>
 
       

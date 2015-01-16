@@ -105,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../clients.html">clients</a></li>
@@ -123,6 +125,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -206,7 +213,7 @@ capitalization matter; &#8220;goethite&#8221; is valid, &#8220;Goethite&#8221; i
 </ul>
 </dd>
 </dl>
-<p>Returns a glyph.AssembledArtifact object.</p>
+<p>Returns a <a class="reference internal" href="../../../glyph.html#lacuna.glyph.AssembledArtifact" title="lacuna.glyph.AssembledArtifact"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.AssembledArtifact</span></tt></a> object.</p>
 <p>Raises ServerError 1002 if the listed glyphs do not form a valid 
 artifact recipe.</p>
 </dd></dl>
@@ -215,7 +222,7 @@ artifact recipe.</p>
 <dt id="lacuna.buildings.callable.archaeology.archaeology.get_glyph_summary">
 <tt class="descname">get_glyph_summary</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_glyph_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns summary of glyphs that may be assembled in this arch min.</p>
-<p>Returns a list of lacuna.glyph.OwnedGlyph objects.</p>
+<p>Returns a list of <a class="reference internal" href="../../../glyph.html#lacuna.glyph.OwnedGlyph" title="lacuna.glyph.OwnedGlyph"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.OwnedGlyph</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -228,13 +235,35 @@ artifact recipe.</p>
 <dt id="lacuna.buildings.callable.archaeology.archaeology.get_ores_available_for_processing">
 <tt class="descname">get_ores_available_for_processing</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_ores_available_for_processing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get ores of sufficient quantity to perform glyph searches on.</p>
-<p>Returns a lacuna.resource.AvailableOre object.</p>
+<p>Returns a <a class="reference internal" href="../../../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.path">
 <tt class="descname">path</tt><em class="property"> = 'archaeology'</em><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.archaeology.archaeology.search_for_glyph">
+<tt class="descname">search_for_glyph</tt><big>(</big><em>ore_type: str</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.search_for_glyph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches through an ore for a glyph.</p>
+<p>There must be at least 10,000 of the selected ore onsite to perform 
+the search, or a ServerError will be raised.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>ore_type &#8211; String name of the ore to search.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.callable.archaeology.archaeology.subsidize_search">
+<tt class="descname">subsidize_search</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.subsidize_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Completes the current glyph search immediately.  Costs 2 E.</p>
+<p>Raises ServerError 1010 if no search is going on right now.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.view_excavators">

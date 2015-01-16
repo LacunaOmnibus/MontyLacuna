@@ -104,6 +104,8 @@
 <li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
@@ -122,6 +124,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -168,6 +175,7 @@ written in Perl, but these steps should be simpler.</p>
 <li>Install MontyLacuna</li>
 <li>Install Python libraries</li>
 <li>Create a config file</li>
+<li>Run a test script</li>
 </ul>
 </div>
 <div class="section" id="install-python-3">
@@ -177,17 +185,18 @@ written in Perl, but these steps should be simpler.</p>
 <p>You can download Python 3 from <a class="reference external" href="http://www.activestate.com/activepython/downloads">ActiveState&#8217;s website.</a>  Make sure you download
 version <strong>3.whatever</strong>, <em>not</em> version <strong>2.whatever</strong>.</p>
 <p>During installation, the installer will show you what features will be
-installed, in a window that looks like this:</p>
+installed.  In some cases, <em>Register as Default Python</em> will be unselected, as
+indicated by the red X in the picture:</p>
 <blockquote>
 <div><img alt="as_python_default" src="images/as_python_default.png" /></div></blockquote>
-<p>In some cases, that <em>Register as Default Python</em> will be unselected, as
-indicated by the red X.  We want that turned on.  Click on the little down
-arrow just to the right of the red X, and set this feature to be installed.
-When you&#8217;re done, the window should look like this:</p>
+<p>We want that turned on.  Click on the little down arrow just to the right of
+the red X, and set this feature to be installed.  When you&#8217;re done, the window
+should look like this:</p>
 <blockquote>
 <div><img alt="as_python_fixed" src="images/as_python_fixed.png" /></div></blockquote>
 <p>From here on, just click the Next button until the installer completes.</p>
-<p>After the installer is complete, open up a <tt class="docutils literal"><span class="pre">CMD</span></tt> window and type:</p>
+<p>After the installer is complete, open up a new <tt class="docutils literal"><span class="pre">CMD</span></tt> window (if you already
+had one open, close it and open a new one) and type:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">python</span> <span class="o">--</span><span class="n">version</span>
 </pre></div>
 </div>
@@ -199,9 +208,9 @@ When you&#8217;re done, the window should look like this:</p>
 </div>
 <div class="section" id="non-windows">
 <h3>Non-Windows<a class="headerlink" href="#non-windows" title="Permalink to this headline">¶</a></h3>
-<p>If you&#8217;re on Linux or Mac, you probably already have Python installed.  But
-make sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3,
-and MontyLacuna will not work with Python 2.  Python 3 should be available via
+<p>If you&#8217;re on Linux or Mac, you should already have Python installed.  But make
+sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3, and
+MontyLacuna will not work with Python 2.  Python 3 should be available via
 your package manager.</p>
 </div>
 </div>
@@ -234,13 +243,13 @@ file.</p>
 <li>Open the <tt class="docutils literal"><span class="pre">zip</span></tt> file using whatever unzip tool you like.  It contains just
 one folder, named something like <tt class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></tt>.  Drag
 that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.<ul>
-<li>On Windows, you don&#8217;t need to go download an unzip tool.  Just
-double-click on the .zip file after you&#8217;ve downloaded it, and Windows will
-open it up just like it&#8217;s a regular folder.</li>
+<li>On Windows, you don&#8217;t need to go download an unzip tool.  Double-click on
+the .zip file after you&#8217;ve downloaded it, and Windows will open it up like
+it&#8217;s a regular folder.</li>
 </ul>
 </li>
 <li>After dragging that oddly-named folder into <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt>, rename it to
-just <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.</li>
+simply <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.</li>
 </ul>
 </div>
 <div class="section" id="install-pip-and-prerequisite-libraries">
@@ -283,6 +292,9 @@ c:\Python34\Scripts\pip install beaker
 </div>
 <div class="section" id="create-a-config-file">
 <h2>Create A Config File<a class="headerlink" href="#create-a-config-file" title="Permalink to this headline">¶</a></h2>
+<p>For this next step, you&#8217;ll need to know your Lacuna password.  And if you have
+a sitter password setup, you should know that too.  Make sure you have those
+in front of you before trying to create your config file.</p>
 <p>Using the CMD window you left open from the previous step, run the config file
 creation script:</p>
 <div class="highlight-python"><div class="highlight"><pre>python bin/create_config_file.py
@@ -298,7 +310,8 @@ about your empire, and requires no arguments.  Try it out by typing:</p>
 <div class="highlight-python"><div class="highlight"><pre>python bin/test_script.py
 </pre></div>
 </div>
-<p>If that tells you &#8220;Congratulations&#8221;, you&#8217;re all set.</p>
+<p>If that tells you &#8220;Congratulations&#8221;, you&#8217;re all set.  Now you can move on to
+running whatever <a class="reference internal" href="scripts/index.html#scripts-index"><em>MontyLacuna Scripts</em></a> you want.</p>
 </div>
 </div>
 

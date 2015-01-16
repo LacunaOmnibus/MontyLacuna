@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Recall All Ships &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>In-Game Ore Names &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -28,10 +28,7 @@
   
 
   
-    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
-        <link rel="next" title="Recall All Spies" href="recall_all_spies.html"/>
-        <link rel="prev" title="Post Starter Kit" href="post_starter_kit.html"/> 
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -58,7 +55,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul class="current">
+            <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -68,9 +65,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#starter-scripts">Starter Scripts</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
@@ -153,12 +150,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
-      
-    <li>Recall All Ships</li>
+    <li>In-Game Ore Names</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../sources/scripts/recall_all_ships.txt" rel="nofollow"> View page source</a>
+          <a href="../sources/scripts/ores.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -166,51 +161,39 @@
 </div>
           <div role="main">
             
-  <div class="section" id="recall-all-ships">
-<h1>Recall All Ships<a class="headerlink" href="#recall-all-ships" title="Permalink to this headline">¶</a></h1>
-<p>Recall all defending or orbiting ships from a single planet.</p>
-<p>All you have to specify is the name of the planet to pull ships back to:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">recall_all_ships</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span>
-</pre></div>
-</div>
-<p>For complete help, see the script&#8217;s help documentation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">recall_all_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
-</pre></div>
-</div>
-<dl class="class">
-<dt id="lacuna.binutils.librecall_all_ships.RecallShips">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.librecall_all_ships.</tt><tt class="descname">RecallShips</tt><a class="headerlink" href="#lacuna.binutils.librecall_all_ships.RecallShips" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
-<dl class="method">
-<dt id="lacuna.binutils.librecall_all_ships.RecallShips.show_report">
-<tt class="descname">show_report</tt><big>(</big><em>ships</em><big>)</big><a class="headerlink" href="#lacuna.binutils.librecall_all_ships.RecallShips.show_report" title="Permalink to this definition">¶</a></dt>
-<dd><p>Displays a report on what ships have been recalled.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>ships &#8211; A list of <tt class="docutils literal"><span class="pre">lacuna.ship.IncomingShip</span></tt> objects as returned by 
-<tt class="docutils literal"><span class="pre">lacuna.building.spaceport.recall_all()</span></tt></li>
+  <div class="section" id="in-game-ore-names">
+<span id="ores-list"></span><h1>In-Game Ore Names<a class="headerlink" href="#in-game-ore-names" title="Permalink to this headline">¶</a></h1>
+<p>A list of all of the ores in the game.  These correspond to the names of all
+glyphs in the game as well.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Anthracite</li>
+<li>Bauxite</li>
+<li>Beryl</li>
+<li>Chromite</li>
+<li>Chalcopyrite</li>
+<li>Fluorite</li>
+<li>Galena</li>
+<li>Goethite</li>
+<li>Gold</li>
+<li>Gypsum</li>
+<li>Halite</li>
+<li>Kerogen</li>
+<li>Magnetite</li>
+<li>Methane</li>
+<li>Monazite</li>
+<li>Rutile</li>
+<li>Sulfur</li>
+<li>Trona</li>
+<li>Uraninite</li>
+<li>Zircon</li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+</div></blockquote>
 </div>
 
 
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="recall_all_spies.html" class="btn btn-neutral float-right" title="Recall All Spies"/>Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="post_starter_kit.html" class="btn btn-neutral" title="Post Starter Kit"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

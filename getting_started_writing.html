@@ -104,6 +104,8 @@
 <li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
@@ -122,6 +124,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -291,18 +298,140 @@ message:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="check-on-one-of-the-buildings-based-on-type">
-<h3>Check on one of the buildings based on type<a class="headerlink" href="#check-on-one-of-the-buildings-based-on-type" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">sps</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;spaceport&#39;</span> <span class="p">)</span>
+<div class="section" id="check-on-all-of-the-buildings-of-a-certain-type">
+<h3>Check on all of the buildings of a certain type<a class="headerlink" href="#check-on-all-of-the-buildings-of-a-certain-type" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">min_level</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">min_efficiency</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sps</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;spaceport&#39;</span><span class="p">,</span> <span class="n">min_level</span><span class="p">,</span> <span class="n">min_efficiency</span> <span class="p">)</span>
 <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sps</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span> <span class="s">&quot;This sp is located at ({},{})&quot;</span><span class="p">,</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="next-steps">
-<h3>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h3>
-<p>From here, check on some of the existing sample scripts in <tt class="docutils literal"><span class="pre">bin/</span></tt>, and the
-full documentation in <a class="reference internal" href="index.html#home"><em>MontyLacuna Documentation</em></a></p>
+<div class="section" id="check-on-just-one-building-of-a-certain-type">
+<h3>Check on just one building of a certain type<a class="headerlink" href="#check-on-just-one-building-of-a-certain-type" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">min_level</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">min_efficiency</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;spaceport&#39;</span><span class="p">,</span> <span class="n">min_level</span><span class="p">,</span> <span class="n">min_efficiency</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c">### Or, if you don&#39;t care about level or efficiency...</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;spaceport&#39;</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;This space port&#39;s ID is {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="script-parent-class">
+<h3>Script Parent Class<a class="headerlink" href="#script-parent-class" title="Permalink to this headline">¶</a></h3>
+<p>To create a script similar to the scripts that come bundled with MontyLacuna,
+including command-line argument parsing, your script should inherit from:</p>
+<span class="target" id="module-lacuna.binutils.libbin"></span><dl class="class">
+<dt id="lacuna.binutils.libbin.Script">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libbin.</tt><tt class="descname">Script</tt><big>(</big><em>parser</em>, <em>section: str='sitter'</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libbin.Script" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Base class for scripts.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>parser &#8211; Required argparse parser</li>
+<li>section &#8211; Optional config section to read from.  Defaults to 
+&#8216;sitter&#8217;.</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">binutils.libbin</span>
+
+<span class="k">class</span> <span class="nc">MyScript</span><span class="p">(</span> <span class="n">binutils</span><span class="o">.</span><span class="n">libbin</span><span class="o">.</span><span class="n">Script</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;This shows above the options docs in help&quot;</span><span class="p">,</span>
+            <span class="n">epilog</span>      <span class="o">=</span> <span class="s">&quot;This shows below the options docs in help&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span> <span class="s">&#39;planet&#39;</span><span class="p">,</span>
+            <span class="n">metavar</span>     <span class="o">=</span> <span class="s">&#39;&lt;planet&gt;&#39;</span><span class="p">,</span>
+            <span class="n">action</span>      <span class="o">=</span> <span class="s">&#39;store&#39;</span><span class="p">,</span>
+            <span class="n">help</span>        <span class="o">=</span> <span class="s">&quot;Name of the planet to run against.&quot;</span>
+        <span class="p">)</span>
+        <span class="c">### </span>
+        <span class="c">### Add other arguments as needed</span>
+        <span class="c">###</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">parser</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>By inheriting from binutils.libbin.Script, your script&#39;s main class 
+will get the following:
+
+args        The user&#39;s arguments, passed from the command line.
+bindir      The full path to the directory containing the script
+            being run.
+client      A TLE client, connected using the empire and password
+            found in the requested config file section.
+parser      The argparse parser.
+version     The program version.  Generally this will be set in
+            the ``__init__`` method of the inheriting child class, but 
+            if it&#39;s not set there, this will default to &#39;0.1&#39;
+
+If you need this attribute, you&#39;ll need to create it before calling 
+``super().__init()``:
+
+skip_argparse   Dispatch table of arguments that bypass 
+                argparse.parse_args().  See below.
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>skip_argparse</dt>
+<dd><p class="first">Sometimes you want to give the user the ability to pass an option that 
+will obviate the need for specifying any other options.</p>
+<p>For example, in the <tt class="docutils literal"><span class="pre">search_archmin.py</span> <span class="pre">script</span></tt>, the <tt class="docutils literal"><span class="pre">--list</span></tt> (or 
+<tt class="docutils literal"><span class="pre">-l</span></tt>) arguments are meant to simply display a list of all ores the 
+user can chose from, as a convenience.  In this case, there would be 
+no need for the user to supply the otherwise required <tt class="docutils literal"><span class="pre">planet</span></tt> or 
+<tt class="docutils literal"><span class="pre">glyph</span></tt> positional arguments; we just want to display a list of ores 
+and quit.</p>
+<p>The dispatch table&#8217;s keys are the string args (in our example case, 
+both <tt class="docutils literal"><span class="pre">-l</span></tt> and <tt class="docutils literal"><span class="pre">--list</span></tt> would be keys), and the values are the 
+methods to call.  Remember to omit the parens &#8211; you&#8217;re specifying the 
+method, not calling it.  In our example, both of our keys would have 
+the same value of <tt class="docutils literal"><span class="pre">self.list_ores</span></tt>.  We&#8217;d then need to create a 
+<tt class="docutils literal"><span class="pre">list_ores()</span></tt> method that would be called when either of those 
+options are specified.</p>
+<p>eg:</p>
+<div class="highlight-python"><div class="highlight"><pre>def list_ores( self ):
+    # Code to list out all the ores in the game and then quit().
+
+self.skip_argparse = {
+    &#39;-l&#39;:       self.list_ores,
+    &#39;--list&#39;:   self.list_ores,
+}
+
+super().__init__(parser)
+</pre></div>
+</div>
+<p class="last">Usually, you&#8217;re going to want your script to end after the method 
+specified in the dispatch table is run, but it&#8217;s possible that some 
+circumstance could crop up where that&#8217;s not the case.  So if you do 
+want the script to quit after your method is run, be sure to include a 
+<tt class="docutils literal"><span class="pre">quit()</span></tt> call in your method.</p>
+</dd>
+<dt>Parser</dt>
+<dd><p class="first">The argparse parser handed in will have the following optional 
+arguments:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--file</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--section</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-q</span></tt>, <tt class="docutils literal"><span class="pre">--quiet</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-v</span></tt>, <tt class="docutils literal"><span class="pre">--verbose</span></tt></li>
+</ul>
+</div></blockquote>
+<p class="last">Any other arguments that are specific to your script will need to be 
+added before calling <tt class="docutils literal"><span class="pre">super().__init__()</span></tt>.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 </div>

@@ -12,7 +12,8 @@ time you're reading this, you've probably run them already as you were
 following through the setup process.
 
 They're being listed below for completeness, but if you've already run these 
-scripts, you shouldn't need to run them again.
+scripts (and if you just finished walking through the install instructions, 
+you've run both of these), you shouldn't need to run them again.
 
 .. toctree::
    :maxdepth: 2
@@ -49,7 +50,9 @@ if your arguments contain spaces, you have to quote them::
    post_starter_kit
    recall_all_ships
    recall_all_spies
+   scuttle_ships
    send_excavs
+   search_archmin
    ships_report
    spies_report
 

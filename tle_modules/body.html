@@ -105,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
@@ -123,6 +125,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -438,8 +445,8 @@ you&#8217;ll want to set this to 100.  Defaults to 0.</li>
 automatically.  So if you&#8217;re going to get 10 buildings back, that&#8217;s 
 10 <tt class="docutils literal"><span class="pre">view()</span></tt> calls that need to be made, and that&#8217;s going to slow 
 things down a bit.  So keep that in mind, and turn caching on.</p>
-<p>Raises lacuna.exceptions.NoSuchBuildingError if you don&#8217;t have any 
-buildings of the requested type and level.</p>
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></tt></a> if you don&#8217;t have 
+any buildings of the requested type and level.</p>
 </dd></dl>
 
 <dl class="method">

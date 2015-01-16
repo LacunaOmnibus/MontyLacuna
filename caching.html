@@ -104,6 +104,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
@@ -122,6 +124,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -247,7 +254,23 @@ while maintaining the cached data in your other namespaces.</p>
 <p>Cached data is saved to local files, so accessing the same named cache between
 different runs of a script, or even between two entirely different scripts, will
 make use of your caches.</p>
-<span class="target" id="module-lacuna.clients"></span><dl class="method">
+</div>
+<div class="section" id="script-conventions">
+<h2>Script Conventions<a class="headerlink" href="#script-conventions" title="Permalink to this headline">¶</a></h2>
+<p>The scripts that come packaged with MontyLacuna often have to perform many of
+the same tasks, such as listing out all of your planets.  Those scripts
+generally use a cache named <tt class="docutils literal"><span class="pre">my_colonies</span></tt> for this planet-listing work.
+This means that, after you run one script to get colony data, running any
+other script using that cache will be faster, as the colony data is already
+cached.</p>
+<p>If you run a MontyLacuna script, then go colonize a new planet, your new
+planet won&#8217;t appear in the pre-cached planet list.  In this case, you should
+just delete the contents of the <tt class="docutils literal"><span class="pre">var/cache/</span></tt> directory before running
+another script.</p>
+</div>
+<div class="section" id="module-lacuna.clients">
+<span id="module-documentation"></span><h2>Module Documentation<a class="headerlink" href="#module-lacuna.clients" title="Permalink to this headline">¶</a></h2>
+<dl class="method">
 <dt>
 <tt class="descclassname">Member.</tt><tt class="descname">cache_on</tt><big>(</big><em>name: str</em>, <em>expiry: int=3600</em><big>)</big></dt>
 <dd><p>Turn the cache on.</p>

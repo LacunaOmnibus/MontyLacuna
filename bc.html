@@ -104,6 +104,8 @@
 <li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
@@ -122,6 +124,11 @@
 <li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -209,7 +216,35 @@ converter.</p>
 <p>A generic base class for turning returned dicts into objects, and 
 for providing utility methods.</p>
 <p>Almost all MontyLacuna objects inherit from this class, so any methods of 
-this class can be called using any MontyLacuna object.</p>
+this class can be called from (almost) any MontyLacuna object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">my_planet</span> <span class="o">=</span> <span class="n">glc</span><span class="o">.</span><span class="n">get_body_byname</span><span class="p">(</span> <span class="s">&#39;Earth&#39;</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">client</span><span class="p">)</span>
+<span class="go">&lt;lacuna.clients.Member object at 0x7fb19ed863c8&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arch</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;archaeology&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">el</span> <span class="o">=</span> <span class="n">arch</span><span class="o">.</span><span class="n">sec2time</span><span class="p">(</span> <span class="mi">123456</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">el</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> <span class="n">el</span><span class="o">.</span><span class="n">hours</span><span class="p">,</span> <span class="n">el</span><span class="o">.</span><span class="n">minutes</span><span class="p">,</span> <span class="n">el</span><span class="o">.</span><span class="n">seconds</span> <span class="p">)</span>
+<span class="go">1 10 17 36</span>
+</pre></div>
+</div>
+<p>...etc.</p>
+<dl class="method">
+<dt id="lacuna.bc.SubClass.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.bc.SubClass.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a lacuna.bc.SubClass object.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>client &#8211; A <a class="reference internal" href="clients.html#lacuna.clients.Member" title="lacuna.clients.Member"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Member</span></tt></a> or 
+<a class="reference internal" href="clients.html#lacuna.clients.Guest" title="lacuna.clients.Guest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Guest</span></tt></a> object</li>
+<li>mydict &#8211; A dict whose keys will become attributes of the 
+SubClass object (and whose values will become the values of those
+attributes).</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="lacuna.bc.SubClass.get_type">
 <tt class="descname">get_type</tt><big>(</big><em>cand</em><big>)</big><a class="headerlink" href="#lacuna.bc.SubClass.get_type" title="Permalink to this definition">¶</a></dt>
@@ -217,7 +252,7 @@ this class can be called using any MontyLacuna object.</p>
 <p>Since all communications with the server is via JSON, which is a text 
 transport, all values that look like numbers are actually strings.</p>
 <p>eg the &#8216;5&#8217; in &#8216;ship_count = 5&#8217; is a string, not an int, so doing math on 
-it, or trying to format it as a number, is going to cause problems).</p>
+it, or trying to format it as a number, is going to cause problems.</p>
 <p>This attempts to turn strings that should be either ints or floats into 
 ints or floats.  Any type other than an int or float gets returned 
 unmolested:</p>

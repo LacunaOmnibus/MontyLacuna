@@ -18,6 +18,7 @@ written in Perl, but these steps should be simpler.
 - Install MontyLacuna
 - Install Python libraries
 - Create a config file
+- Run a test script
 
 Install Python 3
 ----------------
@@ -29,20 +30,21 @@ You can download Python 3 from `ActiveState's website.
 version **3.whatever**, *not* version **2.whatever**.
 
 During installation, the installer will show you what features will be 
-installed, in a window that looks like this:
+installed.  In some cases, *Register as Default Python* will be unselected, as 
+indicated by the red X in the picture:
 
     |as_python_default|
 
-In some cases, that *Register as Default Python* will be unselected, as 
-indicated by the red X.  We want that turned on.  Click on the little down 
-arrow just to the right of the red X, and set this feature to be installed.  
-When you're done, the window should look like this:
+We want that turned on.  Click on the little down arrow just to the right of 
+the red X, and set this feature to be installed.  When you're done, the window 
+should look like this:
 
     |as_python_fixed|
 
 From here on, just click the Next button until the installer completes.
 
-After the installer is complete, open up a ``CMD`` window and type::
+After the installer is complete, open up a new ``CMD`` window (if you already 
+had one open, close it and open a new one) and type::
 
     python --version
 
@@ -55,9 +57,9 @@ If that's what you see, then Python has been installed successfully.
 Non-Windows
 ~~~~~~~~~~~
 
-If you're on Linux or Mac, you probably already have Python installed.  But 
-make sure that you've got Python 3.  Many systems come with Python 2, not 3, 
-and MontyLacuna will not work with Python 2.  Python 3 should be available via 
+If you're on Linux or Mac, you should already have Python installed.  But make 
+sure that you've got Python 3.  Many systems come with Python 2, not 3, and 
+MontyLacuna will not work with Python 2.  Python 3 should be available via 
 your package manager.
 
 Install MontyLacuna
@@ -76,12 +78,12 @@ file.
   one folder, named something like ``tmtowtdi-MontyLacuna-1234abc``.  Drag 
   that out to ``My Documents`` on your computer.
 
-  - On Windows, you don't need to go download an unzip tool.  Just 
-    double-click on the .zip file after you've downloaded it, and Windows will 
-    open it up just like it's a regular folder.
+  - On Windows, you don't need to go download an unzip tool.  Double-click on 
+    the .zip file after you've downloaded it, and Windows will open it up like 
+    it's a regular folder.
 
 - After dragging that oddly-named folder into ``My Documents``, rename it to 
-  just ``MontyLacuna``.
+  simply ``MontyLacuna``.
 
 Install pip and Prerequisite Libraries
 --------------------------------------
@@ -123,6 +125,10 @@ Leave that CMD window open for the next step.
 
 Create A Config File
 --------------------
+For this next step, you'll need to know your Lacuna password.  And if you have 
+a sitter password setup, you should know that too.  Make sure you have those 
+in front of you before trying to create your config file.
+
 Using the CMD window you left open from the previous step, run the config file 
 creation script::
 
@@ -138,5 +144,6 @@ about your empire, and requires no arguments.  Try it out by typing::
 
     python bin/test_script.py
 
-If that tells you "Congratulations", you're all set.
+If that tells you "Congratulations", you're all set.  Now you can move on to 
+running whatever :ref:`scripts_index` you want.
 
