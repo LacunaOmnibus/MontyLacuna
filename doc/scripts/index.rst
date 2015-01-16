@@ -50,6 +50,7 @@ if your arguments contain spaces, you have to quote them::
    post_starter_kit
    recall_all_ships
    recall_all_spies
+   scuttle_ships
    send_excavs
    search_archmin
    ships_report

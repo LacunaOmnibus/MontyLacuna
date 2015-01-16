@@ -19,7 +19,7 @@ class Translator():
         Example::
 
             tr = lacuna.types.Translator()
-            print( tr.translate_shiptype('Anth') )  # 'anthracite'
+            print( tr.translate_oretype('Anth') )  # 'anthracite'
         """
         system = [
             "anthracite", 
@@ -177,21 +177,36 @@ class Translator():
             "spy shuttle": "spy_shuttle",
             "supply": "supply_pod",
             "supply1": "supply_pod",
+            "supplyI": "supply_pod",
             "supply 1": "supply_pod",
+            "supply I": "supply_pod",
             "supply pod": "supply_pod",
             "supply pod 1": "supply_pod",
+            "supply pod I": "supply_pod",
             "supply2": "supply_pod2",
             "supply 2": "supply_pod2",
             "supply pod 2": "supply_pod2",
+            "supplyII": "supply_pod2",
+            "supply II": "supply_pod2",
+            "supply pod II": "supply_pod2",
             "supply3": "supply_pod3",
             "supply 3": "supply_pod3",
             "supply pod 3": "supply_pod3",
+            "supplyIII": "supply_pod3",
+            "supply III": "supply_pod3",
+            "supply pod III": "supply_pod3",
             "supply4": "supply_pod4",
             "supply 4": "supply_pod4",
             "supply pod 4": "supply_pod4",
+            "supplyIV": "supply_pod4",
+            "supply IV": "supply_pod4",
+            "supply pod IV": "supply_pod4",
             "supply5": "supply_pod5",
             "supply 5": "supply_pod5",
             "supply pod 5": "supply_pod5",
+            "supplyV": "supply_pod5",
+            "supply V": "supply_pod5",
+            "supply pod V": "supply_pod5",
             "terra": "terraforming_platform_ship",
             "terra plat": "terraforming_platform_ship",
             "terraforming platform ship": "terraforming_platform_ship",

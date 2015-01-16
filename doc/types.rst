@@ -12,8 +12,8 @@ to remember what the @#$% correct system name is.
 
 The types.Translator class allows us to translate from various spellings that 
 will be commonly passed in by the user, into the correct system name, saving 
-the user from having to look up, once again, what "Placebo IV" translates 
-into.
+the user from having to look up, once again, what the system name for "Placebo 
+IV" is.
 
 Resources that don't have a listed translation probably don't need one (a 
 barge is a barge, and nobody's going to spell it any differently).  All names 
@@ -69,12 +69,12 @@ Space Station Hull           space_station                 hull, ss, "ss hull", 
 Spaceport Seeker             spaceport_seeker              sp, "sp seeker", "port seeker", "spaceport seeker", "space port seeker"                             
 Spy Pod                      spy_pod                       "spy pod"                    
 Spy Shuttle                  spy_shuttle                                           
-Stake                        stake                                           
+Stake                        stake
 Supply Pod                   supply_pod                    supply, supply1, "supply 1", "supply pod", "supply pod 1"                       
-Supply Pod II                supply_pod2                   supply2, "supply 2", "supply pod 2"                        
-Supply Pod III               supply_pod3                   supply3, "supply 3", "supply pod 3"                                               
-Supply Pod IV                supply_pod4                   supply4, "supply 4", "supply pod 4"                                                
-Supply Pod V                 supply_pod5                   supply5, "supply 5", "supply pod 5"                                                
+Supply Pod II                supply_pod2                   supply2, "supply 2", "supply pod 2", supplyII, "supply II", "supply pod II" 
+Supply Pod III               supply_pod3                   supply3, "supply 3", "supply pod 3", supplyIII, "supply III", "supply pod III" 
+Supply Pod IV                supply_pod4                   supply4, "supply 4", "supply pod 4", supplyIV, "supply IV", "supply pod IV" 
+Supply Pod V                 supply_pod5                   supply5, "supply 5", "supply pod 5", supplyV, "supply V", "supply pod V" 
 Surveyor                     surveyor                      
 Sweeper                      sweeper                                           
 Terraforming Platform Ship   terraforming_platform_ship    terra, "terra plat", "terraforming platform ship"                                       
@@ -94,7 +94,7 @@ Bauxite                      bauxite                       baux
 Beryl                        beryl 
 Chromite                     chromite                      chrom, chrome
 Chalcopyrite                 chalcopyrite
-Fluorite                     fluorite                      flor, flour, fluor, floride, flouride, fluoride,
+Fluorite                     fluorite                      flor, flour, fluor, floride, flouride, fluoride
 Galena                       galena                        gal
 Goethite                     goethite                      goeth
 Gold                         gold 
