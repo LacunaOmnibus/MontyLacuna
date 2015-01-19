@@ -12,7 +12,7 @@ pp = pprint.PrettyPrinter( indent = 4 )
 
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'play_test',
+    config_section = 'sitter',
 )
 
 mail = glc.get_inbox();
@@ -20,6 +20,7 @@ mail = glc.get_inbox();
 
 ### See messages in your inbox
 ###
+glc.debugging_method = 'view_inbox'
 msgs, ttl = mail.view_inbox( {"tags": ["excavator", "correspondence"]} )
 print( "There are {:,} excavator/correspondence messages in my inbox.  Here are the first few:"
     .format(ttl)
