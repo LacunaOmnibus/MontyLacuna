@@ -1,8 +1,8 @@
 
-import binutils.libbin
+import lacuna.binutils.libbin
 import argparse, lacuna, logging, os, sys
 
-class TestScript(binutils.libbin.Script):
+class TestScript(lacuna.binutils.libbin.Script):
 
     def __init__(self):
         self.version = '0.1'
