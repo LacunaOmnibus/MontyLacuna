@@ -57,7 +57,7 @@ for p in ass.planets:
         continue
 
     ### Set only the spies who are currently doing the requested current task
-    l.debug( "Setting only spies who are current performing the {} task.".format(ass.args.doing) )
+    l.debug( "Setting only spies who are currently performing the {} task.".format(ass.args.doing) )
     try:
         ass.set_spies_doing_correct_task()
     except err.NoUsableSpiesError as e:

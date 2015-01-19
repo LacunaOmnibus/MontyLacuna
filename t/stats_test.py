@@ -11,13 +11,14 @@ pp = pprint.PrettyPrinter( indent = 4 )
 
 
 
+### Set up a config section named 'my_guest' with a username but no password.
 guest = lac.clients.Guest(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'my_guest',
 )
 client = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
-    config_section = 'my_sitter',
+    config_section = 'sitter',
 )
 stats = client.get_stats()
 
@@ -49,7 +50,7 @@ stats = client.get_stats()
 
 ### Get info on a single player empire
 ###
-#player = stats.find_empire_rank( 'empire_size_rank', 'tmtowtdi_test' )[0]
+#player = stats.find_empire_rank( 'empire_size_rank', 'The United' )[0]
 #print( "{} has ID {}.".format(player.empire_name, player.empire_id) )
 
 
