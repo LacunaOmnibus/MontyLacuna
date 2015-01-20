@@ -22,27 +22,8 @@ class Translator():
             print( tr.translate_oretype('Anth') )  # 'anthracite'
         """
         system = [
-            "anthracite", 
-            "bauxite", 
-            "beryl", 
-            "chromite", 
-            "chalcopyrite",
-            "fluorite", 
-            "galena", 
-            "goethite", 
-            "gold", 
-            "gypsum", 
-            "halite",
-            "kerogen", 
-            "magnetite", 
-            "methane", 
-            "monazite", 
-            "rutile", 
-            "sulfur",
-            "trona", 
-            "uraninite", 
-            "zircon",
-
+            "anthracite", "bauxite", "beryl", "chromite", "chalcopyrite", "fluorite", "galena", "goethite", "gold", "gypsum",
+            "halite", "kerogen", "magnetite", "methane", "monazite", "rutile", "sulfur", "trona", "uraninite", "zircon",
         ]
         if type.lower() in system:
             return type.lower()
@@ -214,5 +195,114 @@ class Translator():
         if type.lower() in trans:
             return trans[ type.lower() ]
         raise err.NoSuchShipError( "{} is not a valid ship type.".format(type) )
+
+    def translate_assgtype( self, type:str ):
+        """ Translates recognized spy assignment misspellings into the system 
+        spy assignment name.
+
+        Arguments:
+            - type -- String, generally passed in by the user.
+
+        Returns the system spy assignment name associated with the type passed 
+        in if it was recognized.  Otherwise raises KeyError.
+
+        Example::
+
+            tr = lacuna.types.Translator()
+            print( tr.translate_assgtype('idle') )  # 'Idle'
+        """
+        system = [
+            "Idle",
+            "Bugout",
+            "Counter Espionage",
+            "Security Sweep",
+            "Intel Training",
+            "Mayhem Training",
+            "Politics Training",
+            "Theft Training",
+            "Political Propaganda",
+            "Gather Resource Intelligence",
+            "Gather Empire Intelligence",
+            "Gather Operative Intelligence",
+            "Hack Network 19",
+            "Sabotage Probes",
+            "Rescue Comrades",
+            "Sabotage Resources",
+            "Appropriate Resources",
+            "Assassinate Operatives",
+            "Sabotage Infrastructure",
+            "Sabotage Defenses",
+            "Sabotage BHG",
+            "Incite Mutiny",
+            "Abduct Operatives",
+            "Appropriate Technology",
+            "Incite Rebellion",
+            "Incite Insurrection",
+
+        ]
+        if type.title() in system:
+            return type.title()
+
+        trans = {
+            "counter": "Counter Espionage",
+            "sweep": "Security Sweep",
+            "int train": "Intel Training",
+            "inttrain": "Intel Training",
+            "may train": "Mayhem Training",
+            "maytrain": "Mayhem Training",
+            "poli train": "Politics Training",
+            "politrain": "Politics Training",
+            "pol train": "Politics Training",
+            "poltrain": "Politics Training",
+            "theft train": "Theft Training",
+            "thefttrain": "Theft Training",
+            "poli prop": "Political Propaganda",
+            "pol prop": "Political Propaganda",
+            "prop": "Political Propaganda",
+            "pp": "Political Propaganda",
+            "get res int": "Gather Resource Intelligence",
+            "get resint": "Gather Resource Intelligence",
+            "get emp int": "Gather Empire Intelligence",
+            "get empint": "Gather Empire Intelligence",
+            "get op int": "Gather Operative Intelligence",
+            "get opint": "Gather Operative Intelligence",
+            "hack": "Hack Network 19",
+            "rescue": "Rescue Comrades",
+            "app res": "Appropriate Resources",
+            "steal res": "Appropriate Resources",
+            "app tech": "Appropriate Technology",
+            "steal tech": "Appropriate Technology",
+            "ass op": "Assassinate Operatives",
+            "assop": "Assassinate Operatives",
+            "kill": "Assassinate Operatives",
+            "sab bhg": "Sabotage BHG",
+            "sab defenses": "Sabotage Defenses",
+            "sab defense": "Sabotage Defenses",
+            "sab def": "Sabotage Defenses",
+            "sabdef": "Sabotage Defenses",
+            "sab infra": "Sabotage Infrastructure",
+            "sab inf": "Sabotage Infrastructure",
+            "sabinf": "Sabotage Infrastructure",
+            "sab probes": "Sabotage Probes",
+            "sab probe": "Sabotage Probes",
+            "sabprobe": "Sabotage Probes",
+            "sab resources": "Sabotage Resources",
+            "sab resource": "Sabotage Resources",
+            "sab res": "Sabotage Resources",
+            "sabres": "Sabotage Resources",
+            "mutiny": "Incite Mutiny",
+            "abd ops": "Abduct Operatives",
+            "abd op": "Abduct Operatives",
+            "ab ops": "Abduct Operatives",
+            "ab op": "Abduct Operatives",
+            "kidnap": "Abduct Operatives",
+            "rebellion": "Incite Rebellion",
+            "rebel": "Incite Rebellion",
+            "insurrect": "Incite Insurrection",
+            "insurect": "Incite Insurrection",  # cause somebody's going to do that.
+        }
+        if type.lower() in trans:
+            return trans[ type.lower() ]
+        raise KeyError( "{} is not a valid ore type.".format(type) )
 
 

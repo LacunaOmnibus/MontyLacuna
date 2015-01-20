@@ -4,11 +4,13 @@
 Assign Spies
 ============
 
-Assigns spies based on a single planet, in bulk, to a specified task.  
-
+Assigns spies based out of a single planet, in bulk, to a specified task.  
 Note that this does not send any spies to a target.  You must make sure that 
 your spies are in the correct locations before attempting to use this to 
 assign them to tasks.
+
+The name of the task to be performed must be translatable, see 
+:ref:`spy_assg_translations`.
 
 See also :ref:`spies_report`, to check out what your spies are doing right 
 now, then use this script to assign them to some other task.
@@ -20,9 +22,6 @@ Assign all Idle spies on Earth to Counter Espionage::
 Assign only 20 spies on Earth to Counter Espionage::
 
     >>> python bin/assign_spies.py --num 20 Earth counter 
-
-    See the section below on Task Abbreviations for an explanation on why we 
-    can get away with just using 'counter' for the task name.
 
 Assign only your 20 highest-level spies on Earth to Counter Espionage::
 
@@ -38,9 +37,8 @@ Idle spies on all of your planets to Counter Espionage::
 
     >>> python bin/assign_spies.py all counter
 
-On the other hand, maybe you don't want *all* of your idle spies assigned to 
-Counter Espionage.  Instead, say you want a maximum of 20 assigned to Counter 
-on each planet::
+On the other hand, you might just want a maximum of 20 assigned to Counter on 
+each planet::
 
     >>> python bin/assign_spies.py --num 20 --topoff all counter
 
@@ -75,131 +73,6 @@ option, you can pass any of the following values:
     - intel
     - offense_rating
     - defense_rating
-
-All Possible Tasks
-------------------
-
-You obviously won't be able to run all possible tasks with all possible spies, 
-but here's a list of all tasks available in-game:
-
-    - Idle
-    - Bugout
-    - Counter Espionage
-    - Security Sweep
-    - Political Propaganda
-    - Gather Resource Intelligence
-    - Gather Empire Intelligence
-    - Gather Operative Intelligence
-    - Hack Network 19
-    - Sabotage Probes
-    - Rescue Comrades
-    - Sabotage Resources
-    - Appropriate Resources
-    - Assassinate Operatives
-    - Sabotage Infrastructure
-    - Sabotage Defenses
-    - Sabotage BHG
-    - Incite Mutiny
-    - Abduct Operatives
-    - Appropriate Technology
-    - Incite Rebellion
-    - Incite Insurrection
-
-Task Abbreviations
-------------------
-
-The names of some of the spy tasks are somewhat onerous to type (kinda like 
-typing the phrase "somewhat onerous").  Anyway, casing does not matter when 
-specifying task names ("idle" == "iDlE" == "Idle").  Also, some abbreviations 
-for tasks have been added:
-
-    - Counter Espionage
-
-      - counter
-
-    - Political Propaganda
-
-      - pp
-      - prop
-
-    - Gather Resource Intelligence
-    
-      - gather resint
-      - get resint
-
-    - Gather Empire Intelligence
-
-      - gather empint
-      - get empint
-
-    - Gather Operative Intelligence
-
-      - gather opint
-      - get opint
-
-    - Hack Network 19
-
-      - hack net19
-      - hack
-
-    - Sabotage Probes
-
-      - sab probes
-
-    - Rescue Comrades
-
-      - rescue
-
-    - Sabotage Resources
-
-      - sabotage res
-      - sab res
-
-    - Appropriate Resources
-
-      - appropriate res
-      - app res
-
-    - Assassinate Operatives
-
-      - ass op
-      - kill
-
-    - Sabotage Infrastructure
-
-      - sab infra
-
-    - Sabotage Defenses
-
-      - sab def
-
-    - Sabotage BHG
-
-      - sab bhg
-
-    - Incite Mutiny
-
-      - mutiny
-
-    - Abduct Operatives
-
-      - abduct op
-      - kidnap
-
-    - Appropriate Technology
-
-      - app tech
-
-    - Incite Rebellion
-
-      - rebellion
-      - rebel
-
-    - Incite Insurrection
-
-      - insurrection
-      - insurrect
-      - insurect (because somebody is going to miss that second ``r``.)
 
 Force Fresh Data
 ----------------

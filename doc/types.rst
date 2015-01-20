@@ -111,6 +111,54 @@ Uraninite                    uraninite                     uran, urin, urine (be
 Zircon                       zircon
 ============================ ============================= ============== 
 
+.. _spy_assg_translations:
+
+Spy Assignment Translations
+---------------------------
+Spy assignments are slightly different.  They don't have human and system 
+names, just the names you're used to seeing in-game.  Still, having to type 
+out ``Apropriate Technology`` as a script option is tiring, and prone to 
+misspellings (did you notice the misspelling in the example?  If not, you're 
+not going to notice it when you do it either).
+
+As with the other translators, you can type either the full assignment name or 
+any of the translations.  Whatever you chose, what you enter is case 
+insensitive; "counter espionage", "cOunTer eSpIoNage", and "counTer" all 
+translate to the same thing.
+
+So the abbreviations below should make assigning spies a little easier.
+
+=============================== =================================================
+Full Name                       Abbreviation
+=============================== =================================================
+Idle
+Bugout
+Counter Espionage               counter
+Security Sweep                  sweep
+Intel Training                  int train, inttrain
+Mayhem Training                 may train, maytrain 
+Politics Training               poli train, politrain, pol train, poltrain
+Theft Training                  theft train, thefttrain
+Political Propaganda            poli prop, pol prop, prop, pp
+Gather Resource Intelligence    get res int, get resint 
+Gather Empire Intelligence      get emp int, get empint 
+Gather Operative Intelligence   get op int, get opint
+Hack Network 19                 hack
+Rescue Comrades                 rescue
+Appropriate Resources           app res, steal res
+Appropriate Technology          app tech, steal tech
+Abduct Operatives               abd ops, abd op, ab ops, ab op, kidnap
+Assassinate Operatives          ass op, assop, kill
+Sabotage BHG                    sab bhg
+Sabotage Defenses               sab defenses, sab defense, sab def, sabdef
+Sabotage Infrastructure         sab infra, sab inf, sabinf
+Sabotage Probes                 sab probes, sab probe, sabprobe
+Sabotage Resources              sab resources, sab resource, sab res, sabres
+Incite Insurrection             insurrect, insurect
+Incite Mutiny                   mutiny
+Incite Rebellion                rebellion, rebel
+=============================== =================================================
+
 .. automodule:: lacuna.types
    :members:
    :show-inheritance:

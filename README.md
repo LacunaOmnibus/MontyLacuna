@@ -27,7 +27,6 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
         - Only way to clear the cache is by re-running the report script with 
           --fresh, which isn't very intuitive.
 
-
 - Everything needs to be tested on Windows.  In particular:
   - bin/captcha_test.py
   - installing modules via pip or however it works on windows.
