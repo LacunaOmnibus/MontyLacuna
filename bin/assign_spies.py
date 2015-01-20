@@ -1,16 +1,6 @@
 #!/usr/bin/python3
 
 
-### 1.7 is getting "no usable spies" on a counter 20 topoff, but everybody is 
-###   home.  Probably just need to tweak the message, but find out what's 
-###   happening.
-###
-### 1.7 (3)
-###
-###
-### Others with "no usable":
-###     2.1, 2.2, 2.4, 2.6, 2.7 (1)
-
 import os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
@@ -75,5 +65,5 @@ for p in ass.planets:
     ### Do eet.
     l.debug( "Assigning spies on {} to {}.".format(p, ass.args.task) )
     count = ass.assign_spies()
-    l.info( "{} spies from {} have been assigned to {}.".format(count, p, ass.get_task(ass.args.task)) )
+    l.info( "{} spies from {} have been assigned to {}.".format(count, p, ass.task) )
 

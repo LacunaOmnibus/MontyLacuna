@@ -15,15 +15,10 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
       it told me it was going to build 45.  That's correct, as I only had 45 SP slots 
       left, but was confusing because it didn't tell me why it truncated that number.
 
-- assign_spies tasks should be case insensitive at least, and really should have a 
-  translator set up.
-    - Trying to assign guys currently on "mayhem training" to Idle (so I can 
-      Do other stuff with them) results in "mayhem training is not a valid 
-      task or abbreviation".  Whoops.
-    - you run a spy report (which caches), then send spies to a planet that 
-      needs them, then run assign_spies.  assign_spies is using the same cache 
-      as spy_report, so it thinks no spies are on your target, even though you 
-      just sent some.
+- assign_spies tasks
+    - you run a spy report (which caches), then send spies to a planet that needs them, 
+      then run assign_spies.  assign_spies is using the same cache as spy_report, so it 
+      thinks no spies are on your target, even though you just sent some.
         - Only way to clear the cache is by re-running the report script with 
           --fresh, which isn't very intuitive.
 

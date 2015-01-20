@@ -56,6 +56,43 @@ but you only want your best Mayhem spies to try those assassinations::
 
     >>> python bin/assign_spies.py --num 20 --on Mars --top mayhem Earth kill
 
+Shared Cache
+------------
+Very often, you'll run :ref:`spies_report` before running this script.  This 
+script shares cache data (which persists for one hour) with that report 
+script, which will mean that this script will run more quickly if you've just 
+run the spies report script.
+
+After this script completes, it always clears out that shared cache, because 
+it knows that spies have just been assigned new tasks, rendering the data in 
+that cache invalid.
+
+So you can always run the spy report script after running this and be sure 
+that you're seeing fresh data.
+
+However, there's also a case where the shared cache can cause a problem with this script:
+    - You run :ref:`spies_report` to check on your spies.
+    - You send some of your spies to a nearby target and wait for them to 
+      arrive.
+    - You try to use this script to assign those spies to a task.
+
+If the spies you sent reached their destination in under an hour, then when 
+you run this assignment script, it'll be reading that cached data and will 
+still think those spies are in their old locations.
+
+To fix this, simply send the ``--fresh`` argument to this script.  So the 
+process would look something like this::
+
+    >>> py bin/spies_report.py Earth
+    Check the output, send some of your spies to your mortal enemy planet 
+    Mars, which is nearby, so the trip only takes a few minutes.  Wait for 
+    them to arrive.
+
+    >>> py bin/assign_spies.py --on Mars --fresh Earth kidnap
+    Tell the spies that you just sent to Mars to run the Abduct Operatives 
+    task.  Since you passed that "--fresh" argument, the script will see your 
+    newly-placed spies on Mars.
+
 Valid "Top" Settings
 --------------------
 
@@ -73,19 +110,6 @@ option, you can pass any of the following values:
     - intel
     - offense_rating
     - defense_rating
-
-Force Fresh Data
-----------------
-
-Most of the time, before you assign spies, you'll probably first run
-:ref:`spies_report` to see what your spies are doing.  This task assignment 
-script shares cache data with that spies report script, so this doesn't have 
-to re-look-up the spy data that the spy report almost certainly just looked 
-up.
-
-However, after this script completes, if it assigned any spies, it will clear 
-that cache automatically.  This way, you can go back and re-run the spy report 
-script and be sure to see information on your newly-assigned spies.
 
 Full Documentation
 ------------------

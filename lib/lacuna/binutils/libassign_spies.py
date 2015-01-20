@@ -65,6 +65,10 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             type        = str,
             help        = "Only assigns spies who are located on this planet.  Defaults to the spies' home planet, so you'll definitely need to change this for offensive tasks."
         )
+        parser.add_argument( '--fresh', 
+            action      = 'store_true',
+            help        = "Spy data is cached and shared with spy_report.py.  So if you just ran that spy report script, this will run more quickly.  However, if you just ran the spy report script, then sent some spies to a target planet, and now you're wanting to run this to assign those spies, you'll want to clear out the cache.  In that case, pass this argument."
+        )
         parser.add_argument( '--top', 
             metavar     = '<attribute>',
             action      = 'store',
@@ -78,6 +82,10 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         self.trans = lacuna.types.Translator()
         self.task = self.trans.translate_assgtype( self.args.task )
         self._set_planets()
+
+        if self.args.fresh:
+            self.client.cache_clear( 'my_colonies' )
+            self.client.cache_clear( 'spies' )
 
     def _set_planets( self ):
         self.client.cache_on( 'my_colonies', 3600 )
