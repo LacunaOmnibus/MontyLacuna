@@ -38,7 +38,7 @@ class ScuttleShips(lacuna.binutils.libbin.Script):
 
         self.client.user_logger.debug( "Setting {} as the working planet.".format(self.args.name) )
         self._set_planet( self.args.name )
-        self.client.user_logger.debug( "Finding a spaceport on.".format(self.planet.name) )
+        self.client.user_logger.debug( "Finding a spaceport on {}.".format(self.planet.name) )
         self._set_spaceport()
 
         self.trans = lacuna.types.Translator()

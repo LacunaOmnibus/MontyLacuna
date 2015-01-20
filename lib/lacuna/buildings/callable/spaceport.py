@@ -35,17 +35,15 @@ class spaceport(lacuna.building.MyBuilding):
         """ View the spaceport.
 
         Returns a tuple:
-            - max_ships -- Integer maximum ships that can be stored
-            - docks_available -- Integer; how many more ships can be stored
             - docked_ships -- Dict; summary of counts of ships currently at dock
+            - docks_available -- Integer number of unused docks that can be filled
+            - docks_max -- Integer total number of docks across all spaceports
             
             docked_ships dict::
 
-                {
-                    "probe": 3,
+                {   "probe": 3,
                     "cargo_ship": 0,
-                    etc     
-                }
+                    etc         }
 
         """
         docked_ships    = 0

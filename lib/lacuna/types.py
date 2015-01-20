@@ -102,7 +102,7 @@ class Translator():
             'security_ministry_seeker', 'short_range_colony_ship', 'smuggler_ship',
             'snark', 'snark2', 'snark3', 'space_station', 'spaceport_seeker',
             'spy_pod', 'spy_shuttle', 'stake', 'supply_pod', 'supply_pod2',
-            'supply_pod3', 'supply_pod4', 'supply_pod5' 'surveyor', 'sweeper',
+            'supply_pod3', 'supply_pod4', 'supply_pod5', 'surveyor', 'sweeper',
             'terraforming_platform_ship', 'thud',
         ]
         if type.lower() in system:

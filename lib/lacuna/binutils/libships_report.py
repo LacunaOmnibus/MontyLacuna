@@ -5,18 +5,11 @@ import argparse, csv, os, sys
 class PlanetShipData():
     """ Contains the data gathered on ships living at a single planet.
     """
-    def __init__(self, pname, ships, num):
-        self.pname  = pname
-        self.ships  = ships
-        self.num    = num
-
-    def _organize_counts( self ):
-        self.counts = {}
-        for s in self.ships:
-            if s.type_human in self.counts:
-                self.counts[ s.type_human ] += 1
-            else:
-                self.counts[ s.type_human ] = 1
+    def __init__(self, pname, ships, docks_avail, docks_ttl):
+        self.pname          = pname
+        self.ships          = ships
+        self.docks_avail    = docks_avail
+        self.docks_ttl      = docks_ttl
 
     def display_report( self, sr ):
         if sr.args.format == 'csv':
@@ -28,10 +21,9 @@ class PlanetShipData():
         """ Displays a human-readable report on the ships on a single planet on 
         the terminal.
         """
-        self._organize_counts()
-        print( "There are {:,} total ships on {}.".format(self.num, self.pname) )
-        for type in sorted( self.counts.keys() ):
-            print( "\t{:<30} {: >6,}".format(type, self.counts[type]) )
+        print( "{} has {:,} of {:,} docks available.".format(self.pname, self.docks_avail, self.docks_ttl) )
+        for type in sorted( self.ships ):
+            print( "\t{:<30} {: >6,}".format(type, self.ships[type]) )
         print( '' )
 
     def display_csv_report( self, sr ):
@@ -141,12 +133,8 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         requested tag, or all ships if no tag was passed.
         """
         self.client.cache_on( 'ships_report', 3600 )
-        paging = { "no_paging": 1 }
-        filter = {}
-        if self.args.tags:
-            filter = { "tag": self.args.tags }
-        ships, num = self.port.view_all_ships( paging, filter )
-        self.ship_data[ self.planet.name ] = PlanetShipData( self.planet.name, ships, num )
+        ships, docks_avail, docks_ttl = self.port.view()
+        self.ship_data[ self.planet.name ] = PlanetShipData( self.planet.name, ships, docks_avail, docks_ttl )
         self.client.cache_off()
 
 

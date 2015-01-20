@@ -24,7 +24,5 @@ for pname in sr.planets:
     l.info( "Gathering ship data on {}.".format(sr.planet.name) )
     sr.gather_ship_data()
 
-
 sr.display_full_report()
-
 
