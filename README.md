@@ -10,6 +10,7 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
   Should be able to handle either a Police Station (SS) or a Sec Min (planet).
 
 ## TBD
+- investigate the bugout spy assignment for recall_all_spies.py
 - assign_spies tasks should be case insensitive at least, and really should 
   have a translator set up.
     - Trying to assign guys currently on "mayhem training" to Idle (so I can 
