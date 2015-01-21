@@ -52,8 +52,9 @@ class Turnkey(lacuna.binutils.libbin.Script):
         )
         super().__init__(parser)
 
-        self.body   = ''      # Either a colony or a space station.
-        self.prison = ''      # Either a Sec Min or a Police Station.
+        self.body           = ''    # Either a colony or a space station.
+        self.prison         = ''    # Either a Sec Min or a Police Station.
+        self.task_dispatch  = {}    # Dispatch table to determine which task method to run
 
         if self.args.fresh:
             self.client.cache_clear( 'my_colonies' )
@@ -61,6 +62,9 @@ class Turnkey(lacuna.binutils.libbin.Script):
 
         self._set_body( self.args.name )
         self._set_prison()
+        self._set_dispatch()
+
+
 
     def _set_body( self, pname:str ):
         """ Sets the current working planet by name.
@@ -93,18 +97,19 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self.prison = self.body.get_buildings_bytype( bldg, 1, 1, 100 )[0]
         self.client.cache_off
 
+    def _set_dispatch( self ):
+        self.task_dispatch = {
+            'view_prisoners': self.view_prisoners,
+            'view_spies': self.view_foreign_spies,
+            'execute': self.execute_prisoners,
+            'release': self.release_prisoners,
+        }
+
     def perform_chosen_task( self ):
-        ### CHECK this is dumb - make a dispatch table.
-        if self.args.task == 'view_prisoners':
-            self.view_prisoners()
-        elif self.args.task == 'view_spies':
-            self.view_foreign_spies()
-        elif self.args.task == 'execute':
-            self.execute_prisoners()
-        elif self.args.task == 'release':
-            self.release_prisoners()
+        if self.args.task in self.task_dispatch:
+            self.task_dispatch[ self.args.task ]()
         else:
-            raise KeyError( "What are you doing, Dave?" )
+            raise KeyError("Invalid --task argument.")
 
     def execute_prisoners( self ):
         if self.args.page == 0:
