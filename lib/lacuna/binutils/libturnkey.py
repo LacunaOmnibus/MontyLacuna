@@ -72,6 +72,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         Arguments:
             - pname -- String name of the planet to set.
         """
+        self.client.user_logger.debug( "Setting working planet to {}.".format(pname) )
         self.client.cache_on( 'my_colonies', 3600 )
         self.body = self.client.get_body_byname( pname )
         self.client.cache_off()
@@ -90,14 +91,15 @@ class Turnkey(lacuna.binutils.libbin.Script):
             bldg = 'policestation'
         else:
             bldg = 'security'
+        self.client.user_logger.debug( "Prison on this body will be a {}.  Grabbing it if it exists...".format(bldg) )
 
-        ### No need for a try block.  If the user hasn't got a bldg building, 
-        ### this will blow up properly.
         self.client.cache_on( 'my_colonies', 3600 )
         self.prison = self.body.get_buildings_bytype( bldg, 1, 1, 100 )[0]
         self.client.cache_off
+        self.client.user_logger.debug( "Got the {}.".format(bldg) )
 
     def _set_dispatch( self ):
+        self.client.user_logger.debug( "Initializing dispatch table." )
         self.task_dispatch = {
             'view_prisoners': self.view_prisoners,
             'view_spies': self.view_foreign_spies,
@@ -106,19 +108,50 @@ class Turnkey(lacuna.binutils.libbin.Script):
         }
 
     def perform_chosen_task( self ):
+        """ Call the method indicated by the 'task' option.  If '--page' is 0, 
+        calls that method once for each page of results.
+        """
+        self.client.user_logger.debug( "Running the requested task." )
         if self.args.task in self.task_dispatch:
             self.task_dispatch[ self.args.task ]()
         else:
-            raise KeyError("Invalid --task argument.")
+            raise KeyError("Invalid 'task' argument.")
+
+    def _paginate( self, callback, count:int ):
+        if self.args.page == 0:
+            self.client.user_logger.debug( "Displaying all results, paginated." )
+            cnt = 0
+            while(True):
+                cnt += 1
+                num = callback( cnt )
+                if num < 25:
+                    break
+        else:
+            self.client.user_logger.debug( "Displaying page {} of results.".format(self.args.page) )
+            callback( self.args.page )
 
     def execute_prisoners( self ):
-        if self.args.page == 0:
-            ### CHECK sigh pagination.
-            pass
-        else:
-            self.execute_prisoners_page( self.args.page )
+        """ Execute the prisoners on the selected page.
+        """
+        self._paginate( self._execute_prisoners_page, cnt )
 
-    def execute_prisoners_page( self, page ):
+    def release_prisoners( self ):
+        """ Release the prisoners on the selected page.
+        """
+        self._paginate( self._release_prisoners_page, cnt )
+
+    def view_foreign_spies( self ):
+        """ View un-captured foreign spies on the selected page.
+        """
+        self._paginate( self._view_foreign_spies_page, cnt )
+
+    def view_prisoners( self ):
+        """ View the prisoners on the selected page.
+        """
+        self._paginate( self._view_prisoners_page, cnt )
+
+    def _execute_prisoners_page( self, page ):
+        self.client.user_logger.debug( "Executing prisoners on page {}.".format(self.args.page) )
         self.client.cache_on('prisoners')
         pris = self.prison.view_prisoners( page )
         for p in pris:
@@ -126,14 +159,8 @@ class Turnkey(lacuna.binutils.libbin.Script):
             #self.prison.execute_prisoner( p.id )
             print( "This is where I would execute prisoner ID {}".format(p.id) )
 
-    def release_prisoners( self ):
-        if self.args.page == 0:
-            ### CHECK sigh pagination.
-            pass
-        else:
-            self.release_prisoners_page( self.args.page )
-
-    def release_prisoners_page( self, page ):
+    def _release_prisoners_page( self, page ):
+        self.client.user_logger.debug( "Releasing prisoners on page {}.".format(self.args.page) )
         self.client.cache_on('prisoners')
         pris = self.prison.view_prisoners( page )
         for p in pris:
@@ -141,18 +168,8 @@ class Turnkey(lacuna.binutils.libbin.Script):
             #self.prison.release_prisoner( p.id )
             print( "This is where I would release prisoner ID {}".format(p.id) )
 
-    def view_foreign_spies( self ):
-        if self.args.page == 0:
-            cnt = 0
-            while(True):
-                cnt += 1
-                num = self.view_foreign_spies_page( cnt )
-                if num < 25:
-                    break
-        else:
-            self.view_foreign_spies_page( self.args.page )
-
-    def view_foreign_spies_page( self, page ):
+    def _view_foreign_spies_page( self, page ):
+        self.client.user_logger.debug( "Viewing foreign spies on page {}.".format(self.args.page) )
         self.client.cache_on('prisoners')   # don't change this
         pris = self.prison.view_foreign_spies( page )
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
@@ -165,18 +182,8 @@ class Turnkey(lacuna.binutils.libbin.Script):
         print( '' )
         return len(pris)
 
-    def view_prisoners( self ):
-        if self.args.page == 0:
-            cnt = 0
-            while(True):
-                cnt += 1
-                num = self.view_prisoners_page( cnt )
-                if num < 25:
-                    break
-        else:
-            self.view_prisoners_page( self.args.page )
-
-    def view_prisoners_page( self, page ):
+    def _view_prisoners_page( self, page ):
+        self.client.user_logger.debug( "Viewing prisoners on page {}.".format(self.args.page) )
         self.client.cache_on('prisoners')
         pris = self.prison.view_prisoners( page )
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
@@ -188,7 +195,4 @@ class Turnkey(lacuna.binutils.libbin.Script):
             print( tmpl.format(name, p.level, task, p.sentence_expires))
         print( '' )
         return len(pris)
-
-
-
 

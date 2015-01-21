@@ -7,8 +7,6 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 
 ## Working On
 - turnkey.py
-    - pagination on view_prisoners() and view_foreign_spies() works.  Copy that to the 
-      other methods.
 
 ## TBD
 - Everything needs to be tested on Windows.  In particular:
