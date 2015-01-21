@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+
+### BE SURE TO RUN THIS WITH -v -- IT'S OCCASIONALLY DOING SOMETHING I DON'T 
+### UNDERSTAND YET AND WON'T WITHOUT -v.
+
 import os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
@@ -34,7 +38,7 @@ for pname in bs.planets:
     l.info( "You requested to build {} ships.  I'm going to try to build {:,} ships."
         .format(requested, num_to_build)
     )
-    if num_to_build < requested:
+    if requested != 'max' and not bs.args.topoff and int(num_to_build) < int(requested):
         l.info( "I'm building fewer than requested for a reason. You're probably low on spaceports." )
 
     ### Doo eet.
@@ -45,7 +49,12 @@ for pname in bs.planets:
         num_to_build_here = left_to_build if left_to_build < num_to_build_here else num_to_build_here
         left_to_build -= num_to_build_here
         l.debug( "About to try building {} ships." .format(num_to_build_here))
-        y.build_ship( bs.shiptype, num_to_build_here )
+        if num_to_build_here > 0:
+            y.build_ship( bs.shiptype, num_to_build_here )
+        else:
+            ### CHECK
+            ### I'm not sure why this is hitting periodically.
+            l.info( "Looks like we've added all to the queue that we can." )
         l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
         if num_to_build_here > 25:
             l.info( "Remember that the Shipyard build queue in game will only ever display the first " )
