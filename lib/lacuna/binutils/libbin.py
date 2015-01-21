@@ -158,6 +158,11 @@ class Script:
 
 
     def connect( self ):
+        """ Connects to the game server, using the config_file and 
+        config_section arguments.
+
+        Sets self.client.
+        """
         try:
             client = lacuna.clients.Member(
                 config_file     = self.args.config_file,
@@ -168,4 +173,23 @@ class Script:
             quit()
         return client
 
+
+    def summarize( self, string:str, mymax:int ):
+        """ If a string is too long, shortens it and adds ellipsis.
+
+        Arguments:
+            - string -- Some string to summarize
+            - max -- Integer max length of the string.  Must be greater than 3.
+
+        If the string is "abcdefghijk" and the max is 6, this will return 
+        "abc..."
+
+        Returns the summarized string, or the original string if it was shorter 
+        than max.
+        """
+        mymax = 4 if mymax < 4 else mymax
+        if len(string) > mymax:
+            submax = mymax - 3
+            string = string[0:submax] + "..."
+        return string
 

@@ -6,8 +6,9 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## Working On
-- "turnkey.py" or some such, to do $whatever to a large number of prisoners.  
-  Should be able to handle either a Police Station (SS) or a Sec Min (planet).
+- turnkey.py
+    - pagination on view_prisoners() and view_foreign_spies() works.  Copy that to the 
+      other methods.
 
 ## TBD
 - build_ships is building the right number of ships.

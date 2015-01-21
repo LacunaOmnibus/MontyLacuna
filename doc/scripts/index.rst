@@ -55,4 +55,5 @@ if your arguments contain spaces, you have to quote them::
    search_archmin
    ships_report
    spies_report
+   turnkey
 

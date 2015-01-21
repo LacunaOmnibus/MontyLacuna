@@ -18,7 +18,7 @@ class security(lacuna.building.MyBuilding):
         Accepts optional 'page_number', integer number of the page (25 prisoners 
         per page) you want to view.  Defaults to 1.
 
-        Returns a list of lacuna.spy.Prisoner objects.
+        Returns a list of :class:`lacuna.spy.Prisoner` objects.
         """
         prisoner_list = []
         for i in kwargs['rslt']['prisoners']:
@@ -54,7 +54,7 @@ class security(lacuna.building.MyBuilding):
         Accepts optional 'page_number', integer number of the page (25 prisoners 
         per page) you want to view.  Defaults to 1.
 
-        Returns a list of lacuna.spy.ForeignAgent objects.
+        Returns a list of :class:`lacuna.spy.ForeignAgent` objects.
         """
         foreign_list = []
         for i in kwargs['rslt']['spies']:

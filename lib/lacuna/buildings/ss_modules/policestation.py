@@ -22,7 +22,7 @@ class policestation(lacuna.building.MyBuilding):
             - page_number -- Optional page of results to view.  Defaults to 1.
 
         Returns a tuple:
-            - ships -- list of ship.IncomingShip objects.
+            - ships -- list of :class:`lacuna.ship.IncomingShip` objects.
             - number -- total number of incoming ships.
         """
         mylist = []
@@ -39,7 +39,7 @@ class policestation(lacuna.building.MyBuilding):
             - page_number -- Optional page of results to view.  Defaults to 1.
 
         Returns a tuple:
-            - ships -- list of ship.ForeignOrbiting objects.
+            - ships -- list of :class:`lacuna.ship.ForeignOrbiting` objects.
             - number -- total number of incoming ships.
         """
         mylist = []
@@ -66,7 +66,7 @@ class policestation(lacuna.building.MyBuilding):
             - page_number -- Optional page of results to view.  Defaults to 1.
 
         Returns a tuple:
-            - ships -- list of ship.IncomingShip objects.
+            - ships -- list of :class:`lacuna.ship.IncomingShip` objects.
             - number -- total number of incoming ships.
         """
         mylist = []
@@ -85,7 +85,7 @@ class policestation(lacuna.building.MyBuilding):
         Arguments:
             - page_number -- Optional page of results to view.  Defaults to 1.
 
-        Returns a list of lacuna.spy.Prisoner objects.
+        Returns a list of :class:`lacuna.spy.Prisoner` objects.
         """
         mylist = []
         for i in kwargs['rslt']['prisoners']:
@@ -133,10 +133,10 @@ class policestation(lacuna.building.MyBuilding):
         Arguments:
             - page_number -- Optional page of results to view.  Defaults to 1.
 
-        Returns a list of lacuna.spy.ForeignAgent objects.
+        Returns a list of :class:`lacuna.spy.ForeignAgent` objects.
         """
         mylist = []
-        for i in kwargs['rslt']['ships']:
+        for i in kwargs['rslt']['spies']:
             mylist.append( lacuna.spy.ForeignAgent(self.client, i) )
         return mylist
 
