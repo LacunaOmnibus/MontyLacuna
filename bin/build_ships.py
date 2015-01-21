@@ -34,6 +34,8 @@ for pname in bs.planets:
     l.info( "You requested to build {} ships.  I'm going to try to build {:,} ships."
         .format(requested, num_to_build)
     )
+    if num_to_build < requested:
+        l.info( "I'm building fewer than requested for a reason. You're probably low on spaceports." )
 
     ### Doo eet.
     left_to_build = num_to_build
