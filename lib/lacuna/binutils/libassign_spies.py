@@ -179,7 +179,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         """
         valid = []
         for s in self.spies:
-            if self.task == s.assignment:
+            if self.args.doing == s.assignment:
                 valid.append( s )
         if not valid:
             raise err.NoUsableSpiesError("You have no usable spies currently performing the {} task.".format(self.args.doing))
