@@ -109,9 +109,12 @@ class BuildShips(lacuna.binutils.libbin.Script):
         if self.args.topoff:
             old_cache = self.client.cache_off() # be sure this is off.
             sp = self.planet.get_buildings_bytype( 'spaceport', self.args.min_lvl, 1, 100 )[0]
-            paging = {}
-            filter = { 'type': self.shiptype }
-            ships, currently_in_stock = sp.view_all_ships( paging, filter )
+
+            currently_in_stock = 0
+            docked_ships, docks_avail, docks_max = sp.view()
+            if self.shiptype in docked_ships:
+                currently_in_stock = docked_ships[self.shiptype]
+
             if currently_in_stock >= requested_num:
                 self.client.user_logger.info( "You already have {} {}s built, no need to top off."
                     .format(currently_in_stock, self.args.type)
