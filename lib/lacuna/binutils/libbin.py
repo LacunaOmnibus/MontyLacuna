@@ -1,6 +1,33 @@
 
 import argparse, lacuna, os, sys
 
+class FindConfigFileAction( argparse.Action ):
+    def __init__( self, option_strings, dest, nargs=None, **kwargs ):
+        self.option_strings = option_strings
+        self.dest = dest
+        if nargs is not None:
+            raise ValueError("nargs not allowed")
+        super(FindConfigFileAction, self).__init__(option_strings, dest, **kwargs)
+
+    def __call__( self, parser, namespace, value, option_string ):
+        ### This only gets called if the user sends a "--file" argument.
+        file = self.find_config_file( value )
+        if file:
+            setattr( namespace, self.dest, self.file )
+        else:
+            raise ValueError("I was unable to find your config file '{}'.".format(value) )
+
+    def find_config_file( self, filecand ):
+        bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
+        candpaths = (bindir + "/../etc", bindir + "/..", bindir )
+        file = None
+        for i in candpaths:
+            f = i + "/" + filecand
+            if os.path.isfile( f ):
+                file = f
+        return file
+
+
 class Script:
     """ Base class for scripts.
 
@@ -105,7 +132,7 @@ class Script:
         parser.add_argument( '--file', 
             dest        = 'config_file',
             metavar     = '<config_file>',
-            action      = 'store',
+            action      = FindConfigFileAction,
             default     = self.bindir + "/../etc/lacuna.cfg",
             help        = "Path to the config file.  Defaults to 'ROOT/etc/lacuna.cfg'"
         )
@@ -134,7 +161,11 @@ class Script:
                 print( "Skipping argparse because of existence of ", i )
                 self.skip_argparse[ i ]()
 
-        self.args   = parser.parse_args()
+        self.args = parser.parse_args()
+
+        print( self.args.config_file )
+        quit()
+
         self.client = self.connect()
 
         ### Set log level

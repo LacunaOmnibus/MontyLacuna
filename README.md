@@ -35,10 +35,11 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
       supporting that.  Even if that's not the case, ExtendedInterpolation seems to be the 
       source of the problem, and it's not providing that much benefit.
 
-- I can't replicate any of the above.  64 bit Windows 8, brand new 32-bit AS Python 
-  3.4.1.0, brand new MontyLacuna .zip file, walked through the instructions and ended up 
-  being able to run ships_report.py just fine.
-    - I guess I need to re-try this with the 64-bit AS python; I think I downloaded the 
-      32-bit version.  Whatever, I need to try again with both versions to confirm they 
-      both work.
+- I can't replicate any of the above.
+    - 64 bit Windows 8
+    - Tried both 64 bit and 32 bit AS Python 3.4.1.0
+      - On each attempt, after uninstalling the previous python installs, I deleted 
+        c:\Python34\
+    - For both Python versions, I walked through the instructions and ended up being able 
+      to run both ships_report.py and spies_report.py just fine.
 
