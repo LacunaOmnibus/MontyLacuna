@@ -117,7 +117,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         else:
             raise KeyError("Invalid 'task' argument.")
 
-    def _paginate( self, callback, count:int ):
+    def _paginate( self, callback ):
         if self.args.page == 0:
             self.client.user_logger.debug( "Displaying all results, paginated." )
             cnt = 0
@@ -133,22 +133,22 @@ class Turnkey(lacuna.binutils.libbin.Script):
     def execute_prisoners( self ):
         """ Execute the prisoners on the selected page.
         """
-        self._paginate( self._execute_prisoners_page, cnt )
+        self._paginate( self._execute_prisoners_page )
 
     def release_prisoners( self ):
         """ Release the prisoners on the selected page.
         """
-        self._paginate( self._release_prisoners_page, cnt )
+        self._paginate( self._release_prisoners_page )
 
     def view_foreign_spies( self ):
         """ View un-captured foreign spies on the selected page.
         """
-        self._paginate( self._view_foreign_spies_page, cnt )
+        self._paginate( self._view_foreign_spies_page )
 
     def view_prisoners( self ):
         """ View the prisoners on the selected page.
         """
-        self._paginate( self._view_prisoners_page, cnt )
+        self._paginate( self._view_prisoners_page )
 
     def _execute_prisoners_page( self, page ):
         self.client.user_logger.debug( "Executing prisoners on page {}.".format(self.args.page) )
