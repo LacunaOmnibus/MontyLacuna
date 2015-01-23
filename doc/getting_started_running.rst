@@ -50,12 +50,15 @@ had one open, close it and open a new one) and type::
 
 That should respond with something like this::
 
-    Python 3.4.0
+    Python 3.4.1.0
 
 If that's what you see, then Python has been installed successfully.
 
 Troubleshooting Python Install
 ------------------------------
+If python installed properly in the previous step, skip this section - scroll 
+down to the :ref:`install_monty` section.
+
 Especially if you've installed Python before, it's possible that, after 
 installing it this time, the ``python --version`` command will tell you 
 something like::
@@ -86,7 +89,12 @@ Another option is to restart Windows Explorer in your Task Manager:
           type "explorer".  This will restart Windows Explorer (and your 
           desktop will reappear).
 
-    - Open a new CMD window and try to run "python --version" again.
+Open a new CMD window and try to run "python --version" again.
+
+If your system still can't find Python, uninstall it and then re-install it.  
+Follow the instructions above carefully, and be sure to check the part about 
+registering as default python.  After re-installing, reboot your machine and 
+try the ``python --version`` command again after the reboot.
 
 Non-Windows
 ~~~~~~~~~~~
@@ -95,6 +103,8 @@ If you're on Linux or Mac, you should already have Python installed.  But make
 sure that you've got Python 3.  Many systems come with Python 2, not 3, and 
 MontyLacuna will not work with Python 2.  Python 3 should be available via 
 your package manager.
+
+.. _install_monty:
 
 Install MontyLacuna
 -------------------
@@ -124,38 +134,50 @@ Install pip and Prerequisite Libraries
 pip is a tool for installing Python libraries.  Installing pip is very easy, 
 as MontyLacuna includes a script to install it for you.
 
-Open up a terminal window (on Windows, this means ``CMD.exe``) to the 
-MontyLacuna folder you just extracted in the previous step, and run the pip 
-installer script::
+Open up a terminal window (on Windows, this means ``CMD.exe``).  Change into 
+the root MontyLacuna folder -  the one you just extracted in the previous step 
+- and run the pip installer script::
 
-    python bin/get-pip.py
+    >>> python bin/get-pip.py
 
-pip is now installed.
+*NOTE* -- please don't get clever and change into the ``bin/`` folder and try 
+to run that as just::
+
+    >>> python get-pip.py
+    (Don't do this)
+
+Anyway, after running that script, pip is now installed.
 
 There are only two Python libraries to install, ``requests`` and ``beaker``, 
 and you install both of them using ``pip`` by typing these two commands one at 
 a time::
 
-    pip install requests
-    pip install beaker
+    >>> pip install requests
+    >>> pip install beaker
 
-*Ruh-Roh!  Pip didn't work!*
-    If you ran one of the ``pip install`` commands above, and it told you 
-    something like::
+Troubleshooting Pip Install
+---------------------------
+As with the Python install, if those two ``pip install ...`` commands seemed 
+to work, you can skip down to the :ref:`create_config_file` section.
 
-        Unknown or unsupported command 'install'
+If you ran one of the ``pip install`` commands above, and it told you 
+something like::
 
-    ...here's what happened.  You probably have Strawberry Perl installed, and 
-    Strawberry Perl has, for some bizarre reason, a completely different 
-    program named 'pip', and that's what you're running right now.
+    Unknown or unsupported command 'install'
 
-    The fix is easy enough.  Instead of just typing ``pip``, you need to type 
-    the full path to your Python pip program.  So do this::
+...here's what happened.  You probably have Strawberry Perl installed, and 
+Strawberry Perl has, for some bizarre reason, a completely different 
+program named 'pip', and that's what you're running right now.
 
-        c:\Python34\Scripts\pip install requests
-        c:\Python34\Scripts\pip install beaker
+The fix is easy enough.  Instead of just typing ``pip``, you need to type 
+the full path to your Python pip program.  So do this::
+
+    c:\Python34\Scripts\pip install requests
+    c:\Python34\Scripts\pip install beaker
 
 Leave that CMD window open for the next step.
+
+.. _create_config_file:
 
 Create A Config File
 --------------------

@@ -34,8 +34,11 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
       altogether.  I'm finding hints that the newest version of configparser may not be 
       supporting that.  Even if that's not the case, ExtendedInterpolation seems to be the 
       source of the problem, and it's not providing that much benefit.
-- I can't replicate any of this.  64 bit Windows 8, brand new 32-bit AS Python 3.4.1.0, 
-  brand new MontyLacuna .zip file, walked through the instructions and ended up being able 
-  to run ships_report.py just fine.
-    - I guess I need to re-try this with the 64-bit AS python.
+
+- I can't replicate any of the above.  64 bit Windows 8, brand new 32-bit AS Python 
+  3.4.1.0, brand new MontyLacuna .zip file, walked through the instructions and ended up 
+  being able to run ships_report.py just fine.
+    - I guess I need to re-try this with the 64-bit AS python; I think I downloaded the 
+      32-bit version.  Whatever, I need to try again with both versions to confirm they 
+      both work.
 
