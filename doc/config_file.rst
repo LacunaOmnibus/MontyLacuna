@@ -32,7 +32,6 @@ You can add as many additional named sections as you'd like.
     show_captcha = True
     sleep_on_call = 1
     sleep_after_error = True
-    testhost = pt.lacunaexpanse.com
     warn_on_sleep = True
 
     [real]
@@ -48,8 +47,8 @@ You can add as many additional named sections as you'd like.
     password = My Alliance Mate's Sitter Password
     logfile = ally_mate.log
 
-    [playtest]
-    host = ${DEFAULT:testhost}
+    [play_test]
+    host = pt.lacunaexpanse.com
     username = My PT Empire Name
     password = My PT Password
 
@@ -130,12 +129,4 @@ that the default config file creation script that everybody else using
 MontyLacuna uses is going to create sections named ``real`` and ``sitter``.  
 If you're going to be writing scripts that are meant to be run by other 
 people, you'll probably want your client connection to use one of those names.
-
-Section Variable Interpolation
-------------------------------
-The ``[playtest]`` section interpolates the ``testhost`` value from the 
-``DEFAULT`` section, and uses that value as its own ``host`` value.  That 
-interpolation format will work for any other setting as well.  Or, you could 
-certainly just type ``pt.lacunaexpanse.com`` there instead of using the 
-variable interpolation.
 
