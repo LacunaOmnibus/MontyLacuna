@@ -32,11 +32,5 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
       his problems, and ExtendedInterpolation is still active, I don't know what's causing 
       his issues.
 
-- I can't replicate any of the above.
-    - 64 bit Windows 8
-    - Tried both 64 bit and 32 bit AS Python 3.4.1.0
-      - On each attempt, after uninstalling the previous python installs, I deleted 
-        c:\Python34\
-    - For both Python versions, I walked through the instructions and ended up being able 
-      to run both ships_report.py and spies_report.py just fine.
-
+- THE PROBLEM - jof has a $ in his sitter password, which is confusing 
+  something.

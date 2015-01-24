@@ -50,7 +50,7 @@ cp['sitter'] = {
     'password': sitter_pw,
 }
 cp['play_test'] = {
-    'host': '${DEFAULT:test_host}',
+    'host': 'pt.lacunaexpanse.com',
     'username': emp_name,
     'password': sitter_pw,
     'logfile': 'pt.log',

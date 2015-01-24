@@ -236,7 +236,13 @@ class Guest(lacuna.bc.SubClass):
         self.request_logger = l
 
     def _read_config_file( self, conf, default = 'DEFAULT' ):
-        cp = configparser.ConfigParser( interpolation=configparser.ExtendedInterpolation() )
+        ### passwords sometimes contain $ characters, which confuse 
+        ### ExtendedInterpolation.  BasicInterpolation uses % characters for 
+        ### the same thing Extended uses $, so Basic is probably going to have 
+        ### the same issues.  The interpolated sections of the config were 
+        ### kinda neato, but would probably end up creating more confusion 
+        ### than benefit in the end anyway, so they're going away completely.
+        cp = configparser.ConfigParser( interpolation=None )
         cp.read( conf )
         for section in cp:
             if section == default:
@@ -699,6 +705,7 @@ class Member(Guest):
     def _update_config_file(self):
         if not hasattr(self, 'config'):
             return False
+
         with open(self.config_file, 'w') as handle:
             self.config.write(handle)
 
