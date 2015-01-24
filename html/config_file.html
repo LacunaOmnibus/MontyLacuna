@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Config File &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Getting Started Writing Scripts" href="getting_started_writing.html"/>
+        <link rel="prev" title="Turnkey (Prisoner Management)" href="scripts/turnkey.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-values">Default Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Config File</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="sources/config_file.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="config-file">
+<span id="id1"></span><h1>Config File<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h1>
+<p>Normally when you connect a client, you&#8217;ll send along the path to a config
+file, and which section in that file you want to connect with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_client</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
+    <span class="n">config_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s">&quot;/../etc/lacuna.cfg&quot;</span><span class="p">,</span>
+    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;sitter&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The easiest way to create a config file with a new install is to run
+<tt class="docutils literal"><span class="pre">bin/create_config_file.py</span></tt>.  It will ask you a few basic questions and then
+create a working config file based on your responses.</p>
+<p>After that config file has been created, you can feel free to edit it as
+desired.  Often you&#8217;ll want to add a section for an alliance mate for whom
+you&#8217;re running scripts; see the <tt class="docutils literal"><span class="pre">some_alliance_mate</span></tt> section in the example
+below.</p>
+<p>You can add as many additional named sections as you&#8217;d like.</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[DEFAULT]</span>
+<span class="na">api_key</span> <span class="o">=</span> <span class="s">anonymous</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">us1.lacunaexpanse.com</span>
+<span class="na">logfile</span> <span class="o">=</span> <span class="s">us1.log</span>
+<span class="na">proto</span> <span class="o">=</span> <span class="s">https</span>
+<span class="na">show_captcha</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">sleep_on_call</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">sleep_after_error</span> <span class="o">=</span> <span class="s">True</span>
+<span class="na">warn_on_sleep</span> <span class="o">=</span> <span class="s">True</span>
+
+<span class="k">[real]</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My Real Password</span>
+
+<span class="k">[sitter]</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My Sitter Password</span>
+
+<span class="k">[some_alliance_mate]</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My Alliance Mate&#39;s Sitter Password</span>
+<span class="na">logfile</span> <span class="o">=</span> <span class="s">ally_mate.log</span>
+
+<span class="k">[play_test]</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">pt.lacunaexpanse.com</span>
+<span class="na">username</span> <span class="o">=</span> <span class="s">My PT Empire Name</span>
+<span class="na">password</span> <span class="o">=</span> <span class="s">My PT Password</span>
+</pre></div>
+</div>
+<div class="section" id="setting-descriptions">
+<h2>Setting Descriptions<a class="headerlink" href="#setting-descriptions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>api_key</strong><ul>
+<li>Just leave this as <tt class="docutils literal"><span class="pre">anonymous</span></tt>.  A key is required, and you can sign up
+for your own key if you want to, but it seems to be largely unused.</li>
+</ul>
+</li>
+<li><strong>host</strong><ul>
+<li>The hostname to connect to.  Either <tt class="docutils literal"><span class="pre">us1.lacunaexpanse.com</span></tt> or
+<tt class="docutils literal"><span class="pre">pt.lacunaexpanse.com</span></tt></li>
+</ul>
+</li>
+<li><strong>logfile</strong><ul>
+<li>The name of your logfile.  This file will live in <tt class="docutils literal"><span class="pre">ROOT/var/</span></tt>, and will
+be created if it doesn&#8217;t already exist.  <em>Don&#8217;t</em> include a path here, just
+a filename.</li>
+</ul>
+</li>
+<li><strong>proto</strong><ul>
+<li>The protocol to connect with.  Either <tt class="docutils literal"><span class="pre">http</span></tt> or <tt class="docutils literal"><span class="pre">https</span></tt>.  <tt class="docutils literal"><span class="pre">https</span></tt> is
+more secure, but may cause connection problems in some rare cases.  It&#8217;s
+recommended you use <tt class="docutils literal"><span class="pre">https</span></tt>, and only switch to <tt class="docutils literal"><span class="pre">http</span></tt> if there&#8217;s a
+problem.</li>
+</ul>
+</li>
+<li><strong>show_captcha</strong><ul>
+<li>Boolean.  Defaults to True.</li>
+<li>When True, if anything is done that requires a captcha be solved, the
+captcha image will be fetched and displayed to the user in a browser, and
+the user will be prompted to enter the solution.  This is usually what you
+want.  However, if you&#8217;re using MontyLacuna to create something other than
+a terminal application (eg a web app), you&#8217;ll need to manage the captcha
+display yourself, and should set this to False.</li>
+</ul>
+</li>
+<li><strong>sleep_after_error</strong><ul>
+<li>Boolean.  Defaults to True.</li>
+<li>If you do hit the 60 RPC per minute limit error and this is set to True,
+your script will go to sleep for a minute, then pick up where it left off.
+If this is set to False and you hit that limit, your script will raise a
+ServerError exception.</li>
+</ul>
+</li>
+<li><strong>sleep_on_call</strong><ul>
+<li>Integer.  Defaults to 1.</li>
+<li>Number of seconds to sleep after each request is made to the TLE server.
+This is meant to keep you from hitting the 60 RPC per minute limit.
+Setting it to 0 to not sleep at all will speed up your scripts, but you
+run a much greater risk of hitting that limit.</li>
+</ul>
+</li>
+<li><strong>warn_on_sleep</strong><ul>
+<li>True or False.  Defaults to True.</li>
+<li>If the script sleeps because of the 60 RPC per minute limit, and this is
+True, a message will be printed to the screen (STDOUT) letting you know
+the script is pausing.  Not knowing why your script is suddenly taking so
+long is frustrating.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="default-values">
+<h2>Default Values<a class="headerlink" href="#default-values" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section is the only one whose name matters to MontyLacuna.
+Any of the settings that appear in that <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section can also appear
+in any other named section.  However, most settings do not need to appear in
+each section.  Any setting that does not appear in a given section will simply
+use the value listed in <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt>.  Note that the <tt class="docutils literal"><span class="pre">[some_alliance_mate]</span></tt>
+section contains its own <tt class="docutils literal"><span class="pre">logfile</span></tt> setting, while most of the other sections
+don&#8217;t.  This means that any scripts that connect using the
+<tt class="docutils literal"><span class="pre">[some_alliance_mate]</span></tt> section will write to the <tt class="docutils literal"><span class="pre">var/ally_mate.log</span></tt> log
+file, while scripts that connect using any other section will write to the
+default <tt class="docutils literal"><span class="pre">var/us1.log</span></tt> log file.</p>
+<p>Although the names of the other sections don&#8217;t matter to MontyLacuna, remember
+that the default config file creation script that everybody else using
+MontyLacuna uses is going to create sections named <tt class="docutils literal"><span class="pre">real</span></tt> and <tt class="docutils literal"><span class="pre">sitter</span></tt>.
+If you&#8217;re going to be writing scripts that are meant to be run by other
+people, you&#8217;ll probably want your client connection to use one of those names.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="getting_started_writing.html" class="btn btn-neutral float-right" title="Getting Started Writing Scripts"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scripts/turnkey.html" class="btn btn-neutral" title="Turnkey (Prisoner Management)"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

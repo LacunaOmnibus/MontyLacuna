@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started Writing Scripts &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="next" title="TLE Modules" href="tle_modules/index.html"/>
+        <link rel="prev" title="Config File" href="config_file.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Getting Started Writing Scripts</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="sources/getting_started_writing.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="getting-started-writing-scripts">
+<span id="getting-started-writing"></span><h1>Getting Started Writing Scripts<a class="headerlink" href="#getting-started-writing-scripts" title="Permalink to this headline">¶</a></h1>
+<p>Be sure to follow the <a class="reference internal" href="getting_started_running.html#getting-started-running"><em>Getting Started Running Scripts</em></a> section first.  This
+section assumes that you&#8217;re already to the point of being able to run scripts.</p>
+<div class="section" id="test-scripts">
+<h2>Test Scripts<a class="headerlink" href="#test-scripts" title="Permalink to this headline">¶</a></h2>
+<p>There are a bunch of test scripts in <tt class="docutils literal"><span class="pre">INSTALLDIR/t/</span></tt>.  These are not meant
+to be attached to any test harness, and almost all the code in those scripts
+has been commented out.</p>
+<p>Instead of automated unit tests, those are to-be-run-manually test scripts.
+You can run them as you like, but you&#8217;ll need to edit each one to make sense
+to you, and be careful; some of the example code in those scripts can be
+damaging to your empire.</p>
+<p>Those scripts really exist as examples of how to use MontyLacuna.</p>
+</div>
+<div class="section" id="tell-your-script-where-montylacuna-lives">
+<h2>Tell Your Script Where MontyLacuna Lives<a class="headerlink" href="#tell-your-script-where-montylacuna-lives" title="Permalink to this headline">¶</a></h2>
+<p>When you create a new script, you&#8217;ll need to tell that script how to find the
+MontyLacuna libraries.</p>
+<p>Add this to the top of your script:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="n">libdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s">&quot;/../lib&quot;</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">libdir</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">lacuna</span>
+</pre></div>
+</div>
+<p>The path to the <tt class="docutils literal"><span class="pre">lib/</span></tt> directory is relative to the location of your script,
+and this example assumes your script is going to live in <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>.
+If you&#8217;re going to put your script somewhere else, adjust the path
+accordingly.</p>
+</div>
+<div class="section" id="connect-a-client">
+<h2>Connect a client<a class="headerlink" href="#connect-a-client" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_client</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">clients</span><span class="o">.</span><span class="n">Member</span><span class="p">(</span>
+    <span class="n">config_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">+</span> <span class="s">&quot;/../etc/lacuna.cfg&quot;</span><span class="p">,</span>
+    <span class="n">config_section</span> <span class="o">=</span> <span class="s">&#39;sitter&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>As with the previous step, the path to the config file is relative to the
+location of your script.  Adjust the path accordingly if your script is going
+to live somewhere other than <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>.</p>
+<p>Please keep in mind that many of the people using your script may not be very
+technically inclined.  The config file creation script that comes with
+MontyLacuna creates config file sections named <tt class="docutils literal"><span class="pre">real</span></tt> and <tt class="docutils literal"><span class="pre">sitter</span></tt>.  If
+your script is meant for distribution, it&#8217;s strongly suggested that you
+specify one of those two names as your <tt class="docutils literal"><span class="pre">config_section</span></tt>.</p>
+</div>
+<div class="section" id="logging-and-caching">
+<h2>Logging and Caching<a class="headerlink" href="#logging-and-caching" title="Permalink to this headline">¶</a></h2>
+<p>Logging and caching facilities are set up for use in your scripts, and are
+both easy to access.  For details, see <a class="reference internal" href="logging.html#logging"><em>logging</em></a> and <a class="reference internal" href="caching.html#caching"><em>caching</em></a>.</p>
+</div>
+<div class="section" id="debugging-requests">
+<h2>Debugging Requests<a class="headerlink" href="#debugging-requests" title="Permalink to this headline">¶</a></h2>
+<p>If you ever need to see the exact JSON that a given method would send to the
+server, you can assign a <tt class="docutils literal"><span class="pre">debugging_method</span></tt> on your client, eg:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">debugging_method</span> <span class="o">=</span> <span class="s">&#39;view_profile&#39;</span>
+<span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Once a <tt class="docutils literal"><span class="pre">debugging_method</span></tt> has been assigned, the next time a method by that
+name is called, the JSON that would normally be passed to the TLE servers will
+instead be dumped to the screen, and the script will terminate immediately, to
+allow you to inspect the JSON dump.</p>
+<p>A <tt class="docutils literal"><span class="pre">debugging_method</span></tt> must be the name of a TLE API method.  Most MontyLacuna
+methods are mirrors of TLE API methods, but not all.  To check if a given
+method is a published TLE API method, check out the TLE API documentation:
+<a class="reference external" href="https://us1.lacunaexpanse.com/api/">https://us1.lacunaexpanse.com/api/</a></p>
+</div>
+<div class="section" id="method-calling">
+<h2>Method Calling<a class="headerlink" href="#method-calling" title="Permalink to this headline">¶</a></h2>
+<p>Almost all MontyLacuna methods require positional, not named, arguments.</p>
+<p>The method documentation includes argument names and types for clarity of what
+data types need to be sent, not as an indication that named arguments can be
+used.</p>
+<p>eg The documentation for the Embassy&#8217;s <tt class="docutils literal"><span class="pre">accept_invite</span></tt> method looks like
+this:</p>
+<blockquote>
+<div><strong>accept_invite(invite_id: int, message: str=&#8217;&#8216;, **kwargs)</strong></div></blockquote>
+<p>So, to call <tt class="docutils literal"><span class="pre">accept_invite</span></tt>, you&#8217;d do something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="mi">12345</span><span class="p">,</span> <span class="s">&quot;Come join my alliance!&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>But you wouldn&#8217;t do this, because the invite_id has to come before the
+message:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">### GONNNNG!  Don&#39;t do this.</span>
+<span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Come join my alliance!&quot;</span><span class="p">,</span> <span class="n">invite_id</span> <span class="o">=</span> <span class="mi">12345</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-snippets">
+<h2>Example Snippets<a class="headerlink" href="#example-snippets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get-your-empire">
+<h3>Get your empire<a class="headerlink" href="#get-your-empire" title="Permalink to this headline">¶</a></h3>
+<p>Your empire object is already part of your client:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span><span class="p">(</span> <span class="s">&quot;I have used&quot;</span><span class="p">,</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">rpc_count</span><span class="p">,</span> <span class="s">&quot;RPCs so far today.&quot;</span><span class="p">)</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;I am from {} in {}, and my player name is {}.  I have won {} medals.&quot;</span>
+    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">country</span><span class="p">,</span> <span class="n">profile</span><span class="o">.</span><span class="n">player_name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">medals</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-info-on-your-alliance">
+<h3>Get info on your alliance<a class="headerlink" href="#get-info-on-your-alliance" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_alliance</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_my_alliance</span><span class="p">();</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;My alliance is named {}, and its ID is {}.&quot;</span>
+    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_alliance</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">my_alliance</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="read-mail-from-your-inbox">
+<h3>Read mail from your inbox<a class="headerlink" href="#read-mail-from-your-inbox" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mail</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_inbox</span><span class="p">();</span>
+<span class="n">msgs</span><span class="p">,</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">view_inbox</span><span class="p">(</span> <span class="p">{</span><span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;correspondence&quot;</span><span class="p">]}</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;I have &quot;</span><span class="p">,</span> <span class="n">ttl</span><span class="p">,</span> <span class="s">&quot;messages in my inbox.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-on-one-of-your-planets-by-name">
+<h3>Check on one of your planets by name<a class="headerlink" href="#check-on-one-of-your-planets-by-name" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_planet</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_body_byname</span><span class="p">(</span> <span class="s">&#39;Earth&#39;</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;Earth&#39;s ID is&quot;</span><span class="p">,</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">id</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-on-one-of-the-buildings-based-on-coordinates">
+<h3>Check on one of the buildings based on coordinates<a class="headerlink" href="#check-on-one-of-the-buildings-based-on-coordinates" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pcc</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_building_coords</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;My PCC&#39;s ID is&quot;</span><span class="p">,</span> <span class="n">pcc</span><span class="o">.</span><span class="n">id</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-on-all-of-the-buildings-of-a-certain-type">
+<h3>Check on all of the buildings of a certain type<a class="headerlink" href="#check-on-all-of-the-buildings-of-a-certain-type" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">min_level</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">min_efficiency</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sps</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;spaceport&#39;</span><span class="p">,</span> <span class="n">min_level</span><span class="p">,</span> <span class="n">min_efficiency</span> <span class="p">)</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sps</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span> <span class="s">&quot;This sp is located at ({},{})&quot;</span><span class="p">,</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-on-just-one-building-of-a-certain-type">
+<h3>Check on just one building of a certain type<a class="headerlink" href="#check-on-just-one-building-of-a-certain-type" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">min_level</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">min_efficiency</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;spaceport&#39;</span><span class="p">,</span> <span class="n">min_level</span><span class="p">,</span> <span class="n">min_efficiency</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c">### Or, if you don&#39;t care about level or efficiency...</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;spaceport&#39;</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span> <span class="s">&quot;This space port&#39;s ID is {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="script-parent-class">
+<h3>Script Parent Class<a class="headerlink" href="#script-parent-class" title="Permalink to this headline">¶</a></h3>
+<p>To create a script similar to the scripts that come bundled with MontyLacuna,
+including command-line argument parsing, your script should inherit from:</p>
+<span class="target" id="module-lacuna.binutils.libbin"></span><dl class="class">
+<dt id="lacuna.binutils.libbin.Script">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libbin.</tt><tt class="descname">Script</tt><big>(</big><em>parser</em>, <em>section: str='sitter'</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libbin.Script" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Base class for scripts.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>parser &#8211; Required argparse parser</li>
+<li>section &#8211; Optional config section to read from.  Defaults to 
+&#8216;sitter&#8217;.</li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">binutils.libbin</span>
+
+<span class="k">class</span> <span class="nc">MyScript</span><span class="p">(</span> <span class="n">binutils</span><span class="o">.</span><span class="n">libbin</span><span class="o">.</span><span class="n">Script</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;This shows above the options docs in help&quot;</span><span class="p">,</span>
+            <span class="n">epilog</span>      <span class="o">=</span> <span class="s">&quot;This shows below the options docs in help&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span> <span class="s">&#39;planet&#39;</span><span class="p">,</span>
+            <span class="n">metavar</span>     <span class="o">=</span> <span class="s">&#39;&lt;planet&gt;&#39;</span><span class="p">,</span>
+            <span class="n">action</span>      <span class="o">=</span> <span class="s">&#39;store&#39;</span><span class="p">,</span>
+            <span class="n">help</span>        <span class="o">=</span> <span class="s">&quot;Name of the planet to run against.&quot;</span>
+        <span class="p">)</span>
+        <span class="c">### </span>
+        <span class="c">### Add other arguments as needed</span>
+        <span class="c">###</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">parser</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>By inheriting from binutils.libbin.Script, your script&#39;s main class 
+will get the following:
+
+args        The user&#39;s arguments, passed from the command line.
+bindir      The full path to the directory containing the script
+            being run.
+client      A TLE client, connected using the empire and password
+            found in the requested config file section.
+parser      The argparse parser.
+version     The program version.  Generally this will be set in
+            the ``__init__`` method of the inheriting child class, but 
+            if it&#39;s not set there, this will default to &#39;0.1&#39;
+
+If you need this attribute, you&#39;ll need to create it before calling 
+``super().__init()``:
+
+skip_argparse   Dispatch table of arguments that bypass 
+                argparse.parse_args().  See below.
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>skip_argparse</dt>
+<dd><p class="first">Sometimes you want to give the user the ability to pass an option that 
+will obviate the need for specifying any other options.</p>
+<p>For example, in the <tt class="docutils literal"><span class="pre">search_archmin.py</span> <span class="pre">script</span></tt>, the <tt class="docutils literal"><span class="pre">--list</span></tt> (or 
+<tt class="docutils literal"><span class="pre">-l</span></tt>) arguments are meant to simply display a list of all ores the 
+user can chose from, as a convenience.  In this case, there would be 
+no need for the user to supply the otherwise required <tt class="docutils literal"><span class="pre">planet</span></tt> or 
+<tt class="docutils literal"><span class="pre">glyph</span></tt> positional arguments; we just want to display a list of ores 
+and quit.</p>
+<p>The dispatch table&#8217;s keys are the string args (in our example case, 
+both <tt class="docutils literal"><span class="pre">-l</span></tt> and <tt class="docutils literal"><span class="pre">--list</span></tt> would be keys), and the values are the 
+methods to call.  Remember to omit the parens &#8211; you&#8217;re specifying the 
+method, not calling it.  In our example, both of our keys would have 
+the same value of <tt class="docutils literal"><span class="pre">self.list_ores</span></tt>.  We&#8217;d then need to create a 
+<tt class="docutils literal"><span class="pre">list_ores()</span></tt> method that would be called when either of those 
+options are specified.</p>
+<p>eg:</p>
+<div class="highlight-python"><div class="highlight"><pre>def list_ores( self ):
+    # Code to list out all the ores in the game and then quit().
+
+self.skip_argparse = {
+    &#39;-l&#39;:       self.list_ores,
+    &#39;--list&#39;:   self.list_ores,
+}
+
+super().__init__(parser)
+</pre></div>
+</div>
+<p class="last">Usually, you&#8217;re going to want your script to end after the method 
+specified in the dispatch table is run, but it&#8217;s possible that some 
+circumstance could crop up where that&#8217;s not the case.  So if you do 
+want the script to quit after your method is run, be sure to include a 
+<tt class="docutils literal"><span class="pre">quit()</span></tt> call in your method.</p>
+</dd>
+<dt>Parser</dt>
+<dd><p class="first">The argparse parser handed in will have the following optional 
+arguments:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--file</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--section</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-q</span></tt>, <tt class="docutils literal"><span class="pre">--quiet</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">-v</span></tt>, <tt class="docutils literal"><span class="pre">--verbose</span></tt></li>
+</ul>
+</div></blockquote>
+<p class="last">Any other arguments that are specific to your script will need to be 
+added before calling <tt class="docutils literal"><span class="pre">super().__init__()</span></tt>.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lacuna.binutils.libbin.Script.connect">
+<tt class="descname">connect</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libbin.Script.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects to the game server, using the config_file and 
+config_section arguments.</p>
+<p>Sets self.client.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libbin.Script.summarize">
+<tt class="descname">summarize</tt><big>(</big><em>string: str</em>, <em>mymax: int</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libbin.Script.summarize" title="Permalink to this definition">¶</a></dt>
+<dd><p>If a string is too long, shortens it and adds ellipsis.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>string &#8211; Some string to summarize</li>
+<li>max &#8211; Integer max length of the string.  Must be greater than 3.</li>
+</ul>
+</dd>
+</dl>
+<p>If the string is &#8220;abcdefghijk&#8221; and the max is 6, this will return 
+&#8220;abc...&#8221;</p>
+<p>Returns the summarized string, or the original string if it was shorter 
+than max.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tle_modules/index.html" class="btn btn-neutral float-right" title="TLE Modules"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="config_file.html" class="btn btn-neutral" title="Config File"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

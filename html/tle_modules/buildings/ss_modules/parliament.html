@@ -1,0 +1,675 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>parliament &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Space Station Modules" href="index.html"/>
+        <link rel="next" title="policestation" href="policestation.html"/>
+        <link rel="prev" title="operahouse" href="operahouse.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">TLE Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../body.html">Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">TLE Modules</a> &raquo;</li>
+      
+          <li><a href="../../building.html">Building</a> &raquo;</li>
+      
+          <li><a href="index.html">Space Station Modules</a> &raquo;</li>
+      
+    <li>parliament</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../../sources/tle_modules/buildings/ss_modules/parliament.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-lacuna.buildings.ss_modules.parliament">
+<span id="parliament"></span><h1>parliament<a class="headerlink" href="#module-lacuna.buildings.ss_modules.parliament" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.buildings.ss_modules.parliament.Law">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.ss_modules.parliament.</tt><tt class="descname">Law</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.Law" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
+name            &quot;Censure of Jamie Vrbsky&quot;,
+description     &quot;Jamie Vrbsky is bad at playing Lacuna!&quot;,
+date_enacted    &quot;01 31 2010 13:09:05 +0600&quot;
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.ss_modules.parliament.MiningPlatform">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.ss_modules.parliament.</tt><tt class="descname">MiningPlatform</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.MiningPlatform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>This appears in this module because it&#8217;s the only place this format 
+appears.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
+empire      lacuna.empire.FoundEmpire object
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.ss_modules.parliament.Proposition">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.ss_modules.parliament.</tt><tt class="descname">Proposition</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.Proposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
+name            &quot;Rename Station&quot;,
+description     &quot;Rename the station from &#39;Bri Prui 7&#39; to &#39;Deep Space 1&#39;.&quot;,
+votes_needed    7,
+votes_yes       1,
+votes_no        0,
+status          &quot;Pending&quot;,
+date_ends       &quot;01 31 2010 13:09:05 +0600&quot;,
+proposed_by     lacuna.empire.FoundEmpire object
+my_vote         0 # not present if they haven&#39;t voted
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.ss_modules.parliament.Tax">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.ss_modules.parliament.</tt><tt class="descname">Tax</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.Tax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id      &quot;id-goes-here&quot;,
+name    &quot;Klingons&quot;,
+paid    [ 0, 1000, 0, 0, 1500, 500, 500 ],
+total   3500,
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">paid</span></tt> attribute is a list of payments over the past seven days, 
+element 0 being &#8220;today&#8221;.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament">
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.ss_modules.parliament.</tt><tt class="descname">parliament</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.cast_vote">
+<tt class="descname">cast_vote</tt><big>(</big><em>prop_id: int</em>, <em>vote_id: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.cast_vote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Votes on a proposition.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>prop_id &#8211; Integer ID of the proposition to vote for.</li>
+<li>vote &#8211; Optional integer.  1 to vote yes, 0 to vote no.  Defaults 
+to 1 (&#8216;yes&#8217;).</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.get_bodies_for_star_in_jurisdiction">
+<tt class="descname">get_bodies_for_star_in_jurisdiction</tt><big>(</big><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.get_bodies_for_star_in_jurisdiction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the bodies orbiting one of the stars in the station&#8217;s 
+jurisdiction.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star whose bodies we want listed.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a list of lacuna.body.JurisdictionPlanet objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.get_mining_platforms_for_asteroid_in_jurisdiction">
+<tt class="descname">get_mining_platforms_for_asteroid_in_jurisdiction</tt><big>(</big><em>roid_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.get_mining_platforms_for_asteroid_in_jurisdiction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the bodies orbiting one of the stars in the station&#8217;s 
+jurisdiction.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>roid_id &#8211; Integer ID of the asteroid we want to check for platforms.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a list of lacuna.buildings.parliament.MiningPlatform objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.get_stars_in_jurisdiction">
+<tt class="descname">get_stars_in_jurisdiction</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.get_stars_in_jurisdiction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all stars in the jurisdiction of this station.</p>
+<p>The TLE API documentation says that seized stars will include a key 
+named &#8216;station&#8217;, pointing to a dict describing the seizing station.
+That &#8216;station&#8217; dict is never included.</p>
+<p>Also, it does not mention the &#8216;zone&#8217; key, which is included, and is 
+an attribute of the StationStar objects returned.</p>
+<p>Returns a list of lacuna.map.StationStar objects.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.path">
+<tt class="descname">path</tt><em class="property"> = 'parliament'</em><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_broadcast_on_network19">
+<tt class="descname">propose_broadcast_on_network19</tt><big>(</big><em>message: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_broadcast_on_network19" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broadcast any message on Network 19.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>message &#8211; The message to broadcast</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_elect_new_leader">
+<tt class="descname">propose_elect_new_leader</tt><big>(</big><em>empire_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_elect_new_leader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elect a new leader of the alliance.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to elect</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_evict_mining_platform">
+<tt class="descname">propose_evict_mining_platform</tt><big>(</big><em>plat_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_evict_mining_platform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroys a mining platform deployed on an asteroid.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>plat_id &#8211; Integer ID of the platform to evict</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_expel_member">
+<tt class="descname">propose_expel_member</tt><big>(</big><em>empire_id: int</em>, <em>message: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_expel_member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a member from the alliance.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to invite</li>
+<li>message &#8211; Optional string message to include in the boilerplate 
+mail that gets sent to the expelled empire.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_fire_bfg">
+<tt class="descname">propose_fire_bfg</tt><big>(</big><em>body_id: int</em>, <em>reason: str='pew pew!'</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_fire_bfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fire the BFG at a target.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>body_id &#8211; Integer ID of the body to attack.</li>
+<li>reason &#8211; String reason for firing.  Defaults to &#8220;pew pew!&#8221;</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_foreign_aid">
+<tt class="descname">propose_foreign_aid</tt><big>(</big><em>planet_id: int</em>, <em>resources: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_foreign_aid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send an aid package to a planet.</p>
+<p>Documented as being part of the API, but not available through the 
+browser client.  I assume it doesn&#8217;t actually do anything.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>planet_id &#8211; Integer ID of the star to seize.</li>
+<li>resources &#8211; Integer?  Hash?  Who knows?</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_induct_member">
+<tt class="descname">propose_induct_member</tt><big>(</big><em>empire_id: int</em>, <em>message: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_induct_member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Induct a new alliance member.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>empire_id &#8211; Integer ID of the empire to invite</li>
+<li>message &#8211; Optional string message to include in the boilerplate 
+mail that gets sent to the invited empire.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_members_only_colonization">
+<tt class="descname">propose_members_only_colonization</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_members_only_colonization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only alliance members can colonize planets within the station&#8217;s 
+jurisdiction.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_members_only_excavation">
+<tt class="descname">propose_members_only_excavation</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_members_only_excavation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only alliance members can send excavators within the station&#8217;s 
+jurisdiction.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_members_only_mining_rights">
+<tt class="descname">propose_members_only_mining_rights</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_members_only_mining_rights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only allow alliance members to send mining platforms withing the
+station&#8217;s jurisdiction.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_neutralize_bhg">
+<tt class="descname">propose_neutralize_bhg</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_neutralize_bhg" title="Permalink to this definition">¶</a></dt>
+<dd><p>No BHGs will be usable within the station&#8217;s jurisdiction.  This law 
+applies to BHGs owned by both foreign and allied empires.</p>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_rename_asteroid">
+<tt class="descname">propose_rename_asteroid</tt><big>(</big><em>roid_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_rename_asteroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename an asteroid.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>roid_id &#8211; Integer ID of the asteroid to rename</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_rename_star">
+<tt class="descname">propose_rename_star</tt><big>(</big><em>star_id: int</em>, <em>name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_rename_star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rename a star.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star to rename.</li>
+<li>name &#8211; The proposed new name</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_rename_uninhabited">
+<tt class="descname">propose_rename_uninhabited</tt><big>(</big><em>planet_id: int</em>, <em>name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_rename_uninhabited" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seize control of a star.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>planet_id &#8211; Integer ID of the star to seize.</li>
+<li>name &#8211; The new name to use.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_repeal_law">
+<tt class="descname">propose_repeal_law</tt><big>(</big><em>law_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_repeal_law" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a proposal to repeal an existing law</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>law_id &#8211; Integer ID of the law to repeal.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_seize_star">
+<tt class="descname">propose_seize_star</tt><big>(</big><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_seize_star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seize control of a star.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star_id &#8211; Integer ID of the star to seize.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_taxation">
+<tt class="descname">propose_taxation</tt><big>(</big><em>taxes: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_taxation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propose taxation.</p>
+<p>This doesn&#8217;t work, and has never worked.  It&#8217;s not broken, it&#8217;s just 
+never been made part of the game.</p>
+<p>Included for consistency with the API - the method is published, it 
+just doesn&#8217;t do anything.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>taxes &#8211; I have no idea what this is.  An integer amount of E?  Of
+resources?  A hash of resources?  Dunno, it&#8217;s undocumented.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_transfer_station_ownership">
+<tt class="descname">propose_transfer_station_ownership</tt><big>(</big><em>to_empire_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_transfer_station_ownership" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a proposal to transfer station ownership to another empire.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>to_empire_id &#8211; Integer ID of the empire who should end up owning the station.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.propose_writ">
+<tt class="descname">propose_writ</tt><big>(</big><em>title: str</em>, <em>description: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.propose_writ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Writ proposal</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>title &#8211; String.  The title of the proposition.</li>
+<li>description &#8211; String.  The description of the proposition.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single lacuna.buildings.parliament.Proposition object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.view_laws">
+<tt class="descname">view_laws</tt><big>(</big><em>body_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.view_laws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show laws passed by this parliament building</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>body_id &#8211; Integer ID of the Space Station (not of the parliament 
+building.)</li>
+</ul>
+</dd>
+</dl>
+<p>This method can be called against either the Parliament building or the 
+station itself.  Allowing it to be called against the station means that 
+empires who are not members of the owning alliance can see what laws are 
+in effect.</p>
+<p>Returns a list of lacuna.parliament.Law objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.view_propositions">
+<tt class="descname">view_propositions</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.view_propositions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show propositions pending approval or rejection by vote.</p>
+<p>Returns a list of lacuna.parliament.Proposition objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.view_taxes_collected">
+<tt class="descname">view_taxes_collected</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.view_taxes_collected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show taxes collected.</p>
+<p>Taxes haven&#8217;t really been implemented in the game.
+This is included for API completeness.</p>
+<p>For one station, owned by me, I&#8217;m getting back a Tax object that claims 
+that I have paid 0 taxes total.</p>
+<p>For another station, owned by Infinate Ones, I&#8217;m getting back no Tax 
+objects at all.</p>
+<p>My guess is that you&#8217;ll get back a Tax object if the empire you&#8217;re using 
+to connect actually owns the station you&#8217;re querying.  But even if you 
+do get a Tax object back, it&#8217;ll always list 0 in payments, since Taxes 
+are un-implemented.</p>
+<p>Returns a list of lacuna.parliament.Tax objects.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="policestation.html" class="btn btn-neutral float-right" title="policestation"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="operahouse.html" class="btn btn-neutral" title="operahouse"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../static/jquery.js"></script>
+      <script type="text/javascript" src="../../../static/underscore.js"></script>
+      <script type="text/javascript" src="../../../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

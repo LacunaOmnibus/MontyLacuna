@@ -1,0 +1,744 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>types &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="trading" href="trading.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>types</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="sources/types.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="types">
+<span id="translatable-types"></span><h1>types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
+<p>Several types of resources in the game have both a human-readable name, which
+you&#8217;ll be used to seeing from use in the game, as well as a system name.  The
+system name is often what needs to be passed to various methods, but since
+you, the user, are familiar with the human readable names, it can be difficult
+to remember what the &#64;#$% correct system name is.</p>
+<p>The types.Translator class allows us to translate from various spellings that
+will be commonly passed in by the user, into the correct system name, saving
+the user from having to look up, once again, what the system name for &#8220;Placebo
+IV&#8221; is.</p>
+<p>Resources that don&#8217;t have a listed translation probably don&#8217;t need one (a
+barge is a barge, and nobody&#8217;s going to spell it any differently).  All names
+are case insensitive, so if the user passes in &#8220;barge&#8221; or &#8220;Barge&#8221; or &#8220;bArGe&#8221;,
+it will be recognized.</p>
+<div class="section" id="ship-translations">
+<span id="id1"></span><h2>Ship Translations<a class="headerlink" href="#ship-translations" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="21%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Human</th>
+<th class="head">System</th>
+<th class="head">Translations</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Barge</td>
+<td>barge</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Bleeder</td>
+<td>bleeder</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Cargo Ship</td>
+<td>cargo_ship</td>
+<td>cargo, &#8220;cargo ship&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Colony Ship</td>
+<td>colony_ship</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Detonator</td>
+<td>detonator</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Dory</td>
+<td>dory</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Drone</td>
+<td>drone</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Excavator</td>
+<td>excavator</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Fighter</td>
+<td>fighter</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Fissure Sealer</td>
+<td>fissure_sealer</td>
+<td>fissure</td>
+</tr>
+<tr class="row-even"><td>Freighter</td>
+<td>freighter</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Galleon</td>
+<td>galleon</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Gas Giant Settlement Ship</td>
+<td>gas_giant_settlement_ship</td>
+<td>gg, &#8220;gas giant&#8221;, &#8220;gas giant settlement ship&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Hulk</td>
+<td>hulk</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Hulk Fast</td>
+<td>hulk_fast</td>
+<td>&#8220;hulk fast&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Hulk Huge</td>
+<td>hulk_huge</td>
+<td>&#8220;hulk huge&#8221;</td>
+</tr>
+<tr class="row-even"><td>Mining Platform Ship</td>
+<td>mining_platform_ship</td>
+<td>min, minplat, &#8220;min plat&#8221;, &#8220;mining platform ship&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Observatory Seeker</td>
+<td>observatory_seeker</td>
+<td>obs, &#8220;obs seeker&#8221;, &#8220;observatory seeker&#8221;</td>
+</tr>
+<tr class="row-even"><td>Placebo</td>
+<td>placebo</td>
+<td>placebo1, &#8220;placebo 1&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Placebo II</td>
+<td>placebo2</td>
+<td>&#8220;placebo 2&#8221;, placeboII, &#8220;placebo II&#8221;</td>
+</tr>
+<tr class="row-even"><td>Placebo III</td>
+<td>placebo3</td>
+<td>&#8220;placebo 3&#8221;, placeboIII, &#8220;placebo III&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Placebo IV</td>
+<td>placebo4</td>
+<td>&#8220;placebo 4&#8221;, placeboIV, &#8220;placebo IV&#8221;</td>
+</tr>
+<tr class="row-even"><td>Placebo V</td>
+<td>placebo5</td>
+<td>&#8220;placebo 5&#8221;, placeboV, &#8220;placebo V&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Placebo VI</td>
+<td>placebo6</td>
+<td>&#8220;placebo 6&#8221;, placeboVI, &#8220;placebo VI&#8221;</td>
+</tr>
+<tr class="row-even"><td>Probe</td>
+<td>probe</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Probe</td>
+<td>probe</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Scanner</td>
+<td>scanner</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Scow</td>
+<td>scow</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Scow Fast</td>
+<td>scow_fast</td>
+<td>&#8220;scow fast&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Scow Large</td>
+<td>scow_large</td>
+<td>&#8220;scow large&#8221;</td>
+</tr>
+<tr class="row-even"><td>Scow Mega</td>
+<td>scow_mega</td>
+<td>&#8220;scow mega&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Security Ministry Seeker</td>
+<td>security_ministry_seeker</td>
+<td>sec, &#8220;secmin seeker&#8221;, &#8220;sec min seeker&#8221;, &#8220;security ministry seeker&#8221;</td>
+</tr>
+<tr class="row-even"><td>Short Range Colony Ship</td>
+<td>short_range_colony_ship</td>
+<td>srcs, &#8220;short range colony&#8221;, &#8220;short range colony ship&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Smuggler Ship</td>
+<td>smuggler_ship</td>
+<td>smug, smuggler, &#8220;smuggler ship&#8221;</td>
+</tr>
+<tr class="row-even"><td>Snark</td>
+<td>snark</td>
+<td>snark1, &#8220;snark 1&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Snark II</td>
+<td>snark2</td>
+<td>&#8220;snark 2&#8221;</td>
+</tr>
+<tr class="row-even"><td>Snark III</td>
+<td>snark3</td>
+<td>&#8220;snark 3&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Space Station Hull</td>
+<td>space_station</td>
+<td>hull, ss, &#8220;ss hull&#8221;, &#8220;space station&#8221;, &#8220;space station hull&#8221;</td>
+</tr>
+<tr class="row-even"><td>Spaceport Seeker</td>
+<td>spaceport_seeker</td>
+<td>sp, &#8220;sp seeker&#8221;, &#8220;port seeker&#8221;, &#8220;spaceport seeker&#8221;, &#8220;space port seeker&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Spy Pod</td>
+<td>spy_pod</td>
+<td>&#8220;spy pod&#8221;</td>
+</tr>
+<tr class="row-even"><td>Spy Shuttle</td>
+<td>spy_shuttle</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Stake</td>
+<td>stake</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Supply Pod</td>
+<td>supply_pod</td>
+<td>supply, supply1, &#8220;supply 1&#8221;, &#8220;supply pod&#8221;, &#8220;supply pod 1&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Supply Pod II</td>
+<td>supply_pod2</td>
+<td>supply2, &#8220;supply 2&#8221;, &#8220;supply pod 2&#8221;, supplyII, &#8220;supply II&#8221;, &#8220;supply pod II&#8221;</td>
+</tr>
+<tr class="row-even"><td>Supply Pod III</td>
+<td>supply_pod3</td>
+<td>supply3, &#8220;supply 3&#8221;, &#8220;supply pod 3&#8221;, supplyIII, &#8220;supply III&#8221;, &#8220;supply pod III&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Supply Pod IV</td>
+<td>supply_pod4</td>
+<td>supply4, &#8220;supply 4&#8221;, &#8220;supply pod 4&#8221;, supplyIV, &#8220;supply IV&#8221;, &#8220;supply pod IV&#8221;</td>
+</tr>
+<tr class="row-even"><td>Supply Pod V</td>
+<td>supply_pod5</td>
+<td>supply5, &#8220;supply 5&#8221;, &#8220;supply pod 5&#8221;, supplyV, &#8220;supply V&#8221;, &#8220;supply pod V&#8221;</td>
+</tr>
+<tr class="row-odd"><td>Surveyor</td>
+<td>surveyor</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Sweeper</td>
+<td>sweeper</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Terraforming Platform Ship</td>
+<td>terraforming_platform_ship</td>
+<td>terra, &#8220;terra plat&#8221;, &#8220;terraforming platform ship&#8221;</td>
+</tr>
+<tr class="row-even"><td>Thud</td>
+<td>thud</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ore-translations">
+<span id="id2"></span><h2>Ore Translations<a class="headerlink" href="#ore-translations" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="26%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Human</th>
+<th class="head">System</th>
+<th class="head">Translations</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Anthracite</td>
+<td>anthracite</td>
+<td>anth, anthra</td>
+</tr>
+<tr class="row-odd"><td>Bauxite</td>
+<td>bauxite</td>
+<td>baux</td>
+</tr>
+<tr class="row-even"><td>Beryl</td>
+<td>beryl</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Chromite</td>
+<td>chromite</td>
+<td>chrom, chrome</td>
+</tr>
+<tr class="row-even"><td>Chalcopyrite</td>
+<td>chalcopyrite</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Fluorite</td>
+<td>fluorite</td>
+<td>flor, flour, fluor, floride, flouride, fluoride</td>
+</tr>
+<tr class="row-even"><td>Galena</td>
+<td>galena</td>
+<td>gal</td>
+</tr>
+<tr class="row-odd"><td>Goethite</td>
+<td>goethite</td>
+<td>goeth</td>
+</tr>
+<tr class="row-even"><td>Gold</td>
+<td>gold</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Gypsum</td>
+<td>gypsum</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Halite</td>
+<td>halite</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Kerogen</td>
+<td>kerogen</td>
+<td>kero</td>
+</tr>
+<tr class="row-even"><td>Magnetite</td>
+<td>magnetite</td>
+<td>mag</td>
+</tr>
+<tr class="row-odd"><td>Methane</td>
+<td>methane</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Monazite</td>
+<td>monazite</td>
+<td>mona</td>
+</tr>
+<tr class="row-odd"><td>Rutile</td>
+<td>rutile</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Sulfur</td>
+<td>sulfur</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Trona</td>
+<td>trona</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Uraninite</td>
+<td>uraninite</td>
+<td>uran, urin, urine (because somebody&#8217;s going to do that.)</td>
+</tr>
+<tr class="row-odd"><td>Zircon</td>
+<td>zircon</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="spy-assignment-translations">
+<span id="spy-assg-translations"></span><h2>Spy Assignment Translations<a class="headerlink" href="#spy-assignment-translations" title="Permalink to this headline">¶</a></h2>
+<p>Spy assignments are slightly different.  They don&#8217;t have human and system
+names, just the names you&#8217;re used to seeing in-game.  Still, having to type
+out <tt class="docutils literal"><span class="pre">Apropriate</span> <span class="pre">Technology</span></tt> as a script option is tiring, and prone to
+misspellings (did you notice the misspelling in the example?  If not, you&#8217;re
+not going to notice it when you do it either).</p>
+<p>As with the other translators, you can type either the full assignment name or
+any of the translations.  Whatever you chose, what you enter is case
+insensitive; &#8220;counter espionage&#8221;, &#8220;cOunTer eSpIoNage&#8221;, and &#8220;counTer&#8221; all
+translate to the same thing.</p>
+<p>So the abbreviations below should make assigning spies a little easier.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Full Name</th>
+<th class="head">Abbreviation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Idle</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Bugout</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Counter Espionage</td>
+<td>counter</td>
+</tr>
+<tr class="row-odd"><td>Security Sweep</td>
+<td>sweep</td>
+</tr>
+<tr class="row-even"><td>Intel Training</td>
+<td>int train, inttrain</td>
+</tr>
+<tr class="row-odd"><td>Mayhem Training</td>
+<td>may train, maytrain</td>
+</tr>
+<tr class="row-even"><td>Politics Training</td>
+<td>poli train, politrain, pol train, poltrain</td>
+</tr>
+<tr class="row-odd"><td>Theft Training</td>
+<td>theft train, thefttrain</td>
+</tr>
+<tr class="row-even"><td>Political Propaganda</td>
+<td>poli prop, pol prop, prop, pp</td>
+</tr>
+<tr class="row-odd"><td>Gather Resource Intelligence</td>
+<td>get res int, get resint</td>
+</tr>
+<tr class="row-even"><td>Gather Empire Intelligence</td>
+<td>get emp int, get empint</td>
+</tr>
+<tr class="row-odd"><td>Gather Operative Intelligence</td>
+<td>get op int, get opint</td>
+</tr>
+<tr class="row-even"><td>Hack Network 19</td>
+<td>hack</td>
+</tr>
+<tr class="row-odd"><td>Rescue Comrades</td>
+<td>rescue</td>
+</tr>
+<tr class="row-even"><td>Appropriate Resources</td>
+<td>app res, steal res</td>
+</tr>
+<tr class="row-odd"><td>Appropriate Technology</td>
+<td>app tech, steal tech</td>
+</tr>
+<tr class="row-even"><td>Abduct Operatives</td>
+<td>abd ops, abd op, ab ops, ab op, kidnap</td>
+</tr>
+<tr class="row-odd"><td>Assassinate Operatives</td>
+<td>ass op, assop, kill</td>
+</tr>
+<tr class="row-even"><td>Sabotage BHG</td>
+<td>sab bhg</td>
+</tr>
+<tr class="row-odd"><td>Sabotage Defenses</td>
+<td>sab defenses, sab defense, sab def, sabdef</td>
+</tr>
+<tr class="row-even"><td>Sabotage Infrastructure</td>
+<td>sab infra, sab inf, sabinf</td>
+</tr>
+<tr class="row-odd"><td>Sabotage Probes</td>
+<td>sab probes, sab probe, sabprobe</td>
+</tr>
+<tr class="row-even"><td>Sabotage Resources</td>
+<td>sab resources, sab resource, sab res, sabres</td>
+</tr>
+<tr class="row-odd"><td>Incite Insurrection</td>
+<td>insurrect, insurect</td>
+</tr>
+<tr class="row-even"><td>Incite Mutiny</td>
+<td>mutiny</td>
+</tr>
+<tr class="row-odd"><td>Incite Rebellion</td>
+<td>rebellion, rebel</td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-lacuna.types"></span><dl class="class">
+<dt id="lacuna.types.Translator">
+<em class="property">class </em><tt class="descclassname">lacuna.types.</tt><tt class="descname">Translator</tt><a class="headerlink" href="#lacuna.types.Translator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Translates the human name and various misspellings of common 
+resources into the appropriate TLE system name.</p>
+<dl class="method">
+<dt id="lacuna.types.Translator.translate_assgtype">
+<tt class="descname">translate_assgtype</tt><big>(</big><em>type: str</em><big>)</big><a class="headerlink" href="#lacuna.types.Translator.translate_assgtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates recognized spy assignment misspellings into the system 
+spy assignment name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>type &#8211; String, generally passed in by the user.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the system spy assignment name associated with the type passed 
+in if it was recognized.  Otherwise raises KeyError.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">tr</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Translator</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">tr</span><span class="o">.</span><span class="n">translate_assgtype</span><span class="p">(</span><span class="s">&#39;idle&#39;</span><span class="p">)</span> <span class="p">)</span>  <span class="c"># &#39;Idle&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.types.Translator.translate_oretype">
+<tt class="descname">translate_oretype</tt><big>(</big><em>type: str</em><big>)</big><a class="headerlink" href="#lacuna.types.Translator.translate_oretype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates recognized ore type misspellings into the system ore 
+name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>type &#8211; String, generally passed in by the user.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the system ore name associated with the type passed in if it 
+was recognized.  Otherwise raises KeyError.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">tr</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Translator</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">tr</span><span class="o">.</span><span class="n">translate_oretype</span><span class="p">(</span><span class="s">&#39;Anth&#39;</span><span class="p">)</span> <span class="p">)</span>  <span class="c"># &#39;anthracite&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.types.Translator.translate_shiptype">
+<tt class="descname">translate_shiptype</tt><big>(</big><em>type: str</em><big>)</big><a class="headerlink" href="#lacuna.types.Translator.translate_shiptype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates recognized ship type misspellings into the system ship 
+name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>type &#8211; String, generally passed in by the user.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the system ship name associated with the type passed in if it 
+was recognized.  Otherwise raises 
+<a class="reference internal" href="exceptions.html#lacuna.exceptions.NoSuchShipError" title="lacuna.exceptions.NoSuchShipError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchShipError</span></tt></a>.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">tr</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Translator</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">tr</span><span class="o">.</span><span class="n">translate_shiptype</span><span class="p">(</span><span class="s">&#39;srcs&#39;</span><span class="p">)</span> <span class="p">)</span>  <span class="c"># &#39;short_range_colony_ship&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="trading.html" class="btn btn-neutral" title="trading"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Send Excavs &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
+        <link rel="next" title="Search Archaeology Ministry" href="search_archmin.html"/>
+        <link rel="prev" title="Scuttle Ships" href="scuttle_ships.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#default-values">Default Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#section-variable-interpolation">Section Variable Interpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
+      
+    <li>Send Excavs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../sources/scripts/send_excavs.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="send-excavs">
+<span id="id1"></span><h1>Send Excavs<a class="headerlink" href="#send-excavs" title="Permalink to this headline">¶</a></h1>
+<p>Sends out excavators from one or all of your colonies to the nearby planets of
+whatever type or types you want to excavate.</p>
+<p>This does not build excavators for you; you have to have those ready to go
+before running this; see <a class="reference internal" href="build_ships.html#build-ships"><em>Build Ships</em></a> if you haven&#8217;t got excavators
+ready to go yet.</p>
+<p>To send all excavators possible from Earth to the nearest p33 and/or p35
+planets available:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">send_excavs</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">tp33</span> <span class="o">-</span><span class="n">t</span> <span class="n">p35</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+<p>To send excavators from all of your colonies, instead of just one:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">send_excavs</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">tp33</span> <span class="o">-</span><span class="n">t</span> <span class="n">p35</span> <span class="nb">all</span>
+</pre></div>
+</div>
+<p>Note that both formats, <em>-tp33</em> and <em>-t p35</em>, will work fine.</p>
+<p>If you&#8217;re trying to split up your excavators between p11 and p12 planets, and
+you&#8217;ve got 20 excavators to send, you&#8217;d run <tt class="docutils literal"><span class="pre">send_excavs.py</span></tt> twice:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">send_excavs</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">max_send</span> <span class="mi">10</span> <span class="o">-</span><span class="n">t</span> <span class="n">p11</span> <span class="n">Earth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">send_excavs</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">max_send</span> <span class="mi">10</span> <span class="o">-</span><span class="n">t</span> <span class="n">p12</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+<p>If Earth has already sent out its maximum number of excavators,
+<tt class="docutils literal"><span class="pre">send_excavs.py</span></tt> will let you know, so there&#8217;s no harm in accidentally
+running this for a planet that&#8217;s already set, excavator-wise.</p>
+<p>For complete help, see the script&#8217;s help documentation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">send_excavs</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsend_excavs.</tt><tt class="descname">SendExcavs</tt><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>ally            The user&#39;s lacuna.alliance.MyAlliance object, or False 
+                if the user is not in an alliance.
+ally_members    List of Strings; the names of the members of my 
+                alliance.  Used to determine if an inhabited planet is 
+                hostile or not.
+arch            The Archaeology Ministry on self.planet.
+args            Command-line arguments set by the user; the result of
+                self.parser.parse_args()
+body_cache      A libsend_excavs.BodyCache object.
+cell_number     The cell we&#39;re working on.  Starts at 1.
+client          lacuna.clients.Member object
+excav_sites     A list of lacuna.ship.Excavator objects.  Starts
+                as an empty list, set to the correct value by 
+                set_excav_count().  Does not include the current planet 
+                in the list.
+map             lacuna.map.Map object
+num_excavs      Number of excavs to be sent from self.planet.  Starts
+                at 0, set to the correct value by set_excav_count().
+parser          argparse.ArgumentParser object
+planet          lacuna.body.MyBody object for the planet name passed
+                at the command line.
+ring_offset     The ring offset we&#39;re working on.  Starts at 0.
+sp              A Space Port on self.planet (doesn&#39;t matter which one).
+travelling      Dict of bodies we have excavators on their way to right 
+                now.  { destination_body_id: 1 }
+version         &#39;0.1&#39;
+</pre></div>
+</div>
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.get_available_excav_for">
+<tt class="descname">get_available_excav_for</tt><big>(</big><em>target: dict</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.get_available_excav_for" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a single excavator to be sent to target.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>target &#8211; Standard target dict</li>
+</ul>
+</dd>
+<dt>Returns</dt>
+<dd><ul class="first last simple">
+<li>excavator &#8211; Either a single lacuna.ship.ExistingShip object 
+representing an excavator, or False if no available excavators 
+could be found.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.get_map_square">
+<tt class="descname">get_map_square</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.get_map_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a list of stars in the next map square.</p>
+<p><tt class="docutils literal"><span class="pre">self.ring</span></tt> keeps track of which map square is &#8220;next&#8221;, so no arguments 
+need be passed in.</p>
+<p>Returns a list of lacuna.map.Star objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.get_ready_excavators">
+<tt class="descname">get_ready_excavators</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.get_ready_excavators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of excavators onsite that have completed building</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.note_travelling_excavators">
+<tt class="descname">note_travelling_excavators</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.note_travelling_excavators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a note of any planets we currently have excavators travelling 
+to.  Returns nothing, but sets self.travelling.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.send_excav_to_matching_body">
+<tt class="descname">send_excav_to_matching_body</tt><big>(</big><em>star</em>, <em>body</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.send_excav_to_matching_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to send an excavator to a body.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>body &#8211; A lacuna.body.Body object</li>
+</ul>
+</dd>
+</dl>
+<p>If the body is not one of the requested types, or we already have an 
+excavator there, or the body&#8217;s star is seized by another alliance&#8217;s 
+Space Station and it has Members Only Excavation law set, this will 
+fail to send an excavator and return 0.</p>
+<p>If everything works out, this will send an excavator, decrement 
+self.num_excavs, and return 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.send_excavs_to_bodies">
+<tt class="descname">send_excavs_to_bodies</tt><big>(</big><em>star</em>, <em>bodies: list</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.send_excavs_to_bodies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to send an excavator to each body in a list of bodies, 
+provided each body is of one of the requested types.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>bodies &#8211; list of body.Body objects</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the integer count of excavators sent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.send_excavs_to_bodies_orbiting">
+<tt class="descname">send_excavs_to_bodies_orbiting</tt><big>(</big><em>stars: list</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.send_excavs_to_bodies_orbiting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends excavators to the bodies around each star in a list, provided 
+each body is of one of the requested types.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>stars &#8211; list of lacuna.map.Star objects</li>
+</ul>
+</dd>
+</dl>
+<p>Returns the number of excavators sent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.set_excav_count">
+<tt class="descname">set_excav_count</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.set_excav_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of excavs this planet is able to send right now.</p>
+<p>Returns nothing, but sets <tt class="docutils literal"><span class="pre">self.num_excavs</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.star_seizure_forbids_excav">
+<tt class="descname">star_seizure_forbids_excav</tt><big>(</big><em>star</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.star_seizure_forbids_excav" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lets you know if the laws affecting a star forbid you from sending 
+excavators to that star&#8217;s planets.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star &#8211; lacuna.map.Star object</li>
+</ul>
+</dd>
+</dl>
+<p>Returns True if the star&#8217;s laws forbids you from excavating its planets, 
+False otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.SendExcavs.system_contains_hostiles">
+<tt class="descname">system_contains_hostiles</tt><big>(</big><em>star</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.SendExcavs.system_contains_hostiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if any of the planets orbiting a star is owned by a hostile 
+empire.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>star &#8211; lacuna.Map.Star object</li>
+</ul>
+</dd>
+</dl>
+<p>Returns True if there&#8217;s a hostile colony orbiting the star, False 
+otherwise.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.binutils.libsend_excavs.BodyCache">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsend_excavs.</tt><tt class="descname">BodyCache</tt><a class="headerlink" href="#lacuna.binutils.libsend_excavs.BodyCache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>We don&#8217;t want to use a request cache for any part of send_excavs, but we 
+do want to keep track of stations, stars, and bodies that we know are no 
+good for whatever reason.</p>
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.BodyCache.is_bad">
+<tt class="descname">is_bad</tt><big>(</big><em>body_name</em>, <em>type='planet'</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.BodyCache.is_bad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks to see if a given body is known to be bad.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>body_name &#8211; Str name of the body to mark as bad.</li>
+<li>type &#8211; Str type of body.  Either &#8216;star&#8217;, &#8216;station&#8217;, or &#8216;planet&#8217;.  
+Defaults to &#8216;planet&#8217;.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a boolean.  True if the body is known to be bad.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.BodyCache.mark_as_bad">
+<tt class="descname">mark_as_bad</tt><big>(</big><em>body_name</em>, <em>type='planet'</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.BodyCache.mark_as_bad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marks a given body as &#8216;bad&#8217; in the cache.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>body_name &#8211; Str name of the body to mark as bad.</li>
+<li>type &#8211; Str type of body.  Either &#8216;star&#8217;, &#8216;station&#8217;, or &#8216;planet&#8217;.
+Defaults to &#8216;planet&#8217;.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.binutils.libsend_excavs.Cell">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsend_excavs.</tt><tt class="descname">Cell</tt><big>(</big><em>col</em>, <em>row</em>, <em>x</em>, <em>y</em>, <em>cell_size</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.Cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>bottom              Y coordinate of the bottom boundary of the cell
+center_x            X coordinate of the center point of the cell.
+center_y            Y coordinate of the center point of the cell.
+col                 The column occupied by the current cell.  0-based.
+left                X coordinate of the left boundary of the cell
+cell_size           Size of the sides of the cell
+right               X coordinate of the right boundary of the cell
+row                 The row occupied by the current cell.  0-based.
+top                 Y coordinate of the top boundary of the cell
+</pre></div>
+</div>
+<p>Constructor will raise Cell.OutOfBoundsError if the entire cell is out of 
+bounds, so be sure to create a new cell in a try block.</p>
+<p><strong>Cell Diagram</strong>
+In ring.ring_offset == 0:</p>
+<div class="highlight-python"><div class="highlight"><pre>+--------+
+| cell 1 |
+| col 0  |
+| row 0  |
++--------+
+</pre></div>
+</div>
+<p>cell 1 from the ring_offset == 0 above becomes cell 5 when ring_offset 
+== 1:</p>
+<div class="highlight-python"><div class="highlight"><pre>+--------++--------++--------+
+| cell 1 || cell 2 || cell 3 |
+| col 0  || col 1  || col 2  |
+| row 0  || row 0  || row 0  |
++--------++--------++--------+
++--------++--------++--------+
+| cell 4 || cell 5 || cell 6 |
+| col 0  || col 1  || col 2  |
+| row 1  || row 1  || row 1  |
++--------++--------++--------+
++--------++--------++--------+
+| cell 7 || cell 8 || cell 9 |
+| col 0  || col 1  || col 2  |
+| row 2  || row 2  || row 2  |
++--------++--------++--------+
+</pre></div>
+</div>
+<dl class="exception">
+<dt id="lacuna.binutils.libsend_excavs.Cell.OutOfBoundsError">
+<em class="property">exception </em><tt class="descname">OutOfBoundsError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.Cell.OutOfBoundsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<p>The entire cell is out of bounds</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.binutils.libsend_excavs.Ring">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsend_excavs.</tt><tt class="descname">Ring</tt><big>(</big><em>planet</em>, <em>ring_offset: int=0</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.Ring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>A ring of cells radiating out from a planet.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>cell_size           Integer size of the sides of the cells in the ring.
+cells_per_row       Number of cells per row (3 for a ring_offset of 1)
+cells_this_ring     Total number of cells in this ring only (8 for a 
+                    ring_offset of 1)
+center_cell_number  the cell_number of the center cell (1 for a 
+                    ring_offset of 0, 5 for a ring_offset of 1, etc)
+center_col          The column occupied by the center cell.  0-based. 
+center_row          The row occupied by the center cell.  0-based.  
+this_cell_number    Integer number of the cell just returned by
+                    get_next_cell().  Starts at 0, which is not a 
+                    valid cell number.
+planet              lacuna.body.MyBody object everything is relative 
+to.
+ring_offset         Integer offset from the center (center is 0)
+total_cells         Total number of cells in the square, including all 
+                    rings (9 for a ring_offset of 1)
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>cell_size</dt>
+<dd>The max area that <tt class="docutils literal"><span class="pre">lacuna.map.Map.get_star_map()</span></tt> will return is 
+3001.  The closest square to that is 54x54 (giving an area of 2916), 
+so the length of any dimension of any cell is hardcoded at 54.</dd>
+<dt>Rings Diagram</dt>
+<dd><p class="first">The diagram below shows ring_offset 0 and, surrounding it, 
+ring_offset 1.</p>
+<p>In the diagram, the center_cell_number is either 1 (at ring_offset 0) 
+or 5 (at ring_offset  1).  The other cells are numbered assuming 
+ring_offset  1, since those other cells don&#8217;t exist for ring_offset 0.</p>
+<p>Each increase in ring_offset  will add another layer of cells 
+around the previous layer, just as ring_offset  1 adds a full 
+layer of cells wrapped around the single cell at ring_offset  0:</p>
+<div class="last highlight-python"><div class="highlight"><pre>+----------+ +----------+ +----------+
+| offset 1 | | offset 1 | | offset 1 |
+|          | |          | |          |
+| count 1  | | count 2  | | count 3  |
++----------+ +----------+ +----------+
++----------+ +----------+ +----------+
+| offset 1 | |offset 0/1| | offset 1 |
+|          | |    o     | |          |
+| count 4  | |count 1/5 | | count 6  |
++----------+ +----------+ +----------+
++----------+ +----------+ +----------+
+| offset 1 | | offset 1 | | offset 1 |
+|          | |          | |          |
+| count 7  | | count 8  | | count 9  |
++----------+ +----------+ +----------+
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="lacuna.binutils.libsend_excavs.Ring.get_next_cell">
+<tt class="descname">get_next_cell</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.Ring.get_next_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the next cell in the ring.</p>
+<p>Starts at cell 1, the upper-left-most cell on the first call, then 
+proceeds left-to-right, top-to-bottom on successive calls.</p>
+<p>After returning the final cell in the ring, the next call will return 
+False and then reset the count.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="search_archmin.html" class="btn btn-neutral float-right" title="Search Archaeology Ministry"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scuttle_ships.html" class="btn btn-neutral" title="Scuttle Ships"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../static/jquery.js"></script>
+      <script type="text/javascript" src="../static/underscore.js"></script>
+      <script type="text/javascript" src="../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
