@@ -32,7 +32,6 @@ if not sitter_pw:
 cp = configparser.ConfigParser()
 cp['DEFAULT'] = {
     'host': 'us1.lacunaexpanse.com',
-    'test_host': 'pt.lacunaexpanse.com',
     'proto': 'http',
     'api_key': 'anonymous',
     'sleep_on_call': 1,
