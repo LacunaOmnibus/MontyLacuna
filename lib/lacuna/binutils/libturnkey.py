@@ -117,13 +117,22 @@ class Turnkey(lacuna.binutils.libbin.Script):
         else:
             raise KeyError("Invalid 'task' argument.")
 
-    def _paginate( self, callback ):
+    def _paginate( self, callback, shifter:bool = False ):
+        """ A 'shifter' is execute or release of prisoners.  After dealing 
+        with the guys on page 1, the view shifts such that the guys who had 
+        been on page 2 become the new page 1.  In this case, we don't want to 
+        move forward through the pages, or we'll skip every other page.  Just 
+        stay with page 1 till it's empty.
+        """
         if self.args.page == 0:
             self.client.user_logger.debug( "Displaying all results, paginated." )
-            cnt = 0
+            page = 0
             while(True):
-                cnt += 1
-                num = callback( cnt )
+                if shifter:
+                    page = 1
+                else:
+                    page += 1
+                num = callback( page )
                 if num < 25:
                     break
         else:
@@ -133,12 +142,12 @@ class Turnkey(lacuna.binutils.libbin.Script):
     def execute_prisoners( self ):
         """ Execute the prisoners on the selected page.
         """
-        self._paginate( self._execute_prisoners_page )
+        self._paginate( self._execute_prisoners_page, True )
 
     def release_prisoners( self ):
         """ Release the prisoners on the selected page.
         """
-        self._paginate( self._release_prisoners_page )
+        self._paginate( self._release_prisoners_page, True )
 
     def view_foreign_spies( self ):
         """ View un-captured foreign spies on the selected page.
@@ -152,18 +161,20 @@ class Turnkey(lacuna.binutils.libbin.Script):
 
     def _execute_prisoners_page( self, page ):
         self.client.user_logger.info( "Executing prisoners.".format(self.args.page) )
-        ### No cache here.  The user might start a multi-page run, interrupt 
-        ### it, then come back here.  In which case he'll end up trying to 
-        ### execute already-dead prisoners on the >1st run.
+        ### Make sure the cache is off.  The user might start a multi-page 
+        ### run, interrupt it, then come back here.  In which case he'll end 
+        ### up trying to execute already-dead prisoners on the >1st run.
+        self.client.cache_off();
         pris = self.prison.view_prisoners( page )
         for p in pris:
             ### CHECK this is untested
-            self.client.user_logger.debug( "Executing prisoner ID {}.".format(p.id) )
+            self.client.user_logger.debug( "Executing prisoner {} (ID {}).".format(p.name, p.id) )
             self.prison.execute_prisoner( p.id )
         return len(pris)
 
     def _release_prisoners_page( self, page ):
         self.client.user_logger.info( "Releasing prisoners.".format(self.args.page) )
+        self.client.cache_off();    # see comment in _execute_prisoners_page()
         pris = self.prison.view_prisoners( page )
         for p in pris:
             ### CHECK this is untested
@@ -175,6 +186,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self.client.user_logger.info( "Viewing foreign spies.".format(self.args.page) )
         self.client.cache_on('prisoners')   # don't change this
         pris = self.prison.view_foreign_spies( page )
+        self.client.cache_off();
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
         print( "Displaying foreign spies page {}.".format(page) )
         print( tmpl.format('Name', 'Level', 'Task', 'Next Mission') )
@@ -182,7 +194,6 @@ class Turnkey(lacuna.binutils.libbin.Script):
             task = self.summarize( p.task, 10 )
             name = self.summarize( p.name, 20 )
             print( tmpl.format(name, p.level, task, p.next_mission))
-        self.client.cache_off();
         print( '' )
         return len(pris)
 
@@ -190,6 +201,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self.client.user_logger.info( "Viewing prisoners.".format(self.args.page) )
         self.client.cache_on('prisoners')
         pris = self.prison.view_prisoners( page )
+        self.client.cache_off();
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
         print( "Displaying prisoners page {}.".format(page) )
         print( tmpl.format('Name', 'Level', 'Task', 'Sentence Expires') )
@@ -197,7 +209,6 @@ class Turnkey(lacuna.binutils.libbin.Script):
             task = self.summarize( p.task, 10 )
             name = self.summarize( p.name, 20 )
             print( tmpl.format(name, p.level, task, p.sentence_expires))
-        self.client.cache_off();
         print( '' )
         return len(pris)
 
