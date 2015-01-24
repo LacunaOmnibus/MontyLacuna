@@ -162,10 +162,6 @@ class Script:
                 self.skip_argparse[ i ]()
 
         self.args = parser.parse_args()
-
-        print( self.args.config_file )
-        quit()
-
         self.client = self.connect()
 
         ### Set log level

@@ -72,7 +72,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         Arguments:
             - pname -- String name of the planet to set.
         """
-        self.client.user_logger.debug( "Setting working planet to {}.".format(pname) )
+        self.client.user_logger.info( "Setting working planet to {}.".format(pname) )
         self.client.cache_on( 'my_colonies', 3600 )
         self.body = self.client.get_body_byname( pname )
         self.client.cache_off()
@@ -96,7 +96,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self.client.cache_on( 'my_colonies', 3600 )
         self.prison = self.body.get_buildings_bytype( bldg, 1, 1, 100 )[0]
         self.client.cache_off
-        self.client.user_logger.debug( "Got the {}.".format(bldg) )
+        self.client.user_logger.info( "Got the {}.".format(bldg) )
 
     def _set_dispatch( self ):
         self.client.user_logger.debug( "Initializing dispatch table." )
@@ -111,7 +111,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         """ Call the method indicated by the 'task' option.  If '--page' is 0, 
         calls that method once for each page of results.
         """
-        self.client.user_logger.debug( "Running the requested task." )
+        self.client.user_logger.info( "Running the requested task." )
         if self.args.task in self.task_dispatch:
             self.task_dispatch[ self.args.task ]()
         else:
@@ -151,25 +151,28 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self._paginate( self._view_prisoners_page )
 
     def _execute_prisoners_page( self, page ):
-        self.client.user_logger.debug( "Executing prisoners on page {}.".format(self.args.page) )
-        self.client.cache_on('prisoners')
+        self.client.user_logger.info( "Executing prisoners.".format(self.args.page) )
+        ### No cache here.  The user might start a multi-page run, interrupt 
+        ### it, then come back here.  In which case he'll end up trying to 
+        ### execute already-dead prisoners on the >1st run.
         pris = self.prison.view_prisoners( page )
         for p in pris:
             ### CHECK this is untested
-            #self.prison.execute_prisoner( p.id )
-            print( "This is where I would execute prisoner ID {}".format(p.id) )
+            self.client.user_logger.debug( "Executing prisoner ID {}.".format(p.id) )
+            self.prison.execute_prisoner( p.id )
+        return len(pris)
 
     def _release_prisoners_page( self, page ):
-        self.client.user_logger.debug( "Releasing prisoners on page {}.".format(self.args.page) )
-        self.client.cache_on('prisoners')
+        self.client.user_logger.info( "Releasing prisoners.".format(self.args.page) )
         pris = self.prison.view_prisoners( page )
         for p in pris:
             ### CHECK this is untested
             #self.prison.release_prisoner( p.id )
             print( "This is where I would release prisoner ID {}".format(p.id) )
+        return len(pris)
 
     def _view_foreign_spies_page( self, page ):
-        self.client.user_logger.debug( "Viewing foreign spies on page {}.".format(self.args.page) )
+        self.client.user_logger.info( "Viewing foreign spies.".format(self.args.page) )
         self.client.cache_on('prisoners')   # don't change this
         pris = self.prison.view_foreign_spies( page )
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
@@ -179,11 +182,12 @@ class Turnkey(lacuna.binutils.libbin.Script):
             task = self.summarize( p.task, 10 )
             name = self.summarize( p.name, 20 )
             print( tmpl.format(name, p.level, task, p.next_mission))
+        self.client.cache_off();
         print( '' )
         return len(pris)
 
     def _view_prisoners_page( self, page ):
-        self.client.user_logger.debug( "Viewing prisoners on page {}.".format(self.args.page) )
+        self.client.user_logger.info( "Viewing prisoners.".format(self.args.page) )
         self.client.cache_on('prisoners')
         pris = self.prison.view_prisoners( page )
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
@@ -193,6 +197,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
             task = self.summarize( p.task, 10 )
             name = self.summarize( p.name, 20 )
             print( tmpl.format(name, p.level, task, p.sentence_expires))
+        self.client.cache_off();
         print( '' )
         return len(pris)
 
