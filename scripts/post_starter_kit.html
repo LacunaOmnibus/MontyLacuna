@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Post Starter Kit &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
+        <link rel="next" title="Recall All Ships" href="recall_all_ships.html"/>
+        <link rel="prev" title="Build Ships" href="build_ships.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#default-values">Default Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
+      
+    <li>Post Starter Kit</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../sources/scripts/post_starter_kit.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="post-starter-kit">
+<span id="id1"></span><h1>Post Starter Kit<a class="headerlink" href="#post-starter-kit" title="Permalink to this headline">¶</a></h1>
+<p>Posts a specific named starter/noob kit to either the TM or SST for you.  The
+easiest and most common way of running this will be to chose from one of
+several <a class="reference internal" href="#named-kits"><em>pre-set named kits</em></a> and post that.</p>
+<p>Post a Resources kit from Earth:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">resources</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+<p>If you want to post 5 resources kits, just run the above command five times.
+Your terminal should automatically repeat the previous command when you press
+the Up arrow key.  So just type the command above once, hit enter, then, after
+it&#8217;s finished running, hit the Up arrow and hit enter again, etc.</p>
+<p>By default, all posted kits cost 0.1 E, but you can charge whatever you like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="o">--</span><span class="n">price</span> <span class="mf">0.5</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+<p>The named kits all contain level 1+0 plans.  You can change the extra build
+level to offer 1+1 or 1+2 or whatever extra level you like, as long as you
+have the plans on hand, by using the <tt class="docutils literal"><span class="pre">--ebl</span></tt> (Extra Build Level) argument.
+This example would offer the Resources Kit with all plans at 1+2:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="o">--</span><span class="n">price</span> <span class="mf">10.3</span> <span class="o">--</span><span class="n">ebl</span> <span class="mi">2</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+<div class="section" id="sst">
+<h2>SST<a class="headerlink" href="#sst" title="Permalink to this headline">¶</a></h2>
+<p>Kits are normally posted to the Trade Ministry, but sometimes you&#8217;re out of
+range of that desperate new player and you&#8217;re willing to spend the 1E at the
+SST just to get him to stop begging ;)</p>
+<p>To post a regular Resources kit to the SST:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">sst</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="o">--</span><span class="n">price</span> <span class="mf">1.5</span> <span class="n">Earth</span>
+
+<span class="go">***</span>
+<span class="go">Be aware that using this option will automatically charge you the 1E SST</span>
+<span class="go">fee, so set your asking price accordingly.</span>
+<span class="go">***</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="named-kits">
+<span id="id2"></span><h2>Named Kits<a class="headerlink" href="#named-kits" title="Permalink to this headline">¶</a></h2>
+<p>To make posting a little easier, kits with longer names have aliases, which
+are shown in parentheses below.  So to add (eg) a Resources Kit at the default
+price of 0.1 E, you can do any of the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">resources</span> <span class="n">Earth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">resource</span> <span class="n">Earth</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">kit</span> <span class="n">res</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+<p>If you don&#8217;t want to use any of these pre-rolled kits, see the
+<a class="reference internal" href="#custom-kits"><em>Creating A Customized Kit</em></a> section below.</p>
+<ul class="simple">
+<li><strong>Resources Kit</strong> (&#8216;resources&#8217;, resource&#8217;, &#8216;res&#8217;)<ul>
+<li>Algae Pond</li>
+<li>Amalgus Meadow</li>
+<li>Beeldeban Nest</li>
+<li>Denton Brambles</li>
+<li>Geo Thermal Vent</li>
+<li>Lapis Forest</li>
+<li>Malcud Field</li>
+<li>Natural Spring</li>
+<li>Volcano</li>
+</ul>
+</li>
+<li><strong>Storage Kit</strong> (&#8216;storage&#8217;, &#8216;store&#8217;, &#8216;stor&#8217;)<ul>
+<li>Interdimensional Rift</li>
+<li>Ravine</li>
+</ul>
+</li>
+<li><strong>Military Kit</strong> (&#8216;military&#8217;, &#8216;mil&#8217;)<ul>
+<li>Citadel of Knope</li>
+<li>Crashed Ship Site</li>
+<li>Gratch&#8217;s Gauntlet</li>
+<li>Kalavian Ruins</li>
+</ul>
+</li>
+<li><strong>Utility Kit</strong> (&#8216;utility&#8217;, &#8216;util&#8217;, &#8216;ute&#8217;)<ul>
+<li>Black Hole Generator</li>
+<li>Library of Jith</li>
+<li>Oracle of Anid</li>
+<li>Pantheon of Hagness</li>
+<li>Temple of the Drajilites</li>
+</ul>
+</li>
+<li><strong>Halls 10 Kit</strong> (&#8216;halls10&#8217;, &#8216;hall10&#8217;, &#8216;h10&#8217;)</li>
+<li><strong>Halls 100 Kit</strong> (&#8216;halls100&#8217;, &#8216;hall100&#8217;, &#8216;h100&#8217;)<ul>
+<li>These contain 10 and 100 halls, respectively.</li>
+<li>Yes, I&#8217;m well aware that you&#8217;re dying to post 11 or 99 halls, and are just
+about to send off an email to me asking me to enable that.  No.  These are
+meant to be bulk-posted starter kits, and choices of 10 or 100 are fine.<ul>
+<li>If you really really want some other quantity, see the section below on
+&#8220;Creating A Customized Kit&#8221;.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Beach Kit</strong> (&#8216;beach&#8217;)<ul>
+<li>All 13 Beach plans</li>
+</ul>
+</li>
+<li><strong>Decoration Kit</strong> (&#8216;decoration&#8217;, deco&#8217;)<ul>
+<li>Crater</li>
+<li>Grove of Trees</li>
+<li>Lagoon</li>
+<li>Lake</li>
+<li>Patch of Sand</li>
+<li>Rocky Outcropping</li>
+</ul>
+</li>
+<li><strong>Pretty Kit</strong> (&#8216;pretty&#8217;)<ul>
+<li>Combines all plans from the Beach and Decoration kits above.</li>
+</ul>
+</li>
+<li><strong>Full Basic Kit</strong> (&#8216;fullbasic&#8217;, &#8216;full_basic&#8217;, &#8216;full&#8217;)<ul>
+<li>Combines all plans from the Resources and Storage kits above.</li>
+</ul>
+</li>
+<li><strong>Big Kit</strong> (&#8216;big&#8217;)<ul>
+<li>Combines all plans from the Resources, Storage, Military, and Utility kits
+above.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="creating-a-customized-kit">
+<span id="custom-kits"></span><h2>Creating A Customized Kit<a class="headerlink" href="#creating-a-customized-kit" title="Permalink to this headline">¶</a></h2>
+<p>You may want to post some slightly different combination of plans that&#8217;s not
+listed above.  To create your own custom kit, you&#8217;ll need to edit the
+<tt class="docutils literal"><span class="pre">post_starter_kit.py</span></tt> script, but doing so is not hard.</p>
+<p>Open the script in an editor, and find the section near the top that looks
+like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">###</span>
+<span class="c">### Define any custom kits here</span>
+<span class="c">###</span>
+</pre></div>
+</div>
+<p>Right under that, define your customized kit or kits.  For example, here are
+two custom kit definitions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">### Modify a standard ResKit for orbit 1 - remove the food buildings that</span>
+<span class="c">### won&#39;t work in that orbit.</span>
+<span class="n">orb1kit</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">CustomKit</span><span class="p">(</span> <span class="n">sk</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">lib</span><span class="o">.</span><span class="n">ResKit</span><span class="p">(</span><span class="n">sk</span><span class="o">.</span><span class="n">client</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Amalgus Meadow&#39;</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Beeldeban Nest&#39;</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Denton Brambles&#39;</span> <span class="p">)</span>
+<span class="n">orb1kit</span><span class="o">.</span><span class="n">del_plan</span><span class="p">(</span> <span class="s">&#39;Lapis Forest&#39;</span> <span class="p">)</span>
+<span class="c">### Since we&#39;re not specifying price, it&#39;ll default to 0.1 E.</span>
+
+<span class="c">### Start with a completely empty kit, and just add a few plans.</span>
+<span class="n">happykit</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">CustomKit</span><span class="p">(</span> <span class="n">sk</span><span class="o">.</span><span class="n">client</span> <span class="p">)</span>
+<span class="n">happykit</span><span class="o">.</span><span class="n">add_plan</span><span class="p">(</span> <span class="s">&#39;Kalavian Ruins&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>             <span class="c"># include a 1+3 Ruins</span>
+<span class="n">happykit</span><span class="o">.</span><span class="n">add_plan</span><span class="p">(</span> <span class="s">&#39;Halls of Vrbansk&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>        <span class="c"># include 5 Halls (with 0 extra build levels)</span>
+<span class="n">happykit</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
+<p>You can define as many custom kits as you want, calling <tt class="docutils literal"><span class="pre">del_plan()</span></tt> and/or
+<tt class="docutils literal"><span class="pre">add_plan()</span></tt> as often as needed to define what you want your kit to contain.
+When you create a new custom kit, there&#8217;s no need to delete any of your old
+kits - might as well leave the old kits&#8217; definitions there in case you want to
+use them in the future.</p>
+<p>To specify which of your custom kits you want to use, just include this line
+after your kit definitions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sk</span><span class="o">.</span><span class="n">kit</span> <span class="o">=</span> <span class="n">happykit</span>
+</pre></div>
+</div>
+<p>...And that&#8217;s it.  When you run the kit poster script, it&#8217;ll post your
+<tt class="docutils literal"><span class="pre">happykit</span></tt> for 1.5 E:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="full-documentation">
+<h2>Full Documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
+<p>For complete help, see the script&#8217;s help documentation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">post_starter_kit</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="lacuna.binutils.libpost_starter_kit.PostStarterKit">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libpost_starter_kit.</tt><tt class="descname">PostStarterKit</tt><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.PostStarterKit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<p>Post a starter/noob kit to either the TM or SST.</p>
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.PostStarterKit.post_kit">
+<tt class="descname">post_kit</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.PostStarterKit.post_kit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Posts the chosen kit to the chosen trade building.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.PostStarterKit.validate_plans">
+<tt class="descname">validate_plans</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.PostStarterKit.validate_plans" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks that you have on-hand the plans required by the 
+current kit.</p>
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.MissingResourceError" title="lacuna.exceptions.MissingResourceError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.MissingResourceError</span></tt></a> if your kit 
+requires a plan you haven&#8217;t got in stock or if you haven&#8217;t set up a kit 
+yet.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libpost_starter_kit.</tt><tt class="descname">StarterKit</tt><big>(</big><em>client</em>, <em>price: float</em>, <em>plans: list</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Base class for starter kits</p>
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit.add_plan">
+<tt class="descname">add_plan</tt><big>(</big><em>name</em>, <em>ebl=0</em>, <em>quantity=1</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit.add_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a plan to the kit.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String name of the plan to add (eg &#8220;Algae Pond&#8221;).</li>
+<li>ebl &#8211; Optional integer.  The extra build level for the plan.</li>
+<li>quantity &#8211; Optional integer.  The number of plans of this type to include.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit.del_plan">
+<tt class="descname">del_plan</tt><big>(</big><em>name</em>, <em>ebl=0</em>, <em>quantity=1</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit.del_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes a plan from the kit.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String name of the plan to remove (eg &#8220;Algae Pond&#8221;).</li>
+<li>ebl &#8211; Optional integer.  The extra build level setting of the plan to remove.</li>
+<li>quantity &#8211; Optional integer.  The quantity value on the plan to remove.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libpost_starter_kit.StarterKit.update_all_levels">
+<tt class="descname">update_all_levels</tt><big>(</big><em>ebl: int=0</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.StarterKit.update_all_levels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the extra build level for all plans included in the kit.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>ebl &#8211; Integer extra build level.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.binutils.libpost_starter_kit.CustomKit">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libpost_starter_kit.</tt><tt class="descname">CustomKit</tt><big>(</big><em>client</em>, <em>derived_from: lacuna.binutils.libpost_starter_kit.StarterKit=''</em>, <em>price: float=0.1</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libpost_starter_kit.CustomKit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.binutils.libpost_starter_kit.StarterKit" title="lacuna.binutils.libpost_starter_kit.StarterKit"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libpost_starter_kit.StarterKit</span></tt></a></p>
+<p>A kit defined by the user.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>derived_from &#8211; Optional, any other kit class.  If sent, your custom 
+kit will start out containing the same plans as are found in that 
+other kit class.  From there, you can add or remove plans as needed.</li>
+<li>price &#8211; Optional float.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="recall_all_ships.html" class="btn btn-neutral float-right" title="Recall All Ships"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build_ships.html" class="btn btn-neutral" title="Build Ships"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../static/jquery.js"></script>
+      <script type="text/javascript" src="../static/underscore.js"></script>
+      <script type="text/javascript" src="../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

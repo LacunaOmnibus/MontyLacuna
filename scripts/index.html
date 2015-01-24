@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MontyLacuna Scripts &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
+        <link rel="next" title="Create Config File" href="create_config_file.html"/>
+        <link rel="prev" title="Getting Started Running Scripts" href="../getting_started_running.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#default-values">Default Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>MontyLacuna Scripts</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../sources/scripts/index.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="montylacuna-scripts">
+<span id="scripts-index"></span><h1>MontyLacuna Scripts<a class="headerlink" href="#montylacuna-scripts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="starter-scripts">
+<h2>Starter Scripts<a class="headerlink" href="#starter-scripts" title="Permalink to this headline">¶</a></h2>
+<p>There are a few scripts that help with the initial MontyLacuna setup.  By the
+time you&#8217;re reading this, you&#8217;ve probably run them already as you were
+following through the setup process.</p>
+<p>They&#8217;re being listed below for completeness, but if you&#8217;ve already run these
+scripts (and if you just finished walking through the install instructions,
+you&#8217;ve run both of these), you shouldn&#8217;t need to run them again.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="create_config_file.html">Create Config File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_pip.html">Get Pip</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="regular-scripts">
+<h2>Regular Scripts<a class="headerlink" href="#regular-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Most of the available scripts are Lacuna Expanse toolkit-type scripts, similar
+to the GLC scripts many players are already familiar with.</p>
+<p>These scripts have built-in documentation.  You can get the basic command-line
+syntax just by running the script with no arguments:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">scriptname</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Or, you can get more in-depth information on the script by passing the <tt class="docutils literal"><span class="pre">-h</span></tt>
+(or <tt class="docutils literal"><span class="pre">--help</span></tt>) flag:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">scriptname</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>Most scripts allow you to send various command-line arguments.  Remember that
+if your arguments contain spaces, you have to quote them:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">scriptname</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">planet</span> <span class="s">&quot;My Planet Name&quot;</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="assign_spies.html">Assign Spies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_ships.html">Build Ships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_starter_kit.html">Post Starter Kit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recall_all_ships.html">Recall All Ships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recall_all_spies.html">Recall All Spies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scuttle_ships.html">Scuttle Ships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="send_excavs.html">Send Excavs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search_archmin.html">Search Archaeology Ministry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ships_report.html">Ships Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spies_report.html">Spies Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="turnkey.html">Turnkey (Prisoner Management)</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="create_config_file.html" class="btn btn-neutral float-right" title="Create Config File"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../getting_started_running.html" class="btn btn-neutral" title="Getting Started Running Scripts"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../static/jquery.js"></script>
+      <script type="text/javascript" src="../static/underscore.js"></script>
+      <script type="text/javascript" src="../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

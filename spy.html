@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spy &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
+        <link rel="next" title="trading" href="trading.html"/>
+        <link rel="prev" title="ship" href="ship.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#default-values">Default Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ship.html">ship</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>spy</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="sources/spy.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="module-lacuna.spy">
+<span id="spy"></span><h1>spy<a class="headerlink" href="#module-lacuna.spy" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="lacuna.spy.Assignment">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Assignment</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.Assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>A task that a spy can be assigned to.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>task        &quot;Idle&quot;,
+recovery    0,          # in seconds
+skill       &quot;none&quot;
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2">Tasks</th>
+</tr>
+<tr class="row-even"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>Abduct Operatives</td>
+<td>Kidnap a spy and bring him back home.</td>
+</tr>
+<tr class="row-even"><td>Assassinate Operatives</td>
+<td>Kill spies.</td>
+</tr>
+<tr class="row-odd"><td>Appropriate Resources</td>
+<td>Steal empty ships, ships full of resources, ships full of trade goods, etc.</td>
+</tr>
+<tr class="row-even"><td>Appropriate Technology</td>
+<td>Steal plans for buildings that this empire has built, or has in inventory.</td>
+</tr>
+<tr class="row-odd"><td>Counter Espionage</td>
+<td>Passively defend against all attackers.</td>
+</tr>
+<tr class="row-even"><td>Gather Resource Intelligence</td>
+<td>Find out what&#8217;s up for trade, what ships are available, what ships are being built, where ships are travelling to, etc.</td>
+</tr>
+<tr class="row-odd"><td>Gather Empire Intelligence</td>
+<td>Find out what is built on this planet, the resources of the planet, what other colonies this Empire has, etc.</td>
+</tr>
+<tr class="row-even"><td>Gather Operative Intelligence</td>
+<td>Find out what spies are on this planet, where they are from, what they are doing, etc.</td>
+</tr>
+<tr class="row-odd"><td>Hack Network 19</td>
+<td>Attempts to besmirch the good name of the empire controlling this planet, and deprive them of a small amount of happiness.</td>
+</tr>
+<tr class="row-even"><td>Idle</td>
+<td>Don&#8217;t do anything.</td>
+</tr>
+<tr class="row-odd"><td>Incite Insurrection</td>
+<td>Steal a planet.</td>
+</tr>
+<tr class="row-even"><td>Incite Mutiny</td>
+<td>Turn spies. If successful they come work for you.</td>
+</tr>
+<tr class="row-odd"><td>Incite Rebellion</td>
+<td>Obliterate the happiness of a planet. If done long enough, it can shut down a planet.</td>
+</tr>
+<tr class="row-even"><td>Intel Training</td>
+<td>Train in Intelligence skill</td>
+</tr>
+<tr class="row-odd"><td>Mayhem Training</td>
+<td>Train in Mayhem skill</td>
+</tr>
+<tr class="row-even"><td>Political Propaganda</td>
+<td>Give happiness generation a boost.  Especially effective on unhappy colonies, but hastens an agent toward retirement.</td>
+</tr>
+<tr class="row-odd"><td>Politics Training</td>
+<td>Train in Politics skill</td>
+</tr>
+<tr class="row-even"><td>Rescue Comrades</td>
+<td>Break spies out of prison.</td>
+</tr>
+<tr class="row-odd"><td>Sabotage BHG</td>
+<td>Prevent enemy planet from using Black Hole Generator.</td>
+</tr>
+<tr class="row-even"><td>Sabotage Infrastructure</td>
+<td>Destroy buildings.</td>
+</tr>
+<tr class="row-odd"><td>Sabotage Probes</td>
+<td>Destroy probes controlled by this empire.</td>
+</tr>
+<tr class="row-even"><td>Sabotage Resources</td>
+<td>Destroy ships being built, docked, en route to mining platforms, etc.</td>
+</tr>
+<tr class="row-odd"><td>Security Sweep</td>
+<td>Round up attackers.</td>
+</tr>
+<tr class="row-even"><td>Theft Training</td>
+<td>Train in Theft skill</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Recovery:</dt>
+<dd>The spy is currently recovering from running his previous task.  This 
+is the time remaining, in seconds, of that recovery period.  After 
+that time expires, the spy will be available for another task.</dd>
+<dt>Skill:</dt>
+<dd>Which of the spy&#8217;s skills will be used to calculate success.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.ForeignAgent">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">ForeignAgent</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.ForeignAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>name                &quot;James Bond&quot;,
+level               &quot;20&quot;,
+task                &quot;Appropriate Technology&quot;
+next_mission        &quot;01 31 2010 13:09:05 +0600&quot;   
+</pre></div>
+</div>
+<p>You have to capture a ForeignSpy to turn him into a Prisoner to be able to 
+see his ID.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.IntelView">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">IntelView</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.IntelView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>maximum             5,
+current             1,
+in_training         1,
+training_costs      lacuna.spy.TrainingCosts object
+</pre></div>
+</div>
+<ul class="simple">
+<li><a class="reference internal" href="#lacuna.spy.TrainingCosts" title="lacuna.spy.TrainingCosts"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.TrainingCosts</span></tt></a></li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.Merc">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Merc</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.Merc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a></p>
+<p>A spy who&#8217;s ready to be added as a trade on the Merc&#8217;s Guild.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id      12345
+name    &quot;James Bond&quot;,
+level   &quot;20&quot;,
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.MissionCount">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">MissionCount</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.MissionCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>The count of missions performed by the spy.</p>
+<p>A spy is forcefully retired after performing 150 of either type of mission 
+(offensive or defensive).  So to get the most life out of a spy, once he 
+gets to 149 of one type of mission, you should only use him for the other 
+type from then on.</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>offensive   149
+defensive   149
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.MissionResult">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">MissionResult</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.MissionResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>result          &quot;Failure&quot;,
+message_id      &quot;id-goes-here&quot;,
+reason          &quot;I&#39;m under heavy fire over here!&quot;
+</pre></div>
+</div>
+<p>Possible values for &#8216;result&#8217; are:</p>
+<div class="highlight-python"><div class="highlight"><pre>Accepted    Nothing happened as a result of the assignment, as to 
+            Counter Espionage or Idle.
+Success     The mission succeeded and your spy won.
+Bounce      The mission began, but was foiled.  Essentially a draw.  
+Failure     The mission failed miserably.  Your spy is probably 
+            knocked out, in jail, or dead.
+</pre></div>
+</div>
+<p>The message_id listed is the ID of a message in your inbox 
+containing details of the result of the mission.  Not all 
+missions will include a message_id (eg &#8216;Idle&#8217;).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.Prisoner">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Prisoner</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.Prisoner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id                  &quot;id-goes-here&quot;,
+name                &quot;James Bond&quot;,
+level               &quot;20&quot;,
+task                &quot;Captured&quot; or &quot;Prisoner Transport&quot;,
+sentence_expires    &quot;01 31 2010 13:09:05 +0600&quot;   
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.Spy">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Spy</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.Spy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id                     &quot;id-goes-here&quot;,
+name                   &quot;Jason Bourne&quot;,
+assignment             &quot;Idle&quot;,
+possible_assignments   List of lacuna.spy.Assignment objects
+level                  9,
+politics               0,
+mayhem                 20,
+theft                  40,
+intel                  33,
+offense_rating         570,
+defense_rating         150,
+is_available           1,
+available_on           &quot;01 31 2010 13:09:05 +0600&quot;, # if can&#39;t be reassigned, this 
+                                                    # is when will be available
+started_assignment     &quot;01 31 2010 13:09:05 +0600&quot;,
+seconds_remaining      45,
+assigned_to            SpyBody object
+based_from             SpyBody object
+</pre></div>
+</div>
+<ul class="simple">
+<li><a class="reference internal" href="#lacuna.spy.Assignment" title="lacuna.spy.Assignment"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Assignment</span></tt></a></li>
+<li><a class="reference internal" href="#lacuna.spy.SpyBody" title="lacuna.spy.SpyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.SpyBody</span></tt></a></li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.SpyBody">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">SpyBody</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.SpyBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>A body (planet, space station, etc).  This can be where the spy is 
+currently located or his home base (from which he is controlled).</p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          id-goes-here&quot;,
+body_id     id-goes-here&quot;,
+name        Earth&quot;,
+x           40,
+y           -71
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">id</span></tt> and <tt class="docutils literal"><span class="pre">body_id</span></tt> both contain the same value.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.TrainingCosts">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">TrainingCosts</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.TrainingCosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>food    100,
+water   120,
+energy  20,
+ore     5,
+waste   10,
+time    60,
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.spy.TrainingView">
+<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">TrainingView</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.TrainingView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>max_points      2600
+points_per      45
+in_training     4
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trading.html" class="btn btn-neutral float-right" title="trading"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ship.html" class="btn btn-neutral" title="ship"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="static/jquery.js"></script>
+      <script type="text/javascript" src="static/underscore.js"></script>
+      <script type="text/javascript" src="static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
