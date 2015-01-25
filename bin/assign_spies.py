@@ -16,8 +16,14 @@ ass = lib.AssignSpies()             # tee-hee
 l   = ass.client.user_logger
 
 for p in ass.planets:
-    ### Set the current planet
-    ass.set_planet( p )
+    ### Set the current planet, make sure it has an int min on it (skip to the 
+    ### next planet if there's no int min.)
+    try:
+        ass.set_planet( p )
+    except err.NoSuchBuildingError as e:
+        l.info( "You don't have an Intelligence Ministry on {}.  Skipping.".format(ass.planet.name) )
+        continue
+        
     l.info( "Working on {}.".format(ass.planet.name) )
 
     ### If we were asked to topoff to a specific number, either figure out how 
