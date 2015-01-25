@@ -27,14 +27,10 @@ glc = lac.clients.Member(
 ### you can solve, and then your current session will be marked as having 
 ### solved a captcha.  You then have 30 minutes to run your time-sensitive 
 ### script without it having to prompt you for a captcha.
-
-
-cap = glc.get_captcha()
-
-p = cap.fetch()
-print( "Puzzle is located at {}.  Guid is {}.".format(p.url, p.guid) )
-
-quit()
+#cap = glc.get_captcha()
+#p = cap.fetch()
+#print( "Puzzle is located at {}.  Guid is {}.".format(p.url, p.guid) )
+#quit()
 
 
 
