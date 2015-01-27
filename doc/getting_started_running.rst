@@ -110,14 +110,7 @@ the root MontyLacuna folder -  the one you just extracted in the previous step
 
     >>> python bin/get-pip.py
 
-*NOTE* -- please don't get clever and change into the ``bin/`` folder and try 
-to run that as just::
-
-    >>> python get-pip.py
-    Running from inside bin/ might work, and it might not.  You're better off 
-    just not getting into the habit in the first place.
-
-Anyway, after running that script, pip is now installed.
+``pip`` is now installed.
 
 There are only two Python libraries to install, ``requests`` and ``beaker``, 
 and you install both of them using ``pip`` by typing these two commands one at 
