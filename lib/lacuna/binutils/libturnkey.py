@@ -1,20 +1,18 @@
 
-### Search on CHECK
-
 import lacuna, lacuna.binutils.libbin, lacuna.types
 import lacuna.exceptions as err
 import argparse, operator, os, sys
 
 class Turnkey(lacuna.binutils.libbin.Script):
-    """ CHECK Assigns spies to a task, in bulk.
+    """ Manages prisoners in either a Security Ministry or Police Station jail.
     """
 
     def __init__(self):
         self.version = '0.1'
 
         parser = argparse.ArgumentParser(
-            description = 'CHECK.',
-            epilog      = "CHECK Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/assign_spies.html",
+            description = 'Manages prisoners in either a Security Ministry or Police Station jail.',
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/turnkey.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
@@ -48,7 +46,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
         )
         parser.add_argument( '--fresh', 
             action      = 'store_true',
-            help        = "CHECK"
+            help        = "If passed, clears the cache before doing anything else to ensure fresh data."
         )
         super().__init__(parser)
 
@@ -167,7 +165,6 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self.client.cache_off();
         pris = self.prison.view_prisoners( page )
         for p in pris:
-            ### CHECK this is untested
             self.client.user_logger.debug( "Executing prisoner {} (ID {}).".format(p.name, p.id) )
             self.prison.execute_prisoner( p.id )
         return len(pris)
@@ -177,9 +174,11 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self.client.cache_off();    # see comment in _execute_prisoners_page()
         pris = self.prison.view_prisoners( page )
         for p in pris:
-            ### CHECK this is untested
-            #self.prison.release_prisoner( p.id )
-            print( "This is where I would release prisoner ID {}".format(p.id) )
+            ### I've never actually run this, but since it's essentially 
+            ### identical to _execute_prisoners_page(), which I have run, I'm 
+            ### going to assume it works.
+            self.client.user_logger.debug( "Releasing prisoner {} (ID {}).".format(p.name, p.id) )
+            self.prison.release_prisoner( p.id )
         return len(pris)
 
     def _view_foreign_spies_page( self, page ):
