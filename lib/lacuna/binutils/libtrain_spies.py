@@ -204,6 +204,7 @@ class TrainSpies(lacuna.binutils.libbin.Script):
                 obj = self.planet.get_buildings_bytype( bname, 1, 1, 100 )[0]
                 self.client.user_logger.info( "...Got it!".format(bname, self.planet) )
                 view = obj.view()
+                print( view.in_training, self.args.num )
                 if view.in_training >= self.args.num:
                     self.client.user_logger.info( "But it's already training its max number of spies." )
                     continue

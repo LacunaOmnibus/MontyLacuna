@@ -31,6 +31,23 @@ max) on Earth to further Intel Training::
     highly-trained spies, you want a bunch of less-well-trained, but better 
     than average, spies, you can specify "--lvl bad".
 
+The ``--num`` argument is a "topoff" -type argument.  The script is going to 
+assume that you want a *total* of ``--num`` spies in training.  So if you have 
+9 spies in Intel training, and want to round that off to 10, this *will not 
+work*::
+
+    >>> python bin/train_spies.py --num 1 Earth intel
+    This will eventually tell you:
+        Any training buildings you have on Earth are currently full.
+
+...That's not going to add one more spy.  Instead, it's going to ensure that 
+you have at least 1 spy in training (which you do, since 9 is at least 1).  
+Instead, what you want to do is tell the script that you want a total of 10 
+spies doing Intel Training::
+
+    >>> python bin/train_spies.py --num 10 Earth intel
+    And there was much rejoicing.
+
 Assign 10 spies to each of the training buildings you have on Earth.  This 
 works fine even if you don't have all four possible training buildings::
 
