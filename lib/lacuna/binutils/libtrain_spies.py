@@ -1,7 +1,4 @@
 
-### CHECK
-###     is 'fresh' doing us any good?  If so, fix its docs
-
 import lacuna, lacuna.binutils.libbin, lacuna.types
 import lacuna.exceptions as err
 import argparse, operator, os, sys
@@ -87,21 +84,8 @@ class TrainSpies(lacuna.binutils.libbin.Script):
     def __init__(self):
         self.version = '0.1'
 
-        ### The planet that the spies need to be on to perform the requested 
-        ### task.  This will usually be the same as self.args.on, or 
-        ### self.args.name (if the --on argument was not sent).
-        ### However, if the user passed 'all' as the planet name in --on, we 
-        ### need to translate that into an actual planet name.
-        ### So self.args.on is not guaranteed to be a planet name, but self.on 
-        ### is.
-        self.on = ''
-
-        ### The maximum number of spies from any given planet to assign to the 
-        ### task.  If --topoff is not sent, this stays at 90 (the max).
-        self.max = 90
-
         parser = argparse.ArgumentParser(
-            description = 'Assigns spies to a new task, in bulk.',
+            description = 'Assigns spies to a new training task, in bulk.',
             epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/assign_spies.html",
         )
         parser.add_argument( 'name', 
@@ -131,26 +115,21 @@ class TrainSpies(lacuna.binutils.libbin.Script):
         )
         parser.add_argument( '--fresh', 
             action      = 'store_true',
-            help        = "Spy data is cached and shared with spy_report.py.  So if you just ran that spy report script, this will run more quickly.  However, if you just ran the spy report script, then sent some spies to a target planet, and now you're wanting to run this to assign those spies, you'll want to clear out the cache.  In that case, pass this argument."
+            help        = "Clears the cache from previous runs to ensure you're seeing fresh data.  Normally not needed for this script."
         )
         super().__init__(parser)
-
-        ### possible_assignments always includes all 4 training types if the 
-        ### spy is home (or on any of my planets?), even if any of those 
-        ### training buildings doesn't exist.  If you try to train in one of 
-        ### those available training types where no training building exists, 
-        ### you get back "couldn't find the classroom!"
 
         self.planets    = []
         self.planet     = None      # set by set_planet
         self.intmin     = None      # set by set_intmin
         self.locations  = {}        # body name: Location object.  Set by _populate_locations()
 
-        self._set_planets()
-
         if self.args.fresh:
             self.client.cache_clear( 'my_colonies' )
             self.client.cache_clear( 'train_spies' )
+
+        self._set_planets()
+
 
     def _set_planets( self ):
         self.client.cache_on( 'my_colonies', 3600 )

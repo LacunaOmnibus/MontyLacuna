@@ -7,7 +7,10 @@ sys.path.append(libdir)
 
 import lacuna
 
-os.system('cls' if os.name == 'nt' else 'clear')
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+clear_screen()
 filepath = 'etc/lacuna.cfg'
 if os.path.isfile(filepath):
     print("")
@@ -19,12 +22,17 @@ if os.path.isfile(filepath):
         print("If you're sure you want to re-run this, delete that file yourself first.")
         print("")
         quit()
-os.system('cls' if os.name == 'nt' else 'clear')
+clear_screen()
 
-
+print( "+=====================================================================+" )
+print( "| I'm going to ask for your password and sitter below.  What you type |" )
+print( "| will echo to the screen, so be aware of who's over your shoulder.   |" )
+print( "+=====================================================================+" )
+print( "" )
 emp_name    = input("What is your empire's name? ")
 real_pw     = input("What is your real password? ")
 sitter_pw   = input("What is your sitter password? (leave blank if you don't have one) ")
+clear_screen()
 
 if not sitter_pw:
     sitter_pw = "YOU'LL NEED TO MAKE A SITTER AND ENTER IT HERE BEFORE YOU CAN USE THIS SECTION."

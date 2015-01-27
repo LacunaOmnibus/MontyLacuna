@@ -79,8 +79,13 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             help        = "If you have more spies available than you're assigning, this determines which spies get assigned.  Sending a --top of 'intel' will available spies with the highest intel score to the requested task.  Defaults to 'level'."
         )
         super().__init__(parser)
-        self.trans = lacuna.types.Translator()
-        self.task = self.trans.translate_assgtype( self.args.task )
+
+        ### self.args.(task|doing) will be the string that the user entered, 
+        ### but self.(task|doing) will be the translation of that string.  You 
+        ### almost always want to use the translation.
+        self.trans  = lacuna.types.Translator()
+        self.task   = self.trans.translate_assgtype( self.args.task )
+        self.doing  = self.trans.translate_assgtype( self.args.doing )
         self._set_planets()
 
         if self.args.fresh:
@@ -179,10 +184,10 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         """
         valid = []
         for s in self.spies:
-            if self.args.doing == s.assignment:
+            if self.doing == s.assignment:
                 valid.append( s )
         if not valid:
-            raise err.NoUsableSpiesError("You have no usable spies currently performing the {} task.".format(self.args.doing))
+            raise err.NoUsableSpiesError("You have no usable spies currently performing the {} task.".format(self.doing))
         self.spies = valid
 
     def set_best_spies( self ):
