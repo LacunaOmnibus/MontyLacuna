@@ -12,16 +12,23 @@ Overview of Steps
 
 To get MontyLacuna working, you'll have to follow a few steps.  These are 
 similar to the steps necessary to setting up the standard Lacuna scripts 
-written in Perl, but these steps should be simpler.
+written in Perl.
 
 - Install Python 3
-- Install MontyLacuna
-- Install Python libraries
-- Create a config file
-- Run a test script
+
+  - :ref:`inst_python_windows`
+  - :ref:`inst_python_nonwindows`
+- :ref:`inst_monty`
+- :ref:`inst_pip`
+- :ref:`create_config_file`
+- :ref:`run_test_script`
+
+.. _inst_python:
 
 Install Python 3
 ----------------
+
+.. _inst_python_windows:
 
 Windows
 ~~~~~~~
@@ -52,49 +59,10 @@ That should respond with something like this::
 
     Python 3.4.1.0
 
-If that's what you see, then Python has been installed successfully.
+If that's what you see, then Python has been installed successfully.  If 
+that's not what you see, then see the :ref:`troubleshoot_python_install` docs.
 
-Troubleshooting Python Install
-------------------------------
-If python installed properly in the previous step, skip this section - scroll 
-down to the :ref:`install_monty` section.
-
-Especially if you've installed Python before, it's possible that, after 
-installing it this time, the ``python --version`` command will tell you 
-something like::
-
-    'python' is not recognized as an internal or external command, operable 
-    program or batch file.
-
-Most likely, everything is fine, but Windows just hasn't caught up to the
-new install yet.  The easiest way to fix this is just to reboot.
-
-Another option is to restart Windows Explorer in your Task Manager:
-
-    - Make sure to close any open CMD windows you might have lying around.
-    - Hit Ctrl-Alt-Del, and choose "Task Manager".
-    - Windows 8
-
-      - Right-click the Windows Explorer entry, and choose "Restart"
-    - Any other version of Windows
-
-      - Highlight "explorer.exe", and chose "End Process"
-
-        - This is going to look a little scary - all of the icons on your 
-          desktop are going to disappear!  It's not a problem; your desktop is 
-          actually displayed by explorer.exe, and you just ended that process.  
-          Your icons are fine, you just can't see them right now.
-
-        - Restart explorer.exe - from the Task Manager, select File... Run and 
-          type "explorer".  This will restart Windows Explorer (and your 
-          desktop will reappear).
-
-Open a new CMD window and try to run "python --version" again.
-
-If your system still can't find Python, uninstall it and then re-install it.  
-Follow the instructions above carefully, and be sure to check the part about 
-registering as default python.  After re-installing, reboot your machine and 
-try the ``python --version`` command again after the reboot.
+.. _inst_python_nonwindows:
 
 Non-Windows
 ~~~~~~~~~~~
@@ -104,7 +72,7 @@ sure that you've got Python 3.  Many systems come with Python 2, not 3, and
 MontyLacuna will not work with Python 2.  Python 3 should be available via 
 your package manager.
 
-.. _install_monty:
+.. _inst_monty:
 
 Install MontyLacuna
 -------------------
@@ -129,6 +97,8 @@ file.
 - After dragging that oddly-named folder into ``My Documents``, rename it to 
   simply ``MontyLacuna``.
 
+.. _inst_pip:
+
 Install pip and Prerequisite Libraries
 --------------------------------------
 pip is a tool for installing Python libraries.  Installing pip is very easy, 
@@ -144,7 +114,8 @@ the root MontyLacuna folder -  the one you just extracted in the previous step
 to run that as just::
 
     >>> python get-pip.py
-    (Don't do this)
+    Running from inside bin/ might work, and it might not.  You're better off 
+    just not getting into the habit in the first place.
 
 Anyway, after running that script, pip is now installed.
 
@@ -155,27 +126,11 @@ a time::
     >>> pip install requests
     >>> pip install beaker
 
-Troubleshooting Pip Install
----------------------------
-As with the Python install, if those two ``pip install ...`` commands seemed 
-to work, you can skip down to the :ref:`create_config_file` section.
+If either of those ``pip`` commands produced errors, see the 
+:ref:`troubleshoot_pip_install` docs.
 
-If you ran one of the ``pip install`` commands above, and it told you 
-something like::
-
-    Unknown or unsupported command 'install'
-
-...here's what happened.  You probably have Strawberry Perl installed, and 
-Strawberry Perl has, for some bizarre reason, a completely different 
-program named 'pip', and that's what you're running right now.
-
-The fix is easy enough.  Instead of just typing ``pip``, you need to type 
-the full path to your Python pip program.  So do this::
-
-    c:\Python34\Scripts\pip install requests
-    c:\Python34\Scripts\pip install beaker
-
-Leave that CMD window open for the next step.
+After pip and the prerequisite libraries are installed, leave that CMD window 
+open for the next step.
 
 .. _create_config_file:
 
@@ -191,6 +146,8 @@ creation script::
     python bin/create_config_file.py
 
 That will ask you several questions, and then create your config file for you.
+
+.. _run_test_script:
 
 Ready to Test
 -------------
