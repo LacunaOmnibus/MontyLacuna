@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import configparser, os, re, sys
+import configparser, getpass, os, re, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
 sys.path.append(libdir)
@@ -24,18 +24,27 @@ if os.path.isfile(filepath):
         quit()
 clear_screen()
 
-print( "+=====================================================================+" )
-print( "| I'm going to ask for your password and sitter below.  What you type |" )
-print( "| will echo to the screen, so be aware of who's over your shoulder.   |" )
-print( "+=====================================================================+" )
-print( "" )
-emp_name    = input("What is your empire's name? ")
-real_pw     = input("What is your real password? ")
-sitter_pw   = input("What is your sitter password? (leave blank if you don't have one) ")
+emp_name = input("What is your empire's name? ")
+passwords_do_not_match = True
+cnt = 0
+while passwords_do_not_match:
+    if cnt:
+        print( "BZZZT!  Passwords do not match.  Try again." )
+        print(  )
+    real_pw1    = getpass.getpass("What is your real password? ")
+    real_pw2    = getpass.getpass("Confirm: ")
+    sitter_pw1  = getpass.getpass("What is your sitter password? (leave blank if you don't have one) ")
+    sitter_pw2  = ""
+    if sitter_pw1:
+        sitter_pw2  = getpass.getpass("Confirm: ")
+    if real_pw1 == real_pw2 and sitter_pw1 == sitter_pw2:
+        passwords_do_not_match = False
+    cnt += 1
 clear_screen()
 
-if not sitter_pw:
-    sitter_pw = "YOU'LL NEED TO MAKE A SITTER AND ENTER IT HERE BEFORE YOU CAN USE THIS SECTION."
+if not sitter_pw1:
+    sitter_pw1 = "YOU'LL NEED TO MAKE A SITTER AND ENTER IT HERE BEFORE YOU CAN USE THIS SECTION."
+
 
 cp = configparser.ConfigParser()
 cp['DEFAULT'] = {
@@ -50,21 +59,20 @@ cp['DEFAULT'] = {
 }
 cp['real'] = {
     'username': emp_name,
-    'password': real_pw,
+    'password': real_pw1,
 }
 cp['sitter'] = {
     'username': emp_name,
-    'password': sitter_pw,
+    'password': sitter_pw1,
 }
 cp['play_test'] = {
     'host': 'pt.lacunaexpanse.com',
     'username': emp_name,
-    'password': sitter_pw,
+    'password': sitter_pw1,
     'logfile': 'pt.log',
 }
 with open(filepath, 'w') as handle:
     cp.write(handle)
-
 
 print("")
 print("Done - the new config file lives in", filepath)
@@ -73,5 +81,4 @@ print("You can manually update that file to change empire name, passwords, or ev
 print("new sections.  For help, see the wiki:")
 print("    http://tmtowtdi.github.io/MontyLacuna/html_docs/config_file.html")
 print("")
-
 
