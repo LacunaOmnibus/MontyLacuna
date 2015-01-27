@@ -49,6 +49,18 @@ empire::
     training buildings, this will train a total of 30 spies on Venus.  etc.  
     across all of the colonies in your empire.
 
+Taking Spies out of Training
+----------------------------
+
+If you've set some spies to train already, and want to take them off training 
+for whatever reason, you'll use :ref:`assign_spies` rather than this script.  
+To take 10 spies on Earth who are currently doing Intel training and assign 
+them to the Idle task instead::
+
+    >>> python bin/assign_spies.py --num 10 --doing inttrain Earth idle
+
+See the :ref:`assign_spies` docs for more details.
+
 Cache
 -----
 This script uses two caches.  The 'my_colonies' cache just lists out the names 
