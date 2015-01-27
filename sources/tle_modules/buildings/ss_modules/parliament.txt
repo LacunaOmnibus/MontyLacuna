@@ -1,5 +1,6 @@
-parliament
-===========================
+
+Parliament
+==========
 
 .. automodule:: lacuna.buildings.ss_modules.parliament
     :members:

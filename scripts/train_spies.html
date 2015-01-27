@@ -62,10 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -195,6 +193,23 @@ max) on Earth to further Intel Training:</p>
 <span class="go">than average, spies, you can specify &quot;--lvl bad&quot;.</span>
 </pre></div>
 </div>
+<p>The <tt class="docutils literal"><span class="pre">--num</span></tt> argument is a &#8220;topoff&#8221; -type argument.  The script is going to
+assume that you want a <em>total</em> of <tt class="docutils literal"><span class="pre">--num</span></tt> spies in training.  So if you have
+9 spies in Intel training, and want to round that off to 10, this <em>will not
+work</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">train_spies</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">1</span> <span class="n">Earth</span> <span class="n">intel</span>
+<span class="go">This will eventually tell you:</span>
+<span class="go">    Any training buildings you have on Earth are currently full.</span>
+</pre></div>
+</div>
+<p>...That&#8217;s not going to add one more spy.  Instead, it&#8217;s going to ensure that
+you have at least 1 spy in training (which you do, since 9 is at least 1).
+Instead, what you want to do is tell the script that you want a total of 10
+spies doing Intel Training:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">train_spies</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">10</span> <span class="n">Earth</span> <span class="n">intel</span>
+<span class="go">And there was much rejoicing.</span>
+</pre></div>
+</div>
 <p>Assign 10 spies to each of the training buildings you have on Earth.  This
 works fine even if you don&#8217;t have all four possible training buildings:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">train_spies</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="nb">all</span>
@@ -212,6 +227,17 @@ empire:</p>
 <span class="go">training buildings, this will train a total of 30 spies on Venus.  etc.</span>
 <span class="go">across all of the colonies in your empire.</span>
 </pre></div>
+</div>
+<div class="section" id="taking-spies-out-of-training">
+<h2>Taking Spies out of Training<a class="headerlink" href="#taking-spies-out-of-training" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;ve set some spies to train already, and want to take them off training
+for whatever reason, you&#8217;ll use <a class="reference internal" href="assign_spies.html#assign-spies"><em>Assign Spies</em></a> rather than this script.
+To take 10 spies on Earth who are currently doing Intel training and assign
+them to the Idle task instead:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">assign_spies</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">10</span> <span class="o">--</span><span class="n">doing</span> <span class="n">inttrain</span> <span class="n">Earth</span> <span class="n">idle</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="assign_spies.html#assign-spies"><em>Assign Spies</em></a> docs for more details.</p>
 </div>
 <div class="section" id="cache">
 <h2>Cache<a class="headerlink" href="#cache" title="Permalink to this headline">¶</a></h2>

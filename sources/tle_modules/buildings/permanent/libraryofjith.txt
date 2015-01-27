@@ -1,5 +1,6 @@
-libraryofjith
-====================
+
+Library of Jith
+===============
 
 .. automodule:: lacuna.buildings.permanent.libraryofjith
     :members:

@@ -1,5 +1,5 @@
-missioncommand
-================
+Mission Command
+===============
 
 .. automodule:: lacuna.buildings.callable.missioncommand
     :members:

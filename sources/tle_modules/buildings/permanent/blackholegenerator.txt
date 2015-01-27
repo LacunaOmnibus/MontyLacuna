@@ -1,5 +1,5 @@
-blackholegenerator
-=========================
+Black Hole Generator (BHG)
+==========================
 
 .. automodule:: lacuna.buildings.permanent.blackholegenerator
     :members:

@@ -12,6 +12,7 @@ often, ``MyBuilding`` classes.
    buildings/lcot/index
    buildings/permanent/index
    buildings/ss_modules/index
+   buildings/training/index
    buildings/callable/index
    misc_bldgs
 

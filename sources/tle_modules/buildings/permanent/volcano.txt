@@ -1,5 +1,6 @@
-volcano
-==============
+
+Volcano
+=======
 
 .. automodule:: lacuna.buildings.permanent.volcano
     :members:

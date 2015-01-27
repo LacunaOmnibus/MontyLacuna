@@ -1,5 +1,6 @@
-warehouse
-===========================
+
+Warehouse
+=========
 
 .. automodule:: lacuna.buildings.ss_modules.warehouse
     :members:

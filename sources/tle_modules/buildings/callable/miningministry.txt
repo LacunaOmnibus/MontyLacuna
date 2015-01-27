@@ -1,5 +1,5 @@
-miningministry
-================
+Mining Ministry
+===============
 
 .. automodule:: lacuna.buildings.callable.miningministry
     :members:

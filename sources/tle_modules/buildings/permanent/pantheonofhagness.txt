@@ -1,5 +1,6 @@
-pantheonofhagness
-========================
+
+Pantheon of Hagness
+===================
 
 .. automodule:: lacuna.buildings.permanent.pantheonofhagness
     :members:

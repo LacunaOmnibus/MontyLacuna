@@ -1,5 +1,6 @@
-dentonbrambles
-=====================
+
+Denton Brambles
+===============
 
 .. automodule:: lacuna.buildings.permanent.dentonbrambles
     :members:

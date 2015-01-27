@@ -1,5 +1,5 @@
-network19
-================
+Network 19
+==========
 
 .. automodule:: lacuna.buildings.callable.network19
     :members:

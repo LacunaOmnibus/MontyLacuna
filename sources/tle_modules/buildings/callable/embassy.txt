@@ -1,5 +1,5 @@
-embassy
-================
+Embassy
+=======
 
 .. automodule:: lacuna.buildings.callable.embassy
     :members:

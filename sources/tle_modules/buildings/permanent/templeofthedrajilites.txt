@@ -1,5 +1,6 @@
-templeofthedrajilites
-============================
+
+Temple of the Drajilites
+========================
 
 .. automodule:: lacuna.buildings.permanent.templeofthedrajilites
     :members:

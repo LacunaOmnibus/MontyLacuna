@@ -1,5 +1,5 @@
-archaeology
-================
+Archaeology Ministry
+====================
 
 .. automodule:: lacuna.buildings.callable.archaeology
     :members:

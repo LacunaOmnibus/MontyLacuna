@@ -1,8 +1,8 @@
 
 .. _bldg_transporter:
 
-transporter
-================
+Sub Space Transporter (SST)
+===========================
 
 .. automodule:: lacuna.buildings.callable.transporter
     :members:

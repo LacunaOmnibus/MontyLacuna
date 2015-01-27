@@ -1,5 +1,6 @@
-amalgusmeadow
-====================
+
+Amalgus Meadow (Beans)
+======================
 
 .. automodule:: lacuna.buildings.permanent.amalgusmeadow
     :members:

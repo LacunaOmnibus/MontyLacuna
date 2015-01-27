@@ -1,5 +1,5 @@
-capitol
-================
+Capitol
+=======
 
 .. automodule:: lacuna.buildings.callable.capitol
     :members:

@@ -1,5 +1,5 @@
-park
-================
+Park
+====
 
 .. automodule:: lacuna.buildings.callable.park
     :members:

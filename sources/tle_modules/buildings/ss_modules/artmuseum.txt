@@ -1,5 +1,6 @@
-artmuseum
-================
+
+Art Museum
+==========
 
 .. automodule:: lacuna.buildings.ss_modules.artmuseum
     :members:

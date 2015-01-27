@@ -61,10 +61,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -171,19 +169,23 @@
 <h2>Overview of Steps<a class="headerlink" href="#overview-of-steps" title="Permalink to this headline">¶</a></h2>
 <p>To get MontyLacuna working, you&#8217;ll have to follow a few steps.  These are
 similar to the steps necessary to setting up the standard Lacuna scripts
-written in Perl, but these steps should be simpler.</p>
+written in Perl.</p>
 <ul class="simple">
-<li>Install Python 3</li>
-<li>Install MontyLacuna</li>
-<li>Install Python libraries</li>
-<li>Create a config file</li>
-<li>Run a test script</li>
+<li>Install Python 3<ul>
+<li><a class="reference internal" href="#inst-python-windows"><em>Windows</em></a></li>
+<li><a class="reference internal" href="#inst-python-nonwindows"><em>Non-Windows</em></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inst-monty"><em>Install MontyLacuna</em></a></li>
+<li><a class="reference internal" href="#inst-pip"><em>Install pip and Prerequisite Libraries</em></a></li>
+<li><a class="reference internal" href="#create-config-file"><em>Create A Config File</em></a></li>
+<li><a class="reference internal" href="#run-test-script"><em>Ready to Test</em></a></li>
 </ul>
 </div>
 <div class="section" id="install-python-3">
-<h2>Install Python 3<a class="headerlink" href="#install-python-3" title="Permalink to this headline">¶</a></h2>
+<span id="inst-python"></span><h2>Install Python 3<a class="headerlink" href="#install-python-3" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<span id="inst-python-windows"></span><h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
 <p>You can download Python 3 from <a class="reference external" href="http://www.activestate.com/activepython/downloads">ActiveState&#8217;s website.</a>  Make sure you download
 version <strong>3.whatever</strong>, <em>not</em> version <strong>2.whatever</strong>.</p>
 <p>During installation, the installer will show you what features will be
@@ -206,53 +208,11 @@ had one open, close it and open a new one) and type:</p>
 <div class="highlight-python"><div class="highlight"><pre>Python 3.4.1.0
 </pre></div>
 </div>
-<p>If that&#8217;s what you see, then Python has been installed successfully.</p>
+<p>If that&#8217;s what you see, then Python has been installed successfully.  If
+that&#8217;s not what you see, then see the <a class="reference internal" href="troubleshooting/python_install.html#troubleshoot-python-install"><em>Troubleshooting Python Install</em></a> docs.</p>
 </div>
-</div>
-<div class="section" id="troubleshooting-python-install">
-<h2>Troubleshooting Python Install<a class="headerlink" href="#troubleshooting-python-install" title="Permalink to this headline">¶</a></h2>
-<p>If python installed properly in the previous step, skip this section - scroll
-down to the <a class="reference internal" href="#install-monty"><em>Install MontyLacuna</em></a> section.</p>
-<p>Especially if you&#8217;ve installed Python before, it&#8217;s possible that, after
-installing it this time, the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">--version</span></tt> command will tell you
-something like:</p>
-<div class="highlight-python"><div class="highlight"><pre>&#39;python&#39; is not recognized as an internal or external command, operable
-program or batch file.
-</pre></div>
-</div>
-<p>Most likely, everything is fine, but Windows just hasn&#8217;t caught up to the
-new install yet.  The easiest way to fix this is just to reboot.</p>
-<p>Another option is to restart Windows Explorer in your Task Manager:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Make sure to close any open CMD windows you might have lying around.</li>
-<li>Hit Ctrl-Alt-Del, and choose &#8220;Task Manager&#8221;.</li>
-<li>Windows 8<ul>
-<li>Right-click the Windows Explorer entry, and choose &#8220;Restart&#8221;</li>
-</ul>
-</li>
-<li>Any other version of Windows<ul>
-<li>Highlight &#8220;explorer.exe&#8221;, and chose &#8220;End Process&#8221;<ul>
-<li>This is going to look a little scary - all of the icons on your
-desktop are going to disappear!  It&#8217;s not a problem; your desktop is
-actually displayed by explorer.exe, and you just ended that process.
-Your icons are fine, you just can&#8217;t see them right now.</li>
-<li>Restart explorer.exe - from the Task Manager, select File... Run and
-type &#8220;explorer&#8221;.  This will restart Windows Explorer (and your
-desktop will reappear).</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div></blockquote>
-<p>Open a new CMD window and try to run &#8220;python &#8211;version&#8221; again.</p>
-<p>If your system still can&#8217;t find Python, uninstall it and then re-install it.
-Follow the instructions above carefully, and be sure to check the part about
-registering as default python.  After re-installing, reboot your machine and
-try the <tt class="docutils literal"><span class="pre">python</span> <span class="pre">--version</span></tt> command again after the reboot.</p>
 <div class="section" id="non-windows">
-<h3>Non-Windows<a class="headerlink" href="#non-windows" title="Permalink to this headline">¶</a></h3>
+<span id="inst-python-nonwindows"></span><h3>Non-Windows<a class="headerlink" href="#non-windows" title="Permalink to this headline">¶</a></h3>
 <p>If you&#8217;re on Linux or Mac, you should already have Python installed.  But make
 sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3, and
 MontyLacuna will not work with Python 2.  Python 3 should be available via
@@ -260,7 +220,7 @@ your package manager.</p>
 </div>
 </div>
 <div class="section" id="install-montylacuna">
-<span id="install-monty"></span><h2>Install MontyLacuna<a class="headerlink" href="#install-montylacuna" title="Permalink to this headline">¶</a></h2>
+<span id="inst-monty"></span><h2>Install MontyLacuna<a class="headerlink" href="#install-montylacuna" title="Permalink to this headline">¶</a></h2>
 <p>Download your preferred filetype.  For most people, that will be the &#8220;zip&#8221;
 file.</p>
 <blockquote>
@@ -298,7 +258,7 @@ simply <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.</
 </ul>
 </div>
 <div class="section" id="install-pip-and-prerequisite-libraries">
-<h2>Install pip and Prerequisite Libraries<a class="headerlink" href="#install-pip-and-prerequisite-libraries" title="Permalink to this headline">¶</a></h2>
+<span id="inst-pip"></span><h2>Install pip and Prerequisite Libraries<a class="headerlink" href="#install-pip-and-prerequisite-libraries" title="Permalink to this headline">¶</a></h2>
 <p>pip is a tool for installing Python libraries.  Installing pip is very easy,
 as MontyLacuna includes a script to install it for you.</p>
 <p>Open up a terminal window (on Windows, this means <tt class="docutils literal"><span class="pre">CMD.exe</span></tt>).  Change into
@@ -307,13 +267,7 @@ the root MontyLacuna folder -  the one you just extracted in the previous step
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p><em>NOTE</em> &#8211; please don&#8217;t get clever and change into the <tt class="docutils literal"><span class="pre">bin/</span></tt> folder and try
-to run that as just:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
-<span class="go">(Don&#39;t do this)</span>
-</pre></div>
-</div>
-<p>Anyway, after running that script, pip is now installed.</p>
+<p><tt class="docutils literal"><span class="pre">pip</span></tt> is now installed.</p>
 <p>There are only two Python libraries to install, <tt class="docutils literal"><span class="pre">requests</span></tt> and <tt class="docutils literal"><span class="pre">beaker</span></tt>,
 and you install both of them using <tt class="docutils literal"><span class="pre">pip</span></tt> by typing these two commands one at
 a time:</p>
@@ -321,26 +275,10 @@ a time:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pip</span> <span class="n">install</span> <span class="n">beaker</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="troubleshooting-pip-install">
-<h2>Troubleshooting Pip Install<a class="headerlink" href="#troubleshooting-pip-install" title="Permalink to this headline">¶</a></h2>
-<p>As with the Python install, if those two <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">...</span></tt> commands seemed
-to work, you can skip down to the <a class="reference internal" href="#create-config-file"><em>Create A Config File</em></a> section.</p>
-<p>If you ran one of the <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt> commands above, and it told you
-something like:</p>
-<div class="highlight-python"><div class="highlight"><pre>Unknown or unsupported command &#39;install&#39;
-</pre></div>
-</div>
-<p>...here&#8217;s what happened.  You probably have Strawberry Perl installed, and
-Strawberry Perl has, for some bizarre reason, a completely different
-program named &#8216;pip&#8217;, and that&#8217;s what you&#8217;re running right now.</p>
-<p>The fix is easy enough.  Instead of just typing <tt class="docutils literal"><span class="pre">pip</span></tt>, you need to type
-the full path to your Python pip program.  So do this:</p>
-<div class="highlight-python"><div class="highlight"><pre>c:\Python34\Scripts\pip install requests
-c:\Python34\Scripts\pip install beaker
-</pre></div>
-</div>
-<p>Leave that CMD window open for the next step.</p>
+<p>If either of those <tt class="docutils literal"><span class="pre">pip</span></tt> commands produced errors, see the
+<a class="reference internal" href="troubleshooting/pip_install.html#troubleshoot-pip-install"><em>Troubleshooting Pip Install</em></a> docs.</p>
+<p>After pip and the prerequisite libraries are installed, leave that CMD window
+open for the next step.</p>
 </div>
 <div class="section" id="create-a-config-file">
 <span id="create-config-file"></span><h2>Create A Config File<a class="headerlink" href="#create-a-config-file" title="Permalink to this headline">¶</a></h2>
@@ -355,7 +293,7 @@ creation script:</p>
 <p>That will ask you several questions, and then create your config file for you.</p>
 </div>
 <div class="section" id="ready-to-test">
-<h2>Ready to Test<a class="headerlink" href="#ready-to-test" title="Permalink to this headline">¶</a></h2>
+<span id="run-test-script"></span><h2>Ready to Test<a class="headerlink" href="#ready-to-test" title="Permalink to this headline">¶</a></h2>
 <p>At this point, you should be set to run any of the available scripts in the
 <tt class="docutils literal"><span class="pre">bin/</span></tt> directory.  There&#8217;s a test script that will show you a few details
 about your empire, and requires no arguments.  Try it out by typing:</p>

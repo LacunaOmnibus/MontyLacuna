@@ -1,5 +1,5 @@
-geneticslab
-================
+Genetics Lab
+============
 
 .. automodule:: lacuna.buildings.callable.geneticslab
     :members:

@@ -1,5 +1,6 @@
-kasternskeep
-===================
+
+Kasterns Keep
+=============
 
 .. automodule:: lacuna.buildings.permanent.kasternskeep
     :members:

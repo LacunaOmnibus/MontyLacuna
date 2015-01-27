@@ -1,5 +1,5 @@
-themepark
-================
+Theme Park
+==========
 
 .. automodule:: lacuna.buildings.callable.themepark
     :members:

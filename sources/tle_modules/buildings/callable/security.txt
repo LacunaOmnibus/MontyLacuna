@@ -1,5 +1,5 @@
-security
-================
+Security Ministry
+=================
 
 .. automodule:: lacuna.buildings.callable.security
     :members:

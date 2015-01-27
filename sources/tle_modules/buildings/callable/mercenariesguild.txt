@@ -1,5 +1,5 @@
-mercenariesguild
-================
+Mercenaries Guild
+=================
 
 .. automodule:: lacuna.buildings.callable.mercenariesguild
     :members:
