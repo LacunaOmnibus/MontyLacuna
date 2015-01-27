@@ -1,5 +1,6 @@
-kalavianruins
-====================
+
+Kalavian Ruins
+==============
 
 .. automodule:: lacuna.buildings.permanent.kalavianruins
     :members:

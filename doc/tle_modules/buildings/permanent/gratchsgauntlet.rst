@@ -1,5 +1,6 @@
-gratchsgauntlet
-======================
+
+Gratchs Gauntlet
+================
 
 .. automodule:: lacuna.buildings.permanent.gratchsgauntlet
     :members:

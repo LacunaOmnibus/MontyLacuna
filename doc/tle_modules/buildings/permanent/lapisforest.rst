@@ -1,5 +1,6 @@
-lapisforest
-==================
+
+Lapis Forest
+============
 
 .. automodule:: lacuna.buildings.permanent.lapisforest
     :members:

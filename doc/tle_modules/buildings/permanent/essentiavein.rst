@@ -1,5 +1,6 @@
-essentiavein
-===================
+
+Essentia Vein
+=============
 
 .. automodule:: lacuna.buildings.permanent.essentiavein
     :members:

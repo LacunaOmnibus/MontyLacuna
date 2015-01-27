@@ -1,5 +1,5 @@
-entertainment
-================
+Entertainment District
+======================
 
 .. automodule:: lacuna.buildings.callable.entertainment
     :members:

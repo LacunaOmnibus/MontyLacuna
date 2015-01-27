@@ -1,5 +1,5 @@
-policestation
-===========================
+Police Station
+==============
 
 .. automodule:: lacuna.buildings.ss_modules.policestation
     :members:

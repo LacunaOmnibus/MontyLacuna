@@ -1,5 +1,6 @@
-beeldebannest
-====================
+
+Beeldeban Nest (beetle)
+=======================
 
 .. automodule:: lacuna.buildings.permanent.beeldebannest
     :members:

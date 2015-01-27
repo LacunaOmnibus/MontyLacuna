@@ -1,5 +1,5 @@
-distributioncenter
-==================
+Distribution Center
+===================
 
 .. automodule:: lacuna.buildings.callable.distributioncenter
     :members:

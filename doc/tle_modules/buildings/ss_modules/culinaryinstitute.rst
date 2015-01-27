@@ -1,5 +1,5 @@
-culinaryinstitute
-========================
+Culinary Institute
+==================
 
 .. automodule:: lacuna.buildings.ss_modules.culinaryinstitute
     :members:

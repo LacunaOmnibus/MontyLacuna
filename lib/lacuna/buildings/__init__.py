@@ -29,14 +29,12 @@ from lacuna.buildings.geo import geo
 from lacuna.buildings.greatballofjunk import greatballofjunk
 from lacuna.buildings.grove import grove
 from lacuna.buildings.hydrocarbon import hydrocarbon
-from lacuna.buildings.inteltraining import inteltraining
 from lacuna.buildings.junkhengesculpture import junkhengesculpture
 from lacuna.buildings.lagoon import lagoon
 from lacuna.buildings.lake import lake
 from lacuna.buildings.lapis import lapis
 from lacuna.buildings.luxuryhousing import luxuryhousing
 from lacuna.buildings.malcud import malcud
-from lacuna.buildings.mayhemtraining import mayhemtraining
 from lacuna.buildings.metaljunkarches import metaljunkarches
 from lacuna.buildings.mine import mine
 from lacuna.buildings.munitionslab import munitionslab
@@ -46,7 +44,6 @@ from lacuna.buildings.oversight import oversight
 from lacuna.buildings.pancake import pancake
 from lacuna.buildings.pie import pie
 from lacuna.buildings.pilottraining import pilottraining
-from lacuna.buildings.politicstraining import politicstraining
 from lacuna.buildings.potato import potato
 from lacuna.buildings.propulsion import propulsion
 from lacuna.buildings.pyramidjunksculpture import pyramidjunksculpture
@@ -66,7 +63,6 @@ from lacuna.buildings.supplypod import supplypod
 from lacuna.buildings.syrup import syrup
 from lacuna.buildings.terraforminglab import terraforminglab
 from lacuna.buildings.terraformingplatform import terraformingplatform
-from lacuna.buildings.thefttraining import thefttraining
 from lacuna.buildings.university import university
 from lacuna.buildings.wastedigester import wastedigester
 from lacuna.buildings.wasteenergy import wasteenergy
@@ -79,6 +75,12 @@ from lacuna.buildings.waterpurification import waterpurification
 from lacuna.buildings.waterreclamation import waterreclamation
 from lacuna.buildings.waterstorage import waterstorage
 from lacuna.buildings.wheat import wheat
+
+### Spy training
+from lacuna.buildings.training.inteltraining import inteltraining
+from lacuna.buildings.training.mayhemtraining import mayhemtraining
+from lacuna.buildings.training.politicstraining import politicstraining
+from lacuna.buildings.training.thefttraining import thefttraining
 
 ### Beaches
 from lacuna.buildings.beach.beach1 import beach1

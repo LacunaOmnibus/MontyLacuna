@@ -1,5 +1,5 @@
-shipyard
-================
+Shipyard
+========
 
 .. automodule:: lacuna.buildings.callable.shipyard
     :members:

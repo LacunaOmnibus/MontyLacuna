@@ -1,5 +1,6 @@
-malcudfield
-==================
+
+Malcud Field (Fungus)
+=====================
 
 .. automodule:: lacuna.buildings.permanent.malcudfield
     :members:

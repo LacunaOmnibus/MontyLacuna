@@ -1,5 +1,5 @@
-planetarycommand
-================
+Planetary Command Center (PCC)
+==============================
 
 .. automodule:: lacuna.buildings.callable.planetarycommand
     :members:

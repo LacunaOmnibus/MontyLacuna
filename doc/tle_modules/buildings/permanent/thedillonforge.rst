@@ -1,5 +1,6 @@
-thedillonforge
-=====================
+
+The Dillon Forge
+================
 
 .. automodule:: lacuna.buildings.permanent.thedillonforge
     :members:

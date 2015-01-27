@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-
 import os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"

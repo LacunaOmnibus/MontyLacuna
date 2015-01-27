@@ -1,5 +1,5 @@
-spaceport
-================
+Spaceport
+=========
 
 .. automodule:: lacuna.buildings.callable.spaceport
     :members:

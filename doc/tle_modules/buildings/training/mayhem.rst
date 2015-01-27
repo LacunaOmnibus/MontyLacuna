@@ -1,8 +1,8 @@
 
-Denton Brambles
+Mayhem Training
 ===============
 
-.. automodule:: lacuna.buildings.permanent.dentonbrambles
+.. automodule:: lacuna.buildings.training.mayhemtraining
     :members:
     :undoc-members:
     :show-inheritance:

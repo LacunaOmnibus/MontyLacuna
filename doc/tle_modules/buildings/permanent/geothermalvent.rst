@@ -1,5 +1,6 @@
-geothermalvent
-=====================
+
+Geo Thermal Vent
+================
 
 .. automodule:: lacuna.buildings.permanent.geothermalvent
     :members:

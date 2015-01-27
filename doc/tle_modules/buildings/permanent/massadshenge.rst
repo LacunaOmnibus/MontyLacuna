@@ -1,5 +1,6 @@
-massadshenge
-===================
+
+Massads Henge
+=============
 
 .. automodule:: lacuna.buildings.permanent.massadshenge
     :members:

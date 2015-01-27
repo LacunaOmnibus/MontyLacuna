@@ -1,8 +1,8 @@
 
 .. _bldg_trade:
 
-trade
-================
+Trade Ministry (TM)
+===================
 
 .. automodule:: lacuna.buildings.callable.trade
     :members:

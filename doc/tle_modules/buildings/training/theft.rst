@@ -1,8 +1,8 @@
 
-Oracle of Anid
+Theft Training
 ==============
 
-.. automodule:: lacuna.buildings.permanent.oracleofanid
+.. automodule:: lacuna.buildings.training.thefttraining
     :members:
     :undoc-members:
     :show-inheritance:

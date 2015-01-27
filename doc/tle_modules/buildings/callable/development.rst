@@ -1,5 +1,5 @@
-development
-================
+Development Ministry
+====================
 
 .. automodule:: lacuna.buildings.callable.development
     :members:

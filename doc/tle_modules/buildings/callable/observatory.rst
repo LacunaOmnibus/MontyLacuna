@@ -1,5 +1,5 @@
-observatory
-================
+Observatory
+===========
 
 .. automodule:: lacuna.buildings.callable.observatory
     :members:

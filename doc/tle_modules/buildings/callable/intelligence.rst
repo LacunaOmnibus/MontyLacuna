@@ -1,5 +1,8 @@
-intelligence
-================
+
+.. _intmin:
+
+Intelligence Ministry
+=====================
 
 .. automodule:: lacuna.buildings.callable.intelligence
     :members:
