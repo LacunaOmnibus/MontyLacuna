@@ -127,19 +127,6 @@ pygments_style = 'sphinx'
 
 ### Theme downloaded using pip.
 ### Great-looking, no nav overwrites anything, headers stand out.
-###
-### The only downside to this so far is that the left nav is meant to stay 
-### sticky.  But when you visit a section (eg Getting Started) that has too 
-### many subheading sections (these appear in that left nav after you visit 
-### the section), the nav stops being sticky.
-### ...Oh, wait.  This isn't a downside at all.  What's happening is that, 
-### when there are too many subsections, and those subsections suddenly show 
-### up in the left nav, they're pushing the bottom of the nav below the bottom 
-### of the viewport.  By turning off sticky nav in those cases, the user is 
-### able to scroll down to see the rest of the nav.
-### In fact, any time you shorten the viewport to obscure part of the nav, it 
-### stops being sticky.  Resize it again so it's big enough to encompass the 
-### whole nav, and it becomes sticky again.  It's perfect as is.
 html_theme = 'sphinx_rtd_theme'
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
