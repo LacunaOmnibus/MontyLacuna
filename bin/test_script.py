@@ -14,6 +14,7 @@ l       = test.client.user_logger
 
 
 l.info( "Following are some details about your empire." )
+test.client.debugging_method = 'view_profile'
 pro = test.client.empire.view_profile()
 l.info( "You have {} messages in your inbox, and a total of {} colonies.  Your email is '{}'"
     .format(test.client.empire.has_new_messages, len(test.client.empire.colonies), pro.email)
