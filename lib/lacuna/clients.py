@@ -141,12 +141,11 @@ class Guest(lacuna.bc.SubClass):
         sh.setFormatter(logging.Formatter(log_format, date_format))
         l.addHandler(sh)
 
-        if( hasattr(self, 'logfile') and self.logfile ):
-            lf_path = self.root_dir + "/var/" + self.logfile
-            lf = logging.handlers.RotatingFileHandler( lf_path, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
-            lf.setLevel(logging.DEBUG)
-            lf.setFormatter(logging.Formatter(log_format, date_format))
-            l.addHandler(lf)
+        lf_path = self.root_dir + "/var/module.log"
+        lf = logging.handlers.RotatingFileHandler( lf_path, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
+        lf.setLevel(logging.DEBUG)
+        lf.setFormatter(logging.Formatter(log_format, date_format))
+        l.addHandler(lf)
         self.module_logger = l
 
     def _create_user_logger(self):
@@ -172,12 +171,15 @@ class Guest(lacuna.bc.SubClass):
         self.user_log_stream_handler.setFormatter(logging.Formatter(log_format, date_format))
         l.addHandler(self.user_log_stream_handler)
 
-        if( hasattr(self, 'logfile') and self.logfile ):
-            lf_path = self.root_dir + "/var/" + self.logfile
-            self.user_log_file_handler = logging.handlers.RotatingFileHandler( lf_path, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
-            self.user_log_file_handler.setLevel(logging.DEBUG)
-            self.user_log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
-            l.addHandler(self.user_log_file_handler)
+        lf_path = None
+        if self.username:
+            lf_path = self.root_dir + "/var/" + self.strsquish(self.username) + ".log"
+        else:
+            lf_path = self.root_dir + "/var/guest.log"
+        self.user_log_file_handler = logging.handlers.RotatingFileHandler( lf_path, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
+        self.user_log_file_handler.setLevel(logging.DEBUG)
+        self.user_log_file_handler.setFormatter(logging.Formatter(log_format, date_format))
+        l.addHandler(self.user_log_file_handler)
         self.user_logger = l
 
     def _create_request_logger(self):
@@ -226,13 +228,18 @@ class Guest(lacuna.bc.SubClass):
         sh.setLevel(logging.WARNING)
         sh.setFormatter(logging.Formatter(s_format, d_format))
         l.addHandler(sh)
-
+        
+        lf = None
         if( hasattr(self, 'logfile') and self.logfile ):
             lf = self.root_dir + "/var/" + self.logfile 
-            fh = logging.handlers.RotatingFileHandler( lf, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
-            fh.setLevel(logging.DEBUG)
-            fh.setFormatter(logging.Formatter(f_format, d_format))
-            l.addHandler(fh)
+        else:
+            lf = self.root_dir + "/var/request.log"
+
+        fh = logging.handlers.RotatingFileHandler( lf, maxBytes=self.max_log_size, backupCount=self.num_log_backups )
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(logging.Formatter(f_format, d_format))
+        l.addHandler(fh)
+
         self.request_logger = l
 
     def _read_config_file( self, conf, default = 'DEFAULT' ):
@@ -473,6 +480,20 @@ class Guest(lacuna.bc.SubClass):
             return thingy['result']
         else:
             return thingy
+
+    def strsquish(self, string:str):
+        """ Squish a string, removing all non-word characters.
+
+        Arguments:
+            string -- The string to squish
+
+        Returns the squished string.
+
+        >>> new = self.strsquish( "foo bar & baz" )
+        >>> print( new )    # foobarbaz
+        """
+        pat = re.compile("\W")
+        return re.sub( pat, '', string )
 
 ################################################################
 
