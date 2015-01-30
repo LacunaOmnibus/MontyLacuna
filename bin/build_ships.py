@@ -31,7 +31,16 @@ for pname in bs.planets:
 
     ### Ensure building the requested ship type is possible, and figure out 
     ### how many should be built.
-    num_to_build = bs.determine_buildable( shipyards )
+    try:
+        num_to_build = bs.determine_buildable( shipyards )
+    except KeyError as e:
+        l.warning( "Skipping {} because:".format(bs.planet.name) )
+        l.warning( "\t{}:".format(e) )
+        continue
+
+    print( "here on planet {}".format(bs.planet.name) )
+    quit()
+
     if num_to_build <= 0:
         continue
     requested = 'max' if bs.args.num == 0 else bs.args.num

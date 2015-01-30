@@ -18,6 +18,11 @@ Traceback (most recent call last):
     raise KeyError("You don't have any docks available to hold more ships.")
 KeyError: "You don't have any docks available to hold more ships."
 
+
+train_spies.py
+    Have them do a complex sort on whatever the user asked for and level as the secondary 
+    critera.
+
 ## TBD
 - Test the log rotation on Windows.  jof had a failure that he said he solved by manually 
   clearing out his logfile, so it sounds like the rotation is broken.
