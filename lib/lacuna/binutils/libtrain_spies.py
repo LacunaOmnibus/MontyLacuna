@@ -22,24 +22,32 @@ class TrainableSpies():
         return self.collection[ id ]
 
     def get_highest(self, skill, num = 90):
-        """ Returns the num spies highest-ranked in skill.
+        """ Returns the num spies highest-ranked in 'skill'.
+
+        Performs a secondary sort on level, so if all spies have the same 
+        'skill' level, the spies with the highest total level will be 
+        trained first.
 
         You're probably going to want a num of 90 most of the time.  
         Even if you only really want 10, the first 10 might be maxed in the 
         desired skill.  And the next 10 might be too, etc.
         Returns a list of spy objects.
         """
-        return sorted( self.collection.values(), key=operator.attrgetter(skill), reverse=True )[0:num]
+        return sorted( self.collection.values(), key=operator.attrgetter(skill, 'level'), reverse=True )[0:num]
 
     def get_lowest(self, skill, num = 90):
-        """ Returns the num spies lowest-ranked in skill.
+        """ Returns the num spies lowest-ranked in 'skill'.
+
+        Performs a secondary sort on level, so if all spies have the same 
+        'skill' level, the spies with the lowest total level will be 
+        trained first.
 
         You're probably going to want a num of 90 most of the time.  
         Even if you only really want 10, the first 10 might be maxed in the 
         desired skill.  And the next 10 might be too, etc.
         Returns a list of spy objects.
         """
-        return sorted( self.collection.values(), key=operator.attrgetter(skill), reverse=False )[0:num]
+        return sorted( self.collection.values(), key=operator.attrgetter(skill, 'level'), reverse=False )[0:num]
 
 
 class Location():
@@ -86,7 +94,7 @@ class TrainSpies(lacuna.binutils.libbin.Script):
 
         parser = argparse.ArgumentParser(
             description = 'Assigns spies to a new training task, in bulk.',
-            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/assign_spies.html",
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/train_spies.html",
         )
         parser.add_argument( 'name', 
             metavar     = '<planet>',
