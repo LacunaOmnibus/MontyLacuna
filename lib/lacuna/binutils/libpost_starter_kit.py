@@ -147,19 +147,19 @@ class PrettyKit( ComboKit ):
     """ A combination of BeachKit and DecoKit
     """
     def __init__( self, client, price:float = 0.1 ):
-        super().__init__( [BeachKit(client), DecoKit(client)], 0.1 )
+        super().__init__( [BeachKit(client), DecoKit(client)], price )
 
 class FullBasicKit( ComboKit ):
     """ A combination of the ResKit and StorageKit
     """
     def __init__( self, client, price:float = 0.1 ):
-        super().__init__( [ResKit(client), StorageKit(client)], 0.1 )
+        super().__init__( [ResKit(client), StorageKit(client)], price )
 
 class BigKit( ComboKit ):
     """ A combination of ResKit, StorageKit, MilitaryKit, and UtilityKit
     """
     def __init__( self, client, price:float = 0.1 ):
-        super().__init__( [ResKit(client), StorageKit(client), MilitaryKit(client), UtilityKit(client)], 0.1 )
+        super().__init__( [ResKit(client), StorageKit(client), MilitaryKit(client), UtilityKit(client)], price )
 
 class CustomKit( StarterKit ):
     """ A kit defined by the user.
@@ -239,6 +239,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
 
         self._set_planet()
         self._set_trade_building()
+
 
     def _set_kit_from_args( self ):
         if not self.args.kit:
