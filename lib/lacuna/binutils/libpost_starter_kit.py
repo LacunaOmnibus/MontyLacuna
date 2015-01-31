@@ -201,7 +201,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
                             'beach',
                             'pretty',
                             'fullbasic', 'full_basic', 'full',
-                            'big'
+                            'big',
                             'halls10',  'hall10',  'h10',
                             'halls100', 'hall100', 'h100',
                           ],
