@@ -63,7 +63,6 @@ for pname in bs.planets:
             l.info( "Looks like we've added all to the queue that we can." )
         l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
         if num_to_build_here > 25:
-            l.info( "Remember that the Shipyard build queue in game will only ever display the first " )
             l.info( "Shipyard build queues in game displays 25 ships max.  I am building {}.".format(num_to_build_here) )
         elif left_to_build <= 0:
             break
