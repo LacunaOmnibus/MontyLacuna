@@ -38,9 +38,6 @@ for pname in bs.planets:
         l.warning( "\t{}:".format(e) )
         continue
 
-    print( "here on planet {}".format(bs.planet.name) )
-    quit()
-
     if num_to_build <= 0:
         continue
     requested = 'max' if bs.args.num == 0 else bs.args.num
@@ -67,7 +64,7 @@ for pname in bs.planets:
         l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
         if num_to_build_here > 25:
             l.info( "Remember that the Shipyard build queue in game will only ever display the first " )
-            l.info( "\t25 ships being built.  I'm definitely building {}.".format(num_to_build_here) )
+            l.info( "Shipyard build queues in game displays 25 ships max.  I am building {}.".format(num_to_build_here) )
         elif left_to_build <= 0:
             break
 
