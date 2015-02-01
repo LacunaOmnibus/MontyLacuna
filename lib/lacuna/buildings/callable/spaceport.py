@@ -10,22 +10,23 @@ import lacuna.spy
 class spaceport(lacuna.building.MyBuilding):
     """
     Multiple spaceport buildings on a single planet work together as a single 
-    unit.  So calling :py:meth:`view_all_ships` on one spaceport building will return 
-    exactly the same list as calling it on a different spaceport building (on the 
-    same planet).
+    unit.  So calling :py:meth:`view_all_ships` on one spaceport building will 
+    return exactly the same list as calling it on a different spaceport 
+    building (on the same planet).
 
-    Target
-        Several methods require a 'target' argument.  This is always a dict in one of 
-        the following formats::
+    Since it usually doesn't matter which spaceport you get, you'll generally 
+    grab one by doing::
 
-        { "body_name" : "Earth" }
-        { "body_id" : "id-goes-here" }
-        { "star_name" : "Sol" }
-        { "star_id" : "id-goes-here" }
-        { "x" : 4, "y" : -3 }
+        >>> sp = my_planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
+        Minimum level 1, only get 1, make sure its efficiency is at 100%.  
+        Even though we're only asking for one ship, get_buildings_bytype() 
+        always returns a list, so grab off the first ([0]) element.
+
     """
 
     path = 'spaceport'
+    """ The name of the TLE module that will process our requests.  Don't 
+    fool with this.  """
 
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
@@ -65,19 +66,27 @@ class spaceport(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view_all_ships( self, paging:dict={}, filter:dict={}, sort:str='type', *args, **kwargs ):
-        """ Show all ships on the planet.
+        """ Show all ships based from this planet, regardless of their task.
 
-        All three arguments are optional.  If sent, they are:
-            - paging -- A dict of paging criteria
-                - no_paging -- true, all ships will be returned, and all other paging options will be ignored.
-                - page_number -- page number to view
-                - items_per_page -- number of items per page
-            - filter -- A dict of filter critera, which can contain the keys 'task', 'type', and/or 'tag'.
-                - task -- Building, Defend, Docked, Mining, Orbiting, Supply Chain, Travelling, Waiting on Trade, Waste Chain
-                - type -- Any of the existing ship types (eg "placebo5", "scow_fast", etc)
-                - tag -- Colonization, Exploration, Intelligence, Mining, Trade, War
-            - sort -- A string to specify what to sort the results on.  Defaults to 'type'.  Valid options:
-                - combat, name, speed, stealth, task, type
+        Arguments:
+            - paging -- Optional dict of paging criteria with the keys:
+                - ``page_number`` -- page number to view
+                - ``items_per_page`` -- number of items per page
+                - ``no_paging`` -- Boolean.  Mutually exclusive with the other two 
+                  keys.  If sent with a True value, all ships will be returned, 
+                  un-paginated.
+            - filter -- A dict of filter critera, with the keys:
+                - ``task`` -- One of ``Building``, ``Defend``, ``Docked``, 
+                  ``Mining``, ``Orbiting``, ``Supply Chain``, ``Travelling``, 
+                  ``Waiting on Trade``, or ``Waste Chain``.
+                - ``type`` -- Any of the existing ship types (eg "placebo5", 
+                  "scow_fast", etc)
+                - ``tag`` -- ``Colonization``, ``Exploration``, 
+                  ``Intelligence``, ``Mining``, ``Trade``, ``War`` 
+            - sort -- A string to specify what to sort the results on.
+                - Valid options: ``combat``, ``name``, ``speed``, ``stealth``, 
+                  ``task``, ``type``.
+                - Defaults to ``type``.
 
         Filter critera are joined with 'or', not 'and'.  So this filter dict may 
         not be what you really mean::
@@ -123,8 +132,9 @@ class spaceport(lacuna.building.MyBuilding):
         )
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
-    def get_fleet_for( self, from_body_id:int, target:dict, *args, **kwargs ):
-        """ See docs for :py:meth:`get_my_fleet_for`.  """
+    def _get_fleet_for( self, from_body_id:int, target:dict, *args, **kwargs ):
+        """ This method is included because it's documented in the TLE API. 
+        """
         ship_list = []
         for i in kwargs['rslt']['ships']:
             ship_list.append( lacuna.ship.ExistingShip(self.client, i) )
@@ -133,51 +143,43 @@ class spaceport(lacuna.building.MyBuilding):
     def get_my_fleet_for( self, target:dict, *args, **kwargs ):
         """ Gets ships available for fleet action to the target.
 
-        'target' is a standard target dict.
+        Arguments:
+            - target -- :ref:`standard target dict <gloss_target>`
 
-        Returns a list of lacuna.ship.FleetShip objects.
+        Returns a list of :class:`lacuna.ship.FleetShip` objects.
                     
-        This method is syntactic sugar for calling :py:meth:`get_fleet_for`, 
-        which requires that the sending body ID be passed.  Since that sending 
-        body ID is an attribute of the spaceport object itself, specifically 
-        sending it as an argument is silly.
-
-        Raises ServerError 1002 if the requested body_id does not exist.
+        Raises :class:`lacuna.exceptions.ServerError` 1002 if the requested 
+        body_id does not exist.
         """
-        return self.get_fleet_for( self.body_id, target )
+        ### This method is syntactic sugar for calling _get_fleet_for, which 
+        ### requires that the sending body ID be passed.  Since that sending  
+        ### body ID is an attribute of the spaceport object itself, 
+        ### specifically sending it as an argument is silly.
+        return self._get_fleet_for( self.body_id, target )
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
-    def get_ships_for( self, from_body_id:int, target:dict, *args, **kwargs ):
+    def _get_ships_for( self, from_body_id:int, target:dict, *args, **kwargs ):
         """ See docs for :py:meth:`get_my_ships_for`."""
 
         inc_list = []
         for i in kwargs['rslt']['incoming']:
             inc_list.append( lacuna.ship.IncomingShip(self.client, i) )
-
         avail_list = []
         for i in kwargs['rslt']['available']:
             avail_list.append( lacuna.ship.ExistingShip(self.client, i) )
-
         unavail_list = []
         for i in kwargs['rslt']['unavailable']:
             unavail_list.append( lacuna.ship.UnavailableShip(self.client, i['reason'], i['ship']) )
-
         orbit_list = []
         if 'orbiting' in kwargs['rslt']:
             for i in kwargs['rslt']['orbiting']:
                 orbit_list.append( lacuna.ship.ExistingShip(self.client, i) )
-
         mining_list = []
         if 'mining_platforms' in kwargs['rslt']:
             for i in kwargs['rslt']['mining_platforms']:
                 mining_list.append( MiningPlatform(self.client, i) )
-
         return(
-            inc_list,
-            avail_list,
-            unavail_list,
-            orbit_list,
-            mining_list,
+            inc_list, avail_list, unavail_list, orbit_list, mining_list,
             self.get_type(kwargs['rslt']['fleet_send_limit'])
         )
 
@@ -185,12 +187,12 @@ class spaceport(lacuna.building.MyBuilding):
         """ Gets ships available to send to a target, as well as a list of 
         incoming ships for some reason.
 
-        'target' is a dict, identical to that required by 
-        :py:meth:`get_my_fleet_for`.
+        This method returns a lot of tuples, and you're often only going to be 
+        interested in one of them.  If that's the case, see instead 
+        :py:meth:`get_task_ships_for`.
 
-        As with :py:meth:`get_my_fleet_for`, this method is sugar for the 
-        actual API
-        method.
+        Arguments:
+            - target -- :ref:`standard target dict <gloss_target>`
 
         Returns a tuple:
             - incoming -- List of :class:`lacuna.ship.IncomingShip` objects
@@ -202,7 +204,7 @@ class spaceport(lacuna.building.MyBuilding):
             - fleet_send_limit -- Always integer 20.
 
         """
-        return self.get_ships_for( self.body_id, target )
+        return self._get_ships_for( self.body_id, target )
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
     def send_ship( self, ship_id:int, target:dict, *args, **kwargs ):
@@ -212,8 +214,7 @@ class spaceport(lacuna.building.MyBuilding):
 
         Arguments:
             - ship_id -- Integer ID of the ship to send
-            - target -- Dict, identical to the one in 
-              :py:meth:`get_my_fleet_for`
+            - target -- :ref:`standard target dict <gloss_target>`
 
         Returns a :class:`lacuna.ship.IncomingShip` object for the single sent 
         ship.
@@ -222,7 +223,7 @@ class spaceport(lacuna.building.MyBuilding):
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_naked_meth
-    def send_ship_types( self, from_body_id:int, target:dict, types:list, arrival:dict, *args, **kwargs ):
+    def _send_ship_types( self, from_body_id:int, target:dict, types:list, arrival:dict, *args, **kwargs ):
         """ See docs for send_my_ship_types.  """
         pass
         
@@ -232,14 +233,10 @@ class spaceport(lacuna.building.MyBuilding):
 
         Requires a captcha if sending attack ships to an inhabited planet.
 
-        Sugar method for send_ship_types() - saves you from having to send the 
-        ID of the sending body.
-
         Arguments
-            - target -- Dict, identical to the one in 
-              :py:meth:`get_my_fleet_for`
-            - types -- List of shiptype dicts
-            - arrival -- Dict to specify arrival time.
+            - target -- :ref:`standard target dict <gloss_target>`
+            - types -- List of shiptype dicts.  See below.
+            - arrival -- Dict to specify arrival time.  See below.
 
         Shiptype dicts
             You can specify ships to send not just by the shiptype, 
@@ -268,10 +265,13 @@ class spaceport(lacuna.building.MyBuilding):
 
         Return is identical to that for get_my_fleet_for().
 
-        Raises ServerError 1009 if the specified arrival time is earlier than 
-        the slowest ship in the group can manage at its top speed.
+        Raises :class:`lacuna.exceptions.ServerError` 1009 if the specified 
+        arrival time is earlier than the slowest ship in the group can manage 
+        at its top speed.
         """
-        return self.send_ship_types( self.body_id, target, types, arrival )
+        ### Sugar method for _send_ship_types() - saves you from having to 
+        ### send the ID of the sending body.
+        return self._send_ship_types( self.body_id, target, types, arrival )
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_naked_meth
@@ -281,7 +281,7 @@ class spaceport(lacuna.building.MyBuilding):
 
         Arguments:
             - ship_ids -- List of integer IDs of ships to send in the fleet
-            - target -- Dict, identical to the one in get_my_fleet_for()
+            - target -- :ref:`standard target dict <gloss_target>`
             - fleet_speed -- Optional integer; speed of the fleet.  If omitted or 0, the fleet will travel at maximum speed.
         """
         pass
@@ -291,6 +291,9 @@ class spaceport(lacuna.building.MyBuilding):
     def recall_ship( self, ship_id:int, *args, **kwargs ):
         """ Recalls a single ship that's currently performing either the 
         'Defend' or 'Orbiting' tasks.
+
+        Arguments:
+            - ship_id -- Integer ID of the ship to recall.
 
         If the ship being recalled is a Spy Shuttle, it will automatically 
         pick up as many idle spies from the planet it had been orbiting as it 
@@ -356,10 +359,15 @@ class spaceport(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_building_meth
     def name_ship( self, ship_id:int, name:str, *args, **kwargs ):
         """ Rename a ship.
+
+        Arguments:
+            - ship_id -- Integer ID of the ship to rename.
+
         Up to 30 characters are allowed.  "No profanity or funky characters" 
         (that's from the API docu - use your head.)
 
-        Raises ServerError 1005 if the ship name violates the rules.
+        Raises :class:`lacuna.exceptions.ServerError` 1005 if the ship name 
+        violates the rules.
         """
         pass
 
@@ -368,7 +376,10 @@ class spaceport(lacuna.building.MyBuilding):
     def scuttle_ship( self, ship_id:int, *args, **kwargs ):
         """ Scuttles (deletes) a ship.  The ship must be docked.
 
-        Raises ServerError 1013 if the ship is not docked.
+        Arguments:
+            - ship_id -- Integer ID of the ship to scuttle.
+
+        Raises :class:`lacuna.exceptions.ServerError` 1013 if the ship is not docked.
         """
         pass
 
@@ -377,6 +388,9 @@ class spaceport(lacuna.building.MyBuilding):
     def mass_scuttle_ship( self, ship_ids:list, *args, **kwargs ):
         """ Scuttles (deletes) a list of ships.  All ships to be scuttled must 
         be docked.
+
+        Arguments:
+            - ship_ids -- List of integer ship IDs.
 
         If any ships in the list are not docked, no error is raised.  In that 
         case, any ships in the list that _were_ docked will be scuttled; the 
@@ -503,11 +517,12 @@ class spaceport(lacuna.building.MyBuilding):
     def fetch_spies( self, on_body_id:int, to_body_id:int, ship_id:int, spy_ids:list, *args, **kwargs ):
         """ Fetches spies back home again.
 
-        Arguments are the same as for :py:meth:`send_spies()`.  But remember 
-        that, like :py:meth:`prepare_fetch_spies()`, on_body_id is the body 
-        the spies are on now (foreign), and to_body_id is the body they're 
-        being fetched to (your planet, their home).
-
+        Arguments:
+            - on_body_id -- Integer ID of the body the spies are currently on 
+              (the foreign planet).
+            - to_body_id -- Integer ID of the body to which you wish to send the 
+              spies (their home planet)
+        
         Returns the :class:`lacuna.ship.TravellingShip` object of the ship 
         fetching the spies.
         """
@@ -539,19 +554,15 @@ class spaceport(lacuna.building.MyBuilding):
     ###
 
     def get_task_ships_for( self, target:dict, task:str = 'available' ):
-        """ Returns a list of ships assigned to a specific task.  
+        """ Get ships assigned to a specific task.  
 
-        There are sugar methods available for each of the possible tasks; it 
-        should be move convenient to use those::
+        Arguments:
+            - target -- :ref:`standard target dict <gloss_target>`
+            - task -- String; ships performing this task will be returned.  One 
+              of ``available``, ``incoming``, ``orbiting``, ``mining_platforms``, 
+              ``unavailable``.
 
-            target = { 'star_name': 'Sol' }
-            available_list          = get_available_ships_for( target )
-            incoming_list           = get_incoming_ships_for( target )
-            mining_list             = get_mining_ships_for( target )
-            orbiting_list           = get_orbiting_ships_for( target )
-            unavailable_list        = get_unavailable_ships_for( target )
-
-        Each one requires a standard target dict.
+        Returns a list of ships assigned to a specific task.  
         """
         inc, avail, unavail, orbit, mining, fleet_limit = self.get_my_ships_for( target )
         if task == 'available':
@@ -567,21 +578,6 @@ class spaceport(lacuna.building.MyBuilding):
         else:
             raise SyntaxError("A valid task must be passed to get_task_ships_for().")
             
-    def get_available_ships_for( self, target:dict ):
-        return self.get_task_ships_for( target, 'available' )
-
-    def get_incoming_ships_for( self, target:dict ):
-        return self.get_task_ships_for( target, 'incoming' )
-
-    def get_mining_ships_for( self, target:dict ):
-        return self.get_task_ships_for( target, 'mining_platforms' )
-
-    def get_orbiting_ships_for( self, target:dict ):
-        return self.get_task_ships_for( target, 'orbiting' )
-
-    def get_unavailable_ships_for( self, target:dict ):
-        return self.get_task_ships_for( target, 'unavailable' )
-
     def get_spies_back( self, from_id:int, ship_name:str = '' ):
         """ Fetches all spies currently posted to a planet back home again.
 
@@ -594,14 +590,14 @@ class spaceport(lacuna.building.MyBuilding):
 
         Returns a tuple:
             - ship -- :class:`lacuna.ship.TravellingShip` object
-            - spy_ids -- List of integer IDs of spies being fetched NOT a list 
-              of Spy objects.
+            - spy_ids -- List of integer IDs of spies being fetched (NOT a list 
+              of Spy objects).
 
         WARNING - the returned list of spy_ids will only ever contain a maximum 
         of 100 spies.  In the situation where you've sent hundreds of spies from 
         multiple planets all to the same target (eg to defend a space station 
         that's under attack), the spies from this planet may not be included in 
-        the list of spy_ids.
+        that list.
 
         What you need to do in this case is to just fetch the spies who _are_ 
         showing up in that list, wait for the ship to actually pick them up and 
@@ -611,7 +607,7 @@ class spaceport(lacuna.building.MyBuilding):
         be found to be picked up.  This is usually because of the warning 
         mentioned above.
 
-        Raises :class:`lacuna.exceptions.NoAvailableShipError` if you don't 
+        Raises :class:`lacuna.exceptions.NoAvailableShipsError` if you don't 
         have any ships capable of grabbing all of the spies on the target 
         planet in one shot, or if you don't have any spies on foreign soil 
         ready to be picked up (remember that a spy has to be Idle to be picked 

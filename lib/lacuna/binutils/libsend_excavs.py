@@ -377,7 +377,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
               representing an excavator, or False if no available excavators 
               could be found.
         """
-        avail = self.sp.get_available_ships_for( target )
+        avail = self.sp.get_task_ships_for( target, 'available' )
         for s in avail:
             if s.type == 'excavator':
                 return s
