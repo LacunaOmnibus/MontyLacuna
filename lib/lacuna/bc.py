@@ -139,37 +139,37 @@ class LacunaObject(SubClass):
         each decorated method call.
 
         The status block can show up in various places for different methods;
-        it's just not consistent.  Some candidates:
+        it's just not consistent.  Some candidates::
+
             rv = {
                 status: { here }
-
                 status: {
                     empire: { or here }
                 }
-
                 empire: { or even here }
             }
 
-        essentia                8462.5,
-        has_new_messages        '1769',
-        home_planet_id          '108756',
-        id                      '23598',
-        is_isolationist         '0',
-        latest_message_id       '67512585',
-        name                    'tmtowtdi',
-        rpc_count               485,
-        self_destruct_active    '0',
-        self_destruct_date      '14 07 2011 21:38:22 +0000',
-        status_message          'Making Lacuna a better Expanse.',
-        tech_level              '30'
-        planets                 Dict:
-                                    {   12345: "Mercury",
+        Attributes::
+
+            essentia                8462.5,
+            has_new_messages        '1769',
+            home_planet_id          '108756',
+            id                      '23598',
+            is_isolationist         '0',
+            latest_message_id       '67512585',
+            name                    'tmtowtdi',
+            rpc_count               485,
+            self_destruct_active    '0',
+            self_destruct_date      '14 07 2011 21:38:22 +0000',
+            status_message          'Making Lacuna a better Expanse.',
+            tech_level              '30'
+            planets                 {   12345: "Mercury",
                                         12346: "Venus",
-                                        ...         },
-        planet_names            Dict:
-                                    {   "Mercury": 12345,
+                                        etc     },
+            planet_names            {   "Mercury": 12345,
                                         "Venus": 12346,
-                                        ...         },
+                                        etc     },
+
         """
         @functools.wraps(func)
         def inner(*args, **kwargs):
