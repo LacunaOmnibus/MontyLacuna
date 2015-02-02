@@ -1,4 +1,6 @@
 
+.. _bldgs_boring:
+
 Miscellaneous Buildings without Methods
 =======================================
 
@@ -8,7 +10,7 @@ inherit from their parents (usually ``lacuna.building.MyBuilding``.)
 algae
 -----------------------------
 
-.. automodule:: lacuna.buildings.algae
+.. automodule:: lacuna.buildings.boring.algae
     :members:
     :undoc-members:
     :show-inheritance:
@@ -16,7 +18,7 @@ algae
 apple
 -----------------------------
 
-.. automodule:: lacuna.buildings.apple
+.. automodule:: lacuna.buildings.boring.apple
     :members:
     :undoc-members:
     :show-inheritance:
@@ -24,7 +26,7 @@ apple
 atmosphericevaporator
 ---------------------------------------------
 
-.. automodule:: lacuna.buildings.atmosphericevaporator
+.. automodule:: lacuna.buildings.boring.atmosphericevaporator
     :members:
     :undoc-members:
     :show-inheritance:
@@ -32,7 +34,7 @@ atmosphericevaporator
 bean
 ----------------------------
 
-.. automodule:: lacuna.buildings.bean
+.. automodule:: lacuna.buildings.boring.bean
     :members:
     :undoc-members:
     :show-inheritance:
@@ -40,7 +42,7 @@ bean
 beeldeban
 ---------------------------------
 
-.. automodule:: lacuna.buildings.beeldeban
+.. automodule:: lacuna.buildings.boring.beeldeban
     :members:
     :undoc-members:
     :show-inheritance:
@@ -48,7 +50,7 @@ beeldeban
 bread
 -----------------------------
 
-.. automodule:: lacuna.buildings.bread
+.. automodule:: lacuna.buildings.boring.bread
     :members:
     :undoc-members:
     :show-inheritance:
@@ -56,7 +58,7 @@ bread
 burger
 ------------------------------
 
-.. automodule:: lacuna.buildings.burger
+.. automodule:: lacuna.buildings.boring.burger
     :members:
     :undoc-members:
     :show-inheritance:
@@ -64,7 +66,7 @@ burger
 cheese
 ------------------------------
 
-.. automodule:: lacuna.buildings.cheese
+.. automodule:: lacuna.buildings.boring.cheese
     :members:
     :undoc-members:
     :show-inheritance:
@@ -72,7 +74,7 @@ cheese
 chip
 ----------------------------
 
-.. automodule:: lacuna.buildings.chip
+.. automodule:: lacuna.buildings.boring.chip
     :members:
     :undoc-members:
     :show-inheritance:
@@ -80,7 +82,7 @@ chip
 cider
 -----------------------------
 
-.. automodule:: lacuna.buildings.cider
+.. automodule:: lacuna.buildings.boring.cider
     :members:
     :undoc-members:
     :show-inheritance:
@@ -88,7 +90,7 @@ cider
 cloakinglab
 -----------------------------------
 
-.. automodule:: lacuna.buildings.cloakinglab
+.. automodule:: lacuna.buildings.boring.cloakinglab
     :members:
     :undoc-members:
     :show-inheritance:
@@ -96,7 +98,7 @@ cloakinglab
 corn
 ----------------------------
 
-.. automodule:: lacuna.buildings.corn
+.. automodule:: lacuna.buildings.boring.corn
     :members:
     :undoc-members:
     :show-inheritance:
@@ -104,7 +106,7 @@ corn
 cornmeal
 --------------------------------
 
-.. automodule:: lacuna.buildings.cornmeal
+.. automodule:: lacuna.buildings.boring.cornmeal
     :members:
     :undoc-members:
     :show-inheritance:
@@ -112,7 +114,7 @@ cornmeal
 crater
 ------------------------------
 
-.. automodule:: lacuna.buildings.crater
+.. automodule:: lacuna.buildings.boring.crater
     :members:
     :undoc-members:
     :show-inheritance:
@@ -120,7 +122,7 @@ crater
 dairy
 -----------------------------
 
-.. automodule:: lacuna.buildings.dairy
+.. automodule:: lacuna.buildings.boring.dairy
     :members:
     :undoc-members:
     :show-inheritance:
@@ -128,7 +130,7 @@ dairy
 denton
 ------------------------------
 
-.. automodule:: lacuna.buildings.denton
+.. automodule:: lacuna.buildings.boring.denton
     :members:
     :undoc-members:
     :show-inheritance:
@@ -136,7 +138,7 @@ denton
 deployedbleeder
 ---------------------------------------
 
-.. automodule:: lacuna.buildings.deployedbleeder
+.. automodule:: lacuna.buildings.boring.deployedbleeder
     :members:
     :undoc-members:
     :show-inheritance:
@@ -144,7 +146,7 @@ deployedbleeder
 energyreserve
 -------------------------------------
 
-.. automodule:: lacuna.buildings.energyreserve
+.. automodule:: lacuna.buildings.boring.energyreserve
     :members:
     :undoc-members:
     :show-inheritance:
@@ -152,7 +154,7 @@ energyreserve
 espionage
 ---------------------------------
 
-.. automodule:: lacuna.buildings.espionage
+.. automodule:: lacuna.buildings.boring.espionage
     :members:
     :undoc-members:
     :show-inheritance:
@@ -160,7 +162,7 @@ espionage
 fission
 -------------------------------
 
-.. automodule:: lacuna.buildings.fission
+.. automodule:: lacuna.buildings.boring.fission
     :members:
     :undoc-members:
     :show-inheritance:
@@ -168,7 +170,7 @@ fission
 fissure
 -------------------------------
 
-.. automodule:: lacuna.buildings.fissure
+.. automodule:: lacuna.buildings.boring.fissure
     :members:
     :undoc-members:
     :show-inheritance:
@@ -176,7 +178,7 @@ fissure
 foodreserve
 -----------------------------------
 
-.. automodule:: lacuna.buildings.foodreserve
+.. automodule:: lacuna.buildings.boring.foodreserve
     :members:
     :undoc-members:
     :show-inheritance:
@@ -184,7 +186,7 @@ foodreserve
 fusion
 ------------------------------
 
-.. automodule:: lacuna.buildings.fusion
+.. automodule:: lacuna.buildings.boring.fusion
     :members:
     :undoc-members:
     :show-inheritance:
@@ -192,7 +194,7 @@ fusion
 gasgiantlab
 -----------------------------------
 
-.. automodule:: lacuna.buildings.gasgiantlab
+.. automodule:: lacuna.buildings.boring.gasgiantlab
     :members:
     :undoc-members:
     :show-inheritance:
@@ -200,7 +202,7 @@ gasgiantlab
 gasgiantplatform
 ----------------------------------------
 
-.. automodule:: lacuna.buildings.gasgiantplatform
+.. automodule:: lacuna.buildings.boring.gasgiantplatform
     :members:
     :undoc-members:
     :show-inheritance:
@@ -208,7 +210,7 @@ gasgiantplatform
 geo
 ---------------------------
 
-.. automodule:: lacuna.buildings.geo
+.. automodule:: lacuna.buildings.boring.geo
     :members:
     :undoc-members:
     :show-inheritance:
@@ -216,7 +218,7 @@ geo
 greatballofjunk
 ---------------------------------------
 
-.. automodule:: lacuna.buildings.greatballofjunk
+.. automodule:: lacuna.buildings.boring.greatballofjunk
     :members:
     :undoc-members:
     :show-inheritance:
@@ -224,7 +226,7 @@ greatballofjunk
 grove
 -----------------------------
 
-.. automodule:: lacuna.buildings.grove
+.. automodule:: lacuna.buildings.boring.grove
     :members:
     :undoc-members:
     :show-inheritance:
@@ -232,7 +234,7 @@ grove
 hydrocarbon
 -----------------------------------
 
-.. automodule:: lacuna.buildings.hydrocarbon
+.. automodule:: lacuna.buildings.boring.hydrocarbon
     :members:
     :undoc-members:
     :show-inheritance:
@@ -240,7 +242,7 @@ hydrocarbon
 junkhengesculpture
 ------------------------------------------
 
-.. automodule:: lacuna.buildings.junkhengesculpture
+.. automodule:: lacuna.buildings.boring.junkhengesculpture
     :members:
     :undoc-members:
     :show-inheritance:
@@ -248,7 +250,7 @@ junkhengesculpture
 lagoon
 ------------------------------
 
-.. automodule:: lacuna.buildings.lagoon
+.. automodule:: lacuna.buildings.boring.lagoon
     :members:
     :undoc-members:
     :show-inheritance:
@@ -256,7 +258,7 @@ lagoon
 lake
 ----------------------------
 
-.. automodule:: lacuna.buildings.lake
+.. automodule:: lacuna.buildings.boring.lake
     :members:
     :undoc-members:
     :show-inheritance:
@@ -264,7 +266,7 @@ lake
 lapis
 -----------------------------
 
-.. automodule:: lacuna.buildings.lapis
+.. automodule:: lacuna.buildings.boring.lapis
     :members:
     :undoc-members:
     :show-inheritance:
@@ -272,7 +274,7 @@ lapis
 luxuryhousing
 -------------------------------------
 
-.. automodule:: lacuna.buildings.luxuryhousing
+.. automodule:: lacuna.buildings.boring.luxuryhousing
     :members:
     :undoc-members:
     :show-inheritance:
@@ -280,7 +282,7 @@ luxuryhousing
 malcud
 ------------------------------
 
-.. automodule:: lacuna.buildings.malcud
+.. automodule:: lacuna.buildings.boring.malcud
     :members:
     :undoc-members:
     :show-inheritance:
@@ -288,7 +290,7 @@ malcud
 metaljunkarches
 ---------------------------------------
 
-.. automodule:: lacuna.buildings.metaljunkarches
+.. automodule:: lacuna.buildings.boring.metaljunkarches
     :members:
     :undoc-members:
     :show-inheritance:
@@ -296,7 +298,7 @@ metaljunkarches
 mine
 ----------------------------
 
-.. automodule:: lacuna.buildings.mine
+.. automodule:: lacuna.buildings.boring.mine
     :members:
     :undoc-members:
     :show-inheritance:
@@ -304,7 +306,7 @@ mine
 munitionslab
 ------------------------------------
 
-.. automodule:: lacuna.buildings.munitionslab
+.. automodule:: lacuna.buildings.boring.munitionslab
     :members:
     :undoc-members:
     :show-inheritance:
@@ -312,7 +314,7 @@ munitionslab
 orerefinery
 -----------------------------------
 
-.. automodule:: lacuna.buildings.orerefinery
+.. automodule:: lacuna.buildings.boring.orerefinery
     :members:
     :undoc-members:
     :show-inheritance:
@@ -320,7 +322,7 @@ orerefinery
 orestorage
 ----------------------------------
 
-.. automodule:: lacuna.buildings.orestorage
+.. automodule:: lacuna.buildings.boring.orestorage
     :members:
     :undoc-members:
     :show-inheritance:
@@ -328,7 +330,7 @@ orestorage
 oversight
 ---------------------------------
 
-.. automodule:: lacuna.buildings.oversight
+.. automodule:: lacuna.buildings.boring.oversight
     :members:
     :undoc-members:
     :show-inheritance:
@@ -336,7 +338,7 @@ oversight
 pancake
 -------------------------------
 
-.. automodule:: lacuna.buildings.pancake
+.. automodule:: lacuna.buildings.boring.pancake
     :members:
     :undoc-members:
     :show-inheritance:
@@ -344,7 +346,7 @@ pancake
 pie
 ---------------------------
 
-.. automodule:: lacuna.buildings.pie
+.. automodule:: lacuna.buildings.boring.pie
     :members:
     :undoc-members:
     :show-inheritance:
@@ -352,7 +354,7 @@ pie
 pilottraining
 -------------------------------------
 
-.. automodule:: lacuna.buildings.pilottraining
+.. automodule:: lacuna.buildings.boring.pilottraining
     :members:
     :undoc-members:
     :show-inheritance:
@@ -360,7 +362,7 @@ pilottraining
 potato
 ------------------------------
 
-.. automodule:: lacuna.buildings.potato
+.. automodule:: lacuna.buildings.boring.potato
     :members:
     :undoc-members:
     :show-inheritance:
@@ -368,7 +370,7 @@ potato
 propulsion
 ----------------------------------
 
-.. automodule:: lacuna.buildings.propulsion
+.. automodule:: lacuna.buildings.boring.propulsion
     :members:
     :undoc-members:
     :show-inheritance:
@@ -376,7 +378,7 @@ propulsion
 pyramidjunksculpture
 --------------------------------------------
 
-.. automodule:: lacuna.buildings.pyramidjunksculpture
+.. automodule:: lacuna.buildings.boring.pyramidjunksculpture
     :members:
     :undoc-members:
     :show-inheritance:
@@ -384,7 +386,7 @@ pyramidjunksculpture
 ravine
 ------------------------------
 
-.. automodule:: lacuna.buildings.ravine
+.. automodule:: lacuna.buildings.boring.ravine
     :members:
     :undoc-members:
     :show-inheritance:
@@ -392,7 +394,7 @@ ravine
 rockyoutcrop
 ------------------------------------
 
-.. automodule:: lacuna.buildings.rockyoutcrop
+.. automodule:: lacuna.buildings.boring.rockyoutcrop
     :members:
     :undoc-members:
     :show-inheritance:
@@ -400,7 +402,7 @@ rockyoutcrop
 sand
 ----------------------------
 
-.. automodule:: lacuna.buildings.sand
+.. automodule:: lacuna.buildings.boring.sand
     :members:
     :undoc-members:
     :show-inheritance:
@@ -408,7 +410,7 @@ sand
 saw
 ---------------------------
 
-.. automodule:: lacuna.buildings.saw
+.. automodule:: lacuna.buildings.boring.saw
     :members:
     :undoc-members:
     :show-inheritance:
@@ -416,7 +418,7 @@ saw
 shake
 -----------------------------
 
-.. automodule:: lacuna.buildings.shake
+.. automodule:: lacuna.buildings.boring.shake
     :members:
     :undoc-members:
     :show-inheritance:
@@ -424,7 +426,7 @@ shake
 singularity
 -----------------------------------
 
-.. automodule:: lacuna.buildings.singularity
+.. automodule:: lacuna.buildings.boring.singularity
     :members:
     :undoc-members:
     :show-inheritance:
@@ -432,7 +434,7 @@ singularity
 soup
 ----------------------------
 
-.. automodule:: lacuna.buildings.soup
+.. automodule:: lacuna.buildings.boring.soup
     :members:
     :undoc-members:
     :show-inheritance:
@@ -440,7 +442,7 @@ soup
 spacejunkpark
 -------------------------------------
 
-.. automodule:: lacuna.buildings.spacejunkpark
+.. automodule:: lacuna.buildings.boring.spacejunkpark
     :members:
     :undoc-members:
     :show-inheritance:
@@ -448,7 +450,7 @@ spacejunkpark
 sslb
 ----------------------------
 
-.. automodule:: lacuna.buildings.sslb
+.. automodule:: lacuna.buildings.boring.sslb
     :members:
     :undoc-members:
     :show-inheritance:
@@ -456,7 +458,7 @@ sslb
 sslc
 ----------------------------
 
-.. automodule:: lacuna.buildings.sslc
+.. automodule:: lacuna.buildings.boring.sslc
     :members:
     :undoc-members:
     :show-inheritance:
@@ -464,7 +466,7 @@ sslc
 ssld
 ----------------------------
 
-.. automodule:: lacuna.buildings.ssld
+.. automodule:: lacuna.buildings.boring.ssld
     :members:
     :undoc-members:
     :show-inheritance:
@@ -472,7 +474,7 @@ ssld
 stockpile
 ---------------------------------
 
-.. automodule:: lacuna.buildings.stockpile
+.. automodule:: lacuna.buildings.boring.stockpile
     :members:
     :undoc-members:
     :show-inheritance:
@@ -480,7 +482,7 @@ stockpile
 supplypod
 ---------------------------------
 
-.. automodule:: lacuna.buildings.supplypod
+.. automodule:: lacuna.buildings.boring.supplypod
     :members:
     :undoc-members:
     :show-inheritance:
@@ -488,7 +490,7 @@ supplypod
 syrup
 -----------------------------
 
-.. automodule:: lacuna.buildings.syrup
+.. automodule:: lacuna.buildings.boring.syrup
     :members:
     :undoc-members:
     :show-inheritance:
@@ -496,7 +498,7 @@ syrup
 terraforminglab
 ---------------------------------------
 
-.. automodule:: lacuna.buildings.terraforminglab
+.. automodule:: lacuna.buildings.boring.terraforminglab
     :members:
     :undoc-members:
     :show-inheritance:
@@ -504,7 +506,7 @@ terraforminglab
 terraformingplatform
 --------------------------------------------
 
-.. automodule:: lacuna.buildings.terraformingplatform
+.. automodule:: lacuna.buildings.boring.terraformingplatform
     :members:
     :undoc-members:
     :show-inheritance:
@@ -512,7 +514,7 @@ terraformingplatform
 university
 ----------------------------------
 
-.. automodule:: lacuna.buildings.university
+.. automodule:: lacuna.buildings.boring.university
     :members:
     :undoc-members:
     :show-inheritance:
@@ -520,7 +522,7 @@ university
 wastedigester
 -------------------------------------
 
-.. automodule:: lacuna.buildings.wastedigester
+.. automodule:: lacuna.buildings.boring.wastedigester
     :members:
     :undoc-members:
     :show-inheritance:
@@ -528,7 +530,7 @@ wastedigester
 wasteenergy
 -----------------------------------
 
-.. automodule:: lacuna.buildings.wasteenergy
+.. automodule:: lacuna.buildings.boring.wasteenergy
     :members:
     :undoc-members:
     :show-inheritance:
@@ -536,7 +538,7 @@ wasteenergy
 wasteexchanger
 --------------------------------------
 
-.. automodule:: lacuna.buildings.wasteexchanger
+.. automodule:: lacuna.buildings.boring.wasteexchanger
     :members:
     :undoc-members:
     :show-inheritance:
@@ -544,7 +546,7 @@ wasteexchanger
 wasterecycling
 --------------------------------------
 
-.. automodule:: lacuna.buildings.wasterecycling
+.. automodule:: lacuna.buildings.boring.wasterecycling
     :members:
     :undoc-members:
     :show-inheritance:
@@ -552,7 +554,7 @@ wasterecycling
 wastesequestration
 ------------------------------------------
 
-.. automodule:: lacuna.buildings.wastesequestration
+.. automodule:: lacuna.buildings.boring.wastesequestration
     :members:
     :undoc-members:
     :show-inheritance:
@@ -560,7 +562,7 @@ wastesequestration
 wastetreatment
 --------------------------------------
 
-.. automodule:: lacuna.buildings.wastetreatment
+.. automodule:: lacuna.buildings.boring.wastetreatment
     :members:
     :undoc-members:
     :show-inheritance:
@@ -568,7 +570,7 @@ wastetreatment
 waterproduction
 ---------------------------------------
 
-.. automodule:: lacuna.buildings.waterproduction
+.. automodule:: lacuna.buildings.boring.waterproduction
     :members:
     :undoc-members:
     :show-inheritance:
@@ -576,7 +578,7 @@ waterproduction
 waterpurification
 -----------------------------------------
 
-.. automodule:: lacuna.buildings.waterpurification
+.. automodule:: lacuna.buildings.boring.waterpurification
     :members:
     :undoc-members:
     :show-inheritance:
@@ -584,7 +586,7 @@ waterpurification
 waterreclamation
 ----------------------------------------
 
-.. automodule:: lacuna.buildings.waterreclamation
+.. automodule:: lacuna.buildings.boring.waterreclamation
     :members:
     :undoc-members:
     :show-inheritance:
@@ -592,7 +594,7 @@ waterreclamation
 waterstorage
 ------------------------------------
 
-.. automodule:: lacuna.buildings.waterstorage
+.. automodule:: lacuna.buildings.boring.waterstorage
     :members:
     :undoc-members:
     :show-inheritance:
@@ -600,7 +602,7 @@ waterstorage
 wheat
 -----------------------------
 
-.. automodule:: lacuna.buildings.wheat
+.. automodule:: lacuna.buildings.boring.wheat
     :members:
     :undoc-members:
     :show-inheritance:

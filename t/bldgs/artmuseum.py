@@ -15,8 +15,9 @@ my_station = glc.get_body_byname( 'Some Station' )
 art = my_station.get_buildings_bytype( 'artmuseum' )[0]
 
 ###
-### The artmuseum is an example of a boring building - it doesn't have any 
-### methods other that what are provided by its parents.
+### The artmuseum is an example of a boring building even though it doesn't 
+### live in the boring/ directory - it's an SS module, but still doesn't have 
+### any methods other that what are provided by its parents.
 ###
 
 print( art.name )

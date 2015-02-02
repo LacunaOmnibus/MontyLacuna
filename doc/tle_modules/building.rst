@@ -14,7 +14,7 @@ often, ``MyBuilding`` classes.
    buildings/ss_modules/index
    buildings/training/index
    buildings/callable/index
-   misc_bldgs
+   buildings/boring/index
 
 .. automodule:: lacuna.building
    :members:
