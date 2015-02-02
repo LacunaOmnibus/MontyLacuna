@@ -264,6 +264,15 @@ class MyBuilding(lacuna.bc.LacunaObject):
     @set_building_status
     @call_building_meth
     def view( self, **kwargs ):
+        """ You should almost never call this method on a building.  Each 
+        building already has all of the building-specific attributes returned 
+        by a call to view() set as attributes::
+            >>> some_bldg = my_station.get_buildings_bytype( 'bldg_type' )[0]
+            >>> print( some_bldg.name )
+            >>> print( some_bldg.level )
+            >>> print( some_bldg.image )
+            ...etc.
+        """
         pass
 
 

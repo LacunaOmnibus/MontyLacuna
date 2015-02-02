@@ -123,6 +123,8 @@ class SubClass():
 
 
 class LacunaObject(SubClass):
+    """ Superclass from which almost all MontyLacuna objects inherit.
+    """
     pp = pprint.PrettyPrinter( indent = 4 )
 
     def __init__(self, client:object, *args, **kwargs):
