@@ -16,7 +16,7 @@ class stationcommand(lacuna.building.MyBuilding):
     def view( self, *args, **kwargs ):
         """ Get station details.
 
-        Returns a single lacuna.body.Planet object.
+        Returns a single :class:`lacuna.body.Planet` object.
         """ 
         return lacuna.body.Planet(self.client, kwargs['rslt']['planet'])
 
@@ -28,7 +28,7 @@ class stationcommand(lacuna.building.MyBuilding):
         The TLE docs don't list 'quantity' as one of the returned attributes, 
         but it's there.
 
-        Returns a single lacuna.plan.OwnedPlan object.
+        Returns a single :class:`lacuna.plan.OwnedPlan` object.
         """ 
         mylist = []
         for i in kwargs['rslt']['plans']:
@@ -40,7 +40,7 @@ class stationcommand(lacuna.building.MyBuilding):
     def view_incoming_supply_chains( self, *args, **kwargs ):
         """ Get incoming supply chains.
 
-        Returns a list of lacuna.resource.SupplyChain objects.
+        Returns a list of :class:`lacuna.resource.SupplyChain` objects.
         """ 
         mylist = []
         for i in kwargs['rslt']['supply_chains']:
