@@ -267,7 +267,7 @@ class Station(lacuna.bc.SubClass):
         x           143,
         y           -27,
         name        "The Death Star"
-        alliance    lacuna.alliance.SeizingAlliance object.
+        alliance    lacuna.alliance.SeizingAlliance object.  Will not always be set.
 
     - :class:`lacuna.alliance.SeizingAlliance`
     """
@@ -279,8 +279,6 @@ class Station(lacuna.bc.SubClass):
     def view_laws( self, *args, **kwargs ):
         """ Returns a list of :class:`lacuna.parliament.Law` objects.  Otherwise returns 
         an empty list.
-
-        DOES NOT WORK if your alliance doesn't own the station.
         """
         ### This is still hokey.  See the comments in 
         ### lacuna.body.Body.view_laws().  This is a copy/paste of that.
