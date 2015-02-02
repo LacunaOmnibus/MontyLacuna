@@ -7,10 +7,12 @@ logging
 Logging is performed using Python's core `logging library 
 <https://docs.python.org/3.4/library/logging.html>`_.
 
-Both Request and User log entries will be written to the same logfile, 
-specified in your config file.  When this logfile starts to get too big, it 
-will be rotated.  Three backups will be kept, and older backups will be 
-deleted.
+Three separate logfiles will be written to by most scripts:
+    - Request log
+    - User log
+    - Module log
+
+All log files live in ``ROOT/var/``.  
 
 Log Levels
 ----------
@@ -24,13 +26,13 @@ Log Levels
     INFO        20
     DEBUG       10
     ==========  ===============
-  
 
 Request Log
 -----------
-All requests to the TLE server will be written to the logfile specified in the 
-config file.  This happens automatically; just run your scripts, and you'll be 
-able to check that logfile to see what's happening.
+The file name will be either what's specified in the config file as the 
+``logfile`` option or simply ``request.log`` if no such option exists in your 
+config.  This happens automatically; just run your scripts, and you'll be able 
+to check that logfile to see what's happening.
 
 Most request log entries will only display to the file.  However, in the case 
 of something going wrong, entries of WARNING level or higher will also be 
@@ -62,6 +64,12 @@ so you can create whatever log entries you like::
     l.info( "This is an info message." )
     l.debug( "This is a debug message.  You may want a lot of these while you're working." )
 
+User log entries will go into a file named according to the name of the 
+current empire, removing all non-letter characters.  eg for the empire "My 
+Great Empire", user log entries will go into ``MyGreatEmpire.log``.  If your 
+script's client isn't logged in, the user log entries will go into 
+``guest.log``.
+
 As with the request log, only WARNING level or higher will display to the 
 screen by default, while any lower-level entries will just go into the log 
 file.  If you want to change that, for example to display DEBUG level messages 
@@ -84,4 +92,12 @@ An example user log entry::
 - **(USER)** -- This is a user log entry, rather than a request entry.
 - **(INFO)** -- The log level.  This is is an INFO-level entry.
 - **This is an info message.** -- The actual log message.
+
+Module Log
+----------
+The module log is rarely used, and exists for the purpose of debugging 
+specific MontyLacuna modules.  The entries are written to ``module.log``, but 
+this file will likely be empty most of the time.
+
+
 

@@ -62,10 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -117,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
@@ -241,7 +240,7 @@ to dump (&#8216;anthracite&#8217;, &#8216;bauxite&#8217;, &#8216;algae&#8217;, &
 <dl class="class">
 <dt id="lacuna.building.MyBuilding">
 <em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MyBuilding</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
 <p>Represents a building owned by your empire.  Most building objects 
 you encounter will inherit from MyBuilding.</p>
 <p>Attributes:</p>
@@ -388,6 +387,21 @@ Much like lacuna.bc.LacunaObject.set_empire_status.  A few of the Building serve
 methods return both empire status and building status.  So we&#8217;ll still 
 decorate with lacuna.bc.LacunaObject.set_empire_status to get the empire status, 
 but we&#8217;ll also decorate with this to set the body status.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.building.MyBuilding.view">
+<tt class="descname">view</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>You should almost never call this method on a building.  Each 
+building already has all of the building-specific attributes returned 
+by a call to view() set as attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">some_bldg</span> <span class="o">=</span> <span class="n">my_station</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;bldg_type&#39;</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">some_bldg</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">some_bldg</span><span class="o">.</span><span class="n">level</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">some_bldg</span><span class="o">.</span><span class="n">image</span> <span class="p">)</span>
+<span class="go">...etc.</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>

@@ -62,10 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -117,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
@@ -190,7 +189,7 @@ size     58,
 <dl class="class">
 <dt id="lacuna.map.Map">
 <em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Map</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
 <p>Provides access to the starmap.</p>
 <dl class="method">
 <dt id="lacuna.map.Map.check_star_for_incoming_probe">
@@ -401,7 +400,7 @@ returns you the good stuff.</p>
 x           143,
 y           -27,
 name        &quot;The Death Star&quot;
-alliance    lacuna.alliance.SeizingAlliance object.
+alliance    lacuna.alliance.SeizingAlliance object.  Will not always be set.
 </pre></div>
 </div>
 <ul class="simple">
@@ -412,7 +411,6 @@ alliance    lacuna.alliance.SeizingAlliance object.
 <tt class="descname">view_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Station.view_laws" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of <tt class="xref py py-class docutils literal"><span class="pre">lacuna.parliament.Law</span></tt> objects.  Otherwise returns 
 an empty list.</p>
-<p>DOES NOT WORK if your alliance doesn&#8217;t own the station.</p>
 </dd></dl>
 
 </dd></dl>

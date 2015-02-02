@@ -61,10 +61,8 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -116,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
@@ -209,6 +208,136 @@ print( &quot;That&#39;s {} days, {} hours, {} minutes, and {} seconds.&quot;
 is usually not a problem.  But a ship sent at speed 1 from one corner of 
 the expanse to the other won&#8217;t be able to make reasonable use of this 
 converter.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lacuna.bc.LacunaObject">
+<em class="property">class </em><tt class="descclassname">lacuna.bc.</tt><tt class="descname">LacunaObject</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<p>Superclass from which almost all MontyLacuna objects inherit.</p>
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.call_body_meth">
+<tt class="descname">call_body_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_body_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.  
+Just like call_member_meth(), except that this version includes the 
+body_id in the args passed to the server.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.call_guest_meth">
+<tt class="descname">call_guest_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_guest_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.  
+Makes an RPC not requiring that the client is logged in.
+The decorated method must be named identically to an existing TLE method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.call_member_meth">
+<tt class="descname">call_member_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_member_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.  
+Makes an RPC that _does_ require that the client is logged in.
+The decorated method must be named identically to an existing TLE method.
+Expects positional arguments.  This is the &#8216;old&#8217; way of doing things, but
+almost all of the TLE methods work this way.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.call_member_named_meth">
+<tt class="descname">call_member_named_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_member_named_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.  
+Makes an RPC that _does_ require that the client is logged in.
+The decorated method must be named identically to an existing TLE method.
+Expects named arguments.  This is the &#8216;new&#8217; way of doing it, but there are
+fairly few methods that work this way.  See map.get_star_map()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.call_named_returning_meth">
+<tt class="descname">call_named_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_named_returning_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.  
+Makes an RPC that _does_ require that the client is logged in.
+Most RPC calls simply return to the user the data returned from the TLE 
+servers (after a slight massage).  But some methods need to modify that 
+data themselves.</p>
+<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
+using this, there&#8217;s no need to decorate with 
+&#64;LacunaObject.set_empire_status (and doing so will fail).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.call_returning_body_meth">
+<tt class="descname">call_returning_body_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_returning_body_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.  
+Just like call_returning_meth(), except that this version includes the 
+body_id in the args passed to the server.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.call_returning_meth">
+<tt class="descname">call_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_returning_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.  
+Makes an RPC that _does_ require that the client is logged in.
+Most RPC calls simply return to the user the data returned from the TLE 
+servers (after a slight massage).  But some methods need to modify that 
+data themselves.</p>
+<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
+using this, there&#8217;s no need to decorate with 
+&#64;LacunaObject.set_empire_status (and doing so will fail).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.bc.LacunaObject.set_empire_status">
+<tt class="descname">set_empire_status</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.set_empire_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.</p>
+<p>Update the Empire object&#8217;s attributes with fresh status data with 
+each decorated method call.</p>
+<p>The status block can show up in various places for different methods;
+it&#8217;s just not consistent.  Some candidates:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>rv = {</dt>
+<dd><p class="first">status: { here }</p>
+<dl class="docutils">
+<dt>status: {</dt>
+<dd>empire: { or here }</dd>
+</dl>
+<p>}</p>
+<p class="last">empire: { or even here }</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>essentia                8462.5,
+has_new_messages        &#8216;1769&#8217;,
+home_planet_id          &#8216;108756&#8217;,
+id                      &#8216;23598&#8217;,
+is_isolationist         &#8216;0&#8217;,
+latest_message_id       &#8216;67512585&#8217;,
+name                    &#8216;tmtowtdi&#8217;,
+rpc_count               485,
+self_destruct_active    &#8216;0&#8217;,
+self_destruct_date      &#8216;14 07 2011 21:38:22 +0000&#8217;,
+status_message          &#8216;Making Lacuna a better Expanse.&#8217;,
+tech_level              &#8216;30&#8217;
+planets                 Dict:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>{   12345: &#8220;Mercury&#8221;,</dt>
+<dd>12346: &#8220;Venus&#8221;,
+...         },</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>planet_names            Dict:</dt>
+<dd><dl class="first last docutils">
+<dt>{   &#8220;Mercury&#8221;: 12345,</dt>
+<dd>&#8220;Venus&#8221;: 12346,
+...         },</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">

@@ -3,6 +3,8 @@
 Space Station Modules
 =====================
 
+All space station modules inherit from :class:`lacuna.building.MyBuilding`.
+
 .. toctree::
    :maxdepth: 1
 

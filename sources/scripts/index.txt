@@ -54,6 +54,7 @@ if your arguments contain spaces, you have to quote them::
    send_excavs
    search_archmin
    ships_report
+   show_laws
    spies_report
    train_spies
    turnkey

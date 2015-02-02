@@ -59,10 +59,8 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -114,6 +112,7 @@
 <li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
@@ -181,6 +180,20 @@ passing in will be complete (&#8220;Earth&#8221;).  Don&#8217;t fall into the mi
 &#8220;I&#8217;m searching for one thing so I should be getting back one thing&#8221;.
 You&#8217;re still going to be getting back a list.  It&#8217;ll be a list of a single
 item, but it&#8217;ll still be a list.</p>
+</dd>
+</dl>
+<dl class="docutils" id="gloss-target">
+<dt><strong>Standard Target Dict</strong></dt>
+<dd><p class="first">Many <a class="reference internal" href="tle_modules/buildings/callable/spaceport.html#module-lacuna.buildings.callable.spaceport" title="lacuna.buildings.callable.spaceport"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.spaceport</span></tt></a> methods accept a
+<tt class="docutils literal"><span class="pre">target</span></tt> argument to specify where you want to send ships to.  This will
+always be a dict, in one of the following formats:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="p">{</span> <span class="s">&quot;body_name&quot;</span> <span class="p">:</span> <span class="s">&quot;Earth&quot;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s">&quot;body_id&quot;</span> <span class="p">:</span> <span class="s">&quot;id-goes-here&quot;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s">&quot;star_name&quot;</span> <span class="p">:</span> <span class="s">&quot;Sol&quot;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s">&quot;star_id&quot;</span> <span class="p">:</span> <span class="s">&quot;id-goes-here&quot;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="s">&quot;x&quot;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&quot;y&quot;</span> <span class="p">:</span> <span class="o">-</span><span class="mi">3</span> <span class="p">}</span>
+</pre></div>
+</div>
 </dd>
 <dt><strong>TLE date format</strong></dt>
 <dd><p class="first">Many methods include dates as part of their returns.  TLE dates are in the

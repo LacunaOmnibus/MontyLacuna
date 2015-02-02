@@ -20,6 +20,19 @@ Glossary
     You're still going to be getting back a list.  It'll be a list of a single 
     item, but it'll still be a list.
 
+.. _gloss_target:
+
+**Standard Target Dict**
+    Many :class:`lacuna.buildings.callable.spaceport` methods accept a 
+    ``target`` argument to specify where you want to send ships to.  This will 
+    always be a dict, in one of the following formats::
+
+        { "body_name" : "Earth" }
+        { "body_id" : "id-goes-here" }
+        { "star_name" : "Sol" }
+        { "star_id" : "id-goes-here" }
+        { "x" : 4, "y" : -3 }
+
 **TLE date format**
     Many methods include dates as part of their returns.  TLE dates are in the 
     format ``01 31 2010 13:09:05 +0000``.

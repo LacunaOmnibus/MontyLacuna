@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TLE Modules &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Show Laws &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -29,8 +29,9 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
-        <link rel="next" title="Alliance" href="alliance.html"/>
-        <link rel="prev" title="Getting Started Writing Scripts" href="../getting_started_writing.html"/> 
+        <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
+        <link rel="next" title="Spies Report" href="spies_report.html"/>
+        <link rel="prev" title="Ships Report" href="ships_report.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -67,9 +68,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">MontyLacuna Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#starter-scripts">Starter Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
@@ -87,15 +88,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">TLE Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alliance.html">Alliance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="body.html">Body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="building.html">Building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="captcha.html">Captcha</a></li>
-<li class="toctree-l2"><a class="reference internal" href="empire.html">Empire</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inbox.html">Inbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="map.html">Map</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stats.html">Stats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -153,10 +154,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>TLE Modules</li>
+          <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
+      
+    <li>Show Laws</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../sources/tle_modules/index.txt" rel="nofollow"> View page source</a>
+          <a href="../sources/scripts/show_laws.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -164,66 +167,81 @@
 </div>
           <div role="main">
             
-  <div class="section" id="tle-modules">
-<span id="tle-modules-index"></span><h1>TLE Modules<a class="headerlink" href="#tle-modules" title="Permalink to this headline">¶</a></h1>
-<p>These modules mirror the published TLE API.  Some of the modules do contain
-methods that are not part of that API, but all API methods are reflected in
-these modules, using the same argument prototypes as the published API.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="alliance.html">Alliance</a></li>
-<li class="toctree-l1"><a class="reference internal" href="body.html">Body</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">Building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="buildings/beach/index.html">Beach Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="buildings/lcot/index.html">LCOT Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="buildings/permanent/index.html">Permanent (Glyph) Buildings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="buildings/ss_modules/index.html">Space Station Modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="buildings/training/index.html">Spy Training</a></li>
-<li class="toctree-l2"><a class="reference internal" href="buildings/callable/index.html">Miscellaneous Buildings with Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings without Methods</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="captcha.html">Captcha</a></li>
-<li class="toctree-l1"><a class="reference internal" href="empire.html">Empire</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inbox.html">Inbox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="map.html">Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stats.html">Stats</a></li>
-</ul>
+  <div class="section" id="show-laws">
+<span id="id1"></span><h1>Show Laws<a class="headerlink" href="#show-laws" title="Permalink to this headline">¶</a></h1>
+<p>Displays the laws controlling a given star:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">show_laws</span><span class="o">.</span><span class="n">py</span> <span class="n">Sol</span>
+
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAll}...</span>
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAll}...</span>
+<span class="go">Members Only Mining Rights     Only members of {Alliance 00 SomeAll}...</span>
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAll}...</span>
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAll}...</span>
+<span class="go">Members Only Mining Rights     Only members of {Alliance 00 SomeAll}...</span>
+<span class="go">Members Only Excavation        Only members of {Alliance 00 SomeAll}...</span>
+<span class="go">BHG Neutralized                All Black Hole Generators will cease ...</span>
+
+<span class="go">The seizing station, International Space Station, has seized 100 stars.</span>
+<span class="go">That station is owned by SomeAlliance.</span>
+</pre></div>
 </div>
-<p>CAVEAT - There are a few spots where the TLE API mirroring is incomplete:</p>
-<ul class="simple">
-<li>Buildings<ul>
-<li>I more or less ran out of steam while working on the trade and transporter
-buildings, and since the listed methods didn&#8217;t look to me like the sorts
-of things anybody would need to do much scripting with anyway, I skipped
-them.  They should be completed at some point, but for now they don&#8217;t
-exist.</li>
-<li><a class="reference internal" href="buildings/callable/trade.html#bldg-trade"><em>Trade Ministry (TM)</em></a><ul>
-<li>create_supply_chain()</li>
-<li>delete_supply_chain()</li>
-<li>update_supply_chain()</li>
-<li>update_waste_chain()</li>
-<li>add_supply_ship_to_fleet()</li>
-<li>add_waste_ship_to_fleet()</li>
-<li>remove_supply_ship_from_fleet()</li>
-<li>remove_waste_ship_from_fleet()</li>
-<li>report_abuse()</li>
-</ul>
-</li>
-<li><a class="reference internal" href="buildings/callable/transporter.html#bldg-transporter"><em>Sub Space Transporter (SST)</em></a><ul>
-<li>trade_one_for_one()</li>
-<li>report_abuse()</li>
-</ul>
-</li>
-<li>Announcement</li>
-<li>Payment<ul>
-<li>There are no plans to add either Announcement or Payment modules to
-MontyLacuna.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Most stations have lots of star seizure laws passed.  Displaying them all will
+cause the report to scroll off your screen.  It&#8217;s noisy, and you normally
+don&#8217;t care about seeing all of those seizures, so they&#8217;re not included in a
+normal report.</p>
+<p>However, if you do want to see all those seizure laws as well:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">show_laws</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="nb">all</span> <span class="n">Sol</span>
+
+<span class="go">Seize Some Planet 1            Seize Some Planet 1</span>
+<span class="go">Seize Some Planet 2            Seize Some Planet 2</span>
+<span class="go">Seize Some Planet 3            Seize Some Planet 3</span>
+<span class="go">Seize Some Planet 4            Seize Some Planet 4</span>
+<span class="go">Seize Some Planet 5            Seize Some Planet 5</span>
+<span class="go">Seize Some Planet 6            Seize Some Planet 6</span>
+<span class="go">.... You get the idea at this point ...</span>
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAlli...</span>
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAlli...</span>
+<span class="go">Members Only Mining Rights     Only members of {Alliance 00 SomeAlli...</span>
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAlli...</span>
+<span class="go">Members Only Colonization      Only members of {Alliance 00 SomeAlli...</span>
+<span class="go">Members Only Mining Rights     Only members of {Alliance 00 SomeAlli...</span>
+<span class="go">Members Only Excavation        Only members of {Alliance 00 SomeAlli...</span>
+<span class="go">BHG Neutralized                All Black Hole Generators will cease ...</span>
+
+<span class="go">The seizing station, International Space Station, has seized 100 stars.</span>
+<span class="go">That station is owned by SomeAlliance.</span>
+</pre></div>
+</div>
+<div class="section" id="alliance-names">
+<h2>Alliance Names<a class="headerlink" href="#alliance-names" title="Permalink to this headline">¶</a></h2>
+<p>Some laws include the name of the alliance that passed the law in the
+description of the law itself.  However, not all of them do.  If it&#8217;s possible
+to display the name of the station&#8217;s owning alliance, it will be displayed,
+but it&#8217;s simply not always possible.</p>
+</div>
+<div class="section" id="force-fresh-data">
+<h2>Force Fresh Data<a class="headerlink" href="#force-fresh-data" title="Permalink to this headline">¶</a></h2>
+<p>When running a report, star data gets cached so retrieving it on the next run
+will be quicker.  This way you can conveniently run a report multiple times
+without having to wait or waste your RPCs.</p>
+<p>To clear the cache, pass the <tt class="docutils literal"><span class="pre">--fresh</span></tt> option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">show_laws</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">fresh</span> <span class="n">Sol</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="full-documentation">
+<h2>Full Documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
+<p>For complete help, see the script&#8217;s help documentation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">show_laws</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="lacuna.binutils.libshow_laws.ShowLaws">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libshow_laws.</tt><tt class="descname">ShowLaws</tt><a class="headerlink" href="#lacuna.binutils.libshow_laws.ShowLaws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -232,10 +250,10 @@ MontyLacuna.</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="alliance.html" class="btn btn-neutral float-right" title="Alliance"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="spies_report.html" class="btn btn-neutral float-right" title="Spies Report"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../getting_started_writing.html" class="btn btn-neutral" title="Getting Started Writing Scripts"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ships_report.html" class="btn btn-neutral" title="Ships Report"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

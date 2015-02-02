@@ -61,10 +61,8 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -116,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
@@ -168,10 +167,16 @@
   <div class="section" id="logging">
 <span id="id1"></span><h1>logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
 <p>Logging is performed using Python&#8217;s core <a class="reference external" href="https://docs.python.org/3.4/library/logging.html">logging library</a>.</p>
-<p>Both Request and User log entries will be written to the same logfile,
-specified in your config file.  When this logfile starts to get too big, it
-will be rotated.  Three backups will be kept, and older backups will be
-deleted.</p>
+<dl class="docutils">
+<dt>Three separate logfiles will be written to by most scripts:</dt>
+<dd><ul class="first last simple">
+<li>Request log</li>
+<li>User log</li>
+<li>Module log</li>
+</ul>
+</dd>
+</dl>
+<p>All log files live in <tt class="docutils literal"><span class="pre">ROOT/var/</span></tt>.</p>
 <div class="section" id="log-levels">
 <h2>Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this headline">¶</a></h2>
 <blockquote>
@@ -207,9 +212,10 @@ deleted.</p>
 </div>
 <div class="section" id="request-log">
 <h2>Request Log<a class="headerlink" href="#request-log" title="Permalink to this headline">¶</a></h2>
-<p>All requests to the TLE server will be written to the logfile specified in the
-config file.  This happens automatically; just run your scripts, and you&#8217;ll be
-able to check that logfile to see what&#8217;s happening.</p>
+<p>The file name will be either what&#8217;s specified in the config file as the
+<tt class="docutils literal"><span class="pre">logfile</span></tt> option or simply <tt class="docutils literal"><span class="pre">request.log</span></tt> if no such option exists in your
+config.  This happens automatically; just run your scripts, and you&#8217;ll be able
+to check that logfile to see what&#8217;s happening.</p>
 <p>Most request log entries will only display to the file.  However, in the case
 of something going wrong, entries of WARNING level or higher will also be
 shown on-screen.</p>
@@ -241,6 +247,11 @@ l.info( &quot;This is an info message.&quot; )
 l.debug( &quot;This is a debug message.  You may want a lot of these while you&#39;re working.&quot; )
 </pre></div>
 </div>
+<p>User log entries will go into a file named according to the name of the
+current empire, removing all non-letter characters.  eg for the empire &#8220;My
+Great Empire&#8221;, user log entries will go into <tt class="docutils literal"><span class="pre">MyGreatEmpire.log</span></tt>.  If your
+script&#8217;s client isn&#8217;t logged in, the user log entries will go into
+<tt class="docutils literal"><span class="pre">guest.log</span></tt>.</p>
 <p>As with the request log, only WARNING level or higher will display to the
 screen by default, while any lower-level entries will just go into the log
 file.  If you want to change that, for example to display DEBUG level messages
@@ -265,6 +276,12 @@ change that previous line to:</p>
 <li><strong>(INFO)</strong> &#8211; The log level.  This is is an INFO-level entry.</li>
 <li><strong>This is an info message.</strong> &#8211; The actual log message.</li>
 </ul>
+</div>
+<div class="section" id="module-log">
+<h2>Module Log<a class="headerlink" href="#module-log" title="Permalink to this headline">¶</a></h2>
+<p>The module log is rarely used, and exists for the purpose of debugging
+specific MontyLacuna modules.  The entries are written to <tt class="docutils literal"><span class="pre">module.log</span></tt>, but
+this file will likely be empty most of the time.</p>
 </div>
 </div>
 

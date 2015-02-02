@@ -62,10 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -117,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../my_validate_email.html">my_validate_email</a></li>
@@ -187,14 +186,14 @@
 <dt id="lacuna.buildings.ss_modules.stationcommand.stationcommand.view">
 <tt class="descname">view</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.stationcommand.stationcommand.view" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get station details.</p>
-<p>Returns a single lacuna.body.Planet object.</p>
+<p>Returns a single <a class="reference internal" href="../../body.html#lacuna.body.Planet" title="lacuna.body.Planet"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Planet</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.ss_modules.stationcommand.stationcommand.view_incoming_supply_chains">
 <tt class="descname">view_incoming_supply_chains</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.ss_modules.stationcommand.stationcommand.view_incoming_supply_chains" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get incoming supply chains.</p>
-<p>Returns a list of lacuna.resource.SupplyChain objects.</p>
+<p>Returns a list of <a class="reference internal" href="../../../resource.html#lacuna.resource.SupplyChain" title="lacuna.resource.SupplyChain"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.SupplyChain</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
@@ -203,7 +202,7 @@
 <dd><p>See what plans are already on the station.</p>
 <p>The TLE docs don&#8217;t list &#8216;quantity&#8217; as one of the returned attributes, 
 but it&#8217;s there.</p>
-<p>Returns a single lacuna.plan.OwnedPlan object.</p>
+<p>Returns a single <a class="reference internal" href="../../../plan.html#lacuna.plan.OwnedPlan" title="lacuna.plan.OwnedPlan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.OwnedPlan</span></tt></a> object.</p>
 </dd></dl>
 
 </dd></dl>

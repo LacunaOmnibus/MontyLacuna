@@ -61,10 +61,8 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -116,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
@@ -276,6 +275,21 @@ a 200, along with a JSON string</li>
 <dd><p>This is meant to send a password reset email to the user&#8217;s 
 registered email address.  However, it seems that the TLE server is not 
 sending any emails at all, via this method or the browser.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.clients.Guest.strsquish">
+<tt class="descname">strsquish</tt><big>(</big><em>string: str</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.strsquish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Squish a string, removing all non-word characters.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd>string &#8211; The string to squish</dd>
+</dl>
+<p>Returns the squished string.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">strsquish</span><span class="p">(</span> <span class="s">&quot;foo bar &amp; baz&quot;</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">new</span> <span class="p">)</span>    <span class="c"># foobarbaz</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
