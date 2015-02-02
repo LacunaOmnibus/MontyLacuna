@@ -16,9 +16,10 @@ class entertainment(lacuna.building.MyBuilding):
         Requires a captcha.  If you have not solved one yet with the current 
         session_id, one will be displayed for you.
 
-        Returns a dict including key 'options', a list of dicts, each dict containing:
+        Returns a dict including key ``options``, which is a list of dicts, each 
+        dict containing:
             - name -- "Some Site",
-            - url -- "http://www.somesite.com/vote?id=44"   },
+            - url -- "http://www.somesite.com/vote?id=44",
         """
         mylist = []
         for i in kwargs['rslt']['options']:

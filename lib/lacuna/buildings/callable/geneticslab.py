@@ -14,15 +14,15 @@ class geneticslab(lacuna.building.MyBuilding):
     def prepare_experiment( self, *args, **kwargs ):
         """ Returns information needed to set up a genetics experiment.
 
-        CHECK - need prisoners to test this
-        grafts_list used to be a list of dicts, changed to a list of objects.  
-        Should be fine, but I can't find any prisoners to test on.
+        **CHECK** - I need prisoners to test this.  I haven't got any prisoners, 
+        so this method has not been tested.  I think that it *should* be fine, 
+        but it has not been tested.
 
         If this comment still exists and you're wanting to use this method, 
-        keep in mind that the grafts_list returned might not be as advertised.  
-        It should be, but check it before assuming it's correct. 
+        keep in mind that the ``grafts_list`` returned might not be as 
+        advertised.  It should be, but check it before assuming it's correct. 
 
-        And if you do that, let tmtowtdi know whether it worked or not.
+        And if you do that, let ``tmtowtdi`` know whether it worked or not.
 
         Returns a tuple:
             - grafts_list -- List of lacuna.buildings.geneticslab.Graft objects
@@ -30,6 +30,8 @@ class geneticslab(lacuna.building.MyBuilding):
             - graft_odds -- Integer percent odds of the graft working
             - essentia_cost -- Integer cost per experiment attempt
             - can_experiment -- Boolean; whether the lab can be used or not.
+
+        - :class:`lacuna.buildings.callable.geneticslab.Graft`
 
         """
         grafts_list = []
@@ -48,7 +50,11 @@ class geneticslab(lacuna.building.MyBuilding):
         """ Runs a genetics experiment on a spy in an attempt to graft one of 
         his affinities onto your species.
 
-        Returns a single geneticslab.ExperimentResults object.
+        Arguments:
+            - spy_id -- Integer ID of the spy to experiment on.
+            - affinity -- String name of the affinity to try to graft.
+
+        Returns a single :class:`lacuna.buildings.callable.geneticslab.ExperimentResults` object.
         """
         return ExperimentResults( self.client, kwargs['rslt']['experiment'] )
 
@@ -56,23 +62,26 @@ class geneticslab(lacuna.building.MyBuilding):
     def rename_species( self, named_args:dict, *args, **kwargs ):
         """ Allows you to change your species name and description.
 
-        Argument is a single dict:
-            - name -- "My New Species Name",
-            - description -- "My New Species Description"
+        Arguments:
+            - named_args -- Dict.
+              ``{ 'name': "New Species Name", 'description': -- "New Species Description" }``
 
-            name requirements:
-            - 30 characters or fewer
-            - Not blank
-            - @, & <, >, ; are prohibited.
+        - ``name`` key requirements
 
-            description requirements:
-            - 1024 characters or fewer
-            - <, > are prohibited.
+          - 30 characters or fewer
+          - Not blank
+          - @, & <, >, ; are prohibited.
 
-        Retval contains only 'success', set to 1.  No status is returned.
+        - ``description`` key requirements
 
-        Raises ServerError 1000 for bad species name.
-        Raises ServerError 1005 for bad description.
+          - 1024 characters or fewer
+          - <, > are prohibited.
+
+        Returns a dict containing only the key ``success``, set to 1.  No status 
+        is returned.
+
+        - Raises :class:`lacuna.exceptions.ServerError` 1000 for bad species name.
+        - Raises :class:`lacuna.exceptions.ServerError` 1005 for bad description.
         """
         return self.get_type(kwargs['rslt']['success'])
 
@@ -97,6 +106,9 @@ class Graft(lacuna.bc.SubClass):
         species                 lacuna.empire.Species object of the spy
         graftable_affinities    List of affinity names that can be grafted from 
                                 the spy to your empire
+
+    - :class:`lacuna.spy.Spy`
+    - :class:`lacuna.empire.Species`
     """
     def __init__(self, client, mydict:dict):
         self.client                 = client

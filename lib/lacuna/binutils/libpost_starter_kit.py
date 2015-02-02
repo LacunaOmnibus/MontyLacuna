@@ -383,9 +383,13 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         plans, self.plan_size = self.trade.get_plan_summary()
         gotplans = {}
         for p in plans:
+            print( p )  # test
+            print( p.name ) # test
+            print( p.plan_type )    # test
             self.type_translator[ p.name ] = p.plan_type
             key = getkey(p)
             gotplans[ key ] = 1
+        quit()  # test
         for p in self.kit.plans:
             key = getkey(p)
             if not key in gotplans:

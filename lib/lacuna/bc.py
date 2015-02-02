@@ -351,9 +351,9 @@ class ElapsedTime():
           actually be one too high, and the user would need to subtract 
           one, and he's going to forget to do that 90% of the time.
 
-    *CAUTION* - ``sec2time()`` is slightly hokey - if the number of seconds 
-    passed in is greater than the number of seconds in the current month 
-    (2678400 for a 31-day month), then all returns will be reset::
+    *CAUTION* - :meth:`lacuna.bc.SubClass.sec2time` is slightly hokey - if the 
+    number of seconds passed in is greater than the number of seconds in the 
+    current month (2678400 for a 31-day month), then all returns will be reset::
 
         time = i.sec2time( 2678400 )
         print( "That's {} days, {} hours, {} minutes, and {} seconds."
@@ -371,5 +371,4 @@ class ElapsedTime():
         self.hours = d.hour
         self.minutes = d.minute
         self.seconds = d.second
-
 

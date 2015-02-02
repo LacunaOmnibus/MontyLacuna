@@ -298,8 +298,6 @@ class spaceport(lacuna.building.MyBuilding):
         If the ship being recalled is a Spy Shuttle, it will automatically 
         pick up as many idle spies from the planet it had been orbiting as it 
         can hold.
-
-        Requires 'ship_id', the integer ID of the ship to be recalled.
         """
         pass
 
@@ -308,7 +306,7 @@ class spaceport(lacuna.building.MyBuilding):
         """ Recalls all ships from the current planet that are on 'Defend' or 
         'Orbiting' tasks.
         Note there is no 'target' argument here; this is not recalling all 
-        ships orbiting a specific target - this is recalling ALL ships from 
+        ships orbiting a specific target - this is recalling *all* ships from 
         this planet that are orbiting anywhere.
 
         Returns a list of :class:`lacuna.ship.IncomingShip` objects, with the 
@@ -474,7 +472,9 @@ class spaceport(lacuna.building.MyBuilding):
 
         Returns a tuple:
             - spies_sent -- List of IDs of sent spies (not Spy objects)
-            - spies_not_sent -- List of IDs of sent spies (not Spy objects) This should only have contents if you're cheating.
+            - spies_not_sent -- List of IDs of sent spies (not Spy objects).  
+              This should only have contents if you're cheating (that's per the 
+              TLE API docs; I don't know what it means).
             - ship -- :class:`lacuna.ship.TravellingShip` object
         """
         sent_list = []
@@ -593,7 +593,7 @@ class spaceport(lacuna.building.MyBuilding):
             - spy_ids -- List of integer IDs of spies being fetched (NOT a list 
               of Spy objects).
 
-        WARNING - the returned list of spy_ids will only ever contain a maximum 
+        **Warning** - the returned list of spy_ids will only ever contain a maximum 
         of 100 spies.  In the situation where you've sent hundreds of spies from 
         multiple planets all to the same target (eg to defend a space station 
         that's under attack), the spies from this planet may not be included in 

@@ -33,7 +33,8 @@ class park(lacuna.building.MyBuilding):
         Once a party has been thrown, it takes 12 hours to wind down, at which 
         point you can throw another party.
 
-        Raises ServerError 1010 if there's already a party going on.
+        Raises :class:`lacuna.exceptions.ServerError` 1010 if there's already a 
+        party going on.
         """
         return Party(self.client, kwargs['rslt']['party'])
 
@@ -42,7 +43,8 @@ class park(lacuna.building.MyBuilding):
     def subsidize_party( self, *args, **kwargs ):
         """ Spends 2 E to subsidize the currently-ongoing party.
 
-        Raises ServerError 1010 if no party is currently happening.
+        Raises :class:`lacuna.exceptions.ServerError` 1010 if no party is 
+        currently happening.
         """
         pass
 
@@ -59,7 +61,7 @@ class Party(lacuna.bc.SubClass):
     the other two will be set to 0.
 
     Remember you can call ``t = park.sec2time( party.seconds_remaining )`` if 
-    you'd prefer to deal with a ``lacuna.bc.ElapsedTime`` object over integer 
+    you'd prefer to deal with a :class:`lacuna.bc.ElapsedTime` object over integer 
     seconds.
     """
     def __init__(self, client, mydict:dict):

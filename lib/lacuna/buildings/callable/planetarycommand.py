@@ -17,8 +17,8 @@ class planetarycommand(lacuna.building.MyBuilding):
     def view( self, *args, **kwargs ):
         """ Get planet details.
 
-        The TLE API claim that the view() method retval contains a 'building' 
-        key. At least on PT, it does not.
+        The TLE API claim that the view() method returned dict contains a 
+        'building' key. At least on PT, it does not.
 
         Returns a tuple:
             - food -- List of :class:`lacuna.resource.PlanetaryFood` objects

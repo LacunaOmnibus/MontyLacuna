@@ -11,7 +11,11 @@ class distributioncenter(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view(self, *args, **kwargs):
-        """ Returns a single Reserve object.  """
+        """ View the building.
+        
+        Returns a single :class:`lacuna.buildings.callable.distributioncenter.Reserve` 
+        object.  
+        """
         return Reserve( self.client, kwargs['rslt']['reserve'] )
 
     @lacuna.building.MyBuilding.call_returning_meth
@@ -31,7 +35,8 @@ class distributioncenter(lacuna.building.MyBuilding):
             - type -- The type of res to reserve, eg 'water'
             - quantity -- Integer quantity to reserve, eg 100
 
-        Returns a single Reserve object.
+        Returns a single :class:`lacuna.buildings.callable.distributioncenter.Reserve` 
+        object.
         """
         return Reserve(self.client, kwargs['rslt']['reserve'] )
 
@@ -45,7 +50,7 @@ class distributioncenter(lacuna.building.MyBuilding):
         center.
 
         Returns a tuple:
-            - resources -- A single resources.StoredResources object
+            - resources -- A single :class:`lacuna.resource.StoredResources` object
             - cargo_space -- Amount of cargo space units occupied by each individual resource.  Always '1'.
         """
         return (
@@ -57,7 +62,7 @@ class distributioncenter(lacuna.building.MyBuilding):
     def release_reserve( self, **kwargs ):
         """ Releases any resources currently being reserved.
 
-        Returns a single Reserve object.
+        Returns a single :class:`lacuna.buildings.callable.distributioncenter.Reserve` object.
 
         Raises ServerError 1010 if there are currently no resources being 
         reserved.
@@ -73,6 +78,8 @@ class Reserve(lacuna.bc.SubClass):
         max_reserve_duration    "7200", # max length resources can be kept in reserve
         max_reserve_size        100000, # max amount of resources that can be reserved
         resources               A resource.StoredResources object.
+
+    - :class:`lacuna.resource.StoredResources`
     """
     ### mydict['resources'] is coming to us as:
         # [       # resources currently in reserve

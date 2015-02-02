@@ -25,19 +25,20 @@ class development(lacuna.building.MyBuilding):
     def subsidize_one_build( self, named_args:dict, **kwargs ):
         """ Spends E to immediately finish a single build in the build queue.
 
+        Arguments:
+            - named_args -- Dict containing the ID of the building in the queue
+              whose build you want to cancel. ``{ 'scheduled_id': 12345 }``
+
         It's usually cheaper per building to subsidize the entire build queue 
         than to subsidize a single building.  So if your build queue only 
         contains a single building being upgraded, call build_queue() instead 
         of subsidize_one_build().
 
-        Requires a single dict argument:
-            - scheduled_id -- Integer ID of the building to subsidize
-
         Returns
             - essentia_spent -- Integer cost of subsidy
 
-        Raises ServerError 1000 if the specified building is not currently being 
-        built or upgraded.
+        Raises :class:`lacuna.exceptions.ServerError` 1000 if the specified 
+        building is not currently being built or upgraded.
         """
         return self.get_type(kwargs['rslt']['essentia_spent'])
 
@@ -46,8 +47,9 @@ class development(lacuna.building.MyBuilding):
         """ Removes a single building upgrade from the build queue.
         Any resources that were spent to start the upgrade are lost.
 
-        named_args must contain 'scheduled_id', the integer ID of the building 
-        whose upgrade is scheduled to be subsidized.
+        Arguments:
+            - named_args -- Dict containing the ID of the building in the queue
+              whose build you want to cancel. ``{ 'scheduled_id': 12345 }``
 
         Returns a tuple:
             - build_queue -- list of lacuna.building.InBuildQueue objects

@@ -12,10 +12,10 @@ class network19(lacuna.building.MyBuilding):
     def view( self, *args, **kwargs ):
         """ Indicates whether news coverage is restricted or flowing freely.
 
-        Returns 'restrict_coverage'.  This is an integer indicating 
-        whether or not coverage is currently restricted:
-        - 0 -- coverage is flowing freely
-        - 1 -- coverage is restricted
+        Returns an integer indicating whether or not coverage is currently 
+        restricted:
+            - ``0`` -- coverage is flowing freely
+            - ``1`` -- coverage is restricted
         """
         ### restrict_coverage() wants '1' or '0'.  For consistency, leave this 
         ### return as-is (meaning, 'also 1 or 0') rather than converting it to 
@@ -27,8 +27,9 @@ class network19(lacuna.building.MyBuilding):
     def restrict_coverage( self, toggle:int = 0, *args, **kwargs ):
         """ Toggles news coverage restriction on and off.
 
-        Accepts a single optional argument, 'toggle'.  0 to allow news to flow, 
-        or 1 to restrict coverage.  Defaults to 0.
+        Arguments:
+            - toggle -- Pseudo-boolean integer.  ``0`` to turn restrictions off
+              (allow news to flow normally), ``1`` to turn restrictions on.
         """
         pass
 
@@ -57,13 +58,7 @@ class network19(lacuna.building.MyBuilding):
             feed_list
         )
 
-
-class NewsItem():
-    def __init__(self, mydict):
-        for k, v in mydict.items():
-            setattr(self, k, v)
-
-class Story(NewsItem):
+class Story(lacuna.bc.SubClass):
     """
     Attributes::
 
@@ -71,7 +66,7 @@ class Story(NewsItem):
         date        "01 31 2010 13:09:05 +0600" 
     """
 
-class Feed():
+class Feed( lacuna.bc.SubClass ):
     """
     Attributes::
 

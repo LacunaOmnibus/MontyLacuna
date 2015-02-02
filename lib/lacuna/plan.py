@@ -9,10 +9,16 @@ class OwnedPlan(Plan):
 
     Attributes::
 
-        name                "Interstellar Broadcast System"
+        name                "Volcano"
+        plan_type           "Permanent_Volcano"
         level               1
         extra_build_level   5
         quantity            23
+
+    plan_type is what needs to be sent to 
+    :meth:`lacuna.buildings.callable.trade.trade.add_to_market` or 
+    :meth:`lacuna.buildings.callable.transporter.transporter.add_to_market` to 
+    trade the plan.
     """
     def __init__(self, client, mydict, *args, **kwargs):
         if not 'extra_build_level' in mydict:

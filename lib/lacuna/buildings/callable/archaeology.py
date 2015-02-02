@@ -55,7 +55,7 @@ class archaeology(lacuna.building.MyBuilding):
 
         Returns a :class:`lacuna.glyph.AssembledArtifact` object.
 
-        Raises ServerError 1002 if the listed glyphs do not form a valid 
+        Raises :class:`lacuna.exceptions.ServerError` 1002 if the listed glyphs do not form a valid 
         artifact recipe.
         """
         return lacuna.glyph.AssembledArtifact(self.client, kwargs['rslt']['item_name'], kwargs['rslt']['quantity'] )
@@ -67,7 +67,7 @@ class archaeology(lacuna.building.MyBuilding):
         """ Searches through an ore for a glyph.
 
         There must be at least 10,000 of the selected ore onsite to perform 
-        the search, or a ServerError will be raised.
+        the search, or a :class:`lacuna.exceptions.ServerError` will be raised.
 
         Arguments:
             - ore_type -- String name of the ore to search.
@@ -79,7 +79,7 @@ class archaeology(lacuna.building.MyBuilding):
     def subsidize_search( self, **kwargs ):
         """ Completes the current glyph search immediately.  Costs 2 E.
 
-        Raises ServerError 1010 if no search is going on right now.
+        Raises :class:`lacuna.exceptions.ServerError` 1010 if no search is going on right now.
         """
         pass
 

@@ -11,12 +11,10 @@ class security(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view_prisoners( self, page_number:int = 1, *args, **kwargs ):
-        """ Lists prisoners currently in jail.
-                pris = sec.view_prisoners()
-                print( pris[0].name )
+        """ Lists prisoners currently in jail, 25 per page.
 
-        Accepts optional 'page_number', integer number of the page (25 prisoners 
-        per page) you want to view.  Defaults to 1.
+        Arguments:
+            - page_number -- Integer ID of the page to view.  Defaults to 1.
 
         Returns a list of :class:`lacuna.spy.Prisoner` objects.
         """
@@ -29,7 +27,9 @@ class security(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_building_meth
     def release_prisoner( self, prisoner_id:int, *args, **kwargs ):
         """ Releases a prisoner from jail.
-                sec.release_prisoner( prisoner_id )
+
+        Arguments:
+            - prisoner_id -- Integer ID of the prisoner to release.
         """
         pass
 
@@ -37,22 +37,23 @@ class security(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_building_meth
     def execute_prisoner( self, prisoner_id:int, *args, **kwargs ):
         """ Executes a captured prisoner.
-                sec.execute_prisoner( prisoner_id )
+
+        Arguments:
+            - prisoner_id -- Integer ID of the prisoner to execute.
+
         """
         pass
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view_foreign_spies( self, page_number:int = 1, *args, **kwargs ):
-        """ Lists uncaptured foreign spies.
-                pris = sec.view_foreign_spies()
-                print( pris[0].name )
+        """ Lists uncaptured foreign spies, 25 per page.
+
+        Arguments:
+            - page_number -- Integer ID of the page to view.  Defaults to 1.
 
         Lists foreign spies that are on your planet but which you have not 
         captured.  Will only list spies whose level is lower than that of 
         your Security Ministry.  Higher-level spies will remain hidden.
-
-        Accepts optional 'page_number', integer number of the page (25 prisoners 
-        per page) you want to view.  Defaults to 1.
 
         Returns a list of :class:`lacuna.spy.ForeignAgent` objects.
         """

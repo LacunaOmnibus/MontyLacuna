@@ -13,11 +13,14 @@ class capitol(MyBuilding):
     def rename_empire( self, name:str, **kwargs ):
         """ Renames your empire.
 
+        Arguments:
+            - name -- String new name; what you want to rename your empire to.
+
         Renaming your empire has a base cost of 30E, but that cost is reduced 
         by 1E per level of the capitol.  So at Capitol level 30, the rename 
         process has no cost.
 
-        Throws ServerError 1010 if you attempt to rename your empire more 
-        than once in a 24 hour period.
+        Throws :class:`lacuna.exceptions.ServerError` 1010 if you attempt to 
+        rename your empire more than once in a 24 hour period.
         """
         pass

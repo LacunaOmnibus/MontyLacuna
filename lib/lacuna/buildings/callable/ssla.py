@@ -1,7 +1,7 @@
 
 from lacuna.bc import LacunaObject
 from lacuna.building import MyBuilding
-from lacuna.plan import *
+import lacuna.plan
 
 class ssla(MyBuilding):
     path = 'ssla'
@@ -15,7 +15,7 @@ class ssla(MyBuilding):
         """
         plans_list = []
         for i in rv['make_plan']['types']:
-            plans_list.append( PotentialSSPlan(self.client, i) )
+            plans_list.append( lacuna.plan.PotentialSSPlan(self.client, i) )
 
         costs_list = []
         for i in rv['make_plan']['level_costs']:
@@ -41,7 +41,7 @@ class ssla(MyBuilding):
         """ Returns info on plans that can be built and their costs.
 
         Returns a tuple:
-            - plans -- List of PotentialSSPlan objects
+            - plans -- List of :class:`lacuna.plan.PotentialSSPlan` objects
             - costs -- List of LevelCosts objects
             - sub_cost -- Integer cost to subsidize a plan (always 2)
             - making -- Name of plan currently being made.  "None" if no plan is in the works.
@@ -52,7 +52,12 @@ class ssla(MyBuilding):
     def make_plan( self, type:str, level:int, *args, **kwargs ):
         """ Starts a plan building.
 
-        Keep in mind that you must send the plan type, NOT its name.
+        Arguments:
+            - type -- String type of plan to build.
+            - level -- Integer level to build this plan to.
+
+        Valid type values: ``art``, ``command``, ``food``, ``ibs``, ``opera``, 
+        ``parliament``, ``policestation``, ``warehouse``
 
         Returns the same tuple as view().
         """
@@ -62,7 +67,11 @@ class ssla(MyBuilding):
     def subsidize_plan( self, *args, **kwargs ):
         """ Spends 2 E to subsidize the currently-building plan.
 
-        Returns the same tuple as view().
+        Returns a tuple:
+            - plans -- List of :class:`lacuna.plan.PotentialSSPlan` objects
+            - costs -- List of LevelCosts objects
+            - sub_cost -- Integer cost to subsidize a plan (always 2)
+            - making -- Name of plan currently being made.  "None" if no plan is in the works.
         """
         return self._marshal_view( kwargs['rslt'] )
 

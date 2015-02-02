@@ -11,7 +11,8 @@ class trade(lacuna.trading.TradeBldg):
 
     I'm really doing this to learn Python.  On top of that, I can't see 
     anybody ever wanting to script some of the methods in here, so I'm just 
-    not bothering with them.
+    not bothering with them.  There's no reason they can't be created if you 
+    really need them for something, but they don't exist yet.
 
     - create_supply_chain()
     - delete_supply_chain()
@@ -30,48 +31,45 @@ class trade(lacuna.trading.TradeBldg):
         super().__init__( client, body_id, building_id )
 
     @lacuna.trading.TradeBldg.call_returning_meth
-    def add_to_market( self, offer:dict, ask:int, options:dict = {}, *args, **kwargs ):
+    def add_to_market( self, offer:dict, ask:float, options:dict = {}, *args, **kwargs ):
         """ Adds a trade to the market.
 
-        Arguments::
+        Arguments:
+            - offer -- List of dicts of items to offer for trade.  See below for
+              more details.
+            - ask -- Float price in E you're asking for this trade, between 
+              0.1 and 100.
+            - options -- Dict.  The only option, which is not an option at all 
+              since it's required, is the ID of the ship you want to use to 
+              transport your trade.  Use :meth:`get_trade_ships` to find 
+              appropriate ship IDs.
+              ``{ 'ship_id': 12345 }``
 
-            offer       List of dicts of items to offer for trade.  See below for
-                        more details.
-                            {   'type':         'bauxite',
-                                'quantity':     10000   },
-            ask         Integer price in E you're asking for this trade, between 
-                        0.1 and 100.
-            options     Dict of 'options' to modify the trade.  The only option, 
-                        which is not an option at all since it's required, is 
-                        the ID of the ship you want to use to transport your 
-                        trade.
-                            { 'ship_id':    12345   }
-                        Use get_trade_ships() to find appropriate ship IDs.
+        offer
+            There are five types of items you can offer for trade, each with 
+            their own required keys for their offer dicts::
 
-        *offer*
+                resources
+                    {   'type':         'bauxite',
+                        'quantity':     10000   },
+                glyphs
+                    {   'type':         'glyph',
+                        'name':         'bauxite',
+                        'quantity':     10000   },
+                plans
+                    {   'type':                 'plan',
+                        'plan_type':            'Permanent_AlgaePond',  
+                        'level':                1,
+                        'extra_build_level':    3,                      # If > 1, 'level' must be 1.
+                        'quantity':             10000   },
+                prisoners
+                    {   'type':         'prisoner',
+                        'prisoner_id':  12345   },
+                ships
+                    {   'type':     'ship',
+                        'ship_id':  12345   },
 
-        There are five types of items you can offer for trade, each with 
-        their own required keys for their offer dicts::
-
-            resources
-                {   'type':         'bauxite',
-                    'quantity':     10000   },
-            glyphs
-                {   'type':         'glyph',
-                    'name':         'bauxite',
-                    'quantity':     10000   },
-            plans
-                {   'type':                 'plan',
-                    'plan_type':            'Permanent_AlgaePond',  # see get_plan_summary()
-                    'level':                1,
-                    'extra_build_level':    3,                      # If > 1, 'level' must be 1.
-                    'quantity':             10000   },
-            prisoners
-                {   'type':         'prisoner',
-                    'prisoner_id':  12345   },
-            ships
-                {   'type':     'ship',
-                    'ship_id':  12345   },
+        To get the correct name for a plan, see :meth:`lacuna.trading.TradeBldg.get_plan_summary`.
 
         Returns the ID of the trade just added.
         """
@@ -86,7 +84,7 @@ class trade(lacuna.trading.TradeBldg):
 
         Arguments
             - target_id -- Optional ID of the target receiving the trade.  If 
-              included, the ships' estimated_travel_time attribute will be set.
+              included, the ships' ``estimated_travel_time`` attribute will be set.
 
         Returns a list of :class:`lacuna.ship.TradeTransportShip` objects.
         """
@@ -96,7 +94,7 @@ class trade(lacuna.trading.TradeBldg):
         return ship_list
 
     @lacuna.trading.TradeBldg.call_returning_meth
-    def get_waste_ships( self, target_id:int = 0, *args, **kwargs ):
+    def get_waste_ships( self, *args, **kwargs ):
         """ Returns a list of waste ships either currently on or available for 
         waste disposal duty.
 
@@ -108,7 +106,7 @@ class trade(lacuna.trading.TradeBldg):
         return ship_list
 
     @lacuna.trading.TradeBldg.call_returning_meth
-    def get_supply_ships( self, target_id:int = 0, *args, **kwargs ):
+    def get_supply_ships( self, *args, **kwargs ):
         """ Returns a list of supply ships either currently on or available for 
         supply disposal duty.
 
@@ -121,7 +119,10 @@ class trade(lacuna.trading.TradeBldg):
 
     @lacuna.trading.TradeBldg.call_returning_meth
     def view_supply_chains( self, *args, **kwargs ):
-        """ Returns a list of SupplyChain objects """
+        """ See the supply chains set up on this planet.
+
+        Returns a list of :class:`SupplyChain` objects.
+        """
         mylist = []
         for i in kwargs['rslt']['supply_chains']:
             mylist.append( WasteChain(self.client, i) )
@@ -132,27 +133,39 @@ class trade(lacuna.trading.TradeBldg):
 
     @lacuna.trading.TradeBldg.call_returning_meth
     def view_waste_chains( self, *args, **kwargs ):
-        """ Returns a list of WasteChain objects """
+        """ See the waste chains set up on this planet.
+
+        This does return a list, but there's only ever one waste chain, max, on 
+        any given planet.
+
+        Returns a list of :class:`WasteChain` objects.
+        """
         mylist = []
         for i in kwargs['rslt']['waste_chain']:
             mylist.append( WasteChain(self.client, i) )
         return mylist
 
     def view_waste_chain( self, *args, **kwargs ):
-        """ The actual TLE method is plural, but there's only one waste chain 
-        per planet, and the key returned is singular.  So give the user a 
-        break and let them call this method with or without the s.
+        """ See the waste chain set up on this planet.
+
+        The actual TLE API method is plural (see :meth:`view_waste_chains`), 
+        but there's only one waste chain per planet.
+
+        This is just a sugar method that returns a single :class:`WasteChain` 
+        object.
         """
-        return self.view_waste_chains()
+        return self.view_waste_chains()[0]
 
     @lacuna.trading.TradeBldg.call_returning_meth
-    def push_items( self, target_id:int, items:list, options:dict, *args, **kwargs ):
+    def push_items( self, target_id:int, offer:list, options:dict, *args, **kwargs ):
         """ Pushes items to another of your planets.
 
         Arguments:
             - target_id -- Integer ID of the body to send resources to.
-            - items -- List of item dicts.  See add_to_market().
-            - options -- Required (not optional) dict.  See add_to_market().
+            - offer -- List of dicts of items to push.  Same as for 
+              :meth:`add_to_market`.
+            - options -- Required (not optional) dict.  Same as for  
+              :meth:`add_to_market`.
 
         Returns a single :class:`lacuna.ship.TravellingShip` object.
         """

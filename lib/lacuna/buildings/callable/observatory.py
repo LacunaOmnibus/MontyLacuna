@@ -19,6 +19,8 @@ class observatory(lacuna.building.MyBuilding):
             - star_count -- Integer number of stars you have probed.
             - max_probes -- Integer number of the maximum probes you can have out from this observatory.
             - travelling -- Integer number of how many probes are currently travelling from your planet to a star.
+
+        - :class:`lacuna.map.Star`
         """
         star_list = []
         for s in kwargs['rslt']['stars']:
@@ -35,19 +37,20 @@ class observatory(lacuna.building.MyBuilding):
     def abandon_probe( self, star_id:int, *args, **kwargs ):
         """ Abandons a single probe.
 
-        Requires 'star_id', integer ID of the star whose probe you wish to 
-        abandon.
+        Arguments:
+            - star_id -- Integer ID of the star whose probe we should abandon.
 
-        You are abandoning by the ID of the star you have probed, NOT by the ID 
-        of the probe ship itself - don't hurt yourself looking for the probe's 
-        ID.
+        You are abandoning by the ID of the star you have probed, *not* by the 
+        ID of the probe ship itself - don't hurt yourself looking for the 
+        probe's ID.
         """
         pass
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.building.MyBuilding.call_building_meth
     def abandon_all_probes( self, *args, **kwargs ):
-        """ Abandons all of this observatory's probes.  """
+        """ Abandons all of this observatory's probes.
+        """
         pass
 
 

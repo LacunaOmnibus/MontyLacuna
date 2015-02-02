@@ -10,7 +10,10 @@ class themepark(lacuna.building.MyBuilding):
 
     @lacuna.building.MyBuilding.call_returning_meth
     def view( self, *args, **kwargs ):
-        """ Returns a ParkView object for this Theme Park.  """
+        """ Get details about the park and whether it can be operated or not.
+
+        Returns a :class:`ParkView` object for this Theme Park.
+        """
         lacuna.building.MyBuilding._write_building_status( self, kwargs['rslt'] )
         view = ParkView( self.client, kwargs['rslt']['themepark'] )
         return view
@@ -25,14 +28,14 @@ class themepark(lacuna.building.MyBuilding):
         the more happiness is returned.
 
         Once the theme park has already started running, you may call 
-        operate() again.  This will extend the length of operation by another 
-        hour, returning the appropriate happiness.  But for the >= 2nd 
+        :meth:`operate` again.  This will extend the length of operation by 
+        another hour, returning the appropriate happiness.  But for the >= 2nd 
         operation, you must have at least as much food on hand as you had the 
-        first time you started the park.  The ParkView object's 
-        food_type_attribute will tell you how many food types are required to 
-        extend operations.
+        first time you started the park.  The :class:`ParkView` object's 
+        ``food_type_count`` attribute will tell you how many food types are 
+        required to extend operations.
 
-        Returns a ParkView object.
+        Returns a :class:`ParkView` object.
         """
         lacuna.building.MyBuilding._write_building_status( self, kwargs['rslt'] )
         view = ParkView( self.client, kwargs['rslt']['themepark'] )

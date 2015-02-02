@@ -12,7 +12,8 @@ class missioncommand(lacuna.building.MyBuilding):
     def get_missions( self, *args, **kwargs ):
         """ Returns a list of available missions.
         
-        Returns a list of Mission objects.
+        Returns a list of :class:`lacuna.buildings.callable.missioncommand.Mission`
+        objects.
         """
         m_list = []
         for m in kwargs['rslt']['missions']:
@@ -26,13 +27,12 @@ class missioncommand(lacuna.building.MyBuilding):
         planet immediately, and causes this mission to not show up again for 30 
         days.
 
-        Requires 'mission_id', integer ID of the mission to complete.
+        Arguments:
+            - mission_id -- Integer ID of the mission to complete.
 
         If you have not completed the tasks, or have on hand the resources, 
         required by the listed objectives of the mission, calling this will 
-        fail by raising ServerError 1002.
-
-        Otherwise, returns a standard status dict.
+        fail by raising :class:`lacuna.exceptions.ServerError` 1002.
         """
         pass
 
@@ -42,9 +42,8 @@ class missioncommand(lacuna.building.MyBuilding):
         """ Skips a mission, removing it from the list and keeping it from 
         showing up again for 30 days.
 
-        Requires 'mission_id', integer ID of the mission to complete.
-
-        Returns a standard status dict.
+        Arguments:
+            - mission_id -- Integer ID of the mission to skip.
         """
         pass
 

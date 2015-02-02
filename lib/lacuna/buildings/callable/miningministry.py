@@ -17,6 +17,8 @@ class miningministry(lacuna.building.MyBuilding):
             - platforms -- List of 
               lacuna.buildings.miningministry.MiningPlatform objects
             - max_platforms -- Integer max platforms this min min can support
+
+        - :class:`lacuna.buildings.callable.miningministry.MiningPlatform`
         """
         mylist = []
         for i in kwargs['rslt']['platforms']:
@@ -35,7 +37,7 @@ class miningministry(lacuna.building.MyBuilding):
         platforms.  If its task is listed as 'Docked', it's available to be 
         added to your current mining fleet.
 
-        Retval includes 'ships', a list of ship dicts::
+        Returns a dict including the key ``ships``, a list of ship dicts::
 
                 {
                     "name" : "CS4",
@@ -55,11 +57,12 @@ class miningministry(lacuna.building.MyBuilding):
     def add_cargo_ship_to_fleet( self, ship_id:int, *args, **kwargs ):
         """ Adds a ship to the mining fleet.
 
-        The "cargo ship" does not have to specifically be of type "cargo_ship", 
+        Arguments:
+            - ship_id -- Integer ID of the ship to add.
+
+        The ``cargo ship`` does not have to specifically be of type "cargo_ship", 
         it just has to be capable of carrying cargo (eg hulk_mega, 
         smuggler_ship, etc).  
-
-        Requires "ship_id", the integer ID of the ship to add to the fleet.
         """
         pass
 
@@ -67,14 +70,14 @@ class miningministry(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_building_meth
     def remove_cargo_ship_from_fleet( self, ship_id:int, *args, **kwargs ):
         """ Takes a single ship off mining duty; sends the ship a message to 
-        return to base to perform the "Docked" task.
+        return to base to perform the ``Docked`` task.
+
+        Arguments:
+            - ship_id -- Integer ID of the ship to remove.
 
         After being removed from mining duty, the ship will need to travel 
         from the mining location back to your space port's planet, so it will 
         not be available for use immediately.
-
-        Requires "ship_id", the integer ID of the ship to removed from the 
-        fleet.
         """
         pass
 
@@ -83,7 +86,8 @@ class miningministry(lacuna.building.MyBuilding):
     def abandon_platform( self, platform_id:int, *args, **kwargs ):
         """ Abandon one of your mining platforms.
 
-        Requires "platform_id", the integer ID of the platform to abandon.
+        Arguments:
+            - platform_id -- Integer ID of the platform to abandon.
 
         Remember that you might have multiple platforms on a single asteroid.  
         When you abandon, you are abandoning the platform, not the asteroid, so 

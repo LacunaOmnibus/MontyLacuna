@@ -24,6 +24,16 @@ sys.path.insert(0, os.path.abspath('../lib'))
 
 # -- General configuration ------------------------------------------------
 
+### JDB this doesn't get added in here automatically.  And "py" is the default 
+### primary domain, so the following isn't doing anything useful except 
+### providing an example.
+### Having this set allows us go to from this:
+###     :py:method:`some_method_to_link_to`
+###
+### ...to this...
+###     :method:`some_method_to_link_to`
+primary_domain = 'py'
+
 # If your documentation needs a minimal Sphinx version, state it here.
 #needs_sphinx = '1.0'
 

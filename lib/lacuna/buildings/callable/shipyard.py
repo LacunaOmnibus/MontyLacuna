@@ -18,6 +18,8 @@ class shipyard(lacuna.building.MyBuilding):
             - ships -- List of lacuna.ship.BuildingShip objects
             - number -- Integer number of ships currently building
             - cost -- Integer cost in E to subsidize the whole queue
+
+        - :class:`lacuna.ship.BuildingShip`
         """
         ship_list = []
         for i in kwargs['rslt']['ships_building']:
@@ -45,6 +47,12 @@ class shipyard(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_named_meth
     def subsidize_ship( self, named_arguments:dict, *args, **kwargs ):
         """ Spends E to subsidize a single ship in the build queue.
+
+        Arguments:
+            - named_arguments -- Dict of named arguments containing only
+              ``{ 'ship_id': 12345 }``
+
+        Subsidizes the build of a specific ship for 1 E.
         """
         pass
 
@@ -52,15 +60,11 @@ class shipyard(lacuna.building.MyBuilding):
     def get_buildable( self, tag:str = '', *args, **kwargs ):
         """ Gets information on what ships are available to be built.
 
-        Accepts an optional 'tag' string to limit the shiptypes returned, and defaults to no tag, returning all buildable ships.
-
-        Valid 'tag 'values:
-            - Colonization
-            - Exploration
-            - Intelligence
-            - Mining
-            - Trade
-            - War
+        Arguments:
+            - tag -- Optional string indicating the type of ship you want 
+              returned.  Defaults to no tag, which will return a list of 
+              all buildable ships.  Valid tag values are: ``Colonization``,
+              ``Exploration``, ``Intelligence``, ``Mining``, ``Trade``, ``War``
 
         Returns a tuple:
             - ships -- list of lacuna.ship.PotentialShip objects
@@ -72,6 +76,8 @@ class shipyard(lacuna.building.MyBuilding):
               ever queue a maximum of 50 ships.
             - build_queue_used -- Number of ships currently in build queues 
               across all shipyards on this planet.
+
+        - :class:`lacuna.ship.PotentialShip`
         """
         ship_list = []
         for name, mydict in kwargs['rslt']['buildable'].items():
@@ -90,8 +96,8 @@ class shipyard(lacuna.building.MyBuilding):
 
         Arguments:
             - type -- String, type of ship to build.  Available ship types can 
-              be found by calling get_buildable() and checking the 'type' 
-              attribute of the returned list of ships.
+              be found by calling :meth:`get_buildable` and checking the 
+              ``type`` attribute of the returned list of ships.
             - quantity -- Integer number of ships to build.  Defaults to 1.
 
         Returns a tuple consisting of:
@@ -99,6 +105,8 @@ class shipyard(lacuna.building.MyBuilding):
               being built)
             - number -- Integer number of ships currently building
             - cost -- Integer cost in E to subsidize the whole queue
+
+        - :class:`lacuna.ship.BuildingShip`
         """
         ship_list = []
         for i in kwargs['rslt']['ships_building']:

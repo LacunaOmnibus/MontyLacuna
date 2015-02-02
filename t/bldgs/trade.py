@@ -8,9 +8,9 @@ import lacuna as lac
 
 glc = lac.clients.Member(
     config_file = bindir + "/../../etc/lacuna.cfg",
-    config_section = 'play_test',
+    config_section = 'sitter',
 )
-my_planet   = glc.get_body_byname( 'bmots rof 1.1' )
+my_planet   = glc.get_body_byname( 'some_planet' )
 trade       = my_planet.get_buildings_bytype( 'trade', 0, 1 )[0]
 
 
@@ -73,7 +73,7 @@ if False:
         {   'type':     'ship',
             'ship_id':  tradeable_ships[0].id   },
     ]
-    ask = 100
+    ask = 99.4
     options = { 'ship_id': trade.get_trade_ships()[0].id }
     trade_id = trade.add_to_market( offer, ask, options )
     print("I just added trade ID", trade_id)
