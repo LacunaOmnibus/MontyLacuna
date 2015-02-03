@@ -25,9 +25,6 @@ class stationcommand(lacuna.building.MyBuilding):
     def view_plans( self, *args, **kwargs ):
         """ See what plans are already on the station.
 
-        The TLE docs don't list 'quantity' as one of the returned attributes, 
-        but it's there.
-
         Returns a single :class:`lacuna.plan.OwnedPlan` object.
         """ 
         mylist = []
