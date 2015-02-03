@@ -12,23 +12,37 @@ class Empire(lacuna.bc.LacunaObject):
     ### this out by creating a bunch of new empires is making me sad.  So I'm 
     ### punting.
     def create(self, *args, **kwargs):
+        """ Unimplemented.  It's assumed nobody is going to use MontyLacuna to 
+        create a new empire.
+        """
         raise NotImplementedError( "Creating an empire is not implemented." )
     def found(self, *args, **kwargs):
+        """ Unimplemented.  It's assumed nobody is going to use MontyLacuna to 
+        create a new empire.
+        """
         raise NotImplementedError( "Founding an empire is not implemented." )
     def update_species(self, *args, **kwargs):
+        """ Unimplemented.  It's assumed nobody is going to use MontyLacuna to 
+        create a new empire.
+        """
         raise NotImplementedError( "Updating a species is not implemented." )
 
     @lacuna.bc.LacunaObject.call_guest_meth
     def fetch_captcha( self ):
-        """ Returns dict containing 'guid' and 'url' keys.
-
+        """ Get location of a captcha puzzle to solve.
+        
         There also exists a Captcha class, which requires the user to already 
         be logged in.  This fetch_captcha method exists to allow a brand new, 
         not-yet-logged-in user to get a captcha, the solution to which they 
-        can pass to create().
+        can pass to :meth:`create`.
+
+        Since :meth:`create` is unimplemented, you should probably never use 
+        this for anything.
 
         If you're looking for a captcha for anything other than new user 
         creation, go use the Captcha class.
+
+        Returns dict containing 'guid' and 'url' keys.
         """
         pass
 
@@ -87,7 +101,7 @@ class MyEmpire( Empire ):
         """ Gets your empire's current status information.
 
         There shouldn't ever be a need to call this.  Empire status data gets 
-        returned with every empire method call, and the current MyEmpire 
+        returned with every empire method call, and the current :class:`MyEmpire` 
         object's attributes get updated each time as a result.
         """
         pass
@@ -125,8 +139,8 @@ class MyEmpire( Empire ):
 
         Returns a :class:`lacuna.empire.OwnProfile` object.
 
-        Throws 1015 (Sitters cannot modify preferences) if the user is 
-        logged in with their sitter.
+        Throws :class:`lacuna.exceptions.ServerError` 1015 ("Sitters cannot 
+        modify preferences") if the user is logged in with their sitter.
         """
         return OwnProfile(self.client, kwargs['rslt']['profile'])
 
@@ -196,7 +210,8 @@ class MyEmpire( Empire ):
         """ Find an empire by name.
 
         Arguments:
-            - name -- Standard TLE search string.  See :ref:`glossary`.
+            - name_segment -- Standard TLE search string.  See 
+              :ref:`the glossary <gloss_std_search_string>`.
 
         Returns a list of :class:`lacuna.empire.FoundEmpire` objects.
         """
@@ -281,7 +296,7 @@ class MyEmpire( Empire ):
         """ Sets the self destruct timer on your empire.  After 24 hours, your 
         empire will be deleted.  Such a deletion is *not recoverable*.
 
-        While testing, it was discovered that the ``disable_self_destruct`` 
+        While testing, it was discovered that the :meth:`disable_self_destruct` 
         method does not function, server-side.  So if you enable self destruct 
         on your empire, you cannot turn it off again yourself; you'd need to 
         find an admin to do it for you.  Admins are usually around, but it's 
@@ -299,7 +314,7 @@ class MyEmpire( Empire ):
     @lacuna.bc.LacunaObject.call_member_meth
     def disable_self_destruct( self, *args, **kwargs ):
         """ Simply does not work on the server side.  This is a known problem, 
-        and the reason enable_self_destruct() has been disabled.
+        and the reason :meth:`enable_self_destruct` has been disabled.
         """
         pass
 
