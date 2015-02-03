@@ -1,10 +1,7 @@
 
 import os, requests, tempfile, time, webbrowser
 import lacuna.bc
-from lacuna.exceptions import \
-    CaptchaResponseError, \
-    RequestError, \
-    ServerError
+import lacuna.exceptions as err
 
 ### Dev notes:
 ### The tempfile containing the captcha image is not deleted until solveit() 
@@ -15,9 +12,10 @@ from lacuna.exceptions import \
 ### have both been attempted.
 ### 
 ### The problem is that, when using those auto-deletion methods, the tempfile 
-### is occasionally being removed from the system before the browser we're 
-### firing off actually gets a chance to read it.  Everything is happening in 
-### the right order, it's just that the browser startup is too slow.
+### is occasionally being removed from the system before the image viewer  
+### we're firing off actually gets a chance to read it.  Everything is 
+### happening in the right order, it's just that the image viewer startup is 
+### too slow.
 ###
 ### Deleting the tempfile manually in solveit() works - don't decide to get 
 ### clever and replace the unlink() in solveit() with some form of tempfile 
@@ -50,8 +48,14 @@ class Captcha(lacuna.bc.LacunaObject):
         """ Actually downloads the captcha image, and attempts to display it  
         to the user in one of several browsers.
 
-        If ``fetch()`` is called first, ``showit()`` uses that fetched data, but 
-        this is not necessary.  ``showit()`` will call fetch for you.
+        If :meth:`fetch` is called first, :meth:`showit` uses that fetched data, but 
+        this is not necessary.  :meth:`showit` will call fetch for you.
+
+        Raises :class:`lacuna.exceptions.RequestError` if the image is not 
+        fetchable (network error or the TLE servers have gone down).
+
+        Raises EnvironmentError if it cannot find an image viewer to use to 
+        display the captcha image.
         """
         if not hasattr(self,'url') or not hasattr(self,'guid'):
             puzzle      = self.fetch()
@@ -60,7 +64,7 @@ class Captcha(lacuna.bc.LacunaObject):
 
         img_resp = requests.get( self.url )
         if img_resp.status_code != 200:
-            raise RequestError("The captcha image URL is not responding.")
+            raise err.RequestError("The captcha image URL is not responding.")
 
         f = tempfile.NamedTemporaryFile( suffix='.png', prefix='tle_capcha_', delete=False );
         self.tempfile = f.name
@@ -82,23 +86,25 @@ class Captcha(lacuna.bc.LacunaObject):
 
     def prompt_user(self):
         """ Prompts the user to solve the displayed captcha.
-        It's not illegal to call this without first calling solveit(), but 
-        doing so makes no sense.
+
+        It's not illegal to call this without first calling :meth:`solveit`, 
+        but doing so makes no sense.
         """
         self.resp = input("Enter the solution to the captcha here: ")
         return self.resp
 
     def solveit(self):
         """ Sends the user's response to the server to check for accuracy.
+
         Returns True if the user's response was correct.  Raises 
-        CaptchaResponseError otherwise.
+        :class:`lacuna.exceptions.CaptchaResponseError` otherwise.
         """
         if not hasattr(self,'resp'):
             raise AttributeError("You must prompt the user for a response before calling solveit().")
         try:
             self.solve( self.guid, self.resp )
-        except ServerError as e:
-            raise CaptchaResponseError("Incorrect captcha response")
+        except err.ServerError as e:
+            raise err.CaptchaResponseError("Incorrect captcha response")
         finally:
             delattr( self, 'url' )
             delattr( self, 'guid' )
@@ -109,8 +115,8 @@ class Captcha(lacuna.bc.LacunaObject):
 
     @lacuna.bc.LacunaObject.call_member_meth
     def solve( self, guid:str, solution:str, **kwargs ):
-        """ Mirrors the TLE Captcha module's ``solve()`` method, but unless you 
-        really need this and you really know why, use ``solveit()`` instead.
+        """ Mirrors the TLE Captcha module's :meth:`solve` method, but unless you 
+        really need this and you really know why, use :meth:`solveit` instead.
         """
         pass
 

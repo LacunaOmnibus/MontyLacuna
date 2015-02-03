@@ -5,7 +5,7 @@ Miscellaneous Buildings without Methods
 =======================================
 
 These are buildings that don't have any of their own methods, only what they 
-inherit from their parents (usually ``lacuna.building.MyBuilding``.)
+inherit from their parents (usually :class:`lacuna.building.MyBuilding`).
 
 algae
 -----------------------------
