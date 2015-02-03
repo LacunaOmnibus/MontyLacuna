@@ -33,7 +33,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         parser.add_argument( 'name', 
             metavar     = '<planet>',
             action      = 'store',
-            help        = 'Assign tasks to spies from this planet.  The script will raise an exception if the requested planet does not have a working Intelligence Ministry.'
+            help        = "Assign tasks to spies from this planet.  Specify 'all' to operate on all of your planets."
         )
         parser.add_argument( 'task', 
             metavar     = '<task>',
@@ -52,7 +52,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             action      = 'store',
             type        = str,
             default     = 'Idle',
-            help        = "Only assigns spies who are currently doing this task.  Usually only Idle spies can be assigned, but if you're wanting to eg set your Counter Espionage spies to Idle, pass 'Counter Espionage' here.  Defaults to 'Idle'."
+            help        = "Only assign spies currently doing this task.  Defaults to 'Idle'."
         )
         parser.add_argument( '--topoff', 
             dest        = 'topoff',
@@ -63,11 +63,11 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             metavar     = '<planet_name>',
             action      = 'store',
             type        = str,
-            help        = "Only assigns spies who are located on this planet.  Defaults to the spies' home planet, so you'll definitely need to change this for offensive tasks."
+            help        = "Only assign spies located on this planet.  Defaults to the spies' home planet."
         )
         parser.add_argument( '--fresh', 
             action      = 'store_true',
-            help        = "Spy data is cached and shared with spy_report.py.  So if you just ran that spy report script, this will run more quickly.  However, if you just ran the spy report script, then sent some spies to a target planet, and now you're wanting to run this to assign those spies, you'll want to clear out the cache.  In that case, pass this argument."
+            help        = "Clear cache to ensure fresh data."
         )
         parser.add_argument( '--top', 
             metavar     = '<attribute>',
@@ -76,7 +76,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
             default     = 'level',
             choices     = [ 'level', 'politics', 'mayhem', 'theft',
                             'intel', 'offense_rating', 'defense_rating', ],
-            help        = "If you have more spies available than you're assigning, this determines which spies get assigned.  Sending a --top of 'intel' will available spies with the highest intel score to the requested task.  Defaults to 'level'."
+            help        = "Assign spies with the highest score in this attribute.  Defaults to 'level'."
         )
         super().__init__(parser)
 
