@@ -119,7 +119,7 @@ class TrainSpies(lacuna.binutils.libbin.Script):
             action      = 'store',
             choices     = [ 'good', 'bad' ],
             default     = 'good',
-            help        = "Should we train the spies who already have a high level in this skill to get them to their max ('good'), or spies with the lowest level in this skill to get everybody at least partially up to speed ('bad')?  Defaults to 'good'."
+            help        = "Max out higher-score spies ('good'), or get some points onto the lower-score spies ('bad')?  Defaults to 'good'."
         )
         parser.add_argument( '--fresh', 
             action      = 'store_true',
