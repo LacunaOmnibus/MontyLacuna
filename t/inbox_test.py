@@ -20,16 +20,16 @@ mail = glc.get_inbox();
 
 ### See messages in your inbox
 ###
-glc.debugging_method = 'view_inbox'
-msgs, ttl = mail.view_inbox( {"tags": ["excavator", "correspondence"]} )
-print( "There are {:,} excavator/correspondence messages in my inbox.  Here are the first few:"
-    .format(ttl)
-)
-for i in msgs[0:3]:
-    print( "{} from {} (preview: {})".format(i.subject, i.from_name, i.body_preview) )
-    print( "The full body of the message follows:" )
-    print( mail.read_message( i.id ).body )
-    print( "----------------------" )
+#glc.debugging_method = 'view_inbox'
+#msgs, ttl = mail.view_inbox( {"tags": ["excavator", "correspondence"]} )
+#print( "There are {:,} excavator/correspondence messages in my inbox.  Here are the first few:"
+#    .format(ttl)
+#)
+#for i in msgs[0:3]:
+#    print( "{} from {} (preview: {})".format(i.subject, i.from_name, i.body_preview) )
+#    print( "The full body of the message follows:" )
+#    print( mail.read_message( i.id ).body )
+#    print( "----------------------" )
 
 
 ### See messages in one of the mailbox's sub-tabs
@@ -57,8 +57,7 @@ for i in msgs[0:3]:
 ### Send mail to one or more players.
 ###
 #mail.send_message(
-#    'tmtowtdi,tmt_testing,no_such_player',
+#    'tmtowtdi,no_such_player',
 #    'python test',
-#    'This is a test of the python message system.'
+#    'This is a test of the python message system.',
 #)
-
