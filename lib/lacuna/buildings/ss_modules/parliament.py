@@ -22,7 +22,7 @@ class parliament(lacuna.building.MyBuilding):
         empires who are not members of the owning alliance can see what laws are 
         in effect.
 
-        Returns a list of lacuna.parliament.Law objects.
+        Returns a list of :class:`lacuna.buildings.ss_modules.parliament.Law` objects.
         """
         mylist = []
         for i in kwargs['rslt']['laws']:
@@ -33,7 +33,7 @@ class parliament(lacuna.building.MyBuilding):
     def view_propositions( self, *args, **kwargs ):
         """ Show propositions pending approval or rejection by vote.
 
-        Returns a list of lacuna.parliament.Proposition objects.
+        Returns a list of :class:`lacuna.buildings.ss_modules.parliament.Proposition` objects.
         """
         mylist = []
         for i in kwargs['rslt']['propositions']:
@@ -58,7 +58,7 @@ class parliament(lacuna.building.MyBuilding):
         do get a Tax object back, it'll always list 0 in payments, since Taxes 
         are un-implemented.
 
-        Returns a list of lacuna.parliament.Tax objects.
+        Returns a list of :class:`lacuna.buildings.ss_modules.parliament.Tax` objects.
         """
         mylist = []
         for i in kwargs['rslt']['taxes_collected']:
@@ -77,7 +77,7 @@ class parliament(lacuna.building.MyBuilding):
         Also, it does not mention the 'zone' key, which is included, and is 
         an attribute of the StationStar objects returned.
 
-        Returns a list of lacuna.map.StationStar objects.
+        Returns a list of :class:`lacuna.map.StationStar` objects.
         """
         mylist = []
         for i in kwargs['rslt']['stars']:
@@ -93,7 +93,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - star_id -- Integer ID of the star whose bodies we want listed.
 
-        Returns a list of lacuna.body.JurisdictionPlanet objects.
+        Returns a list of :class:`lacuna.body.JurisdictionPlanet` objects.
         """
         mylist = []
         for i in kwargs['rslt']['bodies']:
@@ -109,7 +109,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - roid_id -- Integer ID of the asteroid we want to check for platforms.
 
-        Returns a list of lacuna.buildings.parliament.MiningPlatform objects.
+        Returns a list of :class:`lacuna.buildings.ss_modules.parliament.MiningPlatform` objects.
         """
         mylist = []
         for i in kwargs['rslt']['platforms']:
@@ -125,7 +125,7 @@ class parliament(lacuna.building.MyBuilding):
             - vote -- Optional integer.  1 to vote yes, 0 to vote no.  Defaults 
               to 1 ('yes').
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """
         return Proposition(self.client, kwargs['rslt']['proposition'])
 
@@ -138,7 +138,7 @@ class parliament(lacuna.building.MyBuilding):
             - title -- String.  The title of the proposition.
             - description -- String.  The description of the proposition.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """
         return Proposition(self.client, kwargs['rslt']['proposition'])
 
@@ -150,7 +150,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - law_id -- Integer ID of the law to repeal.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         return Proposition(self.client, kwargs['rslt']['proposition'])
 
@@ -162,7 +162,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - to_empire_id -- Integer ID of the empire who should end up owning the station.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         return Proposition(self.client, kwargs['rslt']['proposition'])
 
@@ -174,7 +174,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - star_id -- Integer ID of the star to seize.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -188,7 +188,7 @@ class parliament(lacuna.building.MyBuilding):
             - star_id -- Integer ID of the star to rename.
             - name -- The proposed new name
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -201,7 +201,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - message -- The message to broadcast
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -216,7 +216,7 @@ class parliament(lacuna.building.MyBuilding):
             - message -- Optional string message to include in the boilerplate 
               mail that gets sent to the invited empire.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -232,7 +232,7 @@ class parliament(lacuna.building.MyBuilding):
               mail that gets sent to the expelled empire.
 
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -245,7 +245,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - empire_id -- Integer ID of the empire to elect
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -258,7 +258,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - roid_id -- Integer ID of the asteroid to rename
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -272,7 +272,7 @@ class parliament(lacuna.building.MyBuilding):
             - planet_id -- Integer ID of the star to seize.
             - name -- The new name to use.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -283,7 +283,7 @@ class parliament(lacuna.building.MyBuilding):
         """ Only allow alliance members to send mining platforms withing the
         station's jurisdiction.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -296,7 +296,7 @@ class parliament(lacuna.building.MyBuilding):
         Arguments:
             - plat_id -- Integer ID of the platform to evict
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -316,7 +316,7 @@ class parliament(lacuna.building.MyBuilding):
             - taxes -- I have no idea what this is.  An integer amount of E?  Of
               resources?  A hash of resources?  Dunno, it's undocumented.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -329,11 +329,11 @@ class parliament(lacuna.building.MyBuilding):
         Documented as being part of the API, but not available through the 
         browser client.  I assume it doesn't actually do anything.
 
-        Arguments:
+        Argument
             - planet_id -- Integer ID of the star to seize.
             - resources -- Integer?  Hash?  Who knows?
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -344,7 +344,7 @@ class parliament(lacuna.building.MyBuilding):
         """ Only alliance members can colonize planets within the station's 
         jurisdiction.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -355,7 +355,7 @@ class parliament(lacuna.building.MyBuilding):
         """ Only alliance members can send excavators within the station's 
         jurisdiction.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -366,7 +366,7 @@ class parliament(lacuna.building.MyBuilding):
         """ No BHGs will be usable within the station's jurisdiction.  This law 
         applies to BHGs owned by both foreign and allied empires.
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -380,7 +380,7 @@ class parliament(lacuna.building.MyBuilding):
             - body_id -- Integer ID of the body to attack.
             - reason -- String reason for firing.  Defaults to "pew pew!"
 
-        Returns a single lacuna.buildings.parliament.Proposition object.
+        Returns a single :class:`lacuna.buildings.ss_modules.parliament.Proposition` object.
         """ 
         ### Untested but should be fine.
         return Proposition(self.client, kwargs['rslt']['proposition'])
@@ -397,13 +397,13 @@ class Law(lacuna.bc.SubClass):
     """
 
 class MiningPlatform(lacuna.bc.SubClass):
-    """ This appears in this module because it's the only place this format 
+    """ This is in this module because it's the only place this format 
     appears.
 
     Attributes::
         
         id          "id-goes-here",
-        empire      lacuna.empire.FoundEmpire object
+        empire      :class:`lacuna.empire.FoundEmpire` object
     """
     def __init__(self, client, mydict:dict):
         mydict['empire'] = lacuna.empire.FoundEmpire(client, mydict['empire'])
@@ -421,7 +421,7 @@ class Proposition(lacuna.bc.SubClass):
         votes_no        0,
         status          "Pending",
         date_ends       "01 31 2010 13:09:05 +0600",
-        proposed_by     lacuna.empire.FoundEmpire object
+        proposed_by     :class:`lacuna.empire.FoundEmpire` object
         ###
         ### Will only be present if the current empire has already voted
         my_vote         0   # 1 for yes, 0 for no.
@@ -442,7 +442,7 @@ class Proposition(lacuna.bc.SubClass):
         votes_no        0,
         status          "Pending",
         date_ends       "01 31 2010 13:09:05 +0600",
-        proposed_by     lacuna.empire.FoundEmpire object
+        proposed_by     :class:`lacuna.empire.FoundEmpire` object
         my_vote         0 # not present if they haven't voted
     """
     def __init__(self, client, mydict:dict):
