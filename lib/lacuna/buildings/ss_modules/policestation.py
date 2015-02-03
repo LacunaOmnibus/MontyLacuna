@@ -54,7 +54,7 @@ class policestation(lacuna.building.MyBuilding):
 
         This method's existence might be a copy/paste error.  ALL ships incoming 
         to a space station, even if they're sent by the station owner, are shown 
-        by ``view_foreign_ships()``.
+        by :meth:`view_foreign_ships`.
 
         This method doesn't display any incoming ships, regardless of owner, and 
         you can't send ships out from a Space Station.  So this never returns 
@@ -79,9 +79,6 @@ class policestation(lacuna.building.MyBuilding):
     def view_prisoners( self, page_number:int = 1, **kwargs ):
         """ Shows prisoners, 25 at a time.
 
-        This hasn't been tested.  I have not reason to believe it's a problem, 
-        but I haven't confirmed otherwise.
-
         Arguments:
             - page_number -- Optional page of results to view.  Defaults to 1.
 
@@ -96,9 +93,6 @@ class policestation(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_returning_meth
     def execute_prisoner( self, prisoner_id:int, **kwargs ):
         """ Execute a captured spy
-
-        This hasn't been tested.  I have not reason to believe it's a problem, 
-        but I haven't confirmed otherwise.
 
         Arguments:
             - prisoner_id -- Integer ID of the prisoner to execute.
@@ -126,9 +120,6 @@ class policestation(lacuna.building.MyBuilding):
     @lacuna.building.MyBuilding.call_returning_meth
     def view_foreign_spies( self, page_number:int = 1, **kwargs ):
         """ Shows foreign spies, 25 at a time.
-
-        This hasn't been tested.  I have not reason to believe it's a problem, 
-        but I haven't confirmed otherwise.
 
         Arguments:
             - page_number -- Optional page of results to view.  Defaults to 1.
