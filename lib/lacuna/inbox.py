@@ -2,7 +2,16 @@
 import lacuna.bc
 
 class Inbox(lacuna.bc.LacunaObject):
-    """ Represents your mailbox.  """
+    """ Represents your mailbox.
+    
+.. _valid_msg_tags:
+
+Several methods allow a `tags` argument.  Valid message tags:
+    Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
+    Intelligence, Medal, Mission, Parliament, Probe, Spies, Trade,
+    Tutorial
+
+    """
 
     path = 'inbox'
 
@@ -26,7 +35,7 @@ class Inbox(lacuna.bc.LacunaObject):
             - opts -- Optional dict containing:
 
               - page_number -- Integer page number to return.  Defaults to 1.
-              - tags -- List of tags to filter by.
+              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
 
         The tags you passed in are joined with 'or'.  So for this call, you'll 
         get back both excavator and correspondence messages::
@@ -35,11 +44,6 @@ class Inbox(lacuna.bc.LacunaObject):
                     "page_number": 3,
                     "tags": ["excavator", "correspondence"]
                 })
-
-        Valid message tags:
-            Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
-            Intelligence, Medal, Mission, Parliament, Probe, Spies, Trade,
-            Tutorial
 
         Sending an invalid tag will not throw an exception, it'll merely 
         return 0 messages.
@@ -55,7 +59,15 @@ class Inbox(lacuna.bc.LacunaObject):
     def view_archived( self, opts:dict = {}, *args, **kwargs ):
         """  View archived messages.
         
-        Arguments and returns are the same as view_inbox().
+        Arguments:
+            - opts -- Optional dict containing:
+
+              - page_number -- Integer page number to return.  Defaults to 1.
+              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
+
+        Returns a tuple:
+            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+            - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
 
@@ -63,7 +75,15 @@ class Inbox(lacuna.bc.LacunaObject):
     def view_sent( self, opts:dict = {}, *args, **kwargs ):
         """  View sent messages.
         
-        Arguments and returns are the same as view_inbox().
+        Arguments:
+            - opts -- Optional dict containing:
+
+              - page_number -- Integer page number to return.  Defaults to 1.
+              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
+
+        Returns a tuple:
+            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+            - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
 
@@ -71,7 +91,15 @@ class Inbox(lacuna.bc.LacunaObject):
     def view_trashed( self, opts:dict = {}, *args, **kwargs ):
         """  View trashed messages.
         
-        Arguments and returns are the same as view_inbox().
+        Arguments:
+            - opts -- Optional dict containing:
+
+              - page_number -- Integer page number to return.  Defaults to 1.
+              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
+
+        Returns a tuple:
+            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+            - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
 
