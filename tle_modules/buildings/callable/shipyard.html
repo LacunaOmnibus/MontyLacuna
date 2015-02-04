@@ -185,8 +185,8 @@
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
 <li>type &#8211; String, type of ship to build.  Available ship types can 
-be found by calling get_buildable() and checking the &#8216;type&#8217; 
-attribute of the returned list of ships.</li>
+be found by calling <a class="reference internal" href="#lacuna.buildings.callable.shipyard.shipyard.get_buildable" title="lacuna.buildings.callable.shipyard.shipyard.get_buildable"><tt class="xref py py-meth docutils literal"><span class="pre">get_buildable()</span></tt></a> and checking the 
+<tt class="docutils literal"><span class="pre">type</span></tt> attribute of the returned list of ships.</li>
 <li>quantity &#8211; Integer number of ships to build.  Defaults to 1.</li>
 </ul>
 </dd>
@@ -199,22 +199,22 @@ being built)</li>
 </ul>
 </dd>
 </dl>
+<ul class="simple">
+<li><a class="reference internal" href="../../../ship.html#lacuna.ship.BuildingShip" title="lacuna.ship.BuildingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.BuildingShip</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.shipyard.shipyard.get_buildable">
 <tt class="descname">get_buildable</tt><big>(</big><em>tag: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.shipyard.shipyard.get_buildable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets information on what ships are available to be built.</p>
-<p>Accepts an optional &#8216;tag&#8217; string to limit the shiptypes returned, and defaults to no tag, returning all buildable ships.</p>
 <dl class="docutils">
-<dt>Valid &#8216;tag &#8216;values:</dt>
+<dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>Colonization</li>
-<li>Exploration</li>
-<li>Intelligence</li>
-<li>Mining</li>
-<li>Trade</li>
-<li>War</li>
+<li>tag &#8211; Optional string indicating the type of ship you want 
+returned.  Defaults to no tag, which will return a list of 
+all buildable ships.  Valid tag values are: <tt class="docutils literal"><span class="pre">Colonization</span></tt>,
+<tt class="docutils literal"><span class="pre">Exploration</span></tt>, <tt class="docutils literal"><span class="pre">Intelligence</span></tt>, <tt class="docutils literal"><span class="pre">Mining</span></tt>, <tt class="docutils literal"><span class="pre">Trade</span></tt>, <tt class="docutils literal"><span class="pre">War</span></tt></li>
 </ul>
 </dd>
 <dt>Returns a tuple:</dt>
@@ -231,6 +231,9 @@ across all shipyards on this planet.</li>
 </ul>
 </dd>
 </dl>
+<ul class="simple">
+<li><a class="reference internal" href="../../../ship.html#lacuna.ship.PotentialShip" title="lacuna.ship.PotentialShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.PotentialShip</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="attribute">
@@ -251,6 +254,15 @@ applies to the current shipyard; other shipyards&#8217; queues will remain.</p>
 <dt id="lacuna.buildings.callable.shipyard.shipyard.subsidize_ship">
 <tt class="descname">subsidize_ship</tt><big>(</big><em>named_arguments: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.shipyard.shipyard.subsidize_ship" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spends E to subsidize a single ship in the build queue.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>named_arguments &#8211; Dict of named arguments containing only
+<tt class="docutils literal"><span class="pre">{</span> <span class="pre">'ship_id':</span> <span class="pre">12345</span> <span class="pre">}</span></tt></li>
+</ul>
+</dd>
+</dl>
+<p>Subsidizes the build of a specific ship for 1 E.</p>
 </dd></dl>
 
 <dl class="method">
@@ -267,6 +279,9 @@ how much E it&#8217;ll cost to subsidize them.</p>
 </ul>
 </dd>
 </dl>
+<ul class="simple">
+<li><a class="reference internal" href="../../../ship.html#lacuna.ship.BuildingShip" title="lacuna.ship.BuildingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.BuildingShip</span></tt></a></li>
+</ul>
 </dd></dl>
 
 </dd></dl>

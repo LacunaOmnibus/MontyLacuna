@@ -62,10 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -117,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
@@ -173,8 +172,14 @@
 <dl class="class">
 <dt id="lacuna.inbox.Inbox">
 <em class="property">class </em><tt class="descclassname">lacuna.inbox.</tt><tt class="descname">Inbox</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
 <p>Represents your mailbox.</p>
+<dl class="docutils" id="valid-msg-tags">
+<dt>Several methods allow a <cite>tags</cite> argument.  Valid message tags:</dt>
+<dd>Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
+Intelligence, Medal, Mission, Parliament, Probe, Spies, Trade,
+Tutorial</dd>
+</dl>
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.archive_messages">
 <tt class="descname">archive_messages</tt><big>(</big><em>messages: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.archive_messages" title="Permalink to this definition">¶</a></dt>
@@ -266,7 +271,23 @@ failed, just that they did.</p>
 <dt id="lacuna.inbox.Inbox.view_archived">
 <tt class="descname">view_archived</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_archived" title="Permalink to this definition">¶</a></dt>
 <dd><p>View archived messages.</p>
-<p>Arguments and returns are the same as view_inbox().</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>opts &#8211; Optional dict containing:<ul>
+<li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
+<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a> objects</li>
+<li>count &#8211; Integer total number of messages in the inbox</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -278,7 +299,7 @@ failed, just that they did.</p>
 <dd><ul class="first last simple">
 <li>opts &#8211; Optional dict containing:<ul>
 <li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
-<li>tags &#8211; List of tags to filter by.</li>
+<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
 </ul>
 </li>
 </ul>
@@ -292,12 +313,6 @@ get back both excavator and correspondence messages:</p>
 <span class="p">})</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>Valid message tags:</dt>
-<dd>Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
-Intelligence, Medal, Mission, Parliament, Probe, Spies, Trade,
-Tutorial</dd>
-</dl>
 <p>Sending an invalid tag will not throw an exception, it&#8217;ll merely 
 return 0 messages.</p>
 <dl class="docutils">
@@ -314,14 +329,46 @@ return 0 messages.</p>
 <dt id="lacuna.inbox.Inbox.view_sent">
 <tt class="descname">view_sent</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_sent" title="Permalink to this definition">¶</a></dt>
 <dd><p>View sent messages.</p>
-<p>Arguments and returns are the same as view_inbox().</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>opts &#8211; Optional dict containing:<ul>
+<li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
+<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a> objects</li>
+<li>count &#8211; Integer total number of messages in the inbox</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_trashed">
 <tt class="descname">view_trashed</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_trashed" title="Permalink to this definition">¶</a></dt>
 <dd><p>View trashed messages.</p>
-<p>Arguments and returns are the same as view_inbox().</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>opts &#8211; Optional dict containing:<ul>
+<li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
+<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a> objects</li>
+<li>count &#8211; Integer total number of messages in the inbox</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

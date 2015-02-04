@@ -169,8 +169,20 @@
             
   <div class="section" id="building">
 <h1>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h1>
-<p>The various building modules all inherit from either the <tt class="docutils literal"><span class="pre">Building</span></tt> or, more
-often, <tt class="docutils literal"><span class="pre">MyBuilding</span></tt> classes.</p>
+<p>The various building modules all inherit from either the
+<a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> or, more often,
+<a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a> classes.</p>
+<p>Each individual building module has a variable named <tt class="docutils literal"><span class="pre">path</span></tt>.  That variable
+is going to show up in the documentation for most of those buildings.  It&#8217;s
+been documented in one or two, but not all, and the documentation will always
+be more or less the same:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">This</span> <span class="pre">variable</span> <span class="pre">determines</span> <span class="pre">which</span> <span class="pre">TLE</span> <span class="pre">module</span> <span class="pre">gets</span> <span class="pre">accessed</span> <span class="pre">by</span> <span class="pre">this</span>
+<span class="pre">MontyLacuna</span> <span class="pre">module.</span>&nbsp; <span class="pre">Don't</span> <span class="pre">change</span> <span class="pre">it.</span></tt></div></blockquote>
+<p>Here and there you&#8217;ll encounter methods that state that they require a captcha
+be filled out.  As long as you&#8217;re working on some sort of command-line script,
+the captcha will be displayed to the user and handled automatically &#8211; you
+won&#8217;t need to do anything in your code to handle the captchas yourself.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="buildings/beach/index.html">Beach Modules</a></li>
@@ -179,7 +191,7 @@ often, <tt class="docutils literal"><span class="pre">MyBuilding</span></tt> cla
 <li class="toctree-l1"><a class="reference internal" href="buildings/ss_modules/index.html">Space Station Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="buildings/training/index.html">Spy Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="buildings/callable/index.html">Miscellaneous Buildings with Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="misc_bldgs.html">Miscellaneous Buildings without Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="buildings/boring/index.html">Miscellaneous Buildings without Methods</a></li>
 </ul>
 </div>
 <span class="target" id="module-lacuna.building"></span><dl class="class">

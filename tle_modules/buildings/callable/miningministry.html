@@ -213,7 +213,13 @@ shipping_capacity   51
 <dt id="lacuna.buildings.callable.miningministry.miningministry.abandon_platform">
 <tt class="descname">abandon_platform</tt><big>(</big><em>platform_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.miningministry.miningministry.abandon_platform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abandon one of your mining platforms.</p>
-<p>Requires &#8220;platform_id&#8221;, the integer ID of the platform to abandon.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>platform_id &#8211; Integer ID of the platform to abandon.</li>
+</ul>
+</dd>
+</dl>
 <p>Remember that you might have multiple platforms on a single asteroid.  
 When you abandon, you are abandoning the platform, not the asteroid, so 
 be careful to send the platform ID, not the ID of the asteroid itself.</p>
@@ -223,10 +229,16 @@ be careful to send the platform ID, not the ID of the asteroid itself.</p>
 <dt id="lacuna.buildings.callable.miningministry.miningministry.add_cargo_ship_to_fleet">
 <tt class="descname">add_cargo_ship_to_fleet</tt><big>(</big><em>ship_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.miningministry.miningministry.add_cargo_ship_to_fleet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a ship to the mining fleet.</p>
-<p>The &#8220;cargo ship&#8221; does not have to specifically be of type &#8220;cargo_ship&#8221;, 
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>ship_id &#8211; Integer ID of the ship to add.</li>
+</ul>
+</dd>
+</dl>
+<p>The <tt class="docutils literal"><span class="pre">cargo</span> <span class="pre">ship</span></tt> does not have to specifically be of type &#8220;cargo_ship&#8221;, 
 it just has to be capable of carrying cargo (eg hulk_mega, 
 smuggler_ship, etc).</p>
-<p>Requires &#8220;ship_id&#8221;, the integer ID of the ship to add to the fleet.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -238,12 +250,17 @@ smuggler_ship, etc).</p>
 <dt id="lacuna.buildings.callable.miningministry.miningministry.remove_cargo_ship_from_fleet">
 <tt class="descname">remove_cargo_ship_from_fleet</tt><big>(</big><em>ship_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.miningministry.miningministry.remove_cargo_ship_from_fleet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes a single ship off mining duty; sends the ship a message to 
-return to base to perform the &#8220;Docked&#8221; task.</p>
+return to base to perform the <tt class="docutils literal"><span class="pre">Docked</span></tt> task.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>ship_id &#8211; Integer ID of the ship to remove.</li>
+</ul>
+</dd>
+</dl>
 <p>After being removed from mining duty, the ship will need to travel 
 from the mining location back to your space port&#8217;s planet, so it will 
 not be available for use immediately.</p>
-<p>Requires &#8220;ship_id&#8221;, the integer ID of the ship to removed from the 
-fleet.</p>
 </dd></dl>
 
 <dl class="method">
@@ -259,6 +276,9 @@ lacuna.buildings.miningministry.MiningPlatform objects</li>
 </ul>
 </dd>
 </dl>
+<ul class="simple">
+<li><a class="reference internal" href="#lacuna.buildings.callable.miningministry.MiningPlatform" title="lacuna.buildings.callable.miningministry.MiningPlatform"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.miningministry.MiningPlatform</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="method">
@@ -269,7 +289,7 @@ lacuna.buildings.miningministry.MiningPlatform objects</li>
 task is &#8216;Mining&#8217;, it&#8217;s currently shutting ore to and from your mining 
 platforms.  If its task is listed as &#8216;Docked&#8217;, it&#8217;s available to be 
 added to your current mining fleet.</p>
-<p>Retval includes &#8216;ships&#8217;, a list of ship dicts:</p>
+<p>Returns a dict including the key <tt class="docutils literal"><span class="pre">ships</span></tt>, a list of ship dicts:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
     <span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;CS4&quot;</span><span class="p">,</span>
     <span class="s">&quot;id&quot;</span> <span class="p">:</span> <span class="s">&quot;id-goes-here&quot;</span><span class="p">,</span>

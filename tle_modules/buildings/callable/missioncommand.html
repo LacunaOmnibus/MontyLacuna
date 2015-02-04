@@ -204,18 +204,24 @@ rewards
 <dd><p>Completes a mission.  Delivers rewards to your mission command 
 planet immediately, and causes this mission to not show up again for 30 
 days.</p>
-<p>Requires &#8216;mission_id&#8217;, integer ID of the mission to complete.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>mission_id &#8211; Integer ID of the mission to complete.</li>
+</ul>
+</dd>
+</dl>
 <p>If you have not completed the tasks, or have on hand the resources, 
 required by the listed objectives of the mission, calling this will 
-fail by raising ServerError 1002.</p>
-<p>Otherwise, returns a standard status dict.</p>
+fail by raising <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1002.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.missioncommand.missioncommand.get_missions">
 <tt class="descname">get_missions</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.missioncommand.missioncommand.get_missions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of available missions.</p>
-<p>Returns a list of Mission objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.buildings.callable.missioncommand.Mission" title="lacuna.buildings.callable.missioncommand.Mission"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.missioncommand.Mission</span></tt></a>
+objects.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -228,8 +234,13 @@ fail by raising ServerError 1002.</p>
 <tt class="descname">skip_mission</tt><big>(</big><em>mission_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.missioncommand.missioncommand.skip_mission" title="Permalink to this definition">¶</a></dt>
 <dd><p>Skips a mission, removing it from the list and keeping it from 
 showing up again for 30 days.</p>
-<p>Requires &#8216;mission_id&#8217;, integer ID of the mission to complete.</p>
-<p>Returns a standard status dict.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>mission_id &#8211; Integer ID of the mission to skip.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

@@ -176,7 +176,7 @@
 <dl class="class">
 <dt id="lacuna.buildings.callable.network19.Feed">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.network19.</tt><tt class="descname">Feed</tt><big>(</big><em>zone</em>, <em>url</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.network19.Feed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>zone     0|0
 url      &#39;http://feeds.game.lacunaexpanse.com/78d5e7b2-b8d7-317c-b244-3f774264be57.rss&#39;
@@ -185,15 +185,9 @@ url      &#39;http://feeds.game.lacunaexpanse.com/78d5e7b2-b8d7-317c-b244-3f7742
 </dd></dl>
 
 <dl class="class">
-<dt id="lacuna.buildings.callable.network19.NewsItem">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.network19.</tt><tt class="descname">NewsItem</tt><big>(</big><em>mydict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.network19.NewsItem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
-</dd></dl>
-
-<dl class="class">
 <dt id="lacuna.buildings.callable.network19.Story">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.network19.</tt><tt class="descname">Story</tt><big>(</big><em>mydict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.network19.Story" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.callable.network19.NewsItem" title="lacuna.buildings.callable.network19.NewsItem"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.network19.NewsItem</span></tt></a></p>
+<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.network19.</tt><tt class="descname">Story</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.network19.Story" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>headline    &quot;HCorp founded a new colony on Rigel 4.&quot;, 
 date        &quot;01 31 2010 13:09:05 +0600&quot; 
@@ -214,18 +208,28 @@ date        &quot;01 31 2010 13:09:05 +0600&quot;
 <dt id="lacuna.buildings.callable.network19.network19.restrict_coverage">
 <tt class="descname">restrict_coverage</tt><big>(</big><em>toggle: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.network19.network19.restrict_coverage" title="Permalink to this definition">¶</a></dt>
 <dd><p>Toggles news coverage restriction on and off.</p>
-<p>Accepts a single optional argument, &#8216;toggle&#8217;.  0 to allow news to flow, 
-or 1 to restrict coverage.  Defaults to 0.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>toggle &#8211; Pseudo-boolean integer.  <tt class="docutils literal"><span class="pre">0</span></tt> to turn restrictions off
+(allow news to flow normally), <tt class="docutils literal"><span class="pre">1</span></tt> to turn restrictions on.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.network19.network19.view">
 <tt class="descname">view</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.network19.network19.view" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates whether news coverage is restricted or flowing freely.</p>
-<p>Returns &#8216;restrict_coverage&#8217;.  This is an integer indicating 
-whether or not coverage is currently restricted:
-- 0 &#8211; coverage is flowing freely
-- 1 &#8211; coverage is restricted</p>
+<p>Returns an integer indicating whether or not coverage is currently 
+restricted:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">0</span></tt> &#8211; coverage is flowing freely</li>
+<li><tt class="docutils literal"><span class="pre">1</span></tt> &#8211; coverage is restricted</li>
+</ul>
+</div></blockquote>
 </dd></dl>
 
 <dl class="method">

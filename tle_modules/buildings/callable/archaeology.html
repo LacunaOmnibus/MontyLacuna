@@ -215,7 +215,7 @@ capitalization matter; &#8220;goethite&#8221; is valid, &#8220;Goethite&#8221; i
 </dd>
 </dl>
 <p>Returns a <a class="reference internal" href="../../../glyph.html#lacuna.glyph.AssembledArtifact" title="lacuna.glyph.AssembledArtifact"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.AssembledArtifact</span></tt></a> object.</p>
-<p>Raises ServerError 1002 if the listed glyphs do not form a valid 
+<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1002 if the listed glyphs do not form a valid 
 artifact recipe.</p>
 </dd></dl>
 
@@ -249,7 +249,7 @@ artifact recipe.</p>
 <tt class="descname">search_for_glyph</tt><big>(</big><em>ore_type: str</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.search_for_glyph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searches through an ore for a glyph.</p>
 <p>There must be at least 10,000 of the selected ore onsite to perform 
-the search, or a ServerError will be raised.</p>
+the search, or a <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> will be raised.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
@@ -263,7 +263,7 @@ the search, or a ServerError will be raised.</p>
 <dt id="lacuna.buildings.callable.archaeology.archaeology.subsidize_search">
 <tt class="descname">subsidize_search</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.subsidize_search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Completes the current glyph search immediately.  Costs 2 E.</p>
-<p>Raises ServerError 1010 if no search is going on right now.</p>
+<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1010 if no search is going on right now.</p>
 </dd></dl>
 
 <dl class="method">

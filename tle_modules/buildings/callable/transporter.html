@@ -30,7 +30,7 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../../../index.html"/>
         <link rel="up" title="Miscellaneous Buildings with Methods" href="index.html"/>
-        <link rel="next" title="Miscellaneous Buildings without Methods" href="../../misc_bldgs.html"/>
+        <link rel="next" title="Miscellaneous Buildings without Methods" href="../boring/index.html"/>
         <link rel="prev" title="Trade Ministry (TM)" href="trade.html"/> 
 
   
@@ -185,23 +185,23 @@ is getting old, so I&#8217;m skipping the following:</p>
 </ul>
 <dl class="method">
 <dt id="lacuna.buildings.callable.transporter.transporter.add_to_market">
-<tt class="descname">add_to_market</tt><big>(</big><em>offer: dict</em>, <em>ask: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.transporter.transporter.add_to_market" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">add_to_market</tt><big>(</big><em>offer: dict</em>, <em>ask: float</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.transporter.transporter.add_to_market" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spends 1 E to add a trade to the SST market.</p>
 <p>The only difference between this and trade.add_trade() is that the SST 
 has no &#8216;options&#8217; argument.</p>
-<p>Arguments:</p>
-<div class="highlight-python"><div class="highlight"><pre>offer       List of dicts of items to offer for trade.  See below for
-            more details.
-                {   &#39;type&#39;:         &#39;bauxite&#39;,
-                    &#39;quantity&#39;:     10000   },
-ask         Integer price in E you&#39;re asking for this trade, between 
-            0.1 and 100.
-</pre></div>
-</div>
-<p><em>offer</em></p>
-<p>There are five types of items you can offer for trade, each with 
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>offer &#8211; List of dicts of items to offer for trade.  See below for
+more details.</li>
+<li>ask &#8211; Float price in E you&#8217;re asking for this trade, between 
+0.1 and 100.</li>
+</ul>
+</dd>
+<dt>offer</dt>
+<dd><p class="first">There are five types of items you can offer for trade, each with 
 their own required keys for their offer dicts:</p>
-<div class="highlight-python"><div class="highlight"><pre>resources
+<div class="last highlight-python"><div class="highlight"><pre>resources
     {   &#39;type&#39;:         &#39;bauxite&#39;,
         &#39;quantity&#39;:     10000   },
 glyphs
@@ -222,6 +222,8 @@ ships
         &#39;ship_id&#39;:  12345   },
 </pre></div>
 </div>
+</dd>
+</dl>
 <p>Returns the ID of the trade just added.</p>
 </dd></dl>
 
@@ -239,23 +241,19 @@ also have an SST built (though its level doesn&#8217;t matter).</p>
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
 <li>target_id &#8211; Integer ID of the body to send resources to.</li>
-<li>items &#8211; List of item dicts.  See add_to_market().</li>
+<li>offer &#8211; List of item dicts to push.  Same as 
+<a class="reference internal" href="#lacuna.buildings.callable.transporter.transporter.add_to_market" title="lacuna.buildings.callable.transporter.transporter.add_to_market"><tt class="xref py py-class docutils literal"><span class="pre">add_to_market</span></tt></a>.</li>
 </ul>
 </dd>
-<dt>Returns:</dt>
-<dd>Who knows, it&#8217;s not documented.  Your call will get back whatever 
-the server returns.  If you want to know what&#8217;s in there, you&#8217;ll 
-have to fight with it.</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.transporter.transporter.view">
 <tt class="descname">view</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.transporter.transporter.view" title="Permalink to this definition">¶</a></dt>
-<dd><p>The only building-specific bit of data in the SST&#8217;s view() call 
-is the integer maximum number of items this SST can support in a single 
+<dd><p>See how many units this SST is capable of transmitting in a single 
 trade.</p>
-<p>So this view() call returns that single integer.</p>
+<p>Returns an integer.</p>
 </dd></dl>
 
 </dd></dl>
@@ -268,7 +266,7 @@ trade.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../misc_bldgs.html" class="btn btn-neutral float-right" title="Miscellaneous Buildings without Methods"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../boring/index.html" class="btn btn-neutral float-right" title="Miscellaneous Buildings without Methods"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="trade.html" class="btn btn-neutral" title="Trade Ministry (TM)"><span class="fa fa-arrow-circle-left"></span> Previous</a>

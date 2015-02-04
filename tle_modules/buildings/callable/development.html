@@ -182,9 +182,13 @@
 <tt class="descname">cancel_build</tt><big>(</big><em>named_args: dict</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.development.development.cancel_build" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes a single building upgrade from the build queue.
 Any resources that were spent to start the upgrade are lost.</p>
-<p>named_args must contain &#8216;scheduled_id&#8217;, the integer ID of the building 
-whose upgrade is scheduled to be subsidized.</p>
 <dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>named_args &#8211; Dict containing the ID of the building in the queue
+whose build you want to cancel. <tt class="docutils literal"><span class="pre">{</span> <span class="pre">'scheduled_id':</span> <span class="pre">12345</span> <span class="pre">}</span></tt></li>
+</ul>
+</dd>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
 <li>build_queue &#8211; list of lacuna.building.InBuildQueue objects</li>
@@ -220,24 +224,27 @@ be careful.</p>
 <dt id="lacuna.buildings.callable.development.development.subsidize_one_build">
 <tt class="descname">subsidize_one_build</tt><big>(</big><em>named_args: dict</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.development.development.subsidize_one_build" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spends E to immediately finish a single build in the build queue.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>named_args &#8211; Dict containing the ID of the building in the queue
+whose build you want to cancel. <tt class="docutils literal"><span class="pre">{</span> <span class="pre">'scheduled_id':</span> <span class="pre">12345</span> <span class="pre">}</span></tt></li>
+</ul>
+</dd>
+</dl>
 <p>It&#8217;s usually cheaper per building to subsidize the entire build queue 
 than to subsidize a single building.  So if your build queue only 
 contains a single building being upgraded, call build_queue() instead 
 of subsidize_one_build().</p>
 <dl class="docutils">
-<dt>Requires a single dict argument:</dt>
-<dd><ul class="first last simple">
-<li>scheduled_id &#8211; Integer ID of the building to subsidize</li>
-</ul>
-</dd>
 <dt>Returns</dt>
 <dd><ul class="first last simple">
 <li>essentia_spent &#8211; Integer cost of subsidy</li>
 </ul>
 </dd>
 </dl>
-<p>Raises ServerError 1000 if the specified building is not currently being 
-built or upgraded.</p>
+<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1000 if the specified 
+building is not currently being built or upgraded.</p>
 </dd></dl>
 
 </dd></dl>

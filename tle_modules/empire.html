@@ -62,10 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -117,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
@@ -190,18 +189,42 @@ spy_training    &quot;01 31 2010 13:09:05 +0600&quot;
 <dl class="class">
 <dt id="lacuna.empire.Empire">
 <em class="property">class </em><tt class="descclassname">lacuna.empire.</tt><tt class="descname">Empire</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.Empire" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
 <p>A generic Empire object that can be used with a non-logged-in Guest.</p>
+<dl class="method">
+<dt id="lacuna.empire.Empire.create">
+<tt class="descname">create</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.Empire.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unimplemented.  It&#8217;s assumed nobody is going to use MontyLacuna to 
+create a new empire.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="lacuna.empire.Empire.fetch_captcha">
 <tt class="descname">fetch_captcha</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.empire.Empire.fetch_captcha" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns dict containing &#8216;guid&#8217; and &#8216;url&#8217; keys.</p>
+<dd><p>Get location of a captcha puzzle to solve.</p>
 <p>There also exists a Captcha class, which requires the user to already 
 be logged in.  This fetch_captcha method exists to allow a brand new, 
 not-yet-logged-in user to get a captcha, the solution to which they 
-can pass to create().</p>
+can pass to <a class="reference internal" href="#lacuna.empire.Empire.create" title="lacuna.empire.Empire.create"><tt class="xref py py-meth docutils literal"><span class="pre">create()</span></tt></a>.</p>
+<p>Since <a class="reference internal" href="#lacuna.empire.Empire.create" title="lacuna.empire.Empire.create"><tt class="xref py py-meth docutils literal"><span class="pre">create()</span></tt></a> is unimplemented, you should probably never use 
+this for anything.</p>
 <p>If you&#8217;re looking for a captcha for anything other than new user 
 creation, go use the Captcha class.</p>
+<p>Returns dict containing &#8216;guid&#8217; and &#8216;url&#8217; keys.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.Empire.found">
+<tt class="descname">found</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.Empire.found" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unimplemented.  It&#8217;s assumed nobody is going to use MontyLacuna to 
+create a new empire.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.empire.Empire.update_species">
+<tt class="descname">update_species</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.Empire.update_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unimplemented.  It&#8217;s assumed nobody is going to use MontyLacuna to 
+create a new empire.</p>
 </dd></dl>
 
 </dd></dl>
@@ -313,7 +336,7 @@ self_destruct_date      &quot;&quot;
 <dt id="lacuna.empire.MyEmpire.disable_self_destruct">
 <tt class="descname">disable_self_destruct</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.disable_self_destruct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simply does not work on the server side.  This is a known problem, 
-and the reason enable_self_destruct() has been disabled.</p>
+and the reason <a class="reference internal" href="#lacuna.empire.MyEmpire.enable_self_destruct" title="lacuna.empire.MyEmpire.enable_self_destruct"><tt class="xref py py-meth docutils literal"><span class="pre">enable_self_destruct()</span></tt></a> has been disabled.</p>
 </dd></dl>
 
 <dl class="method">
@@ -357,7 +380,7 @@ your real, not sitter, password.</p>
 <tt class="descname">enable_self_destruct</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.enable_self_destruct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the self destruct timer on your empire.  After 24 hours, your 
 empire will be deleted.  Such a deletion is <em>not recoverable</em>.</p>
-<p>While testing, it was discovered that the <tt class="docutils literal"><span class="pre">disable_self_destruct</span></tt> 
+<p>While testing, it was discovered that the <a class="reference internal" href="#lacuna.empire.MyEmpire.disable_self_destruct" title="lacuna.empire.MyEmpire.disable_self_destruct"><tt class="xref py py-meth docutils literal"><span class="pre">disable_self_destruct()</span></tt></a> 
 method does not function, server-side.  So if you enable self destruct 
 on your empire, you cannot turn it off again yourself; you&#8217;d need to 
 find an admin to do it for you.  Admins are usually around, but it&#8217;s 
@@ -375,7 +398,8 @@ Calling it simply complains and then immediately quits your script.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>name &#8211; Standard TLE search string.  See <a class="reference internal" href="../glossary.html#glossary"><em>Glossary</em></a>.</li>
+<li>name_segment &#8211; Standard TLE search string.  See 
+<a class="reference internal" href="../glossary.html#gloss-std-search-string"><em>the glossary</em></a>.</li>
 </ul>
 </dd>
 </dl>
@@ -404,7 +428,7 @@ initial species creation (Average, Warmonger, Resilient, Viral, etc).</p>
 <tt class="descname">get_status</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.empire.MyEmpire.get_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets your empire&#8217;s current status information.</p>
 <p>There shouldn&#8217;t ever be a need to call this.  Empire status data gets 
-returned with every empire method call, and the current MyEmpire 
+returned with every empire method call, and the current <a class="reference internal" href="#lacuna.empire.MyEmpire" title="lacuna.empire.MyEmpire"><tt class="xref py py-class docutils literal"><span class="pre">MyEmpire</span></tt></a> 
 object&#8217;s attributes get updated each time as a result.</p>
 </dd></dl>
 
@@ -529,8 +553,8 @@ eg &#8220;You have already redefined in the past 30 days&#8221;, etc.</p>
 <dd><p>View your own empire&#8217;s profile.  Requires login with your real, not 
 sitter, password,</p>
 <p>Returns a <a class="reference internal" href="#lacuna.empire.OwnProfile" title="lacuna.empire.OwnProfile"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.OwnProfile</span></tt></a> object.</p>
-<p>Throws 1015 (Sitters cannot modify preferences) if the user is 
-logged in with their sitter.</p>
+<p>Throws <a class="reference internal" href="../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1015 (&#8220;Sitters cannot 
+modify preferences&#8221;) if the user is logged in with their sitter.</p>
 </dd></dl>
 
 <dl class="method">

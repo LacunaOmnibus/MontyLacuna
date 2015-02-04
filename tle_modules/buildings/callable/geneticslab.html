@@ -197,6 +197,10 @@ graftable_affinities    List of affinity names that can be grafted from
                         the spy to your empire
 </pre></div>
 </div>
+<ul class="simple">
+<li><a class="reference internal" href="../../../spy.html#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a></li>
+<li><a class="reference internal" href="../../empire.html#lacuna.empire.Species" title="lacuna.empire.Species"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.Species</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="class">
@@ -212,13 +216,13 @@ graftable_affinities    List of affinity names that can be grafted from
 <dt id="lacuna.buildings.callable.geneticslab.geneticslab.prepare_experiment">
 <tt class="descname">prepare_experiment</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab.prepare_experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns information needed to set up a genetics experiment.</p>
-<p>CHECK - need prisoners to test this
-grafts_list used to be a list of dicts, changed to a list of objects.  
-Should be fine, but I can&#8217;t find any prisoners to test on.</p>
+<p><strong>CHECK</strong> - I need prisoners to test this.  I haven&#8217;t got any prisoners, 
+so this method has not been tested.  I think that it <em>should</em> be fine, 
+but it has not been tested.</p>
 <p>If this comment still exists and you&#8217;re wanting to use this method, 
-keep in mind that the grafts_list returned might not be as advertised.  
-It should be, but check it before assuming it&#8217;s correct.</p>
-<p>And if you do that, let tmtowtdi know whether it worked or not.</p>
+keep in mind that the <tt class="docutils literal"><span class="pre">grafts_list</span></tt> returned might not be as 
+advertised.  It should be, but check it before assuming it&#8217;s correct.</p>
+<p>And if you do that, let <tt class="docutils literal"><span class="pre">tmtowtdi</span></tt> know whether it worked or not.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
@@ -230,6 +234,9 @@ It should be, but check it before assuming it&#8217;s correct.</p>
 </ul>
 </dd>
 </dl>
+<ul class="simple">
+<li><a class="reference internal" href="#lacuna.buildings.callable.geneticslab.Graft" title="lacuna.buildings.callable.geneticslab.Graft"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.geneticslab.Graft</span></tt></a></li>
+</ul>
 </dd></dl>
 
 <dl class="method">
@@ -237,23 +244,32 @@ It should be, but check it before assuming it&#8217;s correct.</p>
 <tt class="descname">rename_species</tt><big>(</big><em>named_args: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab.rename_species" title="Permalink to this definition">¶</a></dt>
 <dd><p>Allows you to change your species name and description.</p>
 <dl class="docutils">
-<dt>Argument is a single dict:</dt>
-<dd><ul class="first simple">
-<li>name &#8211; &#8220;My New Species Name&#8221;,</li>
-<li>description &#8211; &#8220;My New Species Description&#8221;</li>
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>named_args &#8211; Dict.
+<tt class="docutils literal"><span class="pre">{</span> <span class="pre">'name':</span> <span class="pre">&quot;New</span> <span class="pre">Species</span> <span class="pre">Name&quot;,</span> <span class="pre">'description':</span> <span class="pre">--</span> <span class="pre">&quot;New</span> <span class="pre">Species</span> <span class="pre">Description&quot;</span> <span class="pre">}</span></tt></li>
 </ul>
-<p>name requirements:
-- 30 characters or fewer
-- Not blank
-- &#64;, &amp; &lt;, &gt;, ; are prohibited.</p>
-<p class="last">description requirements:
-- 1024 characters or fewer
-- &lt;, &gt; are prohibited.</p>
 </dd>
 </dl>
-<p>Retval contains only &#8216;success&#8217;, set to 1.  No status is returned.</p>
-<p>Raises ServerError 1000 for bad species name.
-Raises ServerError 1005 for bad description.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">name</span></tt> key requirements<ul>
+<li>30 characters or fewer</li>
+<li>Not blank</li>
+<li>&#64;, &amp; &lt;, &gt;, ; are prohibited.</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">description</span></tt> key requirements<ul>
+<li>1024 characters or fewer</li>
+<li>&lt;, &gt; are prohibited.</li>
+</ul>
+</li>
+</ul>
+<p>Returns a dict containing only the key <tt class="docutils literal"><span class="pre">success</span></tt>, set to 1.  No status 
+is returned.</p>
+<ul class="simple">
+<li>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1000 for bad species name.</li>
+<li>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1005 for bad description.</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
@@ -261,7 +277,15 @@ Raises ServerError 1005 for bad description.</p>
 <tt class="descname">run_experiment</tt><big>(</big><em>spy_id: int</em>, <em>affinity: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.geneticslab.geneticslab.run_experiment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs a genetics experiment on a spy in an attempt to graft one of 
 his affinities onto your species.</p>
-<p>Returns a single geneticslab.ExperimentResults object.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>spy_id &#8211; Integer ID of the spy to experiment on.</li>
+<li>affinity &#8211; String name of the affinity to try to graft.</li>
+</ul>
+</dd>
+</dl>
+<p>Returns a single <a class="reference internal" href="#lacuna.buildings.callable.geneticslab.ExperimentResults" title="lacuna.buildings.callable.geneticslab.ExperimentResults"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.geneticslab.ExperimentResults</span></tt></a> object.</p>
 </dd></dl>
 
 </dd></dl>

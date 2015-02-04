@@ -186,11 +186,18 @@
 <dt id="lacuna.buildings.callable.capitol.capitol.rename_empire">
 <tt class="descname">rename_empire</tt><big>(</big><em>name: str</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.capitol.capitol.rename_empire" title="Permalink to this definition">¶</a></dt>
 <dd><p>Renames your empire.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; String new name; what you want to rename your empire to.</li>
+</ul>
+</dd>
+</dl>
 <p>Renaming your empire has a base cost of 30E, but that cost is reduced 
 by 1E per level of the capitol.  So at Capitol level 30, the rename 
 process has no cost.</p>
-<p>Throws ServerError 1010 if you attempt to rename your empire more 
-than once in a 24 hour period.</p>
+<p>Throws <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1010 if you attempt to 
+rename your empire more than once in a 24 hour period.</p>
 </dd></dl>
 
 </dd></dl>

@@ -180,8 +180,14 @@
 <dl class="method">
 <dt id="lacuna.buildings.callable.security.security.execute_prisoner">
 <tt class="descname">execute_prisoner</tt><big>(</big><em>prisoner_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.security.security.execute_prisoner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes a captured prisoner.
-sec.execute_prisoner( prisoner_id )</p>
+<dd><p>Executes a captured prisoner.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>prisoner_id &#8211; Integer ID of the prisoner to execute.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
@@ -192,36 +198,44 @@ sec.execute_prisoner( prisoner_id )</p>
 <dl class="method">
 <dt id="lacuna.buildings.callable.security.security.release_prisoner">
 <tt class="descname">release_prisoner</tt><big>(</big><em>prisoner_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.security.security.release_prisoner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Releases a prisoner from jail.
-sec.release_prisoner( prisoner_id )</p>
+<dd><p>Releases a prisoner from jail.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>prisoner_id &#8211; Integer ID of the prisoner to release.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.security.security.view_foreign_spies">
 <tt class="descname">view_foreign_spies</tt><big>(</big><em>page_number: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.security.security.view_foreign_spies" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Lists uncaptured foreign spies.</dt>
-<dd>pris = sec.view_foreign_spies()
-print( pris[0].name )</dd>
+<dd><p>Lists uncaptured foreign spies, 25 per page.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>page_number &#8211; Integer ID of the page to view.  Defaults to 1.</li>
+</ul>
+</dd>
 </dl>
 <p>Lists foreign spies that are on your planet but which you have not 
 captured.  Will only list spies whose level is lower than that of 
 your Security Ministry.  Higher-level spies will remain hidden.</p>
-<p>Accepts optional &#8216;page_number&#8217;, integer number of the page (25 prisoners 
-per page) you want to view.  Defaults to 1.</p>
 <p>Returns a list of <a class="reference internal" href="../../../spy.html#lacuna.spy.ForeignAgent" title="lacuna.spy.ForeignAgent"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.ForeignAgent</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.security.security.view_prisoners">
 <tt class="descname">view_prisoners</tt><big>(</big><em>page_number: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.security.security.view_prisoners" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Lists prisoners currently in jail.</dt>
-<dd>pris = sec.view_prisoners()
-print( pris[0].name )</dd>
+<dd><p>Lists prisoners currently in jail, 25 per page.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>page_number &#8211; Integer ID of the page to view.  Defaults to 1.</li>
+</ul>
+</dd>
 </dl>
-<p>Accepts optional &#8216;page_number&#8217;, integer number of the page (25 prisoners 
-per page) you want to view.  Defaults to 1.</p>
 <p>Returns a list of <a class="reference internal" href="../../../spy.html#lacuna.spy.Prisoner" title="lacuna.spy.Prisoner"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Prisoner</span></tt></a> objects.</p>
 </dd></dl>
 

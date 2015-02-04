@@ -208,13 +208,13 @@ non-running theme park for one hour.  Returns happiness - the more
 distinct food types you have, and the higher the level of the park, 
 the more happiness is returned.</p>
 <p>Once the theme park has already started running, you may call 
-operate() again.  This will extend the length of operation by another 
-hour, returning the appropriate happiness.  But for the &gt;= 2nd 
+<a class="reference internal" href="#lacuna.buildings.callable.themepark.themepark.operate" title="lacuna.buildings.callable.themepark.themepark.operate"><tt class="xref py py-meth docutils literal"><span class="pre">operate()</span></tt></a> again.  This will extend the length of operation by 
+another hour, returning the appropriate happiness.  But for the &gt;= 2nd 
 operation, you must have at least as much food on hand as you had the 
-first time you started the park.  The ParkView object&#8217;s 
-food_type_attribute will tell you how many food types are required to 
-extend operations.</p>
-<p>Returns a ParkView object.</p>
+first time you started the park.  The <a class="reference internal" href="#lacuna.buildings.callable.themepark.ParkView" title="lacuna.buildings.callable.themepark.ParkView"><tt class="xref py py-class docutils literal"><span class="pre">ParkView</span></tt></a> object&#8217;s 
+<tt class="docutils literal"><span class="pre">food_type_count</span></tt> attribute will tell you how many food types are 
+required to extend operations.</p>
+<p>Returns a <a class="reference internal" href="#lacuna.buildings.callable.themepark.ParkView" title="lacuna.buildings.callable.themepark.ParkView"><tt class="xref py py-class docutils literal"><span class="pre">ParkView</span></tt></a> object.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -225,7 +225,8 @@ extend operations.</p>
 <dl class="method">
 <dt id="lacuna.buildings.callable.themepark.themepark.view">
 <tt class="descname">view</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.themepark.themepark.view" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a ParkView object for this Theme Park.</p>
+<dd><p>Get details about the park and whether it can be operated or not.</p>
+<p>Returns a <a class="reference internal" href="#lacuna.buildings.callable.themepark.ParkView" title="lacuna.buildings.callable.themepark.ParkView"><tt class="xref py py-class docutils literal"><span class="pre">ParkView</span></tt></a> object for this Theme Park.</p>
 </dd></dl>
 
 </dd></dl>

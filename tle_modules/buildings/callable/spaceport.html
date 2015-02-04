@@ -171,9 +171,11 @@
 </div>
           <div role="main">
             
-  <div class="section" id="module-lacuna.buildings.callable.spaceport">
-<span id="spaceport"></span><h1>Spaceport<a class="headerlink" href="#module-lacuna.buildings.callable.spaceport" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+  <div class="section" id="spaceport">
+<h1>Spaceport<a class="headerlink" href="#spaceport" title="Permalink to this headline">¶</a></h1>
+<p>Any method that requires a ship type needs something from the <strong>System</strong>
+column in <a class="reference internal" href="../../../types.html#ship-translations"><em>Ship Translations</em></a>.</p>
+<span class="target" id="module-lacuna.buildings.callable.spaceport"></span><dl class="class">
 <dt id="lacuna.buildings.callable.spaceport.BattleLog">
 <em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.spaceport.</tt><tt class="descname">BattleLog</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.spaceport.BattleLog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
@@ -307,7 +309,7 @@ of Spy objects).</li>
 </ul>
 </dd>
 </dl>
-<p>WARNING - the returned list of spy_ids will only ever contain a maximum 
+<p><strong>Warning</strong> - the returned list of spy_ids will only ever contain a maximum 
 of 100 spies.  In the situation where you&#8217;ve sent hundreds of spies from 
 multiple planets all to the same target (eg to defend a space station 
 that&#8217;s under attack), the spies from this planet may not be included in 
@@ -429,7 +431,7 @@ fool with this.</p>
 <dd><p>Recalls all ships from the current planet that are on &#8216;Defend&#8217; or 
 &#8216;Orbiting&#8217; tasks.
 Note there is no &#8216;target&#8217; argument here; this is not recalling all 
-ships orbiting a specific target - this is recalling ALL ships from 
+ships orbiting a specific target - this is recalling <em>all</em> ships from 
 this planet that are orbiting anywhere.</p>
 <p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.IncomingShip" title="lacuna.ship.IncomingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingShip</span></tt></a> objects, with the 
 following additional attributes:</p>
@@ -464,7 +466,6 @@ to:                 {    # This is the planet you&#39;re recalling the ships bac
 <p>If the ship being recalled is a Spy Shuttle, it will automatically 
 pick up as many idle spies from the planet it had been orbiting as it 
 can hold.</p>
-<p>Requires &#8216;ship_id&#8217;, the integer ID of the ship to be recalled.</p>
 </dd></dl>
 
 <dl class="method">
@@ -578,7 +579,9 @@ ship.</p>
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
 <li>spies_sent &#8211; List of IDs of sent spies (not Spy objects)</li>
-<li>spies_not_sent &#8211; List of IDs of sent spies (not Spy objects) This should only have contents if you&#8217;re cheating.</li>
+<li>spies_not_sent &#8211; List of IDs of sent spies (not Spy objects).  
+This should only have contents if you&#8217;re cheating (that&#8217;s per the 
+TLE API docs; I don&#8217;t know what it means).</li>
 <li>ship &#8211; <a class="reference internal" href="../../../ship.html#lacuna.ship.TravellingShip" title="lacuna.ship.TravellingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TravellingShip</span></tt></a> object</li>
 </ul>
 </dd>

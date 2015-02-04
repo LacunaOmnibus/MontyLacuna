@@ -183,7 +183,16 @@ corner, is the only one that you can actually use.</p>
 <dt id="lacuna.buildings.callable.ssla.ssla.make_plan">
 <tt class="descname">make_plan</tt><big>(</big><em>type: str</em>, <em>level: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.ssla.ssla.make_plan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Starts a plan building.</p>
-<p>Keep in mind that you must send the plan type, NOT its name.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>type &#8211; String type of plan to build.</li>
+<li>level &#8211; Integer level to build this plan to.</li>
+</ul>
+</dd>
+</dl>
+<p>Valid type values: <tt class="docutils literal"><span class="pre">art</span></tt>, <tt class="docutils literal"><span class="pre">command</span></tt>, <tt class="docutils literal"><span class="pre">food</span></tt>, <tt class="docutils literal"><span class="pre">ibs</span></tt>, <tt class="docutils literal"><span class="pre">opera</span></tt>, 
+<tt class="docutils literal"><span class="pre">parliament</span></tt>, <tt class="docutils literal"><span class="pre">policestation</span></tt>, <tt class="docutils literal"><span class="pre">warehouse</span></tt></p>
 <p>Returns the same tuple as view().</p>
 </dd></dl>
 
@@ -196,7 +205,16 @@ corner, is the only one that you can actually use.</p>
 <dt id="lacuna.buildings.callable.ssla.ssla.subsidize_plan">
 <tt class="descname">subsidize_plan</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.ssla.ssla.subsidize_plan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Spends 2 E to subsidize the currently-building plan.</p>
-<p>Returns the same tuple as view().</p>
+<dl class="docutils">
+<dt>Returns a tuple:</dt>
+<dd><ul class="first last simple">
+<li>plans &#8211; List of <a class="reference internal" href="../../../plan.html#lacuna.plan.PotentialSSPlan" title="lacuna.plan.PotentialSSPlan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.PotentialSSPlan</span></tt></a> objects</li>
+<li>costs &#8211; List of LevelCosts objects</li>
+<li>sub_cost &#8211; Integer cost to subsidize a plan (always 2)</li>
+<li>making &#8211; Name of plan currently being made.  &#8220;None&#8221; if no plan is in the works.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -206,7 +224,7 @@ corner, is the only one that you can actually use.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>plans &#8211; List of PotentialSSPlan objects</li>
+<li>plans &#8211; List of <a class="reference internal" href="../../../plan.html#lacuna.plan.PotentialSSPlan" title="lacuna.plan.PotentialSSPlan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.PotentialSSPlan</span></tt></a> objects</li>
 <li>costs &#8211; List of LevelCosts objects</li>
 <li>sub_cost &#8211; Integer cost to subsidize a plan (always 2)</li>
 <li>making &#8211; Name of plan currently being made.  &#8220;None&#8221; if no plan is in the works.</li>

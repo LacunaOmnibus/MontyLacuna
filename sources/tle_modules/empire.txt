@@ -1,6 +1,6 @@
 
 Empire
-===================
+======
 
 .. automodule:: lacuna.empire
    :members:

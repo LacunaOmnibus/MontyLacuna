@@ -61,10 +61,8 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -116,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
@@ -191,12 +190,17 @@ time    1200 (in seconds)
 <dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></tt></a></p>
 <p>Returned from viewing plans you currently own, as in your PCC.</p>
 <p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>name                &quot;Interstellar Broadcast System&quot;
+<div class="highlight-python"><div class="highlight"><pre>name                &quot;Volcano&quot;
+plan_type           &quot;Permanent_Volcano&quot;
 level               1
 extra_build_level   5
 quantity            23
 </pre></div>
 </div>
+<p>plan_type is what needs to be sent to 
+<a class="reference internal" href="tle_modules/buildings/callable/trade.html#lacuna.buildings.callable.trade.trade.add_to_market" title="lacuna.buildings.callable.trade.trade.add_to_market"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.buildings.callable.trade.trade.add_to_market()</span></tt></a> or 
+<a class="reference internal" href="tle_modules/buildings/callable/transporter.html#lacuna.buildings.callable.transporter.transporter.add_to_market" title="lacuna.buildings.callable.transporter.transporter.add_to_market"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.buildings.callable.transporter.transporter.add_to_market()</span></tt></a> to 
+trade the plan.</p>
 </dd></dl>
 
 <dl class="class">

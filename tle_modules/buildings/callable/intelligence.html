@@ -181,8 +181,16 @@
 <dt id="lacuna.buildings.callable.intelligence.intelligence.assign_spy">
 <tt class="descname">assign_spy</tt><big>(</big><em>spy_id: int</em>, <em>assignment: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.intelligence.intelligence.assign_spy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assigns a spy to a task.</p>
-<p>Possible assignments for each spy can be found by calling view_spies() 
-or view_all_spies().  A full list of all assignments can be found at 
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>spy_id &#8211; Integer ID of the spy to assign</li>
+<li>assignment &#8211; String name of the assignment to perform</li>
+</ul>
+</dd>
+</dl>
+<p>Possible assignments for each spy can be found by calling <a class="reference internal" href="#lacuna.buildings.callable.intelligence.intelligence.view_spies" title="lacuna.buildings.callable.intelligence.intelligence.view_spies"><tt class="xref py py-meth docutils literal"><span class="pre">view_spies()</span></tt></a> 
+or <a class="reference internal" href="#lacuna.buildings.callable.intelligence.intelligence.view_all_spies" title="lacuna.buildings.callable.intelligence.intelligence.view_all_spies"><tt class="xref py py-meth docutils literal"><span class="pre">view_all_spies()</span></tt></a>.  A full list of all assignments can be found at 
 <a class="reference external" href="https://us1.lacunaexpanse.com/api/Intelligence.html#assignment">https://us1.lacunaexpanse.com/api/Intelligence.html#assignment</a></p>
 <p>Requires captcha.</p>
 <dl class="docutils">
@@ -199,12 +207,27 @@ or view_all_spies().  A full list of all assignments can be found at
 <dt id="lacuna.buildings.callable.intelligence.intelligence.burn_spy">
 <tt class="descname">burn_spy</tt><big>(</big><em>spy_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.intelligence.intelligence.burn_spy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Burns (deletes) an existing spy.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>spy_id &#8211; Integer ID of the spy to burn.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.intelligence.intelligence.name_spy">
 <tt class="descname">name_spy</tt><big>(</big><em>spy_id: int</em>, <em>name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.intelligence.intelligence.name_spy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Renames an existing spy.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>spy_id &#8211; Integer ID of the spy to rename.</li>
+<li>name &#8211; String new name to give the spy.</li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
@@ -222,23 +245,28 @@ or view_all_spies().  A full list of all assignments can be found at
 <dl class="method">
 <dt id="lacuna.buildings.callable.intelligence.intelligence.train_spy">
 <tt class="descname">train_spy</tt><big>(</big><em>*args</em>, <em>quantity: int=1</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.intelligence.intelligence.train_spy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Trains one or more spies.  &#8220;Train&#8221;, in this case, means &#8220;create&#8221;.
-The &#8220;quantity&#8221; argument defaults to 1.</p>
+<dd><p>Trains one or more spies.</p>
+<p><tt class="docutils literal"><span class="pre">Train</span></tt>, in this case, means <tt class="docutils literal"><span class="pre">create</span></tt>.  This method is <em>not</em> used to 
+train your spies&#8217; attributes, like intel or mayhem etc.  It&#8217;s only used 
+to create new spies.</p>
 <dl class="docutils">
-<dt>Returns a dict including the keys:</dt>
-<dd><ul class="first last">
-<li><p class="first">trained &#8211; Integer number added to the training queue.  Always included in retval, but may be set to 0.</p>
-</li>
-<li><p class="first">not_trained &#8211; Integer number not added to the training queue.  Only appears in retval if its value is non-zero.</p>
-</li>
-<li><dl class="first docutils">
-<dt>reason_not_trained &#8211; Dict containing the reason that &#8220;not_trained&#8221; is set.  Only appears in retval if &#8220;not_trained&#8221; appears.  Includes:</dt>
+<dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>code &#8211; 1011,</li>
-<li>message &#8211; &#8220;Not enough food to train a spy.&#8221;</li>
+<li>quantity &#8211; Number of new spies to create.  Defaults to 1.</li>
 </ul>
 </dd>
-</dl>
+<dt>Returns a dict including the keys:</dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">trained</span></tt> &#8211; Integer number added to the training queue.  Always 
+included in the returned dict, but may be set to 0.</li>
+<li><tt class="docutils literal"><span class="pre">not_trained</span></tt> &#8211; Integer number not added to the training queue.  
+Only appears in the returned dict if its value is non-zero.</li>
+<li><tt class="docutils literal"><span class="pre">reason_not_trained</span></tt> &#8211; Dict containing the reason that &#8220;not_trained&#8221; 
+is set.  Only appears in the returned dict if &#8220;not_trained&#8221; appears.  
+Includes:<ul>
+<li>code &#8211; 1011,</li>
+<li>message &#8211; &#8220;Not enough food to train a spy.&#8221; (or whatever)</li>
+</ul>
 </li>
 </ul>
 </dd>
@@ -266,6 +294,14 @@ planet.</p>
 <tt class="descname">view_spies</tt><big>(</big><em>page_number: int=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.intelligence.intelligence.view_spies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns info on one page (up to 30) spies.  There are a maximum of 
 three pages of spy data.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>page_number &#8211; Integer number of the page to view.  Defaults 
+to 1.</li>
+</ul>
+</dd>
+</dl>
 <p>To get info on all of your spies at once, see also view_all_spies().</p>
 <p>Returns a list of up to 30 <a class="reference internal" href="../../../spy.html#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a> objects.</p>
 </dd></dl>

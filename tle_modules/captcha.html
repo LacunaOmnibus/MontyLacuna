@@ -31,7 +31,7 @@
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
         <link rel="up" title="TLE Modules" href="index.html"/>
         <link rel="next" title="Empire" href="empire.html"/>
-        <link rel="prev" title="Miscellaneous Buildings without Methods" href="misc_bldgs.html"/> 
+        <link rel="prev" title="Miscellaneous Buildings without Methods" href="buildings/boring/index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -62,10 +62,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-python-install">Troubleshooting Python Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#troubleshooting-pip-install">Troubleshooting Pip Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
@@ -117,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
@@ -179,7 +178,7 @@ will automatically pop up a captcha image and ask you to solve it.</p>
 <span class="target" id="module-lacuna.captcha"></span><dl class="class">
 <dt id="lacuna.captcha.Captcha">
 <em class="property">class </em><tt class="descclassname">lacuna.captcha.</tt><tt class="descname">Captcha</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
 <p>Fetches, displays, and solves graphical captchas.</p>
 <p>General usage will be:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">cap</span> <span class="o">=</span> <span class="n">my_client</span><span class="o">.</span><span class="n">get_captcha</span><span class="p">()</span>
@@ -199,9 +198,9 @@ will automatically pop up a captcha image and ask you to solve it.</p>
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.prompt_user">
 <tt class="descname">prompt_user</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.prompt_user" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prompts the user to solve the displayed captcha.
-It&#8217;s not illegal to call this without first calling solveit(), but 
-doing so makes no sense.</p>
+<dd><p>Prompts the user to solve the displayed captcha.</p>
+<p>It&#8217;s not illegal to call this without first calling <a class="reference internal" href="#lacuna.captcha.Captcha.solveit" title="lacuna.captcha.Captcha.solveit"><tt class="xref py py-meth docutils literal"><span class="pre">solveit()</span></tt></a>, 
+but doing so makes no sense.</p>
 </dd></dl>
 
 <dl class="method">
@@ -209,23 +208,27 @@ doing so makes no sense.</p>
 <tt class="descname">showit</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.showit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Actually downloads the captcha image, and attempts to display it  
 to the user in one of several browsers.</p>
-<p>If <tt class="docutils literal"><span class="pre">fetch()</span></tt> is called first, <tt class="docutils literal"><span class="pre">showit()</span></tt> uses that fetched data, but 
-this is not necessary.  <tt class="docutils literal"><span class="pre">showit()</span></tt> will call fetch for you.</p>
+<p>If <a class="reference internal" href="#lacuna.captcha.Captcha.fetch" title="lacuna.captcha.Captcha.fetch"><tt class="xref py py-meth docutils literal"><span class="pre">fetch()</span></tt></a> is called first, <a class="reference internal" href="#lacuna.captcha.Captcha.showit" title="lacuna.captcha.Captcha.showit"><tt class="xref py py-meth docutils literal"><span class="pre">showit()</span></tt></a> uses that fetched data, but 
+this is not necessary.  <a class="reference internal" href="#lacuna.captcha.Captcha.showit" title="lacuna.captcha.Captcha.showit"><tt class="xref py py-meth docutils literal"><span class="pre">showit()</span></tt></a> will call fetch for you.</p>
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.RequestError" title="lacuna.exceptions.RequestError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.RequestError</span></tt></a> if the image is not 
+fetchable (network error or the TLE servers have gone down).</p>
+<p>Raises EnvironmentError if it cannot find an image viewer to use to 
+display the captcha image.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.solve">
 <tt class="descname">solve</tt><big>(</big><em>guid: str</em>, <em>solution: str</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.solve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mirrors the TLE Captcha module&#8217;s <tt class="docutils literal"><span class="pre">solve()</span></tt> method, but unless you 
-really need this and you really know why, use <tt class="docutils literal"><span class="pre">solveit()</span></tt> instead.</p>
+<dd><p>Mirrors the TLE Captcha module&#8217;s <a class="reference internal" href="#lacuna.captcha.Captcha.solve" title="lacuna.captcha.Captcha.solve"><tt class="xref py py-meth docutils literal"><span class="pre">solve()</span></tt></a> method, but unless you 
+really need this and you really know why, use <a class="reference internal" href="#lacuna.captcha.Captcha.solveit" title="lacuna.captcha.Captcha.solveit"><tt class="xref py py-meth docutils literal"><span class="pre">solveit()</span></tt></a> instead.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.captcha.Captcha.solveit">
 <tt class="descname">solveit</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.captcha.Captcha.solveit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends the user&#8217;s response to the server to check for accuracy.
-Returns True if the user&#8217;s response was correct.  Raises 
-CaptchaResponseError otherwise.</p>
+<dd><p>Sends the user&#8217;s response to the server to check for accuracy.</p>
+<p>Returns True if the user&#8217;s response was correct.  Raises 
+<a class="reference internal" href="../exceptions.html#lacuna.exceptions.CaptchaResponseError" title="lacuna.exceptions.CaptchaResponseError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.CaptchaResponseError</span></tt></a> otherwise.</p>
 </dd></dl>
 
 </dd></dl>
@@ -253,7 +256,7 @@ guid    uuid attached to the puzzle; must be passed back along with
         <a href="empire.html" class="btn btn-neutral float-right" title="Empire"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="misc_bldgs.html" class="btn btn-neutral" title="Miscellaneous Buildings without Methods"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="buildings/boring/index.html" class="btn btn-neutral" title="Miscellaneous Buildings without Methods"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
