@@ -158,7 +158,7 @@ class spaceport(lacuna.building.MyBuilding):
         return self._get_fleet_for( self.body_id, target )
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
-    def _get_ships_for( self, from_body_id:int, target:dict, *args, **kwargs ):
+    def get_ships_for( self, from_body_id:int, target:dict, *args, **kwargs ):
         """ See docs for :py:meth:`get_my_ships_for`."""
 
         inc_list = []
@@ -204,7 +204,7 @@ class spaceport(lacuna.building.MyBuilding):
             - fleet_send_limit -- Always integer 20.
 
         """
-        return self._get_ships_for( self.body_id, target )
+        return self.get_ships_for( self.body_id, target )
 
     @lacuna.building.MyBuilding.call_naked_returning_meth
     def send_ship( self, ship_id:int, target:dict, *args, **kwargs ):

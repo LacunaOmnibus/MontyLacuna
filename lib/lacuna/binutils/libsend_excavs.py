@@ -101,7 +101,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             metavar     = '<ptype>',
             action      = 'append',
             choices     = [ 'p'+ str(i) for i in range(1,41) ],
-            help        = 'The types of planets to send excavators towards.  You can include multiple planets by repeating "-t <ptype>" for each type you want to send to.'
+            default     = [ 'p'+ str(i) for i in range(1,41) ],
+            help        = 'The types of planets to send excavators towards.  You can include multiple planets by repeating "-t <ptype>" for each type you want to send to.  Defaults to any planet type (so you probably want to specify this).'
         )
         parser.add_argument( '--max_ring', 
             metavar     = '<max_ring>',
@@ -117,7 +118,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             default     = 99,
             help        = "Will send this number of excavators, maximum.  If you want to send an even number of excavators to, say, p11 and p12 planets, run this program once for each type, with a max_send of 10 for each."
         )
-
         super().__init__(parser)
 
         self.client.cache_on( 'my_colonies', 3600 )
