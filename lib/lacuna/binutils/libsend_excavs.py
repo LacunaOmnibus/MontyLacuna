@@ -94,7 +94,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         parser.add_argument( 'name', 
             metavar     = '<planet>',
             action      = 'store',
-            help        = 'The planet from which to send excavators.'
+            help        = "The planet from which to send excavators.  Enter 'all' to send from all of your planets."
         )
         parser.add_argument( '-t', '--t',
             dest        = 'ptypes',
@@ -405,7 +405,12 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.client.user_logger.debug("Planet {} ({},{}) is inhabited.  Next!" .format(body.name, body.x, body.y) )
             ### A body in the system is inhabited; this makes the entire 
             ### system bad, so mark the star, not just the body.
-            self.body_cache.mark_as_bad(body.star_name, 'star')
+
+            ### UF got an exception here -- "Body" object has no attribute 
+            ### 'star_name'.  wtf?  Anyway, check for it before caching.
+            if hasattr( body, 'star_name' ):
+                self.body_cache.mark_as_bad(body.star_name, 'star')
+
             self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
 
