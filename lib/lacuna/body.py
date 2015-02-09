@@ -52,6 +52,13 @@ class Body(lacuna.bc.LacunaObject):
         ### attribute as well.
         self._derive_surface_type()
 
+        ### CHECK see libsend_excavs.py.  Search for "UF".
+        if not hasattr( self, 'star_name' ):
+            self.client.module_logger.info( "{} ({}, {}) has no star_name attribute."
+                .format(self.id, self.x, self.y)
+            )
+
+
     def _derive_surface_type(self):
         ### 'image' == 'p16-1' or so.  The "-1" indicates the size of the 
         ### image, which will depend on the size of the planet, and we don't 
