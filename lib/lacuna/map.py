@@ -192,7 +192,7 @@ class Star(lacuna.bc.SubClass):
         body_objs = []
         if 'bodies' in star_dict:
             for b in star_dict['bodies']:
-                body_objs.append( lacuna.body.Body(self, b) )
+                body_objs.append( lacuna.body.Body(client, b) )
             del( star_dict['bodies'] )
         self.bodies = body_objs
 

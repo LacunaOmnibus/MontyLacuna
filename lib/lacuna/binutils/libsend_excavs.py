@@ -404,14 +404,20 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             return 0
 
         if hasattr(body, 'empire'):
-            self.client.user_logger.debug("Planet {} ({},{}) is inhabited.  Next!" .format(body.name, body.x, body.y) )
+            self.client.user_logger.debug("Planet {} ({},{}) is inhabited.  Next!" 
+                .format(body.name, body.x, body.y)
+            )
             ### A body in the system is inhabited; this makes the entire 
             ### system bad, so mark the star, not just the body.
 
             ### UF got an exception here -- "Body" object has no attribute 
             ### 'star_name'.  wtf?  Anyway, check for it before caching.
-            if hasattr( body, 'star_name' ):
-                self.body_cache.mark_as_bad(body.star_name, 'star')
+            #if hasattr( body, 'star_name' ):
+            #    self.body_cache.mark_as_bad(body.star_name, 'star')
+
+            ### CHECK - this should replace the above, yeah?
+            print( "Hitting the cache here" )   # CHECK
+            self.body_cache.mark_as_bad(star.name, 'star')
 
             self.body_cache.mark_as_bad(body.name, 'planet')
             return 0

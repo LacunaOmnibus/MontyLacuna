@@ -54,9 +54,7 @@ class Body(lacuna.bc.LacunaObject):
 
         ### CHECK see libsend_excavs.py.  Search for "UF".
         if not hasattr( self, 'star_name' ):
-            self.client.module_logger.info( "{} ({}, {}) has no star_name attribute."
-                .format(self.id, self.x, self.y)
-            )
+            self.client.module_logger.info( "Body ID {} has no star_name attribute.".format(self.id))
 
 
     def _derive_surface_type(self):
