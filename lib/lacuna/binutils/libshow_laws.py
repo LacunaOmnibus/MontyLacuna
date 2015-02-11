@@ -59,7 +59,7 @@ class ShowLaws(lacuna.binutils.libbin.Script):
             print( "{} is not a valid star name.".format(self.args.name) )
             quit()
         if not hasattr(self.star, 'station'):
-            print( "{} is not seized by a station, so is not under control of any laws.".format(self.args.name) )
+            print( "{} is either not seized by a station, or you don't have it probed.".format(self.args.name) )
             quit()
         self.client.cache_off()
 
