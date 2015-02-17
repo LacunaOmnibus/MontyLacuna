@@ -22,6 +22,7 @@ written in Perl.
 - :ref:`inst_pip`
 - :ref:`create_config_file`
 - :ref:`run_test_script`
+- :ref:`update_with_git`
 
 .. _inst_python:
 
@@ -152,4 +153,42 @@ about your empire, and requires no arguments.  Try it out by typing::
 
 If that tells you "Congratulations", you're all set.  Now you can move on to 
 running whatever :ref:`scripts_index` you want.
+
+.. _update_with_git:
+
+Completely Optional -- Update with Git
+--------------------------------------
+If any part of this section is confusing to you, it's perfectly OK to skip.  
+Following this section will make updating MontyLacuna easier, but it is 
+*optional*.
+
+If you follow the directions above, any time you want to update MontyLacuna to 
+get the most recent scripts, you'll need to re-download the whole thing and 
+then replace your existing MontyLacuna folder with the new one, and remember 
+to copy over your old config file.  You could just re-create a new config file 
+with the config file creation script, but if you made any custom modifications 
+to your old config file, those would be lost.
+
+``git`` is a program used to keep track of software projects like MontyLacuna.  
+If you install git, you can instead use that to update without losing your 
+existing setup.
+
+The steps for going this route:
+
+    - `Download git for Windows <http://git-scm.com/download/win>`_ and install it.
+      Obviously if you're on a platform other than Windows, please don't 
+      follow that link.  Find the git distribution for whatever OS you're on.
+    - Open up a ``CMD`` window into your My Documents directory, and enter the 
+      following command::
+        >>> git clone git@github.com:tmtowtdi/MontyLacuna.git
+      That will fully download the current version of MontyLacuna into a 
+      folder named ``MontyLacuna``, under the My Documents folder that you're 
+      in right now.
+    - Now, any time you want to update your MontyLacuna installation to get 
+      any updates or changes, you'll open a ``CMD`` window into that 
+      MontyLacuna folder (not My Documents this time, all the way into 
+      MontyLacuna), and enter this command::
+        >>> git pull origin master
+    - That's it.  Any changes, new scripts, etc made to the main MontyLacuna 
+      project will be downloaded to your machine.
 

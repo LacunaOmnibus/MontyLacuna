@@ -6,6 +6,9 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
+- Test installing git for windows per the instructions in getting_started_running.rst and 
+  make sure that the instructions jibe.
+  - Make sure to test this on a machine that doesn't have my SSH key set up.
 - fix up stations_report.py and its library to give proper options and output 
   etc. then document it.
     - Add some printf formatting to the output -- numbers aren't lined up, 
