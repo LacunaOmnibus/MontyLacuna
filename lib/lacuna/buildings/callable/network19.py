@@ -2,6 +2,7 @@
 import lacuna.bc
 import lacuna.building
 
+
 class network19(lacuna.building.MyBuilding):
     path = 'network19'
 
@@ -14,6 +15,7 @@ class network19(lacuna.building.MyBuilding):
 
         Returns an integer indicating whether or not coverage is currently 
         restricted:
+
             - ``0`` -- coverage is flowing freely
             - ``1`` -- coverage is restricted
         """

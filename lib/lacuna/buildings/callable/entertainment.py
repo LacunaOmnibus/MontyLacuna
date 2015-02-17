@@ -18,6 +18,7 @@ class entertainment(lacuna.building.MyBuilding):
 
         Returns a dict including key ``options``, which is a list of dicts, each 
         dict containing:
+
             - name -- "Some Site",
             - url -- "http://www.somesite.com/vote?id=44",
         """
