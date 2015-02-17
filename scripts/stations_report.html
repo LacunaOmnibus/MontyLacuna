@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stations Report &mdash; Monty Lacuna 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
+        <link rel="next" title="Train Spies" href="train_spies.html"/>
+        <link rel="prev" title="Spies Report" href="spies_report.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-montylacuna">Install MontyLacuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#starter-scripts">Starter Scripts</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#setting-descriptions">Setting Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../config_file.html#default-values">Default Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tle_modules/index.html">TLE Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/alliance.html">Alliance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/body.html">Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/building.html">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/captcha.html">Captcha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/empire.html">Empire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../caching.html">caching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#script-conventions">Script Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../caching.html#module-lacuna.clients">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clients.html">clients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glyph.html">glyph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#module-log">Module Log</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plan.html">plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recycling.html">recycling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource.html">resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ship.html">ship</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spy.html">spy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trading.html">trading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../types.html">types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ship-translations">Ship Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#ore-translations">Ore Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../types.html#spy-assignment-translations">Spy Assignment Translations</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Monty Lacuna</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
+      
+    <li>Stations Report</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../sources/scripts/stations_report.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="stations-report">
+<span id="id1"></span><h1>Stations Report<a class="headerlink" href="#stations-report" title="Permalink to this headline">¶</a></h1>
+<p>Produces several different types of reports on one or all space stations in
+your alliance.</p>
+<p>You specify the report type you want and the station name.  If you want to run
+the report against all stations in your empire, specify <tt class="docutils literal"><span class="pre">all</span></tt> as the station
+name.</p>
+<p>The <tt class="docutils literal"><span class="pre">All</span> <span class="pre">Resources</span></tt> and <tt class="docutils literal"><span class="pre">Low</span> <span class="pre">Resources</span></tt> reports&#8217; output both look the
+same:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span> <span class="o">--</span><span class="n">report</span> <span class="n">allres</span> <span class="s">&quot;ISS&quot;</span>
+<span class="go">ISS (1, 1) - Zone 0|0</span>
+<span class="go">        Food / hour:           10,123,456</span>
+<span class="go">        Ore / hour:            10,123,456</span>
+<span class="go">        Water / hour:          10,123,456</span>
+<span class="go">        Energy / hour:         10,123,456</span>
+<span class="go">---------------</span>
+<span class="go">Reported on 1 total station.</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">Influence</span></tt> report:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">report</span> <span class="n">inf</span> <span class="s">&quot;ISS&quot;</span>
+<span class="go">ISS (1, 1) - Zone 0|0</span>
+<span class="go">        Spent/Available -- 100/100</span>
+<span class="go">Reported on 1 total station.</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">Building</span></tt> report:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">report</span> <span class="n">bldg</span> <span class="s">&quot;ISS&quot;</span>
+<span class="go">ISS (1, 1) - Zone 0|0</span>
+<span class="go">    NAME                                  COORDS    LEVEL   EFFICIENCY</span>
+<span class="go">    Art Museum                            (-2,3)       10          100</span>
+<span class="go">    Culinary Institute                     (4,4)       10          100</span>
+<span class="go">    Interstellar Broadcast System         (-3,4)       10          100</span>
+<span class="go">    Opera House                           (-4,4)       10          100</span>
+<span class="go">    Parliament                             (3,4)       10          100</span>
+<span class="go">    Police Station                         (2,3)       10          100</span>
+<span class="go">    Station Command Center                 (0,0)       10          100</span>
+<span class="go">    Warehouse                             (0,-5)       10          100</span>
+<span class="go">    Warehouse                            (-3,-4)       10          100</span>
+<span class="go">    Warehouse                             (2,-5)       10          100</span>
+<span class="go">---------------</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">Supply</span> <span class="pre">Chains</span></tt> report:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">report</span> <span class="n">chain</span> <span class="s">&quot;ISS&quot;</span>
+<span class="go">ISS (1, 1) - Zone 0|0</span>
+<span class="go">    SOURCE                     RES TYPE          RES/HOUR    EFFICIENCY</span>
+<span class="go">    Earth                      bauxite            100,000          1100</span>
+<span class="go">    Earth                      energy             100,000          1100</span>
+<span class="go">    Earth                      fungus             100,000          1100</span>
+<span class="go">    Earth                      water              100,000          1100</span>
+<span class="go">    Mars                       energy             300,000            98</span>
+<span class="go">    Mars                       halite             300,000            98</span>
+<span class="go">    Mars                       root               300,000            98</span>
+<span class="go">    Mars                       water              300,000            98</span>
+<span class="go">---------------</span>
+<span class="go">[2015-02-17 15:30:35] (USER) (INFO) - Reported on 1 total station.</span>
+
+<span class="go">Note that this station might have problems, since four of its chains are</span>
+<span class="go">operating at under 100% efficiency.</span>
+</pre></div>
+</div>
+<div class="section" id="all-vs-low-resource-reports">
+<h2>All vs Low resource reports<a class="headerlink" href="#all-vs-low-resource-reports" title="Permalink to this headline">¶</a></h2>
+<p>The difference between these two reports is that the <tt class="docutils literal"><span class="pre">all</span></tt> version will
+always show you the station&#8217;s resource income, but the <tt class="docutils literal"><span class="pre">low</span></tt> version will
+only show resource income if any of the resources are at or below 0.</p>
+<p>So the low report is most useful when run against all stations in your empire,
+to make sure no stations are currently resource starved.</p>
+<p>The <tt class="docutils literal"><span class="pre">allres</span></tt> report is the default, so if you just want to do a quick check
+on a given station&#8217;s resource situation, this will work:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span><span class="o">.</span><span class="n">py</span> <span class="n">ISS</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="long-reports-on-all-stations">
+<h2>Long reports on all stations<a class="headerlink" href="#long-reports-on-all-stations" title="Permalink to this headline">¶</a></h2>
+<p>The output of some of the reports is a bit long, and if you&#8217;re running one of
+those reports against all of your stations, the output will probably end up
+scrolling way off your screen.  If that&#8217;s the case, just run the report and
+redirect the output to a file.  You&#8217;ll still see logging statements on the
+screen so you&#8217;ll know what&#8217;s going on, but you&#8217;ll probably want to turn on
+more vocal logging output.</p>
+<p>eg:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">v</span> <span class="nb">all</span> <span class="o">&gt;</span> <span class="n">stations</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Now you can just open up <tt class="docutils literal"><span class="pre">stations.txt</span></tt> in Notepad or whatever editor you
+like.</p>
+</div>
+<div class="section" id="force-fresh-data">
+<h2>Force fresh data<a class="headerlink" href="#force-fresh-data" title="Permalink to this headline">¶</a></h2>
+<p>Station data gets cached so retrieving it on the next run will be quicker.
+This way you can conveniently run a report multiple times, or even run
+different reports, without having to wait or waste your RPCs.</p>
+<p>However, if you run a report once, then update something (eg you update a
+supply chain to send more resources) and want to run the same report again to
+see your new resource situation, you won&#8217;t want to look at data cached from
+the previous run.  In that case, pass the <tt class="docutils literal"><span class="pre">--fresh</span></tt> option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">fresh</span> <span class="n">ISS</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="full-documentation">
+<h2>Full documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
+<p>For complete help, see the script&#8217;s help documentation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">stations_report</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="lacuna.binutils.libstations_report.StationsReport">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libstations_report.</tt><tt class="descname">StationsReport</tt><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<p>Gather and report on stations.</p>
+<dl class="method">
+<dt id="lacuna.binutils.libstations_report.StationsReport.run_report">
+<tt class="descname">run_report</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport.run_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the report specified by the user at the command line.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libstations_report.StationsReport.set_station">
+<tt class="descname">set_station</tt><big>(</big><em>sname: str</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport.set_station" title="Permalink to this definition">¶</a></dt>
+<dd><p>Meant to be called by the user to set which planet we&#8217;re working on 
+right now.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>sname &#8211; String name of the planet</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libstations_report.StationsReport.show_allres">
+<tt class="descname">show_allres</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport.show_allres" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the allres report.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libstations_report.StationsReport.show_buildings">
+<tt class="descname">show_buildings</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport.show_buildings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the buildings report.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libstations_report.StationsReport.show_influence">
+<tt class="descname">show_influence</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport.show_influence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the influence report.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libstations_report.StationsReport.show_lowres">
+<tt class="descname">show_lowres</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport.show_lowres" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the lowres report.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libstations_report.StationsReport.show_sc">
+<tt class="descname">show_sc</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libstations_report.StationsReport.show_sc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the supply chain report.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="train_spies.html" class="btn btn-neutral float-right" title="Train Spies"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="spies_report.html" class="btn btn-neutral" title="Spies Report"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Jonathan Barton.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../static/jquery.js"></script>
+      <script type="text/javascript" src="../static/underscore.js"></script>
+      <script type="text/javascript" src="../static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

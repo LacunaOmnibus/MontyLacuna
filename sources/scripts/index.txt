@@ -56,6 +56,7 @@ if your arguments contain spaces, you have to quote them::
    ships_report
    show_laws
    spies_report
+   stations_report
    train_spies
    turnkey
 

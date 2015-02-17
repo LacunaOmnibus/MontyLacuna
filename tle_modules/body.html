@@ -115,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#log-levels">Log Levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#request-log">Request Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logging.html#user-log">User Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../logging.html#module-log">Module Log</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../my_validate_email.html">my_validate_email</a></li>
@@ -166,12 +167,24 @@
 </div>
           <div role="main">
             
-  <div class="section" id="module-lacuna.body">
-<span id="body"></span><h1>Body<a class="headerlink" href="#module-lacuna.body" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+  <div class="section" id="body">
+<h1>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h1>
+<p>In TLE, a <tt class="docutils literal"><span class="pre">body</span></tt> is any thingy that orbits a star.  Habitable planets, gas
+giants, space stations, and asteroids are all bodies.</p>
+<p>Most of the time, the bodies you&#8217;ll be dealing with will by
+<a class="reference internal" href="#lacuna.body.MyBody" title="lacuna.body.MyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></tt></a> objects.  <em>This includes Space Stations</em>.</p>
+<p>There is a <a class="reference internal" href="#lacuna.body.SpaceStation" title="lacuna.body.SpaceStation"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.SpaceStation</span></tt></a> class down below, but don&#8217;t be
+confused by that.  That class <em>only</em> ever gets returned rarely, and does not
+contain much actual information (it gets returned as a list in a
+<a class="reference internal" href="alliance.html#lacuna.alliance.MyAlliance" title="lacuna.alliance.MyAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.MyAlliance</span></tt></a> or <a class="reference internal" href="alliance.html#lacuna.alliance.Profile" title="lacuna.alliance.Profile"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Profile</span></tt></a>
+object).</p>
+<p>So if you&#8217;re iterating through your space stations (with
+<tt class="docutils literal"><span class="pre">self.empire.station_names</span></tt> or similar), you&#8217;ll be dealing with
+<a class="reference internal" href="#lacuna.body.MyBody" title="lacuna.body.MyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></tt></a> objects.</p>
+<span class="target" id="module-lacuna.body"></span><dl class="class">
 <dt id="lacuna.body.Body">
 <em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Body</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.Body" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></p>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 x               -4,
@@ -340,6 +353,17 @@ alliance                    Lacuna.alliance.FoundAlliance object
 influence                   Lacuna.alliance.Influence object
 </pre></div>
 </div>
+<p>The <tt class="docutils literal"><span class="pre">building_dict</span></tt> dictionaries look like:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;efficiency&#39;:   &#39;100&#39;
+&#39;name&#39;:         &#39;Police Station&#39;
+&#39;image&#39;:        &#39;policestation&#39;
+&#39;level&#39;:        &#39;25&#39;
+&#39;url&#39;:          &#39;/policestation&#39;
+&#39;id&#39;:           &#39;1234567&#39;
+&#39;y&#39;:            &#39;3&#39;
+&#39;x&#39;:            &#39;2&#39;
+</pre></div>
+</div>
 <ul class="simple">
 <li><a class="reference internal" href="../ship.html#lacuna.ship.IncomingToBodyShip" title="lacuna.ship.IncomingToBodyShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingToBodyShip</span></tt></a></li>
 <li><a class="reference internal" href="alliance.html#lacuna.alliance.FoundAlliance" title="lacuna.alliance.FoundAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.FoundAlliance</span></tt></a></li>
@@ -414,7 +438,7 @@ See <tt class="docutils literal"><span class="pre">get_building_coords()</span><
 contains the information returned by this method (see the 
 <tt class="docutils literal"><span class="pre">buildings_id</span></tt> and <tt class="docutils literal"><span class="pre">buildings_name</span></tt> MyBody attributes).</p>
 <p>So this hasn&#8217;t been cleaned up at all.  It returns a dict that includes 
-the with key &#8216;buildings&#8217;.  This dict is keyed off building IDs, the 
+the with key <tt class="docutils literal"><span class="pre">buildings</span></tt>.  This dict is keyed off building IDs, the 
 values are building dicts.</p>
 </dd></dl>
 
