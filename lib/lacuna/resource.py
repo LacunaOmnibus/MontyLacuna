@@ -204,11 +204,6 @@ class SupplyChain(lacuna.bc.SubClass):
 
         id                      "id-goes-here",
         from_body               lacuna.body.SimpleBody object
-        from_body               {   "id" : "id-goes-here",
-                                    "name" : "Mars",
-                                    "x" : 0,
-                                    "y" : -123,
-                                    "image" : "station",     },
         resource_hour           10000000,
         resource_type           'water',
         percent_transferred     95,

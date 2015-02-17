@@ -15,8 +15,8 @@ l   = sr.client.user_logger
 
 num = 0
 for sname in sorted(sr.stations):
-    l.debug("Checking on {}.".format(sname))
     sr.set_station( sname )
     num += sr.run_report()
-print( "Reported on {} total stations.".format(num) )
+pl = "station" if num == 1 else "stations"
+l.info( "Reported on {} total {}.".format(num, pl) )
 

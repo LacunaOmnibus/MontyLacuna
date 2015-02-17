@@ -205,6 +205,17 @@ class MyBody(Body):
         alliance                    Lacuna.alliance.FoundAlliance object
         influence                   Lacuna.alliance.Influence object
 
+    The ``building_dict`` dictionaries look like::
+
+        'efficiency':   '100'
+        'name':         'Police Station'
+        'image':        'policestation'
+        'level':        '25'
+        'url':          '/policestation'
+        'id':           '1234567'
+        'y':            '3'
+        'x':            '2'
+
     - :class:`lacuna.ship.IncomingToBodyShip`
     - :class:`lacuna.alliance.FoundAlliance`
     - :class:`lacuna.alliance.Influence`
@@ -265,7 +276,7 @@ class MyBody(Body):
         ``buildings_id`` and ``buildings_name`` MyBody attributes).
 
         So this hasn't been cleaned up at all.  It returns a dict that includes 
-        the with key 'buildings'.  This dict is keyed off building IDs, the 
+        the with key ``buildings``.  This dict is keyed off building IDs, the 
         values are building dicts.
         """
         pass
