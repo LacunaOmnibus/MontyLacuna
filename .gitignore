@@ -7,7 +7,8 @@ test.txt
 __pycache__/
 doc/_build/
 etc/*cfg*
+tmp/
 var/cache/*
 var/cachelck/*
 var/*log*
-jof.py
+var/*.zip
