@@ -1,4 +1,5 @@
 
+
 import datetime, hashlib, ntpath, os, re, requests, shutil, sys, zipfile
 
 class Update():
@@ -40,7 +41,7 @@ class Update():
 
         Arguments
             - prefix -- String.  Nothing is appended to this, so you probably want 
-            to include an underscore or other separator.
+              to include an underscore or other separator.
 
         >>> print get_zipfile_name( "foo_" );
         foo_20150218170100.zip
@@ -55,7 +56,7 @@ class Update():
         Arguments:
             - URL -- A FQ URL, assumed to point to a .zip file.
             - output_file -- Full path to where you want the downloaded file 
-            written.
+              written.
         """
         resp = requests.get( self.zip_url, stream=True )
         with open(self.zip_path, "wb") as f:
@@ -110,7 +111,7 @@ class Update():
         Arguments
             - file_path -- Full path to the file to copy
             - new_path -- Path into which the file should be copied.  
-            MUST NOT END WITH A SLASH.
+              MUST NOT END WITH A SLASH.
         """
         filename = ntpath.basename(file_path)
         new_path = os.path.join(new_path, filename)
@@ -124,7 +125,7 @@ class Update():
 
         Arguments:
             - tmp_path -- The path where the file in question currently lives.
-            MUST NOT END WITH A SLASH.
+              MUST NOT END WITH A SLASH.
             - name -- The name of the file in question.
 
         The "live file path" is determined by get_live_path().
