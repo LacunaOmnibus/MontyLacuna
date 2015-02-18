@@ -3,7 +3,6 @@ MontyLacuna
 
 A Python Client for The Lacuna Expanse.
 
-
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
