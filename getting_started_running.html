@@ -65,6 +65,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ready-to-test">Ready to Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#completely-optional-update-with-git">Completely Optional &#8211; Update with Git</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
@@ -181,6 +182,7 @@ written in Perl.</p>
 <li><a class="reference internal" href="#inst-pip"><em>Install pip and Prerequisite Libraries</em></a></li>
 <li><a class="reference internal" href="#create-config-file"><em>Create A Config File</em></a></li>
 <li><a class="reference internal" href="#run-test-script"><em>Ready to Test</em></a></li>
+<li><a class="reference internal" href="#update-with-git"><em>Completely Optional &#8211; Update with Git</em></a></li>
 </ul>
 </div>
 <div class="section" id="install-python-3">
@@ -303,6 +305,67 @@ about your empire, and requires no arguments.  Try it out by typing:</p>
 </div>
 <p>If that tells you &#8220;Congratulations&#8221;, you&#8217;re all set.  Now you can move on to
 running whatever <a class="reference internal" href="scripts/index.html#scripts-index"><em>MontyLacuna Scripts</em></a> you want.</p>
+</div>
+<div class="section" id="completely-optional-update-with-git">
+<span id="update-with-git"></span><h2>Completely Optional &#8211; Update with Git<a class="headerlink" href="#completely-optional-update-with-git" title="Permalink to this headline">¶</a></h2>
+<p>If any part of this section is confusing to you, it&#8217;s perfectly OK to skip.
+Following this section will make updating MontyLacuna easier, but it is
+<em>optional</em>.</p>
+<p>If you follow the directions above, any time you want to update MontyLacuna to
+get the most recent scripts, you&#8217;ll need to re-download the whole thing and
+then replace your existing MontyLacuna folder with the new one, and remember
+to copy over your old config file.  You could just re-create a new config file
+with the config file creation script, but if you made any custom modifications
+to your old config file, those would be lost.</p>
+<p><tt class="docutils literal"><span class="pre">git</span></tt> is a program used to keep track of software projects like MontyLacuna.
+If you install git, you can instead use that to update without losing your
+existing setup.</p>
+<p>The steps for going this route:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><a class="reference external" href="http://git-scm.com/download/win">Download git for Windows</a> and install it.
+Obviously if you&#8217;re on a platform other than Windows, please don&#8217;t
+follow that link.  Find the git distribution for whatever OS you&#8217;re on.</p>
+</li>
+<li><p class="first">Open up a <tt class="docutils literal"><span class="pre">CMD</span></tt> window into your My Documents directory, and enter the
+following command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github.com</span><span class="p">:</span><span class="n">tmtowtdi</span><span class="o">/</span><span class="n">MontyLacuna</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>That will fully download the current version of MontyLacuna into a
+folder named <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>, under the My Documents folder that you&#8217;re
+in right now.</p>
+</li>
+<li><p class="first">Now, any time you want to update your MontyLacuna installation to get
+any updates or changes, you&#8217;ll open a <tt class="docutils literal"><span class="pre">CMD</span></tt> window into that
+MontyLacuna folder (not My Documents this time, all the way into
+MontyLacuna), and enter this command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">That&#8217;s it.  Any changes, new scripts, etc made to the main MontyLacuna
+project will be downloaded to your machine.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>If you&#8217;ve made any edits to scripts or libraries that are part of MontyLacuna
+itself, that <tt class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">master</span></tt> <em>should</em> be able to merge the changes
+to the official distribution into your own changes.  However, there are times
+when your edits might conflict with the source distribution&#8217;s changes in such
+a way that git is unable to resolve those conflicts.</p>
+<p>If this happens, you can try to resolve those changes yourself, but explaining
+how to do so is outside the scope of these instructions.  If all else fails,
+you can always:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Back up your config file (<tt class="docutils literal"><span class="pre">etc/lacuna.cfg</span></tt>) &#8211; copy it to your desktop
+or something</li>
+<li>Delete the entire MontyLacuna folder</li>
+<li>Re-do the first set of instructions above to clone a fresh MontyLacuna</li>
+<li>Put your config file back</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
