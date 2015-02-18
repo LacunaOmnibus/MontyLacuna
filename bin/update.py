@@ -81,3 +81,6 @@ for tmp_path, dirs, files in os.walk( tmpdir + "/MontyLacuna-master" ):
     for name in files:
         copy_mismatched_files( tmp_path, name )
 
+### Fully remove the tmp directory
+shutil.rmtree( tmpdir )
+
