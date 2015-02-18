@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import datetime, hashlib, os, re, requests, shutil, sys, zipfile
+import datetime, hashlib, ntpath, os, re, requests, shutil, sys, zipfile
 
 bindir  = os.path.abspath(os.path.dirname(sys.argv[0]))
 rootdir = bindir + "/.."
@@ -49,16 +49,17 @@ def hash_file( filepath ):
             h.update(chunk)
     return h.hexdigest()
 
-def copy_new_file( file, new_path ):
+def copy_new_file( file_path, new_path ):
     """ Copy a file to a new path, maintaining the original filename.
 
     Arguments
-        - file -- Full path to the file to copy
+        - file_path -- Full path to the file to copy
         - new_path -- Path into which the file should be copied.  
           MUST NOT END WITH A SLASH.
     """
-    new_path += '/'
-    shutil.copyfile( file, new_path )
+    filename = ntpath.basename(file_path)
+    new_path = os.path.join(new_path, filename)
+    shutil.copyfile( file_path, new_path )
 
 def copy_mismatched_file( tmp_path, name ):
     """ Copies an existing file to our "live file path" if that file is either 
@@ -85,7 +86,6 @@ def copy_mismatched_file( tmp_path, name ):
     else:
         print( "'{}' is a new file, and does not exist in our current live path.".format(name) )
         copy_new_file( tmp_file, live_path)
-
 
 
 
