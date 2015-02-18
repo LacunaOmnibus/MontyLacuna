@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-
-
+### comment
 
 import os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
