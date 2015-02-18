@@ -136,9 +136,9 @@ class Update():
             tmp_hash    = self.hash_file( tmp_file )
             live_hash   = self.hash_file( live_file )
             if( tmp_hash != live_hash ):
-                print( "'{}' hashes don't match - copying.".format(name) )
+                print( "\t'{}' hashes don't match - copying.".format(name) )
                 self.copy_new_file( tmp_file, live_path)
         else:
-            print( "'{}' is a new file, and does not exist in our current live path.".format(name) )
+            print( "\t'{}' is a new file, and does not exist in our current live path.".format(name) )
             self.copy_new_file( tmp_file, live_path)
 

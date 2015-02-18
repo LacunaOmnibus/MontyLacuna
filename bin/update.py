@@ -15,8 +15,6 @@ cnt = 0
 for tmp_path, dirs, files in os.walk( os.path.join(up.tmpdir, "MontyLacuna-master") ):
     for name in files:
         up.copy_mismatched_file( tmp_path, name )
-
-print( "Cleaning up..." )
 up.consuela()
 
 print( "Done." )
