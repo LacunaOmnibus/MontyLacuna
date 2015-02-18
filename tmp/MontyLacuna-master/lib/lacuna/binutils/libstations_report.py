@@ -1,4 +1,11 @@
 
+### Search on CHECK
+###
+### This works, but is very much a quick-and-dirty because I needed it now now 
+### now and didn't have time to make it pretty.
+###
+### Fixify it.
+
 import lacuna, lacuna.binutils.libbin
 import argparse, csv, operator, os, sys
 

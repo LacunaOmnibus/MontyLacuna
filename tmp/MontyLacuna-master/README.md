@@ -9,6 +9,10 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 - Test installing git for windows per the instructions in getting_started_running.rst and 
   make sure that the instructions jibe.
   - Make sure to test this on a machine that doesn't have my SSH key set up.
+- fix up stations_report.py and its library to give proper options and output 
+  etc. then document it.
+    - Add some printf formatting to the output -- numbers aren't lined up, 
+      etc.
 - Some sort of update script
     - Something that does the same job as "git pull origin master", but doesn't require 
       the user to install git.
