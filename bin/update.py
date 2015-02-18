@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# another commment
+
 import os, sys, zipfile
 libdir  = os.path.abspath(os.path.dirname(sys.argv[0])) + "/../lib"
 sys.path.append(libdir)
