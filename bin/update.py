@@ -73,8 +73,6 @@ def copy_mismatched_file( tmp_path, name ):
 
     The "live file path" is determined by get_live_path().
     """
-    print( tmp_path )
-    exit()
     live_path   = get_live_path( tmp_path )
     tmp_file    = os.path.join( tmp_path, name )
     live_file   = os.path.join( live_path, name )
