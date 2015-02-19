@@ -123,12 +123,12 @@ class StationsReport(lacuna.binutils.libbin.Script):
     def show_lowres( self ):
         """ Show the lowres report.  """
         cnt = 0
-        print( self._report_header() )
         if self.station.food_hour < 0 or self.station.ore_hour < 0 or self.station.water_hour < 0 or self.station.energy_hour < 0:
             cnt += 1
+            print( self._report_header() )
             self._show_res_report()
         else:
-            l.debug( "All resource incomes for {} are positive; no report created.".format(self.station.name) )
+            self.client.user_logger.debug( "All resource incomes for {} are positive; no report created.".format(self.station.name) )
         return cnt
 
     def show_sc( self ):
