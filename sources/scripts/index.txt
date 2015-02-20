@@ -59,4 +59,5 @@ if your arguments contain spaces, you have to quote them::
    stations_report
    train_spies
    turnkey
+   update
 

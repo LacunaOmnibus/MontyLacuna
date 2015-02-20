@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Build Ships &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Update MontyLacuna &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
         <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
-        <link rel="next" title="Post Starter Kit" href="post_starter_kit.html"/>
-        <link rel="prev" title="Assign Spies" href="assign_spies.html"/> 
+        <link rel="next" title="Config File" href="../config_file.html"/>
+        <link rel="prev" title="Turnkey (Prisoner Management)" href="turnkey.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -156,10 +156,10 @@
       
           <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
       
-    <li>Build Ships</li>
+    <li>Update MontyLacuna</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../sources/scripts/build_ships.txt" rel="nofollow"> View page source</a>
+          <a href="../sources/scripts/update.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -167,76 +167,153 @@
 </div>
           <div role="main">
             
-  <div class="section" id="build-ships">
-<span id="id1"></span><h1>Build Ships<a class="headerlink" href="#build-ships" title="Permalink to this headline">¶</a></h1>
-<p>Builds or tops off ships at multiple shipyards on a given planet, or on all of
-your planets at once.</p>
-<p>The name of the ship to be built must be translatable, see
-<a class="reference internal" href="../types.html#ship-translations"><em>Ship Translations</em></a>.</p>
-<p>When passing the name of a planet, remember to use double quotes around the
-name if there are any space in it.  And if you want to build the same number
-of ships on all of your planets, you can pass in the special planet name
-&#8216;all&#8217;.  (If you have a planet actually named &#8216;all&#8217;, you chose poorly.  Go
-rename it, or accept that this won&#8217;t work properly for that planet.)</p>
-<p>The easiest way to run it will fill all of the available build queues on all
-of the shipyards on your planet:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">sweeper</span>
+  <div class="section" id="update-montylacuna">
+<span id="update"></span><h1>Update MontyLacuna<a class="headerlink" href="#update-montylacuna" title="Permalink to this headline">¶</a></h1>
+<p>Updates MontyLacuna from GitHub so you don&#8217;t have to walk through the download
+process again.</p>
+<p>To get the newest scripts, libraries, bugfixes, etc, just run the update
+script:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">update</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>To only build ships on shipyards of level 30:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="n">Earth</span> <span class="n">sweeper</span>
-</pre></div>
+<p><tt class="docutils literal"><span class="pre">update.py</span></tt> is different from pretty much all of the other MontyLacuna
+scripts in that it does not accept any arguments from the command line.  It
+doesn&#8217;t respond to the standard <tt class="docutils literal"><span class="pre">--help</span></tt> flag, or provide basic usage
+information at all.</p>
+<div class="section" id="caution">
+<h2>CAUTION!<a class="headerlink" href="#caution" title="Permalink to this headline">¶</a></h2>
+<p>This update script is mainly meant with the non-programmer in mind.  If you&#8217;ve
+edited any existing MontyLacuna scripts yourself, those edits will be lost
+when you update.</p>
+<p>You don&#8217;t have to worry about your <tt class="docutils literal"><span class="pre">lacuna.cfg</span></tt> file being overwritten, just
+any scripts you&#8217;ve modified.</p>
+<p>If you&#8217;ve made any brand-new scripts (rather than editing existing MontyLacuna
+scripts), your new scripts should be untouched.  The possible exception to
+this is if you create a script and name it eg <tt class="docutils literal"><span class="pre">do_neat_stuff.py</span></tt>, and
+sometime in the future a script named <tt class="docutils literal"><span class="pre">do_neat_stuff.py</span></tt> gets added to the
+official MontyLacuna distribution just by coincidence, then the official
+MontyLacuna script will overwrite yours.</p>
+<p>So when writing your own scripts, it might make sense to prepend the script
+filenames with your name or initials or something.  So when Infinate Ones
+makes his own custom script, he&#8217;d name it <tt class="docutils literal"><span class="pre">io_do_neat_stuff.py</span></tt>.</p>
 </div>
-<p>To only build 60 total ships on shipyards of level 30:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">60</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="n">Earth</span> <span class="n">sweeper</span>
-</pre></div>
-</div>
-<p>You can also just top off your ships, to make sure you&#8217;ve always got a certain
-number in stock.  The following will build however many excavators it takes to
-get to a total of 20, and will just quit if you&#8217;ve already got 20 or more:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">20</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="o">--</span><span class="n">topoff</span> <span class="n">Earth</span> <span class="n">excavator</span>
-</pre></div>
-</div>
-<p>When topping off excavators, you may well want to just top them off at all of
-your planets in one shot:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">20</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="o">--</span><span class="n">topoff</span> <span class="nb">all</span> <span class="n">excavator</span>
-</pre></div>
-</div>
-<p>If you want to run this from a scheduled task, or a batch file/shell script,
-or any other situation where you don&#8217;t want to see the script&#8217;s running
-commentary, you can tell it to shut up:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">quiet</span> <span class="o">--</span><span class="n">num</span> <span class="mi">60</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="n">Earth</span> <span class="n">sweeper</span>
-</pre></div>
-</div>
-<p>For complete help, see the script&#8217;s help documentation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
-</pre></div>
-</div>
+<div class="section" id="full-documentation">
+<h2>Full documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="lacuna.binutils.libbuild_ships.BuildShips">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libbuild_ships.</tt><tt class="descname">BuildShips</tt><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<dt id="lacuna.binutils.libupdate.Update">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libupdate.</tt><tt class="descname">Update</tt><a class="headerlink" href="#lacuna.binutils.libupdate.Update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Updates MontyLacuna from github.</p>
 <dl class="method">
-<dt id="lacuna.binutils.libbuild_ships.BuildShips.determine_buildable">
-<tt class="descname">determine_buildable</tt><big>(</big><em>yards</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips.determine_buildable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ensures we can actually build the requested ship type, and figures 
-out how many of them we should build.</p>
+<dt id="lacuna.binutils.libupdate.Update.consuela">
+<tt class="descname">consuela</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.consuela" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean up after ourselves.</p>
+<p>Removes both the temporary directory, including its contents, and the 
+downloaded .zip file.</p>
+<p>Needs more lemon pledge.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libupdate.Update.copy_mismatched_file">
+<tt class="descname">copy_mismatched_file</tt><big>(</big><em>tmp_path</em>, <em>name</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.copy_mismatched_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies an existing file to our &#8220;live file path&#8221; if that file is either 
+completely new (it doesn&#8217;t already exist in our &#8220;live file path&#8221;), or if 
+the file in question does not exactly match the file in our &#8220;live file 
+path&#8221;.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>yards &#8211; list of lacuna.building.shipyard.shipyard objects</li>
+<li>tmp_path &#8211; The path where the file in question currently lives.
+MUST NOT END WITH A SLASH.</li>
+<li>name &#8211; The name of the file in question.</li>
 </ul>
 </dd>
 </dl>
-<p>Returns the number of ships we should queue across all shipyards.</p>
-<p>This number to be built does not take current build queues into 
-account.  Four level 30 SYs are going to return 120, no matter what 
-those SYs are currently doing.</p>
-<p>Raises KeyError if the shiptype isn&#8217;t buildable for whatever reason.</p>
+<p>The &#8220;live file path&#8221; is determined by get_live_path().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libupdate.Update.copy_new_file">
+<tt class="descname">copy_new_file</tt><big>(</big><em>file_path</em>, <em>new_path</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.copy_new_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy a file to a new path, maintaining the original filename.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd><ul class="first last simple">
+<li>file_path &#8211; Full path to the file to copy</li>
+<li>new_path &#8211; Path into which the file should be copied.  
+MUST NOT END WITH A SLASH.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libupdate.Update.download_and_extract_zipfile">
+<tt class="descname">download_and_extract_zipfile</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.download_and_extract_zipfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads a file from a given URL and writes it to the requested path.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>URL &#8211; A FQ URL, assumed to point to a .zip file.</li>
+<li>output_file &#8211; Full path to where you want the downloaded file 
+written.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libupdate.Update.get_live_path">
+<tt class="descname">get_live_path</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.get_live_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a path to a file, which is assumed to be living under a temporary 
+directory named &#8216;tmp&#8217;, returns the path where the file needs to end up.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>path &#8211; the current temporary directory path.</li>
+</ul>
+</dd>
+</dl>
+<p>This is a bit fragile.  You CANNOT go changing the name of your temporary 
+directory and expect this to work.  It must be named &#8216;tmp&#8217;.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libupdate.Update.get_zipfile_name">
+<tt class="descname">get_zipfile_name</tt><big>(</big><em>prefix</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.get_zipfile_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a prefix, returns a dated filename string with a .zip extension.</p>
+<dl class="docutils">
+<dt>Arguments</dt>
+<dd><ul class="first last simple">
+<li>prefix &#8211; String.  Nothing is appended to this, so you probably want 
+to include an underscore or other separator.</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">get_zipfile_name</span><span class="p">(</span> <span class="s">&quot;foo_&quot;</span> <span class="p">);</span>
+<span class="go">foo_20150218170100.zip</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libupdate.Update.hash_file">
+<tt class="descname">hash_file</tt><big>(</big><em>filepath</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.hash_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the hash digest of a file as a string.</p>
+<dl class="docutils">
+<dt>Arguments:</dt>
+<dd><ul class="first last simple">
+<li>filepath &#8211; full path to a file to hash</li>
+</ul>
+</dd>
+</dl>
+<p>SHA1 may or may not be faster/slower than MD5.  Either way, the difference 
+in speed is negligible.</p>
 </dd></dl>
 
 </dd></dl>
 
+</div>
 </div>
 
 
@@ -245,10 +322,10 @@ those SYs are currently doing.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="post_starter_kit.html" class="btn btn-neutral float-right" title="Post Starter Kit"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../config_file.html" class="btn btn-neutral float-right" title="Config File"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="assign_spies.html" class="btn btn-neutral" title="Assign Spies"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="turnkey.html" class="btn btn-neutral" title="Turnkey (Prisoner Management)"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

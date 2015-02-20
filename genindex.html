@@ -64,7 +64,6 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#ready-to-test">Ready to Test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#completely-optional-update-with-git">Completely Optional &#8211; Update with Git</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
@@ -640,12 +639,12 @@
   <dt><a href="ship.html#lacuna.ship.ChainShip">ChainShip (class in lacuna.ship)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/empire.html#lacuna.empire.MyEmpire.change_password">change_password() (lacuna.empire.MyEmpire method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/map.html#lacuna.map.Map.check_star_for_incoming_probe">check_star_for_incoming_probe() (lacuna.map.Map method)</a>
   </dt>
@@ -692,6 +691,18 @@
 
       
   <dt><a href="getting_started_writing.html#lacuna.binutils.libbin.Script.connect">connect() (lacuna.binutils.libbin.Script method)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update.consuela">consuela() (lacuna.binutils.libupdate.Update method)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update.copy_mismatched_file">copy_mismatched_file() (lacuna.binutils.libupdate.Update method)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update.copy_new_file">copy_new_file() (lacuna.binutils.libupdate.Update method)</a>
   </dt>
 
       
@@ -778,8 +789,6 @@
   </dt>
 
       </dl></dd>
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="scripts/ships_report.html#lacuna.binutils.libships_report.PlanetShipData.display_csv_report">display_csv_report() (lacuna.binutils.libships_report.PlanetShipData method)</a>
   </dt>
@@ -790,6 +799,8 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="scripts/ships_report.html#lacuna.binutils.libships_report.ShipsReport.display_full_report">display_full_report() (lacuna.binutils.libships_report.ShipsReport method)</a>
   </dt>
@@ -818,6 +829,10 @@
 
       
   <dt><a href="tle_modules/buildings/callable/embassy.html#lacuna.buildings.callable.embassy.embassy.donate_to_stash">donate_to_stash() (lacuna.buildings.callable.embassy.embassy method)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update.download_and_extract_zipfile">download_and_extract_zipfile() (lacuna.binutils.libupdate.Update method)</a>
   </dt>
 
       
@@ -1137,6 +1152,10 @@
   </dt>
 
       
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update.get_live_path">get_live_path() (lacuna.binutils.libupdate.Update method)</a>
+  </dt>
+
+      
   <dt><a href="tle_modules/buildings/callable/entertainment.html#lacuna.buildings.callable.entertainment.entertainment.get_lottery_voting_options">get_lottery_voting_options() (lacuna.buildings.callable.entertainment.entertainment method)</a>
   </dt>
 
@@ -1325,6 +1344,10 @@
   </dt>
 
       
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update.get_zipfile_name">get_zipfile_name() (lacuna.binutils.libupdate.Update method)</a>
+  </dt>
+
+      
   <dt><a href="glyph.html#lacuna.glyph.Glyph">Glyph (class in lacuna.glyph)</a>
   </dt>
 
@@ -1356,6 +1379,10 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/permanent/hallsofvrbansk.html#lacuna.buildings.permanent.hallsofvrbansk.hallsofvrbansk">hallsofvrbansk (class in lacuna.buildings.permanent.hallsofvrbansk)</a>
+  </dt>
+
+      
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update.hash_file">hash_file() (lacuna.binutils.libupdate.Update method)</a>
   </dt>
 
   </dl></td>
@@ -3693,7 +3720,7 @@
   </dt>
 
       
-  <dt><a href="my_validate_email.html#my_validate_email.ServerError">ServerError</a>, <a href="exceptions.html#lacuna.exceptions.ServerError">[1]</a>
+  <dt><a href="exceptions.html#lacuna.exceptions.ServerError">ServerError</a>, <a href="my_validate_email.html#my_validate_email.ServerError">[1]</a>
   </dt>
 
       
@@ -4193,11 +4220,15 @@
   </dt>
 
       
-  <dt><a href="scripts/post_starter_kit.html#lacuna.binutils.libpost_starter_kit.StarterKit.update_all_levels">update_all_levels() (lacuna.binutils.libpost_starter_kit.StarterKit method)</a>
+  <dt><a href="scripts/update.html#lacuna.binutils.libupdate.Update">Update (class in lacuna.binutils.libupdate)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="scripts/post_starter_kit.html#lacuna.binutils.libpost_starter_kit.StarterKit.update_all_levels">update_all_levels() (lacuna.binutils.libpost_starter_kit.StarterKit method)</a>
+  </dt>
+
       
   <dt><a href="tle_modules/buildings/callable/embassy.html#lacuna.buildings.callable.embassy.embassy.update_alliance">update_alliance() (lacuna.buildings.callable.embassy.embassy method)</a>
   </dt>
