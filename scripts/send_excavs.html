@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Send Excavs &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Send excavs &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -156,7 +156,7 @@
       
           <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
       
-    <li>Send Excavs</li>
+    <li>Send excavs</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="../sources/scripts/send_excavs.txt" rel="nofollow"> View page source</a>
@@ -168,7 +168,7 @@
           <div role="main">
             
   <div class="section" id="send-excavs">
-<span id="id1"></span><h1>Send Excavs<a class="headerlink" href="#send-excavs" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Send excavs<a class="headerlink" href="#send-excavs" title="Permalink to this headline">¶</a></h1>
 <p>Sends out excavators from one or all of your colonies to the nearby planets of
 whatever type or types you want to excavate.</p>
 <p>This does not build excavators for you; you have to have those ready to go
@@ -193,6 +193,51 @@ you&#8217;ve got 20 excavators to send, you&#8217;d run <tt class="docutils lite
 <p>If Earth has already sent out its maximum number of excavators,
 <tt class="docutils literal"><span class="pre">send_excavs.py</span></tt> will let you know, so there&#8217;s no harm in accidentally
 running this for a planet that&#8217;s already set, excavator-wise.</p>
+<div class="section" id="what-s-being-sent-where">
+<h2>What&#8217;s being sent where?<a class="headerlink" href="#what-s-being-sent-where" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;re able to check on all of the stars in a given 54x54 box with a single
+server check.  So to start, this gets such a box with your planet at the
+center:</p>
+<div class="highlight-python"><div class="highlight"><pre>+---------+
+|         |
+|    o    |
+|         |
++---------+
+</pre></div>
+</div>
+<p>If the script can&#8217;t find enough of the right planets inside that first box, it
+draws a &#8220;ring&#8221; around that center box.  I use the word &#8220;ring&#8221;, but it&#8217;s really
+a larger square.  This &#8220;ring&#8221; is made up of 8 more 54x54 unit boxes:</p>
+<div class="highlight-python"><div class="highlight"><pre>+---------+ +---------+ +---------+
+|         | |         | |         |
+| ring 1  | | ring 1  | | ring 1  |
+|         | |         | |         |
++---------+ +---------+ +---------+
++---------+ +---------+ +---------+
+|         | |         | |         |
+| ring 1  | |    o    | | ring 1  |
+|         | |         | |         |
++---------+ +---------+ +---------+
++---------+ +---------+ +---------+
+|         | |         | |         |
+| ring 1  | | ring 1  | | ring 1  |
+|         | |         | |         |
++---------+ +---------+ +---------+
+</pre></div>
+</div>
+<p>If the script still hasn&#8217;t found enough of the right kinds of planets inside
+that first ring, it draws another ring around the first ring.  This second
+ring consists of 16 more 54x54 boxes.</p>
+<p>By default, the script will go as far out as three rings around the initial
+box around your planet.  After that, it will give up, even if it hasn&#8217;t sent
+out all of your excavs.  If that happens, you can increase how far the script
+will go by increasing the <tt class="docutils literal"><span class="pre">--max_ring</span></tt> argument:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">send_excavs</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">tp33</span> <span class="o">-</span><span class="n">t</span> <span class="n">p35</span> <span class="o">--</span><span class="n">max_ring</span> <span class="mi">5</span> <span class="n">Earth</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="full-documentation">
+<h2>Full documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
 <p>For complete help, see the script&#8217;s help documentation:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">send_excavs</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
@@ -526,6 +571,7 @@ False and then reset the count.</p>
 
 </dd></dl>
 
+</div>
 </div>
 
 

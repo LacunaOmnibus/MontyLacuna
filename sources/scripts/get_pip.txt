@@ -8,7 +8,7 @@ libraries.
 
 This script requires no configuration, just run it::
 
-    >>> python bin/get_pip.py
+    >>> python bin/get-pip.py
 
 pip is now installed.
 
