@@ -27,12 +27,18 @@ clear_screen()
 emp_name = input("What is your empire's name? ")
 passwords_do_not_match = True
 cnt = 0
+print( "" )
+print( "I'm going to ask you to enter your password below.  When you type your ")
+print( "password, it will not be echoed to the screen -- you won't see anything." )
+print( "That's OK, just look at your keyboard and keep typing." )
+print( "" )
 while passwords_do_not_match:
     if cnt:
         print( "BZZZT!  Passwords do not match.  Try again." )
         print(  )
     real_pw1    = getpass.getpass("What is your real password? ")
     real_pw2    = getpass.getpass("Confirm: ")
+    print( "" )
     sitter_pw1  = getpass.getpass("What is your sitter password? (leave blank if you don't have one) ")
     sitter_pw2  = ""
     if sitter_pw1:
