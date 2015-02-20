@@ -138,7 +138,11 @@ creation script::
 
     python bin/create_config_file.py
 
-That will ask you several questions, and then create your config file for you.
+That will ask you several questions, and then create your config file for you.  
+Note that, when the script asks you to type your password, it will not 
+actually print what you type onto the screen.  You'll type, but you won't see 
+anything.  That's OK; it's just doing that to keep your little sister who's 
+watching over your shoulder from seeing your password.
 
 .. _run_test_script:
 
