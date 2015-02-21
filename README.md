@@ -8,6 +8,10 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
+- send_excavs.py
+  - coords seem to be starting from 0|0 regardless of location of sending 
+    planet.  See emails to tmtowtdi@gmail.com from Tomas Miko (The 
+    Collective).
 - stations_report
     - think about adding a --spy report.  Include how many are on counter, how 
       many are idle, etc.
