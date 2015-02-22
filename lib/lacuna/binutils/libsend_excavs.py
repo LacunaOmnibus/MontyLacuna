@@ -103,7 +103,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             metavar     = '<ptype>',
             action      = 'append',
             choices     = [ 'p'+ str(i) for i in range(1,41) ],
-            default     = [ 'p'+ str(i) for i in range(1,41) ],
+            required    = 1,
             help        = 'The types of planets to send excavators towards.  You can include multiple planets by repeating "-t <ptype>" for each type you want to send to.  Defaults to any planet type (so you probably want to specify this).'
         )
         parser.add_argument( '--max_ring', 
@@ -122,8 +122,21 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         )
         super().__init__(parser)
 
+        self.ally           = None
+        self.ally_members   = []
+        self.body_cache     = BodyCache()
+        self.excav_sites    = []
+        self.num_excavs     = 0
+        self.planets        = []
+        self.travelling     = {}
+
+        self._set_planets()
+        self._set_alliance()
+        self.map = self.client.get_map()
+
+    
+    def _set_planets(self):
         self.client.cache_on( 'my_colonies', 3600 )
-        self.planets = []
         if self.args.name == 'all':
             for colname in self.client.empire.colony_names.keys():
                 self.planets.append(colname)
@@ -131,25 +144,15 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.planets = [ self.args.name ]
         self.client.cache_off()
 
+    def _set_alliance(self):
         self.client.user_logger.debug( "Getting user's alliance." )
-        self.ally           = self.client.get_my_alliance()
+        self.ally = self.client.get_my_alliance()
         if self.ally:
             self._set_alliance_members()
 
-        self.client.user_logger.debug( "Getting star map." )
-        self.map            = self.client.get_map()
-
-        self.excav_sites    = []
-        self.body_cache     = BodyCache()
-        self.num_excavs     = 0
-        self.travelling     = {}
-
-    
     def _set_alliance_members(self):
-        self.ally_members = []
         for m in self.ally.members:
             self.ally_members.append( m.name )
-
 
     def set_planet( self, pname:str ):
         self.planet = self.client.get_body_byname( pname )
@@ -240,23 +243,27 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         if not req_cell:
             next_offset = self.ring.ring_offset + 1
             if next_offset > self.args.max_ring:
-                ### We've exhausted our allowed range, so there are no more 
-                ### excavs to send.
+                self.client.user_logger.debug( "We've checked out to our max_ring; done." )
                 self.num_excavs = 0
                 return
+            self.client.user_logger.debug( "Moving out to the next ring." )
             self.ring = Ring( self.planet, next_offset )
             req_cell = self.ring.get_next_cell()
 
-        self.client.user_logger.debug( 
-            "Requested cell {} offset {}, row {}, col {}, centerpoint is ({}, {})."
-            .format(
-                self.ring.this_cell_number, self.ring.ring_offset, 
-                req_cell.row, req_cell.col, req_cell.center_x, req_cell.center_y
-            )
-        )
+        #self.client.user_logger.debug( 
+        #    "Requested cell {} offset {}, row {}, col {}, centerpoint is ({}, {})."
+        #    .format(
+        #        self.ring.this_cell_number, self.ring.ring_offset, 
+        #        req_cell.row, req_cell.col, req_cell.center_x, req_cell.center_y
+        #    )
+        #)
         self.client.user_logger.debug( "Requested cell top {}, bottom {}, left {}, right {}."
             .format(req_cell.top, req_cell.bottom, req_cell.left, req_cell.right)
         )
+
+        if req_cell.top <= -1500 or req_cell.bottom >= 1500 or req_cell.left <= -1500 or req_cell.right >= 1500:
+            self.client.user_logger.debug( "This cell is out of bounds." )
+            return []
 
         star_list = self.map.get_star_map({
             'top':      req_cell.top,   'right':    req_cell.right,
@@ -306,7 +313,8 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         for s in stars:
             self.client.user_logger.info("Checking on star '{}'." .format(s.name) )
             if self.body_cache.is_bad(s.name, 'star'):
-                self.client.user_logger.debug("We've already discovered that the star {} is no good.  Skipping." .format(s.name) )
+                self.client.user_logger.debug("We've already discovered that the star {} is no good.  Skipping."
+                    .format(s.name))
                 continue
             if self.star_seizure_forbids_excav( s ):
                 self.client.user_logger.debug("Station {} has MO Excav law on.  Skipping." .format(s.station.name) )
@@ -314,11 +322,14 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 self.body_cache.mark_as_bad(s.station.name, 'station')
                 continue
             if self.system_contains_hostiles( s ):
-                self.client.user_logger.debug("Star {} has at least one hostile colony that would shoot down our excav.  Skipping." .format(s.name) )
+                self.client.user_logger.debug("Star {} has at least one hostile colony that would shoot down our excav.  Skipping."
+                    .format(s.name))
                 self.body_cache.mark_as_bad(s.name, 'star')
                 continue
             cnt += self.send_excavs_to_bodies( s, s.bodies )
             if self.num_excavs <= 0:
+                self.client.user_logger.debug("We're out of excavators so can't send out any more.  Done on {}."
+                    .format(self.planet.name))
                 return cnt
         return cnt
 
@@ -416,7 +427,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             #    self.body_cache.mark_as_bad(body.star_name, 'star')
 
             ### CHECK - this should replace the above, yeah?
-            print( "Hitting the cache here" )   # CHECK
             self.body_cache.mark_as_bad(star.name, 'star')
 
             self.body_cache.mark_as_bad(body.name, 'planet')
@@ -433,9 +443,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             return 0
 
         if body.surface_type in self.args.ptypes:
-            self.client.user_logger.debug("Planet {} ({},{}) is habitable, uninhabited, and the correct type." .format(body.name, body.x, body.y) )
+            self.client.user_logger.debug("Planet {} ({},{}) is habitable, uninhabited, and the correct type ({})." 
+                .format(body.name, body.x, body.y, body.surface_type)
+            )
         else:
-            self.client.user_logger.debug("Planet {} is not the correct type." .format(body.name) )
+            self.client.user_logger.debug("Planet {} is not the correct type ({})." .format(body.name, body.surface_type) )
             self.body_cache.mark_as_bad(body.name, 'planet')
             return 0
 
@@ -540,6 +552,10 @@ class Ring():
         self.center_cell_number             = int( (self.total_cells + 1) / 2 )
         self.next_cell_number               = 0
         self.cell_size                      = 54
+        ### center_row and center_col are offsets from the center cell, around 
+        ### the planet.
+        self.center_row                     = 0
+        self.center_col                     = 0
         self._set_center_location()
 
     def _set_center_location(self):
@@ -561,10 +577,14 @@ class Ring():
             center_y = (self.planet.y - self.cell_size) * (self.center_row - row)
         elif row > self.center_row:
             center_y = (self.planet.y + self.cell_size) * (row - self.center_row)
+        else:
+            center_y = self.planet.y
         if col < self.center_col:
             center_x = (self.planet.x - self.cell_size) * (self.center_col - col)
         elif col > self.center_col:
             center_x = (self.planet.x + self.cell_size) * (col - self.center_col)
+        else:
+            center_x = self.planet.x
         return( col, row, center_x, center_y )
 
     def get_next_cell(self):

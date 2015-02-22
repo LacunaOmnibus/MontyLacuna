@@ -12,6 +12,8 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
   - coords seem to be starting from 0|0 regardless of location of sending 
     planet.  See emails to tmtowtdi@gmail.com from Tomas Miko (The 
     Collective).
+  - -t/--t arg is now required, not sure how it was documented before, but 
+    ensure it's doc'd as required now.
 - stations_report
     - think about adding a --spy report.  Include how many are on counter, how 
       many are idle, etc.
