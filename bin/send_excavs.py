@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+### Hi TC
+
 import logging, os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
