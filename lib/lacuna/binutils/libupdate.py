@@ -1,7 +1,6 @@
 
 import datetime, hashlib, ntpath, os, re, requests, shutil, sys, zipfile
 
-
 class Update():
     """ Updates MontyLacuna from github.
     """
@@ -131,6 +130,7 @@ class Update():
 
         The "live file path" is determined by get_live_path().
         """
+        is_new      = 0
         live_path   = self.get_live_path( tmp_path )
         tmp_file    = os.path.join( tmp_path, name )
         live_file   = os.path.join( live_path, name )
@@ -140,7 +140,10 @@ class Update():
             if( tmp_hash != live_hash ):
                 print( "\t'{}' has been updated.".format(name) )
                 self.copy_new_file( tmp_file, live_path)
+                is_new = 1
         else:
             print( "\t'{}' is a completely new file.".format(name) )
             self.copy_new_file( tmp_file, live_path)
+            is_new = 1
+        return is_new
 
