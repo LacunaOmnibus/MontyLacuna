@@ -17,6 +17,6 @@ for tmp_path, dirs, files in os.walk( os.path.join(up.tmpdir, "MontyLacuna-maste
         cnt += up.copy_mismatched_file( tmp_path, name )
 up.consuela()
 
-pl = "file" if cnt == 1 else "files"
-print( "{} {} were updated.".format(cnt, pl) )
+pl = "file was" if cnt == 1 else "files were"
+print( "{} {} updated.".format(cnt, pl) )
 
