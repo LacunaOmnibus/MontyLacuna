@@ -132,9 +132,11 @@ class Update():
         live_path   = self.get_live_path( tmp_path )
         tmp_file    = os.path.join( tmp_path, name )
         live_file   = os.path.join( live_path, name )
+        print( tmp_file, live_file )
         if( os.path.isfile(live_file) ):
             tmp_hash    = self.hash_file( tmp_file )
             live_hash   = self.hash_file( live_file )
+            print( tmp_hash, live_hash) 
             if( tmp_hash != live_hash ):
                 print( "\t'{}' has been updated.".format(name) )
                 self.copy_new_file( tmp_file, live_path)
