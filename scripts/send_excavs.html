@@ -449,17 +449,14 @@ Defaults to &#8216;planet&#8217;.</li>
 
 <dl class="class">
 <dt id="lacuna.binutils.libsend_excavs.Cell">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsend_excavs.</tt><tt class="descname">Cell</tt><big>(</big><em>col</em>, <em>row</em>, <em>x</em>, <em>y</em>, <em>cell_size</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.Cell" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsend_excavs.</tt><tt class="descname">Cell</tt><big>(</big><em>point: lacuna.binutils.libsend_excavs.Point</em>, <em>cell_size</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.Cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>bottom              Y coordinate of the bottom boundary of the cell
-center_x            X coordinate of the center point of the cell.
-center_y            Y coordinate of the center point of the cell.
-col                 The column occupied by the current cell.  0-based.
+center_point        Point object - the center of the cell.
 left                X coordinate of the left boundary of the cell
 cell_size           Size of the sides of the cell
 right               X coordinate of the right boundary of the cell
-row                 The row occupied by the current cell.  0-based.
 top                 Y coordinate of the top boundary of the cell
 </pre></div>
 </div>
@@ -507,20 +504,23 @@ In ring.ring_offset == 0:</p>
 <em class="property">class </em><tt class="descclassname">lacuna.binutils.libsend_excavs.</tt><tt class="descname">Ring</tt><big>(</big><em>planet</em>, <em>ring_offset: int=0</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsend_excavs.Ring" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
 <p>A ring of cells radiating out from a planet.</p>
+<p>Row and column numbers, as well as ring offsets, start at zero.  Cell 
+numbers start at 1.</p>
 <p>Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>cell_size           Integer size of the sides of the cells in the ring.
 cells_per_row       Number of cells per row (3 for a ring_offset of 1)
 cells_this_ring     Total number of cells in this ring only (8 for a 
                     ring_offset of 1)
-center_cell_number  the cell_number of the center cell (1 for a 
-                    ring_offset of 0, 5 for a ring_offset of 1, etc)
+center_cell         Cell object; the cell in the middle.
+center_cell_number  The number of the center cell.  Numbering starts at 
+                    1 in the ring&#39;s NW corner cell.
 center_col          The column occupied by the center cell.  0-based. 
 center_row          The row occupied by the center cell.  0-based.  
 this_cell_number    Integer number of the cell just returned by
-                    get_next_cell().  Starts at 0, which is not a 
-                    valid cell number.
+                    get_next_cell().  Will be 0, an invalid cell 
+                    number, before any calls to get_next_cell().
 planet              lacuna.body.MyBody object everything is relative 
-to.
+                    to.
 ring_offset         Integer offset from the center (center is 0)
 total_cells         Total number of cells in the square, including all 
                     rings (9 for a ring_offset of 1)

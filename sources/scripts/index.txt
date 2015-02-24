@@ -47,6 +47,7 @@ if your arguments contain spaces, you have to quote them::
 
    assign_spies
    build_ships
+   excavs_report
    post_starter_kit
    recall_all_ships
    recall_all_spies

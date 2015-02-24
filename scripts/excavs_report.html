@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search Archaeology Ministry &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Excavators Report &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
         <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
-        <link rel="next" title="Ships Report" href="ships_report.html"/>
-        <link rel="prev" title="Send Excavs" href="send_excavs.html"/> 
+        <link rel="next" title="Post Starter Kit" href="post_starter_kit.html"/>
+        <link rel="prev" title="Build Ships" href="build_ships.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -66,7 +66,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-pip-and-prerequisite-libraries">Install pip and Prerequisite Libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#create-a-config-file">Create A Config File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#completely-optional-update-with-git">Completely Optional &#8211; Update with Git</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
@@ -157,10 +156,10 @@
       
           <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
       
-    <li>Search Archaeology Ministry</li>
+    <li>Excavators Report</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../sources/scripts/search_archmin.txt" rel="nofollow"> View page source</a>
+          <a href="../sources/scripts/excavs_report.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -168,87 +167,105 @@
 </div>
           <div role="main">
             
-  <div class="section" id="search-archaeology-ministry">
-<span id="search-archmin"></span><h1>Search Archaeology Ministry<a class="headerlink" href="#search-archaeology-ministry" title="Permalink to this headline">¶</a></h1>
-<p>Starts a search through available ore for glyphs at your Archaeology Ministry.
-You can specify what glyph type to search for, or just tell the script to
-search for whatever glyph type is most needed.</p>
-<p>Remember that you must have 10,000 units of ore to be able to search through
-it for a glyph.  If you pass <tt class="docutils literal"><span class="pre">needed</span></tt> as the glyph type, the script will
-find the glyph type that your plant has least of, for which you also have at
-least 10,000 ore.</p>
-<p>But if you specify a glyph type yourself, you must make sure that you have
-enough of that ore.  If not, a warning will be issued and the planet will be
-skipped.</p>
-<p>Arch min searches take five hours, fifty minutes.  So if you plan to set up
-this script on a schedule of some sort, you should schedule it to run every
-six hours.  That way, you can get four arch min searches per planet, per day.</p>
-<p>To search for rutile glyphs on Earth:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">rutile</span>
+  <div class="section" id="excavators-report">
+<span id="excavs-report"></span><h1>Excavators Report<a class="headerlink" href="#excavators-report" title="Permalink to this headline">¶</a></h1>
+<p>Reports on the excavators you&#8217;ve sent out at one or all of your planets,
+including the distance from your colony to the excavated planet.</p>
+<p>Being able to see the distance is especially helpful if you&#8217;ve ever moved your
+colony around with a BHG.  Excavated planets that are too far away will be
+less efficient, as replacement excavators will have to spend an inordinate
+amount of time travelling between your colony and the excavated planet.</p>
+<p>An example report:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">excavs_report</span> <span class="n">Earth</span>
+<span class="go">                     Earth</span>
+<span class="go">                     =====</span>
+<span class="go">EXCAVATED COLONY                DISTANCE     TYPE</span>
+<span class="go">Earth                               0.00     p11</span>
+<span class="go">Mars                               16.55     p12</span>
+<span class="go">Jupiter                            18.97     p12</span>
+<span class="go">Saturn                             22.20     p35</span>
+<span class="go">Uranus                             23.09     p33</span>
+<span class="go">Neptune                            23.77     p35</span>
+<span class="go">Pluto                            1234.85     p35</span>
 </pre></div>
 </div>
-<p>To search for whatever glyph type Earth has the least of:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">needed</span>
+<p>Remember that the colony hosting the archaeology ministry is, itself, being
+excavated, and at the rate of two regular planets.  So since Earth is a p11
+planet, we&#8217;ve got two regular excavators out at p12 planets, which are the
+resource complement to the p11.</p>
+<p>Pluto is very far away compared to the other planets.  After seeing this
+report, you&#8217;d most likely want to delete the excavator on Pluto and send out
+another one to a much closer planet.  Poor Pluto can&#8217;t catch a break.</p>
+<div class="section" id="report-on-all-planets">
+<h2>Report on all planets<a class="headerlink" href="#report-on-all-planets" title="Permalink to this headline">¶</a></h2>
+<p>As with several other MontyLacuna scripts, you can pass <tt class="docutils literal"><span class="pre">all</span></tt> as the planet
+name to view reports on all of your planets:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">excavs_report</span><span class="o">.</span><span class="n">py</span> <span class="nb">all</span>
 </pre></div>
 </div>
-<p>To search for the most needed glyph type on all of your planets:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="nb">all</span> <span class="n">needed</span>
+<p>This report can get pretty long, and might scroll off the screen so far that
+you can&#8217;t see the whole thing.  So you can just redirect the output to a
+file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">excavs_report</span><span class="o">.</span><span class="n">py</span> <span class="nb">all</span> <span class="o">&gt;</span> <span class="n">excavs</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>See the <a class="reference internal" href="../types.html#ore-translations"><em>Ore Translations</em></a> for a complete list of ores you can search.
-For a quick ore list reminder from the terminal, just include the <tt class="docutils literal"><span class="pre">-l</span></tt> or
-<tt class="docutils literal"><span class="pre">--list</span></tt> argument, which will list out all ores and then quit:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">l</span>
+<p>...then open up <tt class="docutils literal"><span class="pre">excavs.txt</span></tt> in your favorite text editor.</p>
+</div>
+<div class="section" id="force-fresh-data">
+<h2>Force fresh data<a class="headerlink" href="#force-fresh-data" title="Permalink to this headline">¶</a></h2>
+<p>Data get cached so retrieving it on the next run will be quicker.  This way
+you can conveniently run a report multiple times, or even run different
+reports, without having to wait or waste your RPCs.</p>
+<p>However, if you run a report once, then update something (eg you send out a
+new excavator) and want to run the same report again to see your new resource
+situation, you won&#8217;t want to look at data cached from the previous run.  In
+that case, pass the <tt class="docutils literal"><span class="pre">--fresh</span></tt> option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">excavs_report</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">fresh</span> <span class="n">Earth</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="full-documentation">
+<h2>Full documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
 <p>For complete help, see the script&#8217;s help documentation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">excavs_report</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
 <dl class="class">
-<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsearch_archmin.</tt><tt class="descname">SearchArchmin</tt><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin" title="Permalink to this definition">¶</a></dt>
+<dt id="lacuna.binutils.libexcavs_report.ExcavsReport">
+<em class="property">class </em><tt class="descclassname">lacuna.binutils.libexcavs_report.</tt><tt class="descname">ExcavsReport</tt><a class="headerlink" href="#lacuna.binutils.libexcavs_report.ExcavsReport" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<p>Gather and report on spy data by planet.</p>
 <dl class="method">
-<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph">
-<tt class="descname">search_for_glyph</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Begins a search in the archmin for whatever glyph type was 
-determined by validate_ore() to be the one to search.</p>
+<dt id="lacuna.binutils.libexcavs_report.ExcavsReport.gather_excavator_data">
+<tt class="descname">gather_excavator_data</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libexcavs_report.ExcavsReport.gather_excavator_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gathers data on excavators sent out from the current planet.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet">
-<tt class="descname">set_planet</tt><big>(</big><em>pname: str</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the current working planet by name.</p>
-<p>Gets the archmin and PCC on this planet, and counts how much of each 
-ore and how many glyphs we have in storage.</p>
-<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></tt></a> if you don&#8217;t have 
-an Archaeology Ministry or PCC on the planet (although, if you don&#8217;t 
-have a PCC, you probably have bigger problems than not being able to 
-perform an archmin search.)</p>
-<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.WorkingError" title="lacuna.exceptions.WorkingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.WorkingError</span></tt></a> if the planet&#8217;s archmin 
-is already performing a search.</p>
+<dt id="lacuna.binutils.libexcavs_report.ExcavsReport.set_planet">
+<tt class="descname">set_planet</tt><big>(</big><em>pname: str</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libexcavs_report.ExcavsReport.set_planet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Meant to be called by the user to set which planet we&#8217;re working on 
+right now.</p>
 <dl class="docutils">
 <dt>Arguments:</dt>
 <dd><ul class="first last simple">
-<li>pname &#8211; String name of the planet.</li>
+<li>pname &#8211; String name of the planet</li>
 </ul>
 </dd>
 </dl>
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></tt></a> if the planet 
+being set does not have a working Intelligence Ministry.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore">
-<tt class="descname">validate_ore</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Figures out which ore we should be searching through, and ensures 
-that we have enough of that ore to perform a search.</p>
-<p>Sets self.ore_to_search if successful.  Raises 
-<a class="reference internal" href="../exceptions.html#lacuna.exceptions.InsufficientResourceError" title="lacuna.exceptions.InsufficientResourceError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.InsufficientResourceError</span></tt></a> if there&#8217;s not 
-enough ore onsite to perform a search.</p>
+<dt id="lacuna.binutils.libexcavs_report.ExcavsReport.show_report">
+<tt class="descname">show_report</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libexcavs_report.ExcavsReport.show_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows a report on all of the excavator data gathered.</p>
 </dd></dl>
 
 </dd></dl>
 
+</div>
 </div>
 
 
@@ -257,10 +274,10 @@ enough ore onsite to perform a search.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ships_report.html" class="btn btn-neutral float-right" title="Ships Report"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="post_starter_kit.html" class="btn btn-neutral float-right" title="Post Starter Kit"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="send_excavs.html" class="btn btn-neutral" title="Send Excavs"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="build_ships.html" class="btn btn-neutral" title="Build Ships"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
