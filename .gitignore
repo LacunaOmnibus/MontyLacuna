@@ -2,6 +2,7 @@
 *.swp
 *.swo
 
+
 *.csv
 captcha.py
 test.py

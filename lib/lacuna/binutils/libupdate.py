@@ -6,7 +6,7 @@ class Update():
     """
 
     def __init__( self ):
-        self.rootdir    = os.path.abspath(os.path.dirname(sys.argv[0])) + "/.."
+        self.rootdir    = os.path.join( os.path.abspath(os.path.dirname(sys.argv[0])), ".." )
         self.vardir     = self.rootdir + "/var"
         self.zip_url    = "https://github.com/tmtowtdi/MontyLacuna/archive/master.zip"
         self.zip_path   = os.path.join( self.vardir, self.get_zipfile_name("monty_") )
@@ -26,7 +26,7 @@ class Update():
         all of its contents will be removed, and then the temp directory will be 
         re-created empty.
         """
-        tmpdir = self.rootdir + "/tmp"
+        tmpdir = os.path.join( self.rootdir, "tmp" )
         try:
             os.stat( tmpdir )
             shutil.rmtree( tmpdir )
@@ -73,7 +73,8 @@ class Update():
         This is a bit fragile.  You CANNOT go changing the name of your temporary 
         directory and expect this to work.  It must be named 'tmp'.
         """
-        pat = re.compile( '/tmp/MontyLacuna-master' )
+        replace_path = re.escape( os.path.join("tmp", "MontyLacuna-master") )
+        pat = re.compile( replace_path )
         return pat.sub( "", path )
 
     def hash_file( self, filepath ):
@@ -132,11 +133,9 @@ class Update():
         live_path   = self.get_live_path( tmp_path )
         tmp_file    = os.path.join( tmp_path, name )
         live_file   = os.path.join( live_path, name )
-        print( tmp_file, live_file )
         if( os.path.isfile(live_file) ):
             tmp_hash    = self.hash_file( tmp_file )
             live_hash   = self.hash_file( live_file )
-            print( tmp_hash, live_hash) 
             if( tmp_hash != live_hash ):
                 print( "\t'{}' has been updated.".format(name) )
                 self.copy_new_file( tmp_file, live_path)
