@@ -9,7 +9,7 @@ class Update():
         self.rootdir    = os.path.abspath(os.path.dirname(sys.argv[0])) + "/.."
         self.vardir     = self.rootdir + "/var"
         self.zip_url    = "https://github.com/tmtowtdi/MontyLacuna/archive/master.zip"
-        self.zip_path   = os.path.join( self.vardir, self.get_zipfile_name("monty_") )
+        self.zip_path   = os.path.join( self.vardir, self._get_zipfile_name("monty_") )
 
         self._set_clean_tmpdir()
 
@@ -35,14 +35,15 @@ class Update():
         os.mkdir( tmpdir )
         self.tmpdir = tmpdir
 
-    def get_zipfile_name( self, prefix ):
+    def _get_zipfile_name( self, prefix ):
         """ Given a prefix, returns a dated filename string with a .zip extension.
+        This will be what we name the .zip file we download from github.
 
         Arguments
             - prefix -- String.  Nothing is appended to this, so you probably want 
               to include an underscore or other separator.
 
-        >>> print get_zipfile_name( "foo_" );
+        >>> print _get_zipfile_name( "foo_" );
         foo_20150218170100.zip
         """
         dt = datetime.datetime.today()
@@ -63,7 +64,7 @@ class Update():
         zf = zipfile.ZipFile( self.zip_path )
         zf.extractall( self.tmpdir )
 
-    def get_live_path( self, path ):
+    def _get_live_path( self, path ):
         """ Given a path to a file, which is assumed to be living under a temporary 
         directory named 'tmp', returns the path where the file needs to end up.
 
@@ -126,10 +127,8 @@ class Update():
             - tmp_path -- The path where the file in question currently lives.
               MUST NOT END WITH A SLASH.
             - name -- The name of the file in question.
-
-        The "live file path" is determined by get_live_path().
         """
-        live_path   = self.get_live_path( tmp_path )
+        live_path   = self._get_live_path( tmp_path )
         tmp_file    = os.path.join( tmp_path, name )
         live_file   = os.path.join( live_path, name )
         print( tmp_file, live_file )
