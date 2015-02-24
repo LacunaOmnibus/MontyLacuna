@@ -492,8 +492,8 @@ class Ring():   # by Josten's
         center_col          The column occupied by the center cell.  0-based. 
         center_row          The row occupied by the center cell.  0-based.  
         this_cell_number    Integer number of the cell just returned by
-                            get_next_cell().  Starts at 0, which is not a 
-                            valid cell number.
+                            get_next_cell().  Will be 0, an invalid cell 
+                            number, before any calls to get_next_cell().
         planet              lacuna.body.MyBody object everything is relative 
                             to.
         ring_offset         Integer offset from the center (center is 0)
