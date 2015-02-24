@@ -1,6 +1,8 @@
-*.csv
+### vi swap files
 *.swp
 *.swo
+
+*.csv
 captcha.py
 test.py
 test.txt
@@ -10,6 +12,6 @@ etc/*cfg*
 sma/
 tmp/
 var/cache/*
-var/cachelck/*
+var/cachelck/**
 var/*log*
 var/*.zip
