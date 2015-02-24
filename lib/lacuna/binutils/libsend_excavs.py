@@ -1,6 +1,6 @@
 
 import lacuna, lacuna.exceptions, lacuna.binutils.libbin
-import argparse, os, sys
+import argparse, operator, os, sys
 from enum import Enum
 
 class BodyCache():
@@ -153,11 +153,9 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             self.ally_members.append( m.name )
 
     def set_planet( self, pname:str ):
-        self.planet = self.client.get_body_byname( pname )
         self.client.user_logger.info( "Sending excavs from " + pname + "." )
         self.planet = self.client.get_body_byname( pname )
         self.ring   = Ring(self.planet, 0)
-
         self.client.user_logger.debug( "Getting Arch Min for {}.".format(pname) )
         self.arch   = self.planet.get_buildings_bytype( 'archaeology', 1, 1, 100 )[0]
 
@@ -244,19 +242,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 self.client.user_logger.debug( "We've checked out to our max_ring; done." )
                 self.num_excavs = 0
                 return
-            self.client.user_logger.debug( "Moving out to the next ring." )
+            self.client.user_logger.debug( "Moving out to ring number {}.".format(next_offset) )
             self.ring = Ring( self.planet, next_offset )
             req_cell = self.ring.get_next_cell()
-
-        #self.client.user_logger.debug( 
-        #    "Requested cell {} offset {}, row {}, col {}, centerpoint is ({}, {})."
-        #    .format(
-        #        self.ring.this_cell_number, self.ring.ring_offset, 
-        #        req_cell.row, req_cell.col, req_cell.center.x, req_cell.center.y
-        #    )
-        #)
-        self.client.user_logger.debug( "Requested cell top {}, bottom {}, left {}, right {}."
-            .format(req_cell.top, req_cell.bottom, req_cell.left, req_cell.right)
+        self.client.user_logger.debug( "Checking cell number {}.  Top {}, bottom {}, left {}, right {}."
+            .format(self.ring.this_cell_number, req_cell.top, req_cell.bottom, req_cell.left, req_cell.right)
         )
 
         if req_cell.top <= -1500 or req_cell.bottom >= 1500 or req_cell.left <= -1500 or req_cell.right >= 1500:
@@ -267,7 +257,9 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             'top':      req_cell.top,   'right':    req_cell.right,
             'bottom':   req_cell.bottom, 'left':    req_cell.left 
         })
-        return star_list
+        ### The order of the stars returned doesn't really matter too much, 
+        ### but having them sorted makes it easier to debug.
+        return sorted( star_list, key=operator.attrgetter('x', 'y') )
 
 
     def star_seizure_forbids_excav( self, star ):
@@ -317,7 +309,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             if self.star_seizure_forbids_excav( s ):
                 self.client.user_logger.debug("Station {} has MO Excav law on.  Skipping." .format(s.station.name) )
                 self.body_cache.mark_as_bad(s.name, 'star')
-                self.body_cache.mark_as_bad(s.station.name, 'station')
                 continue
             if self.system_contains_hostiles( s ):
                 self.client.user_logger.debug("Star {} has at least one hostile colony that would shoot down our excav.  Skipping."
@@ -326,7 +317,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 continue
             cnt += self.send_excavs_to_bodies( s, s.bodies )
             if self.num_excavs <= 0:
-                self.client.user_logger.debug("We're out of excavators so can't send out any more.  Done on {}."
+                self.client.user_logger.debug("We're out of excavators (or slots) so can't send out any more.  Done on {}."
                     .format(self.planet.name))
                 return cnt
         return cnt
@@ -483,8 +474,11 @@ class Point():
         self.x   = x
         self.y   = y
 
-class Ring():
+class Ring():   # by Josten's
     """ A ring of cells radiating out from a planet.
+
+    Row and column numbers, as well as ring offsets, start at zero.  Cell 
+    numbers start at 1.
 
     Attributes::
 
@@ -492,8 +486,9 @@ class Ring():
         cells_per_row       Number of cells per row (3 for a ring_offset of 1)
         cells_this_ring     Total number of cells in this ring only (8 for a 
                             ring_offset of 1)
-        center_cell_number  the cell_number of the center cell (1 for a 
-                            ring_offset of 0, 5 for a ring_offset of 1, etc)
+        center_cell         Cell object; the cell in the middle.
+        center_cell_number  The number of the center cell.  Numbering starts at 
+                            1 in the ring's NW corner cell.
         center_col          The column occupied by the center cell.  0-based. 
         center_row          The row occupied by the center cell.  0-based.  
         this_cell_number    Integer number of the cell just returned by
@@ -540,47 +535,60 @@ class Ring():
 
     """
     def __init__( self, planet, ring_offset:int = 0 ):
-        self.planet                         = planet
-        self.ring_offset                    = ring_offset
-        self.cells_this_ring                = int( 8 * self.ring_offset )
-        self.cells_per_row                  = int( (2 * self.ring_offset + 1) )
-        self.total_cells                    = int( self.cells_per_row**2 )
-        self.center_cell_number             = int( (self.total_cells + 1) / 2 )
-        self.next_cell_number               = 0
-        self.cell_size                      = 54
-        ### center_row and center_col are offsets from the center cell, around 
-        ### the planet.
-        self.center_row                     = 0
-        self.center_col                     = 0
-        self._set_center_location()
+        self.planet                 = planet
+        self.ring_offset            = ring_offset
+        self.cells_this_ring        = int( 8 * self.ring_offset )
+        self.cells_per_row          = int( (2 * self.ring_offset + 1) )
+        self.total_cells            = int( self.cells_per_row ** 2 )
+        self.center_cell_number     = int( (self.total_cells + 1) / 2 )
+        self.next_cell_number       = 0
+        self.cell_size              = 54
+        self._set_center_location() 
+        self._set_center_cell()
 
     def _set_center_location(self):
-        self.center_row = 0
-        self.center_col = self.center_cell_number - 1 # cell numbers start at 1
+        self.center_cell_number     = int( (self.total_cells + 1) / 2 )
+        self.center_col             = self.center_cell_number - 1 # cell numbers start at 1
         while( self.center_col > self.cells_per_row ):
-            self.center_row += 1
             self.center_col -= self.cells_per_row
+        self.center_row = self.center_col
+
+    def _set_center_cell(self):
+        self.center_cell = Cell( Point(self.planet.x, self.planet.y), self.cell_size )
 
     def _get_cell_location(self, num):
+        """ Find a cell's location in the ring, given its number.
+
+        Arguments:
+            - num -- Integer number of the cell.  The NW-most cell is 1; 
+              numbering is left-to-right, top-to-bottom.  So, for ring_offset of 
+              1, the bottom-right cell's number will be 9.
+
+        Returns a tuple:
+            - column (numbering starts at 0)
+            - row (numbering starts at 0)
+            - Point object (the cell's centerpoint)
+        """
         row  = 0
         col  = num - 1
         x    = 0
         y    = 0
-        while( col > self.cells_per_row ):
+        while( col >= self.cells_per_row ):
             row += 1
             col -= self.cells_per_row
-        if row < self.center_row:
-            y = (self.planet.y - self.cell_size) * (self.center_row - row)
-        elif row > self.center_row:
-            y = (self.planet.y + self.cell_size) * (row - self.center_row)
-        else:
-            y = self.planet.y
-        if col < self.center_col:
-            x = (self.planet.x - self.cell_size) * (self.center_col - col)
-        elif col > self.center_col:
-            x = (self.planet.x + self.cell_size) * (col - self.center_col)
-        else:
-            x = self.planet.x
+        row_diff = row - self.center_row        # 0 for cell 4
+        col_diff = col - self.center_col        # -1 for cell 4
+
+        ### We have to reverse the signs if we're starting out negative.  ie 
+        ### if our center point's x is negative, to go up in space we have to 
+        ### subtract.
+        if self.center_cell.center_point.x < 0:
+            col_diff *= -1
+        if self.center_cell.center_point.y < 0:
+            row_diff *= -1
+
+        x = self.center_cell.center_point.x + (col_diff * self.cell_size)
+        y = self.center_cell.center_point.y + (row_diff * self.cell_size)
         return( col, row, Point(x, y) )
 
     def get_next_cell(self):
@@ -604,19 +612,17 @@ class Ring():
         for i in range(1, self.total_cells + 1):
             self.this_cell_number = i
             col, row, point = self._get_cell_location( i )
-            yield Cell( col, row, point, self.cell_size )
+            yield Cell( point, self.cell_size )
 
 class Cell():
     """
     Attributes::
 
         bottom              Y coordinate of the bottom boundary of the cell
-        center              Point object - the center of the cell.
-        col                 The column occupied by the current cell.  0-based.
+        center_point        Point object - the center of the cell.
         left                X coordinate of the left boundary of the cell
         cell_size           Size of the sides of the cell
         right               X coordinate of the right boundary of the cell
-        row                 The row occupied by the current cell.  0-based.
         top                 Y coordinate of the top boundary of the cell
 
     Constructor will raise Cell.OutOfBoundsError if the entire cell is out of 
@@ -658,18 +664,16 @@ class Cell():
         def __str__(self):
             return repr(self.value)
 
-    def __init__( self, col, row, point:Point, cell_size ):
-        self.col            = col
-        self.row            = row
+    def __init__( self, point:Point, cell_size ):
         self.center_point   = point
         self.cell_size      = cell_size
         self._set_bounding_points()
 
     def _set_bounding_points(self):
-        self.left    = self.center_point.x - (self.cell_size / 2)
-        self.right   = self.center_point.x + (self.cell_size / 2)
-        self.top     = self.center_point.y + (self.cell_size / 2)
-        self.bottom  = self.center_point.y - (self.cell_size / 2)
+        self.left    = int( self.center_point.x - (self.cell_size / 2) )
+        self.right   = int( self.center_point.x + (self.cell_size / 2) )
+        self.top     = int( self.center_point.y + (self.cell_size / 2) )
+        self.bottom  = int( self.center_point.y - (self.cell_size / 2) )
 
         if self.top < -1500 or self.bottom > 1500 or self.left > 1500 or self.right < -1500:
             ### The cell is completely out of bounds.  But we don't want to 
