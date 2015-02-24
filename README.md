@@ -9,11 +9,6 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
-- excavs_report.py
-  - This doesn't exist yet.  It needs to report on all excavators at a planet, stating the 
-    name of the excavated planet and the distance from the colony with the arch min to the 
-    excavated planet, so we can see which excavs need to be replaced.
-    Might as well include the type of the excavated planet as well.
 - send_excavs.py
   - -t/--t arg is now required, not sure how it was documented before, but ensure it's 
     doc'd as required now.
