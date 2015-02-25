@@ -19,7 +19,7 @@ l.info( "Your current MontyLacuna version is {} - checking for updates...".forma
 cnt = 0
 for tmp_path, dirs, files in os.walk( os.path.join(up.tmpdir, "MontyLacuna-master") ):
     for name in files:
-        #cnt += up.copy_mismatched_file( tmp_path, name )
+        cnt += up.copy_mismatched_file( tmp_path, name )
         pass
 up.consuela()
 
