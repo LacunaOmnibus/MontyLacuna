@@ -42,6 +42,20 @@ if your arguments contain spaces, you have to quote them::
 
     >>> python bin/scriptname.py --planet "My Planet Name"
 
+Scripts that tell you about stuff
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   ships_report
+   show_laws
+   spies_report
+   stations_report
+   version
+
+
+Scripts that do stuff
+~~~~~~~~~~~~~~~~~~~~~
 .. toctree::
    :maxdepth: 1
 
@@ -54,11 +68,8 @@ if your arguments contain spaces, you have to quote them::
    scuttle_ships
    send_excavs
    search_archmin
-   ships_report
-   show_laws
-   spies_report
-   stations_report
    train_spies
    turnkey
    update
+
 
