@@ -6,11 +6,13 @@ sys.path.append(libdir)
 
 import lacuna.binutils.libupdate as lib
 up = lib.Update()
+l  = up.client.user_logger
 
-print( "Downloading the most recent MontyLacuna.  This will take a few seconds, depending on your internet connection." )
+l.info(  "Downloading the most recent MontyLacuna." )
+l.info( "This will take a few seconds, depending on your internet connection." )
 up.download_and_extract_zipfile()
 
-print( "Updating your MontyLacuna..." )
+l.info( "Updating your MontyLacuna..." )
 cnt = 0
 for tmp_path, dirs, files in os.walk( os.path.join(up.tmpdir, "MontyLacuna-master") ):
     for name in files:
@@ -18,5 +20,5 @@ for tmp_path, dirs, files in os.walk( os.path.join(up.tmpdir, "MontyLacuna-maste
 up.consuela()
 
 pl = "file was" if cnt == 1 else "files were"
-print( "{} {} updated.".format(cnt, pl) )
+l.info( "{} {} updated.".format(cnt, pl) )
 

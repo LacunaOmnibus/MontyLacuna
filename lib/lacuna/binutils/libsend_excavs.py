@@ -102,7 +102,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             action      = 'append',
             choices     = [ 'p'+ str(i) for i in range(1,41) ],
             required    = 1,
-            help        = 'The types of planets to send excavators towards.  You can include multiple planets by repeating "-t <ptype>" for each type you want to send to.  REQUIRED.'
+            help        = 'The types of planets to send excavators towards.  You can include multiple planets by repeating "-t <ptype>" for each type you want to send to.  Defaults to any planet type (so you probably want to specify this).'
         )
         parser.add_argument( '--max_ring', 
             metavar     = '<max_ring>',

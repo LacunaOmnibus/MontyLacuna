@@ -1,11 +1,21 @@
 
-import datetime, hashlib, ntpath, os, re, requests, shutil, sys, zipfile
+import lacuna, lacuna.binutils.libbin
+import argparse, datetime, hashlib, ntpath, os, re, requests, shutil, sys, zipfile
 
-class Update():
+class Update(lacuna.binutils.libbin.Script):
     """ Updates MontyLacuna from github.
     """
 
     def __init__( self ):
+        self.version = '0.1'
+
+        parser = argparse.ArgumentParser(
+            description = 'Updates your MontyLacuna to the newest version available.',
+            epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/update.html",
+        )
+        self.guest = True;
+        super().__init__(parser)
+
         self.rootdir    = os.path.join( os.path.abspath(os.path.dirname(sys.argv[0])), ".." )
         self.vardir     = self.rootdir + "/var"
         self.zip_url    = "https://github.com/tmtowtdi/MontyLacuna/archive/master.zip"
@@ -138,11 +148,11 @@ class Update():
             tmp_hash    = self.hash_file( tmp_file )
             live_hash   = self.hash_file( live_file )
             if( tmp_hash != live_hash ):
-                print( "\t'{}' has been updated.".format(name) )
+                self.client.user_logger.debug( "'{}' has been updated.".format(name) )
                 self.copy_new_file( tmp_file, live_path)
                 is_new = 1
         else:
-            print( "\t'{}' is a completely new file.".format(name) )
+            self.client.user_logger.debug( "'{}' is a completely new file.".format(name) )
             self.copy_new_file( tmp_file, live_path)
             is_new = 1
         return is_new

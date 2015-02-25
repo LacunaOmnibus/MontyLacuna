@@ -125,29 +125,52 @@ class Script:
         
         Any other arguments that are specific to your script will need to be 
         added before calling ``super().__init__()``.
+
+    Skip Logging In
+        There will occasionally be scripts that don't need to log in to the 
+        TLE servers, but still want access to some of the features provided by 
+        the Clients class, such as logging.  ``update.py`` is an example of 
+        this.
+
+        If you're creating such a script, set your module up as above, but 
+        before calling ``__init__``, create an attribute called ``guest`` set 
+        to a true value::
+        
+            self.guest = True;
+            super().__init__(parser)
+
+        Now your script's module will have a ``self.client`` attribute, from 
+        which you can get ``self.client.user_logger``, but that client won't 
+        need to log in.
+
+        When skipping login like this, the --file and --section arguments 
+        don't pertain, so they will automatically be omitted from the help 
+        (-h) blurb.
     """
     def __init__(self, parser, section:str = 'sitter'):
         self.bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 
-        parser.add_argument( '--file', 
-            dest        = 'config_file',
-            metavar     = '<config_file>',
-            action      = FindConfigFileAction,
-            default     = self.bindir + "/../etc/lacuna.cfg",
-            help        = "Path to the config file.  Defaults to 'ROOT/etc/lacuna.cfg'"
-        )
-        parser.add_argument( '--section', 
-            dest        = 'config_section',
-            metavar     = '<section>',
-            action      = 'store',
-            default     = section,
-            help        = "Config file section.  Defaults to '" + section + "'."
-        )
+        if not hasattr(self, 'guest') or not self.guest:
+            parser.add_argument( '--file', dest        = 'config_file',
+                metavar     = '<config_file>',
+                action      = FindConfigFileAction,
+                default     = self.bindir + "/../etc/lacuna.cfg",
+                help        = "Path to the config file.  Defaults to 'ROOT/etc/lacuna.cfg'"
+            )
+            parser.add_argument( '--section', 
+                dest        = 'config_section',
+                metavar     = '<section>',
+                action      = 'store',
+                default     = section,
+                help        = "Config file section.  Defaults to '" + section + "'."
+            )
+
         parser.add_argument( '-q', '--quiet', 
             dest        = 'quiet',
             action      = 'store_true',
             help        = "By default, information on what's happening gets displayed to the screen.  Including this will silence all output.  Overrides '-v'."
         )
+
         parser.add_argument( '-v', '--verbose', 
             dest        = 'verbose',
             action      = 'count',
@@ -162,7 +185,7 @@ class Script:
                 self.skip_argparse[ i ]()
 
         self.args = parser.parse_args()
-        self.client = self.connect()
+        self.connect()
 
         ### Set log level
         if not self.args.quiet:
@@ -188,18 +211,23 @@ class Script:
         """ Connects to the game server, using the config_file and 
         config_section arguments.
 
-        Sets self.client.
+        If a script doesn't need to log in to the TLE servers 
+        (eg ``update.py``), it can create a ``no_connect`` attribute and set it 
+        to True.
+
+        Sets self.client if ``no_connect`` is not True.
         """
+        if hasattr(self, 'guest') and self.guest:
+            self.client = lacuna.clients.Guest()
+            return
         try:
-            client = lacuna.clients.Member(
+            self.client = lacuna.clients.Member(
                 config_file     = self.args.config_file,
                 config_section  = self.args.config_section
             )
         except (lacuna.exceptions.ServerError, lacuna.exceptions.BadCredentialsError) as e:
             print( "The empire name or password in your config file is incorrect.  Edit etc/lacuna.cfg to fix." )
             quit()
-        return client
-
 
     def summarize( self, string:str, mymax:int ):
         """ If a string is too long, shortens it and adds ellipsis.
