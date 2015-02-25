@@ -8,6 +8,8 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
+- version.py
+  - Created, works.  Needs documentation.
 - send_excavs.py
   - -t/--t arg is now required, not sure how it was documented before, but ensure it's 
     doc'd as required now.
