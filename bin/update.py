@@ -29,11 +29,11 @@ new_version = lacuna.version
 pl = "file was" if cnt == 1 else "files were"
 if new_version == start_version:
     if cnt:
-        l.info( "Bugfix update; MontyLacuna version is still {}.  {} {} updated."
-            .format(new_version, cnt, pl) )
+        l.info( "Bugfix update; MontyLacuna version is still {}.".format(new_version) )
+        l.info( "{} {} updated.".format(cnt, pl) )
     else:
         l.info( "No updates were found." )
 else:
-    l.info( "A new MontyLacuna version was found.  You're now using {}.  {} {} updated."
-        .format(new_version, cnt, pl) )
+    l.info( "A new MontyLacuna version was found -- you're now using {}.".format(new_version) )
+    l.info( "{} {} updated.".format(cnt, pl) )
 
