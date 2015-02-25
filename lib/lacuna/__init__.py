@@ -1,6 +1,6 @@
 
-import lacuna.version
-version = lacuna.version.__version__
+version_info = ("0", "2", "beta")
+version = '.'.join( version_info )
 
 import lacuna.alliance
 import lacuna.bc
