@@ -28,7 +28,7 @@ class Empire(lacuna.bc.LacunaObject):
         raise NotImplementedError( "Updating a species is not implemented." )
 
     @lacuna.bc.LacunaObject.call_guest_meth
-    def fetch_captcha( self ):
+    def fetch_captcha( self, *args, **kwargs ):
         """ Get location of a captcha puzzle to solve.
         
         There also exists a Captcha class, which requires the user to already 
@@ -44,7 +44,7 @@ class Empire(lacuna.bc.LacunaObject):
 
         Returns dict containing 'guid' and 'url' keys.
         """
-        pass
+        return kwargs['rslt']
 
 
 class MyEmpire( Empire ):
@@ -126,9 +126,8 @@ class MyEmpire( Empire ):
             - email -- The email address to send the invitation to
             - message -- An optional personal message to include.
 
-        This doesn't produce any error, but doesn't send email either.  Since 
-        the 'forgot my password' feature is exhibiting the same behavior, I 
-        assume the server just isn't configured to send mail.
+        Raises :class:`lacuna.exceptions.ServerError` 1010 if you have not set 
+        up an email address of your own in your profile.
         """
         pass
 
@@ -196,14 +195,14 @@ class MyEmpire( Empire ):
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
-    def change_password( self, oldpw:str, newpw:str, *args, **kwargs ):
+    def change_password( self, password:str, confirm:str, *args, **kwargs ):
         """ Changes your full password.
 
         Arguments:
-            - oldpw -- String; the desired new password
-            - newpw -- Must be the same string as 'oldpw'
+            - password -- String; the desired new password
+            - confirm -- Must be the same string as 'password'
         """
-        pass
+        self.client.password = password
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def find( self, name_segment:str, *args, **kwargs ):
@@ -228,6 +227,7 @@ class MyEmpire( Empire ):
         Arguments:
             - message -- The message to set as your empire's profile's status.
         """
+        self.status_message = message
         pass
 
     @lacuna.bc.LacunaObject.call_returning_meth
@@ -282,7 +282,7 @@ class MyEmpire( Empire ):
 
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
-    def spy_training_boost( self, *args, **kwargs ):
+    def boost_spy_training( self, *args, **kwargs ):
         """ Spends 5 E to set a +50% spy training boost for one week. """
         pass
 
@@ -332,8 +332,9 @@ class MyEmpire( Empire ):
         one, don't share it with anybody; if they use it, the E represented by 
         that code will be gone.
 
-        Yes, the example code above was a real E code, worth 10,000 E.  But 
-        only on PT, and it's been used already.  Mine - u cant has!
+        Raises :class:`lacuna.exception.ServerError` 1010 if you try to redeem 
+        a code that's already been redeemed.  The example code above is such 
+        an already-redeemed code; you can use that to test the exception.
         """
         pass
 
@@ -360,7 +361,7 @@ class MyEmpire( Empire ):
     @lacuna.bc.LacunaObject.set_empire_status
     @lacuna.bc.LacunaObject.call_member_meth
     def redefine_species( self, params: dict, *args, **kwargs ):
-        """ Actually does the deed of redefining a player's species.
+        """ Actually does the deed of redefining a player's species for 100 E.
 
         Arguments:
             - params -- Dict of species settings:
@@ -424,10 +425,22 @@ class Species(lacuna.bc.SubClass):
         trade_affinity           4,
         growth_affinity          4
     """
-    ### This will usually be accessed from something like the Library of 
-    ### Jith's research_species() method, but it's closely-enough related to 
+    ### This will usually be accessed from something like the Library of 10 
+    ### colonies, and then 10 stations, just to show that they're separate.
     ### the idea of an empire that this seemed the best place for it.
-    pass
+
+    def to_dict(self):
+        """ Returns the object's attributes as a dict, suitable for passing to 
+        :class:`lacuna.empire.redefine_species`.
+        """
+        mydict = {}
+        attribs = ( 'name', 'description', 'min_orbit', 'max_orbit', 'manufacturing_affinity',
+            'deception_affinity', 'research_affinity', 'management_affinity', 'farming_affinity',
+            'mining_affinity', 'science_affinity', 'environmental_affinity', 'political_affinity',
+            'trade_affinity', 'growth_affinity' )
+        for i in attribs:
+            mydict[i] = getattr(self, i)
+        return mydict
 
 class SpeciesTemplate(lacuna.bc.SubClass):
     """
@@ -513,7 +526,7 @@ class PublicProfile(lacuna.bc.SubClass):
                                                         "times_earned" : 4   },  },
         last_login              "01 31 2010 13:09:05 +0600",
         date_founded            "01 31 2010 13:09:05 +0600",
-        species                 "Lacunan",
+                         "Lacunan",
         alliance                {   "id" : "id-goes-here",
                                     "name" : "The Confederacy"   },
         known_colonies          [ {     "id" : "id-goes-here",
