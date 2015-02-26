@@ -224,10 +224,16 @@ class Guest(lacuna.bc.SubClass):
         l = logging.getLogger( str(uuid.uuid1()) )
         l.setLevel(logging.DEBUG)
 
-        sh = logging.StreamHandler()
-        sh.setLevel(logging.WARNING)
-        sh.setFormatter(logging.Formatter(s_format, d_format))
-        l.addHandler(sh)
+        self.request_log_stream_handler = logging.StreamHandler()
+        self.request_log_stream_handler.setLevel(logging.WARNING)
+        self.request_log_stream_handler.setFormatter(logging.Formatter(s_format, d_format))
+        l.addHandler(self.request_log_stream_handler)
+        
+        lf = None
+        if( hasattr(self, 'logfile') and self.logfile ):
+            lf = self.root_dir + "/var/" + self.logfile 
+        else:
+            lf = self.root_dir + "/var/request.log"
         
         lf = None
         if( hasattr(self, 'logfile') and self.logfile ):
@@ -401,6 +407,12 @@ class Guest(lacuna.bc.SubClass):
             resp = cache.get( key = cache_key, createfunc = get_req )
         else:
             resp = requests.post( url, request_json )
+
+        ### The requests module leaves its sockets open in a pool.  This is 
+        ### normally fine, but it generates ResourceWarnings when warnings are 
+        ### on.  This includes during unit tests.  The simplest solution is 
+        ### just to close the connection when we're finished with it.
+        resp.connection.close()
 
         emp_name = self._determine_empname()
         log_opts = { 'empire': emp_name, 'path': path, 'method': method, }

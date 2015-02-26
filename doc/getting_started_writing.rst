@@ -20,6 +20,10 @@ damaging to your empire.
 
 Those scripts really exist as examples of how to use MontyLacuna.
 
+Unit Tests
+----------
+See :ref:`tests_index`.
+
 Tell Your Script Where MontyLacuna Lives
 ----------------------------------------
 When you create a new script, you'll need to tell that script how to find the 
