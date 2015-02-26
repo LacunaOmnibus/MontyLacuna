@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+
+### BE SURE TO RUN THIS WITH -v -- IT'S OCCASIONALLY DOING SOMETHING I DON'T 
+### UNDERSTAND YET AND WON'T WITHOUT -v.
+
 import os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
@@ -54,6 +58,8 @@ for pname in bs.planets:
         if num_to_build_here > 0:
             y.build_ship( bs.shiptype, num_to_build_here )
         else:
+            ### CHECK
+            ### I'm not sure why this is hitting periodically.
             l.info( "Looks like we've added all to the queue that we can." )
         l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
         if num_to_build_here > 25:
