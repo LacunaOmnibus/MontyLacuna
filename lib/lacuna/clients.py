@@ -412,7 +412,11 @@ class Guest(lacuna.bc.SubClass):
         ### normally fine, but it generates ResourceWarnings when warnings are 
         ### on.  This includes during unit tests.  The simplest solution is 
         ### just to close the connection when we're finished with it.
-        resp.connection.close()
+        ### But with a regular run, at least sometimes, that resp object 
+        ### doesn't have a connection attribute.  Probably because it came 
+        ### from the cache.
+        if hasattr(resp, 'connection'):
+            resp.connection.close()
 
         emp_name = self._determine_empname()
         log_opts = { 'empire': emp_name, 'path': path, 'method': method, }
