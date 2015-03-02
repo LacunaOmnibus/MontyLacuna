@@ -8,35 +8,10 @@ libdir  = os.path.join( rootdir, "lib" )
 etcdir  = os.path.join( rootdir, "etc" )
 sys.path.append(libdir)
 
-import lacuna, lacuna.exceptions as err, lacuna.test
-
-class Connector():
-    def tle_connect(self):
-        """ Connects to TLE twice, once with a sitter and once with a real 
-        password.
-
-        Your test class is expected to inherit from Connector (as well as from 
-        unittest.TestCase).  When calling tle_connect in your setUpClass, you'll 
-        need to pass self as the first argument (I don't understand why)::
-
-            self.tle_connect( self )
-        """
-        self.config_file = 'lacuna.cfg'
-        self.sitter = lacuna.clients.Member(
-            config_file     = os.path.join( etcdir, self.config_file ),
-            config_section  = 'test_sitter'
-        )
-        self.real = lacuna.clients.Member(
-            config_file     = os.path.join( etcdir, self.config_file ),
-            config_section  = 'test_real'
-        )
-        ### We're going to be raising exceptions in here on purpose, and don't 
-        ### want the logger to output any of those to the screen.
-        self.sitter.request_log_stream_handler.setLevel('CRITICAL')
-        self.real.request_log_stream_handler.setLevel('CRITICAL')
+import lacuna, lacuna.test.connector as conn, lacuna.exceptions as err
 
 @unittest.skip("skipping generic subclass")
-class GenericSubclass(unittest.TestCase, Connector):
+class GenericSubclass(unittest.TestCase, conn.Connector):
     """ Should be used to test out all of the various classes that just inherit 
     from bc.  These don't have any of their own methods.
     """
@@ -107,7 +82,7 @@ class MyEmpire(unittest.TestCase, Connector):
     def setUpClass(self):
         self.tle_connect(self)
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_boosts(self):
         ### CHECK
         ### If this is being run against an empire that's never had boosts on, 
@@ -132,7 +107,7 @@ class MyEmpire(unittest.TestCase, Connector):
             new = time.strptime( getattr(eb, attr), "%d %m %Y %H:%M:%S +0000" )
             self.assertTrue( old < new )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_change_password(self):
         oldpw   = self.real.password
         candpw  = oldpw + "1"
@@ -141,11 +116,11 @@ class MyEmpire(unittest.TestCase, Connector):
         self.assertTrue( oldpw != newpw )
         self.assertEqual( newpw, candpw )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_id_numeric(self):
         self.assertTrue( re.match("^\d+$", str(self.sitter.empire.id)) )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_home_planet_id_numeric(self):
         self.assertTrue( re.match("^\d+$", str(self.sitter.empire.home_planet_id)) )
 
@@ -160,14 +135,14 @@ class MyEmpire(unittest.TestCase, Connector):
         ### start_rpc is really what we're going for anyway.
         self.assertTrue( start_rpc < end_rpc )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_body_counts(self):
         station_ids = self.sitter.empire.stations.keys()
         colonie_ids = self.sitter.empire.colonies.keys()
         planet_ids  = self.sitter.empire.planets.keys()
         self.assertEqual( len(planet_ids), (len(station_ids) + len(colonie_ids)) )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_edit_profile(self):
         old_pro = self.real.empire.view_profile()
         cand_desc = old_pro.description + "1"
@@ -176,7 +151,7 @@ class MyEmpire(unittest.TestCase, Connector):
         self.assertTrue( old_pro.description != new_pro.description )
         self.assertEqual( cand_desc, new_pro.description )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_find_empire(self):
         emps = self.sitter.empire.find( self.sitter.empire.name )
         found = False 
@@ -185,12 +160,12 @@ class MyEmpire(unittest.TestCase, Connector):
                 found = True
         self.assertTrue( found )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_get_invite_friend_url(self):
         url = self.sitter.empire.get_invite_friend_url()['referral_url']
         self.assertTrue( re.match("https?://(us1|pt)\.lacunaexpanse\.com/#referral=[\w-]{36}", url) )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_get_species_templates(self):
         tmpls = self.sitter.empire.get_species_templates()
         ok = True
@@ -201,17 +176,17 @@ class MyEmpire(unittest.TestCase, Connector):
                 ok = False
         self.assertTrue( ok )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_invite_friend(self):
         self.sitter.empire.invite_friend("flurble123456@mailinator.com", "Come join me TEST")
         self.assertTrue( True )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_redeem_essentia_code(self):
         with self.assertRaises( err.ServerError ):
             self.sitter.empire.redeem_essentia_code("56cc359e-8ba7-4db7-b608-8cb861c65510")
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_redefine_species_limits(self):
         limits = self.sitter.empire.redefine_species_limits()
         ok = True
@@ -219,7 +194,7 @@ class MyEmpire(unittest.TestCase, Connector):
             ok = False
         self.assertTrue( ok )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_redefine_species(self):
         old_stats = self.sitter.empire.view_species_stats()
         cand_desc = old_stats.description + "1"
@@ -230,7 +205,7 @@ class MyEmpire(unittest.TestCase, Connector):
         self.assertTrue( old_stats.description != new_stats.description )
         self.assertEqual( cand_desc, new_stats.description )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_set_status_message(self):
         old_msg = self.sitter.empire.status_message
         cand_msg = old_msg + "1"
@@ -239,12 +214,12 @@ class MyEmpire(unittest.TestCase, Connector):
         self.assertTrue( old_msg != new_msg )
         self.assertEqual( cand_msg, new_msg )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_view_public_profile(self):
         pro = self.sitter.empire.view_public_profile( self.sitter.empire.id )
         self.assertEqual( pro.id, self.sitter.empire.id )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_view_boosts(self):
         boosts = self.sitter.empire.view_boosts()
         ok = True
@@ -252,12 +227,12 @@ class MyEmpire(unittest.TestCase, Connector):
             ok = False
         self.assertTrue( ok )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_view_profile_with_sitter(self):
         with self.assertRaises( err.ServerError ):
             profile = self.sitter.empire.view_profile()
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_view_profile_with_real(self):
         profile = self.real.empire.view_profile()
         ok = True
@@ -265,7 +240,7 @@ class MyEmpire(unittest.TestCase, Connector):
             ok = False
         self.assertTrue( ok )
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_view_species_stats(self):
         stats = self.sitter.empire.view_species_stats()
         ok = True

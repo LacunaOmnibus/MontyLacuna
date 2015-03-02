@@ -147,7 +147,7 @@ class Script:
         don't pertain, so they will automatically be omitted from the help 
         (-h) blurb.
     """
-    def __init__(self, parser, section:str = 'sitter'):
+    def __init__(self, parser, section:str = 'sitter', testargs:dict = {}):
         self.bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 
         if not hasattr(self, 'guest') or not self.guest:
@@ -184,8 +184,17 @@ class Script:
                 print( "Skipping argparse because of existence of ", i )
                 self.skip_argparse[ i ]()
 
-        self.args = parser.parse_args()
-        self.connect()
+        if testargs:
+            ### testargs dict was passed in to impersonate command-line args; 
+            ### we're most likely running a unit test.  Accept that dict and 
+            ### don't involve Argparse.
+            testargs['quiet'] = True
+            testargs['verbose'] = 0
+            self.set_testargs(testargs)
+        else:
+            self.args = parser.parse_args()
+            self.connect()
+
 
         ### Set log level
         if not self.args.quiet:
@@ -206,6 +215,11 @@ class Script:
             help        = "Print program version and quit"
         )
 
+    def set_testargs( self, a:dict ):
+        self.client = a['client']
+        self.args = argparse.Namespace()
+        for k, v in a.items():
+            setattr(self.args, k, v)
 
     def connect( self ):
         """ Connects to the game server, using the config_file and 

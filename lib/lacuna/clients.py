@@ -85,9 +85,10 @@ class Guest(lacuna.bc.SubClass):
             self.config_file    = config_file
             self.config_section = config_section
             self.config         = self._read_config_file( config_file )
-            for i in self.config_list:
-                if i in self.config[config_section]:
-                    setattr( self, i, self.config[config_section][i] )
+            ### Allow arbitrary attributes to be set from the config file; 
+            ### these are going to be used by test scripts.
+            for i in self.config[config_section]:
+                setattr( self, i, self.config[config_section][i] )
         elif config_file and not os.path.isfile(config_file):
             raise EnvironmentError("Config file "+config_file+": no such file or directory.")
         else:

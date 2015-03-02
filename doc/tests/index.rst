@@ -55,6 +55,10 @@ for nose; the test module filename has to actually begin with ``test_``.
 
 Individual test suites can be run individually; see the docs on each below.
 
+Creating script tests
+---------------------
+See :ref:`creating_script_tests`
+
 TBD
 ---
 I haven't figured out how to run multiple test scripts yet, since only one 
@@ -63,7 +67,6 @@ of my test scripts.
 
 List of existing test suites
 ----------------------------
-
 .. toctree::
    :maxdepth: 2
 

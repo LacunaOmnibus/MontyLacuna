@@ -7,7 +7,7 @@ class ExcavsReport(lacuna.binutils.libbin.Script):
     """ Gather and report on spy data by planet.
     """
 
-    def __init__(self):
+    def __init__(self, testargs:dict = {}):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = 'Displays a report on excavators.',
@@ -22,12 +22,18 @@ class ExcavsReport(lacuna.binutils.libbin.Script):
             action      = 'store_true',
             help        = "Spy data is cached so you can run the report multiple times, quickly.  But if you run it once, then go assign or train spies and want a new report that includes those spies, you'll want fresh, not cached data.  In that case, pass this option on the second run."
         )
-        super().__init__(parser)
+        super().__init__(parser, testargs = testargs)
         self.header_written = False
         self.planet         = ''
         self.archmin        = ''
         self.planets        = []
-        self.excavator_data = {}    # keyed off planet name, value is sorted list of excavators.
+
+        ### keyed off planet name, value is sorted list of excavators.  An 
+        ### attribute 'distance' is being added to each value.  This will be 
+        ### the cartesian distance between self.planet and the planet hosting 
+        ### the excavator.
+        self.excavator_data = {}
+
         if self.args.fresh:
             self.client.cache_clear( 'my_colonies' )
             self.client.cache_clear( 'my_excavators' )
