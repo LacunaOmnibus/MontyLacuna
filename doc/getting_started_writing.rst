@@ -18,11 +18,8 @@ You can run them as you like, but you'll need to edit each one to make sense
 to you, and be careful; some of the example code in those scripts can be 
 damaging to your empire.
 
-Those scripts really exist as examples of how to use MontyLacuna.
-
-Unit Tests
-----------
-See :ref:`tests_index`.
+Those scripts really exist as examples of how to use MontyLacuna.  If you want 
+to see how something is done, check there first.
 
 Tell Your Script Where MontyLacuna Lives
 ----------------------------------------
@@ -173,6 +170,9 @@ Check on just one building of a certain type
 
     print( "This space port's ID is {}.".format(sp.id) )
 
+Adding Unit Tests
+-----------------
+See :ref:`tests_index`.
     
 Script Parent Class
 ~~~~~~~~~~~~~~~~~~~

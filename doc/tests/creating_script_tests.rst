@@ -99,11 +99,13 @@ config file, instead of having to edit each specific test script.
 So, if your test script needs to work as sitter against a specific planet, eg 
 ``Earth``, you can add a ``planet`` setting to your config file's 
 ``test_sitter`` section::
+
     planet: Earth
 
 In your test script, there's an attribute named ``sitter`` that's an object  
 representing your sitter login.  That object now has an attribute named 
 ``planet``::
+
     print( self.sitter.planet ) # Earth
 
 Different tests will have different config file requirements; you'll need to 
