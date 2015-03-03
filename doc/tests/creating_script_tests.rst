@@ -3,8 +3,9 @@
 
 Creating Script Tests
 =====================
-If you create a script, you may well want to ("you are encouraged to") add a 
-test suite to go along with the script, to safeguard against regressions.
+If you create a new MontyLacuna script, you may well want to ("you are 
+encouraged to") add a test suite to go along with the script, to safeguard 
+against regressions.
 
 The instructions here assume that your script follows the conventions used by 
 the existing MontyLacuna scripts:
@@ -16,7 +17,7 @@ the existing MontyLacuna scripts:
 The problem with testing MontyLacuna scripts is that most of these scripts 
 expect arguments to be passed along on the command line, and your test scripts 
 won't be doing that.  So we'll need to make some minor code changes to allow 
-your test suite to work without passing arguments.
+your test suite to work without passing arguments at the command line.
 
 Modify your library
 -------------------
@@ -67,12 +68,13 @@ that the script allows, and also pass along the client you're using::
 
     args = {
         'client': self.sitter,
-        'fresh': False,
+        'fresh': True,              # don't want to be reading from and old
+                                    # cache for tests.
         'name': self.sitter.planet  # more on this below
     }
     self.er = lib.ExcavsReport( testargs = args )
 
-At this point, ``self.er`` is an ExcavsReport object that I can happily test 
+At this point, ``self.er`` is an ExcavsReport object that we can happily test 
 against.  Your tests can create multiple ExcavsReport (or whatever) objects 
 with different faked-up command-line arguments so you can test all the 
 argument combinations you wish.
@@ -103,5 +105,9 @@ In your test script, there's an attribute named ``sitter`` that's an object
 representing your sitter login.  That object now has an attribute named 
 ``planet``::
     print( self.sitter.planet ) # Earth
+
+Different tests will have different config file requirements; you'll need to 
+check the documentation for each individual test to see all of the config file 
+edits you'll need to make.
 
 

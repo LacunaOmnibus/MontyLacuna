@@ -8,6 +8,8 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
+- Move set_planet() and set_planets() into lib_binutils.py, and remove from the individual 
+  script libraries
 - update.py should somehow check to see if an update is needed.
   - Save the latest commit hash from github and see if that's changed when update.py is 
     run?

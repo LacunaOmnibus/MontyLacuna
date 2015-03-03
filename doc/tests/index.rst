@@ -6,17 +6,21 @@ Unit Tests
 
 Existing tests
 --------------
+You're generally going to be better off running tests individually instead of 
+trying to run all of them at once.
+
 .. toctree::
     :maxdepth: 1
 
     empire
     excavs_report
+    send_excavs
 
 Running all tests
 -----------------
 To run all tests, use ``nose``::
 
-    >>> nosetests
+    $ nosetests
 
 This requires that you've installed nose first (``pip install nose``).  
 
@@ -36,17 +40,4 @@ Individual test suites can be run individually; see the docs on each below.
 Creating script tests
 ---------------------
 See :ref:`creating_script_tests`
-
-TBD
----
-I haven't figured out how to run multiple test scripts yet, since only one 
-exists.  But I'm assuming there's some sort of test harness that will run all 
-of my test scripts.
-
-List of existing test suites
-----------------------------
-.. toctree::
-   :maxdepth: 2
-
-   empire
 

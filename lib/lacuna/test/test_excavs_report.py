@@ -27,7 +27,7 @@ class TestExcavsReport(unittest.TestCase, conn.Connector):
         args = {
             'client': self.sitter,
             'name': self.sitter.planet,
-            'fresh': False,
+            'fresh': True,
         }
         self.er = lib.ExcavsReport( testargs = args )
 

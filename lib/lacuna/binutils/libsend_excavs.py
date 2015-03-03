@@ -82,7 +82,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         version         '0.1'
     """
 
-    def __init__(self):
+    def __init__( self, testargs:dict = {} ):
         self.version = '0.1'
         parser = argparse.ArgumentParser(
             description = '''
@@ -118,7 +118,7 @@ class SendExcavs(lacuna.binutils.libbin.Script):
             default     = 99,
             help        = "Will send this number of excavators, maximum.  If you want to send an even number of excavators to, say, p11 and p12 planets, run this program once for each type, with a max_send of 10 for each."
         )
-        super().__init__(parser)
+        super().__init__( parser, testargs = testargs )
 
         self.ally           = None
         self.ally_members   = []
@@ -175,7 +175,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self.client.user_logger.debug( "Getting usable excav count." )
         self.set_excav_count()
 
-
     def get_ready_excavators(self):
         """ Returns the number of excavators onsite that have completed building
         """
@@ -188,7 +187,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 excavs_built.append(i)
         return len(excavs_built)
 
-
     def note_travelling_excavators(self):
         """ Makes a note of any planets we currently have excavators travelling 
         to.  Returns nothing, but sets self.travelling.
@@ -199,7 +197,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         for s in travelling_ships:
             if s.type == 'excavator':
                 self.travelling[ s.to.id ] = 1
-
 
     def set_excav_count( self ):
         """ Set the number of excavs this planet is able to send right now.
@@ -220,10 +217,9 @@ class SendExcavs(lacuna.binutils.libbin.Script):
 
         ### Last, if the user specified a max_send, make sure we're limiting 
         ### the number to send this run to the user's spec.
-        if self.num_excavs > self.args.max_send:
+        if int(self.num_excavs) > int(self.args.max_send):
             self.client.user_logger.debug( "We have more excavators ready than you wanted to use - limiting to your spec." )
             self.num_excavs = self.args.max_send
-
 
     def get_map_square( self ):
         """ Gets a list of stars in the next map square.  
@@ -231,14 +227,14 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         ``self.ring`` keeps track of which map square is "next", so no arguments 
         need be passed in.
 
-        Returns a list of lacuna.map.Star objects.
+        Returns a list of :class:`lacuna.map.Star` objects.
         """
         ### Get the next cell in our current ring.  If we've exhausted our 
         ### current ring, move out one more ring.
         req_cell = self.ring.get_next_cell()
         if not req_cell:
             next_offset = self.ring.ring_offset + 1
-            if next_offset > self.args.max_ring:
+            if next_offset > int(self.args.max_ring):
                 self.client.user_logger.debug( "We've checked out to our max_ring; done." )
                 self.num_excavs = 0
                 return
@@ -289,7 +285,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 return True
         return False
 
-
     def send_excavs_to_bodies_orbiting(self, stars:list):
         """ Sends excavators to the bodies around each star in a list, provided 
         each body is of one of the requested types.
@@ -322,7 +317,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 return cnt
         return cnt
 
-    
     def system_contains_hostiles( self, star ):
         """ Checks if any of the planets orbiting a star is owned by a hostile 
         empire.
@@ -345,8 +339,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
                 return True
         return False
             
-
-
     def send_excavs_to_bodies(self, star, bodies:list):
         """ Tries to send an excavator to each body in a list of bodies, 
         provided each body is of one of the requested types.
@@ -543,6 +535,10 @@ class Ring():   # by Josten's
         self.center_cell_number     = int( (self.total_cells + 1) / 2 )
         self.next_cell_number       = 0
         self.cell_size              = 54
+
+        if self.ring_offset == 0:
+            self.cells_this_ring = 1
+
         self._set_center_location() 
         self._set_center_cell()
 
@@ -609,7 +605,7 @@ class Ring():   # by Josten's
             return False
 
     def _gen_next_cell(self):
-        for i in range(1, self.total_cells + 1):
+        for i in range(1, self.total_cells):
             self.this_cell_number = i
             col, row, point = self._get_cell_location( i )
             yield Cell( point, self.cell_size )
