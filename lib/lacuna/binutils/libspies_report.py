@@ -130,27 +130,15 @@ class SpiesReport(lacuna.binutils.libbin.Script):
             help        = "What format do you want your output?  Choices include 'cli' and 'csv'.  Defaults to 'cli'."
         )
         super().__init__(parser)
-
         self.header_written = False
         self.planet         = ''
         self.intmin         = ''
         self.planets        = []
         self.spy_data       = {}    # planet_id => PlanetSpyData object
-
         if self.args.fresh:
             self.client.cache_clear( 'spies' )
+        self.set_planets()
 
-        self._set_planets()
-
-    def _set_planets( self ):
-        self.client.cache_on( 'my_colonies', 3600 )
-        self.planets = []
-        if self.args.name == 'all':
-            for colname in sorted( self.client.empire.colony_names.keys() ):
-                self.planets.append(colname)
-        else:
-            self.planets = [self.args.name]
-        self.client.cache_off()
 
     def set_planet( self, pname:str ):
         """ Meant to be called by the user to set which planet we're working on 

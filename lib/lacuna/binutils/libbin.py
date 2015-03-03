@@ -215,6 +215,23 @@ class Script:
             help        = "Print program version and quit"
         )
 
+    def set_planets(self):
+        """ Set the list of working planets based on command-line arguments.
+
+        Required argument:
+            - name -- The name of the single planet to work on, or 'all' to
+              include all of my planets.
+
+        Sets ``self.planets`` to a list of planet name strings.
+        """
+        self.client.cache_on( 'my_colonies', 3600 )
+        if self.args.name == 'all':
+            for colname in self.client.empire.colony_names.keys():
+                self.planets.append(colname)
+        else:
+            self.planets = [ self.args.name ]
+        self.client.cache_off()
+
     def set_testargs( self, a:dict ):
         self.client = a['client']
         self.args = argparse.Namespace()

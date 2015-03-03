@@ -90,22 +90,9 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         self.planets        = []
         self.port           = ''
         self.ship_data      = {}    # planet_id => PlanetShipData object
-
         if self.args.fresh:
             self.client.cache_clear( 'ships_report' )
-
-        self._set_planets()
-
-
-    def _set_planets( self ):
-        self.client.cache_on( 'my_colonies', 3600 )
-        self.planets = []
-        if self.args.name == 'all':
-            for colname in sorted( self.client.empire.colony_names.keys() ):
-                self.planets.append(colname)
-        else:
-            self.planets = [self.args.name]
-        self.client.cache_off()
+        self.set_planets()
 
 
     def _set_spaceport( self ):
@@ -114,7 +101,6 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         self.port = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
         if not self.port:
             raise RuntimeError("You don't have any working space ports!.")
-
 
     def set_planet( self, pname:str ):
         """ Meant to be called by the user to set which planet we're working on 
@@ -127,7 +113,6 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         self.planet = self.client.get_body_byname( pname )
         self._set_spaceport()
         self.client.cache_off()
-
 
     def gather_ship_data( self ):
         """ Get data on all of the ships at our planet that have the 
@@ -145,12 +130,10 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         self.ship_data[ self.planet.name ] = PlanetShipData( self.planet.name, ships_summary, ships_detail, docks_avail, docks_ttl )
         self.client.cache_off()
 
-
     def display_full_report( self ):
         """ Displays the report on whatever planet or planets was specified by 
         the user.
         """
         for pname in sorted( self.ship_data.keys() ):
             self.ship_data[pname].display_report( self )
-
 

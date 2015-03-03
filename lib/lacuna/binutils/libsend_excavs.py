@@ -128,20 +128,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self.planets        = []
         self.travelling     = {}
 
-        self._set_planets()
         self._set_alliance()
+        self.set_planets()
         self.map = self.client.get_map()
 
     
-    def _set_planets(self):
-        self.client.cache_on( 'my_colonies', 3600 )
-        if self.args.name == 'all':
-            for colname in self.client.empire.colony_names.keys():
-                self.planets.append(colname)
-        else:
-            self.planets = [ self.args.name ]
-        self.client.cache_off()
-
     def _set_alliance(self):
         self.client.user_logger.debug( "Getting user's alliance." )
         self.ally = self.client.get_my_alliance()

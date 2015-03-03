@@ -126,28 +126,15 @@ class TrainSpies(lacuna.binutils.libbin.Script):
             help        = "Clears the cache from previous runs to ensure you're seeing fresh data.  Normally not needed for this script."
         )
         super().__init__(parser)
-
         self.planets    = []
         self.planet     = None      # set by set_planet
         self.intmin     = None      # set by set_intmin
         self.locations  = {}        # body name: Location object.  Set by _populate_locations()
-
         if self.args.fresh:
             self.client.cache_clear( 'my_colonies' )
             self.client.cache_clear( 'train_spies' )
+        self.set_planets()
 
-        self._set_planets()
-
-
-    def _set_planets( self ):
-        self.client.cache_on( 'my_colonies', 3600 )
-        self.planets = []
-        if self.args.name == 'all':
-            for colname in sorted( self.client.empire.colony_names.keys() ):
-                self.planets.append(colname)
-        else:
-            self.planets = [self.args.name]
-        self.client.cache_off()
 
     def _locate_spies( self ):
         """ Finds all Idle spies based on self.planet, and organizes them by their 

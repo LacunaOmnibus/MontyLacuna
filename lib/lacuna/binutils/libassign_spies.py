@@ -86,21 +86,11 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         self.trans  = lacuna.types.Translator()
         self.task   = self.trans.translate_assgtype( self.args.task )
         self.doing  = self.trans.translate_assgtype( self.args.doing )
-        self._set_planets()
+        self.set_planets()
 
         if self.args.fresh:
             self.client.cache_clear( 'my_colonies' )
             self.client.cache_clear( 'spies' )
-
-    def _set_planets( self ):
-        self.client.cache_on( 'my_colonies', 3600 )
-        self.planets = []
-        if self.args.name == 'all':
-            for colname in sorted( self.client.empire.colony_names.keys() ):
-                self.planets.append(colname)
-        else:
-            self.planets = [self.args.name]
-        self.client.cache_off()
 
     def _set_intmin( self ):
         """ Finds the Intelligence Ministry on the current planet.  Must be 
