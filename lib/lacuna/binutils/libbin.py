@@ -71,31 +71,35 @@ class Script:
                     the ``__init__`` method of the inheriting child class, but 
                     if it's not set there, this will default to '0.1'
 
-        If you need this attribute, you'll need to create it before calling 
-        ``super().__init()``:
-
         skip_argparse   Dispatch table of arguments that bypass 
                         argparse.parse_args().  See below.
+
+                        If you want to include this attribute, you'll need to 
+                        create it before calling super().__init().  See below.
+
 
     skip_argparse
         Sometimes you want to give the user the ability to pass an option that 
         will obviate the need for specifying any other options.
         
         For example, in the ``search_archmin.py script``, the ``--list`` (or 
-        ``-l``) arguments are meant to simply display a list of all ores the 
-        user can chose from, as a convenience.  In this case, there would be 
-        no need for the user to supply the otherwise required ``planet`` or 
-        ``glyph`` positional arguments; we just want to display a list of ores 
-        and quit.
+        ``-l``) argument displays a list of all ores the user can chose from, 
+        and then quits.
+        
+        In this case, there's no need for the user to supply the otherwise 
+        required ``planet`` or ``glyph`` positional arguments.
+
+        So we're going to set up a dispatch table containing the arguments 
+        that will override the need for the other, usually-required arguments.
 
         The dispatch table's keys are the string args (in our example case, 
         both ``-l`` and ``--list`` would be keys), and the values are the 
-        methods to call.  Remember to omit the parens -- you're specifying the 
-        method, not calling it.  In our example, both of our keys would have 
-        the same value of ``self.list_ores``.  We'd then need to create a 
-        ``list_ores()`` method that would be called when either of those 
-        options are specified.
-
+        methods to call when those arguments are encountered.
+        
+        Remember to omit the parens -- you're specifying the method, not 
+        calling it.  In our example, both of our keys have the same value of 
+        ``self.list_ores``.
+        
         eg::
 
             def list_ores( self ):
@@ -108,15 +112,21 @@ class Script:
 
             super().__init__(parser)
 
-        Usually, you're going to want your script to end after the method 
-        specified in the dispatch table is run, but it's possible that some 
-        circumstance could crop up where that's not the case.  So if you do 
-        want the script to quit after your method is run, be sure to include a 
-        ``quit()`` call in your method.
+        We'd now need to create a ``list_ores()`` method that would be called 
+        when either of those options are specified.
+
+        Most of the time you're going to want your script to end after the 
+        method specified in the dispatch table is run, so be sure to include a 
+        ``quit()`` call at the end::
+
+            def list_ores( self ):
+                for i in list_of_ore_names:
+                    print( i )
+                quit()
 
     Parser
         The argparse parser handed in will have the following optional 
-        arguments:
+        arguments already set up:
 
             - ``--file``
             - ``--section``
@@ -261,7 +271,8 @@ class Script:
             quit()
 
     def summarize( self, string:str, mymax:int ):
-        """ If a string is too long, shortens it and adds ellipsis.
+        """ Summarizes a string, usually for inclusion in a report section 
+        with a fixed width.
 
         Arguments:
             - string -- Some string to summarize

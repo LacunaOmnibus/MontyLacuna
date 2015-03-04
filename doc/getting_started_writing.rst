@@ -7,20 +7,6 @@ Getting Started Writing Scripts
 Be sure to follow the :ref:`getting_started_running` section first.  This 
 section assumes that you're already to the point of being able to run scripts.
 
-Test Scripts
-------------
-There are a bunch of test scripts in ``INSTALLDIR/t/``.  These are not meant 
-to be attached to any test harness, and almost all the code in those scripts 
-has been commented out.
-
-Instead of automated unit tests, those are to-be-run-manually test scripts.  
-You can run them as you like, but you'll need to edit each one to make sense 
-to you, and be careful; some of the example code in those scripts can be 
-damaging to your empire.
-
-Those scripts really exist as examples of how to use MontyLacuna.  If you want 
-to see how something is done, check there first.
-
 Tell Your Script Where MontyLacuna Lives
 ----------------------------------------
 When you create a new script, you'll need to tell that script how to find the 
@@ -82,26 +68,47 @@ https://us1.lacunaexpanse.com/api/
 
 Method Calling
 --------------
-Almost all MontyLacuna methods require positional, not named, arguments.  
-
-The method documentation includes argument names and types for clarity of what 
+Almost all MontyLacuna methods require positional, not named, arguments.  The 
+method documentation includes argument names and types for clarity of what 
 data types need to be sent, not as an indication that named arguments can be 
 used.
 
 eg The documentation for the Embassy's ``accept_invite`` method looks like 
-this:
+this::
 
-    **accept_invite(invite_id: int, message: str='', \**kwargs)**
+    accept_invite( invite_id:int, message:str='', **kwargs )
 
 So, to call ``accept_invite``, you'd do something like this::
 
-    embassy.accept_invite( 12345, "Come join my alliance!" )
+    embassy.accept_invite( 12345, "Thanks for inviting me!" )
 
-But you wouldn't do this, because the invite_id has to come before the 
-message::
+But you wouldn't do this, because the ``invite_id`` has to come before the 
+``message``::
 
     ### GONNNNG!  Don't do this.
-    embassy.accept_invite( message = "Come join my alliance!", invite_id = 12345 )
+    embassy.accept_invite( message = "Thanks for inviting me!", invite_id = 12345 )
+
+Test Scripts
+------------
+There are a bunch of test scripts in ``INSTALLDIR/t/``.  These are not meant 
+to be attached to any test harness, and almost all the code in those scripts 
+has been commented out.
+
+Instead of automated unit tests, those are to-be-run-manually test scripts.  
+You can run them as you like, but you'll need to edit each one to make sense 
+to you, and be careful; some of the example code in those scripts can be 
+damaging to your empire.
+
+Those scripts really exist as examples of how to use MontyLacuna.  If you want 
+to see how something is done, check there first.
+
+Adding Unit Tests
+-----------------
+Along with the more example-y test scripts noted above, there are also some 
+suites of unit tests.  If you want to create a script to be added to 
+MontyLacuna, you'll want to include a unit test suite to go along with your 
+script.  See :ref:`tests_index`.
+    
 
 Example Snippets
 ----------------
@@ -170,10 +177,6 @@ Check on just one building of a certain type
 
     print( "This space port's ID is {}.".format(sp.id) )
 
-Adding Unit Tests
------------------
-See :ref:`tests_index`.
-    
 Script Parent Class
 ~~~~~~~~~~~~~~~~~~~
 To create a script similar to the scripts that come bundled with MontyLacuna, 
