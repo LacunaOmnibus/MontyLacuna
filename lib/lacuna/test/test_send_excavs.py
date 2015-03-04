@@ -9,7 +9,7 @@ import lacuna, lacuna.exceptions as err, lacuna.binutils.libsend_excavs as lib
 import lacuna.test.connector as conn
 
 class TestBodyCache(unittest.TestCase):
-    """ Test the lacuna.binutils.libsend_excavs.BodyCache class.
+    """ Test the :class:`lacuna.binutils.libsend_excavs.BodyCache` class.
     """
     def test_bad(self):
         bc = lib.BodyCache()
@@ -26,12 +26,16 @@ class TestBodyCache(unittest.TestCase):
         self.assertTrue( bc.is_bad("bad_planet_2") )
 
 class TestPoint(unittest.TestCase):
+    """ Test the :class:`lacuna.binutils.libsend_excavs.Point` class.
+    """
     def test(self):
         p = lib.Point( 10, 20 )
         self.assertEqual( p.x, 10 )
         self.assertEqual( p.y, 20 )
 
 class TestCell(unittest.TestCase):
+    """ Test the :class:`lacuna.binutils.libsend_excavs.Cell` class.
+    """
     def test(self):
         p = lib.Point( 0, 0 )
         c = lib.Cell( p, 54 )
@@ -55,16 +59,21 @@ class TestCell(unittest.TestCase):
 
 #@unittest.skip("skipping Send Excavs")
 class TestSendExcavs(unittest.TestCase, conn.Connector):
-    """ Test the lacuna.binutils.libsend_excavs.SendExcavs class.
+    """ Test the :class:`lacuna.binutils.libsend_excavs.SendExcavs` class.
 
-    Requirements
-        - test_sitter config section must contain the following
-          - planet: <name of a planet with an archmin>.  'all' is also acceptable, provided all of your planets have arch mins on them.
-          - send_excavs_ptypes: A single planet type, eg "p35"
-          - send_excavs_max_ring: How far out to extend from the center cell, eg "1"
-          - send_excavs_max_send: How many excavs to send, eg "1"
-        - The empire you're connecting as must be a member of an alliance
-          - A single member alliance that just contains your own empire is fine.
+    Requirements:
+
+    - test_sitter config section must contain the following
+
+      - test_planet: <name of a planet with an archmin>.  'all' is also acceptable, provided all of your planets have arch mins on them.
+      - send_excavs_ptypes: A single planet type, eg "p35"
+      - send_excavs_max_ring: How far out to extend from the center cell, eg "1"
+      - send_excavs_max_send: How many excavs to send, eg "1"
+
+    - The empire you're connecting as must be a member of an alliance
+
+      - A single member alliance that just contains your own empire is fine.
+
     """
     @classmethod
     def setUpClass(self):

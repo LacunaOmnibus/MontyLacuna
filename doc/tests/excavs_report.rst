@@ -7,13 +7,11 @@ This test suite tests ``bin/excavs_report.py``.
 
 Setup
 -----
-Make sure your config file has both ``test_sitter`` and ``test_real`` 
-sections, both pointed at your account on PT.
+Make sure your config file has a ``test_sitter`` section, pointed at your 
+account on PT.
 
-Add a ``planet`` setting to your config file's ``test_sitter`` section.  This 
-``planet`` setting will be the planet name you want to send to the excavator 
-report script to test, so it can either be the name of a planet or the word 
-``all``.
+That config section must contain the following settings:
+    - test_planet = *Name of one of your planets to run against*
 
 Running the tests
 -----------------
@@ -21,3 +19,8 @@ From MontyLacuna's root, run these tests with::
 
     >>> python lib/lacuna/test/test_excavs_report.py
 
+Test module documentation
+-------------------------
+.. autoclass:: lacuna.test.test_excavs_report.TestExcavsReport
+   :members:
+   :show-inheritance:

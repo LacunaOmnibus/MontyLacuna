@@ -12,12 +12,14 @@ import lacuna.test.connector as conn
 
 #@unittest.skip("skipping Excavs Report")
 class TestExcavsReport(unittest.TestCase, conn.Connector):
-    """ Test the lacuna.binutils.libexcavs_report.ExcavsReport class.
+    """ Test the :class:`lacuna.binutils.libexcavs_report.ExcavsReport` class.
 
     Requirements:
-        test_sitter must contain
-            test_planet: <name of a planet with an archmin>.  'all' is also 
-            acceptable, provided all of your planets have arch mins on them.
+
+    - test_sitter must contain
+
+      - test_planet: <name of a planet with an archmin>.  'all' is also 
+        acceptable, provided all of your planets have arch mins on them.
 
     """
     @classmethod

@@ -10,13 +10,13 @@ import lacuna.test.connector as conn
 
 #@unittest.skip("skipping")
 class TestAssignSpies(unittest.TestCase, conn.Connector):
-    """ Test the lacuna.binutils.libassign_spies.AssignSpies class.
+    """ Test the :class:`lacuna.binutils.libassign_spies.AssignSpies` class.
 
-    Requirements
-        - test_sitter config section must contain the following
-          - test_planet: <name of a planet>
-          - This planet must have at least one Idle spy who will be assigned to 
-            run counter espionage.
+    Requirements:
+    - test_sitter config section must contain the following
+
+      - test_planet: <name of a planet>.  This planet must have at least one 
+        Idle spy who will be assigned to run counter espionage.
 
     Running this test is going to produce a captcha that must be solved, so it's 
     not something you can run unattended.
