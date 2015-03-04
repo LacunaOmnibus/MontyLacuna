@@ -72,7 +72,7 @@ class TestSendExcavs(unittest.TestCase, conn.Connector):
 
         args = {
             'client': self.sitter,
-            'name': self.sitter.planet,
+            'name': self.sitter.test_planet,
             'ptypes': self.sitter.send_excavs_ptypes,
             'max_ring': self.sitter.send_excavs_max_ring,
             'max_send': self.sitter.send_excavs_max_send,

@@ -10,7 +10,7 @@ class AssignSpies(lacuna.binutils.libbin.Script):
     before this.
     """
 
-    def __init__(self):
+    def __init__( self, testargs:dict = {} ):
         self.version = '0.1'
 
         ### The planet that the spies need to be on to perform the requested 
@@ -21,10 +21,6 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         ### So self.args.on is not guaranteed to be a planet name, but self.on 
         ### is.
         self.on = ''
-
-        ### The maximum number of spies from any given planet to assign to the 
-        ### task.  If --topoff is not sent, this stays at 90 (the max).
-        self.max = 90
 
         parser = argparse.ArgumentParser(
             description = 'Assigns spies to a new task, in bulk.',
@@ -78,7 +74,13 @@ class AssignSpies(lacuna.binutils.libbin.Script):
                             'intel', 'offense_rating', 'defense_rating', ],
             help        = "Assign spies with the highest score in this attribute.  Defaults to 'level'."
         )
-        super().__init__(parser)
+        super().__init__( parser, testargs = testargs )
+
+        self.max        = 90
+        self.planet     = None
+        self.intmin     = None
+        self.all_spies  = []
+        self.spies      = []
 
         ### self.args.(task|doing) will be the string that the user entered, 
         ### but self.(task|doing) will be the translation of that string.  You 
@@ -202,8 +204,10 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         spies_to_assign = self.spies[0:self.max]
         for s in spies_to_assign:
             try:
-                self.intmin.assign_spy( s.id, self.task )
-                self.client.user_logger.debug( "Assigning spy on {} to {}.".format(self.on, self.args.task) )
+                spy, rslt = self.intmin.assign_spy( s.id, self.task )
+                self.client.user_logger.debug( "Assigning spy {} on {} to {} resulted in {}."
+                    .format(spy.name, self.on, self.args.task, rslt.result)
+                )
                 cnt += 1
             except err.ServerError as e:
                 self.client.user_logger.info( "Spy {} could not be assigned to {} because {}.".format(s.name, self.args.task, e.text) )

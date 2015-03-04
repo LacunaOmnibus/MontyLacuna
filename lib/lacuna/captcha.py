@@ -70,6 +70,9 @@ class Captcha(lacuna.bc.LacunaObject):
         self.tempfile = f.name
         f.write( img_resp.content )
 
+        if hasattr(img_resp, 'connection'):
+            img_resp.connection.close()
+
         local_url = 'file://' + f.name
         found_browser = False
         for b in [ None, 'windows-default', 'macosx', 'safari', 'firefox', 

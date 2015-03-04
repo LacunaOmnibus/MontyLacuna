@@ -16,7 +16,7 @@ class TestExcavsReport(unittest.TestCase, conn.Connector):
 
     Requirements:
         test_sitter must contain
-            planet: <name of a planet with an archmin>.  'all' is also 
+            test_planet: <name of a planet with an archmin>.  'all' is also 
             acceptable, provided all of your planets have arch mins on them.
 
     """
@@ -26,7 +26,7 @@ class TestExcavsReport(unittest.TestCase, conn.Connector):
 
         args = {
             'client': self.sitter,
-            'name': self.sitter.planet,
+            'name': self.sitter.test_planet,
             'fresh': True,
         }
         self.er = lib.ExcavsReport( testargs = args )

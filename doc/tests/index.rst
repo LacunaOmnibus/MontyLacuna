@@ -9,10 +9,21 @@ Existing tests
 You're generally going to be better off running tests individually instead of 
 trying to run all of them at once.
 
+Module tests:
+~~~~~~~~~~~~~
+
 .. toctree::
     :maxdepth: 1
 
     empire
+
+Script tests:
+~~~~~~~~~~~~~
+
+.. toctree::
+    :maxdepth: 1
+
+    assign_spies
     excavs_report
     send_excavs
 
