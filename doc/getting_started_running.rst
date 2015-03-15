@@ -72,6 +72,12 @@ sure that you've got Python 3.  Many systems come with Python 2, not 3, and
 MontyLacuna will not work with Python 2.  Python 3 should be available via 
 your package manager.
 
+If you do already have python installed on your system, and it's version 2, 
+then when you install python version 3, it will probably install the language 
+as ``python3``, not just ``python``.  If that's the case, you're going to need 
+to actually type ``python3`` anywhere the instructions below tell you to type 
+``python``.
+
 .. _inst_monty:
 
 Install MontyLacuna
@@ -109,8 +115,13 @@ the root MontyLacuna folder -  the one you just extracted in the previous step
 - and run the pip installer script::
 
     >>> python bin/get-pip.py
+    (remember to actually type 'python3' instead of 'python' if you're on a 
+    Linux or Mac machine that already had python version 2 installed).
 
 ``pip`` is now installed.
+
+**On a Mac**, pip did get installed, but it was named ``pip3``.  So actually 
+type ``pip3`` instead of ``pip`` for the module installs below.
 
 There are only two Python libraries to install, ``requests`` and ``beaker``, 
 and you install both of them using ``pip`` by typing these two commands one at 
