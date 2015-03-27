@@ -87,6 +87,11 @@ class StationsReport(lacuna.binutils.libbin.Script):
         mystr +=  tmpl.format(  "Ore / hour:",      self.station.ore_hour       )
         mystr +=  tmpl.format(  "Water / hour:",    self.station.water_hour     )
         mystr +=  tmpl.format(  "Energy / hour:",   self.station.energy_hour    )
+        mystr += "\t-=-=-=-\n"
+        mystr +=  tmpl.format(  "Food storage:",     self.station.food_capacity      )
+        mystr +=  tmpl.format(  "Ore storage:",      self.station.ore_capacity       )
+        mystr +=  tmpl.format(  "Water storage:",    self.station.water_capacity     )
+        mystr +=  tmpl.format(  "Energy storage:",   self.station.energy_capacity    )
         return mystr
 
     def _show_res_report( self ):
