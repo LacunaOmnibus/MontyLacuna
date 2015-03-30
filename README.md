@@ -10,6 +10,7 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 ## TBD
 - Add a "total storage" item to the output of the station report so we know how we're 
   looking for BFG usage.
+  - I've done this, but haven't updated any docu.  Do that.
 - If the user does not enter a sitter during config file creation, the sitter 
   section does still get created in the config file, with what is obviously 
   NOT the user's password.
