@@ -6,7 +6,9 @@ Glossary
 
 .. _gloss_std_search_string:
 
-**Standard Search String**
+Standard Search String
+----------------------
+
     Several methods allow you to search for an item by name (a star, an 
     empire, etc).  Some of these methods allow a "search string" instead of a 
     full name.  A search string must be at least three characters long.  All 

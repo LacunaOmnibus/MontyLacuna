@@ -36,25 +36,17 @@ class Stats(lacuna.bc.LacunaObject):
     def alliance_rank( self, sort_by = 'influence desc,population desc', page_number = 1, *args, **kwargs ):
         """ Returns info on current alliance ranks.
 
-        Arguments:
-            - sort_by -- String.  What to sort the returned list on.  Defaults 
-              to "influence desc, population desc".  Permitted values:
-
-              - influence
-              - population
-              - average_empire_size_rank
-              - offense_success_rate_rank
-              - defense_success_rate_rank
-              - dirtiest_rank
-
-            - page_number -- Integer page number to return, 25 alliances per 
-              page.  Defaults to 1.
-
-        Return a tuple:
+        :arg sort_by: What to sort the returned list on.  Defaults to "influence desc, population desc".  Permitted values:
+            *influence*, *population*, *average_empire_size_rank*, *offense_success_rate_rank*, 
+            *defense_success_rate_rank*, *dirtiest_rank*
+        :type sort_by: str
+        :arg page_number: Integer page number to return, 25 alliances per page.  Defaults to 1.
+        :type page_number: int
+        :rtype: tuple
+        :return:
             - alliances -- List of :class:`lacuna.stats.AllianceInfo` objects
             - total_alliances -- Integer count.
             - page_number -- What page we're displaying (defaults to 1)
-
         """
         mylist = []
         for i in kwargs['rslt']['alliances']:
@@ -69,16 +61,14 @@ class Stats(lacuna.bc.LacunaObject):
     def find_alliance_rank( self, sort_by = '', alliance_name = '', *args, **kwargs ):
         """ Finds stats for a specific alliance.
 
-        Arguments:
-            - sort_by -- same options as for alliance_rank()
-            - alliance_name -- Standard TLE search string
+        :arg sort_by: Same as for :meth:`alliance_rank`
+        :type sort_by: str
+        :arg alliance_name: :ref:`gloss_std_search_string`
+        :type alliance_name: str
+        :rtype: list
+        :returns: limited :class:`lacuna.stats.AllianceInfo` objects, containing only the attributes *alliance_id*, *alliance_name*, *page_number*
 
-        Returns list of limited :class:`lacuna.stats.AllianceInfo` objects containing only the attributes:
-            - alliance_id
-            - alliance_name
-            - page_number
-
-        This list will usually contain only a single alliance, but occasionally 
+        The returned list will usually contain only a single alliance, but occasionally 
         more than one alliance will match your passed-in alliance_name.
         """
         mylist = []
@@ -90,17 +80,13 @@ class Stats(lacuna.bc.LacunaObject):
     def empire_rank( self, sort_by = 'empire_size_rank', page_number = 1, *args, **kwargs ):
         """ Find empires sorted by various options.
 
-        Arguments:
-            - sort_by -- how the empires should be sorted.  Defaults to 'empire_size_rank'.
-            - page_number -- which page to return.  Defaults to 1.
+        :arg sort_by: how the empires should be sorted.  Defaults to `empire_size_rank`.  Legal values: *empire_size_rank*, *offense_success_rate_rank*, *defense_success_rate_rank*, *dirtiest_rank*
+        :type sort_by: str
+        :arg page_number: which page to return.  Defaults to 1.
+        :type page_number: int
+        :rtype: tuple
+        :returns:
 
-            sort_by legal values:
-                - empire_size_rank (default)
-                - offense_success_rate_rank
-                - defense_success_rate_rank
-                - dirtiest_rank
-        
-        Returns a tuple:
             - empires -- List of up to 25 :class:`lacuna.stats.EmpireInfo` objects.
             - empire count -- Integer total number of empires in the game.
             - page number -- Integer page we're looking at.  Should be the same 
@@ -119,17 +105,19 @@ class Stats(lacuna.bc.LacunaObject):
     def find_empire_rank( self, sort_by = '', empire_name = '', *args, **kwargs ):
         """ Returns info on specific empires in the ranks.
 
-        Arguments:
-            - sort_by -- String.  See empire_rank()
-            - empire_name -- Standard TLE search string.
+        :arg sort_by: Same as for :meth:`alliance_rank`
+        :type sort_by: str
+
+        :arg empire_name: :ref:`gloss_std_search_string`
+        :type empire_name: str
+        :rtype: list
+        :returns: :class:`lacuna.stats.EmpireInfo`
 
         Keep in mind that this method has the potential of returning multiple 
         empires; an empire_name argument of "inf" will return both "Infinate 
         Ones" and "Infinitus Imperium".
 
         So remember that this is returning is list, not a single object.
-
-        Returns list of :class:`lacuna.stats.EmpireInfo` objects.
         """
         mylist = []
         for i in kwargs['rslt']['empires']:
@@ -140,14 +128,16 @@ class Stats(lacuna.bc.LacunaObject):
     def colony_rank( self, sort_by = 'population_rank', *args, **kwargs ):
         """ Find colonies ranked by population
 
-        Arguments:
-            - Realistically, this accepts no arguments.
-            - sort_by -- Optional string.  The API docs list this as a passable 
-              argument, but the default of 'population_rank' is also the only 
-              legal value.  Passing any unrecognized value falls back to using 
-              the default.  So pretend this method takes no arguments.
+        :arg sort_by: What to sort the return by
+        :type sort_by: str
+        :rtype: list
+        :returns: :class:`lacuna.stats.ColonyInfo`
 
-        Returns a list of :class:`lacuna.stats.ColonyInfo` objects.
+        Realistically, this accepts no arguments.  The API docs list `sort_by` 
+        as a passable argument, but the default value of `population_rank` is 
+        the only legal value for that argument.  Passing any other value is not 
+        legal, and falls back to using the default.  So pretend this method 
+        takes no arguments.
         """
         mylist = []
         for i in kwargs['rslt']['colonies']:
@@ -158,12 +148,10 @@ class Stats(lacuna.bc.LacunaObject):
     def spy_rank( self, sort_by = 'level_rank', *args, **kwargs ):
         """ List spies ranked by various options.
 
-        Accepts optional 'sort_by' argument.  Legal values are:
-            - level_rank
-            - success_rate_rank
-            - dirtiest_rank
-
-        Returns a list of :class:`lacuna.stats.SpyInfo` objects.
+        :arg sort_by: What to sort the return by.  Legal values: *level_rank*, *success_rate_rank*, *dirtiest_rank*
+        :type sort_by: optional str
+        :rtype: list
+        :returns: :class:`lacuna.stats.SpyInfo`
 
         **CAUTION**
         This method has been included only for API completeness; you should 
