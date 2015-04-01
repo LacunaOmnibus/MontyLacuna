@@ -1,0 +1,20 @@
+
+Sphinx tips that I keep having to look up:
+
+.. note::
+   This is a note.
+
+.. warning::
+   This is a warning.
+
+.. tip::
+   This is a tip.
+
+
+INCLUDING AN IMAGE
+    .. |my_image_tag| image:: images/some_image.png
+
+    (...time passes...)
+
+    Here's an image to illustrate stuff:
+        |my_image_tag|
