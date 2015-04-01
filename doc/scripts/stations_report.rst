@@ -11,17 +11,30 @@ You specify the report type you want and the station name.  If you want to run
 the report against all stations in your empire, specify ``all`` as the station 
 name.
 
-The ``All Resources`` and ``Low Resources`` reports' output both look the 
-same::
+The ``All Resources`` report is the default.  So you can specify it with 
+``--report allres``, but you could skip the ``--report`` argument altogether 
+to get the same result
 
     >>> python bin/stations_report --report allres "ISS"
+    or just...
+    >>> python bin/stations_report  "ISS"
     ISS (1, 1) - Zone 0|0
             Food / hour:           10,123,456
             Ore / hour:            10,123,456
             Water / hour:          10,123,456
             Energy / hour:         10,123,456
+            -=-=-=-
+            Food max:             212,857,400
+            Ore max:              212,857,400
+            Water max:            212,857,400
+            Energy max:           212,857,400
     ---------------
     Reported on 1 total station.
+
+The ``Low Resources`` report only produces output if the station is low on 
+resources, and is meant to be run against ``all`` stations.  When it does 
+produce output, it looks the same as the ``All Resources`` report.  See the 
+longer explanation below.
 
 The ``Influence`` report::
 
