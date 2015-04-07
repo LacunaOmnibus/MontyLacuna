@@ -25,12 +25,11 @@ class SubClass():
     def __init__(self, client, mydict:dict):
         """ Create a lacuna.bc.SubClass object.
 
-        Arguments:
-            - client -- A :class:`lacuna.clients.Member` or 
-              :class:`lacuna.clients.Guest` object
-            - mydict -- A dict whose keys will become attributes of the 
-              SubClass object (and whose values will become the values of those
-              attributes).
+        Args:
+            client (lacuna.clients.Member): The client used for any connections
+            mydict (dict): The keys will become attributes of the 
+                SubClass object, and the values will become the values of those
+                attributes.
         """
         self.client = client
         for k, v in mydict.items():
@@ -83,15 +82,15 @@ class SubClass():
     def tle2time(self, tle_time:str):
         """ Converts a TLE datetime string into a datetime object.
 
-        Arguments:
-            - tle_datetime -- A TLE datetime string
-                            eg "30 11 2014 21:40:31 +0000"
-                            The "+0000" is meant to be the timezone, but in TLE 
-                            datetime strings this is always "+0000" (UTC), so 
-                            this method is ignoring it, and it could actually 
-                            be omitted from the passed-in string.
+        Args:
+            tle_datetime (str): eg ``30 11 2014 21:40:31 +0000``.
+                The "+0000" is meant to be the timezone, but in TLE 
+                datetime strings this is always "+0000" (UTC), so 
+                this method is ignoring it, and it could actually 
+                be omitted from the passed-in string.
 
-        Returns a `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_ object
+        Returns:
+            datetime.datetime: A `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_ object
         """
         m = re.match("^(\d\d) (\d\d) (\d{4}) (\d\d):(\d\d):(\d\d)", tle_time)
         if m:
@@ -109,10 +108,10 @@ class SubClass():
     def sec2time(self, secs:int):
         """ Converts seconds into days, hours, minutes, and seconds.
 
-        Arguments:
-            - seconds -- Integer seconds to convert
-
-        Returns a :class:`lacuna.bc.ElapsedTime` object.
+        Args:
+            seconds (int): seconds to convert
+        Returns:
+            lacuna.bc.ElapsedTime: Your passed-in seconds converted.
         """
         ### http://stackoverflow.com/questions/4048651/python-function-to-convert-seconds-into-minutes-hours-and-days
         ###
@@ -138,18 +137,7 @@ class LacunaObject(SubClass):
         Update the Empire object's attributes with fresh status data with 
         each decorated method call.
 
-        The status block can show up in various places for different methods;
-        it's just not consistent.  Some candidates::
-
-            rv = {
-                status: { here }
-                status: {
-                    empire: { or here }
-                }
-                empire: { or even here }
-            }
-
-        Attributes::
+        Object Attributes::
 
             essentia                8462.5,
             has_new_messages        '1769',
@@ -169,6 +157,18 @@ class LacunaObject(SubClass):
             planet_names            {   "Mercury": 12345,
                                         "Venus": 12346,
                                         etc     },
+
+        The status block can show up in various places for different methods;
+        it's just not consistent.  Some candidates::
+
+            rv = {
+                status: { here }
+                status: {
+                    empire: { or here }
+                }
+                empire: { or even here }
+            }
+
 
         """
         @functools.wraps(func)
@@ -339,11 +339,12 @@ class ElapsedTime():
     know off the top of your head how long that really is, you can pass those 
     seconds to ElapsedTime.
 
-    Attributes (all are integers):
-        - days
-        - hours
-        - minutes
-        - seconds
+    Object Attributes (all are integers)::
+
+        days
+        hours
+        minutes
+        seconds
 
     This is awfully close to a `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_ object, except:
         - The attributes are plural: "days" instead of "day"

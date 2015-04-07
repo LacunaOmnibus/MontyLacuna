@@ -7,7 +7,7 @@ class Glyph(lacuna.bc.SubClass):
 class OwnedGlyph(Glyph):
     """ A single specific glyph on your planet.
 
-    Attributes::
+    Object Attributes::
 
         id          12345,
         name        "bauxite"
@@ -22,7 +22,7 @@ class OwnedGlyph(Glyph):
 class AssembledArtifact(Glyph):
     """ One or more artifacts created by assembling glyphs.
 
-    Attributes::
+    Object Attributes::
         
         item_name   "Halls of Vrbansk"
         quantity    10

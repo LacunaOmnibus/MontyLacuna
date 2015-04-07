@@ -7,7 +7,7 @@ class Plan(lacuna.bc.SubClass):
 class OwnedPlan(Plan):
     """ Returned from viewing plans you currently own, as in your PCC.
 
-    Attributes::
+    Object Attributes::
 
         name                "Volcano"
         plan_type           "Permanent_Volcano"
@@ -29,7 +29,7 @@ class PotentialSSPlan(Plan):
     """ Returned from viewing plans you can build, as in your Space Station Lab
     (A).
 
-    Attributes::
+    Object Attributes::
 
         name                "Interstellar Broadcast System"
         type                "ibs"
@@ -41,7 +41,7 @@ class LevelCosts(Plan):
     """ Not a plan at all, but the costs associated with creating a plan at your 
     SS Lab.
 
-    Attributes::
+    Object Attributes::
 
         level   1,
         food    10000

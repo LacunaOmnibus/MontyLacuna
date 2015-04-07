@@ -31,11 +31,16 @@ Several methods allow a `tags` argument.  Valid message tags:
     def view_inbox( self, opts:dict = {}, *args, **kwargs ):
         """ View the messages in your empire's inbox, 25 messages per page.
         
-        Arguments:
-            - opts -- Optional dict containing:
+        Args:
+            opts (optional dict): With the keys::
 
-              - page_number -- Integer page number to return.  Defaults to 1.
-              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
+              'page_number': Integer page number to return.  Defaults to 1.
+              'tags': List of :ref:`tags <valid_msg_tags>` to filter by.
+        Returns:
+            tuple: Inbox::
+
+                - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+                - count -- Integer total number of messages in the inbox
 
         The tags you passed in are joined with 'or'.  So for this call, you'll 
         get back both excavator and correspondence messages::
@@ -47,10 +52,6 @@ Several methods allow a `tags` argument.  Valid message tags:
 
         Sending an invalid tag will not throw an exception, it'll merely 
         return 0 messages.
-
-        Returns a tuple:
-            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
-            - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
 
@@ -59,15 +60,17 @@ Several methods allow a `tags` argument.  Valid message tags:
     def view_archived( self, opts:dict = {}, *args, **kwargs ):
         """  View archived messages.
         
-        Arguments:
-            - opts -- Optional dict containing:
+        Args:
+            opts (optional dict): containing::
 
-              - page_number -- Integer page number to return.  Defaults to 1.
-              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
+              'page_number': Integer page number to return.  Defaults to 1.
+              'tags': List of :ref:`tags <valid_msg_tags>` to filter by.
 
-        Returns a tuple:
-            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
-            - count -- Integer total number of messages in the inbox
+        Returns:
+            tuple: Archived messages
+
+                - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+                - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
 
@@ -75,31 +78,35 @@ Several methods allow a `tags` argument.  Valid message tags:
     def view_sent( self, opts:dict = {}, *args, **kwargs ):
         """  View sent messages.
         
-        Arguments:
-            - opts -- Optional dict containing:
+        Args:
+            opts (optional dict): containing:
 
-              - page_number -- Integer page number to return.  Defaults to 1.
-              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
+              'page_number': Integer page number to return.  Defaults to 1.
+              'tags': List of :ref:`tags <valid_msg_tags>` to filter by.
 
-        Returns a tuple:
-            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
-            - count -- Integer total number of messages in the inbox
+        Returns:
+            tuple: Sent messages
+
+                - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+                - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def view_trashed( self, opts:dict = {}, *args, **kwargs ):
         """  View trashed messages.
-        
-        Arguments:
-            - opts -- Optional dict containing:
 
-              - page_number -- Integer page number to return.  Defaults to 1.
-              - tags -- List of :ref:`tags <valid_msg_tags>` to filter by.
+        Args:
+            opts (optional dict): containing:
 
-        Returns a tuple:
-            - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
-            - count -- Integer total number of messages in the inbox
+              'page_number': Integer page number to return.  Defaults to 1.
+              'tags': List of :ref:`tags <valid_msg_tags>` to filter by.
+
+        Returns:
+            tuple: Sent messages
+
+                - messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+                - count -- Integer total number of messages in the inbox
         """
         return self._set_mail_return( kwargs['rslt'] )
 
@@ -107,9 +114,10 @@ Several methods allow a `tags` argument.  Valid message tags:
     def read_message( self, message_id:int, *args, **kwargs ):
         """ Reads a message.
 
-        Requires a single integer message ID.
-        
-        Returns an :class:`lacuna.inbox.Message` object.
+        Args:
+            message_id (int): ID of the message to read
+        Returns:
+            lacuna.inbox.Message: The requested message
         """
         return Message(self.client, kwargs['rslt']['message'])
 
@@ -118,12 +126,13 @@ Several methods allow a `tags` argument.  Valid message tags:
     def archive_messages( self, messages:list, *args, **kwargs ):
         """ Archives one or more messages.
 
-        Arguments:
-            - messages -- a list of message IDs
+        Args:
+            messages (list of ints): IDs of messages to archive
+        Returns:
+            dict: containing the keys::
 
-        Returns a dict containing the keys:
-            - success -- [ List of message IDs that were archived successfully ]
-            - failure -- [ List of message IDs that failed to be archived ]
+                'success': [ List of message IDs that were archived successfully ]
+                'failure': [ List of message IDs that failed to be archived ]
 
         There's no indication why any given message movement succeeded or 
         failed, just that they did.
@@ -135,12 +144,13 @@ Several methods allow a `tags` argument.  Valid message tags:
     def trash_messages( self, messages:list, *args, **kwargs ):
         """ Trashes (deletes) one or more messages.
 
-        Arguments:
-            - messages -- a list of message IDs
+        Args:
+            messages (list of ints): IDs of messages to delete
+        Returns:
+            dict: containing the keys::
 
-        Returns a dict containing the keys:
-            - success -- [ List of message IDs that were archived successfully ]
-            - failure -- [ List of message IDs that failed to be archived ]
+            'success': [ List of message IDs that were archived successfully ]
+            'failure': [ List of message IDs that failed to be archived ]
 
         There's no indication why any given message movement succeeded or 
         failed, just that they did.
@@ -153,28 +163,31 @@ Several methods allow a `tags` argument.  Valid message tags:
     def send_message( self, recipients:str, subject:str, body:str, options:dict = {}, *args, **kwargs ):
         """ Sends an in-game mail message.
 
-        Arguments:
-            - recipients -- Comma-separated string containing names of empires to receive your message.  NOT A LIST, a comma-separated string.
-            - subject -- < 100 chars in length.  Cannot contain any of &, @, ;, <, or > Unicode is OK (I've mailed myself a snowman).
-            - body -- Limit of 200,000 characters.  < and > are disallowed.  Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it's very sensitive, and you're not informed what word it's triggering on.  "crap" (along with other pretty mild language) is considered profane.
-            - options -- Dict containing:
+        Args:
+            recipients (str): Comma-separated string containing names of empires 
+                to receive your message.  NOT A LIST, a comma-separated string.
+            subject (str): < 100 chars in length.  Cannot contain any of &, @, 
+                ;, <, or > Unicode is OK (I've mailed myself a snowman).
+            body (str): Limit of 200,000 characters.  < and > are disallowed.  
+                Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it's very sensitive, and you're not informed what word it's triggering on.  "crap" (along with other pretty mild language) is considered profane.
+            options (dict): containing::
 
-              - in_reply_to -- A message ID to reply to.
-              - forward -- A message ID to forward.
+              'in_reply_to': A message ID to reply to.
+              'forward': A message ID to forward.
+
+        Returns:
+            dict: containing::
+
+                'sent': ['tmtowtdi', 'Infinate Ones'],
+                'unknown': ['no_such_player'] 
+            
+        The return value is not documented by the API, so what's shown above is 
+        the result of a few tests here.  Looks right.
 
         When forwarding a message, any attachments from the message ID we're 
         forwarding are automatically attached to our current message.  However, 
         the body of the forwarded message is NOT included in the current 
         message.  If you want that to happen, you'll need to do it yourself.
-
-        Returns a dict with (afaict) two keys (the rv is not documented, so 
-        I'm just reporting the results of a few tests here).
-
-        For a message sent to recipients "tmtowtdi,Infinate 
-        Ones,no_such_player"::
-
-            {   'sent': ['tmtowtdi', 'Infinate Ones'],
-                'unknown': ['no_such_player']   }
 
         **Message Formatting**
             This is rarely-enough used and the docs are wordy enough that it's not worth
@@ -187,7 +200,7 @@ Several methods allow a `tags` argument.  Valid message tags:
 class MessageSummary(lacuna.bc.SubClass):
     """ This is the message summary you get when viewing a list of messages.
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         subject         "Vaxaslim",
@@ -219,7 +232,7 @@ class Message(MessageSummary):
     Note that the sender's name is listed in the TLE documentation using the 
     key "from", but we're instead using "from_name".
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         from_name       "Dr. Stephen T. Colbert DFA",

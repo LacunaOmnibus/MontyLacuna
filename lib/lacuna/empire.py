@@ -50,7 +50,7 @@ class Empire(lacuna.bc.LacunaObject):
 class MyEmpire( Empire ):
     """ The Empire object belonging to the current Member's empire.
     
-    Attributes::
+    Object Attributes::
 
         id                      "xxxx",
         rpc_count               321,        # the number of calls made to the server
@@ -122,12 +122,12 @@ class MyEmpire( Empire ):
     def invite_friend( self, email:str, message:str = '', *args, **kwargs ):
         """ Sends email to a friend inviting them to join the game.
 
-        Arguments:
-            - email -- The email address to send the invitation to
-            - message -- An optional personal message to include.
-
-        Raises :class:`lacuna.exceptions.ServerError` 1010 if you have not set 
-        up an email address of your own in your profile.
+        Args:
+            email (str): The email address to send the invitation to
+            message (str):An optional personal message to include.
+        Raises:
+            lacuna.exceptions.ServerError: 1010 if you have not set 
+                up an email address of your own in your profile.
         """
         pass
 
@@ -136,10 +136,11 @@ class MyEmpire( Empire ):
         """ View your own empire's profile.  Requires login with your real, not 
         sitter, password,
 
-        Returns a :class:`lacuna.empire.OwnProfile` object.
-
-        Throws :class:`lacuna.exceptions.ServerError` 1015 ("Sitters cannot 
-        modify preferences") if the user is logged in with their sitter.
+        Returns:
+            lacuna.empire.OwnProfile: Your profile
+        Raises:
+            lacuna.exceptions.ServerError: 1015 ("Sitters cannot 
+                modify preferences") if the user is logged in with their sitter.
         """
         return OwnProfile(self.client, kwargs['rslt']['profile'])
 
@@ -147,10 +148,10 @@ class MyEmpire( Empire ):
     def view_public_profile( self, empire_id:int, *args, **kwargs ):
         """ View public profile info on any empire.
 
-        Arguments:
-            - empire_id -- Integer ID of the empire to view.
-
-        Returns an :class:`lacuna.empire.PublicProfile` object.
+        Args:
+            empire_id (int): ID of the empire to view.
+        Returns:
+            lacuna.empire.PublicProfile: Requested empire's profile
         """
         return PublicProfile(self.client, kwargs['rslt']['profile'])
 
@@ -162,34 +163,34 @@ class MyEmpire( Empire ):
         """ Edit your empire's profile.  Requires that you're logged in with 
         your real, not sitter, password.
 
-        Arguments::
+        Args:
+            profile (dict): With the keys:
 
-            profile     Dict of profile settings with the keys:
-                            description
-                            email
-                            sitter_password
-                            status_message
-                            city
-                            country
-                            notes
-                            skype
-                            player_name
-                            public_medals (list of medal IDs to display)
-                            skip_happiness_warnings
-                            skip_resource_warnings
-                            skip_pollution_warnings
-                            skip_medal_messages
-                            skip_facebook_wall_posts
-                            skip_found_nothing
-                            skip_excavator_resources
-                            skip_excavator_glyph
-                            skip_excavator_plan
-                            skip_spy_recovery
-                            skip_probe_detected
-                            skip_attack_messages
-                            skip_incoming_ships
+                - description
+                - email
+                - sitter_password
+                - status_message
+                - city
+                - country
+                - notes
+                - skype
+                - player_name
+                - public_medals (list of medal IDs to display)
+                - skip_happiness_warnings
+                - skip_resource_warnings
+                - skip_pollution_warnings
+                - skip_medal_messages
+                - skip_facebook_wall_posts
+                - skip_found_nothing
+                - skip_excavator_resources
+                - skip_excavator_glyph
+                - skip_excavator_plan
+                - skip_spy_recovery
+                - skip_probe_detected
+                - skip_attack_messages
+                - skip_incoming_ships
 
-                The skip_* keys all require 1 for "on" or 0 for "off".
+        The skip_* keys are booleans, and require 1 for "on" or 0 for "off".
         """
         pass
 
@@ -198,9 +199,9 @@ class MyEmpire( Empire ):
     def change_password( self, password:str, confirm:str, *args, **kwargs ):
         """ Changes your full password.
 
-        Arguments:
-            - password -- String; the desired new password
-            - confirm -- Must be the same string as 'password'
+        Args:
+            password (str): the desired new password
+            confirm (str): the same string as 'password'
         """
         self.client.password = password
 
@@ -208,11 +209,10 @@ class MyEmpire( Empire ):
     def find( self, name_segment:str, *args, **kwargs ):
         """ Find an empire by name.
 
-        Arguments:
-            - name_segment -- Standard TLE search string.  See 
-              :ref:`the glossary <gloss_std_search_string>`.
-
-        Returns a list of :class:`lacuna.empire.FoundEmpire` objects.
+        Args::
+            name_segment (str): :ref:`Standard TLE search string <gloss_std_search_string>`.
+        Returns:
+            lacuna.empire.FoundEmpire: list
         """
         mylist = []
         for i in kwargs['rslt']['empires']:
@@ -224,8 +224,8 @@ class MyEmpire( Empire ):
     def set_status_message( self, message:str, *args, **kwargs ):
         """ Sets your empire status message.
 
-        Arguments:
-            - message -- The message to set as your empire's profile's status.
+        Args:
+            message (str): The message to set as your empire's profile's status.
         """
         self.status_message = message
         pass
@@ -234,7 +234,8 @@ class MyEmpire( Empire ):
     def view_boosts( self, *args, **kwargs ):
         """ Shows your current boosts and their expiration dates.
         
-        Returns an :class:`lacuna.empire.Boosts` object.
+        Returns:
+            lacuna.empire.Boosts: Current boosts
         """
         return Boosts( self.client, kwargs['rslt']['boosts'] )
 
@@ -286,10 +287,6 @@ class MyEmpire( Empire ):
         """ Spends 5 E to set a +50% spy training boost for one week. """
         pass
 
-    ### Commenting this out because, right now, disable_self_destruct() does 
-    ### not work, server side.  It's a known problem.  Being able to turn on 
-    ### the suicide button but not being able to turn it back off again is 
-    ### fraught.
     #@lacuna.bc.LacunaObject.set_empire_status
     #@lacuna.bc.LacunaObject.call_member_meth
     def enable_self_destruct( self, *args, **kwargs ):
@@ -304,8 +301,10 @@ class MyEmpire( Empire ):
         could not find an admin.  If that were to happen, your empire would be 
         permanently deleted.
 
-        Since you can't turn it back off again, this method has been disabled.  
-        Calling it simply complains and then immediately quits your script.
+        :meth:`disable_self_destruct` appears to be working again, but I'm 
+        leaving this method disabled anyway.  If you're making a complete 
+        client using this module, see me about getting this fixed, but I tend 
+        to doubt that's going to happen.
         """
         print( "Please don't ever call this." )
         quit()
@@ -323,18 +322,17 @@ class MyEmpire( Empire ):
     def redeem_essentia_code( self, code: str, *args, **kwargs ):
         """ Redeems an essentia code.
 
-        Arguments:
-            - code -- An essentia code uuid, eg 
-              ``56cc359e-8ba7-4db7-b608-8cb861c65510``
+        Args:
+            code (str): An essentia code uuid, eg ``56cc359e-8ba7-4db7-b608-8cb861c65510``
+        Raises:
+            lacuna.exception.ServerError: 1010 if you try to redeem 
+                a code that's already been redeemed.  The example code above is such 
+                an already-redeemed code; you can use that to test the exception.
 
         Essentia codes can be obtained by purchasing essentia, or sometimes by 
         admins during contests.  Each code can only be used once, so if you have 
         one, don't share it with anybody; if they use it, the E represented by 
         that code will be gone.
-
-        Raises :class:`lacuna.exception.ServerError` 1010 if you try to redeem 
-        a code that's already been redeemed.  The example code above is such 
-        an already-redeemed code; you can use that to test the exception.
         """
         pass
 
@@ -343,14 +341,15 @@ class MyEmpire( Empire ):
     def redefine_species_limits( self, *args, **kwargs ):
         """ Returns the limits to be imposed if you redefine your species.
 
-        Returns a dict::
+        Returns:
+            dict: species limits::
 
-            'can':              1,
-            'essentia_cost':    100,
-            'max_orbit':        3,
-            'min_growth':       1,
-            'min_orbit':        3,
-            'reason':           None,
+                'can':              1,
+                'essentia_cost':    100,
+                'max_orbit':        3,
+                'min_growth':       1,
+                'min_orbit':        3,
+                'reason':           None,
 
         ``can`` will be 0 if the user currently cannot redefine.
         If ``can`` is 0, ``reason`` will contain a string explaining why not.  
@@ -363,31 +362,33 @@ class MyEmpire( Empire ):
     def redefine_species( self, params: dict, *args, **kwargs ):
         """ Actually does the deed of redefining a player's species for 100 E.
 
-        Arguments:
-            - params -- Dict of species settings:
-                - name -- String name of the species (required)
-                - description -- String
-                - min_orbit -- Integer 1-7 inclusive
-                - max_orbit -- Integer 1-7 inclusive.  Must be >= min_orbit.
-                - manufacturing_affinity -- Integer 1-7 inclusive.
-                - deception_affinity -- Integer 1-7 inclusive.
-                - research_affinity -- Integer 1-7 inclusive.
-                - management_affinity -- Integer 1-7 inclusive.
-                - farming_affinity -- Integer 1-7 inclusive.
-                - mining_affinity -- Integer 1-7 inclusive.
-                - science_affinity -- Integer 1-7 inclusive.
-                - environmental_affinity -- Integer 1-7 inclusive.
-                - political_affinity -- Integer 1-7 inclusive.
-                - trade_affinity -- Integer 1-7 inclusive.
-                - growth_affinity -- Integer 1-7 inclusive.
+        Args:
+            params (dict): species settings::
+
+                'name': String name of the species (required)
+                'description': String
+                'min_orbit': Integer 1-7 inclusive
+                'max_orbit': Integer 1-7 inclusive.  Must be >= min_orbit.
+                'manufacturing_affinity': Integer 1-7 inclusive.
+                'deception_affinity': Integer 1-7 inclusive.
+                'research_affinity': Integer 1-7 inclusive.
+                'management_affinity': Integer 1-7 inclusive.
+                'farming_affinity': Integer 1-7 inclusive.
+                'mining_affinity': Integer 1-7 inclusive.
+                'science_affinity': Integer 1-7 inclusive.
+                'environmental_affinity': Integer 1-7 inclusive.
+                'political_affinity': Integer 1-7 inclusive.
+                'trade_affinity': Integer 1-7 inclusive.
+                'growth_affinity': Integer 1-7 inclusive.
         """
         pass
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def view_species_stats( self, *args, **kwargs ):
-        """ Returns information about your empire's species.
+        """ Get information about your empire's species.
         
-        Returns a single :class:`lacuna.empire.Species` object.
+        Returns:
+            lacuna.empire.Species: Your species' info
         """
         return Species(self.client, kwargs['rslt']['species'])
 
@@ -396,7 +397,8 @@ class MyEmpire( Empire ):
         """ Get the species templates that are presented to a new player upon 
         initial species creation (Average, Warmonger, Resilient, Viral, etc).
         
-        Returns a list of :class:`lacuna.empire.SpeciesTemplate` objects.
+        Returns:
+            lacuna.empire.SpeciesTemplate: list of templates
         """
         mylist = []
         for i in kwargs['rslt']:
@@ -407,7 +409,7 @@ class MyEmpire( Empire ):
 class Species(lacuna.bc.SubClass):
     """ The attributes associated with an empire's species.
 
-    Attributes::
+    Object Attributes::
 
         name                     "Human",
         description              "The descendants of Earth.",
@@ -447,7 +449,7 @@ class SpeciesTemplate(lacuna.bc.SubClass):
     These are the presets presented to a new player in the process of setting 
     up a new empire.
 
-    Attributes::
+    Object Attributes::
 
         name                        "Average", 
         description                 "A race of average intellect, and weak constitution.',
@@ -472,7 +474,7 @@ class OwnProfile(lacuna.bc.SubClass):
     """ This is the user's own profile info.  Another empire's public profile 
     will contain less data.
 
-    Attributes::
+    Object Attributes::
 
         description                  "description goes here",
         status_message               "status message goes here",
@@ -509,7 +511,7 @@ class OwnProfile(lacuna.bc.SubClass):
 class PublicProfile(lacuna.bc.SubClass):
     """ This is the public profile of any empire.
 
-    Attributes::
+    Object Attributes::
 
         id                      "empire-id-goes-here",
         name                    "Lacuna Expanse Corp",
@@ -539,7 +541,7 @@ class PublicProfile(lacuna.bc.SubClass):
 
 class FoundEmpire(lacuna.bc.SubClass):
     """ 
-    Attributes::
+    Object Attributes::
 
         id      Integer ID of the empire
         name    String name of the empire
@@ -548,7 +550,7 @@ class FoundEmpire(lacuna.bc.SubClass):
 class OwningEmpire(lacuna.bc.SubClass):
     """ An empire that owns a given body.
 
-    Attributes::
+    Object Attributes::
 
         id                  Integer ID of the empire
         name                String name of the empire
@@ -558,7 +560,7 @@ class OwningEmpire(lacuna.bc.SubClass):
 
 class Boosts(lacuna.bc.SubClass):
     """ 
-    Attributes::
+    Object Attributes::
 
         food            "01 31 2010 13:09:05 +0600",
         ore             "01 31 2010 13:09:05 +0600",

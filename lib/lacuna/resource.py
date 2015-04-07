@@ -6,7 +6,7 @@ import lacuna.body
 class PlanetaryResource(lacuna.bc.SubClass):
     """ Base class for resource classes.
 
-    Attributes::
+    Object Attributes::
 
         all_foods       List of all foods in the game
         all_ores        List of all ores in the game
@@ -123,7 +123,7 @@ class PlanetaryResource(lacuna.bc.SubClass):
 class PlanetaryFood(PlanetaryResource):
     """ The food being produced and currently stored.
 
-    Attributes::
+    Object Attributes::
 
         algae_hour      24,     # amount being produced
         algae           322,    # amount being stored
@@ -137,7 +137,7 @@ class PlanetaryFood(PlanetaryResource):
 class PlanetaryOre(PlanetaryResource):
     """ The ore being produced and currently stored.
 
-    Attributes::
+    Object Attributes::
 
         anthracite_hour     24,
         anthracite          322,
@@ -151,7 +151,7 @@ class PlanetaryOre(PlanetaryResource):
 class StoredResources(PlanetaryResource):
     """ The resources stored on this planet.
 
-    Attributes::
+    Object Attributes::
 
         water:      100,
         anthracite: 200,
@@ -162,7 +162,7 @@ class StoredResources(PlanetaryResource):
 class AvailableOre(PlanetaryResource):
     """ The ore available on the planet.  Varies by planet type.
 
-    Attributes::
+    Object Attributes::
 
         anthracite: 200,
         bauxite:    300,
@@ -173,7 +173,7 @@ class AvailableOre(PlanetaryResource):
 class BuildCost(PlanetaryResource):
     """ How much it'll cost to build a building
 
-    Attributes::
+    Object Attributes::
 
         food        500,
         water       500,
@@ -187,7 +187,7 @@ class BuildCost(PlanetaryResource):
 class Production(PlanetaryResource):
     """ How much a building produces (or will produce upon build/upgrade)
 
-    Attributes::
+    Object Attributes::
 
         food_hour       1500,
         energy_hour     -144,
@@ -200,7 +200,7 @@ class Production(PlanetaryResource):
 
 class SupplyChain(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         id                      "id-goes-here",
         from_body               lacuna.body.SimpleBody object

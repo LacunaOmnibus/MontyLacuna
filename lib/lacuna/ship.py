@@ -33,7 +33,7 @@ class Ship(lacuna.bc.SubClass):
 class BuildingShip(Ship):
     """ A ship being built (currently in the shipyard queue).
 
-    Attributes::
+    Object Attributes::
 
         id               "1234",
         type             "spy_pod",
@@ -45,7 +45,7 @@ class Excavator(Ship):
     """ These aren't truly ships anymore, they're excavator sites.  The id is 
     the id of the site that's currently being excavated (the site_id).
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         body            lacuna.body.Body object
@@ -67,7 +67,7 @@ class ExistingShip(Ship):
     It's taking up dock space in a spaceport, but it does not appear in a build 
     queue.
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         name            "CS3",
@@ -110,7 +110,7 @@ class FleetShip(Ship):
     """ A FleetShip is an existing docked ship that's ready to be added to a 
     fleet action against a specific target (``spaceport.get_my_fleet_for()``)
 
-    Attributes::
+    Object Attributes::
 
         type                    "sweeper",
         type_human              "Sweeper",
@@ -124,7 +124,7 @@ class FleetShip(Ship):
 class ForeignOrbiting(Ship):
     """ A ship currently orbiting your planet.
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         name            "SS3",
@@ -143,7 +143,7 @@ class IncomingShip(Ship):
     its origin, the level of the spaceport that's looking at the ship, and how 
     high the ship's stealth level is.
 
-    Attributes if the ship is from a friendly empire, or its stealth level is low enough 
+    Object Attributes if the ship is from a friendly empire, or its stealth level is low enough 
     to be seen by your spaceport::
 
         id             "id-goes-here",
@@ -158,7 +158,7 @@ class IncomingShip(Ship):
                             "empire {   "id"    "id-goes-here",
                                         "name"  "Earthlings"    }    }
 
-    Attributes if the ship is from a hostile empire (anyone not in your alliance), and your 
+    Object Attributes if the ship is from a hostile empire (anyone not in your alliance), and your 
     spaceport is not high enough level to see past its stealth, you'll only get::
 
         date_arrives   '24 10 2014 04:35:39 +0000',
@@ -177,7 +177,7 @@ class IncomingToBodyShip(Ship):
     Station, while an IncomingToBodyShip is the much reduced information you 
     can get from a :class:`lacuna.body.MyBody` object.
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         date_arrives    "01 31 2010 13:09:05 +0600",
@@ -190,7 +190,7 @@ class PotentialShip(Ship):
     """ A PotentialShip does not yet exist in any form; this is a ship that is 
     able to be built (returned from a call to shipyard.get_buildable()):
 
-    Attributes::
+    Object Attributes::
 
         can             1,       # can it be built or not
         combat          0,
@@ -217,7 +217,7 @@ class TradeableShip(Ship):
     """ A TradeableShip is an existing docked ship that's ready to be added to 
     a trade as merchandise. (trading.get_ships())
 
-    Attributes::
+    Object Attributes::
 
         id                      1234,
         type                    "smuggler_ship",
@@ -238,7 +238,7 @@ class TradeTransportShip(Ship):
     transport vehicle to add a trade to the Trade Ministry.  
     (trade.get_trade_ships())
 
-    Attributes::
+    Object Attributes::
 
         id                      1234,
         type                    "smuggler_ship",
@@ -266,7 +266,7 @@ class TravellingShip(Ship):
     """ A TravellingShip is a ship owned by your empire, currently in the air
     between two points.
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         type            "probe",
@@ -284,7 +284,7 @@ class UnavailableShip(Ship):
     """ An UnavailableShip is an existing docked ship that's not able to be 
     sent to a specific target for some reason.
 
-    Attributes::
+    Object Attributes::
 
         type                    "sweeper",
         type_human              "Sweeper",
@@ -307,7 +307,7 @@ class ChainShip(Ship):
     """ A ChainShip is owned by your empire and is either on or capable of 
     being added to a Waste Chain or a Supply Chain.
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         type            "scow",

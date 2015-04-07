@@ -88,15 +88,16 @@ class TradeBldg(lacuna.building.MyBuilding):
     def view_my_market( self, page_number:int = 1, *args, **kwargs ):
         """ Shows the trades you currently have offered.
 
-        Arguments:
-            - page_number -- Optional integer page number to view.  25 trades 
-              - shown per page.  Defaults to 1. 
+        Args:
+            page_number (optional int): page number to view.  25 trades 
+                shown per page.  Defaults to 1. 
+        Returns:
+            tuple: representing your trades::
 
-        Returns a tuple:
-            - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
-            - count -- Total number of trades you have up
-            - page_number -- The page that the "trades" list appeared on.  
-              Same value that you passed as an argument, or 1.
+                - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
+                - count -- Total number of trades you have up
+                - page_number -- The page that the "trades" list appeared on.  
+                    Same value that you passed as an argument, or 1.
         """
         mylist = []
         for i in kwargs['rslt']['trades']:
@@ -113,8 +114,8 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Withdraws one of your trades from the market.  If the trade had been 
         on the SST market, refunds your 1 E posting cost.
 
-        Arguments:
-            - trade_id -- Integer ID of the trade to withdraw
+        Args:
+            trade_id (int): ID of the trade to withdraw
         """
         pass
 
@@ -122,28 +123,29 @@ class TradeBldg(lacuna.building.MyBuilding):
     def view_market( self, page_number:int = 1, filter:str = '', *args, **kwargs ):
         """ Shows the trades you currently have offered.
 
-        Arguments:
-            - page_number -- Optional integer page number to view.  25 trades 
-              shown per page.  Defaults to 1.i
-            - filter -- Optional string to narrow down the types of trades 
-              returned.
-              
-              - Valid filters:
-                - energy
-                - food
-                - glyph
-                - ore
-                - plan
-                - prisoner
-                - ship
-                - waste
-                - water 
+        Args:
+            page_number (optional int): page number to view.  25 trades 
+                shown per page.  Defaults to 1.i
+            filter (optional str): narrow down the types of trades 
+                returned.
+        Returns:
+            tuple: Trades on the market::
 
-        Returns a tuple:
-            - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
-            - count -- Total number of trades you have up
-            - page_number -- The page that the "trades" list appeared on.  
-              Same value that you passed as an argument, or 1.
+                - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
+                - count -- Total number of trades you have up
+                - page_number -- The page that the "trades" list appeared on.  
+                    Same value that you passed as an argument, or 1.
+              
+        - Valid values for the ``filter`` argument:
+            - energy
+            - food
+            - glyph
+            - ore
+            - plan
+            - prisoner
+            - ship
+            - waste
+            - water 
         """
         mylist = []
         for i in kwargs['rslt']['trades']:
@@ -182,7 +184,7 @@ class ExistingTrade(lacuna.bc.SubClass):
     """ Trades that exist on either the Trade or SST market, either posted by 
     you or another empire.
 
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         date_offered    "01 31 2010 13:09:05 +0600",
@@ -208,7 +210,7 @@ class ExistingTrade(lacuna.bc.SubClass):
 
 class MercTrade(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         origin          :class:`lacuna.mercenariesguild.MercTradeOrigin` object
         date_offered    "01 31 2010 13:09:05 +0600",
@@ -237,7 +239,7 @@ class MercTrade(lacuna.bc.SubClass):
 
 class MercTradeOrigin(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         body_id         ID of the sending body
         empire_id       ID of the sending empire

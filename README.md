@@ -8,8 +8,30 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
-- see stats.py for how methods should be documented throughout.
 - Ack through everything for "CHECK" and fix.
   - Even if you find no CHECK marks, leave this list item here.  I have a tendency to 
     re-add these marks.
+
+## Docs Fixes
+Except for stats, I'm working in alpha order and recording everything I've checked.
+- stats
+- bc
+- caching
+- body
+- building
+- captcha
+- client
+- empire
+- exceptions
+- glyphs
+- inbox
+- map
+- plan
+- resource
+- ship
+- spy
+- trading
+- types
+
+...That's it for the root.  
 

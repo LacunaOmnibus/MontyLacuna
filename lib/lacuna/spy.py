@@ -4,7 +4,7 @@ import lacuna.building
 
 class Spy(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         id                     "id-goes-here",
         name                   "Jason Bourne",
@@ -50,7 +50,7 @@ class Spy(lacuna.bc.SubClass):
 class Assignment(lacuna.bc.SubClass):
     """ A task that a spy can be assigned to.
 
-    Attributes::
+    Object Attributes::
 
             task        "Idle",
             recovery    0,          # in seconds
@@ -99,7 +99,7 @@ class Assignment(lacuna.bc.SubClass):
 
 class ForeignAgent(Spy):
     """
-    Attributes::
+    Object Attributes::
 
         name                "James Bond",
         level               "20",
@@ -114,7 +114,7 @@ class ForeignAgent(Spy):
 class Merc(Spy):
     """ A spy who's ready to be added as a trade on the Merc's Guild.
 
-    Attributes::
+    Object Attributes::
 
         id      12345
         name    "James Bond",
@@ -124,7 +124,7 @@ class Merc(Spy):
 
 class IntelView(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         maximum             5,
         current             1,
@@ -140,7 +140,7 @@ class IntelView(lacuna.bc.SubClass):
 
 class TrainingCosts(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         food    100,
         water   120,
@@ -158,7 +158,7 @@ class MissionCount(lacuna.bc.SubClass):
     gets to 149 of one type of mission, you should only use him for the other 
     type from then on.
 
-    Attributes::
+    Object Attributes::
 
         offensive   149
         defensive   149
@@ -167,7 +167,7 @@ class MissionCount(lacuna.bc.SubClass):
 
 class MissionResult(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         result          "Failure",
         message_id      "id-goes-here",
@@ -190,7 +190,7 @@ class MissionResult(lacuna.bc.SubClass):
 
 class Prisoner(Spy):
     """
-    Attributes::
+    Object Attributes::
 
         id                  "id-goes-here",
         name                "James Bond",
@@ -204,7 +204,7 @@ class SpyBody(lacuna.bc.SubClass):
     """ A body (planet, space station, etc).  This can be where the spy is 
     currently located or his home base (from which he is controlled).
 
-    Attributes::
+    Object Attributes::
 
         id          id-goes-here",
         body_id     id-goes-here",
@@ -233,7 +233,7 @@ class Training(lacuna.building.MyBuilding):
 
 class TrainingView(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         max_points      2600
         points_per      45

@@ -10,11 +10,13 @@ class Translator():
         """ Translates recognized ore type misspellings into the system ore 
         name.
 
-        Arguments:
-            - type -- String, generally passed in by the user.
-
-        Returns the system ore name associated with the type passed in if it 
-        was recognized.  Otherwise raises KeyError.
+        Args:
+            type (str): The mispeling or tyop to correct.
+        Returns:
+            str: the system ore name associated with the type passed in if it 
+                was recognized.
+        Raises:
+            KeyError: If the passed-in string isn't recognized
 
         Example::
 
@@ -60,17 +62,15 @@ class Translator():
         """ Translates recognized ship type misspellings into the system ship 
         name.
 
-        Arguments:
-            - type -- String, generally passed in by the user.
+        Args:
+            type (str): generally passed in by the user.
 
-        Returns the system ship name associated with the type passed in if it 
-        was recognized.  Otherwise raises 
-        :class:`lacuna.exceptions.NoSuchShipError`.
-
-        Example::
-
-            tr = lacuna.types.Translator()
-            print( tr.translate_shiptype('srcs') )  # 'short_range_colony_ship'
+        Returns:
+            str: the system ship name associated with the type passed in if it 
+                was recognized.
+        Raises:
+            lacuna.exceptions.NoSuchShipError: if the passed-in string was not 
+                recognized.
         """
 
         system = [
@@ -200,16 +200,13 @@ class Translator():
         """ Translates recognized spy assignment misspellings into the system 
         spy assignment name.
 
-        Arguments:
-            - type -- String, generally passed in by the user.
-
-        Returns the system spy assignment name associated with the type passed 
-        in if it was recognized.  Otherwise raises KeyError.
-
-        Example::
-
-            tr = lacuna.types.Translator()
-            print( tr.translate_assgtype('idle') )  # 'Idle'
+        Args:
+            type (str): generally passed in by the user.
+        Returns:
+            str: the system spy assignment name associated with the type passed 
+                in if it was recognized.
+        Raises:
+            KeyError: If the passed-in string was not recognized.
         """
         system = [
             "Idle",

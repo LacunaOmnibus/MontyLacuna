@@ -13,20 +13,23 @@ class Map(lacuna.bc.LacunaObject):
     def get_star_map( self, stars:dict, *args, **kwargs ):
         """ Get a list of stars occupying a region of space.
         
-        Accepts a single dict of arguments containing the keys:
-            - left -- Coordinate
-            - top -- Coordinate
-            - right -- Coordinate
-            - bottom -- Coordinate
+        Args:
+            stars (dict): containing the keys:: 
+
+                'left': Coordinate
+                'top': Coordinate
+                'right': Coordinate
+                'bottom': Coordinate
+        Returns
+            lacuna.map.Star: list of stars
+        Raises:
+            lacuna.exceptions.ServerError: 1003 if your selected area is too 
+                large.
 
         Each coordinate must be an integer within the star map (so >= -1500 
         and <= 1500).  The total area covered by these coordinates must be <= 
         3001 units.  The TLE documentation states 1001 units, but thats old 
         information; the limit has been raised to 3001 units.
-
-        Returns a list of :class:`lacuna.map.Star` objects.
-
-        Raises ServerError 1003 if your selected area is too large.
         """
         mylist = []
         for i in kwargs['rslt']['stars']:
@@ -37,23 +40,24 @@ class Map(lacuna.bc.LacunaObject):
     def get_stars( self, left:int, top:int, right:int, bottom:int, *args, **kwargs ):
         """ Get a list of stars occupying a region of space.
 
-        More or less Deprecated.
-
         This is not officially deprecated, but there's no good reason to use it.  
         get_star_map() is using the newer named arguments calling method, and it 
         allows you a range of 3001 units, whereas this method uses the old 
         positional arguments calling method, and allows a range of only 900 
         units.
 
-        Arguments:
-            - left -- Coordinate
-            - top -- Coordinate
-            - right -- Coordinate
-            - bottom -- Coordinate
+        Args:
+            stars (dict): containing the keys:: 
 
-        Returns a list of :class:`lacuna.map.Star` objects.
-
-        Raises ServerError 1003 if your selected area is too large.
+                'left': Coordinate
+                'top': Coordinate
+                'right': Coordinate
+                'bottom': Coordinate
+        Returns
+            lacuna.map.Star: list of stars
+        Raises:
+            lacuna.exceptions.ServerError: 1003 if your selected area is too 
+                large.
         """
         mylist = []
         for i in kwargs['rslt']['stars']:
@@ -64,11 +68,10 @@ class Map(lacuna.bc.LacunaObject):
     def check_star_for_incoming_probe( self, star_id, *args, **kwargs ):
         """ Check if you have a probe en route to a star.
 
-        Arguments
-            - star_id -- Integer ID of the star to check
-
-        Returns
-            - incoming_probe -- This will be the date of arrival of the incoming probe, or 0 if no probe is on its way.
+        Args:
+            star_id (int): ID of the star to check
+        Returns:
+            str: The date of arrival of the incoming probe, or 0 if no probe is on its way.
         """
         return kwargs['rslt']['incoming_probe'] if 'incoming_probe' in kwargs['rslt'] else 0
 
@@ -76,10 +79,10 @@ class Map(lacuna.bc.LacunaObject):
     def get_star( self, star_id:int, *args, **kwargs ):
         """ Find a star by its ID.
 
-        Arguments:
-            - star_id -- Integer ID of the star
-
-        Returns a :class:`lacuna.map.Star` object.  
+        Args:
+            star_id (int): ID of the star to check
+        Returns:
+            lacuna.map.Star: The requested star
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return(star)
@@ -88,11 +91,12 @@ class Map(lacuna.bc.LacunaObject):
     def get_star_by_name( self, star_name:str, *args, **kwargs ):
         """ Find a star by its name.
 
-        Arguments:
-            - star_name -- String name of the star.  This is NOT a "standard 
-              TLE search string", but the full name of the star.
-
-        Returns a :class:`lacuna.map.Star` object.  
+        Args:
+            star_name (str): Name of the star to check.  This is NOT a 
+                :ref:`Standard TLE search string <gloss_std_search_string>`,
+                but the full name of the star.
+        Returns:
+            lacuna.map.Star: The requested star
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return star
@@ -101,11 +105,11 @@ class Map(lacuna.bc.LacunaObject):
     def get_star_by_xy( self, x:int, y:int, *args, **kwargs ):
         """ Find a star by its x, y coordinates.
 
-        Arguments:
-            - x -- Integer X coordinate
-            - y -- Integer Y coordinate
-
-        Returns a :class:`lacuna.map.Star` object.  
+        Args:
+            x (int): X coordinate
+            y (int): Y coordinate
+        Returns:
+            lacuna.map.Star: The requested star.
         """
         star = Star( self.client, kwargs['rslt']['star'] )
         return star
@@ -114,11 +118,10 @@ class Map(lacuna.bc.LacunaObject):
     def search_stars( self, partial_name:str, *args, **kwargs ):
         """ Return a list of stars matching a string.
 
-        Arguments
-            - search_string -- A standard TLE search string.  See 
-              :ref:`glossary`.
-
-        Returns a list of :class:`lacuna.map.Star` objects.
+        Args:
+            search_string (str): A :ref:`Standard TLE search string <gloss_std_search_string>`
+        Returns:
+            lacuna.map.Star: List of stars
         """
         mylist = []
         for i in kwargs['rslt']['stars']:
@@ -129,10 +132,11 @@ class Map(lacuna.bc.LacunaObject):
     def probe_summary_fissures( self, mydict:dict, *args, **kwargs ):
         """ Provides info on fissures in a zone.
 
-        Requires a single dict argument containing the key:
-            - zone -- '0|0'
-
-        Returns a list of :class:`lacuna.map.Fissure` objects.
+        Args:
+            zone (dict):  This must contain a single key, ``zone``, the value 
+                being the zone you want to search for fissures.
+        Returns:
+            lacuna.map.Fissure: list of fissures
         """
         ### kwargs['rslt']['fissures'] is either a dict
         ### (fissure_id: fissure_dict) OR it points to nothing.  Not an empty 
@@ -151,11 +155,12 @@ class Map(lacuna.bc.LacunaObject):
     def get_orbiting_planet( self, star_name:str, planet_name:str ):
         """ Get the info of any planet you can see in your star map.
 
-        Arguments
-            - star_name -- String name of a star
-            - planet_name -- String name of a planet orbiting that star
+        Args:
+            star_name (str): name of a star
+            planet_name (str): name of a planet orbiting that star
 
-        Returns a :class:`lacuna.body.Body` object
+        Returns:
+            lacuna.body.Body: The requested body object
         """
         my_map = self.client.get_map()
         star = my_map.get_star_by_name(star_name)
@@ -170,7 +175,7 @@ class Map(lacuna.bc.LacunaObject):
 
 class Star(lacuna.bc.SubClass):
     """ 
-    Attributes::
+    Object Attributes::
 
         color       'red',
         id          '12345',
@@ -249,7 +254,7 @@ class StationStar(lacuna.bc.SubClass):
     """ A star in the jurisdiction of a space station, as returned by 
     ``lacuna.buildings.parliament.get_stars_in_jurisdiction()``.
 
-    Attributes::
+    Object Attributes::
 
         name        "Sol",
         color       "yellow",
@@ -261,7 +266,7 @@ class StationStar(lacuna.bc.SubClass):
 
 class Station(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         id          "id-goes-here",
         x           143,
@@ -304,7 +309,7 @@ class Station(lacuna.bc.SubClass):
 
 class Fissure(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         name     "Mercury",
         id       345,

@@ -15,7 +15,7 @@ from lacuna.exceptions import \
 
 class Body(lacuna.bc.LacunaObject):
     """
-    Attributes::
+    Object Attributes::
 
         id              "id-goes-here",
         x               -4,
@@ -288,9 +288,11 @@ class MyBody(Body):
         Unless you're sure you want this and you know why, you don't want this.
         See ``get_building_coords()`` or ``get_buildings_bytype()`` instead.
 
-        Arguments:
-            - classname -- Name of the class of building
-            - building_id -- Integer ID of the building
+        Args:
+            classname (str): Name of the class of building
+            building_id (int): Integer ID of the building
+        Returns:
+            lacuna.buildings.<TYPE>: An object of the requested building type.
         """
         bldg_str = "lacuna.buildings.{}( self.client, self.body_id, id )".format( classname )
         return eval(bldg_str)
@@ -299,15 +301,15 @@ class MyBody(Body):
     def get_building_coords( self, x:int, y:int ):
         """ Given a building's coordinates, returns the object for that building.
 
-        Arguments:
-            - x -- The integer X coordinate on your planet's surface
-            - y -- The integer Y coordinate on your planet's surface
-
-        Returns the building object found on the requested coordinates.  The 
-        class of object returned will vary depending on which building type 
-        exists on those coords.
-
-        Raises NoSuchBuildingError if no building exists on the requested coords.
+        Args:
+            x (int): X coordinate on your planet's surface
+            y (int): Y coordinate on your planet's surface
+        Returns:
+            lacuna.buildings.<BLDG>: the building object found on the requested coordinates.  The 
+            class of object returned will vary depending on which building type 
+            exists on those coords.
+        Raises:
+            lacuna.exceptions.NoSuchBuildingError: if no building exists on the requested coords.
         """
         for bid, bdict in self.buildings_id.items():
             if int(bdict['x']) == x and int(bdict['y']) == y:
@@ -320,31 +322,31 @@ class MyBody(Body):
 
 
     def get_buildings_bytype( self, btype:str, min_level:int = 1, limit:int = 0, efficiency:int = 0 ):
-        """ Get a list of buildings of a specific type and minimum level.
+        """ Get buildings of a specific type and minimum level.
 
-        Arguments:
-            - btype -- The type of building you want.  The type as given must 
-              match *either* the "human name" of the building (eg "Ship Yard", 
-              "Space Port"), or the classname of the building (eg "shipyard", 
-              "spaceport").
-            - min_level -- Integer minimum level of the building to return.  
-              Defaults to 1.
-            - limit -- Integer max number of this building you want returned.  
-              Defaults to 0 (returns all buildings of this type).
-              This method returns a list, even if ``limit`` is set to 1.
-            - efficiency -- Integer minimum efficiency of the buildings to 
-              return.  If you're planning on actually using the buildings, 
-              you'll want to set this to 100.  Defaults to 0.
-
-        Returns a list of the requested buildings.
+        Args:
+            btype (str): The type of building you want.  The type as given must 
+                match *either* the "human name" of the building (eg "Ship Yard", 
+                "Space Port"), or the classname of the building (eg "shipyard", 
+                "spaceport").
+            min_level (int): Minimum level of the building to return.  
+                Defaults to 1.
+            limit (int): Max number of this building you want returned.  
+                Defaults to 0 (returns all buildings of this type).
+            efficiency (int): Minimum efficiency of the buildings to 
+                return.  If you're planning on actually using the buildings, 
+                you'll want to set this to 100.  Defaults to 0.
+        Returns:
+            lacuna.buildings.<TYPE>: list.  *Note* a list is returned even if
+                ``limit`` was set to 1.
+        Raises:
+            lacuna.exceptions.NoSuchBuildingError: if you don't have 
+                any buildings of the requested type and level.
 
         Each building returned will have its ``view()`` method called 
         automatically.  So if you're going to get 10 buildings back, that's 
         10 ``view()`` calls that need to be made, and that's going to slow 
         things down a bit.  So keep that in mind, and turn caching on.
-
-        Raises :class:`lacuna.exceptions.NoSuchBuildingError` if you don't have 
-        any buildings of the requested type and level.
         """
         mylist = []
         for bid in sorted( self.buildings_id.keys() ):  # get the building IDs back in the same order every time - helps with caching.
@@ -363,12 +365,12 @@ class MyBody(Body):
     def get_new_building( self, classname:str ):
         """ Get a "new" building.
 
-        Arguments:
-            - classname -- String name of the class of building to build.  This 
-              must be the classname, *not* the human readable name.  So 
-              "spaceport" rather than "Space Port".
-
-        Returns a lacuna.buildings.<classname> object.
+        Args:
+            classname (str): Name of the class of building to build.  This 
+                must be the classname, *not* the human readable name.  So 
+                "spaceport" rather than "Space Port".
+        Returns:
+            lacuna.buildings.<classname>: A single object.
 
         This is a building that does not exist yet, but which you're getting 
         ready to build.
@@ -410,11 +412,11 @@ class MyBody(Body):
     def repair_list( self, ids_to_repair:list, *args, **kwargs ):
         """ Repairs all buildings indicated by ID in the passed-in list.
 
-        Arguments:
-            - ids_to_repair -- A list of integer IDs of buildings to attempt to 
-              repair.
-
-        Returns a list of :class:`lacuna.building.Building` objects.
+        Args:
+            ids_to_repair (list of ints): IDs of buildings to attempt to 
+                repair.
+        Returns:
+            lacuna.building.Building: list
         """
         pass
         mylist = []
@@ -426,15 +428,14 @@ class MyBody(Body):
     def rearrange_buildings( self, arrangement:list, *args, **kwargs ):
         """ Moves one or more buildings to a new spot on the planet surface.
 
-        Arguments:
-            - arrangement -- A list of dicts describing your new surface arrangement::
+        Args:
+            arrangement (list of dicts): describing your new surface arrangement::
 
-                [ {     'id': integer ID of the building to move,
-                        'x':  integer X coordinate to move to,
-                        'y':  integer y coordinate to move to,  },
-                  { another building to move, same format as above },     ]
-
-        Returns a list of :class:`lacuna.body.SimpleBody` objects.
+                'id': integer ID of the building to move,
+                'x':  integer X coordinate to move to,
+                'y':  integer y coordinate to move to,
+        Returns:
+            lacuna.body.SimpleBody: list
 
         Attempting to make an illegal move (moving a building out of -5..5 
         bounds, moving it on top of another building, moving the PCC at all, 
@@ -462,7 +463,8 @@ class MyBody(Body):
         law with that name and assuming it means that the star is really not 
         controlled by a station.
 
-        Returns a list of :class:`lacuna.alliance.Law` objects.
+        Returns:
+            lacuna.alliance.Law: list
         """
         mylist = [
             lacuna.alliance.Law(self.client, {
@@ -492,7 +494,8 @@ class MyBody(Body):
         checking laws.  So this method filters out the seizure laws and just 
         returns you the good stuff.
 
-        Returns a list of :class:`lacuna.alliance.Law` objects.
+        Returns:
+            lacuna.alliance.Law: list
         """
         laws = self.view_laws()
         interesting_laws = []
@@ -507,19 +510,19 @@ class MyBody(Body):
         """ 
         Get a list of buildings that can be built on the indicated coords.
 
-        Arguments:
-            - x -- Required integer X coordinate where you want to place the building
-            - y -- Required integer Y coordinate where you want to place the building
-            - tag -- Optional string to limit what gets returned.
+        Args:
+            x (int): X coordinate where you want to place the building
+            y (int): Y coordinate where you want to place the building
+            tag (optional str): Limit what gets returned.
+        Returns:
+            lacuna.body.Buildable: list
+        Raises:
+            ServerError: 1009 if the passed coords are illegal for any reason 
+                (already occupied, out-of-bounds, etc)
 
-        See the lacuna.body.Buildable class for a list of valid tags.  Passing 
+        See :class:`lacuna.body.Buildable` for a list of valid tags.  Passing 
         an invalid tag as an argument is not an error, but zero results will be 
         returned.
-
-        Returns a list of :class:`lacuna.body.Buildable` objects.
-
-        Raises ServerError 1009 if the passed coords are illegal for any reason (already 
-        occupied, out-of-bounds, etc)
         """
         mylist = []
         for name, subdict in kwargs['rslt']['buildable'].items():
@@ -529,8 +532,6 @@ class MyBody(Body):
     @lacuna.bc.LacunaObject.call_body_meth
     def rename( self, name:str = '', *args, **kwargs ):
         """ Renames the current planet.
-
-        Returns 1 on success.
         """
         ### For whatever reason, the server returns int 1 on success.  Not a 
         ### dict, just a bare int.
@@ -543,7 +544,7 @@ class MyBody(Body):
 
 class Planet(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         id                  "id-goes-here",
         x                   -4,
@@ -591,7 +592,7 @@ class JurisdictionPlanet(lacuna.bc.SubClass):
     jurisdiction of one of your Space Stations, as returned by 
     ``lacuna.buildings.parliament.get_bodies_for_star_in_jurisdiction()``.
 
-    Attributes::
+    Object Attributes::
 
         id          "id-goes-here" 
         star_id     "star-id-goes-here"
@@ -622,7 +623,7 @@ class JurisdictionPlanet(lacuna.bc.SubClass):
 class Buildable(lacuna.bc.SubClass):
     """ A building to be built on a given plot.
 
-    Attributes::
+    Object Attributes::
 
         name                Wheat Farm
         url                 /wheat
@@ -692,7 +693,7 @@ class Buildable(lacuna.bc.SubClass):
 
 class SpaceStation(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         id          "id-goes-here",
         name        "Earth"
@@ -703,7 +704,7 @@ class SpaceStation(lacuna.bc.SubClass):
 
 class SimpleBody(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         id          "id-goes-here",
         name        "Earth"
@@ -716,7 +717,7 @@ class SimpleBody(lacuna.bc.SubClass):
 class ShipDest(lacuna.bc.SubClass):
     """ Where a ship is travelling to or from.
 
-    Attributes::
+    Object Attributes::
 
         id          "id-goes-here",
         type        "body"
@@ -727,7 +728,7 @@ class ShipDest(lacuna.bc.SubClass):
 class ShipHub(lacuna.bc.SubClass):
     """ The body an orbiting ship is orbiting.
 
-    Attributes::
+    Object Attributes::
         id          "id-goes-here",
         type        "body"
         name        "Earth"

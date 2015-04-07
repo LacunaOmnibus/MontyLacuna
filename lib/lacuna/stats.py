@@ -3,26 +3,27 @@ import lacuna.bc
 
 class Stats(lacuna.bc.LacunaObject):
     """ Provides access to game stats and rankings.
-    blargle flurble blah
     """
 
     path = 'stats'
 
     @lacuna.bc.LacunaObject.call_guest_meth
     def credits( self, *args, **kwargs ):
-        """ Returns the game's credits.
+        """ Show the game's credits.
 
         This method does not require a logged-in client.
 
-        Returns a dict, with the keys being credit types and the values being 
-        a list of people or entities having that credit::
+        Returns:
+            dict: keys are credit types and the values are a 
+            list of people or entities having that credit::
 
-            'Game Support'  [   'Plain Black Corporation / plainblack.com',
-                                'Mary Hoerr',
-                                'United Federation'     ],
-            'Game Design':  [   'JT Smith',
-                                'Jamie Vrbsky'   ],
-            etc
+                'Game Support'  [   'Plain Black Corporation / plainblack.com',
+                                    'Mary Hoerr',
+                                    'United Federation'     ],
+                'Game Design':  [   'JT Smith',
+                                    'Jamie Vrbsky'   ],
+                etc
+
         """
         ### Why the retval from TLE is a list of dicts instead of just a 
         ### single dict is beyond me.  Let's simplify that a bit.
@@ -34,19 +35,20 @@ class Stats(lacuna.bc.LacunaObject):
 
     @lacuna.bc.LacunaObject.call_returning_meth
     def alliance_rank( self, sort_by = 'influence desc,population desc', page_number = 1, *args, **kwargs ):
-        """ Returns info on current alliance ranks.
+        """ Get info on current alliance ranks.
 
-        :arg sort_by: What to sort the returned list on.  Defaults to "influence desc, population desc".  Permitted values:
-            *influence*, *population*, *average_empire_size_rank*, *offense_success_rate_rank*, 
-            *defense_success_rate_rank*, *dirtiest_rank*
-        :type sort_by: str
-        :arg page_number: Integer page number to return, 25 alliances per page.  Defaults to 1.
-        :type page_number: int
-        :rtype: tuple
-        :return:
-            - alliances -- List of :class:`lacuna.stats.AllianceInfo` objects
-            - total_alliances -- Integer count.
-            - page_number -- What page we're displaying (defaults to 1)
+        Args:
+            sort_by (str): What to sort the returned list on.  Defaults to "influence desc, population desc".  Permitted values:
+                *influence*, *population*, *average_empire_size_rank*, *offense_success_rate_rank*, 
+                *defense_success_rate_rank*, *dirtiest_rank*
+            page_number (int): Page number to return, 25 alliances per page.  Defaults to 1.
+
+        Returns:
+            tuple:
+
+                - alliances -- List of :class:`lacuna.stats.AllianceInfo` objects
+                - total_alliances -- Integer count.
+                - page_number -- What page we're displaying (defaults to 1)
         """
         mylist = []
         for i in kwargs['rslt']['alliances']:
@@ -61,12 +63,12 @@ class Stats(lacuna.bc.LacunaObject):
     def find_alliance_rank( self, sort_by = '', alliance_name = '', *args, **kwargs ):
         """ Finds stats for a specific alliance.
 
-        :arg sort_by: Same as for :meth:`alliance_rank`
-        :type sort_by: str
-        :arg alliance_name: :ref:`gloss_std_search_string`
-        :type alliance_name: str
-        :rtype: list
-        :returns: limited :class:`lacuna.stats.AllianceInfo` objects, containing only the attributes *alliance_id*, *alliance_name*, *page_number*
+        Args:
+            sort_by (str): Same as for :meth:`alliance_rank`
+            alliance_name (str): :ref:`gloss_std_search_string`
+
+        Returns:
+            lacuna.stats.AllianceInfo: list
 
         The returned list will usually contain only a single alliance, but occasionally 
         more than one alliance will match your passed-in alliance_name.
@@ -80,17 +82,17 @@ class Stats(lacuna.bc.LacunaObject):
     def empire_rank( self, sort_by = 'empire_size_rank', page_number = 1, *args, **kwargs ):
         """ Find empires sorted by various options.
 
-        :arg sort_by: how the empires should be sorted.  Defaults to `empire_size_rank`.  Legal values: *empire_size_rank*, *offense_success_rate_rank*, *defense_success_rate_rank*, *dirtiest_rank*
-        :type sort_by: str
-        :arg page_number: which page to return.  Defaults to 1.
-        :type page_number: int
-        :rtype: tuple
-        :returns:
+        Args:
+            sort_by (str): how the empires should be sorted.  Defaults to `empire_size_rank`.  Legal values: *empire_size_rank*, *offense_success_rate_rank*, *defense_success_rate_rank*, *dirtiest_rank*
+            page_number (int): which page to return.  Defaults to 1.
 
-            - empires -- List of up to 25 :class:`lacuna.stats.EmpireInfo` objects.
-            - empire count -- Integer total number of empires in the game.
-            - page number -- Integer page we're looking at.  Should be the same 
-              as the page_number argument you passed in.
+        Returns:
+            tuple:
+
+                - empires -- List of up to 25 :class:`lacuna.stats.EmpireInfo` objects.
+                - empire count -- Integer total number of empires in the game.
+                - page number -- Integer page we're looking at.  Should be the same 
+                  as the page_number argument you passed in.
         """
         mylist = []
         for i in kwargs['rslt']['empires']:
@@ -105,13 +107,11 @@ class Stats(lacuna.bc.LacunaObject):
     def find_empire_rank( self, sort_by = '', empire_name = '', *args, **kwargs ):
         """ Returns info on specific empires in the ranks.
 
-        :arg sort_by: Same as for :meth:`alliance_rank`
-        :type sort_by: str
-
-        :arg empire_name: :ref:`gloss_std_search_string`
-        :type empire_name: str
-        :rtype: list
-        :returns: :class:`lacuna.stats.EmpireInfo`
+        Args:
+            sort_by (str): Same as for :meth:`alliance_rank`
+            empire_name (str): :ref:`gloss_std_search_string`
+        Returns:
+            lacuna.stats.EmpireInfo: list
 
         Keep in mind that this method has the potential of returning multiple 
         empires; an empire_name argument of "inf" will return both "Infinate 
@@ -128,10 +128,10 @@ class Stats(lacuna.bc.LacunaObject):
     def colony_rank( self, sort_by = 'population_rank', *args, **kwargs ):
         """ Find colonies ranked by population
 
-        :arg sort_by: What to sort the return by
-        :type sort_by: str
-        :rtype: list
-        :returns: :class:`lacuna.stats.ColonyInfo`
+        Args:
+            sort_by (str): What to sort the return by
+        Returns:
+            lacuna.stats.ColonyInfo: list
 
         Realistically, this accepts no arguments.  The API docs list `sort_by` 
         as a passable argument, but the default value of `population_rank` is 
@@ -148,10 +148,10 @@ class Stats(lacuna.bc.LacunaObject):
     def spy_rank( self, sort_by = 'level_rank', *args, **kwargs ):
         """ List spies ranked by various options.
 
-        :arg sort_by: What to sort the return by.  Legal values: *level_rank*, *success_rate_rank*, *dirtiest_rank*
-        :type sort_by: optional str
-        :rtype: list
-        :returns: :class:`lacuna.stats.SpyInfo`
+        Args:
+            sort_by (optional str): What to sort the return by.  Legal values: *level_rank*, *success_rate_rank*, *dirtiest_rank*
+        Returns:
+            lacuna.stats.SpyInfo: list
 
         **CAUTION**
         This method has been included only for API completeness; you should 
@@ -185,7 +185,7 @@ class Stats(lacuna.bc.LacunaObject):
 
 class EmpireInfo(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         empire_id       "id-goes-here",
         empire_name     "Earthlings",
@@ -194,7 +194,7 @@ class EmpireInfo(lacuna.bc.SubClass):
 
 class AllianceInfo(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         alliance_id             "id-goes-here",
         alliance_name           "Earthlings",
@@ -213,7 +213,7 @@ class AllianceInfo(lacuna.bc.SubClass):
 
 class ColonyInfo(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         empire_id                   "id-goes-here",      # unique id
         empire_name                 "Earthlings",        # empire name
@@ -227,7 +227,7 @@ class ColonyInfo(lacuna.bc.SubClass):
 
 class SpyInfo(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         empire_id       "id-goes-here",         # unique id
         empire_name     "Earthlings",           # empire name
@@ -242,7 +242,7 @@ class SpyInfo(lacuna.bc.SubClass):
 
 class MedalWinner(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         empire_id       "id-goes-here",
         empire_name     "Earthlings",

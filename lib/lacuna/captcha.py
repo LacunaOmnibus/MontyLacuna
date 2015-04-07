@@ -126,7 +126,7 @@ class Captcha(lacuna.bc.LacunaObject):
 
 class Puzzle(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         url     FQ URL to the puzzle image
         guid    uuid attached to the puzzle; must be passed back along with 

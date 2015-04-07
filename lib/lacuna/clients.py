@@ -17,31 +17,31 @@ import lacuna.stats
 class Guest(lacuna.bc.SubClass):
     """ Guest users are not logged in.
 
-    Accepts the following named arguments:
-        - api_key -- Your TLE api_key.  Defaults to 'anonymous'.
-        - config_file --  Path to your config file.
-        - config_section -- The section in your config file to read from.
-        - host -- ``us1.lacunaexpanse.com`` or ``pt.lacunaexpanse.com``.  Defaults to 
-          us1.
-        - logfile -- Path to your logfile.  Defaults to no logfile.
-        - show_captcha -- Boolean.  If set to false, and a 
-          method call needs a captcha solved, an exception 
-          will be raised.  If left true, the user will automatically be 
-          prompted to solve a captcha when needed.  Defaults to True.  
-        - sleep_on_call -- Integer seconds.  Number of seconds 
-          to sleep after each call to attempt to avoid using more than the 
-          limit of 60 RPCs per minute.  Defaults to 1.  
-        - sleep_after_error -- Boolean.  If we've used over 
-          60 RPCs in a minute, the server will produce an error, and if this 
-          setting is True, when we get that server error we'll sleep for a 
-          minute and then re-try our call.  If this setting is false, we'll 
-          throw an exception.  Defaults to True.  
-        - sleep_on_call -- Integer number of seconds to sleep after each TLE 
-          server request.  Defaults to 1.
-        - warn_on_sleep -- Boolean. If you exceed 60 RPCs 
-          per minute, and the script is therefore going to pause for a minute, 
-          and this is set to True, a warning will be displayed to let you know 
-          why your script is taking so long.  Defaults to True.  
+    Args:
+        api_key (str): Your TLE api_key.  Defaults to 'anonymous'.
+        config_file (str):  Path to your config file.
+        config_section (str): The section in your config file to read from.
+        host (str): ``us1.lacunaexpanse.com`` or ``pt.lacunaexpanse.com``.  
+            Defaults to 'us1'.
+        logfile (str): Path to your logfile.  Defaults to no logfile.
+        show_captcha (bool):  If set to false, and a 
+            method call needs a captcha solved, an exception 
+            will be raised.  If left true, the user will automatically be 
+            prompted to solve a captcha when needed.  Defaults to True.  
+        sleep_on_call (int): Number of seconds to sleep after each call to 
+            attempt to avoid using more than the limit of 60 RPCs per minute.  
+            Defaults to 1.  
+        sleep_after_error (bool):  If we've used over 
+            60 RPCs in a minute, the server will produce an error, and if this 
+            setting is True, when we get that server error we'll sleep for a 
+            minute and then re-try our call.  If this setting is false, we'll 
+            throw an exception.  Defaults to True.  
+        sleep_on_call (int): Seconds to sleep after each TLE 
+            server request.  Defaults to 1.
+        warn_on_sleep (bool): If you exceed 60 RPCs 
+            per minute, and the script is therefore going to pause for a minute, 
+            and this is set to True, a warning will be displayed to let you know 
+            why your script is taking so long.  Defaults to True.  
 
     Generally, you'll omit all arguments except for config_file and 
     config_section, and just fill the appropriate values out in your config 
@@ -273,8 +273,8 @@ class Guest(lacuna.bc.SubClass):
         contents of any file passed to it.  So check to make sure you're not 
         overwriting some existing file before calling this.
 
-        Arguments:
-            - path -- Path to the file to write
+        Args:
+            path (str): Path to the file to write
         """
         cp = configparser.ConfigParser()
         cp['DEFAULT'] = {
@@ -305,11 +305,11 @@ class Guest(lacuna.bc.SubClass):
         """ Check if a given string is available to be registered as a new 
         empire name.
 
-        Arguments:
-            - name -- The string to check for availablility.
-
-        Returns True if the string can be used as a new empire name, False
-        otherwise.
+        Args:
+            name (str): Name to check for availablility.
+        Returns:
+            bool: True if the string can be used as a new empire name, False
+                otherwise.
         """
         try:
             rslt = self.send( 'empire', 'is_name_available', (name,) )
@@ -365,18 +365,16 @@ class Guest(lacuna.bc.SubClass):
 
         This should not be something you ever need to call yourself.
 
-        Accepts:
-            - path -- The path after the host (eg empire, building, etc).  Don't include any directory separators.
-            - method -- The name of the method to be run
-            - params -- Tuple of arguments/parameters to be passed to the method.
-
+        Args:
+            path (str): The path after the host (eg empire, building, etc).  Don't include any directory separators.
+            method (str): The name of the method to be run
+            params (tuple of str): arguments/parameters to be passed to the method.
         Returns:
-            A dictionary; the json-decoded response from the server.
-
+            dict: the json-decoded response from the server.
         Raises:
-            - NotJsonError if the server response is not a JSON string
-            - ServerError if the server responds with anything other than 
-              a 200, along with a JSON string
+            lacauna.exceptions.NotJsonError: if the server response is not a JSON string
+            lacauna.exceptions.ServerError: if the server responds with anything other than 
+                a 200, along with a JSON string
         """
 
         url = self._build_url()
@@ -501,10 +499,10 @@ class Guest(lacuna.bc.SubClass):
     def strsquish(self, string:str):
         """ Squish a string, removing all non-word characters.
 
-        Arguments:
-            string -- The string to squish
-
-        Returns the squished string.
+        Args:
+            string (str): The string to squish
+        Returns
+            str: the squished string.
 
         >>> new = self.strsquish( "foo bar & baz" )
         >>> print( new )    # foobarbaz
@@ -517,7 +515,7 @@ class Guest(lacuna.bc.SubClass):
 class Member(Guest):
     """ Members are logged in; username and password are required.  
 
-    Attributes::
+    Object Attributes::
 
         config_file
         config_section
@@ -581,13 +579,12 @@ class Member(Guest):
     def cache_on(self, name:str, expiry:int=3600):
         """ Turn the cache on.
 
-        Arguments:
-            - name -- String namespace to use for caching data
-            - expiry -- Integer seconds after which cached data is no longer 
-              valid.  Defaults to 3600 (one hour).
-
+        Args:
+            name (str): namespace to use for caching data
+            expiry (int): seconds after which cached data is no longer 
+                valid.  Defaults to 3600 (one hour).
         Returns:
-            - old_name -- String namespace that had previously been set.  Empty 
+            str: namespace that had previously been set.  Empty 
               string if no cache had previously been on.
         """
         self._cache_exp = expiry
@@ -609,21 +606,13 @@ class Member(Guest):
     def cache_clear(self, name:str = ''):
         """ Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.
 
-        Arguments:
-            - name -- String; name of the cache to clear.  Defaults to the 
-              cache most recently used.
-
-        ::
-
-            client.cache_on('cache_one' )
-            client.cache_on('cache_two' )
-
-            client.cache_clear()                # clear cache_two implicitly
-            client.cache_clear( 'cache_one' )   # clear cache_one explicitly
-
-        Returns True if a cache was cleared, false if no name was passed in and 
-        no cache has yet been used by this client (so there's no 
-        "most-recently-used" cache name to clear).
+        Args:
+            name (str): name of the cache to clear.  Defaults to the 
+                cache most recently used.
+        Returns:
+            bool: True if a cache was cleared, false if no name was passed in and 
+                no cache has yet been used by this client (so there's no 
+                "most-recently-used" cache name to clear).
         """
         if not name:
             if self._cache_name:
@@ -642,10 +631,10 @@ class Member(Guest):
     def get_body(self, body_id):
         """ Get a :class:`lacuna.body` object by body ID.
 
-        Arguments:
-            - body_id -- Integer ID of the body
-
-        Returns a :class:`lacuna.body.Body` object.
+        Args:
+            body_id (int): ID of the body
+        Returns
+            lacuna.body.Body: The requested body object
         """
         attrs = { 'id': body_id, }
         return lacuna.body.Body( self, attrs )
@@ -653,10 +642,10 @@ class Member(Guest):
     def get_body_byname(self, body_name):
         """ Get one of your empire's bodies (planet or station) by name.
 
-        Arguments:
-            - body_name -- String name of the body
-
-        Returns a :class:`lacuna.body.MyBody` object.
+        Arg:
+            body_name (str): name of the body
+        Returns:
+            lacuna.body.MyBody: The requested body
         """
         for bid, name in self.empire.planets.items():
             if name == body_name:
@@ -684,10 +673,11 @@ class Member(Guest):
         return lacuna.map.Map( self )
 
     def get_my_alliance(self):
-        """ Get a :class:`lacuna.alliance.MyAlliance` object.
+        """ Get your alliance.
 
-        Returns an object if the current empire is a 
-        member of an alliance.  Otherwise returns false.
+        Returns:
+            lacuna.alliance.MyAlliance: Your alliance (or False if you're not 
+                in an alliance.)
         """
         my_ally = False
         try:
@@ -732,7 +722,7 @@ class Member(Guest):
 
     def _write_empire_status(self, mydict:dict):
         """ This is almost, but not quite the same, as 
-        lacuna.bc.LacunaObject.write_empire_status().
+        :meth:`lacuna.bc.LacunaObject.write_empire_status`.
         """
         for i in mydict:
             setattr( self.empire, i, mydict[i] )

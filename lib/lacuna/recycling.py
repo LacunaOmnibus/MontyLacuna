@@ -22,12 +22,12 @@ class RecycleBldg(lacuna.building.MyBuilding):
     def recycle( self, water:int = 0, ore:int = 0, energy:int = 0, subsidize:int = 0, *args, **kwargs ):
         """ Convert existing waste into valuable resources.
 
-        Arguments:
-            - water -- Integer amount of waste to convert to water
-            - ore -- Integer amount of waste to convert to ore
-            - energy -- Integer amount of waste to convert to energy
-            - subsidize -- Integer; set to 1 to spend 2 E to convert 
-              immediately.  Defaults to 0
+        Args:
+            water (int): amount of waste to convert to water
+            ore (int): amount of waste to convert to ore
+            energy (int): amount of waste to convert to energy
+            subsidize (int): set to 1 to spend 2 E to convert 
+                immediately.  Defaults to 0
 
         The combined total of water, ore, and energy must be below max_recycle 
         (see view()), and also must be below the total amount of waste 
@@ -43,7 +43,7 @@ class RecycleBldg(lacuna.building.MyBuilding):
 
 class RecycleJob(lacuna.bc.SubClass):
     """ 
-    Attributes::
+    Object Attributes::
 
         seconds_remaining       0,
         can                     1,

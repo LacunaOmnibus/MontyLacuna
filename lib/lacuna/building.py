@@ -22,7 +22,7 @@ class Building(lacuna.bc.SubClass):
 class InBuildQueue(Building):
     """ A building in the Development Ministry's build queue.
 
-    Attributes::
+    Object Attributes::
 
         id                  "building-id-goes-here",
         name                "Planetary Commmand",
@@ -37,7 +37,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
     """ Represents a building owned by your empire.  Most building objects 
     you encounter will inherit from MyBuilding.
 
-    Attributes::
+    Object Attributes::
 
         id              Integer ID of the building itself
         body_id         Integer ID of the body this building is sitting on,
@@ -51,7 +51,7 @@ class MyBuilding(lacuna.bc.LacunaObject):
         pending_build   lacuna.building.Working object
         work            lacuna.building.Working object
 
-    - :class:`lacuna.building.Working`
+    - :class:`lacuna.building.Working` (link provided for convenience)
 
     MontyLacuna attempts to provide method calls that mirror all of the method 
     calls documented by the TLE API.  However, MyBuilding had to violate that 
@@ -340,7 +340,7 @@ class SingleStorage(MyBuilding):
         """ Converts the stored resource into waste 
 
         Arguments:
-            - amount -- Required integer.  The amount of res to dump.
+            amount (int):  The amount of res to dump.
         """
         pass
 
@@ -357,9 +357,9 @@ class MultiStorage(MyBuilding):
         """ Converts the stored resource into waste.
 
         Arguments:
-            - res_type -- Required string.  The name of the specific type of res
-              to dump ('anthracite', 'bauxite', 'algae', 'apple', etc )
-            - amount -- Required integer.  The amount of res to dump.
+            res_type (str):  The name of the specific type of res
+                to dump ('anthracite', 'bauxite', 'algae', 'apple', etc )
+            amount (int):  The amount of res to dump.
         """
         pass
 
@@ -367,7 +367,7 @@ class MultiStorage(MyBuilding):
 class Working(lacuna.bc.SubClass):
     """ The work being done, actually or potentially, by a building.
 
-    Attributes::
+    Object Attributes::
 
         seconds     430,
         seconds_el  lacuna.bc.ElaspsedTime object representing the value in 
