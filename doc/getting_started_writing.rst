@@ -19,10 +19,11 @@ Add this to the top of your script::
     sys.path.append(libdir)
     import lacuna
 
-The path to the ``lib/`` directory is relative to the location of your script, 
-and this example assumes your script is going to live in ``INSTALLDIR/bin/``.  
-If you're going to put your script somewhere else, adjust the path 
-accordingly.
+.. note::
+    The path to the ``lib/`` directory is relative to the location of your 
+    script, and this example assumes your script is going to live in 
+    ``INSTALLDIR/bin/``.  If you're going to put your script somewhere else, 
+    adjust the path accordingly.
 
 Connect a client
 ----------------
@@ -37,11 +38,13 @@ As with the previous step, the path to the config file is relative to the
 location of your script.  Adjust the path accordingly if your script is going 
 to live somewhere other than ``INSTALLDIR/bin/``.
 
-Please keep in mind that many of the people using your script may not be very 
-technically inclined.  The config file creation script that comes with 
-MontyLacuna creates config file sections named ``real`` and ``sitter``.  If 
-your script is meant for distribution, it's strongly suggested that you 
-specify one of those two names as your ``config_section``.
+.. note::
+    Please keep in mind that many of the people using your script may not be 
+    very technically inclined.  The config file creation script that comes 
+    with MontyLacuna creates config file sections named ``real`` and 
+    ``sitter``.  If your script is meant for distribution, it's strongly 
+    suggested that you specify one of those two names as your 
+    ``config_section``.
 
 Logging and Caching
 -------------------
