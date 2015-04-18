@@ -12,6 +12,7 @@ sys.path.append(libdir)
 import logging
 
 import lacuna
+import lacuna.exceptions as err
 import lacuna.binutils.libbuild_ships as lib
 
 bs  = lib.BuildShips()
@@ -26,8 +27,13 @@ for pname in bs.planets:
     bs.set_planet( pname )
 
     ### Get a list of shipyards that match the user's CLI args
-    shipyards = bs.get_shipyards()
+    try:
+        shipyards = bs.get_shipyards()
+    except err.NoSuchBuildingError as e:
+        l.info( "{} does not have any shipyards of the right level.  Skipping.".format(bs.planet.name) )
+        continue;
     l.info( "{} has {} shipyards of the correct level.".format(bs.planet.name, len(shipyards)) )
+
 
     ### Ensure building the requested ship type is possible, and figure out 
     ### how many should be built.
