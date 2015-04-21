@@ -11,6 +11,11 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
 - Ack through everything for "CHECK" and fix.
   - Even if you find no CHECK marks, leave this list item here.  I have a tendency to 
     re-add these marks.
+- Add a per-user planet-name-abbreviation setup somehow (config file?  maybe an 
+  interactive script that stores the abbreviations in a database?).  To allow the user to 
+  just type "1.1" as an argument instead of "My Planet Number 1.1" wherever a script needs 
+  a planet or station name.
+
 
 ## Docs Fixes
 Except for stats, I'm working in alpha order and recording everything I've checked.
