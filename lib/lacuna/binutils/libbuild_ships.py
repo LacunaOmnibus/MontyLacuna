@@ -107,7 +107,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
 
         if self.args.topoff:
             old_cache = self.client.cache_off() # be sure this is off.
-            sp = self.planet.get_buildings_bytype( 'spaceport', self.args.min_lvl, 1, 100 )[0]
+            sp = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
 
             currently_in_stock = 0
             docked_ships, docks_avail, docks_max = sp.view()

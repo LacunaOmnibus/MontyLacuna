@@ -352,6 +352,11 @@ class MyBody(Body):
         for bid in sorted( self.buildings_id.keys() ):  # get the building IDs back in the same order every time - helps with caching.
             bdict = self.buildings_id[ bid ]
             classname = re.sub("^/(\w+)", "\g<1>", bdict['url'] )
+    ### TEST
+            if classname == btype:
+                print( "Got a matching {}.  Its level is {}.  Min level is {}.".format(classname, bdict['level'], min_level) )
+    ### TEST
+
             if bdict['name'] == btype or classname == btype and int(bdict['level']) >= min_level and int(bdict['efficiency']) >= efficiency:
                 bldg_str = "lacuna.buildings.{}( self.client, self.body_id, bid )".format( classname )
                 mylist.append( eval(bldg_str) )
