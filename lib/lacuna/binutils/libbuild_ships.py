@@ -1,5 +1,6 @@
 
 import lacuna, lacuna.binutils.libbin, lacuna.types
+import lacuna.exceptions as err
 import argparse, os, sys
 
 class BuildShips(lacuna.binutils.libbin.Script):
@@ -58,9 +59,11 @@ class BuildShips(lacuna.binutils.libbin.Script):
         self.planet = self.client.get_body_byname( pname )
 
     def get_shipyards( self ):
+        """
+        Raises err.NoSuchBuildingError if this planet doesn't have any 
+        shipyards of the requested level.
+        """
         yards = self.planet.get_buildings_bytype( 'shipyard', self.args.min_lvl )
-        if not yards:
-            raise RuntimeError("You don't have any shipyards of the required level.")
         return( yards )
 
     def determine_buildable(self, yards):
