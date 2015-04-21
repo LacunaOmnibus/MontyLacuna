@@ -63,7 +63,6 @@ class BuildShips(lacuna.binutils.libbin.Script):
             raise RuntimeError("You don't have any shipyards of the required level.")
         return( yards )
 
-
     def determine_buildable(self, yards):
         """ Ensures we can actually build the requested ship type, and figures 
         out how many of them we should build.
