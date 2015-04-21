@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../../../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+          <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -171,26 +185,29 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.buildings.permanent.templeofthedrajilites">
 <span id="temple-of-the-drajilites"></span><h1>Temple of the Drajilites<a class="headerlink" href="#module-lacuna.buildings.permanent.templeofthedrajilites" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.permanent.templeofthedrajilites.</tt><tt class="descname">templeofthedrajilites</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.permanent.templeofthedrajilites.</code><code class="descname">templeofthedrajilites</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="method">
 <dt id="lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.list_planets">
-<tt class="descname">list_planets</tt><big>(</big><em>star_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.list_planets" title="Permalink to this definition">¶</a></dt>
+<code class="descname">list_planets</code><span class="sig-paren">(</span><em>star_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.list_planets" title="Permalink to this definition">¶</a></dt>
 <dd><p>List planets around a given star.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>star_id -- Optional integer ID of a star.  Defaults to the star that the temple is orbiting.</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
 <dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>star_id &#8211; Optional integer ID of a star.  Defaults to the star that the temple is orbiting.</li>
-</ul>
-</dd>
 <dt>Retval includes key &#8216;planets&#8217;, a list of planet dicts:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="go">&gt;&gt;&gt;</span>
 <span class="go">{</span>
 <span class="go">    &#39;id&#39;: &#39;12345&#39;,</span>
 <span class="go">    &#39;name&#39;: &#39;Earth&#39;</span>
@@ -203,21 +220,24 @@
 
 <dl class="attribute">
 <dt id="lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.path">
-<tt class="descname">path</tt><em class="property"> = 'templeofthedrajilites'</em><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'templeofthedrajilites'</em><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.view_planet">
-<tt class="descname">view_planet</tt><big>(</big><em>planet_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.view_planet" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_planet</code><span class="sig-paren">(</span><em>planet_id: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.permanent.templeofthedrajilites.templeofthedrajilites.view_planet" title="Permalink to this definition">¶</a></dt>
 <dd><p>View the surface of a specific planet.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>planet_id -- Required integer ID of a planet to view.</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
 <dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>planet_id &#8211; Required integer ID of a planet to view.</li>
-</ul>
-</dd>
 <dt>Retval includes key &#8216;map&#8217;:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="go">&gt;&gt;&gt;</span>
 <span class="go">&#39;surface_image&#39;:    &quot;surface-p12&quot;,</span>
 <span class="go">&#39;buildings&#39;:        List of building dicts:</span>
 <span class="go">                    {   &quot;x&quot;:        1,</span>
@@ -239,7 +259,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="thedillonforge.html" class="btn btn-neutral float-right" title="The Dillon Forge"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="thedillonforge.html" class="btn btn-neutral float-right" title="The Dillon Forge">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="subspacesupplydepot.html" class="btn btn-neutral" title="Subspace Supply Depot (SSD)"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -251,11 +271,12 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

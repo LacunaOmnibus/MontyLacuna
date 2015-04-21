@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,7 +181,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="recall-all-spies">
 <h1>Recall All Spies<a class="headerlink" href="#recall-all-spies" title="Permalink to this headline">¶</a></h1>
@@ -193,7 +207,7 @@ show us 100 spies (of our 360).</p>
 them to be picked up, only 100 will be listed.</p>
 <p>This means that this retrieval script will sometimes fail to recall spies that
 you know are definitely out and about.</p>
-<p>The best way to fix this is to go run the <a class="reference internal" href="spies_report.html#spies-report"><em>Spies Report</em></a> script, using
+<p>The best way to fix this is to go run the <a class="reference internal" href="spies_report.html#spies-report"><span>Spies Report</span></a> script, using
 CSV formatting.  Use your favorite spreadsheet program (Excel or whatever) to
 view the produced file, and see which of your planets have spies at the
 troubled station.  Run this retrieval script for each of those planets.  Some
@@ -211,23 +225,26 @@ script again to pick up the next 100.</p>
 </div>
 <dl class="class">
 <dt id="lacuna.binutils.librecall_all_spies.RecallAllSpies">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.librecall_all_spies.</tt><tt class="descname">RecallAllSpies</tt><a class="headerlink" href="#lacuna.binutils.librecall_all_spies.RecallAllSpies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.binutils.librecall_all_spies.</code><code class="descname">RecallAllSpies</code><a class="headerlink" href="#lacuna.binutils.librecall_all_spies.RecallAllSpies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><code class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></code></a></p>
 <dl class="method">
 <dt id="lacuna.binutils.librecall_all_spies.RecallAllSpies.find_nothome_spies">
-<tt class="descname">find_nothome_spies</tt><big>(</big><em>home_id: int</em>, <em>intmin</em><big>)</big><a class="headerlink" href="#lacuna.binutils.librecall_all_spies.RecallAllSpies.find_nothome_spies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds all of the bodies where you&#8217;ve got spies assigned, 
+<code class="descname">find_nothome_spies</code><span class="sig-paren">(</span><em>home_id: int</em>, <em>intmin</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.librecall_all_spies.RecallAllSpies.find_nothome_spies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds all of the bodies where you&#8217;ve got spies assigned,
 not including your current planet.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>home_id &#8211; Integer ID of the planet to consider &#8216;home&#8217;</li>
-<li>intmin &#8211; <tt class="docutils literal"><span class="pre">lacuna.buildings.intelligence.intelligence</span></tt> object; 
-the Int Min located on <tt class="docutils literal"><span class="pre">home_id</span></tt>.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>home_id -- Integer ID of the planet to consider 'home'</strong> (<em>-</em>) &#8211; </li>
+<li><strong>intmin -- lacuna.buildings.intelligence.intelligence object;</strong> (<em>-</em>) &#8211; the Int Min located on <code class="docutils literal"><span class="pre">home_id</span></code>.</li>
 </ul>
-</dd>
-</dl>
-<p>Returns a dict of planets hosting spies whose home is <tt class="docutils literal"><span class="pre">home_id</span></tt>:</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns a dict of planets hosting spies whose home is <code class="docutils literal"><span class="pre">home_id</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>{   planet_id_1: planet_name_1,
     planet_id_2: planet_name_2,
     etc     }
@@ -246,7 +263,7 @@ the Int Min located on <tt class="docutils literal"><span class="pre">home_id</s
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="scuttle_ships.html" class="btn btn-neutral float-right" title="Scuttle Ships"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="scuttle_ships.html" class="btn btn-neutral float-right" title="Scuttle Ships">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="recall_all_ships.html" class="btn btn-neutral" title="Recall All Ships"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -258,11 +275,12 @@ the Int Min located on <tt class="docutils literal"><span class="pre">home_id</s
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

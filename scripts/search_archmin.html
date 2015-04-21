@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,9 +30,11 @@
   
 
   
+
+  
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
         <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
-        <link rel="next" title="Ships Report" href="ships_report.html"/>
+        <link rel="next" title="Train Spies" href="train_spies.html"/>
         <link rel="prev" title="Send excavs" href="send_excavs.html"/> 
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,7 +181,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="search-archaeology-ministry">
 <span id="search-archmin"></span><h1>Search Archaeology Ministry<a class="headerlink" href="#search-archaeology-ministry" title="Permalink to this headline">¶</a></h1>
@@ -175,7 +189,7 @@
 You can specify what glyph type to search for, or just tell the script to
 search for whatever glyph type is most needed.</p>
 <p>Remember that you must have 10,000 units of ore to be able to search through
-it for a glyph.  If you pass <tt class="docutils literal"><span class="pre">needed</span></tt> as the glyph type, the script will
+it for a glyph.  If you pass <code class="docutils literal"><span class="pre">needed</span></code> as the glyph type, the script will
 find the glyph type that your plant has least of, for which you also have at
 least 10,000 ore.</p>
 <p>But if you specify a glyph type yourself, you must make sure that you have
@@ -196,9 +210,9 @@ six hours.  That way, you can get four arch min searches per planet, per day.</p
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="nb">all</span> <span class="n">needed</span>
 </pre></div>
 </div>
-<p>See the <a class="reference internal" href="../types.html#ore-translations"><em>Ore Translations</em></a> for a complete list of ores you can search.
-For a quick ore list reminder from the terminal, just include the <tt class="docutils literal"><span class="pre">-l</span></tt> or
-<tt class="docutils literal"><span class="pre">--list</span></tt> argument, which will list out all ores and then quit:</p>
+<p>See the <a class="reference internal" href="../types.html#ore-translations"><span>Ore Translations</span></a> for a complete list of ores you can search.
+For a quick ore list reminder from the terminal, just include the <code class="docutils literal"><span class="pre">-l</span></code> or
+<code class="docutils literal"><span class="pre">--list</span></code> argument, which will list out all ores and then quit:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">search_archmin</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">l</span>
 </pre></div>
 </div>
@@ -208,43 +222,44 @@ For a quick ore list reminder from the terminal, just include the <tt class="doc
 </div>
 <dl class="class">
 <dt id="lacuna.binutils.libsearch_archmin.SearchArchmin">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libsearch_archmin.</tt><tt class="descname">SearchArchmin</tt><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.binutils.libsearch_archmin.</code><code class="descname">SearchArchmin</code><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><code class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></code></a></p>
 <dl class="method">
 <dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph">
-<tt class="descname">search_for_glyph</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Begins a search in the archmin for whatever glyph type was 
+<code class="descname">search_for_glyph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.search_for_glyph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Begins a search in the archmin for whatever glyph type was
 determined by validate_ore() to be the one to search.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet">
-<tt class="descname">set_planet</tt><big>(</big><em>pname: str</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_planet</code><span class="sig-paren">(</span><em>pname: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.set_planet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the current working planet by name.</p>
-<p>Gets the archmin and PCC on this planet, and counts how much of each 
+<p>Gets the archmin and PCC on this planet, and counts how much of each
 ore and how many glyphs we have in storage.</p>
-<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></tt></a> if you don&#8217;t have 
-an Archaeology Ministry or PCC on the planet (although, if you don&#8217;t 
-have a PCC, you probably have bigger problems than not being able to 
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></code></a> if you don&#8217;t have
+an Archaeology Ministry or PCC on the planet (although, if you don&#8217;t
+have a PCC, you probably have bigger problems than not being able to
 perform an archmin search.)</p>
-<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.WorkingError" title="lacuna.exceptions.WorkingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.WorkingError</span></tt></a> if the planet&#8217;s archmin 
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.WorkingError" title="lacuna.exceptions.WorkingError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.WorkingError</span></code></a> if the planet&#8217;s archmin
 is already performing a search.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>pname &#8211; String name of the planet.</li>
-</ul>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pname -- String name of the planet.</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore">
-<tt class="descname">validate_ore</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Figures out which ore we should be searching through, and ensures 
+<code class="descname">validate_ore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libsearch_archmin.SearchArchmin.validate_ore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figures out which ore we should be searching through, and ensures
 that we have enough of that ore to perform a search.</p>
-<p>Sets self.ore_to_search if successful.  Raises 
-<a class="reference internal" href="../exceptions.html#lacuna.exceptions.InsufficientResourceError" title="lacuna.exceptions.InsufficientResourceError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.InsufficientResourceError</span></tt></a> if there&#8217;s not 
+<p>Sets self.ore_to_search if successful.  Raises
+<a class="reference internal" href="../exceptions.html#lacuna.exceptions.InsufficientResourceError" title="lacuna.exceptions.InsufficientResourceError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.InsufficientResourceError</span></code></a> if there&#8217;s not
 enough ore onsite to perform a search.</p>
 </dd></dl>
 
@@ -258,7 +273,7 @@ enough ore onsite to perform a search.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ships_report.html" class="btn btn-neutral float-right" title="Ships Report"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="train_spies.html" class="btn btn-neutral float-right" title="Train Spies">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="send_excavs.html" class="btn btn-neutral" title="Send excavs"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -270,11 +285,12 @@ enough ore onsite to perform a search.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

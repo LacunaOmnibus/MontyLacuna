@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,80 +181,106 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.inbox">
 <span id="inbox"></span><h1>Inbox<a class="headerlink" href="#module-lacuna.inbox" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.inbox.Inbox">
-<em class="property">class </em><tt class="descclassname">lacuna.inbox.</tt><tt class="descname">Inbox</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.inbox.</code><code class="descname">Inbox</code><span class="sig-paren">(</span><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></code></a></p>
 <p>Represents your mailbox.</p>
 <dl class="docutils" id="valid-msg-tags">
 <dt>Several methods allow a <cite>tags</cite> argument.  Valid message tags:</dt>
-<dd>Alert, Attack, Complaint, Colonization, Correspondence, Excavator, 
+<dd>Alert, Attack, Complaint, Colonization, Correspondence, Excavator,
 Intelligence, Medal, Mission, Parliament, Probe, Spies, Trade,
 Tutorial</dd>
 </dl>
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.archive_messages">
-<tt class="descname">archive_messages</tt><big>(</big><em>messages: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.archive_messages" title="Permalink to this definition">¶</a></dt>
+<code class="descname">archive_messages</code><span class="sig-paren">(</span><em>messages: list</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.archive_messages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Archives one or more messages.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>messages &#8211; a list of message IDs</li>
-</ul>
-</dd>
-<dt>Returns a dict containing the keys:</dt>
-<dd><ul class="first last simple">
-<li>success &#8211; [ List of message IDs that were archived successfully ]</li>
-<li>failure &#8211; [ List of message IDs that failed to be archived ]</li>
-</ul>
-</dd>
-</dl>
-<p>There&#8217;s no indication why any given message movement succeeded or 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>messages</strong> (<em>list of ints</em>) &#8211; IDs of messages to archive</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">containing the keys:<div class="highlight-python"><div class="highlight"><pre>&#39;success&#39;: [ List of message IDs that were archived successfully ]
+&#39;failure&#39;: [ List of message IDs that failed to be archived ]
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+<p>There&#8217;s no indication why any given message movement succeeded or
 failed, just that they did.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.read_message">
-<tt class="descname">read_message</tt><big>(</big><em>message_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.read_message" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read_message</code><span class="sig-paren">(</span><em>message_id: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.read_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a message.</p>
-<p>Requires a single integer message ID.</p>
-<p>Returns an <a class="reference internal" href="#lacuna.inbox.Message" title="lacuna.inbox.Message"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.Message</span></tt></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message_id</strong> (<em>int</em>) &#8211; ID of the message to read</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The requested message</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.inbox.Message" title="lacuna.inbox.Message">lacuna.inbox.Message</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.send_message">
-<tt class="descname">send_message</tt><big>(</big><em>recipients: str</em>, <em>subject: str</em>, <em>body: str</em>, <em>options: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.send_message" title="Permalink to this definition">¶</a></dt>
+<code class="descname">send_message</code><span class="sig-paren">(</span><em>recipients: str</em>, <em>subject: str</em>, <em>body: str</em>, <em>options: dict={}</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.send_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends an in-game mail message.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>recipients &#8211; Comma-separated string containing names of empires to receive your message.  NOT A LIST, a comma-separated string.</li>
-<li>subject &#8211; &lt; 100 chars in length.  Cannot contain any of &amp;, &#64;, ;, &lt;, or &gt; Unicode is OK (I&#8217;ve mailed myself a snowman).</li>
-<li>body &#8211; Limit of 200,000 characters.  &lt; and &gt; are disallowed.  Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it&#8217;s very sensitive, and you&#8217;re not informed what word it&#8217;s triggering on.  &#8220;crap&#8221; (along with other pretty mild language) is considered profane.</li>
-<li>options &#8211; Dict containing:<ul>
-<li>in_reply_to &#8211; A message ID to reply to.</li>
-<li>forward &#8211; A message ID to forward.</li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-<p>When forwarding a message, any attachments from the message ID we&#8217;re 
-forwarding are automatically attached to our current message.  However, 
-the body of the forwarded message is NOT included in the current 
-message.  If you want that to happen, you&#8217;ll need to do it yourself.</p>
-<p>Returns a dict with (afaict) two keys (the rv is not documented, so 
-I&#8217;m just reporting the results of a few tests here).</p>
-<p>For a message sent to recipients &#8220;tmtowtdi,Infinate 
-Ones,no_such_player&#8221;:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>   <span class="s">&#39;sent&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;tmtowtdi&#39;</span><span class="p">,</span> <span class="s">&#39;Infinate Ones&#39;</span><span class="p">],</span>
-    <span class="s">&#39;unknown&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;no_such_player&#39;</span><span class="p">]</span>   <span class="p">}</span>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>recipients</strong> (<em>str</em>) &#8211; Comma-separated string containing names of empires
+to receive your message.  NOT A LIST, a comma-separated string.</li>
+<li><strong>subject</strong> (<em>str</em>) &#8211; &lt; 100 chars in length.  Cannot contain any of &amp;, &#64;,
+;, &lt;, or &gt; Unicode is OK (I&#8217;ve mailed myself a snowman).</li>
+<li><strong>body</strong> (<em>str</em>) &#8211; Limit of 200,000 characters.  &lt; and &gt; are disallowed.
+Also, anything that Regexp::Common::profanity registers as profane disallows the entire message.  This profanity filter can be irritating - it&#8217;s very sensitive, and you&#8217;re not informed what word it&#8217;s triggering on.  &#8220;crap&#8221; (along with other pretty mild language) is considered profane.</li>
+<li><strong>options</strong> (<em>dict</em>) &#8211; <p>containing:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;in_reply_to&#39;: A message ID to reply to.
+&#39;forward&#39;: A message ID to forward.
 </pre></div>
 </div>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>containing:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;sent&#39;: [&#39;tmtowtdi&#39;, &#39;Infinate Ones&#39;],
+&#39;unknown&#39;: [&#39;no_such_player&#39;]
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The return value is not documented by the API, so what&#8217;s shown above is
+the result of a few tests here.  Looks right.</p>
+<p>When forwarding a message, any attachments from the message ID we&#8217;re
+forwarding are automatically attached to our current message.  However,
+the body of the forwarded message is NOT included in the current
+message.  If you want that to happen, you&#8217;ll need to do it yourself.</p>
 <dl class="docutils">
 <dt><strong>Message Formatting</strong></dt>
 <dd>This is rarely-enough used and the docs are wordy enough that it&#8217;s not worth
@@ -250,64 +290,81 @@ repeating it all here.  See <a class="reference external" href="https://us1.lacu
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.trash_messages">
-<tt class="descname">trash_messages</tt><big>(</big><em>messages: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.trash_messages" title="Permalink to this definition">¶</a></dt>
+<code class="descname">trash_messages</code><span class="sig-paren">(</span><em>messages: list</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.trash_messages" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trashes (deletes) one or more messages.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>messages &#8211; a list of message IDs</li>
-</ul>
-</dd>
-<dt>Returns a dict containing the keys:</dt>
-<dd><ul class="first last simple">
-<li>success &#8211; [ List of message IDs that were archived successfully ]</li>
-<li>failure &#8211; [ List of message IDs that failed to be archived ]</li>
-</ul>
-</dd>
-</dl>
-<p>There&#8217;s no indication why any given message movement succeeded or 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>messages</strong> (<em>list of ints</em>) &#8211; IDs of messages to delete</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">containing the keys:<div class="highlight-python"><div class="highlight"><pre>&#39;success&#39;: [ List of message IDs that were archived successfully ]
+&#39;failure&#39;: [ List of message IDs that failed to be archived ]
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+<p>There&#8217;s no indication why any given message movement succeeded or
 failed, just that they did.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_archived">
-<tt class="descname">view_archived</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_archived" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_archived</code><span class="sig-paren">(</span><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.view_archived" title="Permalink to this definition">¶</a></dt>
 <dd><p>View archived messages.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>opts &#8211; Optional dict containing:<ul>
-<li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
-<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
-</ul>
-</li>
-</ul>
-</dd>
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
-<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a> objects</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>opts</strong> (<em>optional dict</em>) &#8211; <p>containing:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;page_number&#39;: Integer page number to return.  Defaults to 1.
+&#39;tags&#39;: List of :ref:`tags &lt;valid_msg_tags&gt;` to filter by.
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Archived messages<ul class="simple">
+<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><code class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></code></a> objects</li>
 <li>count &#8211; Integer total number of messages in the inbox</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_inbox">
-<tt class="descname">view_inbox</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_inbox" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_inbox</code><span class="sig-paren">(</span><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.view_inbox" title="Permalink to this definition">¶</a></dt>
 <dd><p>View the messages in your empire&#8217;s inbox, 25 messages per page.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>opts &#8211; Optional dict containing:<ul>
-<li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
-<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-<p>The tags you passed in are joined with &#8216;or&#8217;.  So for this call, you&#8217;ll 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>opts</strong> (<em>optional dict</em>) &#8211; <p>With the keys:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;page_number&#39;: Integer page number to return.  Defaults to 1.
+&#39;tags&#39;: List of :ref:`tags &lt;valid_msg_tags&gt;` to filter by.
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Inbox:<div class="highlight-python"><div class="highlight"><pre>- messages -- List of :class:`lacuna.inbox.MessageSummary` objects
+- count -- Integer total number of messages in the inbox
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+<p>The tags you passed in are joined with &#8216;or&#8217;.  So for this call, you&#8217;ll
 get back both excavator and correspondence messages:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">msgs</span><span class="p">,</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">view_inbox</span><span class="p">({</span>
     <span class="s">&quot;page_number&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
@@ -315,74 +372,70 @@ get back both excavator and correspondence messages:</p>
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Sending an invalid tag will not throw an exception, it&#8217;ll merely 
+<p>Sending an invalid tag will not throw an exception, it&#8217;ll merely
 return 0 messages.</p>
-<dl class="docutils">
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
-<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a> objects</li>
-<li>count &#8211; Integer total number of messages in the inbox</li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_sent">
-<tt class="descname">view_sent</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_sent" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_sent</code><span class="sig-paren">(</span><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.view_sent" title="Permalink to this definition">¶</a></dt>
 <dd><p>View sent messages.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>opts &#8211; Optional dict containing:<ul>
-<li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
-<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
-</ul>
-</li>
-</ul>
-</dd>
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
-<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a> objects</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>opts</strong> (<em>optional dict</em>) &#8211; <p>containing:</p>
+<p>&#8216;page_number&#8217;: Integer page number to return.  Defaults to 1.
+&#8216;tags&#8217;: List of <a class="reference internal" href="#valid-msg-tags"><span>tags</span></a> to filter by.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Sent messages<ul class="simple">
+<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><code class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></code></a> objects</li>
 <li>count &#8211; Integer total number of messages in the inbox</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.inbox.Inbox.view_trashed">
-<tt class="descname">view_trashed</tt><big>(</big><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Inbox.view_trashed" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_trashed</code><span class="sig-paren">(</span><em>opts: dict={}</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Inbox.view_trashed" title="Permalink to this definition">¶</a></dt>
 <dd><p>View trashed messages.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>opts &#8211; Optional dict containing:<ul>
-<li>page_number &#8211; Integer page number to return.  Defaults to 1.</li>
-<li>tags &#8211; List of <a class="reference internal" href="#valid-msg-tags"><em>tags</em></a> to filter by.</li>
-</ul>
-</li>
-</ul>
-</dd>
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
-<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a> objects</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>opts</strong> (<em>optional dict</em>) &#8211; <p>containing:</p>
+<p>&#8216;page_number&#8217;: Integer page number to return.  Defaults to 1.
+&#8216;tags&#8217;: List of <a class="reference internal" href="#valid-msg-tags"><span>tags</span></a> to filter by.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Sent messages<ul class="simple">
+<li>messages &#8211; List of <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><code class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></code></a> objects</li>
 <li>count &#8211; Integer total number of messages in the inbox</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.inbox.Message">
-<em class="property">class </em><tt class="descclassname">lacuna.inbox.</tt><tt class="descname">Message</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.inbox.Message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.inbox.</code><code class="descname">Message</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.Message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.inbox.MessageSummary" title="lacuna.inbox.MessageSummary"><code class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.MessageSummary</span></code></a></p>
 <p>This is the full message you get when viewing a specific message by ID.</p>
-<p>Note that the sender&#8217;s name is listed in the TLE documentation using the 
+<p>Note that the sender&#8217;s name is listed in the TLE documentation using the
 key &#8220;from&#8221;, but we&#8217;re instead using &#8220;from_name&#8221;.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 from_name       &quot;Dr. Stephen T. Colbert DFA&quot;,
 from_id         &quot;id-goes-here&quot;,
@@ -398,7 +451,7 @@ has_trashed     0,
 in_reply_to     &quot;&quot;,
 recipients      [&quot;John Stewart&quot;],
 tags            [&quot;Correspondence&quot;],
-attachments     Dict, not a list.  A given message may not have more 
+attachments     Dict, not a list.  A given message may not have more
                 than one of each type of attachment.
                 {
                     &quot;image&quot; : { &quot;url&quot; : &quot;http://www.example.com/path/image.jpg&quot;,
@@ -423,10 +476,10 @@ attachments     Dict, not a list.  A given message may not have more
 
 <dl class="class">
 <dt id="lacuna.inbox.MessageSummary">
-<em class="property">class </em><tt class="descclassname">lacuna.inbox.</tt><tt class="descname">MessageSummary</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.inbox.MessageSummary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.inbox.</code><code class="descname">MessageSummary</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.inbox.MessageSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>This is the message summary you get when viewing a list of messages.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 subject         &quot;Vaxaslim&quot;,
 date            &quot;01 31 2010 13:09:05 +0600&quot;,
@@ -437,12 +490,12 @@ to_id           &quot;id-goes-here&quot;,
 has_read        1,
 has_replied     0,
 body_preview    &quot;Just a reminder that Vaxaslim &quot;,
-tags            &quot;Correspondence&quot; 
+tags            &quot;Correspondence&quot;
 </pre></div>
 </div>
-<p><strong>NOTE</strong> The TLE API actually returns the sender&#8217;s name in a key named 
-<tt class="docutils literal"><span class="pre">from</span></tt>.  Since <tt class="docutils literal"><span class="pre">from</span></tt> is a Python reserved word and cannot be used as 
-an attribute name, the attribute above has been changed to <tt class="docutils literal"><span class="pre">from_name</span></tt>.</p>
+<p><strong>NOTE</strong> The TLE API actually returns the sender&#8217;s name in a key named
+<code class="docutils literal"><span class="pre">from</span></code>.  Since <code class="docutils literal"><span class="pre">from</span></code> is a Python reserved word and cannot be used as
+an attribute name, the attribute above has been changed to <code class="docutils literal"><span class="pre">from_name</span></code>.</p>
 </dd></dl>
 
 </div>
@@ -453,7 +506,7 @@ an attribute name, the attribute above has been changed to <tt class="docutils l
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="map.html" class="btn btn-neutral float-right" title="Map"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="map.html" class="btn btn-neutral float-right" title="Map">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="empire.html" class="btn btn-neutral" title="Empire"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -465,11 +518,12 @@ an attribute name, the attribute above has been changed to <tt class="docutils l
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

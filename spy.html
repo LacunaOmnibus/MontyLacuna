@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,16 +178,16 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.spy">
 <span id="spy"></span><h1>spy<a class="headerlink" href="#module-lacuna.spy" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.spy.Assignment">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Assignment</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.Assignment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">Assignment</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.Assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>A task that a spy can be assigned to.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>task        &quot;Idle&quot;,
 recovery    0,          # in seconds
 skill       &quot;none&quot;
@@ -268,8 +282,8 @@ skill       &quot;none&quot;
 </table>
 <dl class="docutils">
 <dt>Recovery:</dt>
-<dd>The spy is currently recovering from running his previous task.  This 
-is the time remaining, in seconds, of that recovery period.  After 
+<dd>The spy is currently recovering from running his previous task.  This
+is the time remaining, in seconds, of that recovery period.  After
 that time expires, the spy will be available for another task.</dd>
 <dt>Skill:</dt>
 <dd>Which of the spy&#8217;s skills will be used to calculate success.</dd>
@@ -278,24 +292,24 @@ that time expires, the spy will be available for another task.</dd>
 
 <dl class="class">
 <dt id="lacuna.spy.ForeignAgent">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">ForeignAgent</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.ForeignAgent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">ForeignAgent</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.ForeignAgent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><code class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>name                &quot;James Bond&quot;,
 level               &quot;20&quot;,
 task                &quot;Appropriate Technology&quot;
-next_mission        &quot;01 31 2010 13:09:05 +0600&quot;   
+next_mission        &quot;01 31 2010 13:09:05 +0600&quot;
 </pre></div>
 </div>
-<p>You have to capture a ForeignSpy to turn him into a Prisoner to be able to 
+<p>You have to capture a ForeignSpy to turn him into a Prisoner to be able to
 see his ID.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.spy.IntelView">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">IntelView</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.IntelView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">IntelView</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.IntelView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>maximum             5,
 current             1,
 in_training         1,
@@ -303,16 +317,16 @@ training_costs      lacuna.spy.TrainingCosts object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="#lacuna.spy.TrainingCosts" title="lacuna.spy.TrainingCosts"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.TrainingCosts</span></tt></a></li>
+<li><a class="reference internal" href="#lacuna.spy.TrainingCosts" title="lacuna.spy.TrainingCosts"><code class="xref py py-class docutils literal"><span class="pre">lacuna.spy.TrainingCosts</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.spy.Merc">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Merc</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.Merc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">Merc</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.Merc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><code class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></code></a></p>
 <p>A spy who&#8217;s ready to be added as a trade on the Merc&#8217;s Guild.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id      12345
 name    &quot;James Bond&quot;,
 level   &quot;20&quot;,
@@ -322,14 +336,14 @@ level   &quot;20&quot;,
 
 <dl class="class">
 <dt id="lacuna.spy.MissionCount">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">MissionCount</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.MissionCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">MissionCount</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.MissionCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>The count of missions performed by the spy.</p>
-<p>A spy is forcefully retired after performing 150 of either type of mission 
-(offensive or defensive).  So to get the most life out of a spy, once he 
-gets to 149 of one type of mission, you should only use him for the other 
+<p>A spy is forcefully retired after performing 150 of either type of mission
+(offensive or defensive).  So to get the most life out of a spy, once he
+gets to 149 of one type of mission, you should only use him for the other
 type from then on.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>offensive   149
 defensive   149
 </pre></div>
@@ -338,47 +352,47 @@ defensive   149
 
 <dl class="class">
 <dt id="lacuna.spy.MissionResult">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">MissionResult</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.MissionResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">MissionResult</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.MissionResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>result          &quot;Failure&quot;,
 message_id      &quot;id-goes-here&quot;,
 reason          &quot;I&#39;m under heavy fire over here!&quot;
 </pre></div>
 </div>
 <p>Possible values for &#8216;result&#8217; are:</p>
-<div class="highlight-python"><div class="highlight"><pre>Accepted    Nothing happened as a result of the assignment, as to 
+<div class="highlight-python"><div class="highlight"><pre>Accepted    Nothing happened as a result of the assignment, as to
             Counter Espionage or Idle.
 Success     The mission succeeded and your spy won.
-Bounce      The mission began, but was foiled.  Essentially a draw.  
-Failure     The mission failed miserably.  Your spy is probably 
+Bounce      The mission began, but was foiled.  Essentially a draw.
+Failure     The mission failed miserably.  Your spy is probably
             knocked out, in jail, or dead.
 </pre></div>
 </div>
-<p>The message_id listed is the ID of a message in your inbox 
-containing details of the result of the mission.  Not all 
+<p>The message_id listed is the ID of a message in your inbox
+containing details of the result of the mission.  Not all
 missions will include a message_id (eg &#8216;Idle&#8217;).</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.spy.Prisoner">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Prisoner</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.Prisoner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">Prisoner</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.Prisoner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.spy.Spy" title="lacuna.spy.Spy"><code class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Spy</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id                  &quot;id-goes-here&quot;,
 name                &quot;James Bond&quot;,
 level               &quot;20&quot;,
 task                &quot;Captured&quot; or &quot;Prisoner Transport&quot;,
-sentence_expires    &quot;01 31 2010 13:09:05 +0600&quot;   
+sentence_expires    &quot;01 31 2010 13:09:05 +0600&quot;
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.spy.Spy">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">Spy</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.Spy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">Spy</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.Spy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id                     &quot;id-goes-here&quot;,
 name                   &quot;Jason Bourne&quot;,
 assignment             &quot;Idle&quot;,
@@ -391,7 +405,7 @@ intel                  33,
 offense_rating         570,
 defense_rating         150,
 is_available           1,
-available_on           &quot;01 31 2010 13:09:05 +0600&quot;, # if can&#39;t be reassigned, this 
+available_on           &quot;01 31 2010 13:09:05 +0600&quot;, # if can&#39;t be reassigned, this
                                                     # is when will be available
 started_assignment     &quot;01 31 2010 13:09:05 +0600&quot;,
 seconds_remaining      45,
@@ -400,18 +414,18 @@ based_from             SpyBody object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="#lacuna.spy.Assignment" title="lacuna.spy.Assignment"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Assignment</span></tt></a></li>
-<li><a class="reference internal" href="#lacuna.spy.SpyBody" title="lacuna.spy.SpyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.spy.SpyBody</span></tt></a></li>
+<li><a class="reference internal" href="#lacuna.spy.Assignment" title="lacuna.spy.Assignment"><code class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Assignment</span></code></a></li>
+<li><a class="reference internal" href="#lacuna.spy.SpyBody" title="lacuna.spy.SpyBody"><code class="xref py py-class docutils literal"><span class="pre">lacuna.spy.SpyBody</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.spy.SpyBody">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">SpyBody</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.spy.SpyBody" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>A body (planet, space station, etc).  This can be where the spy is 
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">SpyBody</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.SpyBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>A body (planet, space station, etc).  This can be where the spy is
 currently located or his home base (from which he is controlled).</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id          id-goes-here&quot;,
 body_id     id-goes-here&quot;,
 name        Earth&quot;,
@@ -419,14 +433,14 @@ x           40,
 y           -71
 </pre></div>
 </div>
-<p><tt class="docutils literal"><span class="pre">id</span></tt> and <tt class="docutils literal"><span class="pre">body_id</span></tt> both contain the same value.</p>
+<p><code class="docutils literal"><span class="pre">id</span></code> and <code class="docutils literal"><span class="pre">body_id</span></code> both contain the same value.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.spy.TrainingCosts">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">TrainingCosts</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.TrainingCosts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">TrainingCosts</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.TrainingCosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>food    100,
 water   120,
 energy  20,
@@ -439,9 +453,9 @@ time    60,
 
 <dl class="class">
 <dt id="lacuna.spy.TrainingView">
-<em class="property">class </em><tt class="descclassname">lacuna.spy.</tt><tt class="descname">TrainingView</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.spy.TrainingView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.spy.</code><code class="descname">TrainingView</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.spy.TrainingView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>max_points      2600
 points_per      45
 in_training     4
@@ -457,7 +471,7 @@ in_training     4
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="trading.html" class="btn btn-neutral float-right" title="trading"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="trading.html" class="btn btn-neutral float-right" title="trading">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ship.html" class="btn btn-neutral" title="ship"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -469,11 +483,12 @@ in_training     4
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

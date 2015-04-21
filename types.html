@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -45,9 +47,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -57,8 +62,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -79,12 +85,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -97,6 +104,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -133,6 +146,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -163,7 +177,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="types">
 <span id="translatable-types"></span><h1>types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
@@ -504,7 +518,7 @@ it will be recognized.</p>
 <span id="spy-assg-translations"></span><h2>Spy Assignment Translations<a class="headerlink" href="#spy-assignment-translations" title="Permalink to this headline">¶</a></h2>
 <p>Spy assignments are slightly different.  They don&#8217;t have human and system
 names, just the names you&#8217;re used to seeing in-game.  Still, having to type
-out <tt class="docutils literal"><span class="pre">Apropriate</span> <span class="pre">Technology</span></tt> as a script option is tiring, and prone to
+out <code class="docutils literal"><span class="pre">Apropriate</span> <span class="pre">Technology</span></code> as a script option is tiring, and prone to
 misspellings (did you notice the misspelling in the example?  If not, you&#8217;re
 not going to notice it when you do it either).</p>
 <p>As with the other translators, you can type either the full assignment name or
@@ -605,72 +619,81 @@ translate to the same thing.</p>
 </table>
 <span class="target" id="module-lacuna.types"></span><dl class="class">
 <dt id="lacuna.types.Translator">
-<em class="property">class </em><tt class="descclassname">lacuna.types.</tt><tt class="descname">Translator</tt><a class="headerlink" href="#lacuna.types.Translator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
-<p>Translates the human name and various misspellings of common 
+<em class="property">class </em><code class="descclassname">lacuna.types.</code><code class="descname">Translator</code><a class="headerlink" href="#lacuna.types.Translator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Translates the human name and various misspellings of common
 resources into the appropriate TLE system name.</p>
 <dl class="method">
 <dt id="lacuna.types.Translator.translate_assgtype">
-<tt class="descname">translate_assgtype</tt><big>(</big><em>type: str</em><big>)</big><a class="headerlink" href="#lacuna.types.Translator.translate_assgtype" title="Permalink to this definition">¶</a></dt>
-<dd><p>Translates recognized spy assignment misspellings into the system 
+<code class="descname">translate_assgtype</code><span class="sig-paren">(</span><em>type: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.types.Translator.translate_assgtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates recognized spy assignment misspellings into the system
 spy assignment name.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>type &#8211; String, generally passed in by the user.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns the system spy assignment name associated with the type passed 
-in if it was recognized.  Otherwise raises KeyError.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">tr</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Translator</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span> <span class="n">tr</span><span class="o">.</span><span class="n">translate_assgtype</span><span class="p">(</span><span class="s">&#39;idle&#39;</span><span class="p">)</span> <span class="p">)</span>  <span class="c"># &#39;Idle&#39;</span>
-</pre></div>
-</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type</strong> (<em>str</em>) &#8211; generally passed in by the user.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the system spy assignment name associated with the type passed
+in if it was recognized.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">KeyError</span></code> &#8211;
+If the passed-in string was not recognized.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.types.Translator.translate_oretype">
-<tt class="descname">translate_oretype</tt><big>(</big><em>type: str</em><big>)</big><a class="headerlink" href="#lacuna.types.Translator.translate_oretype" title="Permalink to this definition">¶</a></dt>
-<dd><p>Translates recognized ore type misspellings into the system ore 
+<code class="descname">translate_oretype</code><span class="sig-paren">(</span><em>type: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.types.Translator.translate_oretype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates recognized ore type misspellings into the system ore
 name.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>type &#8211; String, generally passed in by the user.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns the system ore name associated with the type passed in if it 
-was recognized.  Otherwise raises KeyError.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">tr</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Translator</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span> <span class="n">tr</span><span class="o">.</span><span class="n">translate_oretype</span><span class="p">(</span><span class="s">&#39;Anth&#39;</span><span class="p">)</span> <span class="p">)</span>  <span class="c"># &#39;anthracite&#39;</span>
-</pre></div>
-</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type</strong> (<em>str</em>) &#8211; The mispeling or tyop to correct.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the system ore name associated with the type passed in if it
+was recognized.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">KeyError</span></code> &#8211;
+If the passed-in string isn&#8217;t recognized</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>tr = lacuna.types.Translator()
+print( tr.translate_oretype(&#8216;Anth&#8217;) )  # &#8216;anthracite&#8217;</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.types.Translator.translate_shiptype">
-<tt class="descname">translate_shiptype</tt><big>(</big><em>type: str</em><big>)</big><a class="headerlink" href="#lacuna.types.Translator.translate_shiptype" title="Permalink to this definition">¶</a></dt>
-<dd><p>Translates recognized ship type misspellings into the system ship 
+<code class="descname">translate_shiptype</code><span class="sig-paren">(</span><em>type: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.types.Translator.translate_shiptype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translates recognized ship type misspellings into the system ship
 name.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>type &#8211; String, generally passed in by the user.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns the system ship name associated with the type passed in if it 
-was recognized.  Otherwise raises 
-<a class="reference internal" href="exceptions.html#lacuna.exceptions.NoSuchShipError" title="lacuna.exceptions.NoSuchShipError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchShipError</span></tt></a>.</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">tr</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">Translator</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span> <span class="n">tr</span><span class="o">.</span><span class="n">translate_shiptype</span><span class="p">(</span><span class="s">&#39;srcs&#39;</span><span class="p">)</span> <span class="p">)</span>  <span class="c"># &#39;short_range_colony_ship&#39;</span>
-</pre></div>
-</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type</strong> (<em>str</em>) &#8211; generally passed in by the user.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the system ship name associated with the type passed in if it
+was recognized.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="exceptions.html#lacuna.exceptions.NoSuchShipError" title="lacuna.exceptions.NoSuchShipError"><code class="xref py py-exc docutils literal"><span class="pre">lacuna.exceptions.NoSuchShipError</span></code></a> &#8211;
+if the passed-in string was not
+recognized.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -694,11 +717,12 @@ was recognized.  Otherwise raises
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

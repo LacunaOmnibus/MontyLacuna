@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,23 +178,12 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="getting-started-writing-scripts">
 <span id="getting-started-writing"></span><h1>Getting Started Writing Scripts<a class="headerlink" href="#getting-started-writing-scripts" title="Permalink to this headline">¶</a></h1>
-<p>Be sure to follow the <a class="reference internal" href="getting_started_running.html#getting-started-running"><em>Getting Started Running Scripts</em></a> section first.  This
+<p>Be sure to follow the <a class="reference internal" href="getting_started_running.html#getting-started-running"><span>Getting Started Running Scripts</span></a> section first.  This
 section assumes that you&#8217;re already to the point of being able to run scripts.</p>
-<div class="section" id="test-scripts">
-<h2>Test Scripts<a class="headerlink" href="#test-scripts" title="Permalink to this headline">¶</a></h2>
-<p>There are a bunch of test scripts in <tt class="docutils literal"><span class="pre">INSTALLDIR/t/</span></tt>.  These are not meant
-to be attached to any test harness, and almost all the code in those scripts
-has been commented out.</p>
-<p>Instead of automated unit tests, those are to-be-run-manually test scripts.
-You can run them as you like, but you&#8217;ll need to edit each one to make sense
-to you, and be careful; some of the example code in those scripts can be
-damaging to your empire.</p>
-<p>Those scripts really exist as examples of how to use MontyLacuna.</p>
-</div>
 <div class="section" id="tell-your-script-where-montylacuna-lives">
 <h2>Tell Your Script Where MontyLacuna Lives<a class="headerlink" href="#tell-your-script-where-montylacuna-lives" title="Permalink to this headline">¶</a></h2>
 <p>When you create a new script, you&#8217;ll need to tell that script how to find the
@@ -192,10 +195,13 @@ MontyLacuna libraries.</p>
 <span class="kn">import</span> <span class="nn">lacuna</span>
 </pre></div>
 </div>
-<p>The path to the <tt class="docutils literal"><span class="pre">lib/</span></tt> directory is relative to the location of your script,
-and this example assumes your script is going to live in <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>.
-If you&#8217;re going to put your script somewhere else, adjust the path
-accordingly.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The path to the <code class="docutils literal"><span class="pre">lib/</span></code> directory is relative to the location of your
+script, and this example assumes your script is going to live in
+<code class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></code>.  If you&#8217;re going to put your script somewhere else,
+adjust the path accordingly.</p>
+</div>
 </div>
 <div class="section" id="connect-a-client">
 <h2>Connect a client<a class="headerlink" href="#connect-a-client" title="Permalink to this headline">¶</a></h2>
@@ -207,55 +213,79 @@ accordingly.</p>
 </div>
 <p>As with the previous step, the path to the config file is relative to the
 location of your script.  Adjust the path accordingly if your script is going
-to live somewhere other than <tt class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></tt>.</p>
-<p>Please keep in mind that many of the people using your script may not be very
-technically inclined.  The config file creation script that comes with
-MontyLacuna creates config file sections named <tt class="docutils literal"><span class="pre">real</span></tt> and <tt class="docutils literal"><span class="pre">sitter</span></tt>.  If
-your script is meant for distribution, it&#8217;s strongly suggested that you
-specify one of those two names as your <tt class="docutils literal"><span class="pre">config_section</span></tt>.</p>
+to live somewhere other than <code class="docutils literal"><span class="pre">INSTALLDIR/bin/</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please keep in mind that many of the people using your script may not be
+very technically inclined.  The config file creation script that comes
+with MontyLacuna creates config file sections named <code class="docutils literal"><span class="pre">real</span></code> and
+<code class="docutils literal"><span class="pre">sitter</span></code>.  If your script is meant for distribution, it&#8217;s strongly
+suggested that you specify one of those two names as your
+<code class="docutils literal"><span class="pre">config_section</span></code>.</p>
+</div>
 </div>
 <div class="section" id="logging-and-caching">
 <h2>Logging and Caching<a class="headerlink" href="#logging-and-caching" title="Permalink to this headline">¶</a></h2>
 <p>Logging and caching facilities are set up for use in your scripts, and are
-both easy to access.  For details, see <a class="reference internal" href="logging.html#logging"><em>logging</em></a> and <a class="reference internal" href="caching.html#caching"><em>caching</em></a>.</p>
+both easy to access.  For details, see <a class="reference internal" href="logging.html#logging"><span>logging</span></a> and <a class="reference internal" href="caching.html#caching"><span>caching</span></a>.</p>
 </div>
 <div class="section" id="debugging-requests">
 <h2>Debugging Requests<a class="headerlink" href="#debugging-requests" title="Permalink to this headline">¶</a></h2>
 <p>If you ever need to see the exact JSON that a given method would send to the
-server, you can assign a <tt class="docutils literal"><span class="pre">debugging_method</span></tt> on your client, eg:</p>
+server, you can assign a <code class="docutils literal"><span class="pre">debugging_method</span></code> on your client, eg:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">debugging_method</span> <span class="o">=</span> <span class="s">&#39;view_profile&#39;</span>
 <span class="n">empire</span><span class="o">.</span><span class="n">view_profile</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Once a <tt class="docutils literal"><span class="pre">debugging_method</span></tt> has been assigned, the next time a method by that
+<p>Once a <code class="docutils literal"><span class="pre">debugging_method</span></code> has been assigned, the next time a method by that
 name is called, the JSON that would normally be passed to the TLE servers will
 instead be dumped to the screen, and the script will terminate immediately, to
 allow you to inspect the JSON dump.</p>
-<p>A <tt class="docutils literal"><span class="pre">debugging_method</span></tt> must be the name of a TLE API method.  Most MontyLacuna
+<p>A <code class="docutils literal"><span class="pre">debugging_method</span></code> must be the name of a TLE API method.  Most MontyLacuna
 methods are mirrors of TLE API methods, but not all.  To check if a given
 method is a published TLE API method, check out the TLE API documentation:
 <a class="reference external" href="https://us1.lacunaexpanse.com/api/">https://us1.lacunaexpanse.com/api/</a></p>
 </div>
 <div class="section" id="method-calling">
 <h2>Method Calling<a class="headerlink" href="#method-calling" title="Permalink to this headline">¶</a></h2>
-<p>Almost all MontyLacuna methods require positional, not named, arguments.</p>
-<p>The method documentation includes argument names and types for clarity of what
+<p>Almost all MontyLacuna methods require positional, not named, arguments.  The
+method documentation includes argument names and types for clarity of what
 data types need to be sent, not as an indication that named arguments can be
 used.</p>
-<p>eg The documentation for the Embassy&#8217;s <tt class="docutils literal"><span class="pre">accept_invite</span></tt> method looks like
+<p>eg The documentation for the Embassy&#8217;s <code class="docutils literal"><span class="pre">accept_invite</span></code> method looks like
 this:</p>
-<blockquote>
-<div><strong>accept_invite(invite_id: int, message: str=&#8217;&#8216;, **kwargs)</strong></div></blockquote>
-<p>So, to call <tt class="docutils literal"><span class="pre">accept_invite</span></tt>, you&#8217;d do something like this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="mi">12345</span><span class="p">,</span> <span class="s">&quot;Come join my alliance!&quot;</span> <span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre>accept_invite( invite_id:int, message:str=&#39;&#39;, **kwargs )
 </pre></div>
 </div>
-<p>But you wouldn&#8217;t do this, because the invite_id has to come before the
-message:</p>
+<p>So, to call <code class="docutils literal"><span class="pre">accept_invite</span></code>, you&#8217;d do something like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="mi">12345</span><span class="p">,</span> <span class="s">&quot;Thanks for inviting me!&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>But you wouldn&#8217;t do this, because the <code class="docutils literal"><span class="pre">invite_id</span></code> has to come before the
+<code class="docutils literal"><span class="pre">message</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">### GONNNNG!  Don&#39;t do this.</span>
-<span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Come join my alliance!&quot;</span><span class="p">,</span> <span class="n">invite_id</span> <span class="o">=</span> <span class="mi">12345</span> <span class="p">)</span>
+<span class="n">embassy</span><span class="o">.</span><span class="n">accept_invite</span><span class="p">(</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Thanks for inviting me!&quot;</span><span class="p">,</span> <span class="n">invite_id</span> <span class="o">=</span> <span class="mi">12345</span> <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="test-scripts">
+<h2>Test Scripts<a class="headerlink" href="#test-scripts" title="Permalink to this headline">¶</a></h2>
+<p>There are a bunch of test scripts in <code class="docutils literal"><span class="pre">INSTALLDIR/t/</span></code>.  These are not meant
+to be attached to any test harness, and almost all the code in those scripts
+has been commented out.</p>
+<p>Instead of automated unit tests, those are to-be-run-manually test scripts.
+You can run them as you like, but you&#8217;ll need to edit each one to make sense
+to you, and be careful; some of the example code in those scripts can be
+damaging to your empire.</p>
+<p>Those scripts really exist as examples of how to use MontyLacuna.  If you want
+to see how something is done, check there first.</p>
+</div>
+<div class="section" id="adding-unit-tests">
+<h2>Adding Unit Tests<a class="headerlink" href="#adding-unit-tests" title="Permalink to this headline">¶</a></h2>
+<p>Along with the more example-y test scripts noted above, there are also some
+suites of unit tests.  If you want to create a script to be added to
+MontyLacuna, you&#8217;ll want to include a unit test suite to go along with your
+script.  See <a class="reference internal" href="tests/index.html#tests-index"><span>Unit Tests</span></a>.</p>
 </div>
 <div class="section" id="example-snippets">
 <h2>Example Snippets<a class="headerlink" href="#example-snippets" title="Permalink to this headline">¶</a></h2>
@@ -330,76 +360,109 @@ message:</p>
 including command-line argument parsing, your script should inherit from:</p>
 <span class="target" id="module-lacuna.binutils.libbin"></span><dl class="class">
 <dt id="lacuna.binutils.libbin.Script">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libbin.</tt><tt class="descname">Script</tt><big>(</big><em>parser</em>, <em>section: str='sitter'</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libbin.Script" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<em class="property">class </em><code class="descclassname">lacuna.binutils.libbin.</code><code class="descname">Script</code><span class="sig-paren">(</span><em>parser</em>, <em>section: str='sitter'</em>, <em>testargs: dict={}</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libbin.Script" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Base class for scripts.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>parser &#8211; Required argparse parser</li>
-<li>section &#8211; Optional config section to read from.  Defaults to 
-&#8216;sitter&#8217;.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parser -- Required argparse parser</strong> (<em>-</em>) &#8211; </li>
+<li><strong>section -- Optional config section to read from.  Defaults to</strong> (<em>-</em>) &#8211; &#8216;sitter&#8217;.</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>import binutils.libbin</p>
+<dl class="docutils">
+<dt>class MyScript( binutils.libbin.Script ):</dt>
+<dd><dl class="first last docutils">
+<dt>def __init__(self):</dt>
+<dd><dl class="first docutils">
+<dt>parser = argparse.ArgumentParser(</dt>
+<dd>description = &#8220;This shows above the options docs in help&#8221;,
+epilog      = &#8220;This shows below the options docs in help&#8221;,</dd>
+</dl>
+<p>)
+parser.add_argument( &#8216;planet&#8217;,</p>
+<blockquote>
+<div>metavar     = &#8216;&lt;planet&gt;&#8217;,
+action      = &#8216;store&#8217;,
+help        = &#8220;Name of the planet to run against.&#8221;</div></blockquote>
+<p class="last">### Add other arguments as needed
+###
+super().__init__( parser )</p>
 </dd>
 </dl>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">binutils.libbin</span>
+</dd>
+</dl>
+<dl class="attribute">
+<dt>
+<code class="descname">By inheriting from binutils.libbin.Script, your script's main class</code></dt>
+<dd></dd></dl>
 
-<span class="k">class</span> <span class="nc">MyScript</span><span class="p">(</span> <span class="n">binutils</span><span class="o">.</span><span class="n">libbin</span><span class="o">.</span><span class="n">Script</span> <span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-            <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;This shows above the options docs in help&quot;</span><span class="p">,</span>
-            <span class="n">epilog</span>      <span class="o">=</span> <span class="s">&quot;This shows below the options docs in help&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span> <span class="s">&#39;planet&#39;</span><span class="p">,</span>
-            <span class="n">metavar</span>     <span class="o">=</span> <span class="s">&#39;&lt;planet&gt;&#39;</span><span class="p">,</span>
-            <span class="n">action</span>      <span class="o">=</span> <span class="s">&#39;store&#39;</span><span class="p">,</span>
-            <span class="n">help</span>        <span class="o">=</span> <span class="s">&quot;Name of the planet to run against.&quot;</span>
-        <span class="p">)</span>
-        <span class="c">### </span>
-        <span class="c">### Add other arguments as needed</span>
-        <span class="c">###</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span> <span class="n">parser</span> <span class="p">)</span>
-</pre></div>
-</div>
-<p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>By inheriting from binutils.libbin.Script, your script&#39;s main class 
-will get the following:
+<dl class="attribute">
+<dt>
+<code class="descname">will get the following</code></dt>
+<dd></dd></dl>
 
-args        The user&#39;s arguments, passed from the command line.
-bindir      The full path to the directory containing the script
-            being run.
-client      A TLE client, connected using the empire and password
-            found in the requested config file section.
-parser      The argparse parser.
-version     The program version.  Generally this will be set in
-            the ``__init__`` method of the inheriting child class, but 
-            if it&#39;s not set there, this will default to &#39;0.1&#39;
+<dl class="attribute">
+<dt>
+<code class="descname">args        The user's arguments, passed from the command line.</code></dt>
+<dd></dd></dl>
 
-If you need this attribute, you&#39;ll need to create it before calling 
-``super().__init()``:
+<dl class="attribute">
+<dt>
+<code class="descname">bindir      The full path to the directory containing the script</code></dt>
+<dd><p>being run.</p>
+</dd></dl>
 
-skip_argparse   Dispatch table of arguments that bypass 
-                argparse.parse_args().  See below.
-</pre></div>
-</div>
+<dl class="attribute">
+<dt>
+<code class="descname">client      A TLE client, connected using the empire and password</code></dt>
+<dd><p>found in the requested config file section.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">parser      The argparse parser.</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">version     The program version.  Generally this will be set in</code></dt>
+<dd><p>the <code class="docutils literal"><span class="pre">__init__</span></code> method of the inheriting child class, but
+if it&#8217;s not set there, this will default to &#8216;0.1&#8217;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">skip_argparse   Dispatch table of arguments that bypass</code></dt>
+<dd><p>argparse.parse_args().  See below.</p>
+<p>If you want to include this attribute, you&#8217;ll need to
+create it before calling super().__init().  See below.</p>
+</dd></dl>
+
 <dl class="docutils">
 <dt>skip_argparse</dt>
-<dd><p class="first">Sometimes you want to give the user the ability to pass an option that 
+<dd><p class="first">Sometimes you want to give the user the ability to pass an option that
 will obviate the need for specifying any other options.</p>
-<p>For example, in the <tt class="docutils literal"><span class="pre">search_archmin.py</span> <span class="pre">script</span></tt>, the <tt class="docutils literal"><span class="pre">--list</span></tt> (or 
-<tt class="docutils literal"><span class="pre">-l</span></tt>) arguments are meant to simply display a list of all ores the 
-user can chose from, as a convenience.  In this case, there would be 
-no need for the user to supply the otherwise required <tt class="docutils literal"><span class="pre">planet</span></tt> or 
-<tt class="docutils literal"><span class="pre">glyph</span></tt> positional arguments; we just want to display a list of ores 
-and quit.</p>
-<p>The dispatch table&#8217;s keys are the string args (in our example case, 
-both <tt class="docutils literal"><span class="pre">-l</span></tt> and <tt class="docutils literal"><span class="pre">--list</span></tt> would be keys), and the values are the 
-methods to call.  Remember to omit the parens &#8211; you&#8217;re specifying the 
-method, not calling it.  In our example, both of our keys would have 
-the same value of <tt class="docutils literal"><span class="pre">self.list_ores</span></tt>.  We&#8217;d then need to create a 
-<tt class="docutils literal"><span class="pre">list_ores()</span></tt> method that would be called when either of those 
-options are specified.</p>
+<p>For example, in the <code class="docutils literal"><span class="pre">search_archmin.py</span> <span class="pre">script</span></code>, the <code class="docutils literal"><span class="pre">--list</span></code> (or
+<code class="docutils literal"><span class="pre">-l</span></code>) argument displays a list of all ores the user can chose from,
+and then quits.</p>
+<p>In this case, there&#8217;s no need for the user to supply the otherwise
+required <code class="docutils literal"><span class="pre">planet</span></code> or <code class="docutils literal"><span class="pre">glyph</span></code> positional arguments.</p>
+<p>So we&#8217;re going to set up a dispatch table containing the arguments
+that will override the need for the other, usually-required arguments.</p>
+<p>The dispatch table&#8217;s keys are the string args (in our example case,
+both <code class="docutils literal"><span class="pre">-l</span></code> and <code class="docutils literal"><span class="pre">--list</span></code> would be keys), and the values are the
+methods to call when those arguments are encountered.</p>
+<p>Remember to omit the parens &#8211; you&#8217;re specifying the method, not
+calling it.  In our example, both of our keys have the same value of
+<code class="docutils literal"><span class="pre">self.list_ores</span></code>.</p>
 <p>eg:</p>
 <div class="highlight-python"><div class="highlight"><pre>def list_ores( self ):
     # Code to list out all the ores in the game and then quit().
@@ -412,50 +475,98 @@ self.skip_argparse = {
 super().__init__(parser)
 </pre></div>
 </div>
-<p class="last">Usually, you&#8217;re going to want your script to end after the method 
-specified in the dispatch table is run, but it&#8217;s possible that some 
-circumstance could crop up where that&#8217;s not the case.  So if you do 
-want the script to quit after your method is run, be sure to include a 
-<tt class="docutils literal"><span class="pre">quit()</span></tt> call in your method.</p>
+<p>We&#8217;d now need to create a <code class="docutils literal"><span class="pre">list_ores()</span></code> method that would be called
+when either of those options are specified.</p>
+<p>Most of the time you&#8217;re going to want your script to end after the
+method specified in the dispatch table is run, so be sure to include a
+<code class="docutils literal"><span class="pre">quit()</span></code> call at the end:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">list_ores</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_of_ore_names</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span> <span class="n">i</span> <span class="p">)</span>
+    <span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd>
 <dt>Parser</dt>
-<dd><p class="first">The argparse parser handed in will have the following optional 
-arguments:</p>
+<dd><p class="first">The argparse parser handed in will have the following optional
+arguments already set up:</p>
 <blockquote>
 <div><ul class="simple">
-<li><tt class="docutils literal"><span class="pre">--file</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">--section</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">-q</span></tt>, <tt class="docutils literal"><span class="pre">--quiet</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">-v</span></tt>, <tt class="docutils literal"><span class="pre">--verbose</span></tt></li>
+<li><code class="docutils literal"><span class="pre">--file</span></code></li>
+<li><code class="docutils literal"><span class="pre">--section</span></code></li>
+<li><code class="docutils literal"><span class="pre">-q</span></code>, <code class="docutils literal"><span class="pre">--quiet</span></code></li>
+<li><code class="docutils literal"><span class="pre">-v</span></code>, <code class="docutils literal"><span class="pre">--verbose</span></code></li>
 </ul>
 </div></blockquote>
-<p class="last">Any other arguments that are specific to your script will need to be 
-added before calling <tt class="docutils literal"><span class="pre">super().__init__()</span></tt>.</p>
+<p class="last">Any other arguments that are specific to your script will need to be
+added before calling <code class="docutils literal"><span class="pre">super().__init__()</span></code>.</p>
+</dd>
+<dt>Skip Logging In</dt>
+<dd><p class="first">There will occasionally be scripts that don&#8217;t need to log in to the
+TLE servers, but still want access to some of the features provided by
+the Clients class, such as logging.  <code class="docutils literal"><span class="pre">update.py</span></code> is an example of
+this.</p>
+<p>If you&#8217;re creating such a script, set your module up as above, but
+before calling <code class="docutils literal"><span class="pre">__init__</span></code>, create an attribute called <code class="docutils literal"><span class="pre">guest</span></code> set
+to a true value:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">guest</span> <span class="o">=</span> <span class="bp">True</span><span class="p">;</span>
+<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">parser</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now your script&#8217;s module will have a <code class="docutils literal"><span class="pre">self.client</span></code> attribute, from
+which you can get <code class="docutils literal"><span class="pre">self.client.user_logger</span></code>, but that client won&#8217;t
+need to log in.</p>
+<p class="last">When skipping login like this, the &#8211;file and &#8211;section arguments
+don&#8217;t pertain, so they will automatically be omitted from the help
+(-h) blurb.</p>
 </dd>
 </dl>
 <dl class="method">
 <dt id="lacuna.binutils.libbin.Script.connect">
-<tt class="descname">connect</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libbin.Script.connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Connects to the game server, using the config_file and 
+<code class="descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libbin.Script.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects to the game server, using the config_file and
 config_section arguments.</p>
-<p>Sets self.client.</p>
+<p>If a script doesn&#8217;t need to log in to the TLE servers
+(eg <code class="docutils literal"><span class="pre">update.py</span></code>), it can create a <code class="docutils literal"><span class="pre">no_connect</span></code> attribute and set it
+to True.</p>
+<p>Sets self.client if <code class="docutils literal"><span class="pre">no_connect</span></code> is not True.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.binutils.libbin.Script.set_planets">
+<code class="descname">set_planets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libbin.Script.set_planets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the list of working planets based on command-line arguments.</p>
+<dl class="docutils">
+<dt>Required argument:</dt>
+<dd><ul class="first last simple">
+<li>name &#8211; The name of the single planet to work on, or &#8216;all&#8217; to
+include all of my planets.</li>
+</ul>
+</dd>
+</dl>
+<p>Sets <code class="docutils literal"><span class="pre">self.planets</span></code> to a list of planet name strings.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libbin.Script.summarize">
-<tt class="descname">summarize</tt><big>(</big><em>string: str</em>, <em>mymax: int</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libbin.Script.summarize" title="Permalink to this definition">¶</a></dt>
-<dd><p>If a string is too long, shortens it and adds ellipsis.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>string &#8211; Some string to summarize</li>
-<li>max &#8211; Integer max length of the string.  Must be greater than 3.</li>
+<code class="descname">summarize</code><span class="sig-paren">(</span><em>string: str</em>, <em>mymax: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libbin.Script.summarize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Summarizes a string, usually for inclusion in a report section
+with a fixed width.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>string -- Some string to summarize</strong> (<em>-</em>) &#8211; </li>
+<li><strong>max -- Integer max length of the string.  Must be greater than 3.</strong> (<em>-</em>) &#8211; </li>
 </ul>
-</dd>
-</dl>
-<p>If the string is &#8220;abcdefghijk&#8221; and the max is 6, this will return 
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the string is &#8220;abcdefghijk&#8221; and the max is 6, this will return
 &#8220;abc...&#8221;</p>
-<p>Returns the summarized string, or the original string if it was shorter 
+<p>Returns the summarized string, or the original string if it was shorter
 than max.</p>
 </dd></dl>
 
@@ -471,7 +582,7 @@ than max.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tle_modules/index.html" class="btn btn-neutral float-right" title="TLE Modules"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tle_modules/index.html" class="btn btn-neutral float-right" title="TLE Modules">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="config_file.html" class="btn btn-neutral" title="Config File"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -483,11 +594,12 @@ than max.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

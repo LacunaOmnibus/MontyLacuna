@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,27 +181,27 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="body">
 <h1>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h1>
-<p>In TLE, a <tt class="docutils literal"><span class="pre">body</span></tt> is any thingy that orbits a star.  Habitable planets, gas
+<p>In TLE, a <code class="docutils literal"><span class="pre">body</span></code> is any thingy that orbits a star.  Habitable planets, gas
 giants, space stations, and asteroids are all bodies.</p>
 <p>Most of the time, the bodies you&#8217;ll be dealing with will by
-<a class="reference internal" href="#lacuna.body.MyBody" title="lacuna.body.MyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></tt></a> objects.  <em>This includes Space Stations</em>.</p>
-<p>There is a <a class="reference internal" href="#lacuna.body.SpaceStation" title="lacuna.body.SpaceStation"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.SpaceStation</span></tt></a> class down below, but don&#8217;t be
+<a class="reference internal" href="#lacuna.body.MyBody" title="lacuna.body.MyBody"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></code></a> objects.  <em>This includes Space Stations</em>.</p>
+<p>There is a <a class="reference internal" href="#lacuna.body.SpaceStation" title="lacuna.body.SpaceStation"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.SpaceStation</span></code></a> class down below, but don&#8217;t be
 confused by that.  That class <em>only</em> ever gets returned rarely, and does not
 contain much actual information (it gets returned as a list in a
-<a class="reference internal" href="alliance.html#lacuna.alliance.MyAlliance" title="lacuna.alliance.MyAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.MyAlliance</span></tt></a> or <a class="reference internal" href="alliance.html#lacuna.alliance.Profile" title="lacuna.alliance.Profile"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Profile</span></tt></a>
+<a class="reference internal" href="alliance.html#lacuna.alliance.MyAlliance" title="lacuna.alliance.MyAlliance"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.MyAlliance</span></code></a> or <a class="reference internal" href="alliance.html#lacuna.alliance.Profile" title="lacuna.alliance.Profile"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Profile</span></code></a>
 object).</p>
 <p>So if you&#8217;re iterating through your space stations (with
-<tt class="docutils literal"><span class="pre">self.empire.station_names</span></tt> or similar), you&#8217;ll be dealing with
-<a class="reference internal" href="#lacuna.body.MyBody" title="lacuna.body.MyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></tt></a> objects.</p>
+<code class="docutils literal"><span class="pre">self.empire.station_names</span></code> or similar), you&#8217;ll be dealing with
+<a class="reference internal" href="#lacuna.body.MyBody" title="lacuna.body.MyBody"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></code></a> objects.</p>
 <span class="target" id="module-lacuna.body"></span><dl class="class">
 <dt id="lacuna.body.Body">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Body</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.Body" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">Body</code><span class="sig-paren">(</span><em>client: object</em>, <em>attrs: dict={}</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.Body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 x               -4,
 y               10,
@@ -208,28 +222,28 @@ station         lacuna.map.Station object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a></li>
-<li><a class="reference internal" href="empire.html#lacuna.empire.OwningEmpire" title="lacuna.empire.OwningEmpire"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.empire.OwningEmpire</span></tt></a></li>
-<li><a class="reference internal" href="map.html#lacuna.map.Station" title="lacuna.map.Station"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></tt></a></li>
+<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><code class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></code></a></li>
+<li><a class="reference internal" href="empire.html#lacuna.empire.OwningEmpire" title="lacuna.empire.OwningEmpire"><code class="xref py py-class docutils literal"><span class="pre">lacuna.empire.OwningEmpire</span></code></a></li>
+<li><a class="reference internal" href="map.html#lacuna.map.Station" title="lacuna.map.Station"><code class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.body.Buildable">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Buildable</tt><big>(</big><em>client</em>, <em>name</em>, <em>mydict</em><big>)</big><a class="headerlink" href="#lacuna.body.Buildable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">Buildable</code><span class="sig-paren">(</span><em>client</em>, <em>name</em>, <em>mydict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.Buildable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>A building to be built on a given plot.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>name                Wheat Farm
 url                 /wheat
 building_class      wheat
 image               wheat1
 can_build           1 or 0
-reason              Only shows up if &#39;can_build&#39; is 0, in which case 
-                    this will be a string explaining why the building 
+reason              Only shows up if &#39;can_build&#39; is 0, in which case
+                    this will be a string explaining why the building
                     cannot be built.
 extra_level         7,
-                    Only shows up for some plan types, skips level 1 
+                    Only shows up for some plan types, skips level 1
                     and goes straight to this level
 tags                List of build tags applying to this building (see below)
 cost                lacuna.resource.BuildCost object
@@ -237,8 +251,8 @@ production          lacuna.resource.Production object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="../resource.html#lacuna.resource.BuildCost" title="lacuna.resource.BuildCost"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.BuildCost</span></tt></a></li>
-<li><a class="reference internal" href="../resource.html#lacuna.resource.Production" title="lacuna.resource.Production"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.Production</span></tt></a></li>
+<li><a class="reference internal" href="../resource.html#lacuna.resource.BuildCost" title="lacuna.resource.BuildCost"><code class="xref py py-class docutils literal"><span class="pre">lacuna.resource.BuildCost</span></code></a></li>
+<li><a class="reference internal" href="../resource.html#lacuna.resource.Production" title="lacuna.resource.Production"><code class="xref py py-class docutils literal"><span class="pre">lacuna.resource.Production</span></code></a></li>
 </ul>
 <dl class="docutils">
 <dt>Possible build tags:</dt>
@@ -272,13 +286,13 @@ production          lacuna.resource.Production object
 
 <dl class="class">
 <dt id="lacuna.body.JurisdictionPlanet">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">JurisdictionPlanet</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.JurisdictionPlanet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>A planet you don&#8217;t necessarily own, that&#8217;s orbiting a star in the 
-jurisdiction of one of your Space Stations, as returned by 
-<tt class="docutils literal"><span class="pre">lacuna.buildings.parliament.get_bodies_for_star_in_jurisdiction()</span></tt>.</p>
-<p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot; 
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">JurisdictionPlanet</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.JurisdictionPlanet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>A planet you don&#8217;t necessarily own, that&#8217;s orbiting a star in the
+jurisdiction of one of your Space Stations, as returned by
+<code class="docutils literal"><span class="pre">lacuna.buildings.parliament.get_bodies_for_star_in_jurisdiction()</span></code>.</p>
+<p>Object Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;
 star_id     &quot;star-id-goes-here&quot;
 star_name   &quot;Sol&quot;
 x           0
@@ -290,31 +304,31 @@ zone        &#39;0|0&#39;
 orbit       &#39;3&#39;
 name        &#39;Earth&#39;
 type        &#39;asteroid&#39;
-### 
-### &#39;station&#39; will only appear if the planet&#39;s star has been seized by 
+###
+### &#39;station&#39; will only appear if the planet&#39;s star has been seized by
 ### a space station.
 station     lacuna.map.Station object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a></li>
-<li><a class="reference internal" href="map.html#lacuna.map.Station" title="lacuna.map.Station"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></tt></a></li>
+<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><code class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></code></a></li>
+<li><a class="reference internal" href="map.html#lacuna.map.Station" title="lacuna.map.Station"><code class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.body.MyBody">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">MyBody</tt><big>(</big><em>client: object</em>, <em>attrs: dict={}</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></p>
-<p>A MyBody object is a planet or space station owned by the current 
-empire.  It has all of the attributes of a <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a> object, plus:</p>
-<div class="highlight-python"><div class="highlight"><pre>needs_surface_refresh       1,  # client needs to call get_buildings() 
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">MyBody</code><span class="sig-paren">(</span><em>client: object</em>, <em>attrs: dict={}</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></code></a></p>
+<p>A MyBody object is a planet or space station owned by the current
+empire.  It has all of the attributes of a <a class="reference internal" href="#lacuna.body.Body" title="lacuna.body.Body"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></code></a> object, plus:</p>
+<div class="highlight-python"><div class="highlight"><pre>needs_surface_refresh       1,  # client needs to call get_buildings()
                                 # because something has changed
 building_count              7,
 plots_available             60,
 happiness                   3939,
 happiness_hour              25,
-unhappy_date                &quot;01 13 2014 16:11:21 +0600&quot;,  
+unhappy_date                &quot;01 13 2014 16:11:21 +0600&quot;,
                             # Only given if happiness is below zero
 propaganda_boost            20,
 food_stored                 33329,
@@ -331,7 +345,7 @@ waste_stored                9933,
 waste_capacity              13000,
 water_stored                9929,
 water_hour                  295,
-water_capacity              51050,   
+water_capacity              51050,
 skip_incoming_ships         0,      # if set, the &#39;incoming&#39; data below is missing.
 num_incoming_enemy          10,     # total incoming foreign ships
 num_incoming_ally           1,      # total incoming allied ships
@@ -350,12 +364,12 @@ buildings_name              {   &#39;Apple Orchard&#39; = [     { building dict 
                                                         { building dict },   ],
                                 &#39;etc&#39;           = [     { more of the same}, ]     }
 ### The following will only be set if the body is a space station.
-### 
+###
 alliance                    Lacuna.alliance.FoundAlliance object
 influence                   Lacuna.alliance.Influence object
 </pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">building_dict</span></tt> dictionaries look like:</p>
+<p>The <code class="docutils literal"><span class="pre">building_dict</span></code> dictionaries look like:</p>
 <div class="highlight-python"><div class="highlight"><pre>&#39;efficiency&#39;:   &#39;100&#39;
 &#39;name&#39;:         &#39;Police Station&#39;
 &#39;image&#39;:        &#39;policestation&#39;
@@ -367,220 +381,294 @@ influence                   Lacuna.alliance.Influence object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="../ship.html#lacuna.ship.IncomingToBodyShip" title="lacuna.ship.IncomingToBodyShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingToBodyShip</span></tt></a></li>
-<li><a class="reference internal" href="alliance.html#lacuna.alliance.FoundAlliance" title="lacuna.alliance.FoundAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.FoundAlliance</span></tt></a></li>
-<li><a class="reference internal" href="alliance.html#lacuna.alliance.Influence" title="lacuna.alliance.Influence"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Influence</span></tt></a></li>
+<li><a class="reference internal" href="../ship.html#lacuna.ship.IncomingToBodyShip" title="lacuna.ship.IncomingToBodyShip"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.IncomingToBodyShip</span></code></a></li>
+<li><a class="reference internal" href="alliance.html#lacuna.alliance.FoundAlliance" title="lacuna.alliance.FoundAlliance"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.FoundAlliance</span></code></a></li>
+<li><a class="reference internal" href="alliance.html#lacuna.alliance.Influence" title="lacuna.alliance.Influence"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Influence</span></code></a></li>
 </ul>
 <dl class="method">
 <dt id="lacuna.body.MyBody.abandon">
-<tt class="descname">abandon</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.abandon" title="Permalink to this definition">¶</a></dt>
+<code class="descname">abandon</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.abandon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abandons the current planet.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_buildable">
-<tt class="descname">get_buildable</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>tag: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildable" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_buildable</code><span class="sig-paren">(</span><em>x: int</em>, <em>y: int</em>, <em>tag: str=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.get_buildable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of buildings that can be built on the indicated coords.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>x &#8211; Required integer X coordinate where you want to place the building</li>
-<li>y &#8211; Required integer Y coordinate where you want to place the building</li>
-<li>tag &#8211; Optional string to limit what gets returned.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>int</em>) &#8211; X coordinate where you want to place the building</li>
+<li><strong>y</strong> (<em>int</em>) &#8211; Y coordinate where you want to place the building</li>
+<li><strong>tag</strong> (<em>optional str</em>) &#8211; Limit what gets returned.</li>
 </ul>
-</dd>
-</dl>
-<p>See the lacuna.body.Buildable class for a list of valid tags.  Passing 
-an invalid tag as an argument is not an error, but zero results will be 
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference internal" href="#lacuna.body.Buildable" title="lacuna.body.Buildable">lacuna.body.Buildable</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">ServerError</span></code> &#8211;
+1009 if the passed coords are illegal for any reason
+(already occupied, out-of-bounds, etc)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#lacuna.body.Buildable" title="lacuna.body.Buildable"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.Buildable</span></code></a> for a list of valid tags.  Passing
+an invalid tag as an argument is not an error, but zero results will be
 returned.</p>
-<p>Returns a list of <a class="reference internal" href="#lacuna.body.Buildable" title="lacuna.body.Buildable"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Buildable</span></tt></a> objects.</p>
-<p>Raises ServerError 1009 if the passed coords are illegal for any reason (already 
-occupied, out-of-bounds, etc)</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_building_coords">
-<tt class="descname">get_building_coords</tt><big>(</big><em>x: int</em>, <em>y: int</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_building_coords" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_building_coords</code><span class="sig-paren">(</span><em>x: int</em>, <em>y: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.get_building_coords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a building&#8217;s coordinates, returns the object for that building.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>x &#8211; The integer X coordinate on your planet&#8217;s surface</li>
-<li>y &#8211; The integer Y coordinate on your planet&#8217;s surface</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>int</em>) &#8211; X coordinate on your planet&#8217;s surface</li>
+<li><strong>y</strong> (<em>int</em>) &#8211; Y coordinate on your planet&#8217;s surface</li>
 </ul>
-</dd>
-</dl>
-<p>Returns the building object found on the requested coordinates.  The 
-class of object returned will vary depending on which building type 
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the building object found on the requested coordinates.  The
+class of object returned will vary depending on which building type
 exists on those coords.</p>
-<p>Raises NoSuchBuildingError if no building exists on the requested coords.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">lacuna.buildings.&lt;BLDG&gt;</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><code class="xref py py-exc docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></code></a> &#8211;
+if no building exists on the requested coords.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_building_id">
-<tt class="descname">get_building_id</tt><big>(</big><em>classname: str</em>, <em>id: int</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_building_id" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_building_id</code><span class="sig-paren">(</span><em>classname: str</em>, <em>id: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.get_building_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a building object by ID.</p>
 <p>Unless you&#8217;re sure you want this and you know why, you don&#8217;t want this.
-See <tt class="docutils literal"><span class="pre">get_building_coords()</span></tt> or <tt class="docutils literal"><span class="pre">get_buildings_bytype()</span></tt> instead.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>classname &#8211; Name of the class of building</li>
-<li>building_id &#8211; Integer ID of the building</li>
+See <code class="docutils literal"><span class="pre">get_building_coords()</span></code> or <code class="docutils literal"><span class="pre">get_buildings_bytype()</span></code> instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>classname</strong> (<em>str</em>) &#8211; Name of the class of building</li>
+<li><strong>building_id</strong> (<em>int</em>) &#8211; Integer ID of the building</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">An object of the requested building type.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">lacuna.buildings.&lt;TYPE&gt;</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_buildings">
-<tt class="descname">get_buildings</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildings" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_buildings</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.get_buildings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all buildings on the planet.</p>
-<p>There shouldn&#8217;t be any need to call this, as your MyBody object already 
-contains the information returned by this method (see the 
-<tt class="docutils literal"><span class="pre">buildings_id</span></tt> and <tt class="docutils literal"><span class="pre">buildings_name</span></tt> MyBody attributes).</p>
-<p>So this hasn&#8217;t been cleaned up at all.  It returns a dict that includes 
-the with key <tt class="docutils literal"><span class="pre">buildings</span></tt>.  This dict is keyed off building IDs, the 
+<p>There shouldn&#8217;t be any need to call this, as your MyBody object already
+contains the information returned by this method (see the
+<code class="docutils literal"><span class="pre">buildings_id</span></code> and <code class="docutils literal"><span class="pre">buildings_name</span></code> MyBody attributes).</p>
+<p>So this hasn&#8217;t been cleaned up at all.  It returns a dict that includes
+the with key <code class="docutils literal"><span class="pre">buildings</span></code>.  This dict is keyed off building IDs, the
 values are building dicts.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_buildings_bytype">
-<tt class="descname">get_buildings_bytype</tt><big>(</big><em>btype: str</em>, <em>min_level: int=1</em>, <em>limit: int=0</em>, <em>efficiency: int=0</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_buildings_bytype" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a list of buildings of a specific type and minimum level.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>btype &#8211; The type of building you want.  The type as given must 
-match <em>either</em> the &#8220;human name&#8221; of the building (eg &#8220;Ship Yard&#8221;, 
-&#8220;Space Port&#8221;), or the classname of the building (eg &#8220;shipyard&#8221;, 
+<code class="descname">get_buildings_bytype</code><span class="sig-paren">(</span><em>btype: str</em>, <em>min_level: int=1</em>, <em>limit: int=0</em>, <em>efficiency: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.get_buildings_bytype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get buildings of a specific type and minimum level.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>btype</strong> (<em>str</em>) &#8211; The type of building you want.  The type as given must
+match <em>either</em> the &#8220;human name&#8221; of the building (eg &#8220;Ship Yard&#8221;,
+&#8220;Space Port&#8221;), or the classname of the building (eg &#8220;shipyard&#8221;,
 &#8220;spaceport&#8221;).</li>
-<li>min_level &#8211; Integer minimum level of the building to return.  
+<li><strong>min_level</strong> (<em>int</em>) &#8211; Minimum level of the building to return.
 Defaults to 1.</li>
-<li>limit &#8211; Integer max number of this building you want returned.  
-Defaults to 0 (returns all buildings of this type).
-This method returns a list, even if <tt class="docutils literal"><span class="pre">limit</span></tt> is set to 1.</li>
-<li>efficiency &#8211; Integer minimum efficiency of the buildings to 
-return.  If you&#8217;re planning on actually using the buildings, 
+<li><strong>limit</strong> (<em>int</em>) &#8211; Max number of this building you want returned.
+Defaults to 0 (returns all buildings of this type).</li>
+<li><strong>efficiency</strong> (<em>int</em>) &#8211; Minimum efficiency of the buildings to
+return.  If you&#8217;re planning on actually using the buildings,
 you&#8217;ll want to set this to 100.  Defaults to 0.</li>
 </ul>
-</dd>
-</dl>
-<p>Returns a list of the requested buildings.</p>
-<p>Each building returned will have its <tt class="docutils literal"><span class="pre">view()</span></tt> method called 
-automatically.  So if you&#8217;re going to get 10 buildings back, that&#8217;s 
-10 <tt class="docutils literal"><span class="pre">view()</span></tt> calls that need to be made, and that&#8217;s going to slow 
-things down a bit.  So keep that in mind, and turn caching on.</p>
-<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></tt></a> if you don&#8217;t have 
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list.  <em>Note</em> a list is returned even if
+<code class="docutils literal"><span class="pre">limit</span></code> was set to 1.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">lacuna.buildings.&lt;TYPE&gt;</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><code class="xref py py-exc docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></code></a> &#8211;
+if you don&#8217;t have
 any buildings of the requested type and level.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Each building returned will have its <code class="docutils literal"><span class="pre">view()</span></code> method called
+automatically.  So if you&#8217;re going to get 10 buildings back, that&#8217;s
+10 <code class="docutils literal"><span class="pre">view()</span></code> calls that need to be made, and that&#8217;s going to slow
+things down a bit.  So keep that in mind, and turn caching on.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_new_building">
-<tt class="descname">get_new_building</tt><big>(</big><em>classname: str</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_new_building" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_new_building</code><span class="sig-paren">(</span><em>classname: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.get_new_building" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a &#8220;new&#8221; building.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>classname &#8211; String name of the class of building to build.  This 
-must be the classname, <em>not</em> the human readable name.  So 
-&#8220;spaceport&#8221; rather than &#8220;Space Port&#8221;.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a lacuna.buildings.&lt;classname&gt; object.</p>
-<p>This is a building that does not exist yet, but which you&#8217;re getting 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>classname</strong> (<em>str</em>) &#8211; Name of the class of building to build.  This
+must be the classname, <em>not</em> the human readable name.  So
+&#8220;spaceport&#8221; rather than &#8220;Space Port&#8221;.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A single object.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">lacuna.buildings.&lt;classname&gt;</td>
+</tr>
+</tbody>
+</table>
+<p>This is a building that does not exist yet, but which you&#8217;re getting
 ready to build.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.get_status">
-<tt class="descname">get_status</tt><big>(</big><em>blarg: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.get_status" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_status</code><span class="sig-paren">(</span><em>blarg: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.get_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the status of the current body.
-This both returns a dict of status information, and sets the MyBody 
+This both returns a dict of status information, and sets the MyBody
 object&#8217;s attributes using that dict.</p>
-<p>Since every call to every method in this class also sets those 
+<p>Since every call to every method in this class also sets those
 attributes, there should <strong>never be a need to call this method.</strong></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.rearrange_buildings">
-<tt class="descname">rearrange_buildings</tt><big>(</big><em>arrangement: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.rearrange_buildings" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rearrange_buildings</code><span class="sig-paren">(</span><em>arrangement: list</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.rearrange_buildings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Moves one or more buildings to a new spot on the planet surface.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><p class="first">arrangement &#8211; A list of dicts describing your new surface arrangement:</p>
-<div class="highlight-python"><div class="highlight"><pre>[ {     &#39;id&#39;: integer ID of the building to move,
-        &#39;x&#39;:  integer X coordinate to move to,
-        &#39;y&#39;:  integer y coordinate to move to,  },
-  { another building to move, same format as above },     ]
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>arrangement</strong> (<em>list of dicts</em>) &#8211; <p>describing your new surface arrangement:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;id&#39;: integer ID of the building to move,
+&#39;x&#39;:  integer X coordinate to move to,
+&#39;y&#39;:  integer y coordinate to move to,
 </pre></div>
 </div>
-</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="#lacuna.body.SimpleBody" title="lacuna.body.SimpleBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.SimpleBody</span></tt></a> objects.</p>
-<p>Attempting to make an illegal move (moving a building out of -5..5 
-bounds, moving it on top of another building, moving the PCC at all, 
-etc) raises ServerError 1013 and no moves are made, even if others in 
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.body.SimpleBody" title="lacuna.body.SimpleBody">lacuna.body.SimpleBody</a></td>
+</tr>
+</tbody>
+</table>
+<p>Attempting to make an illegal move (moving a building out of -5..5
+bounds, moving it on top of another building, moving the PCC at all,
+etc) raises ServerError 1013 and no moves are made, even if others in
 the list were legal.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.rename">
-<tt class="descname">rename</tt><big>(</big><em>name: str=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.rename" title="Permalink to this definition">¶</a></dt>
+<code class="descname">rename</code><span class="sig-paren">(</span><em>name: str=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.rename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Renames the current planet.</p>
-<p>Returns 1 on success.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.repair_list">
-<tt class="descname">repair_list</tt><big>(</big><em>ids_to_repair: list</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.repair_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">repair_list</code><span class="sig-paren">(</span><em>ids_to_repair: list</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.repair_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Repairs all buildings indicated by ID in the passed-in list.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>ids_to_repair &#8211; A list of integer IDs of buildings to attempt to 
-repair.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="building.html#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ids_to_repair</strong> (<em>list of ints</em>) &#8211; IDs of buildings to attempt to
+repair.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="building.html#lacuna.building.Building" title="lacuna.building.Building">lacuna.building.Building</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.view_laws">
-<tt class="descname">view_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.view_laws" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_laws</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.view_laws" title="Permalink to this definition">¶</a></dt>
 <dd><p>View the laws affecting this planet.</p>
-<p>If the planet is not under the control of a space station, a single 
+<p>If the planet is not under the control of a space station, a single
 &#8216;law&#8217; with the name &#8220;Not controlled by a station&#8221; will be returned.</p>
-<p>Note - I don&#8217;t see any reason why a station couldn&#8217;t pass a writ named 
-&#8220;Not controlled by a station&#8221;, so be careful about just looking for a 
-law with that name and assuming it means that the star is really not 
+<p>Note - I don&#8217;t see any reason why a station couldn&#8217;t pass a writ named
+&#8220;Not controlled by a station&#8221;, so be careful about just looking for a
+law with that name and assuming it means that the star is really not
 controlled by a station.</p>
-<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law">lacuna.alliance.Law</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.body.MyBody.view_nonseizure_laws">
-<tt class="descname">view_nonseizure_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.body.MyBody.view_nonseizure_laws" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_nonseizure_laws</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.MyBody.view_nonseizure_laws" title="Permalink to this definition">¶</a></dt>
 <dd><p>View the laws affecting this planet other than seizure laws.</p>
-<p>The bulk of the laws passed by most stations will be star seizure 
-laws, and these are almost always <em>not</em> what you&#8217;re interested in when 
-checking laws.  So this method filters out the seizure laws and just 
+<p>The bulk of the laws passed by most stations will be star seizure
+laws, and these are almost always <em>not</em> what you&#8217;re interested in when
+checking laws.  So this method filters out the seizure laws and just
 returns you the good stuff.</p>
-<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law">lacuna.alliance.Law</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.body.Planet">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">Planet</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.Planet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">Planet</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.Planet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id                  &quot;id-goes-here&quot;,
 x                   -4,
 y                    10,
@@ -615,16 +703,16 @@ water_capacity      51050
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a></li>
+<li><a class="reference internal" href="../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><code class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.body.ShipDest">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">ShipDest</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.ShipDest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">ShipDest</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.ShipDest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>Where a ship is travelling to or from.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
 type        &quot;body&quot;
 name        &quot;Earth&quot;
@@ -634,11 +722,11 @@ name        &quot;Earth&quot;
 
 <dl class="class">
 <dt id="lacuna.body.ShipHub">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">ShipHub</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.ShipHub" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">ShipHub</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.ShipHub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>The body an orbiting ship is orbiting.</p>
 <dl class="docutils">
-<dt>Attributes::</dt>
+<dt>Object Attributes::</dt>
 <dd>id          &#8220;id-goes-here&#8221;,
 type        &#8220;body&#8221;
 name        &#8220;Earth&#8221;
@@ -649,9 +737,9 @@ y           250</dd>
 
 <dl class="class">
 <dt id="lacuna.body.SimpleBody">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">SimpleBody</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.SimpleBody" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">SimpleBody</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.SimpleBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
 name        &quot;Earth&quot;
 x           100
@@ -663,9 +751,9 @@ image       &quot;p35&quot;
 
 <dl class="class">
 <dt id="lacuna.body.SpaceStation">
-<em class="property">class </em><tt class="descclassname">lacuna.body.</tt><tt class="descname">SpaceStation</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.body.SpaceStation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.body.</code><code class="descname">SpaceStation</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.body.SpaceStation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
 name        &quot;Earth&quot;
 x           100
@@ -682,7 +770,7 @@ y           -250
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="building.html" class="btn btn-neutral float-right" title="Building"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="building.html" class="btn btn-neutral float-right" title="Building">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="alliance.html" class="btn btn-neutral" title="Alliance"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -694,11 +782,12 @@ y           -250
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

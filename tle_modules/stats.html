@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,9 +30,11 @@
   
 
   
+
+  
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
         <link rel="up" title="TLE Modules" href="index.html"/>
-        <link rel="next" title="bc" href="../bc.html"/>
+        <link rel="next" title="Unit Tests" href="../tests/index.html"/>
         <link rel="prev" title="Map" href="map.html"/> 
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,16 +181,16 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="stats">
 <h1>Stats<a class="headerlink" href="#stats" title="Permalink to this headline">¶</a></h1>
 <p>Access to various game statistics as shown in the Stats panel in-game.</p>
 <span class="target" id="module-lacuna.stats"></span><dl class="class">
 <dt id="lacuna.stats.AllianceInfo">
-<em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">AllianceInfo</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.stats.AllianceInfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.stats.</code><code class="descname">AllianceInfo</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.AllianceInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>alliance_id             &quot;id-goes-here&quot;,
 alliance_name           &quot;Earthlings&quot;,
 member_count            &quot;1&quot;,
@@ -185,7 +199,7 @@ influence               0,
 colony_count            &quot;1&quot;,
 population              &quot;7000000000&quot;,       # number of citizens on all planets in the alliance
 average_empire_size     &quot;7000000000&quot;,
-building_count          &quot;50&quot;,               # number of buildings across all colonies 
+building_count          &quot;50&quot;,               # number of buildings across all colonies
 average_building_level  &quot;20&quot;,               # average level of all buildings across all colonies
 offense_success_rate    &quot;0.793&quot;,            # the offense rate of success of spies at all colonies
 defense_success_rate    &quot;0.49312&quot;,          # the defense rate of success of spies at all colonies
@@ -196,9 +210,9 @@ dirtiest                &quot;7941&quot;              # the number of times a sp
 
 <dl class="class">
 <dt id="lacuna.stats.ColonyInfo">
-<em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">ColonyInfo</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.stats.ColonyInfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.stats.</code><code class="descname">ColonyInfo</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.ColonyInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>empire_id                   &quot;id-goes-here&quot;,      # unique id
 empire_name                 &quot;Earthlings&quot;,        # empire name
 planet_id                   &quot;id-goes-here&quot;,      # unique id
@@ -213,9 +227,9 @@ highest_building_level      &quot;26&quot;                 # highest building t 
 
 <dl class="class">
 <dt id="lacuna.stats.EmpireInfo">
-<em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">EmpireInfo</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.stats.EmpireInfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.stats.</code><code class="descname">EmpireInfo</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.EmpireInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>empire_id       &quot;id-goes-here&quot;,
 empire_name     &quot;Earthlings&quot;,
 page_number     &quot;54&quot;,
@@ -225,9 +239,9 @@ page_number     &quot;54&quot;,
 
 <dl class="class">
 <dt id="lacuna.stats.MedalWinner">
-<em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">MedalWinner</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.stats.MedalWinner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.stats.</code><code class="descname">MedalWinner</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.MedalWinner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>empire_id       &quot;id-goes-here&quot;,
 empire_name     &quot;Earthlings&quot;,
 medal_name      &quot;Dirtiest Player In The Game&quot;,
@@ -239,9 +253,9 @@ times_earned    4,
 
 <dl class="class">
 <dt id="lacuna.stats.SpyInfo">
-<em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">SpyInfo</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.stats.SpyInfo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.stats.</code><code class="descname">SpyInfo</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.SpyInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>empire_id       &quot;id-goes-here&quot;,         # unique id
 empire_name     &quot;Earthlings&quot;,           # empire name
 spy_id          &quot;id-goes-here&quot;,         # unique id
@@ -256,67 +270,74 @@ dirtiest        &quot;7941&quot;,                 # the number of times a spy ha
 
 <dl class="class">
 <dt id="lacuna.stats.Stats">
-<em class="property">class </em><tt class="descclassname">lacuna.stats.</tt><tt class="descname">Stats</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
-<p>Provides access to game stats and rankings.
-blargle flurble blah</p>
+<em class="property">class </em><code class="descclassname">lacuna.stats.</code><code class="descname">Stats</code><span class="sig-paren">(</span><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></code></a></p>
+<p>Provides access to game stats and rankings.</p>
 <dl class="method">
 <dt id="lacuna.stats.Stats.alliance_rank">
-<tt class="descname">alliance_rank</tt><big>(</big><em>sort_by='influence desc</em>, <em>population desc'</em>, <em>page_number=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.alliance_rank" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns info on current alliance ranks.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>sort_by &#8211; String.  What to sort the returned list on.  Defaults 
-to &#8220;influence desc, population desc&#8221;.  Permitted values:<ul>
-<li>influence</li>
-<li>population</li>
-<li>average_empire_size_rank</li>
-<li>offense_success_rate_rank</li>
-<li>defense_success_rate_rank</li>
-<li>dirtiest_rank</li>
+<code class="descname">alliance_rank</code><span class="sig-paren">(</span><em>sort_by='influence desc</em>, <em>population desc'</em>, <em>page_number=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.alliance_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get info on current alliance ranks.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sort_by</strong> (<em>str</em>) &#8211; What to sort the returned list on.  Defaults to &#8220;influence desc, population desc&#8221;.  Permitted values:
+<em>influence</em>, <em>population</em>, <em>average_empire_size_rank</em>, <em>offense_success_rate_rank</em>,
+<em>defense_success_rate_rank</em>, <em>dirtiest_rank</em></li>
+<li><strong>page_number</strong> (<em>int</em>) &#8211; Page number to return, 25 alliances per page.  Defaults to 1.</li>
 </ul>
-</li>
-<li>page_number &#8211; Integer page number to return, 25 alliances per 
-page.  Defaults to 1.</li>
-</ul>
-</dd>
-<dt>Return a tuple:</dt>
-<dd><ul class="first last simple">
-<li>alliances &#8211; List of <a class="reference internal" href="#lacuna.stats.AllianceInfo" title="lacuna.stats.AllianceInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.AllianceInfo</span></tt></a> objects</li>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><ul class="simple">
+<li>alliances &#8211; List of <a class="reference internal" href="#lacuna.stats.AllianceInfo" title="lacuna.stats.AllianceInfo"><code class="xref py py-class docutils literal"><span class="pre">lacuna.stats.AllianceInfo</span></code></a> objects</li>
 <li>total_alliances &#8211; Integer count.</li>
 <li>page_number &#8211; What page we&#8217;re displaying (defaults to 1)</li>
 </ul>
-</dd>
-</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.stats.Stats.colony_rank">
-<tt class="descname">colony_rank</tt><big>(</big><em>sort_by='population_rank'</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.colony_rank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">colony_rank</code><span class="sig-paren">(</span><em>sort_by='population_rank'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.colony_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find colonies ranked by population</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>Realistically, this accepts no arguments.</li>
-<li>sort_by &#8211; Optional string.  The API docs list this as a passable 
-argument, but the default of &#8216;population_rank&#8217; is also the only 
-legal value.  Passing any unrecognized value falls back to using 
-the default.  So pretend this method takes no arguments.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="#lacuna.stats.ColonyInfo" title="lacuna.stats.ColonyInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.ColonyInfo</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sort_by</strong> (<em>str</em>) &#8211; What to sort the return by</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.stats.ColonyInfo" title="lacuna.stats.ColonyInfo">lacuna.stats.ColonyInfo</a></td>
+</tr>
+</tbody>
+</table>
+<p>Realistically, this accepts no arguments.  The API docs list <cite>sort_by</cite>
+as a passable argument, but the default value of <cite>population_rank</cite> is
+the only legal value for that argument.  Passing any other value is not
+legal, and falls back to using the default.  So pretend this method
+takes no arguments.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.stats.Stats.credits">
-<tt class="descname">credits</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.credits" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the game&#8217;s credits.</p>
+<code class="descname">credits</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.credits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the game&#8217;s credits.</p>
 <p>This method does not require a logged-in client.</p>
-<p>Returns a dict, with the keys being credit types and the values being 
-a list of people or entities having that credit:</p>
-<div class="highlight-python"><div class="highlight"><pre>&#39;Game Support&#39;  [   &#39;Plain Black Corporation / plainblack.com&#39;,
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">keys are credit types and the values are a
+list of people or entities having that credit:<div class="highlight-python"><div class="highlight"><pre>&#39;Game Support&#39;  [   &#39;Plain Black Corporation / plainblack.com&#39;,
                     &#39;Mary Hoerr&#39;,
                     &#39;United Federation&#39;     ],
 &#39;Game Design&#39;:  [   &#39;JT Smith&#39;,
@@ -324,113 +345,131 @@ a list of people or entities having that credit:</p>
 etc
 </pre></div>
 </div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.stats.Stats.empire_rank">
-<tt class="descname">empire_rank</tt><big>(</big><em>sort_by='empire_size_rank'</em>, <em>page_number=1</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.empire_rank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">empire_rank</code><span class="sig-paren">(</span><em>sort_by='empire_size_rank'</em>, <em>page_number=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.empire_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find empires sorted by various options.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first simple">
-<li>sort_by &#8211; how the empires should be sorted.  Defaults to &#8216;empire_size_rank&#8217;.</li>
-<li>page_number &#8211; which page to return.  Defaults to 1.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sort_by</strong> (<em>str</em>) &#8211; how the empires should be sorted.  Defaults to <cite>empire_size_rank</cite>.  Legal values: <em>empire_size_rank</em>, <em>offense_success_rate_rank</em>, <em>defense_success_rate_rank</em>, <em>dirtiest_rank</em></li>
+<li><strong>page_number</strong> (<em>int</em>) &#8211; which page to return.  Defaults to 1.</li>
 </ul>
-<dl class="last docutils">
-<dt>sort_by legal values:</dt>
-<dd><ul class="first last simple">
-<li>empire_size_rank (default)</li>
-<li>offense_success_rate_rank</li>
-<li>defense_success_rate_rank</li>
-<li>dirtiest_rank</li>
-</ul>
-</dd>
-</dl>
-</dd>
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
-<li>empires &#8211; List of up to 25 <a class="reference internal" href="#lacuna.stats.EmpireInfo" title="lacuna.stats.EmpireInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.EmpireInfo</span></tt></a> objects.</li>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><ul class="simple">
+<li>empires &#8211; List of up to 25 <a class="reference internal" href="#lacuna.stats.EmpireInfo" title="lacuna.stats.EmpireInfo"><code class="xref py py-class docutils literal"><span class="pre">lacuna.stats.EmpireInfo</span></code></a> objects.</li>
 <li>empire count &#8211; Integer total number of empires in the game.</li>
-<li>page number &#8211; Integer page we&#8217;re looking at.  Should be the same 
+<li>page number &#8211; Integer page we&#8217;re looking at.  Should be the same
 as the page_number argument you passed in.</li>
 </ul>
-</dd>
-</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.stats.Stats.find_alliance_rank">
-<tt class="descname">find_alliance_rank</tt><big>(</big><em>sort_by=''</em>, <em>alliance_name=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.find_alliance_rank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">find_alliance_rank</code><span class="sig-paren">(</span><em>sort_by=''</em>, <em>alliance_name=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.find_alliance_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds stats for a specific alliance.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>sort_by &#8211; same options as for alliance_rank()</li>
-<li>alliance_name &#8211; Standard TLE search string</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sort_by</strong> (<em>str</em>) &#8211; Same as for <a class="reference internal" href="#lacuna.stats.Stats.alliance_rank" title="lacuna.stats.Stats.alliance_rank"><code class="xref py py-meth docutils literal"><span class="pre">alliance_rank()</span></code></a></li>
+<li><strong>alliance_name</strong> (<em>str</em>) &#8211; <a class="reference internal" href="../glossary.html#gloss-std-search-string"><span>Standard Search String</span></a></li>
 </ul>
-</dd>
-<dt>Returns list of limited <a class="reference internal" href="#lacuna.stats.AllianceInfo" title="lacuna.stats.AllianceInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.AllianceInfo</span></tt></a> objects containing only the attributes:</dt>
-<dd><ul class="first last simple">
-<li>alliance_id</li>
-<li>alliance_name</li>
-<li>page_number</li>
-</ul>
-</dd>
-</dl>
-<p>This list will usually contain only a single alliance, but occasionally 
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#lacuna.stats.AllianceInfo" title="lacuna.stats.AllianceInfo">lacuna.stats.AllianceInfo</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The returned list will usually contain only a single alliance, but occasionally
 more than one alliance will match your passed-in alliance_name.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.stats.Stats.find_empire_rank">
-<tt class="descname">find_empire_rank</tt><big>(</big><em>sort_by=''</em>, <em>empire_name=''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.find_empire_rank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">find_empire_rank</code><span class="sig-paren">(</span><em>sort_by=''</em>, <em>empire_name=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.find_empire_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns info on specific empires in the ranks.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>sort_by &#8211; String.  See empire_rank()</li>
-<li>empire_name &#8211; Standard TLE search string.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sort_by</strong> (<em>str</em>) &#8211; Same as for <a class="reference internal" href="#lacuna.stats.Stats.alliance_rank" title="lacuna.stats.Stats.alliance_rank"><code class="xref py py-meth docutils literal"><span class="pre">alliance_rank()</span></code></a></li>
+<li><strong>empire_name</strong> (<em>str</em>) &#8211; <a class="reference internal" href="../glossary.html#gloss-std-search-string"><span>Standard Search String</span></a></li>
 </ul>
-</dd>
-</dl>
-<p>Keep in mind that this method has the potential of returning multiple 
-empires; an empire_name argument of &#8220;inf&#8221; will return both &#8220;Infinate 
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#lacuna.stats.EmpireInfo" title="lacuna.stats.EmpireInfo">lacuna.stats.EmpireInfo</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Keep in mind that this method has the potential of returning multiple
+empires; an empire_name argument of &#8220;inf&#8221; will return both &#8220;Infinate
 Ones&#8221; and &#8220;Infinitus Imperium&#8221;.</p>
 <p>So remember that this is returning is list, not a single object.</p>
-<p>Returns list of <a class="reference internal" href="#lacuna.stats.EmpireInfo" title="lacuna.stats.EmpireInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.EmpireInfo</span></tt></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.stats.Stats.spy_rank">
-<tt class="descname">spy_rank</tt><big>(</big><em>sort_by='level_rank'</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.spy_rank" title="Permalink to this definition">¶</a></dt>
+<code class="descname">spy_rank</code><span class="sig-paren">(</span><em>sort_by='level_rank'</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.spy_rank" title="Permalink to this definition">¶</a></dt>
 <dd><p>List spies ranked by various options.</p>
-<dl class="docutils">
-<dt>Accepts optional &#8216;sort_by&#8217; argument.  Legal values are:</dt>
-<dd><ul class="first last simple">
-<li>level_rank</li>
-<li>success_rate_rank</li>
-<li>dirtiest_rank</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="#lacuna.stats.SpyInfo" title="lacuna.stats.SpyInfo"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.SpyInfo</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sort_by</strong> (<em>optional str</em>) &#8211; What to sort the return by.  Legal values: <em>level_rank</em>, <em>success_rate_rank</em>, <em>dirtiest_rank</em></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.stats.SpyInfo" title="lacuna.stats.SpyInfo">lacuna.stats.SpyInfo</a></td>
+</tr>
+</tbody>
+</table>
 <p><strong>CAUTION</strong>
-This method has been included only for API completeness; you should 
+This method has been included only for API completeness; you should
 probably never use it.</p>
-<p>Rankings of spies is well-known to be a problem area.  The list of spies 
-returned by this method does not appear to be sorted as requested, and 
+<p>Rankings of spies is well-known to be a problem area.  The list of spies
+returned by this method does not appear to be sorted as requested, and
 cannot possibly be the top spies in the game (I&#8217;m currently getting two
 level 3 spies show up when the list is sorted by &#8220;level_rank&#8221;).</p>
-<p>Also, only 25 spies are returned, and there&#8217;s no way to request any but 
+<p>Also, only 25 spies are returned, and there&#8217;s no way to request any but
 those first 25 spies.</p>
 <p>Your best bet is to pretend this doesn&#8217;t exist.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.stats.Stats.weekly_medal_winners">
-<tt class="descname">weekly_medal_winners</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.stats.Stats.weekly_medal_winners" title="Permalink to this definition">¶</a></dt>
+<code class="descname">weekly_medal_winners</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.stats.Stats.weekly_medal_winners" title="Permalink to this definition">¶</a></dt>
 <dd><p>View medal winners</p>
-<p>Returns a list of <a class="reference internal" href="#lacuna.stats.MedalWinner" title="lacuna.stats.MedalWinner"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.stats.MedalWinner</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.stats.MedalWinner" title="lacuna.stats.MedalWinner"><code class="xref py py-class docutils literal"><span class="pre">lacuna.stats.MedalWinner</span></code></a> objects.</p>
 </dd></dl>
 
 </dd></dl>
@@ -443,7 +482,7 @@ those first 25 spies.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../bc.html" class="btn btn-neutral float-right" title="bc"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../tests/index.html" class="btn btn-neutral float-right" title="Unit Tests">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="map.html" class="btn btn-neutral" title="Map"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -455,11 +494,12 @@ those first 25 spies.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

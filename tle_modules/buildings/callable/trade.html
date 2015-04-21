@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../../../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+          <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -171,64 +185,104 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.buildings.callable.trade">
 <span id="trade-ministry-tm"></span><span id="bldg-trade"></span><h1>Trade Ministry (TM)<a class="headerlink" href="#module-lacuna.buildings.callable.trade" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.buildings.callable.trade.Chain">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">Chain</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.Chain" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.callable.trade.</code><code class="descname">Chain</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.Chain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>Chain base class</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.buildings.callable.trade.SupplyChain">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">SupplyChain</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.SupplyChain" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.callable.trade.Chain" title="lacuna.buildings.callable.trade.Chain"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.trade.Chain</span></tt></a></p>
-<p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id                      &quot;id-goes-here&quot;,
-body                    {   &quot;id&quot; : &quot;id-goes-here&quot;,
-                            &quot;name&quot; : &quot;Mars&quot;,
-                            &quot;x&quot; : 0,
-                            &quot;y&quot; : -123,
-                            ...      },
-building_id             1234567,        # ID of the Trade Min.  Yeah I dunno either.
-resource_hour           10000000,
-resource_type           &#39;water&#39;,
-percent_transferred     95,
-stalled                 0,
-</pre></div>
-</div>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.callable.trade.</code><code class="descname">SupplyChain</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.SupplyChain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.callable.trade.Chain" title="lacuna.buildings.callable.trade.Chain"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.trade.Chain</span></code></a></p>
+<dl class="attribute">
+<dt>
+<code class="descname">id                      &quot;id-goes-here&quot;,</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">body                    {   &quot;id&quot;</code></dt>
+<dd><p>&#8220;id-goes-here&#8221;,
+&#8220;name&#8221; : &#8220;Mars&#8221;,
+&#8220;x&#8221; : 0,
+&#8220;y&#8221; : -123,
+...      },</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">building_id             1234567,        # ID of the Trade Min.  Yeah I dunno either.</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">resource_hour           10000000,</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">resource_type           'water',</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">percent_transferred     95,</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">stalled                 0,</code></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.buildings.callable.trade.WasteChain">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">WasteChain</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.WasteChain" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.callable.trade.Chain" title="lacuna.buildings.callable.trade.Chain"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.trade.Chain</span></tt></a></p>
-<p>Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id                      &quot;id-goes-here&quot;,
-star                    {   &quot;id&quot; : &quot;id-goes-here&quot;,
-                            &quot;name&quot; : &quot;Mars&quot;,
-                            &quot;x&quot; : 0,
-                            &quot;y&quot; : -123,
-                            ...     },
-waste_hour              10000000,
-percent_transferred     95,
-</pre></div>
-</div>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.callable.trade.</code><code class="descname">WasteChain</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.WasteChain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.buildings.callable.trade.Chain" title="lacuna.buildings.callable.trade.Chain"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.trade.Chain</span></code></a></p>
+<dl class="attribute">
+<dt>
+<code class="descname">id                      &quot;id-goes-here&quot;,</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">star                    {   &quot;id&quot;</code></dt>
+<dd><p>&#8220;id-goes-here&#8221;,
+&#8220;name&#8221; : &#8220;Mars&#8221;,
+&#8220;x&#8221; : 0,
+&#8220;y&#8221; : -123,
+...     },</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">waste_hour              10000000,</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">percent_transferred     95,</code></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.buildings.callable.trade.trade">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.trade.</tt><tt class="descname">trade</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../../trading.html#lacuna.trading.TradeBldg" title="lacuna.trading.TradeBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.trading.TradeBldg</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.callable.trade.</code><code class="descname">trade</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../trading.html#lacuna.trading.TradeBldg" title="lacuna.trading.TradeBldg"><code class="xref py py-class docutils literal"><span class="pre">lacuna.trading.TradeBldg</span></code></a></p>
 <p>Trade Ministry</p>
-<p>I&#8217;m to the point were replicating every single TLE method is 
+<p>I&#8217;m to the point were replicating every single TLE method is
 getting boring.</p>
-<p>I&#8217;m really doing this to learn Python.  On top of that, I can&#8217;t see 
-anybody ever wanting to script some of the methods in here, so I&#8217;m just 
-not bothering with them.  There&#8217;s no reason they can&#8217;t be created if you 
+<p>I&#8217;m really doing this to learn Python.  On top of that, I can&#8217;t see
+anybody ever wanting to script some of the methods in here, so I&#8217;m just
+not bothering with them.  There&#8217;s no reason they can&#8217;t be created if you
 really need them for something, but they don&#8217;t exist yet.</p>
 <ul class="simple">
 <li>create_supply_chain()</li>
@@ -243,24 +297,27 @@ really need them for something, but they don&#8217;t exist yet.</p>
 </ul>
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.add_to_market">
-<tt class="descname">add_to_market</tt><big>(</big><em>offer: dict</em>, <em>ask: float</em>, <em>options: dict={}</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.add_to_market" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_to_market</code><span class="sig-paren">(</span><em>offer: dict</em>, <em>ask: float</em>, <em>options: dict={}</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.add_to_market" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a trade to the market.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>offer &#8211; List of dicts of items to offer for trade.  See below for
-more details.</li>
-<li>ask &#8211; Float price in E you&#8217;re asking for this trade, between 
-0.1 and 100.</li>
-<li>options &#8211; Dict.  The only option, which is not an option at all 
-since it&#8217;s required, is the ID of the ship you want to use to 
-transport your trade.  Use <a class="reference internal" href="#lacuna.buildings.callable.trade.trade.get_trade_ships" title="lacuna.buildings.callable.trade.trade.get_trade_ships"><tt class="xref py py-meth docutils literal"><span class="pre">get_trade_ships()</span></tt></a> to find 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>offer -- List of dicts of items to offer for trade.  See below for</strong> (<em>-</em>) &#8211; more details.</li>
+<li><strong>ask -- Float price in E you're asking for this trade, between</strong> (<em>-</em>) &#8211; 0.1 and 100.</li>
+<li><strong>options -- Dict.  The only option, which is not an option at all</strong> (<em>-</em>) &#8211; since it&#8217;s required, is the ID of the ship you want to use to
+transport your trade.  Use <a class="reference internal" href="#lacuna.buildings.callable.trade.trade.get_trade_ships" title="lacuna.buildings.callable.trade.trade.get_trade_ships"><code class="xref py py-meth docutils literal"><span class="pre">get_trade_ships()</span></code></a> to find
 appropriate ship IDs.
-<tt class="docutils literal"><span class="pre">{</span> <span class="pre">'ship_id':</span> <span class="pre">12345</span> <span class="pre">}</span></tt></li>
+<code class="docutils literal"><span class="pre">{</span> <span class="pre">'ship_id':</span> <span class="pre">12345</span> <span class="pre">}</span></code></li>
 </ul>
-</dd>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
 <dt>offer</dt>
-<dd><p class="first">There are five types of items you can offer for trade, each with 
+<dd><p class="first">There are five types of items you can offer for trade, each with
 their own required keys for their offer dicts:</p>
 <div class="last highlight-python"><div class="highlight"><pre>resources
     {   &#39;type&#39;:         &#39;bauxite&#39;,
@@ -271,7 +328,7 @@ glyphs
         &#39;quantity&#39;:     10000   },
 plans
     {   &#39;type&#39;:                 &#39;plan&#39;,
-        &#39;plan_type&#39;:            &#39;Permanent_AlgaePond&#39;,  
+        &#39;plan_type&#39;:            &#39;Permanent_AlgaePond&#39;,
         &#39;level&#39;:                1,
         &#39;extra_build_level&#39;:    3,                      # If &gt; 1, &#39;level&#39; must be 1.
         &#39;quantity&#39;:             10000   },
@@ -285,90 +342,92 @@ ships
 </div>
 </dd>
 </dl>
-<p>To get the correct name for a plan, see <a class="reference internal" href="../../../trading.html#lacuna.trading.TradeBldg.get_plan_summary" title="lacuna.trading.TradeBldg.get_plan_summary"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.trading.TradeBldg.get_plan_summary()</span></tt></a>.</p>
+<p>To get the correct name for a plan, see <a class="reference internal" href="../../../trading.html#lacuna.trading.TradeBldg.get_plan_summary" title="lacuna.trading.TradeBldg.get_plan_summary"><code class="xref py py-meth docutils literal"><span class="pre">lacuna.trading.TradeBldg.get_plan_summary()</span></code></a>.</p>
 <p>Returns the ID of the trade just added.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.get_supply_ships">
-<tt class="descname">get_supply_ships</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_supply_ships" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of supply ships either currently on or available for 
+<code class="descname">get_supply_ships</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_supply_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of supply ships either currently on or available for
 supply disposal duty.</p>
-<p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.ChainShip" title="lacuna.ship.ChainShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ChainShip</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.ChainShip" title="lacuna.ship.ChainShip"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ChainShip</span></code></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.get_trade_ships">
-<tt class="descname">get_trade_ships</tt><big>(</big><em>target_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_trade_ships" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_trade_ships</code><span class="sig-paren">(</span><em>target_id: int=0</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_trade_ships" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of ships available to be used as trade transports.</p>
-<p>These are <em>not</em> ships available to be traded; these are ships that are 
+<p>These are <em>not</em> ships available to be traded; these are ships that are
 available to carry trades.</p>
-<dl class="docutils">
-<dt>Arguments</dt>
-<dd><ul class="first last simple">
-<li>target_id &#8211; Optional ID of the target receiving the trade.  If 
-included, the ships&#8217; <tt class="docutils literal"><span class="pre">estimated_travel_time</span></tt> attribute will be set.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.TradeTransportShip" title="lacuna.ship.TradeTransportShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TradeTransportShip</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>target_id -- Optional ID of the target receiving the trade.  If</strong> (<em>-</em>) &#8211; included, the ships&#8217; <code class="docutils literal"><span class="pre">estimated_travel_time</span></code> attribute will be set.</td>
+</tr>
+</tbody>
+</table>
+<p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.TradeTransportShip" title="lacuna.ship.TradeTransportShip"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TradeTransportShip</span></code></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.get_waste_ships">
-<tt class="descname">get_waste_ships</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_waste_ships" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of waste ships either currently on or available for 
+<code class="descname">get_waste_ships</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.get_waste_ships" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of waste ships either currently on or available for
 waste disposal duty.</p>
-<p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.ChainShip" title="lacuna.ship.ChainShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ChainShip</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="../../../ship.html#lacuna.ship.ChainShip" title="lacuna.ship.ChainShip"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.ChainShip</span></code></a> objects.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lacuna.buildings.callable.trade.trade.path">
-<tt class="descname">path</tt><em class="property"> = 'trade'</em><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'trade'</em><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.push_items">
-<tt class="descname">push_items</tt><big>(</big><em>target_id: int</em>, <em>offer: list</em>, <em>options: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.push_items" title="Permalink to this definition">¶</a></dt>
+<code class="descname">push_items</code><span class="sig-paren">(</span><em>target_id: int</em>, <em>offer: list</em>, <em>options: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.push_items" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pushes items to another of your planets.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>target_id &#8211; Integer ID of the body to send resources to.</li>
-<li>offer &#8211; List of dicts of items to push.  Same as for 
-<a class="reference internal" href="#lacuna.buildings.callable.trade.trade.add_to_market" title="lacuna.buildings.callable.trade.trade.add_to_market"><tt class="xref py py-meth docutils literal"><span class="pre">add_to_market()</span></tt></a>.</li>
-<li>options &#8211; Required (not optional) dict.  Same as for  
-<a class="reference internal" href="#lacuna.buildings.callable.trade.trade.add_to_market" title="lacuna.buildings.callable.trade.trade.add_to_market"><tt class="xref py py-meth docutils literal"><span class="pre">add_to_market()</span></tt></a>.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target_id -- Integer ID of the body to send resources to.</strong> (<em>-</em>) &#8211; </li>
+<li><strong>offer -- List of dicts of items to push.  Same as for</strong> (<em>-</em>) &#8211; <a class="reference internal" href="#lacuna.buildings.callable.trade.trade.add_to_market" title="lacuna.buildings.callable.trade.trade.add_to_market"><code class="xref py py-meth docutils literal"><span class="pre">add_to_market()</span></code></a>.</li>
+<li><strong>options -- Required (not optional) dict.  Same as for</strong> (<em>-</em>) &#8211; <a class="reference internal" href="#lacuna.buildings.callable.trade.trade.add_to_market" title="lacuna.buildings.callable.trade.trade.add_to_market"><code class="xref py py-meth docutils literal"><span class="pre">add_to_market()</span></code></a>.</li>
 </ul>
-</dd>
-</dl>
-<p>Returns a single <a class="reference internal" href="../../../ship.html#lacuna.ship.TravellingShip" title="lacuna.ship.TravellingShip"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TravellingShip</span></tt></a> object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns a single <a class="reference internal" href="../../../ship.html#lacuna.ship.TravellingShip" title="lacuna.ship.TravellingShip"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TravellingShip</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.view_supply_chains">
-<tt class="descname">view_supply_chains</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_supply_chains" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_supply_chains</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_supply_chains" title="Permalink to this definition">¶</a></dt>
 <dd><p>See the supply chains set up on this planet.</p>
-<p>Returns a list of <a class="reference internal" href="#lacuna.buildings.callable.trade.SupplyChain" title="lacuna.buildings.callable.trade.SupplyChain"><tt class="xref py py-class docutils literal"><span class="pre">SupplyChain</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.buildings.callable.trade.SupplyChain" title="lacuna.buildings.callable.trade.SupplyChain"><code class="xref py py-class docutils literal"><span class="pre">SupplyChain</span></code></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.view_waste_chain">
-<tt class="descname">view_waste_chain</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_waste_chain" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_waste_chain</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_waste_chain" title="Permalink to this definition">¶</a></dt>
 <dd><p>See the waste chain set up on this planet.</p>
-<p>The actual TLE API method is plural (see <a class="reference internal" href="#lacuna.buildings.callable.trade.trade.view_waste_chains" title="lacuna.buildings.callable.trade.trade.view_waste_chains"><tt class="xref py py-meth docutils literal"><span class="pre">view_waste_chains()</span></tt></a>), 
+<p>The actual TLE API method is plural (see <a class="reference internal" href="#lacuna.buildings.callable.trade.trade.view_waste_chains" title="lacuna.buildings.callable.trade.trade.view_waste_chains"><code class="xref py py-meth docutils literal"><span class="pre">view_waste_chains()</span></code></a>),
 but there&#8217;s only one waste chain per planet.</p>
-<p>This is just a sugar method that returns a single <a class="reference internal" href="#lacuna.buildings.callable.trade.WasteChain" title="lacuna.buildings.callable.trade.WasteChain"><tt class="xref py py-class docutils literal"><span class="pre">WasteChain</span></tt></a> 
+<p>This is just a sugar method that returns a single <a class="reference internal" href="#lacuna.buildings.callable.trade.WasteChain" title="lacuna.buildings.callable.trade.WasteChain"><code class="xref py py-class docutils literal"><span class="pre">WasteChain</span></code></a>
 object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.trade.trade.view_waste_chains">
-<tt class="descname">view_waste_chains</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_waste_chains" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_waste_chains</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.trade.trade.view_waste_chains" title="Permalink to this definition">¶</a></dt>
 <dd><p>See the waste chains set up on this planet.</p>
-<p>This does return a list, but there&#8217;s only ever one waste chain, max, on 
+<p>This does return a list, but there&#8217;s only ever one waste chain, max, on
 any given planet.</p>
-<p>Returns a list of <a class="reference internal" href="#lacuna.buildings.callable.trade.WasteChain" title="lacuna.buildings.callable.trade.WasteChain"><tt class="xref py py-class docutils literal"><span class="pre">WasteChain</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="#lacuna.buildings.callable.trade.WasteChain" title="lacuna.buildings.callable.trade.WasteChain"><code class="xref py py-class docutils literal"><span class="pre">WasteChain</span></code></a> objects.</p>
 </dd></dl>
 
 </dd></dl>
@@ -381,7 +440,7 @@ any given planet.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="transporter.html" class="btn btn-neutral float-right" title="Sub Space Transporter (SST)"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="transporter.html" class="btn btn-neutral float-right" title="Sub Space Transporter (SST)">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="themepark.html" class="btn btn-neutral" title="Theme Park"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -393,11 +452,12 @@ any given planet.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

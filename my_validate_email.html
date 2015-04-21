@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,29 +178,29 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-my_validate_email">
 <span id="my-validate-email"></span><h1>my_validate_email<a class="headerlink" href="#module-my_validate_email" title="Permalink to this headline">¶</a></h1>
-<p>The validate_email module in PyPI was written for python 2, but the only 
-things keeping it from being valid python 3 were three non-parenthesized 
+<p>The validate_email module in PyPI was written for python 2, but the only
+things keeping it from being valid python 3 were three non-parenthesized
 print() statements.</p>
-<p>This is that module with the print statements fixed.  Otherwise, the module is 
+<p>This is that module with the print statements fixed.  Otherwise, the module is
 unmolested from the original (version 1.2).</p>
 <dl class="exception">
 <dt id="my_validate_email.ServerError">
-<em class="property">exception </em><tt class="descclassname">my_validate_email.</tt><tt class="descname">ServerError</tt><a class="headerlink" href="#my_validate_email.ServerError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">my_validate_email.</code><code class="descname">ServerError</code><a class="headerlink" href="#my_validate_email.ServerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="function">
 <dt id="my_validate_email.get_mx_ip">
-<tt class="descclassname">my_validate_email.</tt><tt class="descname">get_mx_ip</tt><big>(</big><em>hostname</em><big>)</big><a class="headerlink" href="#my_validate_email.get_mx_ip" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">my_validate_email.</code><code class="descname">get_mx_ip</code><span class="sig-paren">(</span><em>hostname</em><span class="sig-paren">)</span><a class="headerlink" href="#my_validate_email.get_mx_ip" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="my_validate_email.validate_email">
-<tt class="descclassname">my_validate_email.</tt><tt class="descname">validate_email</tt><big>(</big><em>email</em>, <em>check_mx=False</em>, <em>verify=False</em>, <em>debug=False</em>, <em>smtp_timeout=10</em><big>)</big><a class="headerlink" href="#my_validate_email.validate_email" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">my_validate_email.</code><code class="descname">validate_email</code><span class="sig-paren">(</span><em>email</em>, <em>check_mx=False</em>, <em>verify=False</em>, <em>debug=False</em>, <em>smtp_timeout=10</em><span class="sig-paren">)</span><a class="headerlink" href="#my_validate_email.validate_email" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicate whether the given string is a valid email address
 according to the &#8216;addr-spec&#8217; portion of RFC 2822 (see section
 3.4.1).  Parts of the spec that are marked obsolete are <em>not</em>
@@ -204,7 +218,7 @@ to be in use as of 2011.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="plan.html" class="btn btn-neutral float-right" title="plan"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="plan.html" class="btn btn-neutral float-right" title="plan">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="logging.html" class="btn btn-neutral" title="logging"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -216,11 +230,12 @@ to be in use as of 2011.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

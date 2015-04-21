@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../../../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+          <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -171,16 +185,16 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.buildings.callable.archaeology">
 <span id="archaeology-ministry"></span><h1>Archaeology Ministry<a class="headerlink" href="#module-lacuna.buildings.callable.archaeology" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.buildings.callable.archaeology.archaeology">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.archaeology.</tt><tt class="descname">archaeology</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.callable.archaeology.</code><code class="descname">archaeology</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <p>Archaeology Ministry</p>
-<p>The archaeology ministry will contain an attribute &#8216;work&#8217; if and only if it 
+<p>The archaeology ministry will contain an attribute &#8216;work&#8217; if and only if it
 is currently searching ore for a glyph.  That attribute is a dict containing:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="o">-</span> <span class="n">searching</span> <span class="o">--</span> <span class="s">&quot;anthracite&quot;</span><span class="p">,</span>
 <span class="o">-</span> <span class="n">start</span> <span class="o">--</span> <span class="s">&#39;31 10 2014 18:45:34 +0000&#39;</span><span class="p">,</span>
@@ -188,101 +202,106 @@ is currently searching ore for a glyph.  That attribute is a dict containing:</p
 <span class="o">-</span> <span class="n">seconds_remaining</span> <span class="o">--</span> <span class="mi">21574</span><span class="p">,</span>
 </pre></div>
 </div>
-<p>...But that &#8216;work&#8217; attribute will not exist at all if the arch min is not 
+<p>...But that &#8216;work&#8217; attribute will not exist at all if the arch min is not
 searching right now, so you&#8217;ll have to do a hasattr() check to see.</p>
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.abandon_excavator">
-<tt class="descname">abandon_excavator</tt><big>(</big><em>site_id: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.abandon_excavator" title="Permalink to this definition">¶</a></dt>
+<code class="descname">abandon_excavator</code><span class="sig-paren">(</span><em>site_id: int</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.abandon_excavator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abandons the excavator located at site_id.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>site_id &#8211; Integer ID of the excavation site to abandon, taken from an Excavator object returned by view_excavators().</li>
-</ul>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>site_id -- Integer ID of the excavation site to abandon, taken from an Excavator object returned by view_excavators().</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.assemble_glyphs">
-<tt class="descname">assemble_glyphs</tt><big>(</big><em>glyphs: list</em>, <em>quantity: int=1</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.assemble_glyphs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">assemble_glyphs</code><span class="sig-paren">(</span><em>glyphs: list</em>, <em>quantity: int=1</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.assemble_glyphs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attempts to assemble the listed glyphs into something useful.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>glyphs &#8211; a list of glyphs to assemble.  Order, spelling, and 
-capitalization matter; &#8220;goethite&#8221; is valid, &#8220;Goethite&#8221; is not!</li>
-<li>quantity &#8211; Integer number of this recipe you want to assemble.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>glyphs -- a list of glyphs to assemble.  Order, spelling, and</strong> (<em>-</em>) &#8211; capitalization matter; &#8220;goethite&#8221; is valid, &#8220;Goethite&#8221; is not!</li>
+<li><strong>quantity -- Integer number of this recipe you want to assemble.</strong> (<em>-</em>) &#8211; </li>
 </ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference internal" href="../../../glyph.html#lacuna.glyph.AssembledArtifact" title="lacuna.glyph.AssembledArtifact"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.AssembledArtifact</span></tt></a> object.</p>
-<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1002 if the listed glyphs do not form a valid 
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns a <a class="reference internal" href="../../../glyph.html#lacuna.glyph.AssembledArtifact" title="lacuna.glyph.AssembledArtifact"><code class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.AssembledArtifact</span></code></a> object.</p>
+<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> 1002 if the listed glyphs do not form a valid
 artifact recipe.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.get_glyph_summary">
-<tt class="descname">get_glyph_summary</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_glyph_summary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_glyph_summary</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_glyph_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns summary of glyphs that may be assembled in this arch min.</p>
-<p>Returns a list of <a class="reference internal" href="../../../glyph.html#lacuna.glyph.OwnedGlyph" title="lacuna.glyph.OwnedGlyph"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.OwnedGlyph</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="../../../glyph.html#lacuna.glyph.OwnedGlyph" title="lacuna.glyph.OwnedGlyph"><code class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.OwnedGlyph</span></code></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.get_glyphs">
-<tt class="descname">get_glyphs</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_glyphs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_glyphs</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_glyphs" title="Permalink to this definition">¶</a></dt>
 <dd><p>get_glyphs() is deprecated.  Prefer get_glyph_summary() instead.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.get_ores_available_for_processing">
-<tt class="descname">get_ores_available_for_processing</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_ores_available_for_processing" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_ores_available_for_processing</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.get_ores_available_for_processing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get ores of sufficient quantity to perform glyph searches on.</p>
-<p>Returns a <a class="reference internal" href="../../../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></tt></a> object.</p>
+<p>Returns a <a class="reference internal" href="../../../resource.html#lacuna.resource.AvailableOre" title="lacuna.resource.AvailableOre"><code class="xref py py-class docutils literal"><span class="pre">lacuna.resource.AvailableOre</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.path">
-<tt class="descname">path</tt><em class="property"> = 'archaeology'</em><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'archaeology'</em><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.search_for_glyph">
-<tt class="descname">search_for_glyph</tt><big>(</big><em>ore_type: str</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.search_for_glyph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">search_for_glyph</code><span class="sig-paren">(</span><em>ore_type: str</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.search_for_glyph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Searches through an ore for a glyph.</p>
-<p>There must be at least 10,000 of the selected ore onsite to perform 
-the search, or a <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> will be raised.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>ore_type &#8211; String name of the ore to search.</li>
-</ul>
-</dd>
-</dl>
+<p>There must be at least 10,000 of the selected ore onsite to perform
+the search, or a <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> will be raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ore_type -- String name of the ore to search.</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.subsidize_search">
-<tt class="descname">subsidize_search</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.subsidize_search" title="Permalink to this definition">¶</a></dt>
+<code class="descname">subsidize_search</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.subsidize_search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Completes the current glyph search immediately.  Costs 2 E.</p>
-<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></tt></a> 1010 if no search is going on right now.</p>
+<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> 1010 if no search is going on right now.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.archaeology.archaeology.view_excavators">
-<tt class="descname">view_excavators</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.view_excavators" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_excavators</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.archaeology.archaeology.view_excavators" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets info on working excavators.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
 <dd><ul class="first last simple">
-<li>excavators &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.Excavator" title="lacuna.ship.Excavator"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Excavator</span></tt></a> objects.  
-This list includes the current planet!  The Archaeology Ministry 
-itself counts as an excavator.  If you&#8217;re trying to get just a 
-list of the foreign excavator sites you have out, don&#8217;t forget 
-to drop the first member of this list, which will be your own 
+<li>excavators &#8211; List of <a class="reference internal" href="../../../ship.html#lacuna.ship.Excavator" title="lacuna.ship.Excavator"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Excavator</span></code></a> objects.
+This list includes the current planet!  The Archaeology Ministry
+itself counts as an excavator.  If you&#8217;re trying to get just a
+list of the foreign excavator sites you have out, don&#8217;t forget
+to drop the first member of this list, which will be your own
 planet.</li>
 <li>max &#8211; Integer max excavators this arch min can support</li>
-<li>travelling &#8211; Integer number of excavators currently in the air 
+<li>travelling &#8211; Integer number of excavators currently in the air
 on the way to a body to begin work.</li>
 </ul>
 </dd>
@@ -299,7 +318,7 @@ on the way to a body to begin work.</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="capitol.html" class="btn btn-neutral float-right" title="Capitol"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="capitol.html" class="btn btn-neutral float-right" title="Capitol">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Miscellaneous Buildings with Methods"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -311,11 +330,12 @@ on the way to a body to begin work.</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

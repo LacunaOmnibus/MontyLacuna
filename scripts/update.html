@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,7 +181,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="update-montylacuna">
 <span id="update"></span><h1>Update MontyLacuna<a class="headerlink" href="#update-montylacuna" title="Permalink to this headline">¶</a></h1>
@@ -178,120 +192,130 @@ script:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">update</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p><tt class="docutils literal"><span class="pre">update.py</span></tt> is different from pretty much all of the other MontyLacuna
+<p><code class="docutils literal"><span class="pre">update.py</span></code> is different from pretty much all of the other MontyLacuna
 scripts in that it does not accept any arguments from the command line.  It
-doesn&#8217;t respond to the standard <tt class="docutils literal"><span class="pre">--help</span></tt> flag, or provide basic usage
+doesn&#8217;t respond to the standard <code class="docutils literal"><span class="pre">--help</span></code> flag, or provide basic usage
 information at all.</p>
 <div class="section" id="caution">
 <h2>CAUTION!<a class="headerlink" href="#caution" title="Permalink to this headline">¶</a></h2>
 <p>This update script is mainly meant with the non-programmer in mind.  If you&#8217;ve
 edited any existing MontyLacuna scripts yourself, those edits will be lost
 when you update.</p>
-<p>You don&#8217;t have to worry about your <tt class="docutils literal"><span class="pre">lacuna.cfg</span></tt> file being overwritten, just
+<p>You don&#8217;t have to worry about your <code class="docutils literal"><span class="pre">lacuna.cfg</span></code> file being overwritten, just
 any scripts you&#8217;ve modified.</p>
 <p>If you&#8217;ve made any brand-new scripts (rather than editing existing MontyLacuna
 scripts), your new scripts should be untouched.  The possible exception to
-this is if you create a script and name it eg <tt class="docutils literal"><span class="pre">do_neat_stuff.py</span></tt>, and
-sometime in the future a script named <tt class="docutils literal"><span class="pre">do_neat_stuff.py</span></tt> gets added to the
+this is if you create a script and name it eg <code class="docutils literal"><span class="pre">do_neat_stuff.py</span></code>, and
+sometime in the future a script named <code class="docutils literal"><span class="pre">do_neat_stuff.py</span></code> gets added to the
 official MontyLacuna distribution just by coincidence, then the official
 MontyLacuna script will overwrite yours.</p>
 <p>So when writing your own scripts, it might make sense to prepend the script
 filenames with your name or initials or something.  So when Infinate Ones
-makes his own custom script, he&#8217;d name it <tt class="docutils literal"><span class="pre">io_do_neat_stuff.py</span></tt>.</p>
+makes his own custom script, he&#8217;d name it <code class="docutils literal"><span class="pre">io_do_neat_stuff.py</span></code>.</p>
 </div>
 <div class="section" id="full-documentation">
 <h2>Full documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.binutils.libupdate.Update">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libupdate.</tt><tt class="descname">Update</tt><a class="headerlink" href="#lacuna.binutils.libupdate.Update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<em class="property">class </em><code class="descclassname">lacuna.binutils.libupdate.</code><code class="descname">Update</code><a class="headerlink" href="#lacuna.binutils.libupdate.Update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><code class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></code></a></p>
 <p>Updates MontyLacuna from github.</p>
 <dl class="method">
 <dt id="lacuna.binutils.libupdate.Update.consuela">
-<tt class="descname">consuela</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.consuela" title="Permalink to this definition">¶</a></dt>
+<code class="descname">consuela</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libupdate.Update.consuela" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean up after ourselves.</p>
-<p>Removes both the temporary directory, including its contents, and the 
+<p>Removes both the temporary directory, including its contents, and the
 downloaded .zip file.</p>
 <p>Needs more lemon pledge.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libupdate.Update.copy_mismatched_file">
-<tt class="descname">copy_mismatched_file</tt><big>(</big><em>tmp_path</em>, <em>name</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.copy_mismatched_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Copies an existing file to our &#8220;live file path&#8221; if that file is either 
-completely new (it doesn&#8217;t already exist in our &#8220;live file path&#8221;), or if 
-the file in question does not exactly match the file in our &#8220;live file 
+<code class="descname">copy_mismatched_file</code><span class="sig-paren">(</span><em>tmp_path</em>, <em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libupdate.Update.copy_mismatched_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies an existing file to our &#8220;live file path&#8221; if that file is either
+completely new (it doesn&#8217;t already exist in our &#8220;live file path&#8221;), or if
+the file in question does not exactly match the file in our &#8220;live file
 path&#8221;.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>tmp_path &#8211; The path where the file in question currently lives.
-MUST NOT END WITH A SLASH.</li>
-<li>name &#8211; The name of the file in question.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>tmp_path -- The path where the file in question currently lives.</strong> (<em>-</em>) &#8211; MUST NOT END WITH A SLASH.</li>
+<li><strong>name -- The name of the file in question.</strong> (<em>-</em>) &#8211; </li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p>The &#8220;live file path&#8221; is determined by get_live_path().</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libupdate.Update.copy_new_file">
-<tt class="descname">copy_new_file</tt><big>(</big><em>file_path</em>, <em>new_path</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.copy_new_file" title="Permalink to this definition">¶</a></dt>
+<code class="descname">copy_new_file</code><span class="sig-paren">(</span><em>file_path</em>, <em>new_path</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libupdate.Update.copy_new_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Copy a file to a new path, maintaining the original filename.</p>
-<dl class="docutils">
-<dt>Arguments</dt>
-<dd><ul class="first last simple">
-<li>file_path &#8211; Full path to the file to copy</li>
-<li>new_path &#8211; Path into which the file should be copied.  
-MUST NOT END WITH A SLASH.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>file_path -- Full path to the file to copy</strong> (<em>-</em>) &#8211; </li>
+<li><strong>new_path -- Path into which the file should be copied.</strong> (<em>-</em>) &#8211; MUST NOT END WITH A SLASH.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libupdate.Update.download_and_extract_zipfile">
-<tt class="descname">download_and_extract_zipfile</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.download_and_extract_zipfile" title="Permalink to this definition">¶</a></dt>
+<code class="descname">download_and_extract_zipfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libupdate.Update.download_and_extract_zipfile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Downloads a file from a given URL and writes it to the requested path.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>URL &#8211; A FQ URL, assumed to point to a .zip file.</li>
-<li>output_file &#8211; Full path to where you want the downloaded file 
-written.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>URL -- A FQ URL, assumed to point to a .zip file.</strong> (<em>-</em>) &#8211; </li>
+<li><strong>output_file -- Full path to where you want the downloaded file</strong> (<em>-</em>) &#8211; written.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libupdate.Update.get_live_path">
-<tt class="descname">get_live_path</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.get_live_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a path to a file, which is assumed to be living under a temporary 
+<code class="descname">get_live_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libupdate.Update.get_live_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a path to a file, which is assumed to be living under a temporary
 directory named &#8216;tmp&#8217;, returns the path where the file needs to end up.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>path &#8211; the current temporary directory path.</li>
-</ul>
-</dd>
-</dl>
-<p>This is a bit fragile.  You CANNOT go changing the name of your temporary 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path -- the current temporary directory path.</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>This is a bit fragile.  You CANNOT go changing the name of your temporary
 directory and expect this to work.  It must be named &#8216;tmp&#8217;.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libupdate.Update.get_zipfile_name">
-<tt class="descname">get_zipfile_name</tt><big>(</big><em>prefix</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.get_zipfile_name" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_zipfile_name</code><span class="sig-paren">(</span><em>prefix</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libupdate.Update.get_zipfile_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a prefix, returns a dated filename string with a .zip extension.</p>
-<dl class="docutils">
-<dt>Arguments</dt>
-<dd><ul class="first last simple">
-<li>prefix &#8211; String.  Nothing is appended to this, so you probably want 
-to include an underscore or other separator.</li>
-</ul>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prefix -- String.  Nothing is appended to this, so you probably want</strong> (<em>-</em>) &#8211; to include an underscore or other separator.</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">get_zipfile_name</span><span class="p">(</span> <span class="s">&quot;foo_&quot;</span> <span class="p">);</span>
 <span class="go">foo_20150218170100.zip</span>
 </pre></div>
@@ -300,16 +324,17 @@ to include an underscore or other separator.</li>
 
 <dl class="method">
 <dt id="lacuna.binutils.libupdate.Update.hash_file">
-<tt class="descname">hash_file</tt><big>(</big><em>filepath</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libupdate.Update.hash_file" title="Permalink to this definition">¶</a></dt>
+<code class="descname">hash_file</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libupdate.Update.hash_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the hash digest of a file as a string.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>filepath &#8211; full path to a file to hash</li>
-</ul>
-</dd>
-</dl>
-<p>SHA1 may or may not be faster/slower than MD5.  Either way, the difference 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath -- full path to a file to hash</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>SHA1 may or may not be faster/slower than MD5.  Either way, the difference
 in speed is negligible.</p>
 </dd></dl>
 
@@ -324,7 +349,7 @@ in speed is negligible.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../config_file.html" class="btn btn-neutral float-right" title="Config File"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../config_file.html" class="btn btn-neutral float-right" title="Config File">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="turnkey.html" class="btn btn-neutral" title="Turnkey (Prisoner Management)"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -336,11 +361,12 @@ in speed is negligible.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

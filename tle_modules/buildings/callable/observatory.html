@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../../../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+          <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -171,40 +185,41 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.buildings.callable.observatory">
 <span id="observatory"></span><h1>Observatory<a class="headerlink" href="#module-lacuna.buildings.callable.observatory" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.buildings.callable.observatory.observatory">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.callable.observatory.</tt><tt class="descname">observatory</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.callable.observatory.</code><code class="descname">observatory</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="method">
 <dt id="lacuna.buildings.callable.observatory.observatory.abandon_all_probes">
-<tt class="descname">abandon_all_probes</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.abandon_all_probes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">abandon_all_probes</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.abandon_all_probes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abandons all of this observatory&#8217;s probes.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.observatory.observatory.abandon_probe">
-<tt class="descname">abandon_probe</tt><big>(</big><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.abandon_probe" title="Permalink to this definition">¶</a></dt>
+<code class="descname">abandon_probe</code><span class="sig-paren">(</span><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.abandon_probe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Abandons a single probe.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>star_id &#8211; Integer ID of the star whose probe we should abandon.</li>
-</ul>
-</dd>
-</dl>
-<p>You are abandoning by the ID of the star you have probed, <em>not</em> by the 
-ID of the probe ship itself - don&#8217;t hurt yourself looking for the 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>star_id -- Integer ID of the star whose probe we should abandon.</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>You are abandoning by the ID of the star you have probed, <em>not</em> by the
+ID of the probe ship itself - don&#8217;t hurt yourself looking for the
 probe&#8217;s ID.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.observatory.observatory.get_probed_stars">
-<tt class="descname">get_probed_stars</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.get_probed_stars" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of probed stars, as well as stats on how many probes 
+<code class="descname">get_probed_stars</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.get_probed_stars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of probed stars, as well as stats on how many probes
 you have out and available.</p>
 <dl class="docutils">
 <dt>Returns a tuple:</dt>
@@ -217,13 +232,13 @@ you have out and available.</p>
 </dd>
 </dl>
 <ul class="simple">
-<li><a class="reference internal" href="../../map.html#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a></li>
+<li><a class="reference internal" href="../../map.html#lacuna.map.Star" title="lacuna.map.Star"><code class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="lacuna.buildings.callable.observatory.observatory.path">
-<tt class="descname">path</tt><em class="property"> = 'observatory'</em><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'observatory'</em><a class="headerlink" href="#lacuna.buildings.callable.observatory.observatory.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -236,7 +251,7 @@ you have out and available.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="park.html" class="btn btn-neutral float-right" title="Park"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="park.html" class="btn btn-neutral float-right" title="Park">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="network19.html" class="btn btn-neutral" title="Network 19"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -248,11 +263,12 @@ you have out and available.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

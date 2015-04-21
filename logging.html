@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,7 +178,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="logging">
 <span id="id1"></span><h1>logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h1>
@@ -178,7 +192,7 @@
 </ul>
 </dd>
 </dl>
-<p>All log files live in <tt class="docutils literal"><span class="pre">ROOT/var/</span></tt>.</p>
+<p>All log files live in <code class="docutils literal"><span class="pre">ROOT/var/</span></code>.</p>
 <div class="section" id="log-levels">
 <h2>Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this headline">¶</a></h2>
 <blockquote>
@@ -215,7 +229,7 @@
 <div class="section" id="request-log">
 <h2>Request Log<a class="headerlink" href="#request-log" title="Permalink to this headline">¶</a></h2>
 <p>The file name will be either what&#8217;s specified in the config file as the
-<tt class="docutils literal"><span class="pre">logfile</span></tt> option or simply <tt class="docutils literal"><span class="pre">request.log</span></tt> if no such option exists in your
+<code class="docutils literal"><span class="pre">logfile</span></code> option or simply <code class="docutils literal"><span class="pre">request.log</span></code> if no such option exists in your
 config.  This happens automatically; just run your scripts, and you&#8217;ll be able
 to check that logfile to see what&#8217;s happening.</p>
 <p>Most request log entries will only display to the file.  However, in the case
@@ -251,9 +265,9 @@ l.debug( &quot;This is a debug message.  You may want a lot of these while you&#
 </div>
 <p>User log entries will go into a file named according to the name of the
 current empire, removing all non-letter characters.  eg for the empire &#8220;My
-Great Empire&#8221;, user log entries will go into <tt class="docutils literal"><span class="pre">MyGreatEmpire.log</span></tt>.  If your
+Great Empire&#8221;, user log entries will go into <code class="docutils literal"><span class="pre">MyGreatEmpire.log</span></code>.  If your
 script&#8217;s client isn&#8217;t logged in, the user log entries will go into
-<tt class="docutils literal"><span class="pre">guest.log</span></tt>.</p>
+<code class="docutils literal"><span class="pre">guest.log</span></code>.</p>
 <p>As with the request log, only WARNING level or higher will display to the
 screen by default, while any lower-level entries will just go into the log
 file.  If you want to change that, for example to display DEBUG level messages
@@ -282,7 +296,7 @@ change that previous line to:</p>
 <div class="section" id="module-log">
 <h2>Module Log<a class="headerlink" href="#module-log" title="Permalink to this headline">¶</a></h2>
 <p>The module log is rarely used, and exists for the purpose of debugging
-specific MontyLacuna modules.  The entries are written to <tt class="docutils literal"><span class="pre">module.log</span></tt>, but
+specific MontyLacuna modules.  The entries are written to <code class="docutils literal"><span class="pre">module.log</span></code>, but
 this file will likely be empty most of the time.</p>
 </div>
 </div>
@@ -293,7 +307,7 @@ this file will likely be empty most of the time.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="my_validate_email.html" class="btn btn-neutral float-right" title="my_validate_email"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="my_validate_email.html" class="btn btn-neutral float-right" title="my_validate_email">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="glyph.html" class="btn btn-neutral" title="glyph"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -305,11 +319,12 @@ this file will likely be empty most of the time.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,139 +178,139 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.exceptions">
 <span id="exceptions"></span><h1>exceptions<a class="headerlink" href="#module-lacuna.exceptions" title="Permalink to this headline">¶</a></h1>
 <dl class="exception">
 <dt id="lacuna.exceptions.BadBuildingError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">BadBuildingError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.BadBuildingError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">BadBuildingError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.BadBuildingError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The building requested exists but isn&#8217;t usable (probably damaged)</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.BadConfigSectionError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">BadConfigSectionError</tt><big>(</big><em>section</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.BadConfigSectionError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">BadConfigSectionError</code><span class="sig-paren">(</span><em>section</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.BadConfigSectionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>User specified a config file section which does not exist.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.BadCredentialsError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">BadCredentialsError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.BadCredentialsError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">BadCredentialsError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.BadCredentialsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>One or both of username and/or password is bad.  We&#8217;re not sure which.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.CaptchaResponseError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">CaptchaResponseError</tt><big>(</big><em>section</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.CaptchaResponseError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">CaptchaResponseError</code><span class="sig-paren">(</span><em>section</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.CaptchaResponseError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The user&#8217;s response to a captcha puzzle was incorrect.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.GDIError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">GDIError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.GDIError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">GDIError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.GDIError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The client attempted to access own alliance methods, but is not currently
 in an alliance.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.InsufficientResourceError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">InsufficientResourceError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.InsufficientResourceError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
-<p>The client has some, but not enough, of some resource.  This resource 
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">InsufficientResourceError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.InsufficientResourceError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>The client has some, but not enough, of some resource.  This resource
 can be any score, eg a building level that&#8217;s not high enough.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.MissingResourceError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">MissingResourceError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.MissingResourceError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">MissingResourceError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.MissingResourceError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>Some TLE resource required to do whatever it is you were attempting to do is missing.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.NoAvailableShipsError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoAvailableShipsError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.NoAvailableShipsError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
-<p>We attempted to do something that requires one or more ships (eg fetch 
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">NoAvailableShipsError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.NoAvailableShipsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>We attempted to do something that requires one or more ships (eg fetch
 spies), but no ships were available.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.NoSuchBuildingError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoSuchBuildingError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.NoSuchBuildingError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">NoSuchBuildingError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.NoSuchBuildingError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The building requested does not exist</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.NoSuchEmpireError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoSuchEmpireError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.NoSuchEmpireError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">NoSuchEmpireError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.NoSuchEmpireError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The empire name used does not exist</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.NoSuchMyBodyError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoSuchMyBodyError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.NoSuchMyBodyError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">NoSuchMyBodyError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.NoSuchMyBodyError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The body requested does not exist in my empire.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.NoSuchShipError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoSuchShipError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.NoSuchShipError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">NoSuchShipError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.NoSuchShipError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The ship name used does not exist</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.NoUsableSpiesError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NoUsableSpiesError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.NoUsableSpiesError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">NoUsableSpiesError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.NoUsableSpiesError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>No spies onsite satisfy the requirements.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.NotJsonError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">NotJsonError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.NotJsonError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">NotJsonError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.NotJsonError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The server responded, but handed back something other than JSON</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.RequestError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">RequestError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.RequestError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
-<p>A network request is not responding properly.  Generally this means that 
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">RequestError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.RequestError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>A network request is not responding properly.  Generally this means that
 response.status_code is other than 200.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.ServerError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">ServerError</tt><big>(</big><em>code: int</em>, <em>message: str</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.ServerError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">ServerError</code><span class="sig-paren">(</span><em>code: int</em>, <em>message: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.ServerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>The TLE server returned a 500 and a JSON error string</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.TopoffError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">TopoffError</tt><big>(</big><em>number: int</em>, <em>message: str</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.TopoffError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">TopoffError</code><span class="sig-paren">(</span><em>number: int</em>, <em>message: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.TopoffError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
 <p>A script got a &#8211;topoff argument, but we&#8217;re already over the requested number.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="lacuna.exceptions.WorkingError">
-<em class="property">exception </em><tt class="descclassname">lacuna.exceptions.</tt><tt class="descname">WorkingError</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#lacuna.exceptions.WorkingError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
-<p>The user wanted to begin work on some resource (a building, spy, ship, 
-etc), but that resource is already doing something and can&#8217;t be assigned a 
+<em class="property">exception </em><code class="descclassname">lacuna.exceptions.</code><code class="descname">WorkingError</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.exceptions.WorkingError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>The user wanted to begin work on some resource (a building, spy, ship,
+etc), but that resource is already doing something and can&#8217;t be assigned a
 new job until it completes the current one.</p>
 </dd></dl>
 
@@ -308,7 +322,7 @@ new job until it completes the current one.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="glyph.html" class="btn btn-neutral float-right" title="glyph"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="glyph.html" class="btn btn-neutral float-right" title="glyph">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="clients.html" class="btn btn-neutral" title="clients"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -320,11 +334,12 @@ new job until it completes the current one.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

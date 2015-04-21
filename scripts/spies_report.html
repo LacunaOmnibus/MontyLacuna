@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,7 +181,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="spies-report">
 <span id="id1"></span><h1>Spies Report<a class="headerlink" href="#spies-report" title="Permalink to this headline">¶</a></h1>
@@ -185,7 +199,7 @@ your planets.</p>
 <span class="go">    123456  (    0,    0) - Earth                                    90</span>
 </pre></div>
 </div>
-<p><tt class="docutils literal"><span class="pre">Locations</span></tt> shows the ID, (X, Y) coordinates, and name of the planet or
+<p><code class="docutils literal"><span class="pre">Locations</span></code> shows the ID, (X, Y) coordinates, and name of the planet or
 planets where the spies are located, rather than where they&#8217;re based from (all
 of the spies in the report above are based from Earth).  In the example above,
 all of the spies are at home.</p>
@@ -194,7 +208,7 @@ counts.  If you want a more complete report, see the section below on CSV
 format.</p>
 <div class="section" id="running-for-all-planets">
 <h2>Running for all Planets<a class="headerlink" href="#running-for-all-planets" title="Permalink to this headline">¶</a></h2>
-<p>To see what all your spies are doing, use <tt class="docutils literal"><span class="pre">all</span></tt> as the planet name:</p>
+<p>To see what all your spies are doing, use <code class="docutils literal"><span class="pre">all</span></code> as the planet name:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">spies_report</span><span class="o">.</span><span class="n">py</span> <span class="nb">all</span>
 </pre></div>
 </div>
@@ -207,7 +221,7 @@ without having to wait or waste your RPCs.</p>
 <p>However, if you run the report on a planet, then go build a bunch of new
 spies, or assign existing spies to different tasks or whatever, and then want
 to run the same report again, you won&#8217;t want to look at data cached from the
-first run.  In that case, pass the <tt class="docutils literal"><span class="pre">--fresh</span></tt> option:</p>
+first run.  In that case, pass the <code class="docutils literal"><span class="pre">--fresh</span></code> option:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">spies_report</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">fresh</span> <span class="n">Earth</span>
 </pre></div>
 </div>
@@ -226,7 +240,7 @@ file:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">spies_report</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">format</span> <span class="n">csv</span> <span class="nb">all</span> <span class="o">&gt;</span> <span class="n">myfile</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
-<p>Now, you can open <tt class="docutils literal"><span class="pre">myfile.csv</span></tt> using Excel or whatever spreadsheet software
+<p>Now, you can open <code class="docutils literal"><span class="pre">myfile.csv</span></code> using Excel or whatever spreadsheet software
 you like.</p>
 </div>
 <div class="section" id="full-documentation">
@@ -237,37 +251,38 @@ you like.</p>
 </div>
 <dl class="class">
 <dt id="lacuna.binutils.libspies_report.SpiesReport">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libspies_report.</tt><tt class="descname">SpiesReport</tt><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.binutils.libspies_report.</code><code class="descname">SpiesReport</code><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><code class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></code></a></p>
 <p>Gather and report on spy data by planet.</p>
 <dl class="method">
 <dt id="lacuna.binutils.libspies_report.SpiesReport.display_full_report">
-<tt class="descname">display_full_report</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport.display_full_report" title="Permalink to this definition">¶</a></dt>
-<dd><p>Displays the report on whatever planet or planets was specified by 
+<code class="descname">display_full_report</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport.display_full_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the report on whatever planet or planets was specified by
 the user.  Must be called after
-<a class="reference internal" href="#lacuna.binutils.libspies_report.SpiesReport.gather_spy_data" title="lacuna.binutils.libspies_report.SpiesReport.gather_spy_data"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.binutils.libspies_report.SpiesReport.gather_spy_data()</span></tt></a>.</p>
+<a class="reference internal" href="#lacuna.binutils.libspies_report.SpiesReport.gather_spy_data" title="lacuna.binutils.libspies_report.SpiesReport.gather_spy_data"><code class="xref py py-meth docutils literal"><span class="pre">lacuna.binutils.libspies_report.SpiesReport.gather_spy_data()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libspies_report.SpiesReport.gather_spy_data">
-<tt class="descname">gather_spy_data</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport.gather_spy_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get data on all of the spies at our planet.  Must be called after 
-<a class="reference internal" href="#lacuna.binutils.libspies_report.SpiesReport.set_planet" title="lacuna.binutils.libspies_report.SpiesReport.set_planet"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.binutils.libspies_report.SpiesReport.set_planet()</span></tt></a>.</p>
+<code class="descname">gather_spy_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport.gather_spy_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get data on all of the spies at our planet.  Must be called after
+<a class="reference internal" href="#lacuna.binutils.libspies_report.SpiesReport.set_planet" title="lacuna.binutils.libspies_report.SpiesReport.set_planet"><code class="xref py py-meth docutils literal"><span class="pre">lacuna.binutils.libspies_report.SpiesReport.set_planet()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libspies_report.SpiesReport.set_planet">
-<tt class="descname">set_planet</tt><big>(</big><em>pname: str</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport.set_planet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Meant to be called by the user to set which planet we&#8217;re working on 
+<code class="descname">set_planet</code><span class="sig-paren">(</span><em>pname: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.SpiesReport.set_planet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Meant to be called by the user to set which planet we&#8217;re working on
 right now.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>pname &#8211; String name of the planet</li>
-</ul>
-</dd>
-</dl>
-<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></tt></a> if the planet 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pname -- String name of the planet</strong> (<em>-</em>) &#8211; </td>
+</tr>
+</tbody>
+</table>
+<p>Raises <a class="reference internal" href="../exceptions.html#lacuna.exceptions.NoSuchBuildingError" title="lacuna.exceptions.NoSuchBuildingError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.NoSuchBuildingError</span></code></a> if the planet
 being set does not have a working Intelligence Ministry.</p>
 </dd></dl>
 
@@ -275,44 +290,48 @@ being set does not have a working Intelligence Ministry.</p>
 
 <dl class="class">
 <dt id="lacuna.binutils.libspies_report.PlanetSpyData">
-<em class="property">class </em><tt class="descclassname">lacuna.binutils.libspies_report.</tt><tt class="descname">PlanetSpyData</tt><big>(</big><em>pname</em>, <em>spies</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<em class="property">class </em><code class="descclassname">lacuna.binutils.libspies_report.</code><code class="descname">PlanetSpyData</code><span class="sig-paren">(</span><em>pname</em>, <em>spies</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Contains the data gathered on spies homed from a single planet.</p>
 <dl class="method">
 <dt id="lacuna.binutils.libspies_report.PlanetSpyData.display_cli_report">
-<tt class="descname">display_cli_report</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.display_cli_report" title="Permalink to this definition">¶</a></dt>
-<dd><p>Displays a human-readable report on the spies homed from a single 
+<code class="descname">display_cli_report</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.display_cli_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a human-readable report on the spies homed from a single
 planet on the terminal.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libspies_report.PlanetSpyData.display_csv_report">
-<tt class="descname">display_csv_report</tt><big>(</big><em>sr</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.display_csv_report" title="Permalink to this definition">¶</a></dt>
+<code class="descname">display_csv_report</code><span class="sig-paren">(</span><em>sr</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.display_csv_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Displays a CSV report on the ships on a single planet on the terminal.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libspies_report.PlanetSpyData.display_report">
-<tt class="descname">display_report</tt><big>(</big><em>sr</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.display_report" title="Permalink to this definition">¶</a></dt>
-<dd><p>Displays the report requested by the user, either cli or csv 
+<code class="descname">display_report</code><span class="sig-paren">(</span><em>sr</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.display_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the report requested by the user, either cli or csv
 format, depending upon the command-line option.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.binutils.libspies_report.PlanetSpyData.summarize">
-<tt class="descname">summarize</tt><big>(</big><em>string: str</em>, <em>mymax: int</em><big>)</big><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.summarize" title="Permalink to this definition">¶</a></dt>
+<code class="descname">summarize</code><span class="sig-paren">(</span><em>string: str</em>, <em>mymax: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libspies_report.PlanetSpyData.summarize" title="Permalink to this definition">¶</a></dt>
 <dd><p>If a string is too long, shortens it and adds ellipsis.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>string &#8211; Some string to summarize</li>
-<li>max &#8211; Integer max length of the string.  Must be greater than 3.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>string -- Some string to summarize</strong> (<em>-</em>) &#8211; </li>
+<li><strong>max -- Integer max length of the string.  Must be greater than 3.</strong> (<em>-</em>) &#8211; </li>
 </ul>
-</dd>
-</dl>
-<p>If the string is &#8220;abcdefghijk&#8221; and the max is 6, this will return 
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the string is &#8220;abcdefghijk&#8221; and the max is 6, this will return
 &#8220;abc...&#8221;</p>
-<p>Returns the summarized string, or the original string if it was shorter 
+<p>Returns the summarized string, or the original string if it was shorter
 than max.</p>
 </dd></dl>
 
@@ -327,7 +346,7 @@ than max.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="stations_report.html" class="btn btn-neutral float-right" title="Stations Report"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="stations_report.html" class="btn btn-neutral float-right" title="Stations Report">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="show_laws.html" class="btn btn-neutral" title="Show Laws"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -339,11 +358,12 @@ than max.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

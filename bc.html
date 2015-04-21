@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,9 +30,11 @@
   
 
   
+
+  
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
         <link rel="next" title="caching" href="caching.html"/>
-        <link rel="prev" title="Stats" href="tle_modules/stats.html"/> 
+        <link rel="prev" title="Send Excavs Tests" href="tests/send_excavs.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,40 +178,39 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.bc">
 <span id="bc"></span><h1>bc<a class="headerlink" href="#module-lacuna.bc" title="Permalink to this headline">¶</a></h1>
 <p>Module for lacuna base classes.</p>
 <dl class="class">
 <dt id="lacuna.bc.ElapsedTime">
-<em class="property">class </em><tt class="descclassname">lacuna.bc.</tt><tt class="descname">ElapsedTime</tt><big>(</big><em>d: &lt;module 'datetime' from '/usr/lib/python3.4/datetime.py'&gt;</em><big>)</big><a class="headerlink" href="#lacuna.bc.ElapsedTime" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<em class="property">class </em><code class="descclassname">lacuna.bc.</code><code class="descname">ElapsedTime</code><span class="sig-paren">(</span><em>d: &lt;module 'datetime' from '/usr/lib/python3.4/datetime.py'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.ElapsedTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Turns seconds into days, hours, minutes, and seconds.</p>
-<p>Some methods return how long something is going to take in terms of seconds 
-only.  Since it can be a little difficult to look at 190353 seconds and 
-know off the top of your head how long that really is, you can pass those 
+<p>Some methods return how long something is going to take in terms of seconds
+only.  Since it can be a little difficult to look at 190353 seconds and
+know off the top of your head how long that really is, you can pass those
 seconds to ElapsedTime.</p>
+<p>Object Attributes (all are integers):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">days</span>
+<span class="n">hours</span>
+<span class="n">minutes</span>
+<span class="n">seconds</span>
+</pre></div>
+</div>
 <dl class="docutils">
-<dt>Attributes (all are integers):</dt>
-<dd><ul class="first last simple">
-<li>days</li>
-<li>hours</li>
-<li>minutes</li>
-<li>seconds</li>
-</ul>
-</dd>
 <dt>This is awfully close to a <a class="reference external" href="https://docs.python.org/3.4/library/datetime.html">datetime.datetime</a> object, except:</dt>
 <dd><ul class="first last simple">
 <li>The attributes are plural: &#8220;days&#8221; instead of &#8220;day&#8221;</li>
-<li>The number of days elapsed is correct as-is.  datetime.day would 
-actually be one too high, and the user would need to subtract 
+<li>The number of days elapsed is correct as-is.  datetime.day would
+actually be one too high, and the user would need to subtract
 one, and he&#8217;s going to forget to do that 90% of the time.</li>
 </ul>
 </dd>
 </dl>
-<p><em>CAUTION</em> - <a class="reference internal" href="#lacuna.bc.SubClass.sec2time" title="lacuna.bc.SubClass.sec2time"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.bc.SubClass.sec2time()</span></tt></a> is slightly hokey - if the 
-number of seconds passed in is greater than the number of seconds in the 
+<p><em>CAUTION</em> - <a class="reference internal" href="#lacuna.bc.SubClass.sec2time" title="lacuna.bc.SubClass.sec2time"><code class="xref py py-meth docutils literal"><span class="pre">lacuna.bc.SubClass.sec2time()</span></code></a> is slightly hokey - if the
+number of seconds passed in is greater than the number of seconds in the
 current month (2678400 for a 31-day month), then all returns will be reset:</p>
 <div class="highlight-python"><div class="highlight"><pre>time = i.sec2time( 2678400 )
 print( &quot;That&#39;s {} days, {} hours, {} minutes, and {} seconds.&quot;
@@ -206,37 +219,37 @@ print( &quot;That&#39;s {} days, {} hours, {} minutes, and {} seconds.&quot;
     &quot;That&#39;s 0 days, 0 hours, 0 minutes, and 0 seconds.&quot;
 </pre></div>
 </div>
-<p>Since very few TLE-related activities will take more than a month, this 
-is usually not a problem.  But a ship sent at speed 1 from one corner of 
-the expanse to the other won&#8217;t be able to make reasonable use of this 
+<p>Since very few TLE-related activities will take more than a month, this
+is usually not a problem.  But a ship sent at speed 1 from one corner of
+the expanse to the other won&#8217;t be able to make reasonable use of this
 converter.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.bc.LacunaObject">
-<em class="property">class </em><tt class="descclassname">lacuna.bc.</tt><tt class="descname">LacunaObject</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.bc.</code><code class="descname">LacunaObject</code><span class="sig-paren">(</span><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>Superclass from which almost all MontyLacuna objects inherit.</p>
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.call_body_meth">
-<tt class="descname">call_body_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_body_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
-Just like call_member_meth(), except that this version includes the 
+<code class="descname">call_body_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.call_body_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
+Just like call_member_meth(), except that this version includes the
 body_id in the args passed to the server.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.call_guest_meth">
-<tt class="descname">call_guest_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_guest_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
+<code class="descname">call_guest_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.call_guest_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
 Makes an RPC not requiring that the client is logged in.
 The decorated method must be named identically to an existing TLE method.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.call_member_meth">
-<tt class="descname">call_member_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_member_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
+<code class="descname">call_member_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.call_member_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
 Makes an RPC that _does_ require that the client is logged in.
 The decorated method must be named identically to an existing TLE method.
 Expects positional arguments.  This is the &#8216;old&#8217; way of doing things, but
@@ -245,8 +258,8 @@ almost all of the TLE methods work this way.</p>
 
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.call_member_named_meth">
-<tt class="descname">call_member_named_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_member_named_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
+<code class="descname">call_member_named_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.call_member_named_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
 Makes an RPC that _does_ require that the client is logged in.
 The decorated method must be named identically to an existing TLE method.
 Expects named arguments.  This is the &#8216;new&#8217; way of doing it, but there are
@@ -255,56 +268,45 @@ fairly few methods that work this way.  See map.get_star_map()</p>
 
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.call_named_returning_meth">
-<tt class="descname">call_named_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_named_returning_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
+<code class="descname">call_named_returning_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.call_named_returning_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
 Makes an RPC that _does_ require that the client is logged in.
-Most RPC calls simply return to the user the data returned from the TLE 
-servers (after a slight massage).  But some methods need to modify that 
+Most RPC calls simply return to the user the data returned from the TLE
+servers (after a slight massage).  But some methods need to modify that
 data themselves.</p>
-<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
-using this, there&#8217;s no need to decorate with 
+<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re
+using this, there&#8217;s no need to decorate with
 &#64;LacunaObject.set_empire_status (and doing so will fail).</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.call_returning_body_meth">
-<tt class="descname">call_returning_body_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_returning_body_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
-Just like call_returning_meth(), except that this version includes the 
+<code class="descname">call_returning_body_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.call_returning_body_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
+Just like call_returning_meth(), except that this version includes the
 body_id in the args passed to the server.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.call_returning_meth">
-<tt class="descname">call_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.call_returning_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
+<code class="descname">call_returning_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.call_returning_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
 Makes an RPC that _does_ require that the client is logged in.
-Most RPC calls simply return to the user the data returned from the TLE 
-servers (after a slight massage).  But some methods need to modify that 
+Most RPC calls simply return to the user the data returned from the TLE
+servers (after a slight massage).  But some methods need to modify that
 data themselves.</p>
-<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
-using this, there&#8217;s no need to decorate with 
+<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re
+using this, there&#8217;s no need to decorate with
 &#64;LacunaObject.set_empire_status (and doing so will fail).</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.bc.LacunaObject.set_empire_status">
-<tt class="descname">set_empire_status</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.bc.LacunaObject.set_empire_status" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_empire_status</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.LacunaObject.set_empire_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.</p>
-<p>Update the Empire object&#8217;s attributes with fresh status data with 
+<p>Update the Empire object&#8217;s attributes with fresh status data with
 each decorated method call.</p>
-<p>The status block can show up in various places for different methods;
-it&#8217;s just not consistent.  Some candidates:</p>
-<div class="highlight-python"><div class="highlight"><pre>rv = {
-    status: { here }
-    status: {
-        empire: { or here }
-    }
-    empire: { or even here }
-}
-</pre></div>
-</div>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>essentia                8462.5,
 has_new_messages        &#39;1769&#39;,
 home_planet_id          &#39;108756&#39;,
@@ -325,17 +327,28 @@ planet_names            {   &quot;Mercury&quot;: 12345,
                             etc     },
 </pre></div>
 </div>
+<p>The status block can show up in various places for different methods;
+it&#8217;s just not consistent.  Some candidates:</p>
+<div class="highlight-python"><div class="highlight"><pre>rv = {
+    status: { here }
+    status: {
+        empire: { or here }
+    }
+    empire: { or even here }
+}
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.bc.SubClass">
-<em class="property">class </em><tt class="descclassname">lacuna.bc.</tt><tt class="descname">SubClass</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.bc.SubClass" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
-<p>A generic base class for turning returned dicts into objects, and 
+<em class="property">class </em><code class="descclassname">lacuna.bc.</code><code class="descname">SubClass</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.SubClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A generic base class for turning returned dicts into objects, and
 for providing utility methods.</p>
-<p>Almost all MontyLacuna objects inherit from this class, so any methods of 
+<p>Almost all MontyLacuna objects inherit from this class, so any methods of
 this class can be called from (almost) any MontyLacuna object:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">my_planet</span> <span class="o">=</span> <span class="n">glc</span><span class="o">.</span><span class="n">get_body_byname</span><span class="p">(</span> <span class="s">&#39;Earth&#39;</span> <span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">my_planet</span><span class="o">.</span><span class="n">client</span><span class="p">)</span>
@@ -350,31 +363,34 @@ this class can be called from (almost) any MontyLacuna object:</p>
 <p>...etc.</p>
 <dl class="method">
 <dt id="lacuna.bc.SubClass.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.bc.SubClass.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.SubClass.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a lacuna.bc.SubClass object.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>client &#8211; A <a class="reference internal" href="clients.html#lacuna.clients.Member" title="lacuna.clients.Member"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Member</span></tt></a> or 
-<a class="reference internal" href="clients.html#lacuna.clients.Guest" title="lacuna.clients.Guest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Guest</span></tt></a> object</li>
-<li>mydict &#8211; A dict whose keys will become attributes of the 
-SubClass object (and whose values will become the values of those
-attributes).</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client</strong> (<a class="reference internal" href="clients.html#lacuna.clients.Member" title="lacuna.clients.Member"><em>lacuna.clients.Member</em></a>) &#8211; The client used for any connections</li>
+<li><strong>mydict</strong> (<em>dict</em>) &#8211; The keys will become attributes of the
+SubClass object, and the values will become the values of those
+attributes.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.bc.SubClass.get_type">
-<tt class="descname">get_type</tt><big>(</big><em>cand</em><big>)</big><a class="headerlink" href="#lacuna.bc.SubClass.get_type" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_type</code><span class="sig-paren">(</span><em>cand</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.SubClass.get_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Changes strings that look like numbers into numbers.</p>
-<p>Since all communications with the server is via JSON, which is a text 
+<p>Since all communications with the server is via JSON, which is a text
 transport, all values that look like numbers are actually strings.</p>
-<p>eg the &#8216;5&#8217; in &#8216;ship_count = 5&#8217; is a string, not an int, so doing math on 
+<p>eg the &#8216;5&#8217; in &#8216;ship_count = 5&#8217; is a string, not an int, so doing math on
 it, or trying to format it as a number, is going to cause problems.</p>
-<p>This attempts to turn strings that should be either ints or floats into 
-ints or floats.  Any type other than an int or float gets returned 
+<p>This attempts to turn strings that should be either ints or floats into
+ints or floats.  Any type other than an int or float gets returned
 unmolested:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">cand</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">new</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_type</span><span class="p">(</span> <span class="n">cand</span> <span class="p">)</span>
@@ -397,39 +413,42 @@ unmolested:</p>
 
 <dl class="method">
 <dt id="lacuna.bc.SubClass.sec2time">
-<tt class="descname">sec2time</tt><big>(</big><em>secs: int</em><big>)</big><a class="headerlink" href="#lacuna.bc.SubClass.sec2time" title="Permalink to this definition">¶</a></dt>
+<code class="descname">sec2time</code><span class="sig-paren">(</span><em>secs: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.SubClass.sec2time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts seconds into days, hours, minutes, and seconds.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>seconds &#8211; Integer seconds to convert</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference internal" href="#lacuna.bc.ElapsedTime" title="lacuna.bc.ElapsedTime"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.ElapsedTime</span></tt></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seconds</strong> (<em>int</em>) &#8211; seconds to convert</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Your passed-in seconds converted.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.bc.ElapsedTime" title="lacuna.bc.ElapsedTime">lacuna.bc.ElapsedTime</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.bc.SubClass.tle2time">
-<tt class="descname">tle2time</tt><big>(</big><em>tle_time: str</em><big>)</big><a class="headerlink" href="#lacuna.bc.SubClass.tle2time" title="Permalink to this definition">¶</a></dt>
+<code class="descname">tle2time</code><span class="sig-paren">(</span><em>tle_time: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.bc.SubClass.tle2time" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a TLE datetime string into a datetime object.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>tle_datetime &#8211; A TLE datetime string</dt>
-<dd><p class="first last">eg &#8220;30 11 2014 21:40:31 +0000&#8221;
-The &#8220;+0000&#8221; is meant to be the timezone, but in TLE 
-datetime strings this is always &#8220;+0000&#8221; (UTC), so 
-this method is ignoring it, and it could actually 
-be omitted from the passed-in string.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference external" href="https://docs.python.org/3.4/library/datetime.html">datetime.datetime</a> object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tle_datetime</strong> (<em>str</em>) &#8211; eg <code class="docutils literal"><span class="pre">30</span> <span class="pre">11</span> <span class="pre">2014</span> <span class="pre">21:40:31</span> <span class="pre">+0000</span></code>.
+The &#8220;+0000&#8221; is meant to be the timezone, but in TLE
+datetime strings this is always &#8220;+0000&#8221; (UTC), so
+this method is ignoring it, and it could actually
+be omitted from the passed-in string.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A <a class="reference external" href="https://docs.python.org/3.4/library/datetime.html">datetime.datetime</a> object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">datetime.datetime</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -442,10 +461,10 @@ be omitted from the passed-in string.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="caching.html" class="btn btn-neutral float-right" title="caching"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="caching.html" class="btn btn-neutral float-right" title="caching">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="tle_modules/stats.html" class="btn btn-neutral" title="Stats"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tests/send_excavs.html" class="btn btn-neutral" title="Send Excavs Tests"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -454,11 +473,12 @@ be omitted from the passed-in string.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

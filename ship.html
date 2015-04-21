@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,16 +178,16 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.ship">
 <span id="ship"></span><h1>ship<a class="headerlink" href="#module-lacuna.ship" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.ship.BuildingShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">BuildingShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.BuildingShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">BuildingShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.BuildingShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
 <p>A ship being built (currently in the shipyard queue).</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id               &quot;1234&quot;,
 type             &quot;spy_pod&quot;,
 type_human       &quot;Spy Pod&quot;,
@@ -184,11 +198,11 @@ date_completed   &quot;01 31 2010 13:09:05 +0600&quot;
 
 <dl class="class">
 <dt id="lacuna.ship.ChainShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">ChainShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.ChainShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>A ChainShip is owned by your empire and is either on or capable of 
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">ChainShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.ChainShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>A ChainShip is owned by your empire and is either on or capable of
 being added to a Waste Chain or a Supply Chain.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 type            &quot;scow&quot;,
 task            &quot;Docked&quot;, &quot;Supply Chain&quot;, or &quot;Waste Chain&quot;.
@@ -197,17 +211,17 @@ speed           600
 hold_size       1234800
 </pre></div>
 </div>
-<p>For <tt class="docutils literal"><span class="pre">task</span></tt>, the TLE documentation says the task is &#8220;Resource Chain&#8221;, but 
+<p>For <code class="docutils literal"><span class="pre">task</span></code>, the TLE documentation says the task is &#8220;Resource Chain&#8221;, but
 it does return &#8220;Supply Chain&#8221;, not &#8220;Resource Chain&#8221;.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.ship.Excavator">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">Excavator</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.ship.Excavator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>These aren&#8217;t truly ships anymore, they&#8217;re excavator sites.  The id is 
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">Excavator</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.Excavator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>These aren&#8217;t truly ships anymore, they&#8217;re excavator sites.  The id is
 the id of the site that&#8217;s currently being excavated (the site_id).</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 body            lacuna.body.Body object
 artifact        5,
@@ -218,18 +232,18 @@ date_landed     Date excav started at location
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></li>
+<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.Body" title="lacuna.body.Body"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.ship.ExistingShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">ExistingShip</tt><big>(</big><em>client</em>, <em>mydict</em><big>)</big><a class="headerlink" href="#lacuna.ship.ExistingShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>An existing ship is one of your own ships that has finished building.  
-It&#8217;s taking up dock space in a spaceport, but it does not appear in a build 
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">ExistingShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.ExistingShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>An existing ship is one of your own ships that has finished building.
+It&#8217;s taking up dock space in a spaceport, but it does not appear in a build
 queue.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 name            &quot;CS3&quot;,
 type_human      &quot;Cargo Ship&quot;,
@@ -246,7 +260,7 @@ date_available  &quot;02 01 2010 10:08:33 +0600&quot;,
 date_arrives    &quot;02 01 2010 10:08:33 +0600&quot;,
 can_recall      0,
 can_scuttle     1,
-max_occupants   120                             # attribute will always exist, but will 
+max_occupants   120                             # attribute will always exist, but will
                                                 # sometimes be &#39;0&#39;.
 origin          lacuna.body.ShipDest object
 to              lacuna.body.ShipDest object     # Will only appear if the ship is currently
@@ -255,18 +269,18 @@ orbiting        lacuna.ship.ShipHub object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.ShipDest" title="lacuna.body.ShipDest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.ShipDest</span></tt></a></li>
-<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.ShipHub" title="lacuna.body.ShipHub"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.ShipHub</span></tt></a></li>
+<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.ShipDest" title="lacuna.body.ShipDest"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.ShipDest</span></code></a></li>
+<li><a class="reference internal" href="tle_modules/body.html#lacuna.body.ShipHub" title="lacuna.body.ShipHub"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.ShipHub</span></code></a></li>
 </ul>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.ship.FleetShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">FleetShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.FleetShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>A FleetShip is an existing docked ship that&#8217;s ready to be added to a 
-fleet action against a specific target (<tt class="docutils literal"><span class="pre">spaceport.get_my_fleet_for()</span></tt>)</p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">FleetShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.FleetShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>A FleetShip is an existing docked ship that&#8217;s ready to be added to a
+fleet action against a specific target (<code class="docutils literal"><span class="pre">spaceport.get_my_fleet_for()</span></code>)</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>type                    &quot;sweeper&quot;,
 type_human              &quot;Sweeper&quot;,
 speed                   10166,
@@ -280,10 +294,10 @@ estimated_travel_time   &quot;3654&quot;,
 
 <dl class="class">
 <dt id="lacuna.ship.ForeignOrbiting">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">ForeignOrbiting</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.ForeignOrbiting" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">ForeignOrbiting</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.ForeignOrbiting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
 <p>A ship currently orbiting your planet.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 name            &quot;SS3&quot;,
 type            &quot;spy_shuttle&quot;,
@@ -299,12 +313,12 @@ origin          {   &quot;id&quot; : &quot;id-goes-here&quot;,
 
 <dl class="class">
 <dt id="lacuna.ship.IncomingShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">IncomingShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.IncomingShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>How much information you can see about an incoming ship depends upon 
-its origin, the level of the spaceport that&#8217;s looking at the ship, and how 
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">IncomingShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.IncomingShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>How much information you can see about an incoming ship depends upon
+its origin, the level of the spaceport that&#8217;s looking at the ship, and how
 high the ship&#8217;s stealth level is.</p>
-<p>Attributes if the ship is from a friendly empire, or its stealth level is low enough 
+<p>Object Attributes if the ship is from a friendly empire, or its stealth level is low enough
 to be seen by your spaceport:</p>
 <div class="highlight-python"><div class="highlight"><pre>id             &quot;id-goes-here&quot;,
 name           &quot;CS3&quot;,
@@ -319,7 +333,7 @@ origin          {   &quot;id&quot;    &quot;id-goes-here&quot;,
                                 &quot;name&quot;  &quot;Earthlings&quot;    }    }
 </pre></div>
 </div>
-<p>Attributes if the ship is from a hostile empire (anyone not in your alliance), and your 
+<p>Object Attributes if the ship is from a hostile empire (anyone not in your alliance), and your
 spaceport is not high enough level to see past its stealth, you&#8217;ll only get:</p>
 <div class="highlight-python"><div class="highlight"><pre>date_arrives   &#39;24 10 2014 04:35:39 +0000&#39;,
 origin          {},
@@ -329,18 +343,18 @@ type            &#39;unknown&#39;,
 type_human      &#39;Unknown&#39;
 </pre></div>
 </div>
-<p>Each ship is evaluated separately, so it&#8217;s possible that a given spaceport 
+<p>Each ship is evaluated separately, so it&#8217;s possible that a given spaceport
 will be able to see some, but not all, of the incomings.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.ship.IncomingToBodyShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">IncomingToBodyShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.IncomingToBodyShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>An IncomingShip is what you can see from your Space Port or Police 
-Station, while an IncomingToBodyShip is the much reduced information you 
-can get from a <a class="reference internal" href="tle_modules/body.html#lacuna.body.MyBody" title="lacuna.body.MyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></tt></a> object.</p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">IncomingToBodyShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.IncomingToBodyShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>An IncomingShip is what you can see from your Space Port or Police
+Station, while an IncomingToBodyShip is the much reduced information you
+can get from a <a class="reference internal" href="tle_modules/body.html#lacuna.body.MyBody" title="lacuna.body.MyBody"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></code></a> object.</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 date_arrives    &quot;01 31 2010 13:09:05 +0600&quot;,
 is_own          1 or 0,
@@ -351,11 +365,11 @@ is_ally         1 or 0
 
 <dl class="class">
 <dt id="lacuna.ship.PotentialShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">PotentialShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.ship.PotentialShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>A PotentialShip does not yet exist in any form; this is a ship that is 
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">PotentialShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.PotentialShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>A PotentialShip does not yet exist in any form; this is a ship that is
 able to be built (returned from a call to shipyard.get_buildable()):</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>can             1,       # can it be built or not
 combat          0,
 hold_size       1000,
@@ -376,35 +390,35 @@ cost            {   &quot;seconds&quot; : 900,
 
 <dl class="class">
 <dt id="lacuna.ship.Ship">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">Ship</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.Ship" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">Ship</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.Ship" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>Base class for ships.</p>
-<p>Different types of ship objects have varying attributes depending on what 
+<p>Different types of ship objects have varying attributes depending on what
 state the ship is in.</p>
-<p>In some cases, a hostile ship will only be visisble to you if its stealth 
-level is low enough compared to your SpacePort level.  The formula for 
+<p>In some cases, a hostile ship will only be visisble to you if its stealth
+level is low enough compared to your SpacePort level.  The formula for
 determining that is:</p>
 <div class="highlight-python"><div class="highlight"><pre>350 * SpacePort Level &gt;= Ship Stealth
 </pre></div>
 </div>
-<p>If you&#8217;re trying to detect ships to a space station, the formula for 
+<p>If you&#8217;re trying to detect ships to a space station, the formula for
 beating stealth is:</p>
 <div class="highlight-python"><div class="highlight"><pre>525 * PoliceStation Level &gt;= Ship Stealth
 </pre></div>
 </div>
-<p>A number of ships contain an attribute <tt class="docutils literal"><span class="pre">origin</span></tt>.  In the original API, 
-that attribute was named <tt class="docutils literal"><span class="pre">from</span></tt>.  However, <tt class="docutils literal"><span class="pre">from</span></tt> is a Python reserved 
-word, so in those cases <tt class="docutils literal"><span class="pre">from</span></tt> has been changed to <tt class="docutils literal"><span class="pre">origin</span></tt>.</p>
+<p>A number of ships contain an attribute <code class="docutils literal"><span class="pre">origin</span></code>.  In the original API,
+that attribute was named <code class="docutils literal"><span class="pre">from</span></code>.  However, <code class="docutils literal"><span class="pre">from</span></code> is a Python reserved
+word, so in those cases <code class="docutils literal"><span class="pre">from</span></code> has been changed to <code class="docutils literal"><span class="pre">origin</span></code>.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.ship.TradeTransportShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">TradeTransportShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.TradeTransportShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>A TradeShip is an existing docked ship that&#8217;s ready to be used as the 
-transport vehicle to add a trade to the Trade Ministry.  
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">TradeTransportShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.TradeTransportShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>A TradeShip is an existing docked ship that&#8217;s ready to be used as the
+transport vehicle to add a trade to the Trade Ministry.
 (trade.get_trade_ships())</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id                      1234,
 type                    &quot;smuggler_ship&quot;,
 name                    &quot;My Trade Smug&quot;,
@@ -430,29 +444,29 @@ task                    &#39;Docked&#39;,
 
 <dl class="class">
 <dt id="lacuna.ship.TradeableShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">TradeableShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.ship.TradeableShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>A TradeableShip is an existing docked ship that&#8217;s ready to be added to 
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">TradeableShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.TradeableShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>A TradeableShip is an existing docked ship that&#8217;s ready to be added to
 a trade as merchandise. (trading.get_ships())</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id                      1234,
 type                    &quot;smuggler_ship&quot;,
 name                    &quot;My Trade Smug&quot;,
 estimated_travel_time   &quot;3654&quot; (or &#39;unknown&#39;),
 </pre></div>
 </div>
-<p>Several get_trade_ships()-type methods include an optional target argument.  
-If that argument is passed in, we can know the estimated travel time to the 
+<p>Several get_trade_ships()-type methods include an optional target argument.
+If that argument is passed in, we can know the estimated travel time to the
 target.  Without that argument, &#8216;estimated_travel_time&#8217; will be &#8216;unknown&#8217;.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.ship.TravellingShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">TravellingShip</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.ship.TravellingShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">TravellingShip</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.TravellingShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
 <p>A TravellingShip is a ship owned by your empire, currently in the air
 between two points.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              &quot;id-goes-here&quot;,
 type            &quot;probe&quot;,
 type_human      &quot;Probe&quot;,
@@ -469,11 +483,11 @@ to              {   &quot;id&quot; : &quot;id-goes-here&quot;,
 
 <dl class="class">
 <dt id="lacuna.ship.UnavailableShip">
-<em class="property">class </em><tt class="descclassname">lacuna.ship.</tt><tt class="descname">UnavailableShip</tt><big>(</big><em>client</em>, <em>reason: list</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.ship.UnavailableShip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></tt></a></p>
-<p>An UnavailableShip is an existing docked ship that&#8217;s not able to be 
+<em class="property">class </em><code class="descclassname">lacuna.ship.</code><code class="descname">UnavailableShip</code><span class="sig-paren">(</span><em>client</em>, <em>reason: list</em>, <em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.ship.UnavailableShip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.ship.Ship" title="lacuna.ship.Ship"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.Ship</span></code></a></p>
+<p>An UnavailableShip is an existing docked ship that&#8217;s not able to be
 sent to a specific target for some reason.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>type                    &quot;sweeper&quot;,
 type_human              &quot;Sweeper&quot;,
 speed                   10166,
@@ -495,7 +509,7 @@ reason                  [   1009,
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="spy.html" class="btn btn-neutral float-right" title="spy"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="spy.html" class="btn btn-neutral float-right" title="spy">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="resource.html" class="btn btn-neutral" title="resource"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -507,11 +521,12 @@ reason                  [   1009,
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

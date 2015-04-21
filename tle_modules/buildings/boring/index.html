@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../../../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+          <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -169,21 +183,21 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="miscellaneous-buildings-without-methods">
 <span id="bldgs-boring"></span><h1>Miscellaneous Buildings without Methods<a class="headerlink" href="#miscellaneous-buildings-without-methods" title="Permalink to this headline">¶</a></h1>
 <p>These are buildings that don&#8217;t have any of their own methods, only what they
-inherit from their parents (usually <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a>).</p>
+inherit from their parents (usually <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a>).</p>
 <div class="section" id="module-lacuna.buildings.boring.algae">
 <span id="algae"></span><h2>algae<a class="headerlink" href="#module-lacuna.buildings.boring.algae" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.algae.algae">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.algae.</tt><tt class="descname">algae</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.algae.algae" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.algae.</code><code class="descname">algae</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.algae.algae" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.algae.algae.path">
-<tt class="descname">path</tt><em class="property"> = 'algae'</em><a class="headerlink" href="#lacuna.buildings.boring.algae.algae.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'algae'</em><a class="headerlink" href="#lacuna.buildings.boring.algae.algae.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -193,11 +207,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="apple"></span><h2>apple<a class="headerlink" href="#module-lacuna.buildings.boring.apple" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.apple.apple">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.apple.</tt><tt class="descname">apple</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.apple.apple" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.apple.</code><code class="descname">apple</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.apple.apple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.apple.apple.path">
-<tt class="descname">path</tt><em class="property"> = 'apple'</em><a class="headerlink" href="#lacuna.buildings.boring.apple.apple.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'apple'</em><a class="headerlink" href="#lacuna.buildings.boring.apple.apple.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -207,11 +221,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="atmosphericevaporator"></span><h2>atmosphericevaporator<a class="headerlink" href="#module-lacuna.buildings.boring.atmosphericevaporator" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.atmosphericevaporator.atmosphericevaporator">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.atmosphericevaporator.</tt><tt class="descname">atmosphericevaporator</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.atmosphericevaporator.atmosphericevaporator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.atmosphericevaporator.</code><code class="descname">atmosphericevaporator</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.atmosphericevaporator.atmosphericevaporator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.atmosphericevaporator.atmosphericevaporator.path">
-<tt class="descname">path</tt><em class="property"> = 'atmosphericevaporator'</em><a class="headerlink" href="#lacuna.buildings.boring.atmosphericevaporator.atmosphericevaporator.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'atmosphericevaporator'</em><a class="headerlink" href="#lacuna.buildings.boring.atmosphericevaporator.atmosphericevaporator.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -221,11 +235,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="bean"></span><h2>bean<a class="headerlink" href="#module-lacuna.buildings.boring.bean" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.bean.bean">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.bean.</tt><tt class="descname">bean</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.bean.bean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.bean.</code><code class="descname">bean</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.bean.bean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.bean.bean.path">
-<tt class="descname">path</tt><em class="property"> = 'bean'</em><a class="headerlink" href="#lacuna.buildings.boring.bean.bean.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'bean'</em><a class="headerlink" href="#lacuna.buildings.boring.bean.bean.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -235,11 +249,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="beeldeban"></span><h2>beeldeban<a class="headerlink" href="#module-lacuna.buildings.boring.beeldeban" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.beeldeban.beeldeban">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.beeldeban.</tt><tt class="descname">beeldeban</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.beeldeban.beeldeban" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.beeldeban.</code><code class="descname">beeldeban</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.beeldeban.beeldeban" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.beeldeban.beeldeban.path">
-<tt class="descname">path</tt><em class="property"> = 'beeldeban'</em><a class="headerlink" href="#lacuna.buildings.boring.beeldeban.beeldeban.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'beeldeban'</em><a class="headerlink" href="#lacuna.buildings.boring.beeldeban.beeldeban.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -249,11 +263,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="bread"></span><h2>bread<a class="headerlink" href="#module-lacuna.buildings.boring.bread" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.bread.bread">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.bread.</tt><tt class="descname">bread</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.bread.bread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.bread.</code><code class="descname">bread</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.bread.bread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.bread.bread.path">
-<tt class="descname">path</tt><em class="property"> = 'bread'</em><a class="headerlink" href="#lacuna.buildings.boring.bread.bread.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'bread'</em><a class="headerlink" href="#lacuna.buildings.boring.bread.bread.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -263,11 +277,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="burger"></span><h2>burger<a class="headerlink" href="#module-lacuna.buildings.boring.burger" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.burger.burger">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.burger.</tt><tt class="descname">burger</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.burger.burger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.burger.</code><code class="descname">burger</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.burger.burger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.burger.burger.path">
-<tt class="descname">path</tt><em class="property"> = 'burger'</em><a class="headerlink" href="#lacuna.buildings.boring.burger.burger.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'burger'</em><a class="headerlink" href="#lacuna.buildings.boring.burger.burger.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -277,11 +291,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="cheese"></span><h2>cheese<a class="headerlink" href="#module-lacuna.buildings.boring.cheese" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.cheese.cheese">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.cheese.</tt><tt class="descname">cheese</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.cheese.cheese" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.cheese.</code><code class="descname">cheese</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.cheese.cheese" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.cheese.cheese.path">
-<tt class="descname">path</tt><em class="property"> = 'cheese'</em><a class="headerlink" href="#lacuna.buildings.boring.cheese.cheese.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'cheese'</em><a class="headerlink" href="#lacuna.buildings.boring.cheese.cheese.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -291,11 +305,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="chip"></span><h2>chip<a class="headerlink" href="#module-lacuna.buildings.boring.chip" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.chip.chip">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.chip.</tt><tt class="descname">chip</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.chip.chip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.chip.</code><code class="descname">chip</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.chip.chip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.chip.chip.path">
-<tt class="descname">path</tt><em class="property"> = 'chip'</em><a class="headerlink" href="#lacuna.buildings.boring.chip.chip.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'chip'</em><a class="headerlink" href="#lacuna.buildings.boring.chip.chip.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -305,11 +319,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="cider"></span><h2>cider<a class="headerlink" href="#module-lacuna.buildings.boring.cider" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.cider.cider">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.cider.</tt><tt class="descname">cider</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.cider.cider" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.cider.</code><code class="descname">cider</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.cider.cider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.cider.cider.path">
-<tt class="descname">path</tt><em class="property"> = 'cider'</em><a class="headerlink" href="#lacuna.buildings.boring.cider.cider.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'cider'</em><a class="headerlink" href="#lacuna.buildings.boring.cider.cider.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -319,11 +333,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="cloakinglab"></span><h2>cloakinglab<a class="headerlink" href="#module-lacuna.buildings.boring.cloakinglab" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.cloakinglab.cloakinglab">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.cloakinglab.</tt><tt class="descname">cloakinglab</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.cloakinglab.cloakinglab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.cloakinglab.</code><code class="descname">cloakinglab</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.cloakinglab.cloakinglab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.cloakinglab.cloakinglab.path">
-<tt class="descname">path</tt><em class="property"> = 'cloakinglab'</em><a class="headerlink" href="#lacuna.buildings.boring.cloakinglab.cloakinglab.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'cloakinglab'</em><a class="headerlink" href="#lacuna.buildings.boring.cloakinglab.cloakinglab.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -333,11 +347,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="corn"></span><h2>corn<a class="headerlink" href="#module-lacuna.buildings.boring.corn" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.corn.corn">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.corn.</tt><tt class="descname">corn</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.corn.corn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.corn.</code><code class="descname">corn</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.corn.corn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.corn.corn.path">
-<tt class="descname">path</tt><em class="property"> = 'corn'</em><a class="headerlink" href="#lacuna.buildings.boring.corn.corn.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'corn'</em><a class="headerlink" href="#lacuna.buildings.boring.corn.corn.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -347,11 +361,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="cornmeal"></span><h2>cornmeal<a class="headerlink" href="#module-lacuna.buildings.boring.cornmeal" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.cornmeal.cornmeal">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.cornmeal.</tt><tt class="descname">cornmeal</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.cornmeal.cornmeal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.cornmeal.</code><code class="descname">cornmeal</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.cornmeal.cornmeal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.cornmeal.cornmeal.path">
-<tt class="descname">path</tt><em class="property"> = 'cornmeal'</em><a class="headerlink" href="#lacuna.buildings.boring.cornmeal.cornmeal.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'cornmeal'</em><a class="headerlink" href="#lacuna.buildings.boring.cornmeal.cornmeal.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -361,11 +375,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="crater"></span><h2>crater<a class="headerlink" href="#module-lacuna.buildings.boring.crater" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.crater.crater">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.crater.</tt><tt class="descname">crater</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.crater.crater" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.crater.</code><code class="descname">crater</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.crater.crater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.crater.crater.path">
-<tt class="descname">path</tt><em class="property"> = 'crater'</em><a class="headerlink" href="#lacuna.buildings.boring.crater.crater.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'crater'</em><a class="headerlink" href="#lacuna.buildings.boring.crater.crater.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -375,11 +389,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="dairy"></span><h2>dairy<a class="headerlink" href="#module-lacuna.buildings.boring.dairy" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.dairy.dairy">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.dairy.</tt><tt class="descname">dairy</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.dairy.dairy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.dairy.</code><code class="descname">dairy</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.dairy.dairy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.dairy.dairy.path">
-<tt class="descname">path</tt><em class="property"> = 'dairy'</em><a class="headerlink" href="#lacuna.buildings.boring.dairy.dairy.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'dairy'</em><a class="headerlink" href="#lacuna.buildings.boring.dairy.dairy.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -389,11 +403,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="denton"></span><h2>denton<a class="headerlink" href="#module-lacuna.buildings.boring.denton" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.denton.denton">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.denton.</tt><tt class="descname">denton</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.denton.denton" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.denton.</code><code class="descname">denton</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.denton.denton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.denton.denton.path">
-<tt class="descname">path</tt><em class="property"> = 'denton'</em><a class="headerlink" href="#lacuna.buildings.boring.denton.denton.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'denton'</em><a class="headerlink" href="#lacuna.buildings.boring.denton.denton.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -403,11 +417,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="deployedbleeder"></span><h2>deployedbleeder<a class="headerlink" href="#module-lacuna.buildings.boring.deployedbleeder" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.deployedbleeder.deployedbleeder">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.deployedbleeder.</tt><tt class="descname">deployedbleeder</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.deployedbleeder.deployedbleeder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.deployedbleeder.</code><code class="descname">deployedbleeder</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.deployedbleeder.deployedbleeder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.deployedbleeder.deployedbleeder.path">
-<tt class="descname">path</tt><em class="property"> = 'deployedbleeder'</em><a class="headerlink" href="#lacuna.buildings.boring.deployedbleeder.deployedbleeder.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'deployedbleeder'</em><a class="headerlink" href="#lacuna.buildings.boring.deployedbleeder.deployedbleeder.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -417,11 +431,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="energyreserve"></span><h2>energyreserve<a class="headerlink" href="#module-lacuna.buildings.boring.energyreserve" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.energyreserve.energyreserve">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.energyreserve.</tt><tt class="descname">energyreserve</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.energyreserve.energyreserve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.SingleStorage" title="lacuna.building.SingleStorage"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.SingleStorage</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.energyreserve.</code><code class="descname">energyreserve</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.energyreserve.energyreserve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.SingleStorage" title="lacuna.building.SingleStorage"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.SingleStorage</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.energyreserve.energyreserve.path">
-<tt class="descname">path</tt><em class="property"> = 'energyreserve'</em><a class="headerlink" href="#lacuna.buildings.boring.energyreserve.energyreserve.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'energyreserve'</em><a class="headerlink" href="#lacuna.buildings.boring.energyreserve.energyreserve.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -431,11 +445,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="espionage"></span><h2>espionage<a class="headerlink" href="#module-lacuna.buildings.boring.espionage" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.espionage.espionage">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.espionage.</tt><tt class="descname">espionage</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.espionage.espionage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.espionage.</code><code class="descname">espionage</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.espionage.espionage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.espionage.espionage.path">
-<tt class="descname">path</tt><em class="property"> = 'espionage'</em><a class="headerlink" href="#lacuna.buildings.boring.espionage.espionage.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'espionage'</em><a class="headerlink" href="#lacuna.buildings.boring.espionage.espionage.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -445,11 +459,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="fission"></span><h2>fission<a class="headerlink" href="#module-lacuna.buildings.boring.fission" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.fission.fission">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.fission.</tt><tt class="descname">fission</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.fission.fission" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.fission.</code><code class="descname">fission</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.fission.fission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.fission.fission.path">
-<tt class="descname">path</tt><em class="property"> = 'fission'</em><a class="headerlink" href="#lacuna.buildings.boring.fission.fission.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'fission'</em><a class="headerlink" href="#lacuna.buildings.boring.fission.fission.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -459,11 +473,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="fissure"></span><h2>fissure<a class="headerlink" href="#module-lacuna.buildings.boring.fissure" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.fissure.fissure">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.fissure.</tt><tt class="descname">fissure</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.fissure.fissure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.fissure.</code><code class="descname">fissure</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.fissure.fissure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.fissure.fissure.path">
-<tt class="descname">path</tt><em class="property"> = 'fissure'</em><a class="headerlink" href="#lacuna.buildings.boring.fissure.fissure.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'fissure'</em><a class="headerlink" href="#lacuna.buildings.boring.fissure.fissure.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -473,11 +487,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="foodreserve"></span><h2>foodreserve<a class="headerlink" href="#module-lacuna.buildings.boring.foodreserve" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.foodreserve.foodreserve">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.foodreserve.</tt><tt class="descname">foodreserve</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.foodreserve.foodreserve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MultiStorage" title="lacuna.building.MultiStorage"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MultiStorage</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.foodreserve.</code><code class="descname">foodreserve</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.foodreserve.foodreserve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MultiStorage" title="lacuna.building.MultiStorage"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MultiStorage</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.foodreserve.foodreserve.path">
-<tt class="descname">path</tt><em class="property"> = 'foodreserve'</em><a class="headerlink" href="#lacuna.buildings.boring.foodreserve.foodreserve.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'foodreserve'</em><a class="headerlink" href="#lacuna.buildings.boring.foodreserve.foodreserve.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -487,11 +501,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="fusion"></span><h2>fusion<a class="headerlink" href="#module-lacuna.buildings.boring.fusion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.fusion.fusion">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.fusion.</tt><tt class="descname">fusion</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.fusion.fusion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.fusion.</code><code class="descname">fusion</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.fusion.fusion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.fusion.fusion.path">
-<tt class="descname">path</tt><em class="property"> = 'fusion'</em><a class="headerlink" href="#lacuna.buildings.boring.fusion.fusion.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'fusion'</em><a class="headerlink" href="#lacuna.buildings.boring.fusion.fusion.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -501,11 +515,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="gasgiantlab"></span><h2>gasgiantlab<a class="headerlink" href="#module-lacuna.buildings.boring.gasgiantlab" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.gasgiantlab.gasgiantlab">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.gasgiantlab.</tt><tt class="descname">gasgiantlab</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.gasgiantlab.gasgiantlab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.gasgiantlab.</code><code class="descname">gasgiantlab</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.gasgiantlab.gasgiantlab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.gasgiantlab.gasgiantlab.path">
-<tt class="descname">path</tt><em class="property"> = 'gasgiantlab'</em><a class="headerlink" href="#lacuna.buildings.boring.gasgiantlab.gasgiantlab.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'gasgiantlab'</em><a class="headerlink" href="#lacuna.buildings.boring.gasgiantlab.gasgiantlab.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -515,11 +529,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="gasgiantplatform"></span><h2>gasgiantplatform<a class="headerlink" href="#module-lacuna.buildings.boring.gasgiantplatform" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.gasgiantplatform.gasgiantplatform">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.gasgiantplatform.</tt><tt class="descname">gasgiantplatform</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.gasgiantplatform.gasgiantplatform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.gasgiantplatform.</code><code class="descname">gasgiantplatform</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.gasgiantplatform.gasgiantplatform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.gasgiantplatform.gasgiantplatform.path">
-<tt class="descname">path</tt><em class="property"> = 'gasgiantplatform'</em><a class="headerlink" href="#lacuna.buildings.boring.gasgiantplatform.gasgiantplatform.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'gasgiantplatform'</em><a class="headerlink" href="#lacuna.buildings.boring.gasgiantplatform.gasgiantplatform.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -529,11 +543,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="geo"></span><h2>geo<a class="headerlink" href="#module-lacuna.buildings.boring.geo" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.geo.geo">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.geo.</tt><tt class="descname">geo</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.geo.geo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.geo.</code><code class="descname">geo</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.geo.geo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.geo.geo.path">
-<tt class="descname">path</tt><em class="property"> = 'geo'</em><a class="headerlink" href="#lacuna.buildings.boring.geo.geo.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'geo'</em><a class="headerlink" href="#lacuna.buildings.boring.geo.geo.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -543,11 +557,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="greatballofjunk"></span><h2>greatballofjunk<a class="headerlink" href="#module-lacuna.buildings.boring.greatballofjunk" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.greatballofjunk.greatballofjunk">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.greatballofjunk.</tt><tt class="descname">greatballofjunk</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.greatballofjunk.greatballofjunk" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.greatballofjunk.</code><code class="descname">greatballofjunk</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.greatballofjunk.greatballofjunk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.greatballofjunk.greatballofjunk.path">
-<tt class="descname">path</tt><em class="property"> = 'greatballofjunk'</em><a class="headerlink" href="#lacuna.buildings.boring.greatballofjunk.greatballofjunk.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'greatballofjunk'</em><a class="headerlink" href="#lacuna.buildings.boring.greatballofjunk.greatballofjunk.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -557,11 +571,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="grove"></span><h2>grove<a class="headerlink" href="#module-lacuna.buildings.boring.grove" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.grove.grove">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.grove.</tt><tt class="descname">grove</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.grove.grove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.grove.</code><code class="descname">grove</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.grove.grove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.grove.grove.path">
-<tt class="descname">path</tt><em class="property"> = 'grove'</em><a class="headerlink" href="#lacuna.buildings.boring.grove.grove.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'grove'</em><a class="headerlink" href="#lacuna.buildings.boring.grove.grove.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -571,11 +585,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="hydrocarbon"></span><h2>hydrocarbon<a class="headerlink" href="#module-lacuna.buildings.boring.hydrocarbon" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.hydrocarbon.hydrocarbon">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.hydrocarbon.</tt><tt class="descname">hydrocarbon</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.hydrocarbon.hydrocarbon" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.hydrocarbon.</code><code class="descname">hydrocarbon</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.hydrocarbon.hydrocarbon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.hydrocarbon.hydrocarbon.path">
-<tt class="descname">path</tt><em class="property"> = 'hydrocarbon'</em><a class="headerlink" href="#lacuna.buildings.boring.hydrocarbon.hydrocarbon.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'hydrocarbon'</em><a class="headerlink" href="#lacuna.buildings.boring.hydrocarbon.hydrocarbon.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -585,11 +599,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="junkhengesculpture"></span><h2>junkhengesculpture<a class="headerlink" href="#module-lacuna.buildings.boring.junkhengesculpture" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.junkhengesculpture.junkhengesculpture">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.junkhengesculpture.</tt><tt class="descname">junkhengesculpture</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.junkhengesculpture.junkhengesculpture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.junkhengesculpture.</code><code class="descname">junkhengesculpture</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.junkhengesculpture.junkhengesculpture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.junkhengesculpture.junkhengesculpture.path">
-<tt class="descname">path</tt><em class="property"> = 'junkhengesculpture'</em><a class="headerlink" href="#lacuna.buildings.boring.junkhengesculpture.junkhengesculpture.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'junkhengesculpture'</em><a class="headerlink" href="#lacuna.buildings.boring.junkhengesculpture.junkhengesculpture.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -599,11 +613,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="lagoon"></span><h2>lagoon<a class="headerlink" href="#module-lacuna.buildings.boring.lagoon" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.lagoon.lagoon">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.lagoon.</tt><tt class="descname">lagoon</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.lagoon.lagoon" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.lagoon.</code><code class="descname">lagoon</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.lagoon.lagoon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.lagoon.lagoon.path">
-<tt class="descname">path</tt><em class="property"> = 'lagoon'</em><a class="headerlink" href="#lacuna.buildings.boring.lagoon.lagoon.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lagoon'</em><a class="headerlink" href="#lacuna.buildings.boring.lagoon.lagoon.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -613,11 +627,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="lake"></span><h2>lake<a class="headerlink" href="#module-lacuna.buildings.boring.lake" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.lake.lake">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.lake.</tt><tt class="descname">lake</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.lake.lake" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.lake.</code><code class="descname">lake</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.lake.lake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.lake.lake.path">
-<tt class="descname">path</tt><em class="property"> = 'lake'</em><a class="headerlink" href="#lacuna.buildings.boring.lake.lake.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lake'</em><a class="headerlink" href="#lacuna.buildings.boring.lake.lake.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -627,11 +641,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="lapis"></span><h2>lapis<a class="headerlink" href="#module-lacuna.buildings.boring.lapis" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.lapis.lapis">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.lapis.</tt><tt class="descname">lapis</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.lapis.lapis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.lapis.</code><code class="descname">lapis</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.lapis.lapis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.lapis.lapis.path">
-<tt class="descname">path</tt><em class="property"> = 'lapis'</em><a class="headerlink" href="#lacuna.buildings.boring.lapis.lapis.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lapis'</em><a class="headerlink" href="#lacuna.buildings.boring.lapis.lapis.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -641,11 +655,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="luxuryhousing"></span><h2>luxuryhousing<a class="headerlink" href="#module-lacuna.buildings.boring.luxuryhousing" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.luxuryhousing.luxuryhousing">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.luxuryhousing.</tt><tt class="descname">luxuryhousing</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.luxuryhousing.luxuryhousing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.luxuryhousing.</code><code class="descname">luxuryhousing</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.luxuryhousing.luxuryhousing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.luxuryhousing.luxuryhousing.path">
-<tt class="descname">path</tt><em class="property"> = 'luxuryhousing'</em><a class="headerlink" href="#lacuna.buildings.boring.luxuryhousing.luxuryhousing.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'luxuryhousing'</em><a class="headerlink" href="#lacuna.buildings.boring.luxuryhousing.luxuryhousing.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -655,11 +669,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="malcud"></span><h2>malcud<a class="headerlink" href="#module-lacuna.buildings.boring.malcud" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.malcud.malcud">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.malcud.</tt><tt class="descname">malcud</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.malcud.malcud" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.malcud.</code><code class="descname">malcud</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.malcud.malcud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.malcud.malcud.path">
-<tt class="descname">path</tt><em class="property"> = 'malcud'</em><a class="headerlink" href="#lacuna.buildings.boring.malcud.malcud.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'malcud'</em><a class="headerlink" href="#lacuna.buildings.boring.malcud.malcud.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -669,11 +683,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="metaljunkarches"></span><h2>metaljunkarches<a class="headerlink" href="#module-lacuna.buildings.boring.metaljunkarches" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.metaljunkarches.metaljunkarches">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.metaljunkarches.</tt><tt class="descname">metaljunkarches</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.metaljunkarches.metaljunkarches" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.metaljunkarches.</code><code class="descname">metaljunkarches</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.metaljunkarches.metaljunkarches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.metaljunkarches.metaljunkarches.path">
-<tt class="descname">path</tt><em class="property"> = 'metaljunkarches'</em><a class="headerlink" href="#lacuna.buildings.boring.metaljunkarches.metaljunkarches.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'metaljunkarches'</em><a class="headerlink" href="#lacuna.buildings.boring.metaljunkarches.metaljunkarches.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -683,11 +697,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="mine"></span><h2>mine<a class="headerlink" href="#module-lacuna.buildings.boring.mine" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.mine.mine">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.mine.</tt><tt class="descname">mine</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.mine.mine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.mine.</code><code class="descname">mine</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.mine.mine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.mine.mine.path">
-<tt class="descname">path</tt><em class="property"> = 'mine'</em><a class="headerlink" href="#lacuna.buildings.boring.mine.mine.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'mine'</em><a class="headerlink" href="#lacuna.buildings.boring.mine.mine.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -697,11 +711,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="munitionslab"></span><h2>munitionslab<a class="headerlink" href="#module-lacuna.buildings.boring.munitionslab" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.munitionslab.munitionslab">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.munitionslab.</tt><tt class="descname">munitionslab</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.munitionslab.munitionslab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.munitionslab.</code><code class="descname">munitionslab</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.munitionslab.munitionslab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.munitionslab.munitionslab.path">
-<tt class="descname">path</tt><em class="property"> = 'munitionslab'</em><a class="headerlink" href="#lacuna.buildings.boring.munitionslab.munitionslab.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'munitionslab'</em><a class="headerlink" href="#lacuna.buildings.boring.munitionslab.munitionslab.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -711,11 +725,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="orerefinery"></span><h2>orerefinery<a class="headerlink" href="#module-lacuna.buildings.boring.orerefinery" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.orerefinery.orerefinery">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.orerefinery.</tt><tt class="descname">orerefinery</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.orerefinery.orerefinery" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.orerefinery.</code><code class="descname">orerefinery</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.orerefinery.orerefinery" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.orerefinery.orerefinery.path">
-<tt class="descname">path</tt><em class="property"> = 'orerefinery'</em><a class="headerlink" href="#lacuna.buildings.boring.orerefinery.orerefinery.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'orerefinery'</em><a class="headerlink" href="#lacuna.buildings.boring.orerefinery.orerefinery.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -725,11 +739,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="orestorage"></span><h2>orestorage<a class="headerlink" href="#module-lacuna.buildings.boring.orestorage" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.orestorage.orestorage">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.orestorage.</tt><tt class="descname">orestorage</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.orestorage.orestorage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MultiStorage" title="lacuna.building.MultiStorage"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MultiStorage</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.orestorage.</code><code class="descname">orestorage</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.orestorage.orestorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MultiStorage" title="lacuna.building.MultiStorage"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MultiStorage</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.orestorage.orestorage.path">
-<tt class="descname">path</tt><em class="property"> = 'orestorage'</em><a class="headerlink" href="#lacuna.buildings.boring.orestorage.orestorage.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'orestorage'</em><a class="headerlink" href="#lacuna.buildings.boring.orestorage.orestorage.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -739,11 +753,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="oversight"></span><h2>oversight<a class="headerlink" href="#module-lacuna.buildings.boring.oversight" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.oversight.oversight">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.oversight.</tt><tt class="descname">oversight</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.oversight.oversight" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.oversight.</code><code class="descname">oversight</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.oversight.oversight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.oversight.oversight.path">
-<tt class="descname">path</tt><em class="property"> = 'oversight'</em><a class="headerlink" href="#lacuna.buildings.boring.oversight.oversight.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'oversight'</em><a class="headerlink" href="#lacuna.buildings.boring.oversight.oversight.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -753,11 +767,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="pancake"></span><h2>pancake<a class="headerlink" href="#module-lacuna.buildings.boring.pancake" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.pancake.pancake">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.pancake.</tt><tt class="descname">pancake</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.pancake.pancake" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.pancake.</code><code class="descname">pancake</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.pancake.pancake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.pancake.pancake.path">
-<tt class="descname">path</tt><em class="property"> = 'pancake'</em><a class="headerlink" href="#lacuna.buildings.boring.pancake.pancake.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'pancake'</em><a class="headerlink" href="#lacuna.buildings.boring.pancake.pancake.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -767,11 +781,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="pie"></span><h2>pie<a class="headerlink" href="#module-lacuna.buildings.boring.pie" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.pie.pie">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.pie.</tt><tt class="descname">pie</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.pie.pie" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.pie.</code><code class="descname">pie</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.pie.pie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.pie.pie.path">
-<tt class="descname">path</tt><em class="property"> = 'pie'</em><a class="headerlink" href="#lacuna.buildings.boring.pie.pie.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'pie'</em><a class="headerlink" href="#lacuna.buildings.boring.pie.pie.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -781,11 +795,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="pilottraining"></span><h2>pilottraining<a class="headerlink" href="#module-lacuna.buildings.boring.pilottraining" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.pilottraining.pilottraining">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.pilottraining.</tt><tt class="descname">pilottraining</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.pilottraining.pilottraining" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.pilottraining.</code><code class="descname">pilottraining</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.pilottraining.pilottraining" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.pilottraining.pilottraining.path">
-<tt class="descname">path</tt><em class="property"> = 'pilottraining'</em><a class="headerlink" href="#lacuna.buildings.boring.pilottraining.pilottraining.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'pilottraining'</em><a class="headerlink" href="#lacuna.buildings.boring.pilottraining.pilottraining.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -795,11 +809,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="potato"></span><h2>potato<a class="headerlink" href="#module-lacuna.buildings.boring.potato" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.potato.potato">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.potato.</tt><tt class="descname">potato</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.potato.potato" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.potato.</code><code class="descname">potato</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.potato.potato" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.potato.potato.path">
-<tt class="descname">path</tt><em class="property"> = 'potato'</em><a class="headerlink" href="#lacuna.buildings.boring.potato.potato.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'potato'</em><a class="headerlink" href="#lacuna.buildings.boring.potato.potato.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -809,11 +823,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="propulsion"></span><h2>propulsion<a class="headerlink" href="#module-lacuna.buildings.boring.propulsion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.propulsion.propulsion">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.propulsion.</tt><tt class="descname">propulsion</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.propulsion.propulsion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.propulsion.</code><code class="descname">propulsion</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.propulsion.propulsion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.propulsion.propulsion.path">
-<tt class="descname">path</tt><em class="property"> = 'propulsion'</em><a class="headerlink" href="#lacuna.buildings.boring.propulsion.propulsion.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'propulsion'</em><a class="headerlink" href="#lacuna.buildings.boring.propulsion.propulsion.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -823,11 +837,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="pyramidjunksculpture"></span><h2>pyramidjunksculpture<a class="headerlink" href="#module-lacuna.buildings.boring.pyramidjunksculpture" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.pyramidjunksculpture.pyramidjunksculpture">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.pyramidjunksculpture.</tt><tt class="descname">pyramidjunksculpture</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.pyramidjunksculpture.pyramidjunksculpture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.pyramidjunksculpture.</code><code class="descname">pyramidjunksculpture</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.pyramidjunksculpture.pyramidjunksculpture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.pyramidjunksculpture.pyramidjunksculpture.path">
-<tt class="descname">path</tt><em class="property"> = 'pyramidjunksculpture'</em><a class="headerlink" href="#lacuna.buildings.boring.pyramidjunksculpture.pyramidjunksculpture.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'pyramidjunksculpture'</em><a class="headerlink" href="#lacuna.buildings.boring.pyramidjunksculpture.pyramidjunksculpture.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -837,11 +851,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="ravine"></span><h2>ravine<a class="headerlink" href="#module-lacuna.buildings.boring.ravine" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.ravine.ravine">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.ravine.</tt><tt class="descname">ravine</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.ravine.ravine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.ravine.</code><code class="descname">ravine</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.ravine.ravine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.ravine.ravine.path">
-<tt class="descname">path</tt><em class="property"> = 'ravine'</em><a class="headerlink" href="#lacuna.buildings.boring.ravine.ravine.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'ravine'</em><a class="headerlink" href="#lacuna.buildings.boring.ravine.ravine.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -851,11 +865,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="rockyoutcrop"></span><h2>rockyoutcrop<a class="headerlink" href="#module-lacuna.buildings.boring.rockyoutcrop" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.rockyoutcrop.rockyoutcrop">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.rockyoutcrop.</tt><tt class="descname">rockyoutcrop</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.rockyoutcrop.rockyoutcrop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.rockyoutcrop.</code><code class="descname">rockyoutcrop</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.rockyoutcrop.rockyoutcrop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.rockyoutcrop.rockyoutcrop.path">
-<tt class="descname">path</tt><em class="property"> = 'rockyoutcrop'</em><a class="headerlink" href="#lacuna.buildings.boring.rockyoutcrop.rockyoutcrop.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'rockyoutcrop'</em><a class="headerlink" href="#lacuna.buildings.boring.rockyoutcrop.rockyoutcrop.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -865,11 +879,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="sand"></span><h2>sand<a class="headerlink" href="#module-lacuna.buildings.boring.sand" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.sand.sand">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.sand.</tt><tt class="descname">sand</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.sand.sand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.sand.</code><code class="descname">sand</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.sand.sand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.sand.sand.path">
-<tt class="descname">path</tt><em class="property"> = 'sand'</em><a class="headerlink" href="#lacuna.buildings.boring.sand.sand.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'sand'</em><a class="headerlink" href="#lacuna.buildings.boring.sand.sand.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -879,11 +893,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="saw"></span><h2>saw<a class="headerlink" href="#module-lacuna.buildings.boring.saw" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.saw.saw">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.saw.</tt><tt class="descname">saw</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.saw.saw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.saw.</code><code class="descname">saw</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.saw.saw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.saw.saw.path">
-<tt class="descname">path</tt><em class="property"> = 'saw'</em><a class="headerlink" href="#lacuna.buildings.boring.saw.saw.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'saw'</em><a class="headerlink" href="#lacuna.buildings.boring.saw.saw.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -893,11 +907,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="shake"></span><h2>shake<a class="headerlink" href="#module-lacuna.buildings.boring.shake" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.shake.shake">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.shake.</tt><tt class="descname">shake</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.shake.shake" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.shake.</code><code class="descname">shake</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.shake.shake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.shake.shake.path">
-<tt class="descname">path</tt><em class="property"> = 'shake'</em><a class="headerlink" href="#lacuna.buildings.boring.shake.shake.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'shake'</em><a class="headerlink" href="#lacuna.buildings.boring.shake.shake.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -907,11 +921,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="singularity"></span><h2>singularity<a class="headerlink" href="#module-lacuna.buildings.boring.singularity" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.singularity.singularity">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.singularity.</tt><tt class="descname">singularity</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.singularity.singularity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.singularity.</code><code class="descname">singularity</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.singularity.singularity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.singularity.singularity.path">
-<tt class="descname">path</tt><em class="property"> = 'singularity'</em><a class="headerlink" href="#lacuna.buildings.boring.singularity.singularity.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'singularity'</em><a class="headerlink" href="#lacuna.buildings.boring.singularity.singularity.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -921,11 +935,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="soup"></span><h2>soup<a class="headerlink" href="#module-lacuna.buildings.boring.soup" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.soup.soup">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.soup.</tt><tt class="descname">soup</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.soup.soup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.soup.</code><code class="descname">soup</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.soup.soup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.soup.soup.path">
-<tt class="descname">path</tt><em class="property"> = 'soup'</em><a class="headerlink" href="#lacuna.buildings.boring.soup.soup.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'soup'</em><a class="headerlink" href="#lacuna.buildings.boring.soup.soup.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -935,11 +949,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="spacejunkpark"></span><h2>spacejunkpark<a class="headerlink" href="#module-lacuna.buildings.boring.spacejunkpark" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.spacejunkpark.spacejunkpark">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.spacejunkpark.</tt><tt class="descname">spacejunkpark</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.spacejunkpark.spacejunkpark" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.spacejunkpark.</code><code class="descname">spacejunkpark</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.spacejunkpark.spacejunkpark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.spacejunkpark.spacejunkpark.path">
-<tt class="descname">path</tt><em class="property"> = 'spacejunkpark'</em><a class="headerlink" href="#lacuna.buildings.boring.spacejunkpark.spacejunkpark.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'spacejunkpark'</em><a class="headerlink" href="#lacuna.buildings.boring.spacejunkpark.spacejunkpark.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -949,11 +963,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="sslb"></span><h2>sslb<a class="headerlink" href="#module-lacuna.buildings.boring.sslb" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.sslb.sslb">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.sslb.</tt><tt class="descname">sslb</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.sslb.sslb" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.sslb.</code><code class="descname">sslb</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.sslb.sslb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.sslb.sslb.path">
-<tt class="descname">path</tt><em class="property"> = 'sslb'</em><a class="headerlink" href="#lacuna.buildings.boring.sslb.sslb.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'sslb'</em><a class="headerlink" href="#lacuna.buildings.boring.sslb.sslb.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -963,11 +977,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="sslc"></span><h2>sslc<a class="headerlink" href="#module-lacuna.buildings.boring.sslc" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.sslc.sslc">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.sslc.</tt><tt class="descname">sslc</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.sslc.sslc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.sslc.</code><code class="descname">sslc</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.sslc.sslc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.sslc.sslc.path">
-<tt class="descname">path</tt><em class="property"> = 'sslc'</em><a class="headerlink" href="#lacuna.buildings.boring.sslc.sslc.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'sslc'</em><a class="headerlink" href="#lacuna.buildings.boring.sslc.sslc.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -977,11 +991,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="ssld"></span><h2>ssld<a class="headerlink" href="#module-lacuna.buildings.boring.ssld" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.ssld.ssld">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.ssld.</tt><tt class="descname">ssld</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.ssld.ssld" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.ssld.</code><code class="descname">ssld</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.ssld.ssld" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.ssld.ssld.path">
-<tt class="descname">path</tt><em class="property"> = 'ssld'</em><a class="headerlink" href="#lacuna.buildings.boring.ssld.ssld.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'ssld'</em><a class="headerlink" href="#lacuna.buildings.boring.ssld.ssld.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -991,11 +1005,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="stockpile"></span><h2>stockpile<a class="headerlink" href="#module-lacuna.buildings.boring.stockpile" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.stockpile.stockpile">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.stockpile.</tt><tt class="descname">stockpile</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.stockpile.stockpile" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.stockpile.</code><code class="descname">stockpile</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.stockpile.stockpile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.stockpile.stockpile.path">
-<tt class="descname">path</tt><em class="property"> = 'stockpile'</em><a class="headerlink" href="#lacuna.buildings.boring.stockpile.stockpile.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'stockpile'</em><a class="headerlink" href="#lacuna.buildings.boring.stockpile.stockpile.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1005,11 +1019,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="supplypod"></span><h2>supplypod<a class="headerlink" href="#module-lacuna.buildings.boring.supplypod" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.supplypod.supplypod">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.supplypod.</tt><tt class="descname">supplypod</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.supplypod.supplypod" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.supplypod.</code><code class="descname">supplypod</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.supplypod.supplypod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.supplypod.supplypod.path">
-<tt class="descname">path</tt><em class="property"> = 'supplypod'</em><a class="headerlink" href="#lacuna.buildings.boring.supplypod.supplypod.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'supplypod'</em><a class="headerlink" href="#lacuna.buildings.boring.supplypod.supplypod.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1019,11 +1033,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="syrup"></span><h2>syrup<a class="headerlink" href="#module-lacuna.buildings.boring.syrup" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.syrup.syrup">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.syrup.</tt><tt class="descname">syrup</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.syrup.syrup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.syrup.</code><code class="descname">syrup</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.syrup.syrup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.syrup.syrup.path">
-<tt class="descname">path</tt><em class="property"> = 'syrup'</em><a class="headerlink" href="#lacuna.buildings.boring.syrup.syrup.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'syrup'</em><a class="headerlink" href="#lacuna.buildings.boring.syrup.syrup.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1033,11 +1047,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="terraforminglab"></span><h2>terraforminglab<a class="headerlink" href="#module-lacuna.buildings.boring.terraforminglab" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.terraforminglab.terraforminglab">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.terraforminglab.</tt><tt class="descname">terraforminglab</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.terraforminglab.terraforminglab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.terraforminglab.</code><code class="descname">terraforminglab</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.terraforminglab.terraforminglab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.terraforminglab.terraforminglab.path">
-<tt class="descname">path</tt><em class="property"> = 'terraforminglab'</em><a class="headerlink" href="#lacuna.buildings.boring.terraforminglab.terraforminglab.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'terraforminglab'</em><a class="headerlink" href="#lacuna.buildings.boring.terraforminglab.terraforminglab.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1047,11 +1061,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="terraformingplatform"></span><h2>terraformingplatform<a class="headerlink" href="#module-lacuna.buildings.boring.terraformingplatform" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.terraformingplatform.terraformingplatform">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.terraformingplatform.</tt><tt class="descname">terraformingplatform</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.terraformingplatform.terraformingplatform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.terraformingplatform.</code><code class="descname">terraformingplatform</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.terraformingplatform.terraformingplatform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.terraformingplatform.terraformingplatform.path">
-<tt class="descname">path</tt><em class="property"> = 'terraformingplatform'</em><a class="headerlink" href="#lacuna.buildings.boring.terraformingplatform.terraformingplatform.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'terraformingplatform'</em><a class="headerlink" href="#lacuna.buildings.boring.terraformingplatform.terraformingplatform.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1061,11 +1075,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="university"></span><h2>university<a class="headerlink" href="#module-lacuna.buildings.boring.university" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.university.university">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.university.</tt><tt class="descname">university</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.university.university" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.university.</code><code class="descname">university</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.university.university" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.university.university.path">
-<tt class="descname">path</tt><em class="property"> = 'university'</em><a class="headerlink" href="#lacuna.buildings.boring.university.university.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'university'</em><a class="headerlink" href="#lacuna.buildings.boring.university.university.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1075,11 +1089,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="wastedigester"></span><h2>wastedigester<a class="headerlink" href="#module-lacuna.buildings.boring.wastedigester" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.wastedigester.wastedigester">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.wastedigester.</tt><tt class="descname">wastedigester</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.wastedigester.wastedigester" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.wastedigester.</code><code class="descname">wastedigester</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.wastedigester.wastedigester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.wastedigester.wastedigester.path">
-<tt class="descname">path</tt><em class="property"> = 'wastedigester'</em><a class="headerlink" href="#lacuna.buildings.boring.wastedigester.wastedigester.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'wastedigester'</em><a class="headerlink" href="#lacuna.buildings.boring.wastedigester.wastedigester.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1089,11 +1103,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="wasteenergy"></span><h2>wasteenergy<a class="headerlink" href="#module-lacuna.buildings.boring.wasteenergy" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.wasteenergy.wasteenergy">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.wasteenergy.</tt><tt class="descname">wasteenergy</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.wasteenergy.wasteenergy" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.wasteenergy.</code><code class="descname">wasteenergy</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.wasteenergy.wasteenergy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.wasteenergy.wasteenergy.path">
-<tt class="descname">path</tt><em class="property"> = 'wasteenergy'</em><a class="headerlink" href="#lacuna.buildings.boring.wasteenergy.wasteenergy.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'wasteenergy'</em><a class="headerlink" href="#lacuna.buildings.boring.wasteenergy.wasteenergy.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1103,11 +1117,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="wasteexchanger"></span><h2>wasteexchanger<a class="headerlink" href="#module-lacuna.buildings.boring.wasteexchanger" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.wasteexchanger.wasteexchanger">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.wasteexchanger.</tt><tt class="descname">wasteexchanger</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.wasteexchanger.wasteexchanger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../../recycling.html#lacuna.recycling.RecycleBldg" title="lacuna.recycling.RecycleBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.wasteexchanger.</code><code class="descname">wasteexchanger</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.wasteexchanger.wasteexchanger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../recycling.html#lacuna.recycling.RecycleBldg" title="lacuna.recycling.RecycleBldg"><code class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.wasteexchanger.wasteexchanger.path">
-<tt class="descname">path</tt><em class="property"> = 'wasteexchanger'</em><a class="headerlink" href="#lacuna.buildings.boring.wasteexchanger.wasteexchanger.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'wasteexchanger'</em><a class="headerlink" href="#lacuna.buildings.boring.wasteexchanger.wasteexchanger.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1117,11 +1131,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="wasterecycling"></span><h2>wasterecycling<a class="headerlink" href="#module-lacuna.buildings.boring.wasterecycling" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.wasterecycling.wasterecycling">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.wasterecycling.</tt><tt class="descname">wasterecycling</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.wasterecycling.wasterecycling" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../../recycling.html#lacuna.recycling.RecycleBldg" title="lacuna.recycling.RecycleBldg"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.wasterecycling.</code><code class="descname">wasterecycling</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.wasterecycling.wasterecycling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../recycling.html#lacuna.recycling.RecycleBldg" title="lacuna.recycling.RecycleBldg"><code class="xref py py-class docutils literal"><span class="pre">lacuna.recycling.RecycleBldg</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.wasterecycling.wasterecycling.path">
-<tt class="descname">path</tt><em class="property"> = 'wasterecycling'</em><a class="headerlink" href="#lacuna.buildings.boring.wasterecycling.wasterecycling.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'wasterecycling'</em><a class="headerlink" href="#lacuna.buildings.boring.wasterecycling.wasterecycling.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1131,11 +1145,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="wastesequestration"></span><h2>wastesequestration<a class="headerlink" href="#module-lacuna.buildings.boring.wastesequestration" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.wastesequestration.wastesequestration">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.wastesequestration.</tt><tt class="descname">wastesequestration</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.wastesequestration.wastesequestration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.wastesequestration.</code><code class="descname">wastesequestration</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.wastesequestration.wastesequestration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.wastesequestration.wastesequestration.path">
-<tt class="descname">path</tt><em class="property"> = 'wastesequestration'</em><a class="headerlink" href="#lacuna.buildings.boring.wastesequestration.wastesequestration.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'wastesequestration'</em><a class="headerlink" href="#lacuna.buildings.boring.wastesequestration.wastesequestration.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1145,11 +1159,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="wastetreatment"></span><h2>wastetreatment<a class="headerlink" href="#module-lacuna.buildings.boring.wastetreatment" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.wastetreatment.wastetreatment">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.wastetreatment.</tt><tt class="descname">wastetreatment</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.wastetreatment.wastetreatment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.wastetreatment.</code><code class="descname">wastetreatment</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.wastetreatment.wastetreatment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.wastetreatment.wastetreatment.path">
-<tt class="descname">path</tt><em class="property"> = 'wastetreatment'</em><a class="headerlink" href="#lacuna.buildings.boring.wastetreatment.wastetreatment.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'wastetreatment'</em><a class="headerlink" href="#lacuna.buildings.boring.wastetreatment.wastetreatment.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1159,11 +1173,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="waterproduction"></span><h2>waterproduction<a class="headerlink" href="#module-lacuna.buildings.boring.waterproduction" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.waterproduction.waterproduction">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.waterproduction.</tt><tt class="descname">waterproduction</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.waterproduction.waterproduction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.waterproduction.</code><code class="descname">waterproduction</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.waterproduction.waterproduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.waterproduction.waterproduction.path">
-<tt class="descname">path</tt><em class="property"> = 'waterproduction'</em><a class="headerlink" href="#lacuna.buildings.boring.waterproduction.waterproduction.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'waterproduction'</em><a class="headerlink" href="#lacuna.buildings.boring.waterproduction.waterproduction.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1173,11 +1187,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="waterpurification"></span><h2>waterpurification<a class="headerlink" href="#module-lacuna.buildings.boring.waterpurification" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.waterpurification.waterpurification">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.waterpurification.</tt><tt class="descname">waterpurification</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.waterpurification.waterpurification" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.waterpurification.</code><code class="descname">waterpurification</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.waterpurification.waterpurification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.waterpurification.waterpurification.path">
-<tt class="descname">path</tt><em class="property"> = 'waterpurification'</em><a class="headerlink" href="#lacuna.buildings.boring.waterpurification.waterpurification.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'waterpurification'</em><a class="headerlink" href="#lacuna.buildings.boring.waterpurification.waterpurification.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1187,11 +1201,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="waterreclamation"></span><h2>waterreclamation<a class="headerlink" href="#module-lacuna.buildings.boring.waterreclamation" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.waterreclamation.waterreclamation">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.waterreclamation.</tt><tt class="descname">waterreclamation</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.waterreclamation.waterreclamation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.waterreclamation.</code><code class="descname">waterreclamation</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.waterreclamation.waterreclamation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.waterreclamation.waterreclamation.path">
-<tt class="descname">path</tt><em class="property"> = 'waterreclamation'</em><a class="headerlink" href="#lacuna.buildings.boring.waterreclamation.waterreclamation.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'waterreclamation'</em><a class="headerlink" href="#lacuna.buildings.boring.waterreclamation.waterreclamation.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1201,11 +1215,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="waterstorage"></span><h2>waterstorage<a class="headerlink" href="#module-lacuna.buildings.boring.waterstorage" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.waterstorage.waterstorage">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.waterstorage.</tt><tt class="descname">waterstorage</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.waterstorage.waterstorage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.waterstorage.</code><code class="descname">waterstorage</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.waterstorage.waterstorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.waterstorage.waterstorage.path">
-<tt class="descname">path</tt><em class="property"> = 'waterstorage'</em><a class="headerlink" href="#lacuna.buildings.boring.waterstorage.waterstorage.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'waterstorage'</em><a class="headerlink" href="#lacuna.buildings.boring.waterstorage.waterstorage.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1215,11 +1229,11 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 <span id="wheat"></span><h2>wheat<a class="headerlink" href="#module-lacuna.buildings.boring.wheat" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.boring.wheat.wheat">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.boring.wheat.</tt><tt class="descname">wheat</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.boring.wheat.wheat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.boring.wheat.</code><code class="descname">wheat</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.boring.wheat.wheat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.boring.wheat.wheat.path">
-<tt class="descname">path</tt><em class="property"> = 'wheat'</em><a class="headerlink" href="#lacuna.buildings.boring.wheat.wheat.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'wheat'</em><a class="headerlink" href="#lacuna.buildings.boring.wheat.wheat.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1233,7 +1247,7 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../captcha.html" class="btn btn-neutral float-right" title="Captcha"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../captcha.html" class="btn btn-neutral float-right" title="Captcha">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../callable/transporter.html" class="btn btn-neutral" title="Sub Space Transporter (SST)"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -1245,11 +1259,12 @@ inherit from their parents (usually <a class="reference internal" href="../../bu
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

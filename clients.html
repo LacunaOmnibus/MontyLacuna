@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,7 +178,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="clients">
 <h1>clients<a class="headerlink" href="#clients" title="Permalink to this headline">¶</a></h1>
@@ -185,109 +199,134 @@ client = lacuna.clients.Member(
 </div>
 <span class="target" id="module-lacuna.clients"></span><dl class="class">
 <dt id="lacuna.clients.Guest">
-<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Guest</tt><big>(</big><em>api_key: str='anonymous'</em>, <em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>host: str='us1.lacunaexpanse.com'</em>, <em>logfile: str=''</em>, <em>password: str=''</em>, <em>proto: str='http'</em>, <em>session_id: str=''</em>, <em>show_captcha: bool=True</em>, <em>sleep_after_error: bool=True</em>, <em>sleep_on_call: int=1</em>, <em>username: str=''</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.clients.</code><code class="descname">Guest</code><span class="sig-paren">(</span><em>api_key: str='anonymous'</em>, <em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>host: str='us1.lacunaexpanse.com'</em>, <em>logfile: str=''</em>, <em>password: str=''</em>, <em>proto: str='http'</em>, <em>session_id: str=''</em>, <em>show_captcha: bool=True</em>, <em>sleep_after_error: bool=True</em>, <em>sleep_on_call: int=1</em>, <em>username: str=''</em>, <em>warn_on_sleep: bool=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>Guest users are not logged in.</p>
-<dl class="docutils">
-<dt>Accepts the following named arguments:</dt>
-<dd><ul class="first last simple">
-<li>api_key &#8211; Your TLE api_key.  Defaults to &#8216;anonymous&#8217;.</li>
-<li>config_file &#8211;  Path to your config file.</li>
-<li>config_section &#8211; The section in your config file to read from.</li>
-<li>host &#8211; <tt class="docutils literal"><span class="pre">us1.lacunaexpanse.com</span></tt> or <tt class="docutils literal"><span class="pre">pt.lacunaexpanse.com</span></tt>.  Defaults to 
-us1.</li>
-<li>logfile &#8211; Path to your logfile.  Defaults to no logfile.</li>
-<li>show_captcha &#8211; Boolean.  If set to false, and a 
-method call needs a captcha solved, an exception 
-will be raised.  If left true, the user will automatically be 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>api_key</strong> (<em>str</em>) &#8211; Your TLE api_key.  Defaults to &#8216;anonymous&#8217;.</li>
+<li><strong>config_file</strong> (<em>str</em>) &#8211; Path to your config file.</li>
+<li><strong>config_section</strong> (<em>str</em>) &#8211; The section in your config file to read from.</li>
+<li><strong>host</strong> (<em>str</em>) &#8211; <code class="docutils literal"><span class="pre">us1.lacunaexpanse.com</span></code> or <code class="docutils literal"><span class="pre">pt.lacunaexpanse.com</span></code>.
+Defaults to &#8216;us1&#8217;.</li>
+<li><strong>logfile</strong> (<em>str</em>) &#8211; Path to your logfile.  Defaults to no logfile.</li>
+<li><strong>show_captcha</strong> (<em>bool</em>) &#8211; If set to false, and a
+method call needs a captcha solved, an exception
+will be raised.  If left true, the user will automatically be
 prompted to solve a captcha when needed.  Defaults to True.</li>
-<li>sleep_on_call &#8211; Integer seconds.  Number of seconds 
-to sleep after each call to attempt to avoid using more than the 
-limit of 60 RPCs per minute.  Defaults to 1.</li>
-<li>sleep_after_error &#8211; Boolean.  If we&#8217;ve used over 
-60 RPCs in a minute, the server will produce an error, and if this 
-setting is True, when we get that server error we&#8217;ll sleep for a 
-minute and then re-try our call.  If this setting is false, we&#8217;ll 
+<li><strong>sleep_on_call</strong> (<em>int</em>) &#8211; Number of seconds to sleep after each call to
+attempt to avoid using more than the limit of 60 RPCs per minute.
+Defaults to 1.</li>
+<li><strong>sleep_after_error</strong> (<em>bool</em>) &#8211; If we&#8217;ve used over
+60 RPCs in a minute, the server will produce an error, and if this
+setting is True, when we get that server error we&#8217;ll sleep for a
+minute and then re-try our call.  If this setting is false, we&#8217;ll
 throw an exception.  Defaults to True.</li>
-<li>sleep_on_call &#8211; Integer number of seconds to sleep after each TLE 
+<li><strong>sleep_on_call</strong> &#8211; Seconds to sleep after each TLE
 server request.  Defaults to 1.</li>
-<li>warn_on_sleep &#8211; Boolean. If you exceed 60 RPCs 
-per minute, and the script is therefore going to pause for a minute, 
-and this is set to True, a warning will be displayed to let you know 
+<li><strong>warn_on_sleep</strong> (<em>bool</em>) &#8211; If you exceed 60 RPCs
+per minute, and the script is therefore going to pause for a minute,
+and this is set to True, a warning will be displayed to let you know
 why your script is taking so long.  Defaults to True.</li>
 </ul>
-</dd>
-</dl>
-<p>Generally, you&#8217;ll omit all arguments except for config_file and 
-config_section, and just fill the appropriate values out in your config 
+</td>
+</tr>
+</tbody>
+</table>
+<p>Generally, you&#8217;ll omit all arguments except for config_file and
+config_section, and just fill the appropriate values out in your config
 file.</p>
-<p>If a config_file and config_section are passed in, the values in that config 
+<p>If a config_file and config_section are passed in, the values in that config
 file take precedence over any other values, including passed-in values.</p>
 <dl class="method">
 <dt id="lacuna.clients.Guest.get_stats">
-<tt class="descname">get_stats</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.get_stats" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a <tt class="xref py py-class docutils literal"><span class="pre">lacuna.Stats</span></tt> object</p>
+<code class="descname">get_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.get_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <code class="xref py py-class docutils literal"><span class="pre">lacuna.Stats</span></code> object</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Guest.is_name_available">
-<tt class="descname">is_name_available</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.is_name_available" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if a given string is available to be registered as a new 
+<code class="descname">is_name_available</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.is_name_available" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a given string is available to be registered as a new
 empire name.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>name &#8211; The string to check for availablility.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns True if the string can be used as a new empire name, False
-otherwise.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Name to check for availablility.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the string can be used as a new empire name, False
+otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Guest.send">
-<tt class="descname">send</tt><big>(</big><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
-<dd><p>Marshals a request and actually sends it to the server, collecting 
+<code class="descname">send</code><span class="sig-paren">(</span><em>path: str=''</em>, <em>method: str=''</em>, <em>params: tuple=()</em>, <em>depth: int=1</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marshals a request and actually sends it to the server, collecting
 and json-decoding the response.</p>
 <p>This should not be something you ever need to call yourself.</p>
-<dl class="docutils">
-<dt>Accepts:</dt>
-<dd><ul class="first last simple">
-<li>path &#8211; The path after the host (eg empire, building, etc).  Don&#8217;t include any directory separators.</li>
-<li>method &#8211; The name of the method to be run</li>
-<li>params &#8211; Tuple of arguments/parameters to be passed to the method.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> (<em>str</em>) &#8211; The path after the host (eg empire, building, etc).  Don&#8217;t include any directory separators.</li>
+<li><strong>method</strong> (<em>str</em>) &#8211; The name of the method to be run</li>
+<li><strong>params</strong> (<em>tuple of str</em>) &#8211; arguments/parameters to be passed to the method.</li>
 </ul>
-</dd>
-<dt>Returns:</dt>
-<dd>A dictionary; the json-decoded response from the server.</dd>
-<dt>Raises:</dt>
-<dd><ul class="first last simple">
-<li>NotJsonError if the server response is not a JSON string</li>
-<li>ServerError if the server responds with anything other than 
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the json-decoded response from the server.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">lacauna.exceptions.NotJsonError</span></code> &#8211;
+if the server response is not a JSON string</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">lacauna.exceptions.ServerError</span></code> &#8211;
+if the server responds with anything other than
 a 200, along with a JSON string</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Guest.send_password_reset_message">
-<tt class="descname">send_password_reset_message</tt><big>(</big><em>email=''</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.send_password_reset_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is meant to send a password reset email to the user&#8217;s 
-registered email address.  However, it seems that the TLE server is not 
+<code class="descname">send_password_reset_message</code><span class="sig-paren">(</span><em>email=''</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.send_password_reset_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is meant to send a password reset email to the user&#8217;s
+registered email address.  However, it seems that the TLE server is not
 sending any emails at all, via this method or the browser.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Guest.strsquish">
-<tt class="descname">strsquish</tt><big>(</big><em>string: str</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.strsquish" title="Permalink to this definition">¶</a></dt>
+<code class="descname">strsquish</code><span class="sig-paren">(</span><em>string: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.strsquish" title="Permalink to this definition">¶</a></dt>
 <dd><p>Squish a string, removing all non-word characters.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd>string &#8211; The string to squish</dd>
-</dl>
-<p>Returns the squished string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> (<em>str</em>) &#8211; The string to squish</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the squished string.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">strsquish</span><span class="p">(</span> <span class="s">&quot;foo bar &amp; baz&quot;</span> <span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">new</span> <span class="p">)</span>    <span class="c"># foobarbaz</span>
 </pre></div>
@@ -296,28 +335,29 @@ sending any emails at all, via this method or the browser.</p>
 
 <dl class="method">
 <dt id="lacuna.clients.Guest.write_default_config_file">
-<tt class="descname">write_default_config_file</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#lacuna.clients.Guest.write_default_config_file" title="Permalink to this definition">¶</a></dt>
+<code class="descname">write_default_config_file</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.write_default_config_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes initial data to a file to be used as a MontyLacuna config file.</p>
-<p>This method does no safety checking of any kind, and will clobber the 
-contents of any file passed to it.  So check to make sure you&#8217;re not 
+<p>This method does no safety checking of any kind, and will clobber the
+contents of any file passed to it.  So check to make sure you&#8217;re not
 overwriting some existing file before calling this.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>path &#8211; Path to the file to write</li>
-</ul>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) &#8211; Path to the file to write</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.clients.Member">
-<em class="property">class </em><tt class="descclassname">lacuna.clients.</tt><tt class="descname">Member</tt><big>(</big><em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>api_key: str=''</em>, <em>host: str=''</em>, <em>logfile: str=''</em>, <em>proto: str=''</em>, <em>username: str=''</em>, <em>password: str=''</em>, <em>sleep_on_call: int=1</em>, <em>sleep_after_error: bool=True</em>, <em>show_captcha: bool=True</em>, <em>warn_on_sleep: bool=True</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.clients.Guest" title="lacuna.clients.Guest"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Guest</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.clients.</code><code class="descname">Member</code><span class="sig-paren">(</span><em>config_file: str=''</em>, <em>config_section: str=''</em>, <em>api_key: str=''</em>, <em>host: str=''</em>, <em>logfile: str=''</em>, <em>proto: str=''</em>, <em>username: str=''</em>, <em>password: str=''</em>, <em>sleep_on_call: int=1</em>, <em>sleep_after_error: bool=True</em>, <em>show_captcha: bool=True</em>, <em>warn_on_sleep: bool=True</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.clients.Guest" title="lacuna.clients.Guest"><code class="xref py py-class docutils literal"><span class="pre">lacuna.clients.Guest</span></code></a></p>
 <p>Members are logged in; username and password are required.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">config_file</span>
 <span class="n">config_section</span>
 <span class="n">host</span>
@@ -333,31 +373,28 @@ overwriting some existing file before calling this.</p>
 </div>
 <dl class="method">
 <dt id="lacuna.clients.Member.cache_clear">
-<tt class="descname">cache_clear</tt><big>(</big><em>name: str=''</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member.cache_clear" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cache_clear</code><span class="sig-paren">(</span><em>name: str=''</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.cache_clear" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>name &#8211; String; name of the cache to clear.  Defaults to the 
-cache most recently used.</li>
-</ul>
-</dd>
-</dl>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>
-<span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_two&#39;</span> <span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">()</span>                <span class="c"># clear cache_two implicitly</span>
-<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">(</span> <span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>   <span class="c"># clear cache_one explicitly</span>
-</pre></div>
-</div>
-<p>Returns True if a cache was cleared, false if no name was passed in and 
-no cache has yet been used by this client (so there&#8217;s no 
-&#8220;most-recently-used&#8221; cache name to clear).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; name of the cache to clear.  Defaults to the
+cache most recently used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if a cache was cleared, false if no name was passed in and
+no cache has yet been used by this client (so there&#8217;s no
+&#8220;most-recently-used&#8221; cache name to clear).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.cache_off">
-<tt class="descname">cache_off</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.cache_off" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cache_off</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.cache_off" title="Permalink to this definition">¶</a></dt>
 <dd><p>Turn caching off.
 Does not clear any existing caches, only stops pulling data from them.
 Returns the name of the cache that had been in use, or False if none.</p>
@@ -365,109 +402,133 @@ Returns the name of the cache that had been in use, or False if none.</p>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.cache_on">
-<tt class="descname">cache_on</tt><big>(</big><em>name: str</em>, <em>expiry: int=3600</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member.cache_on" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cache_on</code><span class="sig-paren">(</span><em>name: str</em>, <em>expiry: int=3600</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.cache_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Turn the cache on.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>name &#8211; String namespace to use for caching data</li>
-<li>expiry &#8211; Integer seconds after which cached data is no longer 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; namespace to use for caching data</li>
+<li><strong>expiry</strong> (<em>int</em>) &#8211; seconds after which cached data is no longer
 valid.  Defaults to 3600 (one hour).</li>
 </ul>
-</dd>
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>old_name &#8211; String namespace that had previously been set.  Empty 
-string if no cache had previously been on.</li>
-</ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">namespace that had previously been set.  Empty
+string if no cache had previously been on.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.get_alliance">
-<tt class="descname">get_alliance</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.get_alliance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get an <a class="reference internal" href="tle_modules/alliance.html#module-lacuna.alliance" title="lacuna.alliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance</span></tt></a> object.</p>
+<code class="descname">get_alliance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.get_alliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an <a class="reference internal" href="tle_modules/alliance.html#module-lacuna.alliance" title="lacuna.alliance"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.get_body">
-<tt class="descname">get_body</tt><big>(</big><em>body_id</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member.get_body" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a <a class="reference internal" href="tle_modules/body.html#module-lacuna.body" title="lacuna.body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body</span></tt></a> object by body ID.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>body_id &#8211; Integer ID of the body</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference internal" href="tle_modules/body.html#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a> object.</p>
+<code class="descname">get_body</code><span class="sig-paren">(</span><em>body_id</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.get_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <a class="reference internal" href="tle_modules/body.html#module-lacuna.body" title="lacuna.body"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body</span></code></a> object by body ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>body_id</strong> (<em>int</em>) &#8211; ID of the body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The requested body object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="tle_modules/body.html#lacuna.body.Body" title="lacuna.body.Body">lacuna.body.Body</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.get_body_byname">
-<tt class="descname">get_body_byname</tt><big>(</big><em>body_name</em><big>)</big><a class="headerlink" href="#lacuna.clients.Member.get_body_byname" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_body_byname</code><span class="sig-paren">(</span><em>body_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.get_body_byname" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get one of your empire&#8217;s bodies (planet or station) by name.</p>
 <dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>body_name &#8211; String name of the body</li>
-</ul>
-</dd>
+<dt>Arg:</dt>
+<dd>body_name (str): name of the body</dd>
 </dl>
-<p>Returns a <a class="reference internal" href="tle_modules/body.html#lacuna.body.MyBody" title="lacuna.body.MyBody"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.MyBody</span></tt></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The requested body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="tle_modules/body.html#lacuna.body.MyBody" title="lacuna.body.MyBody">lacuna.body.MyBody</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.get_captcha">
-<tt class="descname">get_captcha</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.get_captcha" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a <a class="reference internal" href="tle_modules/captcha.html#lacuna.captcha.Captcha" title="lacuna.captcha.Captcha"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.captcha.Captcha</span></tt></a> object.</p>
+<code class="descname">get_captcha</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.get_captcha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <a class="reference internal" href="tle_modules/captcha.html#lacuna.captcha.Captcha" title="lacuna.captcha.Captcha"><code class="xref py py-class docutils literal"><span class="pre">lacuna.captcha.Captcha</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.get_inbox">
-<tt class="descname">get_inbox</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.get_inbox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get an <a class="reference internal" href="tle_modules/inbox.html#lacuna.inbox.Inbox" title="lacuna.inbox.Inbox"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.Inbox</span></tt></a> object.</p>
+<code class="descname">get_inbox</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.get_inbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an <a class="reference internal" href="tle_modules/inbox.html#lacuna.inbox.Inbox" title="lacuna.inbox.Inbox"><code class="xref py py-class docutils literal"><span class="pre">lacuna.inbox.Inbox</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.get_map">
-<tt class="descname">get_map</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.get_map" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a <a class="reference internal" href="tle_modules/map.html#lacuna.map.Map" title="lacuna.map.Map"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Map</span></tt></a> object.</p>
+<code class="descname">get_map</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.get_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <a class="reference internal" href="tle_modules/map.html#lacuna.map.Map" title="lacuna.map.Map"><code class="xref py py-class docutils literal"><span class="pre">lacuna.map.Map</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.get_my_alliance">
-<tt class="descname">get_my_alliance</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.get_my_alliance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a <a class="reference internal" href="tle_modules/alliance.html#lacuna.alliance.MyAlliance" title="lacuna.alliance.MyAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.MyAlliance</span></tt></a> object.</p>
-<p>Returns an object if the current empire is a 
-member of an alliance.  Otherwise returns false.</p>
+<code class="descname">get_my_alliance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.get_my_alliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get your alliance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Your alliance (or False if you&#8217;re not
+in an alliance.)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="tle_modules/alliance.html#lacuna.alliance.MyAlliance" title="lacuna.alliance.MyAlliance">lacuna.alliance.MyAlliance</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.login">
-<tt class="descname">login</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.login" title="Permalink to this definition">¶</a></dt>
+<code class="descname">login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.login" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ensures the current client is logged in.</p>
-<p>If self.session_id is set, we&#8217;ll test it to make sure we can get a 
-response.  If so, the session_id is valid and we&#8217;ll continue to use 
+<p>If self.session_id is set, we&#8217;ll test it to make sure we can get a
+response.  If so, the session_id is valid and we&#8217;ll continue to use
 that session.</p>
-<p>If self.session_id is not set or is found to be invalid, we&#8217;ll log in 
-fresh.  The new, now-valid session_id will be written to the config 
+<p>If self.session_id is not set or is found to be invalid, we&#8217;ll log in
+fresh.  The new, now-valid session_id will be written to the config
 file.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.clients.Member.logout">
-<tt class="descname">logout</tt><big>(</big><big>)</big><a class="headerlink" href="#lacuna.clients.Member.logout" title="Permalink to this definition">¶</a></dt>
+<code class="descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Member.logout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logs the current session out.</p>
-<p>Normally, there&#8217;s no need to call this.  However, after a client 
-connects (and logs in), their session ID will be written to the config 
-file to save them having to log in again the next time.  Saving this 
-session ID also records whether the client has recently solved a 
+<p>Normally, there&#8217;s no need to call this.  However, after a client
+connects (and logs in), their session ID will be written to the config
+file to save them having to log in again the next time.  Saving this
+session ID also records whether the client has recently solved a
 captcha.</p>
-<p>If you&#8217;re testing something out and want to see any captcha prompts, 
-you&#8217;ll want to call logout() at the end of your test script.  This 
-way, running your test script multiple times will result in actual 
+<p>If you&#8217;re testing something out and want to see any captcha prompts,
+you&#8217;ll want to call logout() at the end of your test script.  This
+way, running your test script multiple times will result in actual
 captcha prompts each time.</p>
 </dd></dl>
 
@@ -481,7 +542,7 @@ captcha prompts each time.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="exceptions.html" class="btn btn-neutral float-right" title="exceptions"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="exceptions.html" class="btn btn-neutral float-right" title="exceptions">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="caching.html" class="btn btn-neutral" title="caching"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -493,11 +554,12 @@ captcha prompts each time.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

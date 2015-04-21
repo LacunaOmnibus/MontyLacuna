@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="inbox.html">Inbox</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,15 +181,15 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.map">
 <span id="map"></span><h1>Map<a class="headerlink" href="#module-lacuna.map" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.map.Fissure">
-<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Fissure</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.map.Fissure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.map.</code><code class="descname">Fissure</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Fissure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>name     &quot;Mercury&quot;,
 id       345,
 orbit    1,
@@ -190,214 +204,270 @@ size     58,
 
 <dl class="class">
 <dt id="lacuna.map.Map">
-<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Map</tt><big>(</big><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.map.</code><code class="descname">Map</code><span class="sig-paren">(</span><em>client: object</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></code></a></p>
 <p>Provides access to the starmap.</p>
 <dl class="method">
 <dt id="lacuna.map.Map.check_star_for_incoming_probe">
-<tt class="descname">check_star_for_incoming_probe</tt><big>(</big><em>star_id</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.check_star_for_incoming_probe" title="Permalink to this definition">¶</a></dt>
+<code class="descname">check_star_for_incoming_probe</code><span class="sig-paren">(</span><em>star_id</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.check_star_for_incoming_probe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if you have a probe en route to a star.</p>
-<dl class="docutils">
-<dt>Arguments</dt>
-<dd><ul class="first last simple">
-<li>star_id &#8211; Integer ID of the star to check</li>
-</ul>
-</dd>
-<dt>Returns</dt>
-<dd><ul class="first last simple">
-<li>incoming_probe &#8211; This will be the date of arrival of the incoming probe, or 0 if no probe is on its way.</li>
-</ul>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>star_id</strong> (<em>int</em>) &#8211; ID of the star to check</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The date of arrival of the incoming probe, or 0 if no probe is on its way.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.get_orbiting_planet">
-<tt class="descname">get_orbiting_planet</tt><big>(</big><em>star_name: str</em>, <em>planet_name: str</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_orbiting_planet" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_orbiting_planet</code><span class="sig-paren">(</span><em>star_name: str</em>, <em>planet_name: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.get_orbiting_planet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the info of any planet you can see in your star map.</p>
-<dl class="docutils">
-<dt>Arguments</dt>
-<dd><ul class="first last simple">
-<li>star_name &#8211; String name of a star</li>
-<li>planet_name &#8211; String name of a planet orbiting that star</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>star_name</strong> (<em>str</em>) &#8211; name of a star</li>
+<li><strong>planet_name</strong> (<em>str</em>) &#8211; name of a planet orbiting that star</li>
 </ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference internal" href="body.html#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a> object</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The requested body object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="body.html#lacuna.body.Body" title="lacuna.body.Body">lacuna.body.Body</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.get_star">
-<tt class="descname">get_star</tt><big>(</big><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_star</code><span class="sig-paren">(</span><em>star_id: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.get_star" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find a star by its ID.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>star_id &#8211; Integer ID of the star</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>star_id</strong> (<em>int</em>) &#8211; ID of the star to check</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The requested star</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star">lacuna.map.Star</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.get_star_by_name">
-<tt class="descname">get_star_by_name</tt><big>(</big><em>star_name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star_by_name" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_star_by_name</code><span class="sig-paren">(</span><em>star_name: str</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.get_star_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find a star by its name.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>star_name &#8211; String name of the star.  This is NOT a &#8220;standard 
-TLE search string&#8221;, but the full name of the star.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>star_name</strong> (<em>str</em>) &#8211; Name of the star to check.  This is NOT a
+<a class="reference internal" href="../glossary.html#gloss-std-search-string"><span>Standard TLE search string</span></a>,
+but the full name of the star.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The requested star</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star">lacuna.map.Star</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.get_star_by_xy">
-<tt class="descname">get_star_by_xy</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star_by_xy" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_star_by_xy</code><span class="sig-paren">(</span><em>x: int</em>, <em>y: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.get_star_by_xy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find a star by its x, y coordinates.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>x &#8211; Integer X coordinate</li>
-<li>y &#8211; Integer Y coordinate</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>int</em>) &#8211; X coordinate</li>
+<li><strong>y</strong> (<em>int</em>) &#8211; Y coordinate</li>
 </ul>
-</dd>
-</dl>
-<p>Returns a <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> object.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The requested star.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star">lacuna.map.Star</a></p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.get_star_map">
-<tt class="descname">get_star_map</tt><big>(</big><em>stars: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_star_map" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_star_map</code><span class="sig-paren">(</span><em>stars: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.get_star_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of stars occupying a region of space.</p>
-<dl class="docutils">
-<dt>Accepts a single dict of arguments containing the keys:</dt>
-<dd><ul class="first last simple">
-<li>left &#8211; Coordinate</li>
-<li>top &#8211; Coordinate</li>
-<li>right &#8211; Coordinate</li>
-<li>bottom &#8211; Coordinate</li>
-</ul>
-</dd>
-</dl>
-<p>Each coordinate must be an integer within the star map (so &gt;= -1500 
-and &lt;= 1500).  The total area covered by these coordinates must be &lt;= 
-3001 units.  The TLE documentation states 1001 units, but thats old 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>stars</strong> (<em>dict</em>) &#8211; <p>containing the keys:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;left&#39;: Coordinate
+&#39;top&#39;: Coordinate
+&#39;right&#39;: Coordinate
+&#39;bottom&#39;: Coordinate
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of stars</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star">lacuna.map.Star</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-exc docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> &#8211;
+1003 if your selected area is too
+large.</td>
+</tr>
+</tbody>
+</table>
+<p>Each coordinate must be an integer within the star map (so &gt;= -1500
+and &lt;= 1500).  The total area covered by these coordinates must be &lt;=
+3001 units.  The TLE documentation states 1001 units, but thats old
 information; the limit has been raised to 3001 units.</p>
-<p>Returns a list of <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> objects.</p>
-<p>Raises ServerError 1003 if your selected area is too large.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.get_stars">
-<tt class="descname">get_stars</tt><big>(</big><em>left: int</em>, <em>top: int</em>, <em>right: int</em>, <em>bottom: int</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.get_stars" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_stars</code><span class="sig-paren">(</span><em>left: int</em>, <em>top: int</em>, <em>right: int</em>, <em>bottom: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.get_stars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of stars occupying a region of space.</p>
-<p>More or less Deprecated.</p>
-<p>This is not officially deprecated, but there&#8217;s no good reason to use it.  
-get_star_map() is using the newer named arguments calling method, and it 
-allows you a range of 3001 units, whereas this method uses the old 
-positional arguments calling method, and allows a range of only 900 
+<p>This is not officially deprecated, but there&#8217;s no good reason to use it.
+get_star_map() is using the newer named arguments calling method, and it
+allows you a range of 3001 units, whereas this method uses the old
+positional arguments calling method, and allows a range of only 900
 units.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>left &#8211; Coordinate</li>
-<li>top &#8211; Coordinate</li>
-<li>right &#8211; Coordinate</li>
-<li>bottom &#8211; Coordinate</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> objects.</p>
-<p>Raises ServerError 1003 if your selected area is too large.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>stars</strong> (<em>dict</em>) &#8211; <p>containing the keys:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;left&#39;: Coordinate
+&#39;top&#39;: Coordinate
+&#39;right&#39;: Coordinate
+&#39;bottom&#39;: Coordinate
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of stars</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star">lacuna.map.Star</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-exc docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> &#8211;
+1003 if your selected area is too
+large.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.probe_summary_fissures">
-<tt class="descname">probe_summary_fissures</tt><big>(</big><em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.probe_summary_fissures" title="Permalink to this definition">¶</a></dt>
+<code class="descname">probe_summary_fissures</code><span class="sig-paren">(</span><em>mydict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.probe_summary_fissures" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provides info on fissures in a zone.</p>
-<dl class="docutils">
-<dt>Requires a single dict argument containing the key:</dt>
-<dd><ul class="first last simple">
-<li>zone &#8211; &#8216;0|0&#8217;</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="#lacuna.map.Fissure" title="lacuna.map.Fissure"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Fissure</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>zone</strong> (<em>dict</em>) &#8211; This must contain a single key, <code class="docutils literal"><span class="pre">zone</span></code>, the value
+being the zone you want to search for fissures.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of fissures</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.map.Fissure" title="lacuna.map.Fissure">lacuna.map.Fissure</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Map.search_stars">
-<tt class="descname">search_stars</tt><big>(</big><em>partial_name: str</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Map.search_stars" title="Permalink to this definition">¶</a></dt>
+<code class="descname">search_stars</code><span class="sig-paren">(</span><em>partial_name: str</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Map.search_stars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of stars matching a string.</p>
-<dl class="docutils">
-<dt>Arguments</dt>
-<dd><ul class="first last simple">
-<li>search_string &#8211; A standard TLE search string.  See 
-<a class="reference internal" href="../glossary.html#glossary"><em>Glossary</em></a>.</li>
-</ul>
-</dd>
-</dl>
-<p>Returns a list of <a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Star</span></tt></a> objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>search_string</strong> (<em>str</em>) &#8211; A <a class="reference internal" href="../glossary.html#gloss-std-search-string"><span>Standard TLE search string</span></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of stars</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.map.Star" title="lacuna.map.Star">lacuna.map.Star</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.map.Star">
-<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Star</tt><big>(</big><em>client</em>, <em>star_dict: dict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Star" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.map.</code><code class="descname">Star</code><span class="sig-paren">(</span><em>client</em>, <em>star_dict: dict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Star" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>color       &#39;red&#39;,
 id          &#39;12345&#39;,
 name        &#39;Clou Oghofr Oap&#39;,
 x           &#39;100&#39;,
 y           &#39;-100&#39;,
 zone        &#39;0|0&#39;,
-bodies:     List of body.Body objects.  If you don&#39;t have the star 
+bodies:     List of body.Body objects.  If you don&#39;t have the star
             probed or oracled, this list will be empty.
 station:    lacuna.map.Station object (only if this star is under control of a station)
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="body.html#lacuna.body.Body" title="lacuna.body.Body"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></tt></a></li>
-<li><a class="reference internal" href="#lacuna.map.Station" title="lacuna.map.Station"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></tt></a></li>
+<li><a class="reference internal" href="body.html#lacuna.body.Body" title="lacuna.body.Body"><code class="xref py py-class docutils literal"><span class="pre">lacuna.body.Body</span></code></a></li>
+<li><a class="reference internal" href="#lacuna.map.Station" title="lacuna.map.Station"><code class="xref py py-class docutils literal"><span class="pre">lacuna.map.Station</span></code></a></li>
 </ul>
 <dl class="method">
 <dt id="lacuna.map.Star.view_laws">
-<tt class="descname">view_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Star.view_laws" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_laws</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Star.view_laws" title="Permalink to this definition">¶</a></dt>
 <dd><p>View the laws affecting this star.</p>
-<p>If the star is not under the control of a space station, a single 
+<p>If the star is not under the control of a space station, a single
 &#8216;law&#8217; with the name &#8220;Not controlled by a station&#8221; will be returned.</p>
-<p>Note - I don&#8217;t see any reason why a station couldn&#8217;t pass a writ named 
-&#8220;Not controlled by a station&#8221;, so be careful about just looking for a 
-law with that name and assuming it means that the star is really not 
+<p>Note - I don&#8217;t see any reason why a station couldn&#8217;t pass a writ named
+&#8220;Not controlled by a station&#8221;, so be careful about just looking for a
+law with that name and assuming it means that the star is really not
 controlled by a station.</p>
-<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></code></a> objects.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.map.Star.view_nonseizure_laws">
-<tt class="descname">view_nonseizure_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Star.view_nonseizure_laws" title="Permalink to this definition">¶</a></dt>
+<code class="descname">view_nonseizure_laws</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Star.view_nonseizure_laws" title="Permalink to this definition">¶</a></dt>
 <dd><p>View the laws affecting this star other than seizure laws.</p>
-<p>The bulk of the laws passed by most stations will be star seizure 
-laws, and these are almost always <em>not</em> what you&#8217;re interested in when 
-checking laws.  So this method filters out the seizure laws and just 
+<p>The bulk of the laws passed by most stations will be star seizure
+laws, and these are almost always <em>not</em> what you&#8217;re interested in when
+checking laws.  So this method filters out the seizure laws and just
 returns you the good stuff.</p>
-<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></tt></a> objects.</p>
+<p>Returns a list of <a class="reference internal" href="alliance.html#lacuna.alliance.Law" title="lacuna.alliance.Law"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.Law</span></code></a> objects.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.map.Station">
-<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">Station</tt><big>(</big><em>client</em>, <em>mydict</em><big>)</big><a class="headerlink" href="#lacuna.map.Station" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.map.</code><code class="descname">Station</code><span class="sig-paren">(</span><em>client</em>, <em>mydict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Station" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id          &quot;id-goes-here&quot;,
 x           143,
 y           -27,
@@ -406,12 +476,12 @@ alliance    lacuna.alliance.SeizingAlliance object.  Will not always be set.
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="alliance.html#lacuna.alliance.SeizingAlliance" title="lacuna.alliance.SeizingAlliance"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.SeizingAlliance</span></tt></a></li>
+<li><a class="reference internal" href="alliance.html#lacuna.alliance.SeizingAlliance" title="lacuna.alliance.SeizingAlliance"><code class="xref py py-class docutils literal"><span class="pre">lacuna.alliance.SeizingAlliance</span></code></a></li>
 </ul>
 <dl class="method">
 <dt id="lacuna.map.Station.view_laws">
-<tt class="descname">view_laws</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.map.Station.view_laws" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <tt class="xref py py-class docutils literal"><span class="pre">lacuna.parliament.Law</span></tt> objects.  Otherwise returns 
+<code class="descname">view_laws</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.Station.view_laws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <code class="xref py py-class docutils literal"><span class="pre">lacuna.parliament.Law</span></code> objects.  Otherwise returns
 an empty list.</p>
 </dd></dl>
 
@@ -419,11 +489,11 @@ an empty list.</p>
 
 <dl class="class">
 <dt id="lacuna.map.StationStar">
-<em class="property">class </em><tt class="descclassname">lacuna.map.</tt><tt class="descname">StationStar</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.map.StationStar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>A star in the jurisdiction of a space station, as returned by 
-<tt class="docutils literal"><span class="pre">lacuna.buildings.parliament.get_stars_in_jurisdiction()</span></tt>.</p>
-<p>Attributes:</p>
+<em class="property">class </em><code class="descclassname">lacuna.map.</code><code class="descname">StationStar</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.map.StationStar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>A star in the jurisdiction of a space station, as returned by
+<code class="docutils literal"><span class="pre">lacuna.buildings.parliament.get_stars_in_jurisdiction()</span></code>.</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>name        &quot;Sol&quot;,
 color       &quot;yellow&quot;,
 x           -41,
@@ -441,7 +511,7 @@ zone        &quot;0|1&quot;,
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="stats.html" class="btn btn-neutral float-right" title="Stats"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="stats.html" class="btn btn-neutral float-right" title="Stats">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="inbox.html" class="btn btn-neutral" title="Inbox"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -453,11 +523,12 @@ zone        &quot;0|1&quot;,
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

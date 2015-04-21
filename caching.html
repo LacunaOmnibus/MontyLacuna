@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,7 +178,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="caching">
 <span id="id1"></span><h1>caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h1>
@@ -228,7 +242,7 @@ identical requests are made, the second returns the same data that was returned
 by the first, without having to re-query the server.  You can have multiple
 caches, switching between them by simply calling cache_on() with the name of the
 cache you want to use.</p>
-<p>It&#8217;s important to understand that the name you&#8217;re passing to <tt class="docutils literal"><span class="pre">cache_on()</span></tt> is a
+<p>It&#8217;s important to understand that the name you&#8217;re passing to <code class="docutils literal"><span class="pre">cache_on()</span></code> is a
 namespace name, not a specific cache key.  Individual cache keys will be
 generated for you, and are invisible to you.  So a single cache name can safely
 contain multiple different types of data.  The cache keys are determined by both
@@ -262,41 +276,46 @@ make use of your caches.</p>
 <h2>Script Conventions<a class="headerlink" href="#script-conventions" title="Permalink to this headline">¶</a></h2>
 <p>The scripts that come packaged with MontyLacuna often have to perform many of
 the same tasks, such as listing out all of your planets.  Those scripts
-generally use a cache named <tt class="docutils literal"><span class="pre">my_colonies</span></tt> for this planet-listing work.
+generally use a cache named <code class="docutils literal"><span class="pre">my_colonies</span></code> for this planet-listing work.
 This means that, after you run one script to get colony data, running any
 other script using that cache will be faster, as the colony data is already
 cached.</p>
 <p>If you run a MontyLacuna script, then go colonize a new planet, your new
 planet won&#8217;t appear in the pre-cached planet list.  In this case, you should
-just delete the contents of the <tt class="docutils literal"><span class="pre">var/cache/</span></tt> directory before running
+just delete the contents of the <code class="docutils literal"><span class="pre">var/cache/</span></code> directory before running
 another script.</p>
 </div>
 <div class="section" id="module-lacuna.clients">
 <span id="module-documentation"></span><h2>Module Documentation<a class="headerlink" href="#module-lacuna.clients" title="Permalink to this headline">¶</a></h2>
 <dl class="method">
 <dt>
-<tt class="descclassname">Member.</tt><tt class="descname">cache_on</tt><big>(</big><em>name: str</em>, <em>expiry: int=3600</em><big>)</big></dt>
+<code class="descclassname">Member.</code><code class="descname">cache_on</code><span class="sig-paren">(</span><em>name: str</em>, <em>expiry: int=3600</em><span class="sig-paren">)</span></dt>
 <dd><p>Turn the cache on.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>name &#8211; String namespace to use for caching data</li>
-<li>expiry &#8211; Integer seconds after which cached data is no longer 
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; namespace to use for caching data</li>
+<li><strong>expiry</strong> (<em>int</em>) &#8211; seconds after which cached data is no longer
 valid.  Defaults to 3600 (one hour).</li>
 </ul>
-</dd>
-<dt>Returns:</dt>
-<dd><ul class="first last simple">
-<li>old_name &#8211; String namespace that had previously been set.  Empty 
-string if no cache had previously been on.</li>
-</ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">namespace that had previously been set.  Empty
+string if no cache had previously been on.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt>
-<tt class="descclassname">Member.</tt><tt class="descname">cache_off</tt><big>(</big><big>)</big></dt>
+<code class="descclassname">Member.</code><code class="descname">cache_off</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Turn caching off.
 Does not clear any existing caches, only stops pulling data from them.
 Returns the name of the cache that had been in use, or False if none.</p>
@@ -304,26 +323,23 @@ Returns the name of the cache that had been in use, or False if none.</p>
 
 <dl class="method">
 <dt>
-<tt class="descclassname">Member.</tt><tt class="descname">cache_clear</tt><big>(</big><em>name: str=''</em><big>)</big></dt>
+<code class="descclassname">Member.</code><code class="descname">cache_clear</code><span class="sig-paren">(</span><em>name: str=''</em><span class="sig-paren">)</span></dt>
 <dd><p>Clears a named cache.  If a cache name is not passed, clears the most-recently used cache.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>name &#8211; String; name of the cache to clear.  Defaults to the 
-cache most recently used.</li>
-</ul>
-</dd>
-</dl>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>
-<span class="n">client</span><span class="o">.</span><span class="n">cache_on</span><span class="p">(</span><span class="s">&#39;cache_two&#39;</span> <span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">()</span>                <span class="c"># clear cache_two implicitly</span>
-<span class="n">client</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">(</span> <span class="s">&#39;cache_one&#39;</span> <span class="p">)</span>   <span class="c"># clear cache_one explicitly</span>
-</pre></div>
-</div>
-<p>Returns True if a cache was cleared, false if no name was passed in and 
-no cache has yet been used by this client (so there&#8217;s no 
-&#8220;most-recently-used&#8221; cache name to clear).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; name of the cache to clear.  Defaults to the
+cache most recently used.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if a cache was cleared, false if no name was passed in and
+no cache has yet been used by this client (so there&#8217;s no
+&#8220;most-recently-used&#8221; cache name to clear).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -335,7 +351,7 @@ no cache has yet been used by this client (so there&#8217;s no
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="clients.html" class="btn btn-neutral float-right" title="clients"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="clients.html" class="btn btn-neutral float-right" title="clients">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="bc.html" class="btn btn-neutral" title="bc"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -347,11 +363,12 @@ no cache has yet been used by this client (so there&#8217;s no
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

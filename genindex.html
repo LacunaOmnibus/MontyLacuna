@@ -17,7 +17,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,6 +28,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -45,9 +47,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -57,8 +62,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul>
+          
+          
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -79,12 +85,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -97,6 +104,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -133,6 +146,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -161,7 +175,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
 
 <h1 id="index">Index</h1>
@@ -441,12 +455,12 @@
   <dt><a href="tle_modules/buildings/permanent/blackholegenerator.html#lacuna.buildings.permanent.blackholegenerator.BHGTask">BHGTask (class in lacuna.buildings.permanent.blackholegenerator)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/permanent/blackholegenerator.html#lacuna.buildings.permanent.blackholegenerator.BHGTaskOptions">BHGTaskOptions (class in lacuna.buildings.permanent.blackholegenerator)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/permanent/blackholegenerator.html#lacuna.buildings.permanent.blackholegenerator.blackholegenerator">blackholegenerator (class in lacuna.buildings.permanent.blackholegenerator)</a>
   </dt>
@@ -477,6 +491,10 @@
 
       
   <dt><a href="tle_modules/empire.html#lacuna.empire.MyEmpire.boost_ore">boost_ore() (lacuna.empire.MyEmpire method)</a>
+  </dt>
+
+      
+  <dt><a href="tle_modules/empire.html#lacuna.empire.MyEmpire.boost_spy_training">boost_spy_training() (lacuna.empire.MyEmpire method)</a>
   </dt>
 
       
@@ -871,6 +889,10 @@
 
       
   <dt><a href="tle_modules/empire.html#lacuna.empire.Empire">Empire (class in lacuna.empire)</a>
+  </dt>
+
+      
+  <dt><a href="tle_modules/buildings/ss_modules/parliament.html#lacuna.buildings.ss_modules.parliament.MiningPlatform.empire">empire (lacuna.buildings.ss_modules.parliament.MiningPlatform attribute)</a>
   </dt>
 
       
@@ -3347,12 +3369,12 @@
   <dt><a href="spy.html#lacuna.spy.Prisoner">Prisoner (class in lacuna.spy)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/map.html#lacuna.map.Map.probe_summary_fissures">probe_summary_fissures() (lacuna.map.Map method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="resource.html#lacuna.resource.Production">Production (class in lacuna.resource)</a>
   </dt>
@@ -3439,6 +3461,10 @@
 
       
   <dt><a href="tle_modules/buildings/ss_modules/parliament.html#lacuna.buildings.ss_modules.parliament.parliament.propose_writ">propose_writ() (lacuna.buildings.ss_modules.parliament.parliament method)</a>
+  </dt>
+
+      
+  <dt><a href="tle_modules/buildings/ss_modules/parliament.html#lacuna.buildings.ss_modules.parliament.Proposition.proposed_by">proposed_by (lacuna.buildings.ss_modules.parliament.Proposition attribute)</a>
   </dt>
 
       
@@ -3551,12 +3577,12 @@
   <dt><a href="tle_modules/buildings/callable/distributioncenter.html#lacuna.buildings.callable.distributioncenter.distributioncenter.release_reserve">release_reserve() (lacuna.buildings.callable.distributioncenter.distributioncenter method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/callable/miningministry.html#lacuna.buildings.callable.miningministry.miningministry.remove_cargo_ship_from_fleet">remove_cargo_ship_from_fleet() (lacuna.buildings.callable.miningministry.miningministry method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/body.html#lacuna.body.MyBody.rename">rename() (lacuna.body.MyBody method)</a>
   </dt>
@@ -3603,6 +3629,10 @@
 
       
   <dt><a href="tle_modules/buildings/callable/network19.html#lacuna.buildings.callable.network19.network19.restrict_coverage">restrict_coverage() (lacuna.buildings.callable.network19.network19 method)</a>
+  </dt>
+
+      
+  <dt><a href="tle_modules/buildings/callable/missioncommand.html#lacuna.buildings.callable.missioncommand.Mission.rewards">rewards (lacuna.buildings.callable.missioncommand.Mission attribute)</a>
   </dt>
 
       
@@ -3784,6 +3814,10 @@
 
       </dl></dd>
       
+  <dt><a href="getting_started_writing.html#lacuna.binutils.libbin.Script.set_planets">set_planets() (lacuna.binutils.libbin.Script method)</a>
+  </dt>
+
+      
   <dt><a href="scripts/assign_spies.html#lacuna.binutils.libassign_spies.AssignSpies.set_spies_doing_correct_task">set_spies_doing_correct_task() (lacuna.binutils.libassign_spies.AssignSpies method)</a>
   </dt>
 
@@ -3865,12 +3899,12 @@
   <dt><a href="tle_modules/body.html#lacuna.body.SimpleBody">SimpleBody (class in lacuna.body)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/building.html#lacuna.building.SingleStorage">SingleStorage (class in lacuna.building)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="tle_modules/buildings/boring/index.html#lacuna.buildings.boring.singularity.singularity">singularity (class in lacuna.buildings.boring.singularity)</a>
   </dt>
@@ -3929,10 +3963,6 @@
 
       
   <dt><a href="tle_modules/stats.html#lacuna.stats.Stats.spy_rank">spy_rank() (lacuna.stats.Stats method)</a>
-  </dt>
-
-      
-  <dt><a href="tle_modules/empire.html#lacuna.empire.MyEmpire.spy_training_boost">spy_training_boost() (lacuna.empire.MyEmpire method)</a>
   </dt>
 
       
@@ -4120,6 +4150,30 @@
   </dt>
 
       
+  <dt><a href="tests/assign_spies.html#lacuna.test.test_assign_spies.TestAssignSpies">TestAssignSpies (class in lacuna.test.test_assign_spies)</a>
+  </dt>
+
+      
+  <dt><a href="tests/send_excavs.html#lacuna.test.test_send_excavs.TestBodyCache">TestBodyCache (class in lacuna.test.test_send_excavs)</a>
+  </dt>
+
+      
+  <dt><a href="tests/send_excavs.html#lacuna.test.test_send_excavs.TestCell">TestCell (class in lacuna.test.test_send_excavs)</a>
+  </dt>
+
+      
+  <dt><a href="tests/excavs_report.html#lacuna.test.test_excavs_report.TestExcavsReport">TestExcavsReport (class in lacuna.test.test_excavs_report)</a>
+  </dt>
+
+      
+  <dt><a href="tests/send_excavs.html#lacuna.test.test_send_excavs.TestPoint">TestPoint (class in lacuna.test.test_send_excavs)</a>
+  </dt>
+
+      
+  <dt><a href="tests/send_excavs.html#lacuna.test.test_send_excavs.TestSendExcavs">TestSendExcavs (class in lacuna.test.test_send_excavs)</a>
+  </dt>
+
+      
   <dt><a href="tle_modules/buildings/permanent/thedillonforge.html#lacuna.buildings.permanent.thedillonforge.thedillonforge">thedillonforge (class in lacuna.buildings.permanent.thedillonforge)</a>
   </dt>
 
@@ -4140,6 +4194,10 @@
   </dt>
 
       
+  <dt><a href="tle_modules/empire.html#lacuna.empire.Species.to_dict">to_dict() (lacuna.empire.Species method)</a>
+  </dt>
+
+      
   <dt><a href="exceptions.html#lacuna.exceptions.TopoffError">TopoffError</a>
   </dt>
 
@@ -4151,6 +4209,8 @@
   <dt><a href="ship.html#lacuna.ship.TradeableShip">TradeableShip (class in lacuna.ship)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="trading.html#lacuna.trading.TradeBldg">TradeBldg (class in lacuna.trading)</a>
   </dt>
@@ -4163,8 +4223,6 @@
   <dt><a href="tle_modules/buildings/callable/intelligence.html#lacuna.buildings.callable.intelligence.intelligence.train_spy">train_spy() (lacuna.buildings.callable.intelligence.intelligence method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="spy.html#lacuna.spy.TrainingCosts">TrainingCosts (class in lacuna.spy)</a>
   </dt>
@@ -4670,11 +4728,12 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

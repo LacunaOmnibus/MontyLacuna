@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,17 +178,17 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="module-lacuna.plan">
 <span id="plan"></span><h1>plan<a class="headerlink" href="#module-lacuna.plan" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="lacuna.plan.LevelCosts">
-<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">LevelCosts</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.plan.LevelCosts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></tt></a></p>
-<p>Not a plan at all, but the costs associated with creating a plan at your 
+<em class="property">class </em><code class="descclassname">lacuna.plan.</code><code class="descname">LevelCosts</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.plan.LevelCosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><code class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></code></a></p>
+<p>Not a plan at all, but the costs associated with creating a plan at your
 SS Lab.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>level   1,
 food    10000
 ore     10000
@@ -188,10 +202,10 @@ time    1200 (in seconds)
 
 <dl class="class">
 <dt id="lacuna.plan.OwnedPlan">
-<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">OwnedPlan</tt><big>(</big><em>client</em>, <em>mydict</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.plan.OwnedPlan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.plan.</code><code class="descname">OwnedPlan</code><span class="sig-paren">(</span><em>client</em>, <em>mydict</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.plan.OwnedPlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><code class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></code></a></p>
 <p>Returned from viewing plans you currently own, as in your PCC.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>name                &quot;Volcano&quot;
 plan_type           &quot;Permanent_Volcano&quot;
 level               1
@@ -199,26 +213,26 @@ extra_build_level   5
 quantity            23
 </pre></div>
 </div>
-<p>plan_type is what needs to be sent to 
-<a class="reference internal" href="tle_modules/buildings/callable/trade.html#lacuna.buildings.callable.trade.trade.add_to_market" title="lacuna.buildings.callable.trade.trade.add_to_market"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.buildings.callable.trade.trade.add_to_market()</span></tt></a> or 
-<a class="reference internal" href="tle_modules/buildings/callable/transporter.html#lacuna.buildings.callable.transporter.transporter.add_to_market" title="lacuna.buildings.callable.transporter.transporter.add_to_market"><tt class="xref py py-meth docutils literal"><span class="pre">lacuna.buildings.callable.transporter.transporter.add_to_market()</span></tt></a> to 
+<p>plan_type is what needs to be sent to
+<a class="reference internal" href="tle_modules/buildings/callable/trade.html#lacuna.buildings.callable.trade.trade.add_to_market" title="lacuna.buildings.callable.trade.trade.add_to_market"><code class="xref py py-meth docutils literal"><span class="pre">lacuna.buildings.callable.trade.trade.add_to_market()</span></code></a> or
+<a class="reference internal" href="tle_modules/buildings/callable/transporter.html#lacuna.buildings.callable.transporter.transporter.add_to_market" title="lacuna.buildings.callable.transporter.transporter.add_to_market"><code class="xref py py-meth docutils literal"><span class="pre">lacuna.buildings.callable.transporter.transporter.add_to_market()</span></code></a> to
 trade the plan.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.plan.Plan">
-<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">Plan</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.plan.Plan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.plan.</code><code class="descname">Plan</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.plan.Plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>Plan base class</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.plan.PotentialSSPlan">
-<em class="property">class </em><tt class="descclassname">lacuna.plan.</tt><tt class="descname">PotentialSSPlan</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.plan.PotentialSSPlan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.plan.</code><code class="descname">PotentialSSPlan</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.plan.PotentialSSPlan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.plan.Plan" title="lacuna.plan.Plan"><code class="xref py py-class docutils literal"><span class="pre">lacuna.plan.Plan</span></code></a></p>
 <p>Returned from viewing plans you can build, as in your Space Station Lab
 (A).</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>name                &quot;Interstellar Broadcast System&quot;
 type                &quot;ibs&quot;
 image               &quot;ibs&quot;
@@ -235,7 +249,7 @@ url                 &quot;/ibs&quot;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="recycling.html" class="btn btn-neutral float-right" title="recycling"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="recycling.html" class="btn btn-neutral float-right" title="recycling">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="my_validate_email.html" class="btn btn-neutral" title="my_validate_email"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -247,11 +261,12 @@ url                 &quot;/ibs&quot;
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

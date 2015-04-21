@@ -27,8 +27,8 @@ how to run the various available scripts.  You can ignore everything else.
    scripts/index
    config_file
    getting_started_writing
-
    tle_modules/index
+   tests/index
 
    bc
    caching

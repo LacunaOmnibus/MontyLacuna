@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -46,9 +48,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -58,8 +63,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-python-3">Install Python 3</a></li>
@@ -80,12 +86,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -98,6 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -134,6 +147,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -164,7 +178,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="getting-started-running-scripts">
 <span id="getting-started-running"></span><h1>Getting Started Running Scripts<a class="headerlink" href="#getting-started-running-scripts" title="Permalink to this headline">¶</a></h1>
@@ -175,14 +189,14 @@ similar to the steps necessary to setting up the standard Lacuna scripts
 written in Perl.</p>
 <ul class="simple">
 <li>Install Python 3<ul>
-<li><a class="reference internal" href="#inst-python-windows"><em>Windows</em></a></li>
-<li><a class="reference internal" href="#inst-python-nonwindows"><em>Non-Windows</em></a></li>
+<li><a class="reference internal" href="#inst-python-windows"><span>Windows</span></a></li>
+<li><a class="reference internal" href="#inst-python-nonwindows"><span>Non-Windows</span></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#inst-monty"><em>Install MontyLacuna</em></a></li>
-<li><a class="reference internal" href="#inst-pip"><em>Install pip and Prerequisite Libraries</em></a></li>
-<li><a class="reference internal" href="#create-config-file"><em>Create A Config File</em></a></li>
-<li><a class="reference internal" href="#run-test-script"><em>Ready to Test</em></a></li>
+<li><a class="reference internal" href="#inst-monty"><span>Install MontyLacuna</span></a></li>
+<li><a class="reference internal" href="#inst-pip"><span>Install pip and Prerequisite Libraries</span></a></li>
+<li><a class="reference internal" href="#create-config-file"><span>Create A Config File</span></a></li>
+<li><a class="reference internal" href="#run-test-script"><span>Ready to Test</span></a></li>
 </ul>
 </div>
 <div class="section" id="install-python-3">
@@ -202,7 +216,7 @@ should look like this:</p>
 <blockquote>
 <div><img alt="as_python_fixed" src="images/as_python_fixed.png" /></div></blockquote>
 <p>From here on, just click the Next button until the installer completes.</p>
-<p>After the installer is complete, open up a new <tt class="docutils literal"><span class="pre">CMD</span></tt> window (if you already
+<p>After the installer is complete, open up a new <code class="docutils literal"><span class="pre">CMD</span></code> window (if you already
 had one open, close it and open a new one) and type:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">python</span> <span class="o">--</span><span class="n">version</span>
 </pre></div>
@@ -212,7 +226,7 @@ had one open, close it and open a new one) and type:</p>
 </pre></div>
 </div>
 <p>If that&#8217;s what you see, then Python has been installed successfully.  If
-that&#8217;s not what you see, then see the <a class="reference internal" href="troubleshooting/python_install.html#troubleshoot-python-install"><em>Troubleshooting Python Install</em></a> docs.</p>
+that&#8217;s not what you see, then see the <a class="reference internal" href="troubleshooting/python_install.html#troubleshoot-python-install"><span>Troubleshooting Python Install</span></a> docs.</p>
 </div>
 <div class="section" id="non-windows">
 <span id="inst-python-nonwindows"></span><h3>Non-Windows<a class="headerlink" href="#non-windows" title="Permalink to this headline">¶</a></h3>
@@ -220,6 +234,11 @@ that&#8217;s not what you see, then see the <a class="reference internal" href="
 sure that you&#8217;ve got Python 3.  Many systems come with Python 2, not 3, and
 MontyLacuna will not work with Python 2.  Python 3 should be available via
 your package manager.</p>
+<p>If you do already have python installed on your system, and it&#8217;s version 2,
+then when you install python version 3, it will probably install the language
+as <code class="docutils literal"><span class="pre">python3</span></code>, not just <code class="docutils literal"><span class="pre">python</span></code>.  If that&#8217;s the case, you&#8217;re going to need
+to actually type <code class="docutils literal"><span class="pre">python3</span></code> anywhere the instructions below tell you to type
+<code class="docutils literal"><span class="pre">python</span></code>.</p>
 </div>
 </div>
 <div class="section" id="install-montylacuna">
@@ -248,38 +267,42 @@ file.</p>
 </table>
 </div></blockquote>
 <ul class="simple">
-<li>Open the <tt class="docutils literal"><span class="pre">zip</span></tt> file using whatever unzip tool you like.  It contains just
-one folder, named something like <tt class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></tt>.  Drag
-that out to <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt> on your computer.<ul>
+<li>Open the <code class="docutils literal"><span class="pre">zip</span></code> file using whatever unzip tool you like.  It contains just
+one folder, named something like <code class="docutils literal"><span class="pre">tmtowtdi-MontyLacuna-1234abc</span></code>.  Drag
+that out to <code class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></code> on your computer.<ul>
 <li>On Windows, you don&#8217;t need to go download an unzip tool.  Double-click on
 the .zip file after you&#8217;ve downloaded it, and Windows will open it up like
 it&#8217;s a regular folder.</li>
 </ul>
 </li>
-<li>After dragging that oddly-named folder into <tt class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></tt>, rename it to
-simply <tt class="docutils literal"><span class="pre">MontyLacuna</span></tt>.</li>
+<li>After dragging that oddly-named folder into <code class="docutils literal"><span class="pre">My</span> <span class="pre">Documents</span></code>, rename it to
+simply <code class="docutils literal"><span class="pre">MontyLacuna</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="install-pip-and-prerequisite-libraries">
 <span id="inst-pip"></span><h2>Install pip and Prerequisite Libraries<a class="headerlink" href="#install-pip-and-prerequisite-libraries" title="Permalink to this headline">¶</a></h2>
 <p>pip is a tool for installing Python libraries.  Installing pip is very easy,
 as MontyLacuna includes a script to install it for you.</p>
-<p>Open up a terminal window (on Windows, this means <tt class="docutils literal"><span class="pre">CMD.exe</span></tt>).  Change into
+<p>Open up a terminal window (on Windows, this means <code class="docutils literal"><span class="pre">CMD.exe</span></code>).  Change into
 the root MontyLacuna folder -  the one you just extracted in the previous step
 - and run the pip installer script:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">get</span><span class="o">-</span><span class="n">pip</span><span class="o">.</span><span class="n">py</span>
+<span class="go">(remember to actually type &#39;python3&#39; instead of &#39;python&#39; if you&#39;re on a</span>
+<span class="go">Linux or Mac machine that already had python version 2 installed).</span>
 </pre></div>
 </div>
-<p><tt class="docutils literal"><span class="pre">pip</span></tt> is now installed.</p>
-<p>There are only two Python libraries to install, <tt class="docutils literal"><span class="pre">requests</span></tt> and <tt class="docutils literal"><span class="pre">beaker</span></tt>,
-and you install both of them using <tt class="docutils literal"><span class="pre">pip</span></tt> by typing these two commands one at
+<p><code class="docutils literal"><span class="pre">pip</span></code> is now installed.</p>
+<p><strong>On a Mac</strong>, pip did get installed, but it was named <code class="docutils literal"><span class="pre">pip3</span></code>.  So actually
+type <code class="docutils literal"><span class="pre">pip3</span></code> instead of <code class="docutils literal"><span class="pre">pip</span></code> for the module installs below.</p>
+<p>There are only two Python libraries to install, <code class="docutils literal"><span class="pre">requests</span></code> and <code class="docutils literal"><span class="pre">beaker</span></code>,
+and you install both of them using <code class="docutils literal"><span class="pre">pip</span></code> by typing these two commands one at
 a time:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pip</span> <span class="n">install</span> <span class="n">requests</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pip</span> <span class="n">install</span> <span class="n">beaker</span>
 </pre></div>
 </div>
-<p>If either of those <tt class="docutils literal"><span class="pre">pip</span></tt> commands produced errors, see the
-<a class="reference internal" href="troubleshooting/pip_install.html#troubleshoot-pip-install"><em>Troubleshooting Pip Install</em></a> docs.</p>
+<p>If either of those <code class="docutils literal"><span class="pre">pip</span></code> commands produced errors, see the
+<a class="reference internal" href="troubleshooting/pip_install.html#troubleshoot-pip-install"><span>Troubleshooting Pip Install</span></a> docs.</p>
 <p>After pip and the prerequisite libraries are installed, leave that CMD window
 open for the next step.</p>
 </div>
@@ -302,13 +325,13 @@ watching over your shoulder from seeing your password.</p>
 <div class="section" id="ready-to-test">
 <span id="run-test-script"></span><h2>Ready to Test<a class="headerlink" href="#ready-to-test" title="Permalink to this headline">¶</a></h2>
 <p>At this point, you should be set to run any of the available scripts in the
-<tt class="docutils literal"><span class="pre">bin/</span></tt> directory.  There&#8217;s a test script that will show you a few details
+<code class="docutils literal"><span class="pre">bin/</span></code> directory.  There&#8217;s a test script that will show you a few details
 about your empire, and requires no arguments.  Try it out by typing:</p>
 <div class="highlight-python"><div class="highlight"><pre>python bin/test_script.py
 </pre></div>
 </div>
 <p>If that tells you &#8220;Congratulations&#8221;, you&#8217;re all set.  Now you can move on to
-running whatever <a class="reference internal" href="scripts/index.html#scripts-index"><em>MontyLacuna Scripts</em></a> you want.</p>
+running whatever <a class="reference internal" href="scripts/index.html#scripts-index"><span>MontyLacuna Scripts</span></a> you want.</p>
 </div>
 </div>
 
@@ -318,7 +341,7 @@ running whatever <a class="reference internal" href="scripts/index.html#scripts-
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="scripts/index.html" class="btn btn-neutral float-right" title="MontyLacuna Scripts"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="scripts/index.html" class="btn btn-neutral float-right" title="MontyLacuna Scripts">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="MontyLacuna Documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -330,11 +353,12 @@ running whatever <a class="reference internal" href="scripts/index.html#scripts-
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

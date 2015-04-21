@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+        
+          <a href="../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -167,20 +181,20 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="building">
 <h1>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h1>
 <p>The various building modules all inherit from either the
-<a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> or, more often,
-<a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a> classes.</p>
-<p>Each individual building module has a variable named <tt class="docutils literal"><span class="pre">path</span></tt>.  That variable
+<a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></code></a> or, more often,
+<a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a> classes.</p>
+<p>Each individual building module has a variable named <code class="docutils literal"><span class="pre">path</span></code>.  That variable
 is going to show up in the documentation for most of those buildings.  It&#8217;s
 been documented in one or two, but not all, and the documentation will always
 be more or less the same:</p>
 <blockquote>
-<div><tt class="docutils literal"><span class="pre">This</span> <span class="pre">variable</span> <span class="pre">determines</span> <span class="pre">which</span> <span class="pre">TLE</span> <span class="pre">module</span> <span class="pre">gets</span> <span class="pre">accessed</span> <span class="pre">by</span> <span class="pre">this</span>
-<span class="pre">MontyLacuna</span> <span class="pre">module.</span>&nbsp; <span class="pre">Don't</span> <span class="pre">change</span> <span class="pre">it.</span></tt></div></blockquote>
+<div><code class="docutils literal"><span class="pre">This</span> <span class="pre">variable</span> <span class="pre">determines</span> <span class="pre">which</span> <span class="pre">TLE</span> <span class="pre">module</span> <span class="pre">gets</span> <span class="pre">accessed</span> <span class="pre">by</span> <span class="pre">this</span>
+<span class="pre">MontyLacuna</span> <span class="pre">module.</span>&nbsp; <span class="pre">Don't</span> <span class="pre">change</span> <span class="pre">it.</span></code></div></blockquote>
 <p>Here and there you&#8217;ll encounter methods that state that they require a captcha
 be filled out.  As long as you&#8217;re working on some sort of command-line script,
 the captcha will be displayed to the user and handled automatically &#8211; you
@@ -198,25 +212,25 @@ won&#8217;t need to do anything in your code to handle the captchas yourself.</p
 </div>
 <span class="target" id="module-lacuna.building"></span><dl class="class">
 <dt id="lacuna.building.Building">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">Building</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.Building" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
-<p>Base class representing generic buildings. A “generic building” is 
-usually one that’s handed back to you from the server as a dict, often in 
-a list of dicts, from such things as checking on the Development 
+<em class="property">class </em><code class="descclassname">lacuna.building.</code><code class="descname">Building</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.Building" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
+<p>Base class representing generic buildings. A “generic building” is
+usually one that’s handed back to you from the server as a dict, often in
+a list of dicts, from such things as checking on the Development
 Ministry’s build queue via its view() method.</p>
-<p>A <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> object will probably, but not 
-necessarily, have a building ID, and may or may not belong to the current 
+<p>A <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></code></a> object will probably, but not
+necessarily, have a building ID, and may or may not belong to the current
 empire.</p>
-<p>Most buildings you deal with will be <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a> 
-objects, not <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a> objects.</p>
+<p>Most buildings you deal with will be <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a>
+objects, not <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></code></a> objects.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.building.InBuildQueue">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">InBuildQueue</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.building.</code><code class="descname">InBuildQueue</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.InBuildQueue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.building.Building" title="lacuna.building.Building"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.Building</span></code></a></p>
 <p>A building in the Development Ministry&#8217;s build queue.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id                  &quot;building-id-goes-here&quot;,
 name                &quot;Planetary Commmand&quot;,
 to_level            8,
@@ -230,34 +244,38 @@ subsidy_cost        3 # the essentia cost to subsidize just this building
 
 <dl class="class">
 <dt id="lacuna.building.MultiStorage">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MultiStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MultiStorage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
-<p>Base class for the storage buildings that store a variegated resource 
+<em class="property">class </em><code class="descclassname">lacuna.building.</code><code class="descname">MultiStorage</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MultiStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
+<p>Base class for the storage buildings that store a variegated resource
 type, ie food and ore.</p>
 <dl class="method">
 <dt id="lacuna.building.MultiStorage.dump">
-<tt class="descname">dump</tt><big>(</big><em>res_type: str</em>, <em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MultiStorage.dump" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dump</code><span class="sig-paren">(</span><em>res_type: str</em>, <em>amount: int=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MultiStorage.dump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the stored resource into waste.</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>res_type &#8211; Required string.  The name of the specific type of res
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>res_type</strong> (<em>str</em>) &#8211; The name of the specific type of res
 to dump (&#8216;anthracite&#8217;, &#8216;bauxite&#8217;, &#8216;algae&#8217;, &#8216;apple&#8217;, etc )</li>
-<li>amount &#8211; Required integer.  The amount of res to dump.</li>
+<li><strong>amount</strong> (<em>int</em>) &#8211; The amount of res to dump.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.building.MyBuilding">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">MyBuilding</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></tt></a></p>
-<p>Represents a building owned by your empire.  Most building objects 
+<em class="property">class </em><code class="descclassname">lacuna.building.</code><code class="descname">MyBuilding</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.LacunaObject" title="lacuna.bc.LacunaObject"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.LacunaObject</span></code></a></p>
+<p>Represents a building owned by your empire.  Most building objects
 you encounter will inherit from MyBuilding.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>id              Integer ID of the building itself
 body_id         Integer ID of the body this building is sitting on,
 name            &quot;Apple Orchard&quot;,
@@ -272,68 +290,68 @@ work            lacuna.building.Working object
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="#lacuna.building.Working" title="lacuna.building.Working"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.Working</span></tt></a></li>
+<li><a class="reference internal" href="#lacuna.building.Working" title="lacuna.building.Working"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.Working</span></code></a> (link provided for convenience)</li>
 </ul>
-<p>MontyLacuna attempts to provide method calls that mirror all of the method 
-calls documented by the TLE API.  However, MyBuilding had to violate that 
+<p>MontyLacuna attempts to provide method calls that mirror all of the method
+calls documented by the TLE API.  However, MyBuilding had to violate that
 for two methods:</p>
 <blockquote>
 <div><ul class="simple">
-<li><tt class="docutils literal"><span class="pre">do_upgrade()</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">do_downgrade()</span></tt></li>
+<li><code class="docutils literal"><span class="pre">do_upgrade()</span></code></li>
+<li><code class="docutils literal"><span class="pre">do_downgrade()</span></code></li>
 </ul>
-<p>The published (server) method names for these are <tt class="docutils literal"><span class="pre">upgrade()</span></tt> and 
-<tt class="docutils literal"><span class="pre">downgrade()</span></tt>.  However, we&#8217;ve got status attributes by those names, 
+<p>The published (server) method names for these are <code class="docutils literal"><span class="pre">upgrade()</span></code> and
+<code class="docutils literal"><span class="pre">downgrade()</span></code>.  However, we&#8217;ve got status attributes by those names,
 and attributes overwrite methods of the same name.
-So these have been renamed, adding the <tt class="docutils literal"><span class="pre">do_</span></tt> prefix to avoid attribute 
+So these have been renamed, adding the <code class="docutils literal"><span class="pre">do_</span></code> prefix to avoid attribute
 name collisions.</p>
 </div></blockquote>
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.build">
-<tt class="descname">build</tt><big>(</big><em>x: int</em>, <em>y: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.build" title="Permalink to this definition">¶</a></dt>
-<dd><p>Actually places a building on the requested coords, assuming the 
+<code class="descname">build</code><span class="sig-paren">(</span><em>x: int</em>, <em>y: int</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actually places a building on the requested coords, assuming the
 building is buildable, the coords are empty, and a plot is available.</p>
-<p>After calling <tt class="docutils literal"><span class="pre">build()</span></tt>, your &#8220;new building&#8221; object will be be an 
-&#8220;existing building&#8221; object, capable of calling the rest of the building 
+<p>After calling <code class="docutils literal"><span class="pre">build()</span></code>, your &#8220;new building&#8221; object will be be an
+&#8220;existing building&#8221; object, capable of calling the rest of the building
 methods.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_building_meth">
-<tt class="descname">call_building_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_building_meth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">call_building_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.call_building_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Calls a server method that requires a building id, but no body_id.
 This is the decorator that most MyBuilding methods will use.
-Methods using this decorator get the original server result handed 
+Methods using this decorator get the original server result handed
 back to them in kwargs[&#8216;rslt&#8217;].</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_naked_meth">
-<tt class="descname">call_naked_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_meth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">call_naked_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
-Some building methods require neither a body_id nor a id (see 
+Some building methods require neither a body_id nor a id (see
 spaceport.py for examples).
-Methods using this decorator get the original server result handed 
+Methods using this decorator get the original server result handed
 back to them in kwargs[&#8216;rslt&#8217;].</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_naked_returning_meth">
-<tt class="descname">call_naked_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_returning_meth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">call_naked_returning_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.call_naked_returning_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Calls a server method that does not require building id or body_id.
-Rather than simply passing back the data returned from the TLE server, 
+Rather than simply passing back the data returned from the TLE server,
 returns the value from the originally-called method.</p>
-<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
-using this, there&#8217;s no need to decorate with 
+<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re
+using this, there&#8217;s no need to decorate with
 &#64;lacuna.bc.LacunaObject.set_empire_status (and doing so will fail).</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_named_meth">
-<tt class="descname">call_named_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
+<code class="descname">call_named_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
 Calls a server method that requires a id, but no body_id.
 Expects named arguments.  This is the &#8216;new&#8217; way of doing it, but there are
 fairly few methods that work this way.  See generate_singularity()</p>
@@ -341,73 +359,73 @@ fairly few methods that work this way.  See generate_singularity()</p>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_named_returning_meth">
-<tt class="descname">call_named_returning_meth</tt><big>(</big><em>func</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_returning_meth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decorator.  
+<code class="descname">call_named_returning_meth</code><span class="sig-paren">(</span><em>func</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.call_named_returning_meth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator.
 Calls a server method that requires a session_id, but not a body_id.</p>
-<p>Expects named arguments, and returns the value from the locally-called 
+<p>Expects named arguments, and returns the value from the locally-called
 method rather than the dict returned from the TLE server.</p>
-<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re 
-using this, there&#8217;s no need to decorate with 
+<p>Updates the empire status based on the TLE-returned data, so if you&#8217;re
+using this, there&#8217;s no need to decorate with
 &#64;lacuna.bc.LacunaObject.set_empire_status (and doing so will fail).</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.call_returning_meth">
-<tt class="descname">call_returning_meth</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.call_returning_meth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">call_returning_meth</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.call_returning_meth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
 Calls a server method that requires a building id, but no body_id.
-Rather than simply passing back the data returned from the TLE server, 
+Rather than simply passing back the data returned from the TLE server,
 returns the value from the originally-called method.</p>
-<p>Updates the empire status based on the TLE-returned data, as well as 
+<p>Updates the empire status based on the TLE-returned data, as well as
 the building status if it was included.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.do_upgrade">
-<tt class="descname">do_upgrade</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.do_upgrade" title="Permalink to this definition">¶</a></dt>
+<code class="descname">do_upgrade</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.do_upgrade" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the current building to the build queue.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.get_stats_for_level">
-<tt class="descname">get_stats_for_level</tt><big>(</big><em>level: int</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.get_stats_for_level" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get what the stats for this building would be at the requested 
+<code class="descname">get_stats_for_level</code><span class="sig-paren">(</span><em>level: int</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.get_stats_for_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get what the stats for this building would be at the requested
 level.</p>
-<p>Returns a dict including the key <tt class="docutils literal"><span class="pre">building</span></tt>, which contains the
+<p>Returns a dict including the key <code class="docutils literal"><span class="pre">building</span></code>, which contains the
 hypothetical stats.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.repair">
-<tt class="descname">repair</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.repair" title="Permalink to this definition">¶</a></dt>
+<code class="descname">repair</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.repair" title="Permalink to this definition">¶</a></dt>
 <dd><p>Repairs a building, provided you have enough resources onsite.
 See the repair_costs building attribute before calling
-<tt class="docutils literal"><span class="pre">repair()</span></tt> to determine how much res the repair will take.</p>
+<code class="docutils literal"><span class="pre">repair()</span></code> to determine how much res the repair will take.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.require_existing">
-<tt class="descname">require_existing</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.require_existing" title="Permalink to this definition">¶</a></dt>
+<code class="descname">require_existing</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.require_existing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
-Many building methods only make sense to be called on a building that 
+Many building methods only make sense to be called on a building that
 actually already exists.  Add this decorator to those methods.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.set_building_status">
-<tt class="descname">set_building_status</tt><big>(</big><em>func</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.set_building_status" title="Permalink to this definition">¶</a></dt>
+<code class="descname">set_building_status</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.set_building_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorator.
-Much like lacuna.bc.LacunaObject.set_empire_status.  A few of the Building server 
-methods return both empire status and building status.  So we&#8217;ll still 
-decorate with lacuna.bc.LacunaObject.set_empire_status to get the empire status, 
+Much like lacuna.bc.LacunaObject.set_empire_status.  A few of the Building server
+methods return both empire status and building status.  So we&#8217;ll still
+decorate with lacuna.bc.LacunaObject.set_empire_status to get the empire status,
 but we&#8217;ll also decorate with this to set the body status.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.building.MyBuilding.view">
-<tt class="descname">view</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.MyBuilding.view" title="Permalink to this definition">¶</a></dt>
-<dd><p>You should almost never call this method on a building.  Each 
-building already has all of the building-specific attributes returned 
+<code class="descname">view</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.MyBuilding.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>You should almost never call this method on a building.  Each
+building already has all of the building-specific attributes returned
 by a call to view() set as attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">some_bldg</span> <span class="o">=</span> <span class="n">my_station</span><span class="o">.</span><span class="n">get_buildings_bytype</span><span class="p">(</span> <span class="s">&#39;bldg_type&#39;</span> <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span> <span class="n">some_bldg</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
@@ -422,33 +440,34 @@ by a call to view() set as attributes:</p>
 
 <dl class="class">
 <dt id="lacuna.building.SingleStorage">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">SingleStorage</tt><big>(</big><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.building.SingleStorage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
-<p>Base class for the storage buildings that store a singular resource 
+<em class="property">class </em><code class="descclassname">lacuna.building.</code><code class="descname">SingleStorage</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int</em>, <em>id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.SingleStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
+<p>Base class for the storage buildings that store a singular resource
 type, ie water and energy.</p>
 <dl class="method">
 <dt id="lacuna.building.SingleStorage.dump">
-<tt class="descname">dump</tt><big>(</big><em>amount: int=0</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lacuna.building.SingleStorage.dump" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dump</code><span class="sig-paren">(</span><em>amount: int=0</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.SingleStorage.dump" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the stored resource into waste</p>
-<dl class="docutils">
-<dt>Arguments:</dt>
-<dd><ul class="first last simple">
-<li>amount &#8211; Required integer.  The amount of res to dump.</li>
-</ul>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>amount</strong> (<em>int</em>) &#8211; The amount of res to dump.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="lacuna.building.Working">
-<em class="property">class </em><tt class="descclassname">lacuna.building.</tt><tt class="descname">Working</tt><big>(</big><em>client</em>, <em>mydict: dict</em><big>)</big><a class="headerlink" href="#lacuna.building.Working" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.building.</code><code class="descname">Working</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.building.Working" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>The work being done, actually or potentially, by a building.</p>
-<p>Attributes:</p>
+<p>Object Attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre>seconds     430,
-seconds_el  lacuna.bc.ElaspsedTime object representing the value in 
+seconds_el  lacuna.bc.ElaspsedTime object representing the value in
             seconds.
 start       &quot;01 31 2010 13:09:05 +0600&quot;
 start_dt    datetime.datetime object representing the value in start.
@@ -457,7 +476,7 @@ end_dt      datetime.datetime object representing the value in end.
 </pre></div>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="../bc.html#lacuna.bc.ElapsedTime" title="lacuna.bc.ElapsedTime"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.bc.ElapsedTime</span></tt></a></li>
+<li><a class="reference internal" href="../bc.html#lacuna.bc.ElapsedTime" title="lacuna.bc.ElapsedTime"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.ElapsedTime</span></code></a></li>
 <li><a class="reference external" href="https://docs.python.org/3.4/library/datetime.html">datetime.datetime</a></li>
 </ul>
 </dd></dl>
@@ -470,7 +489,7 @@ end_dt      datetime.datetime object representing the value in end.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="buildings/beach/index.html" class="btn btn-neutral float-right" title="Beach Modules"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="buildings/beach/index.html" class="btn btn-neutral float-right" title="Beach Modules">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="body.html" class="btn btn-neutral" title="Body"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -482,11 +501,12 @@ end_dt      datetime.datetime object representing the value in end.
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

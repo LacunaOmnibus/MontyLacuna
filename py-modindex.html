@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+        
+          <a href="index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul>
+          
+          
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tle_modules/stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -163,7 +177,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
 
    <h1>Python Module Index</h1>
@@ -181,887 +195,887 @@
        <td><img src="static/minus.png" class="toggler"
               id="toggle-1" style="display: none" alt="-" /></td>
        <td>
-       <tt class="xref">lacuna</tt></td><td>
+       <code class="xref">lacuna</code></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/alliance.html#module-lacuna.alliance"><tt class="xref">lacuna.alliance</tt></a></td><td>
+       <a href="tle_modules/alliance.html#module-lacuna.alliance"><code class="xref">lacuna.alliance</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="bc.html#module-lacuna.bc"><tt class="xref">lacuna.bc</tt></a></td><td>
+       <a href="bc.html#module-lacuna.bc"><code class="xref">lacuna.bc</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="getting_started_writing.html#module-lacuna.binutils.libbin"><tt class="xref">lacuna.binutils.libbin</tt></a></td><td>
+       <a href="getting_started_writing.html#module-lacuna.binutils.libbin"><code class="xref">lacuna.binutils.libbin</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/body.html#module-lacuna.body"><tt class="xref">lacuna.body</tt></a></td><td>
+       <a href="tle_modules/body.html#module-lacuna.body"><code class="xref">lacuna.body</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/building.html#module-lacuna.building"><tt class="xref">lacuna.building</tt></a></td><td>
+       <a href="tle_modules/building.html#module-lacuna.building"><code class="xref">lacuna.building</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach1"><tt class="xref">lacuna.buildings.beach.beach1</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach1"><code class="xref">lacuna.buildings.beach.beach1</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach10"><tt class="xref">lacuna.buildings.beach.beach10</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach10"><code class="xref">lacuna.buildings.beach.beach10</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach11"><tt class="xref">lacuna.buildings.beach.beach11</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach11"><code class="xref">lacuna.buildings.beach.beach11</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach12"><tt class="xref">lacuna.buildings.beach.beach12</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach12"><code class="xref">lacuna.buildings.beach.beach12</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach13"><tt class="xref">lacuna.buildings.beach.beach13</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach13"><code class="xref">lacuna.buildings.beach.beach13</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach2"><tt class="xref">lacuna.buildings.beach.beach2</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach2"><code class="xref">lacuna.buildings.beach.beach2</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach3"><tt class="xref">lacuna.buildings.beach.beach3</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach3"><code class="xref">lacuna.buildings.beach.beach3</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach4"><tt class="xref">lacuna.buildings.beach.beach4</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach4"><code class="xref">lacuna.buildings.beach.beach4</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach5"><tt class="xref">lacuna.buildings.beach.beach5</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach5"><code class="xref">lacuna.buildings.beach.beach5</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach6"><tt class="xref">lacuna.buildings.beach.beach6</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach6"><code class="xref">lacuna.buildings.beach.beach6</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach7"><tt class="xref">lacuna.buildings.beach.beach7</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach7"><code class="xref">lacuna.buildings.beach.beach7</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach8"><tt class="xref">lacuna.buildings.beach.beach8</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach8"><code class="xref">lacuna.buildings.beach.beach8</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach9"><tt class="xref">lacuna.buildings.beach.beach9</tt></a></td><td>
+       <a href="tle_modules/buildings/beach/index.html#module-lacuna.buildings.beach.beach9"><code class="xref">lacuna.buildings.beach.beach9</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.algae"><tt class="xref">lacuna.buildings.boring.algae</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.algae"><code class="xref">lacuna.buildings.boring.algae</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.apple"><tt class="xref">lacuna.buildings.boring.apple</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.apple"><code class="xref">lacuna.buildings.boring.apple</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.atmosphericevaporator"><tt class="xref">lacuna.buildings.boring.atmosphericevaporator</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.atmosphericevaporator"><code class="xref">lacuna.buildings.boring.atmosphericevaporator</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.bean"><tt class="xref">lacuna.buildings.boring.bean</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.bean"><code class="xref">lacuna.buildings.boring.bean</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.beeldeban"><tt class="xref">lacuna.buildings.boring.beeldeban</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.beeldeban"><code class="xref">lacuna.buildings.boring.beeldeban</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.bread"><tt class="xref">lacuna.buildings.boring.bread</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.bread"><code class="xref">lacuna.buildings.boring.bread</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.burger"><tt class="xref">lacuna.buildings.boring.burger</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.burger"><code class="xref">lacuna.buildings.boring.burger</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cheese"><tt class="xref">lacuna.buildings.boring.cheese</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cheese"><code class="xref">lacuna.buildings.boring.cheese</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.chip"><tt class="xref">lacuna.buildings.boring.chip</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.chip"><code class="xref">lacuna.buildings.boring.chip</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cider"><tt class="xref">lacuna.buildings.boring.cider</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cider"><code class="xref">lacuna.buildings.boring.cider</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cloakinglab"><tt class="xref">lacuna.buildings.boring.cloakinglab</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cloakinglab"><code class="xref">lacuna.buildings.boring.cloakinglab</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.corn"><tt class="xref">lacuna.buildings.boring.corn</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.corn"><code class="xref">lacuna.buildings.boring.corn</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cornmeal"><tt class="xref">lacuna.buildings.boring.cornmeal</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.cornmeal"><code class="xref">lacuna.buildings.boring.cornmeal</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.crater"><tt class="xref">lacuna.buildings.boring.crater</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.crater"><code class="xref">lacuna.buildings.boring.crater</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.dairy"><tt class="xref">lacuna.buildings.boring.dairy</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.dairy"><code class="xref">lacuna.buildings.boring.dairy</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.denton"><tt class="xref">lacuna.buildings.boring.denton</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.denton"><code class="xref">lacuna.buildings.boring.denton</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.deployedbleeder"><tt class="xref">lacuna.buildings.boring.deployedbleeder</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.deployedbleeder"><code class="xref">lacuna.buildings.boring.deployedbleeder</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.energyreserve"><tt class="xref">lacuna.buildings.boring.energyreserve</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.energyreserve"><code class="xref">lacuna.buildings.boring.energyreserve</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.espionage"><tt class="xref">lacuna.buildings.boring.espionage</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.espionage"><code class="xref">lacuna.buildings.boring.espionage</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.fission"><tt class="xref">lacuna.buildings.boring.fission</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.fission"><code class="xref">lacuna.buildings.boring.fission</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.fissure"><tt class="xref">lacuna.buildings.boring.fissure</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.fissure"><code class="xref">lacuna.buildings.boring.fissure</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.foodreserve"><tt class="xref">lacuna.buildings.boring.foodreserve</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.foodreserve"><code class="xref">lacuna.buildings.boring.foodreserve</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.fusion"><tt class="xref">lacuna.buildings.boring.fusion</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.fusion"><code class="xref">lacuna.buildings.boring.fusion</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.gasgiantlab"><tt class="xref">lacuna.buildings.boring.gasgiantlab</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.gasgiantlab"><code class="xref">lacuna.buildings.boring.gasgiantlab</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.gasgiantplatform"><tt class="xref">lacuna.buildings.boring.gasgiantplatform</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.gasgiantplatform"><code class="xref">lacuna.buildings.boring.gasgiantplatform</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.geo"><tt class="xref">lacuna.buildings.boring.geo</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.geo"><code class="xref">lacuna.buildings.boring.geo</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.greatballofjunk"><tt class="xref">lacuna.buildings.boring.greatballofjunk</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.greatballofjunk"><code class="xref">lacuna.buildings.boring.greatballofjunk</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.grove"><tt class="xref">lacuna.buildings.boring.grove</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.grove"><code class="xref">lacuna.buildings.boring.grove</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.hydrocarbon"><tt class="xref">lacuna.buildings.boring.hydrocarbon</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.hydrocarbon"><code class="xref">lacuna.buildings.boring.hydrocarbon</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.junkhengesculpture"><tt class="xref">lacuna.buildings.boring.junkhengesculpture</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.junkhengesculpture"><code class="xref">lacuna.buildings.boring.junkhengesculpture</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.lagoon"><tt class="xref">lacuna.buildings.boring.lagoon</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.lagoon"><code class="xref">lacuna.buildings.boring.lagoon</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.lake"><tt class="xref">lacuna.buildings.boring.lake</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.lake"><code class="xref">lacuna.buildings.boring.lake</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.lapis"><tt class="xref">lacuna.buildings.boring.lapis</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.lapis"><code class="xref">lacuna.buildings.boring.lapis</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.luxuryhousing"><tt class="xref">lacuna.buildings.boring.luxuryhousing</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.luxuryhousing"><code class="xref">lacuna.buildings.boring.luxuryhousing</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.malcud"><tt class="xref">lacuna.buildings.boring.malcud</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.malcud"><code class="xref">lacuna.buildings.boring.malcud</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.metaljunkarches"><tt class="xref">lacuna.buildings.boring.metaljunkarches</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.metaljunkarches"><code class="xref">lacuna.buildings.boring.metaljunkarches</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.mine"><tt class="xref">lacuna.buildings.boring.mine</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.mine"><code class="xref">lacuna.buildings.boring.mine</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.munitionslab"><tt class="xref">lacuna.buildings.boring.munitionslab</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.munitionslab"><code class="xref">lacuna.buildings.boring.munitionslab</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.orerefinery"><tt class="xref">lacuna.buildings.boring.orerefinery</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.orerefinery"><code class="xref">lacuna.buildings.boring.orerefinery</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.orestorage"><tt class="xref">lacuna.buildings.boring.orestorage</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.orestorage"><code class="xref">lacuna.buildings.boring.orestorage</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.oversight"><tt class="xref">lacuna.buildings.boring.oversight</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.oversight"><code class="xref">lacuna.buildings.boring.oversight</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pancake"><tt class="xref">lacuna.buildings.boring.pancake</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pancake"><code class="xref">lacuna.buildings.boring.pancake</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pie"><tt class="xref">lacuna.buildings.boring.pie</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pie"><code class="xref">lacuna.buildings.boring.pie</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pilottraining"><tt class="xref">lacuna.buildings.boring.pilottraining</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pilottraining"><code class="xref">lacuna.buildings.boring.pilottraining</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.potato"><tt class="xref">lacuna.buildings.boring.potato</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.potato"><code class="xref">lacuna.buildings.boring.potato</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.propulsion"><tt class="xref">lacuna.buildings.boring.propulsion</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.propulsion"><code class="xref">lacuna.buildings.boring.propulsion</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pyramidjunksculpture"><tt class="xref">lacuna.buildings.boring.pyramidjunksculpture</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.pyramidjunksculpture"><code class="xref">lacuna.buildings.boring.pyramidjunksculpture</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.ravine"><tt class="xref">lacuna.buildings.boring.ravine</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.ravine"><code class="xref">lacuna.buildings.boring.ravine</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.rockyoutcrop"><tt class="xref">lacuna.buildings.boring.rockyoutcrop</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.rockyoutcrop"><code class="xref">lacuna.buildings.boring.rockyoutcrop</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.sand"><tt class="xref">lacuna.buildings.boring.sand</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.sand"><code class="xref">lacuna.buildings.boring.sand</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.saw"><tt class="xref">lacuna.buildings.boring.saw</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.saw"><code class="xref">lacuna.buildings.boring.saw</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.shake"><tt class="xref">lacuna.buildings.boring.shake</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.shake"><code class="xref">lacuna.buildings.boring.shake</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.singularity"><tt class="xref">lacuna.buildings.boring.singularity</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.singularity"><code class="xref">lacuna.buildings.boring.singularity</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.soup"><tt class="xref">lacuna.buildings.boring.soup</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.soup"><code class="xref">lacuna.buildings.boring.soup</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.spacejunkpark"><tt class="xref">lacuna.buildings.boring.spacejunkpark</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.spacejunkpark"><code class="xref">lacuna.buildings.boring.spacejunkpark</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.sslb"><tt class="xref">lacuna.buildings.boring.sslb</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.sslb"><code class="xref">lacuna.buildings.boring.sslb</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.sslc"><tt class="xref">lacuna.buildings.boring.sslc</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.sslc"><code class="xref">lacuna.buildings.boring.sslc</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.ssld"><tt class="xref">lacuna.buildings.boring.ssld</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.ssld"><code class="xref">lacuna.buildings.boring.ssld</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.stockpile"><tt class="xref">lacuna.buildings.boring.stockpile</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.stockpile"><code class="xref">lacuna.buildings.boring.stockpile</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.supplypod"><tt class="xref">lacuna.buildings.boring.supplypod</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.supplypod"><code class="xref">lacuna.buildings.boring.supplypod</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.syrup"><tt class="xref">lacuna.buildings.boring.syrup</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.syrup"><code class="xref">lacuna.buildings.boring.syrup</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.terraforminglab"><tt class="xref">lacuna.buildings.boring.terraforminglab</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.terraforminglab"><code class="xref">lacuna.buildings.boring.terraforminglab</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.terraformingplatform"><tt class="xref">lacuna.buildings.boring.terraformingplatform</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.terraformingplatform"><code class="xref">lacuna.buildings.boring.terraformingplatform</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.university"><tt class="xref">lacuna.buildings.boring.university</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.university"><code class="xref">lacuna.buildings.boring.university</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wastedigester"><tt class="xref">lacuna.buildings.boring.wastedigester</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wastedigester"><code class="xref">lacuna.buildings.boring.wastedigester</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wasteenergy"><tt class="xref">lacuna.buildings.boring.wasteenergy</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wasteenergy"><code class="xref">lacuna.buildings.boring.wasteenergy</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wasteexchanger"><tt class="xref">lacuna.buildings.boring.wasteexchanger</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wasteexchanger"><code class="xref">lacuna.buildings.boring.wasteexchanger</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wasterecycling"><tt class="xref">lacuna.buildings.boring.wasterecycling</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wasterecycling"><code class="xref">lacuna.buildings.boring.wasterecycling</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wastesequestration"><tt class="xref">lacuna.buildings.boring.wastesequestration</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wastesequestration"><code class="xref">lacuna.buildings.boring.wastesequestration</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wastetreatment"><tt class="xref">lacuna.buildings.boring.wastetreatment</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wastetreatment"><code class="xref">lacuna.buildings.boring.wastetreatment</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterproduction"><tt class="xref">lacuna.buildings.boring.waterproduction</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterproduction"><code class="xref">lacuna.buildings.boring.waterproduction</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterpurification"><tt class="xref">lacuna.buildings.boring.waterpurification</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterpurification"><code class="xref">lacuna.buildings.boring.waterpurification</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterreclamation"><tt class="xref">lacuna.buildings.boring.waterreclamation</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterreclamation"><code class="xref">lacuna.buildings.boring.waterreclamation</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterstorage"><tt class="xref">lacuna.buildings.boring.waterstorage</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.waterstorage"><code class="xref">lacuna.buildings.boring.waterstorage</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wheat"><tt class="xref">lacuna.buildings.boring.wheat</tt></a></td><td>
+       <a href="tle_modules/buildings/boring/index.html#module-lacuna.buildings.boring.wheat"><code class="xref">lacuna.buildings.boring.wheat</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/archaeology.html#module-lacuna.buildings.callable.archaeology"><tt class="xref">lacuna.buildings.callable.archaeology</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/archaeology.html#module-lacuna.buildings.callable.archaeology"><code class="xref">lacuna.buildings.callable.archaeology</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/capitol.html#module-lacuna.buildings.callable.capitol"><tt class="xref">lacuna.buildings.callable.capitol</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/capitol.html#module-lacuna.buildings.callable.capitol"><code class="xref">lacuna.buildings.callable.capitol</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/development.html#module-lacuna.buildings.callable.development"><tt class="xref">lacuna.buildings.callable.development</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/development.html#module-lacuna.buildings.callable.development"><code class="xref">lacuna.buildings.callable.development</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/distributioncenter.html#module-lacuna.buildings.callable.distributioncenter"><tt class="xref">lacuna.buildings.callable.distributioncenter</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/distributioncenter.html#module-lacuna.buildings.callable.distributioncenter"><code class="xref">lacuna.buildings.callable.distributioncenter</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/embassy.html#module-lacuna.buildings.callable.embassy"><tt class="xref">lacuna.buildings.callable.embassy</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/embassy.html#module-lacuna.buildings.callable.embassy"><code class="xref">lacuna.buildings.callable.embassy</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/entertainment.html#module-lacuna.buildings.callable.entertainment"><tt class="xref">lacuna.buildings.callable.entertainment</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/entertainment.html#module-lacuna.buildings.callable.entertainment"><code class="xref">lacuna.buildings.callable.entertainment</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/geneticslab.html#module-lacuna.buildings.callable.geneticslab"><tt class="xref">lacuna.buildings.callable.geneticslab</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/geneticslab.html#module-lacuna.buildings.callable.geneticslab"><code class="xref">lacuna.buildings.callable.geneticslab</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/intelligence.html#module-lacuna.buildings.callable.intelligence"><tt class="xref">lacuna.buildings.callable.intelligence</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/intelligence.html#module-lacuna.buildings.callable.intelligence"><code class="xref">lacuna.buildings.callable.intelligence</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/mercenariesguild.html#module-lacuna.buildings.callable.mercenariesguild"><tt class="xref">lacuna.buildings.callable.mercenariesguild</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/mercenariesguild.html#module-lacuna.buildings.callable.mercenariesguild"><code class="xref">lacuna.buildings.callable.mercenariesguild</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/miningministry.html#module-lacuna.buildings.callable.miningministry"><tt class="xref">lacuna.buildings.callable.miningministry</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/miningministry.html#module-lacuna.buildings.callable.miningministry"><code class="xref">lacuna.buildings.callable.miningministry</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/missioncommand.html#module-lacuna.buildings.callable.missioncommand"><tt class="xref">lacuna.buildings.callable.missioncommand</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/missioncommand.html#module-lacuna.buildings.callable.missioncommand"><code class="xref">lacuna.buildings.callable.missioncommand</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/network19.html#module-lacuna.buildings.callable.network19"><tt class="xref">lacuna.buildings.callable.network19</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/network19.html#module-lacuna.buildings.callable.network19"><code class="xref">lacuna.buildings.callable.network19</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/observatory.html#module-lacuna.buildings.callable.observatory"><tt class="xref">lacuna.buildings.callable.observatory</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/observatory.html#module-lacuna.buildings.callable.observatory"><code class="xref">lacuna.buildings.callable.observatory</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/park.html#module-lacuna.buildings.callable.park"><tt class="xref">lacuna.buildings.callable.park</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/park.html#module-lacuna.buildings.callable.park"><code class="xref">lacuna.buildings.callable.park</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/planetarycommand.html#module-lacuna.buildings.callable.planetarycommand"><tt class="xref">lacuna.buildings.callable.planetarycommand</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/planetarycommand.html#module-lacuna.buildings.callable.planetarycommand"><code class="xref">lacuna.buildings.callable.planetarycommand</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/security.html#module-lacuna.buildings.callable.security"><tt class="xref">lacuna.buildings.callable.security</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/security.html#module-lacuna.buildings.callable.security"><code class="xref">lacuna.buildings.callable.security</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/shipyard.html#module-lacuna.buildings.callable.shipyard"><tt class="xref">lacuna.buildings.callable.shipyard</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/shipyard.html#module-lacuna.buildings.callable.shipyard"><code class="xref">lacuna.buildings.callable.shipyard</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/spaceport.html#module-lacuna.buildings.callable.spaceport"><tt class="xref">lacuna.buildings.callable.spaceport</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/spaceport.html#module-lacuna.buildings.callable.spaceport"><code class="xref">lacuna.buildings.callable.spaceport</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/ssla.html#module-lacuna.buildings.callable.ssla"><tt class="xref">lacuna.buildings.callable.ssla</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/ssla.html#module-lacuna.buildings.callable.ssla"><code class="xref">lacuna.buildings.callable.ssla</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/themepark.html#module-lacuna.buildings.callable.themepark"><tt class="xref">lacuna.buildings.callable.themepark</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/themepark.html#module-lacuna.buildings.callable.themepark"><code class="xref">lacuna.buildings.callable.themepark</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/trade.html#module-lacuna.buildings.callable.trade"><tt class="xref">lacuna.buildings.callable.trade</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/trade.html#module-lacuna.buildings.callable.trade"><code class="xref">lacuna.buildings.callable.trade</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/callable/transporter.html#module-lacuna.buildings.callable.transporter"><tt class="xref">lacuna.buildings.callable.transporter</tt></a></td><td>
+       <a href="tle_modules/buildings/callable/transporter.html#module-lacuna.buildings.callable.transporter"><code class="xref">lacuna.buildings.callable.transporter</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcota"><tt class="xref">lacuna.buildings.lcot.lcota</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcota"><code class="xref">lacuna.buildings.lcot.lcota</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotb"><tt class="xref">lacuna.buildings.lcot.lcotb</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotb"><code class="xref">lacuna.buildings.lcot.lcotb</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotc"><tt class="xref">lacuna.buildings.lcot.lcotc</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotc"><code class="xref">lacuna.buildings.lcot.lcotc</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotd"><tt class="xref">lacuna.buildings.lcot.lcotd</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotd"><code class="xref">lacuna.buildings.lcot.lcotd</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcote"><tt class="xref">lacuna.buildings.lcot.lcote</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcote"><code class="xref">lacuna.buildings.lcot.lcote</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotf"><tt class="xref">lacuna.buildings.lcot.lcotf</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotf"><code class="xref">lacuna.buildings.lcot.lcotf</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotg"><tt class="xref">lacuna.buildings.lcot.lcotg</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcotg"><code class="xref">lacuna.buildings.lcot.lcotg</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcoth"><tt class="xref">lacuna.buildings.lcot.lcoth</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcoth"><code class="xref">lacuna.buildings.lcot.lcoth</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcoti"><tt class="xref">lacuna.buildings.lcot.lcoti</tt></a></td><td>
+       <a href="tle_modules/buildings/lcot/index.html#module-lacuna.buildings.lcot.lcoti"><code class="xref">lacuna.buildings.lcot.lcoti</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/algaepond.html#module-lacuna.buildings.permanent.algaepond"><tt class="xref">lacuna.buildings.permanent.algaepond</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/algaepond.html#module-lacuna.buildings.permanent.algaepond"><code class="xref">lacuna.buildings.permanent.algaepond</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/amalgusmeadow.html#module-lacuna.buildings.permanent.amalgusmeadow"><tt class="xref">lacuna.buildings.permanent.amalgusmeadow</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/amalgusmeadow.html#module-lacuna.buildings.permanent.amalgusmeadow"><code class="xref">lacuna.buildings.permanent.amalgusmeadow</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/beeldebannest.html#module-lacuna.buildings.permanent.beeldebannest"><tt class="xref">lacuna.buildings.permanent.beeldebannest</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/beeldebannest.html#module-lacuna.buildings.permanent.beeldebannest"><code class="xref">lacuna.buildings.permanent.beeldebannest</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/blackholegenerator.html#module-lacuna.buildings.permanent.blackholegenerator"><tt class="xref">lacuna.buildings.permanent.blackholegenerator</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/blackholegenerator.html#module-lacuna.buildings.permanent.blackholegenerator"><code class="xref">lacuna.buildings.permanent.blackholegenerator</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/citadelofknope.html#module-lacuna.buildings.permanent.citadelofknope"><tt class="xref">lacuna.buildings.permanent.citadelofknope</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/citadelofknope.html#module-lacuna.buildings.permanent.citadelofknope"><code class="xref">lacuna.buildings.permanent.citadelofknope</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/crashedshipsite.html#module-lacuna.buildings.permanent.crashedshipsite"><tt class="xref">lacuna.buildings.permanent.crashedshipsite</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/crashedshipsite.html#module-lacuna.buildings.permanent.crashedshipsite"><code class="xref">lacuna.buildings.permanent.crashedshipsite</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/dentonbrambles.html#module-lacuna.buildings.permanent.dentonbrambles"><tt class="xref">lacuna.buildings.permanent.dentonbrambles</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/dentonbrambles.html#module-lacuna.buildings.permanent.dentonbrambles"><code class="xref">lacuna.buildings.permanent.dentonbrambles</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/essentiavein.html#module-lacuna.buildings.permanent.essentiavein"><tt class="xref">lacuna.buildings.permanent.essentiavein</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/essentiavein.html#module-lacuna.buildings.permanent.essentiavein"><code class="xref">lacuna.buildings.permanent.essentiavein</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/geothermalvent.html#module-lacuna.buildings.permanent.geothermalvent"><tt class="xref">lacuna.buildings.permanent.geothermalvent</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/geothermalvent.html#module-lacuna.buildings.permanent.geothermalvent"><code class="xref">lacuna.buildings.permanent.geothermalvent</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/gratchsgauntlet.html#module-lacuna.buildings.permanent.gratchsgauntlet"><tt class="xref">lacuna.buildings.permanent.gratchsgauntlet</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/gratchsgauntlet.html#module-lacuna.buildings.permanent.gratchsgauntlet"><code class="xref">lacuna.buildings.permanent.gratchsgauntlet</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/hallsofvrbansk.html#module-lacuna.buildings.permanent.hallsofvrbansk"><tt class="xref">lacuna.buildings.permanent.hallsofvrbansk</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/hallsofvrbansk.html#module-lacuna.buildings.permanent.hallsofvrbansk"><code class="xref">lacuna.buildings.permanent.hallsofvrbansk</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/interdimensionalrift.html#module-lacuna.buildings.permanent.interdimensionalrift"><tt class="xref">lacuna.buildings.permanent.interdimensionalrift</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/interdimensionalrift.html#module-lacuna.buildings.permanent.interdimensionalrift"><code class="xref">lacuna.buildings.permanent.interdimensionalrift</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/kalavianruins.html#module-lacuna.buildings.permanent.kalavianruins"><tt class="xref">lacuna.buildings.permanent.kalavianruins</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/kalavianruins.html#module-lacuna.buildings.permanent.kalavianruins"><code class="xref">lacuna.buildings.permanent.kalavianruins</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/kasternskeep.html#module-lacuna.buildings.permanent.kasternskeep"><tt class="xref">lacuna.buildings.permanent.kasternskeep</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/kasternskeep.html#module-lacuna.buildings.permanent.kasternskeep"><code class="xref">lacuna.buildings.permanent.kasternskeep</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/lapisforest.html#module-lacuna.buildings.permanent.lapisforest"><tt class="xref">lacuna.buildings.permanent.lapisforest</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/lapisforest.html#module-lacuna.buildings.permanent.lapisforest"><code class="xref">lacuna.buildings.permanent.lapisforest</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/libraryofjith.html#module-lacuna.buildings.permanent.libraryofjith"><tt class="xref">lacuna.buildings.permanent.libraryofjith</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/libraryofjith.html#module-lacuna.buildings.permanent.libraryofjith"><code class="xref">lacuna.buildings.permanent.libraryofjith</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/malcudfield.html#module-lacuna.buildings.permanent.malcudfield"><tt class="xref">lacuna.buildings.permanent.malcudfield</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/malcudfield.html#module-lacuna.buildings.permanent.malcudfield"><code class="xref">lacuna.buildings.permanent.malcudfield</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/massadshenge.html#module-lacuna.buildings.permanent.massadshenge"><tt class="xref">lacuna.buildings.permanent.massadshenge</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/massadshenge.html#module-lacuna.buildings.permanent.massadshenge"><code class="xref">lacuna.buildings.permanent.massadshenge</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/naturalspring.html#module-lacuna.buildings.permanent.naturalspring"><tt class="xref">lacuna.buildings.permanent.naturalspring</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/naturalspring.html#module-lacuna.buildings.permanent.naturalspring"><code class="xref">lacuna.buildings.permanent.naturalspring</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/oracleofanid.html#module-lacuna.buildings.permanent.oracleofanid"><tt class="xref">lacuna.buildings.permanent.oracleofanid</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/oracleofanid.html#module-lacuna.buildings.permanent.oracleofanid"><code class="xref">lacuna.buildings.permanent.oracleofanid</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/pantheonofhagness.html#module-lacuna.buildings.permanent.pantheonofhagness"><tt class="xref">lacuna.buildings.permanent.pantheonofhagness</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/pantheonofhagness.html#module-lacuna.buildings.permanent.pantheonofhagness"><code class="xref">lacuna.buildings.permanent.pantheonofhagness</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/subspacesupplydepot.html#module-lacuna.buildings.permanent.subspacesupplydepot"><tt class="xref">lacuna.buildings.permanent.subspacesupplydepot</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/subspacesupplydepot.html#module-lacuna.buildings.permanent.subspacesupplydepot"><code class="xref">lacuna.buildings.permanent.subspacesupplydepot</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/templeofthedrajilites.html#module-lacuna.buildings.permanent.templeofthedrajilites"><tt class="xref">lacuna.buildings.permanent.templeofthedrajilites</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/templeofthedrajilites.html#module-lacuna.buildings.permanent.templeofthedrajilites"><code class="xref">lacuna.buildings.permanent.templeofthedrajilites</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/thedillonforge.html#module-lacuna.buildings.permanent.thedillonforge"><tt class="xref">lacuna.buildings.permanent.thedillonforge</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/thedillonforge.html#module-lacuna.buildings.permanent.thedillonforge"><code class="xref">lacuna.buildings.permanent.thedillonforge</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/permanent/volcano.html#module-lacuna.buildings.permanent.volcano"><tt class="xref">lacuna.buildings.permanent.volcano</tt></a></td><td>
+       <a href="tle_modules/buildings/permanent/volcano.html#module-lacuna.buildings.permanent.volcano"><code class="xref">lacuna.buildings.permanent.volcano</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/artmuseum.html#module-lacuna.buildings.ss_modules.artmuseum"><tt class="xref">lacuna.buildings.ss_modules.artmuseum</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/artmuseum.html#module-lacuna.buildings.ss_modules.artmuseum"><code class="xref">lacuna.buildings.ss_modules.artmuseum</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/culinaryinstitute.html#module-lacuna.buildings.ss_modules.culinaryinstitute"><tt class="xref">lacuna.buildings.ss_modules.culinaryinstitute</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/culinaryinstitute.html#module-lacuna.buildings.ss_modules.culinaryinstitute"><code class="xref">lacuna.buildings.ss_modules.culinaryinstitute</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/ibs.html#module-lacuna.buildings.ss_modules.ibs"><tt class="xref">lacuna.buildings.ss_modules.ibs</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/ibs.html#module-lacuna.buildings.ss_modules.ibs"><code class="xref">lacuna.buildings.ss_modules.ibs</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/operahouse.html#module-lacuna.buildings.ss_modules.operahouse"><tt class="xref">lacuna.buildings.ss_modules.operahouse</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/operahouse.html#module-lacuna.buildings.ss_modules.operahouse"><code class="xref">lacuna.buildings.ss_modules.operahouse</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/parliament.html#module-lacuna.buildings.ss_modules.parliament"><tt class="xref">lacuna.buildings.ss_modules.parliament</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/parliament.html#module-lacuna.buildings.ss_modules.parliament"><code class="xref">lacuna.buildings.ss_modules.parliament</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/policestation.html#module-lacuna.buildings.ss_modules.policestation"><tt class="xref">lacuna.buildings.ss_modules.policestation</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/policestation.html#module-lacuna.buildings.ss_modules.policestation"><code class="xref">lacuna.buildings.ss_modules.policestation</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/stationcommand.html#module-lacuna.buildings.ss_modules.stationcommand"><tt class="xref">lacuna.buildings.ss_modules.stationcommand</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/stationcommand.html#module-lacuna.buildings.ss_modules.stationcommand"><code class="xref">lacuna.buildings.ss_modules.stationcommand</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/ss_modules/warehouse.html#module-lacuna.buildings.ss_modules.warehouse"><tt class="xref">lacuna.buildings.ss_modules.warehouse</tt></a></td><td>
+       <a href="tle_modules/buildings/ss_modules/warehouse.html#module-lacuna.buildings.ss_modules.warehouse"><code class="xref">lacuna.buildings.ss_modules.warehouse</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/training/intel.html#module-lacuna.buildings.training.inteltraining"><tt class="xref">lacuna.buildings.training.inteltraining</tt></a></td><td>
+       <a href="tle_modules/buildings/training/intel.html#module-lacuna.buildings.training.inteltraining"><code class="xref">lacuna.buildings.training.inteltraining</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/training/mayhem.html#module-lacuna.buildings.training.mayhemtraining"><tt class="xref">lacuna.buildings.training.mayhemtraining</tt></a></td><td>
+       <a href="tle_modules/buildings/training/mayhem.html#module-lacuna.buildings.training.mayhemtraining"><code class="xref">lacuna.buildings.training.mayhemtraining</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/training/politics.html#module-lacuna.buildings.training.politicstraining"><tt class="xref">lacuna.buildings.training.politicstraining</tt></a></td><td>
+       <a href="tle_modules/buildings/training/politics.html#module-lacuna.buildings.training.politicstraining"><code class="xref">lacuna.buildings.training.politicstraining</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/buildings/training/theft.html#module-lacuna.buildings.training.thefttraining"><tt class="xref">lacuna.buildings.training.thefttraining</tt></a></td><td>
+       <a href="tle_modules/buildings/training/theft.html#module-lacuna.buildings.training.thefttraining"><code class="xref">lacuna.buildings.training.thefttraining</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/captcha.html#module-lacuna.captcha"><tt class="xref">lacuna.captcha</tt></a></td><td>
+       <a href="tle_modules/captcha.html#module-lacuna.captcha"><code class="xref">lacuna.captcha</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="clients.html#module-lacuna.clients"><tt class="xref">lacuna.clients</tt></a></td><td>
+       <a href="clients.html#module-lacuna.clients"><code class="xref">lacuna.clients</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/empire.html#module-lacuna.empire"><tt class="xref">lacuna.empire</tt></a></td><td>
+       <a href="tle_modules/empire.html#module-lacuna.empire"><code class="xref">lacuna.empire</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="exceptions.html#module-lacuna.exceptions"><tt class="xref">lacuna.exceptions</tt></a></td><td>
+       <a href="exceptions.html#module-lacuna.exceptions"><code class="xref">lacuna.exceptions</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="glyph.html#module-lacuna.glyph"><tt class="xref">lacuna.glyph</tt></a></td><td>
+       <a href="glyph.html#module-lacuna.glyph"><code class="xref">lacuna.glyph</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/inbox.html#module-lacuna.inbox"><tt class="xref">lacuna.inbox</tt></a></td><td>
+       <a href="tle_modules/inbox.html#module-lacuna.inbox"><code class="xref">lacuna.inbox</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/map.html#module-lacuna.map"><tt class="xref">lacuna.map</tt></a></td><td>
+       <a href="tle_modules/map.html#module-lacuna.map"><code class="xref">lacuna.map</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="plan.html#module-lacuna.plan"><tt class="xref">lacuna.plan</tt></a></td><td>
+       <a href="plan.html#module-lacuna.plan"><code class="xref">lacuna.plan</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="recycling.html#module-lacuna.recycling"><tt class="xref">lacuna.recycling</tt></a></td><td>
+       <a href="recycling.html#module-lacuna.recycling"><code class="xref">lacuna.recycling</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="resource.html#module-lacuna.resource"><tt class="xref">lacuna.resource</tt></a></td><td>
+       <a href="resource.html#module-lacuna.resource"><code class="xref">lacuna.resource</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="ship.html#module-lacuna.ship"><tt class="xref">lacuna.ship</tt></a></td><td>
+       <a href="ship.html#module-lacuna.ship"><code class="xref">lacuna.ship</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="spy.html#module-lacuna.spy"><tt class="xref">lacuna.spy</tt></a></td><td>
+       <a href="spy.html#module-lacuna.spy"><code class="xref">lacuna.spy</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="tle_modules/stats.html#module-lacuna.stats"><tt class="xref">lacuna.stats</tt></a></td><td>
+       <a href="tle_modules/stats.html#module-lacuna.stats"><code class="xref">lacuna.stats</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="trading.html#module-lacuna.trading"><tt class="xref">lacuna.trading</tt></a></td><td>
+       <a href="trading.html#module-lacuna.trading"><code class="xref">lacuna.trading</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&nbsp;&nbsp;&nbsp;
-       <a href="types.html#module-lacuna.types"><tt class="xref">lacuna.types</tt></a></td><td>
+       <a href="types.html#module-lacuna.types"><code class="xref">lacuna.types</code></a></td><td>
        <em></em></td></tr>
      <tr class="pcap"><td></td><td>&nbsp;</td><td></td></tr>
      <tr class="cap" id="cap-m"><td></td><td>
@@ -1069,7 +1083,7 @@
      <tr>
        <td></td>
        <td>
-       <a href="my_validate_email.html#module-my_validate_email"><tt class="xref">my_validate_email</tt></a></td><td>
+       <a href="my_validate_email.html#module-my_validate_email"><code class="xref">my_validate_email</code></a></td><td>
        <em></em></td></tr>
    </table>
 
@@ -1082,11 +1096,12 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>

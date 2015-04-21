@@ -16,7 +16,7 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -27,6 +27,8 @@
   
   
     <link rel="stylesheet" href="../../../static/css/theme.css" type="text/css" />
+  
+
   
 
   
@@ -47,9 +49,12 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+        
+          <a href="../../../index.html" class="fa fa-home"> Monty Lacuna</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -59,8 +64,9 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-        
-            <ul class="current">
+          
+          
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_running.html">Getting Started Running Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#overview-of-steps">Overview of Steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_running.html#install-python-3">Install Python 3</a></li>
@@ -81,12 +87,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started_writing.html">Getting Started Writing Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#tell-your-script-where-montylacuna-lives">Tell Your Script Where MontyLacuna Lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#connect-a-client">Connect a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#logging-and-caching">Logging and Caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#debugging-requests">Debugging Requests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#method-calling">Method Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#test-scripts">Test Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#adding-unit-tests">Adding Unit Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../getting_started_writing.html#example-snippets">Example Snippets</a></li>
 </ul>
 </li>
@@ -99,6 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../inbox.html">Inbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../map.html">Map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../stats.html">Stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tests/index.html">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#existing-tests">Existing tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#running-all-tests">Running all tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tests/index.html#creating-script-tests">Creating script tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../bc.html">bc</a></li>
@@ -135,6 +148,7 @@
 </li>
 </ul>
 
+          
         
       </div>
       &nbsp;
@@ -169,7 +183,7 @@
   </ul>
   <hr/>
 </div>
-          <div role="main">
+          <div role="main" class="document">
             
   <div class="section" id="lcot-modules">
 <span id="id1"></span><h1>LCOT Modules<a class="headerlink" href="#lcot-modules" title="Permalink to this headline">¶</a></h1>
@@ -177,11 +191,11 @@
 <span id="lcota"></span><h2>lcota<a class="headerlink" href="#module-lacuna.buildings.lcot.lcota" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcota.lcota">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcota.</tt><tt class="descname">lcota</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcota.lcota" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcota.</code><code class="descname">lcota</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcota.lcota" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcota.lcota.path">
-<tt class="descname">path</tt><em class="property"> = 'lcota'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcota.lcota.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcota'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcota.lcota.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -191,11 +205,11 @@
 <span id="lcotb"></span><h2>lcotb<a class="headerlink" href="#module-lacuna.buildings.lcot.lcotb" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcotb.lcotb">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcotb.</tt><tt class="descname">lcotb</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcotb.lcotb" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcotb.</code><code class="descname">lcotb</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcotb.lcotb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcotb.lcotb.path">
-<tt class="descname">path</tt><em class="property"> = 'lcotb'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotb.lcotb.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcotb'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotb.lcotb.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -205,11 +219,11 @@
 <span id="lcotc"></span><h2>lcotc<a class="headerlink" href="#module-lacuna.buildings.lcot.lcotc" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcotc.lcotc">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcotc.</tt><tt class="descname">lcotc</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcotc.lcotc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcotc.</code><code class="descname">lcotc</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcotc.lcotc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcotc.lcotc.path">
-<tt class="descname">path</tt><em class="property"> = 'lcotc'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotc.lcotc.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcotc'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotc.lcotc.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -219,11 +233,11 @@
 <span id="lcotd"></span><h2>lcotd<a class="headerlink" href="#module-lacuna.buildings.lcot.lcotd" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcotd.lcotd">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcotd.</tt><tt class="descname">lcotd</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcotd.lcotd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcotd.</code><code class="descname">lcotd</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcotd.lcotd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcotd.lcotd.path">
-<tt class="descname">path</tt><em class="property"> = 'lcotd'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotd.lcotd.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcotd'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotd.lcotd.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -233,11 +247,11 @@
 <span id="lcote"></span><h2>lcote<a class="headerlink" href="#module-lacuna.buildings.lcot.lcote" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcote.lcote">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcote.</tt><tt class="descname">lcote</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcote.lcote" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcote.</code><code class="descname">lcote</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcote.lcote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcote.lcote.path">
-<tt class="descname">path</tt><em class="property"> = 'lcote'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcote.lcote.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcote'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcote.lcote.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -247,11 +261,11 @@
 <span id="lcotf"></span><h2>lcotf<a class="headerlink" href="#module-lacuna.buildings.lcot.lcotf" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcotf.lcotf">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcotf.</tt><tt class="descname">lcotf</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcotf.lcotf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcotf.</code><code class="descname">lcotf</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcotf.lcotf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcotf.lcotf.path">
-<tt class="descname">path</tt><em class="property"> = 'lcotf'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotf.lcotf.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcotf'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotf.lcotf.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -261,11 +275,11 @@
 <span id="lcotg"></span><h2>lcotg<a class="headerlink" href="#module-lacuna.buildings.lcot.lcotg" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcotg.lcotg">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcotg.</tt><tt class="descname">lcotg</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcotg.lcotg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcotg.</code><code class="descname">lcotg</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcotg.lcotg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcotg.lcotg.path">
-<tt class="descname">path</tt><em class="property"> = 'lcotg'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotg.lcotg.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcotg'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcotg.lcotg.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -275,11 +289,11 @@
 <span id="lcoth"></span><h2>lcoth<a class="headerlink" href="#module-lacuna.buildings.lcot.lcoth" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcoth.lcoth">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcoth.</tt><tt class="descname">lcoth</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcoth.lcoth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcoth.</code><code class="descname">lcoth</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcoth.lcoth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcoth.lcoth.path">
-<tt class="descname">path</tt><em class="property"> = 'lcoth'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcoth.lcoth.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcoth'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcoth.lcoth.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -289,11 +303,11 @@
 <span id="lcoti"></span><h2>lcoti<a class="headerlink" href="#module-lacuna.buildings.lcot.lcoti" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="lacuna.buildings.lcot.lcoti.lcoti">
-<em class="property">class </em><tt class="descclassname">lacuna.buildings.lcot.lcoti.</tt><tt class="descname">lcoti</tt><big>(</big><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><big>)</big><a class="headerlink" href="#lacuna.buildings.lcot.lcoti.lcoti" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><tt class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></tt></a></p>
+<em class="property">class </em><code class="descclassname">lacuna.buildings.lcot.lcoti.</code><code class="descname">lcoti</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.lcot.lcoti.lcoti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
 <dl class="attribute">
 <dt id="lacuna.buildings.lcot.lcoti.lcoti.path">
-<tt class="descname">path</tt><em class="property"> = 'lcoti'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcoti.lcoti.path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path</code><em class="property"> = 'lcoti'</em><a class="headerlink" href="#lacuna.buildings.lcot.lcoti.lcoti.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -307,7 +321,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../permanent/index.html" class="btn btn-neutral float-right" title="Permanent (Glyph) Buildings"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../permanent/index.html" class="btn btn-neutral float-right" title="Permanent (Glyph) Buildings">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../beach/index.html" class="btn btn-neutral" title="Beach Modules"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -319,11 +333,12 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2014, Jonathan Barton.
+        &copy; Copyright 2014 - 2015, Jonathan Barton.
     </p>
   </div>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
 </footer>
         </div>
       </div>
