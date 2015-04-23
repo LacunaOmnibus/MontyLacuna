@@ -18,11 +18,11 @@ written in Perl.
 
   - :ref:`inst_python_windows`
   - :ref:`inst_python_nonwindows`
-- :ref:`inst_monty`
-- :ref:`inst_pip`
-- :ref:`create_config_file`
-- :ref:`run_test_script`
-
+  - :ref:`inst_monty`
+  - :ref:`inst_pip`
+  - :ref:`create_config_file`
+  - :ref:`run_test_script`
+ 
 .. _inst_python:
 
 Install Python 3
@@ -120,8 +120,11 @@ the root MontyLacuna folder -  the one you just extracted in the previous step
 
 ``pip`` is now installed.
 
-**On a Mac**, pip did get installed, but it was named ``pip3``.  So actually 
-type ``pip3`` instead of ``pip`` for the module installs below.
+**On a Mac**, pip did get installed, but it may have been named ``pip3`` 
+rather than just ``pip``.  Typing ``pip -V`` (that's a capital V) will tell 
+you which version of python your pip will update.  If your pip is set to 
+update your python2 installation, then check if you have a ``pip3`` and use 
+that instead.
 
 There are only two Python libraries to install, ``requests`` and ``beaker``, 
 and you install both of them using ``pip`` by typing these two commands one at 
