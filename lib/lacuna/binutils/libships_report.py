@@ -5,9 +5,9 @@ import argparse, csv, os, sys
 class PlanetShipData():
     """ Contains the data gathered on ships living at a single planet.
     """
-    def __init__(self, pname, ships_summary, ships_detail, docks_avail, docks_ttl):
+    def __init__(self, pname, docked_ships, ships_detail, docks_avail, docks_ttl):
         self.pname          = pname
-        self.ships_summary  = ships_summary     # Dict -- type: number
+        self.docked_ships   = docked_ships     # Dict -- type: number
         self.ships_detail   = ships_detail      # list of ExistingShip objects
         self.docks_avail    = docks_avail
         self.docks_ttl      = docks_ttl
@@ -23,8 +23,9 @@ class PlanetShipData():
         the terminal.
         """
         print( "{} has {:,} of {:,} docks available.".format(self.pname, self.docks_avail, self.docks_ttl) )
-        for type in sorted( self.ships_summary ):
-            print( "\t{:<30} {: >6,}".format(type, self.ships_summary[type]) )
+        print( "Displaying currently-docked ships.  (Try CSV format for a complete report.)" )
+        for type in sorted( self.docked_ships ):
+            print( "\t{:<30} {: >6,}".format(type, self.docked_ships[type]) )
         print( '' )
 
     def display_csv_report( self, sr ):
@@ -120,14 +121,14 @@ class ShipsReport(lacuna.binutils.libbin.Script):
         """
         self.client.cache_on( 'ships_report', 3600 )
 
-        ### Yeah, we need both of these calls.  view_all_ships() gives (oddly 
+        ### We need both of these calls.  view_all_ships() gives (oddly 
         ### enough) all ships.  view() just gives numbers on docked ships, 
         ### which is close enough for the summary view.
         paging = { 'no_paging': 1 }
         ships_detail, num = self.port.view_all_ships(paging)    
-        ships_summary, docks_avail, docks_ttl = self.port.view()
+        docked_ships, docks_avail, docks_ttl = self.port.view()
 
-        self.ship_data[ self.planet.name ] = PlanetShipData( self.planet.name, ships_summary, ships_detail, docks_avail, docks_ttl )
+        self.ship_data[ self.planet.name ] = PlanetShipData( self.planet.name, docked_ships, ships_detail, docks_avail, docks_ttl )
         self.client.cache_off()
 
     def display_full_report( self ):

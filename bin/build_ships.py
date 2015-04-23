@@ -51,23 +51,11 @@ for pname in bs.planets:
     ### Doo eet.
     left_to_build = num_to_build
     for y in shipyards:
-        ships, building_now, cost = y.view_build_queue()
-        num_to_build_here = y.level - building_now
-        num_to_build_here = left_to_build if left_to_build < num_to_build_here else num_to_build_here
-        left_to_build -= num_to_build_here
-        l.debug( "About to try building {} ships." .format(num_to_build_here))
-        if num_to_build_here > 0:
-            try:
-                y.build_ship( bs.shiptype, num_to_build_here )
-            except err.ServerError as e:
-                l.warning( "Failed to build at this shipyard because: {}".format(e) )
-                continue
-        else:
-            l.info( "Looks like we've added all to the queue that we can." )
-        l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
-        if num_to_build_here > 25:
-            l.info( "Shipyard build queues in game displays 25 ships max.  I am building {}.".format(num_to_build_here) )
-        elif left_to_build <= 0:
+        building_now, left_to_build = bs.build_at_yard( y, left_to_build )
+        l.info( "I'm building {} ships at the sy at ({},{})." .format(building_now, y.x, y.y))
+        if building_now > 25:
+            l.info( "Shipyard build queues in game displays 25 ships max.  I am building {}.".format(building_now) )
+        if left_to_build <= 0:
             break
 
     built = num_to_build

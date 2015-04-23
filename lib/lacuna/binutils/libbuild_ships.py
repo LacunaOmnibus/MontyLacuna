@@ -2,6 +2,7 @@
 import lacuna, lacuna.binutils.libbin, lacuna.types
 import lacuna.exceptions as err
 import argparse, os, sys
+import lacuna.exceptions as err
 
 class BuildShips(lacuna.binutils.libbin.Script):
 
@@ -39,7 +40,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
         parser.add_argument( '--topoff', 
             dest        = 'topoff',
             action      = 'store_true',
-            help        = "If --topoff is sent, instead of building --num new ships, we'll make sure that we have at least --num ships in stock."
+            help        = "If --topoff is sent, instead of building --num new ships, we'll make sure that we have at least --num ships already built."
         )
         super().__init__(parser)
 
@@ -66,20 +67,47 @@ class BuildShips(lacuna.binutils.libbin.Script):
         yards = self.planet.get_buildings_bytype( 'shipyard', self.args.min_lvl )
         return( yards )
 
-    def determine_buildable(self, yards):
+    def build_at_yard( self, yard, build_cnt ):
+        """ Build ships at the given shipyard.
+
+        Args:
+            yard (lacuna.buildings.callable.shipyard): The shipyard to build at
+            build_cnt (int): The total number of ships left to build
+        Returns:
+            tuple:
+
+                - num_built (int): Number of ships being built at this SY
+                - num_left (int): Number of ships that still need to be built
+        """
+        ships, building_now, cost   = yard.view_build_queue()
+        num_to_build_here           = yard.level - building_now
+        num_to_build_here           = build_cnt if build_cnt < num_to_build_here else num_to_build_here
+        self.client.user_logger.debug( "About to try building {} ships." .format(num_to_build_here))
+        if num_to_build_here > 0:
+            try:
+                yard.build_ship( self.shiptype, num_to_build_here )
+            except err.ServerError as e:
+                self.client.user_logger.warning( "Failed to build at this shipyard because: {}".format(e) )
+                return( 0, build_cnt )
+        else:
+            self.client.user_logger.info( "Looks like we've added all to the queue that we can." )
+        build_cnt -= num_to_build_here
+        return( num_to_build_here, build_cnt )
+
+    def determine_buildable( self, yards ):
         """ Ensures we can actually build the requested ship type, and figures 
         out how many of them we should build.
 
-        Arguments:
-            - yards -- list of lacuna.building.shipyard.shipyard objects
-
-        Returns the number of ships we should queue across all shipyards.
+        Args:
+            yards (lacuna.buildings.callable.shipyard): list of objects.
+        Returns:
+            numships (int): number of ships we should queue across all shipyards.
+        Raises:
+            KeyError: if the ship can't be built for any reason.
 
         This number to be built does not take current build queues into 
         account.  Four level 30 SYs are going to return 120, no matter what 
         those SYs are currently doing.
-
-        Raises KeyError if the shiptype isn't buildable for whatever reason.
         """
         ships, docks_avail, build_queue_max, build_queue_used = yards[0].get_buildable()
         if not docks_avail:
@@ -109,24 +137,30 @@ class BuildShips(lacuna.binutils.libbin.Script):
             num_to_build = requested_num
 
         if self.args.topoff:
-            old_cache = self.client.cache_off() # be sure this is off.
-            sp = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
+            num_to_build = self.get_topoff_num( requested_num, num_to_build );
 
-            currently_in_stock = 0
-            docked_ships, docks_avail, docks_max = sp.view()
-            if self.shiptype in docked_ships:
-                currently_in_stock = docked_ships[self.shiptype]
+        return num_to_build
 
-            if currently_in_stock >= requested_num:
-                self.client.user_logger.info( "You already have {} {}s built, no need to top off."
-                    .format(currently_in_stock, self.args.type)
-                )
-                num_to_build = 0
-            topoff_num = (requested_num - currently_in_stock)
-            if topoff_num > num_to_build:
+    def get_topoff_num( self, req_cnt, available_slots ):
+        old_cache = self.client.cache_off() # be sure this is off.
+        sp = self.planet.get_buildings_bytype( 'spaceport', 1, 1, 100 )[0]
+
+        num_to_build = 0
+        paging = { 'no_paging': 1 }
+        filter = { 'type': self.shiptype }
+        ships, existing_ships_cnt = sp.view_all_ships( paging, filter )
+
+        if existing_ships_cnt >= req_cnt:
+            self.client.user_logger.info( "You already have {} {}s built, no need to top off."
+                .format(existing_ships_cnt, self.args.type)
+            )
+        else:
+            topoff_num = (req_cnt - existing_ships_cnt)
+            if topoff_num > available_slots:
                 self.client.user_logger.info( "We should build {} more ships to top off, but only have slots for {} more."
-                    .format(topoff_num, num_to_build)
+                    .format(topoff_num, available_slots)
                 )
+                num_to_build = available_slots
             else:
                 num_to_build = topoff_num
         return num_to_build
