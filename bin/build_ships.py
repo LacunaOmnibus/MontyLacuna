@@ -1,22 +1,17 @@
 #!/usr/bin/python3
 
-
-### BE SURE TO RUN THIS WITH -v -- IT'S OCCASIONALLY DOING SOMETHING I DON'T 
-### UNDERSTAND YET AND WON'T WITHOUT -v.
-
 import os, sys
 bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
 libdir = bindir + "/../lib"
 sys.path.append(libdir)
 
 import logging
-
 import lacuna
 import lacuna.binutils.libbuild_ships as lib
+import lacuna.exceptions as err
 
 bs  = lib.BuildShips()
 l   = bs.client.user_logger
-
 
 ### bs.planets will be a list, containing either just the planet name passed 
 ### in by the user, or all of the user's planet names if 'all' was passed in.
@@ -56,10 +51,12 @@ for pname in bs.planets:
         left_to_build -= num_to_build_here
         l.debug( "About to try building {} ships." .format(num_to_build_here))
         if num_to_build_here > 0:
-            y.build_ship( bs.shiptype, num_to_build_here )
+            try:
+                y.build_ship( bs.shiptype, num_to_build_here )
+            except err.ServerError as e:
+                l.warning( "Failed to build at this shipyard because: {}".format(e) )
+                continue
         else:
-            ### CHECK
-            ### I'm not sure why this is hitting periodically.
             l.info( "Looks like we've added all to the queue that we can." )
         l.info( "I'm building {} ships at the sy at ({},{})." .format(num_to_build_here, y.x, y.y))
         if num_to_build_here > 25:
