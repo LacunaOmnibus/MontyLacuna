@@ -68,14 +68,16 @@ class spaceport(lacuna.building.MyBuilding):
     def view_all_ships( self, paging:dict={}, filter:dict={}, sort:str='type', *args, **kwargs ):
         """ Show all ships based from this planet, regardless of their task.
 
-        Arguments:
-            - paging -- Optional dict of paging criteria with the keys:
+        Args:
+            paging (dict): Specify paging behavior (optional)
+
                 - ``page_number`` -- page number to view
                 - ``items_per_page`` -- number of items per page
                 - ``no_paging`` -- Boolean.  Mutually exclusive with the other two 
                   keys.  If sent with a True value, all ships will be returned, 
                   un-paginated.
-            - filter -- A dict of filter critera, with the keys:
+            filter (dict): Specify filter criteria (optional)
+
                 - ``task`` -- One of ``Building``, ``Defend``, ``Docked``, 
                   ``Mining``, ``Orbiting``, ``Supply Chain``, ``Travelling``, 
                   ``Waiting on Trade``, or ``Waste Chain``.
@@ -83,10 +85,14 @@ class spaceport(lacuna.building.MyBuilding):
                   "scow_fast", etc)
                 - ``tag`` -- ``Colonization``, ``Exploration``, 
                   ``Intelligence``, ``Mining``, ``Trade``, ``War`` 
-            - sort -- A string to specify what to sort the results on.
-                - Valid options: ``combat``, ``name``, ``speed``, ``stealth``, 
-                  ``task``, ``type``.
-                - Defaults to ``type``.
+            sort (string): specify what to sort the results on.  Valid options are: ``combat``, 
+                ``name``, ``speed``, ``stealth``, ``task``, ``type``.  Defaults to ``type``.
+        Returns:
+            tuple:
+
+                - ships (lacuna.ship.ExistingShip): list of objects.
+                - number_of_ships (int): is the total number that result from your filter, ignoring your pagin
+
 
         Filter critera are joined with 'or', not 'and'.  So this filter dict may 
         not be what you really mean::
@@ -653,7 +659,7 @@ class spaceport(lacuna.building.MyBuilding):
 
 class BattleLog(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         date                "06 21 2011 22:54:37 +0600",
         attacking_body      "Romulus",
@@ -674,7 +680,7 @@ class MiningPlatform(lacuna.bc.SubClass):
     This class exists in the spaceport module because this is the only place 
     that this format is used.
 
-    Attributes::
+    Object Attributes::
 
         empire_id       ID of your empire, NOT of the ship
         empire_name     Name of your empire, NOT of the ship
