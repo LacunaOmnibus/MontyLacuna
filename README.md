@@ -8,11 +8,6 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
-- ships_report.py doesn't appear to be reporting on fighters that have been 
-  recalled from a deployment
-  - Are we just reporting on Docked ships?  If so, the report should have the 
-    option of displaying other tasks, and should make clear what it's 
-    displaying.
 - see stats.py for how methods should be documented throughout.
 - Ack through everything for "CHECK" and fix.
   - Even if you find no CHECK marks, leave this list item here.  I have a tendency to 
@@ -21,7 +16,6 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
   interactive script that stores the abbreviations in a database?).  To allow the user to 
   just type "1.1" as an argument instead of "My Planet Number 1.1" wherever a script needs 
   a planet or station name.
-
 
 ## Docs Fixes
 Except for stats, I'm working in alpha order and recording everything I've checked.
@@ -45,6 +39,4 @@ Except for stats, I'm working in alpha order and recording everything I've check
 - types
 
 ...That's it for the root.  
-
-Hi Etn!
 
