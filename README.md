@@ -16,6 +16,7 @@ This is essentially a port of the Perl Games::Lacuna::Client module to Python.
   interactive script that stores the abbreviations in a database?).  To allow the user to 
   just type "1.1" as an argument instead of "My Planet Number 1.1" wherever a script needs 
   a planet or station name.
+  - Working on this -- see bin/abbrv.py and its library.
 
 ## Docs Fixes
 Except for stats, I'm working in alpha order and recording everything I've checked.
