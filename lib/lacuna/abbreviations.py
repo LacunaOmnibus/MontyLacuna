@@ -1,5 +1,5 @@
 
-import os, pickle, sys
+import os, pickle, pydoc, sys
 
 class Abbreviations():
 
@@ -128,15 +128,15 @@ class Abbreviations():
     def show_all(self):
         """ Produces a report on all currently-stored abbreviations.
         """
-        print( '' )
+        output = "\n"
         if self.mydict['name'].keys():
-            print( "{:<50} {}".format("FULL NAME", "ABBREVIATION") )
-            for name in sorted(self.mydict['name'].keys()):
+            output += "{:<50} {}\n".format("FULL NAME", "ABBREVIATION")
+            for name in sorted(self.mydict['name'].keys(), key=lambda s: s.lower()):
                 showname = self.summarize( name, 50 )
-                print( "{:<50} {}".format(showname, self.get_abbrv(name)) )
+                output += "{:<50} {}\n".format(showname, self.get_abbrv(name))
         else:
             print( "You don't have any abbreviations set up yet." )
-        print( '' )
+        pydoc.pager( output )
 
     def show( self, name ):
         """ Produces a report on a single stored abbreviation.
