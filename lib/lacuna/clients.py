@@ -642,8 +642,9 @@ class Member(Guest):
     def get_body_byname(self, body_name):
         """ Get one of your empire's bodies (planet or station) by name.
 
-        Arg:
+        Arguments:
             body_name (str): name of the body
+
         Returns:
             lacuna.body.MyBody: The requested body
         """
