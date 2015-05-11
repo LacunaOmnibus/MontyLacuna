@@ -37,7 +37,7 @@ class Script:
         - section -- Optional config section to read from.  Defaults to 
           'sitter'.
 
-    Example::
+    Sample Code::
 
         import binutils.libbin
 
@@ -57,7 +57,7 @@ class Script:
                 ###
                 super().__init__( parser )
 
-    Attributes::
+    Object Attributes::
 
         By inheriting from binutils.libbin.Script, your script's main class 
         will get the following:

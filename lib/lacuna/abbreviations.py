@@ -125,17 +125,15 @@ class Abbreviations():
         self.mydict['name'][ name ]     = abbrv
         self._put_data(self.mydict)
 
-
     def show_all(self):
         """ Produces a report on all currently-stored abbreviations.
         """
-        spaces = ' '*10
         print( '' )
         if self.mydict['name'].keys():
-            print( "{}{:<30} {}".format(spaces, "FULL NAME", "ABBREVIATION") )
+            print( "{:<50} {}".format("FULL NAME", "ABBREVIATION") )
             for name in sorted(self.mydict['name'].keys()):
-                showname = self.summarize( name, 30 )
-                print( "{}{:<30} {}".format(spaces, showname, self.get_abbrv(name)) )
+                showname = self.summarize( name, 50 )
+                print( "{:<50} {}".format(showname, self.get_abbrv(name)) )
         else:
             print( "You don't have any abbreviations set up yet." )
         print( '' )

@@ -42,6 +42,9 @@ if your arguments contain spaces, you have to quote them::
 
     >>> python bin/scriptname.py --planet "My Planet Name"
 
+When you're running MontyLacuna scripts, don't forget that you can set up and 
+use :ref:`abbrvs` for your colony and space station names.
+
 Scripts that tell you about stuff
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. toctree::
@@ -71,5 +74,4 @@ Scripts that do stuff
    train_spies
    turnkey
    update
-
 
