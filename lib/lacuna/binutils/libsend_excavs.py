@@ -131,7 +131,6 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         self._set_alliance()
         self.set_planets()
         self.map = self.client.get_map()
-
     
     def _set_alliance(self):
         self.client.user_logger.debug( "Getting user's alliance." )

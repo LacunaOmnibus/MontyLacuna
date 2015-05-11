@@ -240,7 +240,6 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
         self._set_planet()
         self._set_trade_building()
 
-
     def _set_kit_from_args( self ):
         if not self.args.kit:
             return
@@ -282,7 +281,7 @@ class PostStarterKit(lacuna.binutils.libbin.Script):
 
     def _set_planet( self ):
         self.client.cache_on( 'my_colonies', 3600 )
-        self.planet = self.client.get_body_byname( self.args.name )
+        self.planet = self.client.get_body_byname( self.abbrv.get_name(self.args.name) )
         self.client.cache_off()
 
     def _set_trade_building( self ):

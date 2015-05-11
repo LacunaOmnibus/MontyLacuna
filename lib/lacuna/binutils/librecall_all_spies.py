@@ -16,6 +16,7 @@ class RecallAllSpies(lacuna.binutils.libbin.Script):
             help        = 'All spies from this planet will be recalled.'
         )
         super().__init__(parser, 'real')
+        self.bodyname = self.abbrv.get_name(self.args.name)
 
     
     def find_nothome_spies( self, home_id:int, intmin ):

@@ -50,7 +50,7 @@ class BuildShips(lacuna.binutils.libbin.Script):
             for colname in self.client.empire.colony_names.keys():
                 self.planets.append(colname)
         else:
-            self.planets = [ self.args.name ]
+            self.planets = [ self.abbrv.get_name(self.args.name) ]
         self.client.cache_off()
 
         self.trans = lacuna.types.Translator()

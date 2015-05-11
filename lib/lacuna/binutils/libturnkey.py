@@ -58,7 +58,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
             self.client.cache_clear( 'my_colonies' )
             self.client.cache_clear( 'prisoners' )
 
-        self._set_body( self.args.name )
+        self._set_body( self.abbrv.get_name(self.args.name) )
         self._set_prison()
         self._set_dispatch()
 

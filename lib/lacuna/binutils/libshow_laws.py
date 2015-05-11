@@ -43,7 +43,6 @@ class ShowLaws(lacuna.binutils.libbin.Script):
         self._set_star()
         self._set_laws()
 
-
     def _set_map( self ):
         self.client.cache_on( 'foreign_stations', 3600 )
         self.map = self.client.get_map()

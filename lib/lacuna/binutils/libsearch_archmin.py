@@ -50,7 +50,7 @@ class SearchArchmin(lacuna.binutils.libbin.Script):
             for colname in sorted( self.client.empire.colony_names.keys() ):
                 self.planets.append(colname)
         else:
-            self.planets = [ self.args.name ]
+            self.planets = [ self.abbrv.get_name(self.args.name) ]
         self.client.cache_off()
 
     def list_ores(self):

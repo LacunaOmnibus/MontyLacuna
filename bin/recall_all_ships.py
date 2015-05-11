@@ -13,7 +13,7 @@ recall = lib.RecallShips()
 
 ### Get planet
 recall.client.cache_on("my_planets", 3600)
-planet = recall.client.get_body_byname( recall.args.name )
+planet = recall.client.get_body_byname( recall.bodyname )
 
 ### Get any spaceport
 sp = planet.get_buildings_bytype( 'spaceport', 1, 1 )[0]

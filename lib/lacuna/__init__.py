@@ -3,6 +3,7 @@ version_info = ("0", "4", "beta")
 version = '.'.join( version_info )
 
 import lacuna.alliance
+import lacuna.abbreviations
 import lacuna.bc
 import lacuna.body
 import lacuna.building

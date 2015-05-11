@@ -47,7 +47,7 @@ class StationsReport(lacuna.binutils.libbin.Script):
             for station_name in sorted( self.client.empire.station_names.keys() ):
                 self.stations.append(station_name)
         else:
-            self.stations = [self.args.name]
+            self.stations = [self.abbrv.get_name(self.args.name)]
         self.client.cache_off()
 
     def set_station( self, sname:str ):

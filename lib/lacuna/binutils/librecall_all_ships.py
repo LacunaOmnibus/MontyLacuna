@@ -16,6 +16,7 @@ class RecallShips(lacuna.binutils.libbin.Script):
             help        = 'All spies from this planet will be recalled.'
         )
         super().__init__(parser)
+        self.bodyname = self.abbrv.get_name(self.args.name)
 
     def show_report(self, ships):
         """ Displays a report on what ships have been recalled.
@@ -36,7 +37,7 @@ class RecallShips(lacuna.binutils.libbin.Script):
             for key, md in shiptypes.items():
                 l.info( "{:04d} {} returning from {}.".format(md['num'], md['name'], md['origin']) )
             l.info( "--------------" )
-            l.info( "{:04d} total ships are on their way back to {}.".format(len(ships), self.args.name) )
+            l.info( "{:04d} total ships are on their way back to {}.".format(len(ships), self.bodyname) )
         else:
             l.info( "You don't have any ships out defending or orbiting." )
 

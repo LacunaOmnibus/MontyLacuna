@@ -15,7 +15,7 @@ l       = recall.client.user_logger
 
 ### Turn on caching, get planet
 recall.client.cache_on("recall_spies", 3600)
-planet = recall.client.get_body_byname( recall.args.name )
+planet = recall.client.get_body_byname( recall.bodyname )
 recall.client.cache_off()
 
 ### Get IntMin

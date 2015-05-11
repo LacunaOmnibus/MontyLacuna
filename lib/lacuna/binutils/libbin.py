@@ -1,5 +1,6 @@
 
 import argparse, lacuna, os, sys
+from lacuna.abbreviations import Abbreviations
 
 class FindConfigFileAction( argparse.Action ):
     def __init__( self, option_strings, dest, nargs=None, **kwargs ):
@@ -61,6 +62,7 @@ class Script:
         By inheriting from binutils.libbin.Script, your script's main class 
         will get the following:
 
+        abbrv       :class:`lacuna.abbreviations.Abbreviations` object
         args        The user's arguments, passed from the command line.
         bindir      The full path to the directory containing the script
                     being run.
@@ -205,6 +207,7 @@ class Script:
             self.args = parser.parse_args()
             self.connect()
 
+        self.abbrv = Abbreviations(self.client)
 
         ### Set log level
         if not self.args.quiet:
@@ -239,7 +242,7 @@ class Script:
             for colname in self.client.empire.colony_names.keys():
                 self.planets.append(colname)
         else:
-            self.planets = [ self.args.name ]
+            self.planets = [ self.abbrv.get_name(self.args.name) ]
         self.client.cache_off()
 
     def set_testargs( self, a:dict ):

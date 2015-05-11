@@ -14,9 +14,6 @@ import lacuna.exceptions as err
 sa  = lib.SearchArchmin()
 l   = sa.client.user_logger
 
-
-### sa.planets will be a list, containing either just the planet name passed 
-### in by the user, or all of the user's planet names if 'all' was passed in.
 for pname in sa.planets:
 
     ### Set the current planet name as our 'working' planet.  Grab the ArchMin 
