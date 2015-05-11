@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Build Ships &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Body Abbreviations &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -33,9 +33,8 @@
 
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
-        <link rel="next" title="Excavators Report" href="excavs_report.html"/>
-        <link rel="prev" title="Assign Spies" href="assign_spies.html"/> 
+        <link rel="next" title="Config File" href="../config_file.html"/>
+        <link rel="prev" title="Update MontyLacuna" href="update.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -76,9 +75,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started_running.html#ready-to-test">Ready to Test</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">MontyLacuna Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#starter-scripts">Starter Scripts</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#regular-scripts">Regular Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Body Abbreviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-abbreviations">Setting Abbreviations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#displaying-set-abbreviations">Displaying Set Abbreviations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deleting-an-abbreviation">Deleting An Abbreviation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-abbreviations">Using Abbreviations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../config_file.html">Config File</a><ul>
@@ -170,12 +176,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
-      
-    <li>Build Ships</li>
+    <li>Body Abbreviations</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../sources/scripts/build_ships.txt" rel="nofollow"> View page source</a>
+          <a href="../sources/scripts/abbreviations.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -183,119 +187,112 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="build-ships">
-<span id="id1"></span><h1>Build Ships<a class="headerlink" href="#build-ships" title="Permalink to this headline">¶</a></h1>
-<p>Builds or tops off ships at multiple shipyards on a given planet, or on all of
-your planets at once.</p>
-<p>The name of the ship to be built must be translatable, see
-<a class="reference internal" href="../types.html#ship-translations"><span>Ship Translations</span></a>.</p>
-<p>When passing the name of a planet, remember to use double quotes around the
-name if there are any space in it.  And if you want to build the same number
-of ships on all of your planets, you can pass in the special planet name
-&#8216;all&#8217;.  (If you have a planet actually named &#8216;all&#8217;, you chose poorly.  Go
-rename it, or accept that this won&#8217;t work properly for that planet.)</p>
-<p>The easiest way to run it will fill all of the available build queues on all
-of the shipyards on your planet:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">sweeper</span>
-</pre></div>
-</div>
-<p>To only build ships on shipyards of level 30:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="n">Earth</span> <span class="n">sweeper</span>
-</pre></div>
-</div>
-<p>To only build 60 total ships on shipyards of level 30:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">60</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="n">Earth</span> <span class="n">sweeper</span>
-</pre></div>
-</div>
-<p>You can also just top off your ships, to make sure you&#8217;ve always got a certain
-number already built.  The following will build however many excavators it
-takes to get to a total of 20, and will just quit if you&#8217;ve already got 20 or
-more:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">20</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="o">--</span><span class="n">topoff</span> <span class="n">Earth</span> <span class="n">excavator</span>
-</pre></div>
-</div>
-<p>When topping off excavators, you may well want to just top them off at all of
-your planets in one shot:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">num</span> <span class="mi">20</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="o">--</span><span class="n">topoff</span> <span class="nb">all</span> <span class="n">excavator</span>
-</pre></div>
-</div>
-<p>If you want to run this from a scheduled task, or a batch file/shell script,
-or any other situation where you don&#8217;t want to see the script&#8217;s running
-commentary, you can tell it to shut up:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">quiet</span> <span class="o">--</span><span class="n">num</span> <span class="mi">60</span> <span class="o">--</span><span class="n">level</span> <span class="mi">30</span> <span class="n">Earth</span> <span class="n">sweeper</span>
-</pre></div>
-</div>
-<p>For complete help, see the script&#8217;s help documentation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
-</pre></div>
-</div>
-<dl class="class">
-<dt id="lacuna.binutils.libbuild_ships.BuildShips">
-<em class="property">class </em><code class="descclassname">lacuna.binutils.libbuild_ships.</code><code class="descname">BuildShips</code><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><code class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></code></a></p>
-<dl class="method">
-<dt id="lacuna.binutils.libbuild_ships.BuildShips.build_at_yard">
-<code class="descname">build_at_yard</code><span class="sig-paren">(</span><em>yard</em>, <em>build_cnt</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips.build_at_yard" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build ships at the given shipyard.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>yard</strong> (<a class="reference internal" href="../tle_modules/buildings/callable/shipyard.html#module-lacuna.buildings.callable.shipyard" title="lacuna.buildings.callable.shipyard"><em>lacuna.buildings.callable.shipyard</em></a>) &#8211; The shipyard to build at</li>
-<li><strong>build_cnt</strong> (<em>int</em>) &#8211; The total number of ships left to build</li>
+  <div class="sidebar">
+<p class="first sidebar-title">Jump to</p>
+<ul class="last simple">
+<li><a class="reference internal" href="#abbrvs"><span>Body Abbreviations</span></a></li>
+<li><a class="reference internal" href="#setting-abbrvs"><span>Setting Abbreviations</span></a></li>
+<li><a class="reference internal" href="#displaying-abbrvs"><span>Displaying Set Abbreviations</span></a></li>
+<li><a class="reference internal" href="#deleting-abbrvs"><span>Deleting An Abbreviation</span></a></li>
+<li><a class="reference internal" href="#using-abbrvs"><span>Using Abbreviations</span></a></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><ul class="simple">
-<li>num_built (int): Number of ships being built at this SY</li>
-<li>num_left (int): Number of ships that still need to be built</li>
-</ul>
-</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+</div>
+<div class="section" id="body-abbreviations">
+<span id="abbrvs"></span><h1>Body Abbreviations<a class="headerlink" href="#body-abbreviations" title="Permalink to this headline">¶</a></h1>
+<p>Planet and Space Station names both tend to get pretty long, and having to
+type out the entire name at the command line when running scripts can get
+tedious.</p>
+<p>To help with that, MontyLacuna has a body name abbreviation system.  It allows
+you to set abbreviations for your planets with longer names, display those
+abbreviations, and delete them when you&#8217;re not using them any more.</p>
+<p>All MontyLacuna scripts that accept a planet name argument will also accept
+any abbreviation you&#8217;ve set up.</p>
+<div class="section" id="setting-abbreviations">
+<span id="setting-abbrvs"></span><h2>Setting Abbreviations<a class="headerlink" href="#setting-abbreviations" title="Permalink to this headline">¶</a></h2>
+<p>To set the abbreviation for the planet &#8220;my Fantastic Planet Number 01&#8221; to just
+&#8220;fan01&#8221;:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; py bin/abbrv_set.py &quot;my Fantastic Planet Number 01&quot; fan01
+my Fantastic Planet Number 01 can now be abbreviated as &#39;fan01&#39;
+</pre></div>
+</div>
+<p>You can set abbreviations for both planets and space stations.  So to set up
+abbreviations for a small empire in a small alliance:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; py bin/abbrv_set.py &quot;my Fantastic Planet Number 01&quot; fan01
+&gt;&gt; py bin/abbrv_set.py &quot;my Fantastic Planet Number 02&quot; fan02
+&gt;&gt; py bin/abbrv_set.py &quot;my Fantastic Planet Number 03&quot; fan03
+&gt;&gt; py bin/abbrv_set.py &quot;my Fantastic Planet Number 04&quot; fan04
+&gt;&gt; py bin/abbrv_set.py &quot;Station GreatStation 01&quot; ss01
+&gt;&gt; py bin/abbrv_set.py &quot;Station GreatStation 02&quot; ss02
+&gt;&gt; py bin/abbrv_set.py &quot;Station GreatStation 03&quot; ss03
+</pre></div>
+</div>
+</div>
+<div class="section" id="displaying-set-abbreviations">
+<span id="displaying-abbrvs"></span><h2>Displaying Set Abbreviations<a class="headerlink" href="#displaying-set-abbreviations" title="Permalink to this headline">¶</a></h2>
+<p>You can check the abbreviation for any single planet with:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; py bin/abbrv_show.py &quot;my Fantastic Planet Number 01&quot;
+my Fantastic Planet Number 01 is abbreviated as fan01
+</pre></div>
+</div>
+<p>But you still had to type out the full planet name for that, and it only shows
+you a single abbreviation.  More likely, what you&#8217;re going to want is to see
+all of your abbreviations at one time:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; py bin/abbrv_show.py all
 
-<dl class="method">
-<dt id="lacuna.binutils.libbuild_ships.BuildShips.determine_buildable">
-<code class="descname">determine_buildable</code><span class="sig-paren">(</span><em>yards</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips.determine_buildable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ensures we can actually build the requested ship type, and figures
-out how many of them we should build.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>yards</strong> (<a class="reference internal" href="../tle_modules/buildings/callable/shipyard.html#module-lacuna.buildings.callable.shipyard" title="lacuna.buildings.callable.shipyard"><em>lacuna.buildings.callable.shipyard</em></a>) &#8211; list of objects.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>numships</strong> &#8211;
-number of ships we should queue across all shipyards.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">KeyError</span></code> &#8211;
-if the ship can&#8217;t be built for any reason.</td>
-</tr>
-</tbody>
-</table>
-<p>This number to be built does not take current build queues into
-account.  Four level 30 SYs are going to return 120, no matter what
-those SYs are currently doing.</p>
-</dd></dl>
+FULL NAME                                          ABBREVIATION
+my Fantastic Planet Number 01                      fan01
+my Fantastic Planet Number 02                      fan02
+my Fantastic Planet Number 03                      fan03
+my Fantastic Planet Number 04                      fan04
+Station GreatStation 01                            ss01
+Station GreatStation 02                            ss02
+Station GreatStation 03                            ss03
+(END)
+</pre></div>
+</div>
+<p>The output is run through a pager, so if you have a lot of abbreviations,
+you&#8217;ll only see one pageful at a time.</p>
+<p>If you see a bare colon at the bottom instead of <strong>(END)</strong>, that means there&#8217;s
+more output to come.  Hit <em>ENTER</em> or your down arrow to move down through the
+rest of the output one line at a time, or hit <em>SPACE</em> to jump down a full
+page.</p>
+<p>At any point, you can exit the pager by hitting <em>Q</em> (for &#8216;Quit&#8217;).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Notice that the <code class="docutils literal"><span class="pre">m</span></code> in &#8220;my Fantastic Planet...&#8221; is lowercased above, but
+it still displays before the stations, whose first letters are uppercased.
+This is to demonstrate that the displayed bodies are listed in
+alphabetical order, ignoring case.</p>
+</div>
+</div>
+<div class="section" id="deleting-an-abbreviation">
+<span id="deleting-abbrvs"></span><h2>Deleting An Abbreviation<a class="headerlink" href="#deleting-an-abbreviation" title="Permalink to this headline">¶</a></h2>
+<p>If you decide you&#8217;re no longer using a given abbreviation and want to get it
+out of the list:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; py bin/abbrv_del.py &quot;my Fantastic Planet Number 01&quot;
 
-<dl class="method">
-<dt id="lacuna.binutils.libbuild_ships.BuildShips.get_shipyards">
-<code class="descname">get_shipyards</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libbuild_ships.BuildShips.get_shipyards" title="Permalink to this definition">¶</a></dt>
-<dd><p>Raises err.NoSuchBuildingError if this planet doesn&#8217;t have any
-shipyards of the requested level.</p>
-</dd></dl>
-
-</dd></dl>
-
+&gt;&gt; py bin/abbrv_show.py all
+FULL NAME                                          ABBREVIATION
+my Fantastic Planet Number 02                      fan02    # Note that 01 is gone.
+my Fantastic Planet Number 03                      fan03
+my Fantastic Planet Number 04                      fan04
+Station GreatStation 01                            ss01
+Station GreatStation 02                            ss02
+Station GreatStation 03                            ss03
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-abbreviations">
+<span id="using-abbrvs"></span><h2>Using Abbreviations<a class="headerlink" href="#using-abbreviations" title="Permalink to this headline">¶</a></h2>
+<p>Once your abbreviations are set up, you can use them as the body name
+arguments for any MontyLacuna scripts that need a body name:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt; py bin/build_ships.py fan02 sweeper
+&gt;&gt; py bin/scuttle_ships.py --num 10 fan03 scow
+&gt;&gt; py bin/recall_all_ships.py fan04
+</pre></div>
+</div>
+<p>...etc.</p>
+</div>
 </div>
 
 
@@ -304,10 +301,10 @@ shipyards of the requested level.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="excavs_report.html" class="btn btn-neutral float-right" title="Excavators Report">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../config_file.html" class="btn btn-neutral float-right" title="Config File">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="assign_spies.html" class="btn btn-neutral" title="Assign Spies"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="update.html" class="btn btn-neutral" title="Update MontyLacuna"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

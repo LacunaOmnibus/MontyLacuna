@@ -25,6 +25,7 @@ how to run the various available scripts.  You can ignore everything else.
 
    getting_started_running
    scripts/index
+   scripts/abbreviations
    config_file
    getting_started_writing
    tle_modules/index

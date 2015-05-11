@@ -195,47 +195,17 @@ column in <a class="reference internal" href="../../../types.html#ship-translati
 <dt id="lacuna.buildings.callable.spaceport.BattleLog">
 <em class="property">class </em><code class="descclassname">lacuna.buildings.callable.spaceport.</code><code class="descname">BattleLog</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.spaceport.BattleLog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
-<dl class="attribute">
-<dt>
-<code class="descname">date                &quot;06 21 2011 22</code></dt>
-<dd><p>54:37 +0600&#8221;,</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">attacking_body      &quot;Romulus&quot;,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">attacking_empire    &quot;Romulans&quot;,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">attacking_unit      &quot;Sweeper 21&quot;,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">defending_body      &quot;Kronos&quot;,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">defending_empire    &quot;Klingons&quot;,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">defending_unit      &quot;Shield Against Weapons&quot;,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">victory_to          &quot;defender&quot;</code></dt>
-<dd></dd></dl>
-
+<p>Object Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>date                &quot;06 21 2011 22:54:37 +0600&quot;,
+attacking_body      &quot;Romulus&quot;,
+attacking_empire    &quot;Romulans&quot;,
+attacking_unit      &quot;Sweeper 21&quot;,
+defending_body      &quot;Kronos&quot;,
+defending_empire    &quot;Klingons&quot;,
+defending_unit      &quot;Shield Against Weapons&quot;,
+victory_to          &quot;defender&quot;
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
@@ -248,16 +218,11 @@ platform itself is no longer actually a ship, and does not have a name or ID
 of its own.</p>
 <p>This class exists in the spaceport module because this is the only place
 that this format is used.</p>
-<dl class="attribute">
-<dt>
-<code class="descname">empire_id       ID of your empire, NOT of the ship</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">empire_name     Name of your empire, NOT of the ship</code></dt>
-<dd></dd></dl>
-
+<p>Object Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>empire_id       ID of your empire, NOT of the ship
+empire_name     Name of your empire, NOT of the ship
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
@@ -723,8 +688,9 @@ TLE API docs; I don&#8217;t know what it means).</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>paging -- Optional dict of paging criteria with the keys</strong> (<em>-</em>) &#8211; <ul>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>paging</strong> (<em>dict</em>) &#8211; <p>Specify paging behavior (optional)</p>
+<ul>
 <li><code class="docutils literal"><span class="pre">page_number</span></code> &#8211; page number to view</li>
 <li><code class="docutils literal"><span class="pre">items_per_page</span></code> &#8211; number of items per page</li>
 <li><code class="docutils literal"><span class="pre">no_paging</span></code> &#8211; Boolean.  Mutually exclusive with the other two
@@ -732,7 +698,8 @@ keys.  If sent with a True value, all ships will be returned,
 un-paginated.</li>
 </ul>
 </li>
-<li><strong>filter -- A dict of filter critera, with the keys</strong> (<em>-</em>) &#8211; <ul>
+<li><strong>filter</strong> (<em>dict</em>) &#8211; <p>Specify filter criteria (optional)</p>
+<ul>
 <li><code class="docutils literal"><span class="pre">task</span></code> &#8211; One of <code class="docutils literal"><span class="pre">Building</span></code>, <code class="docutils literal"><span class="pre">Defend</span></code>, <code class="docutils literal"><span class="pre">Docked</span></code>,
 <code class="docutils literal"><span class="pre">Mining</span></code>, <code class="docutils literal"><span class="pre">Orbiting</span></code>, <code class="docutils literal"><span class="pre">Supply</span> <span class="pre">Chain</span></code>, <code class="docutils literal"><span class="pre">Travelling</span></code>,
 <code class="docutils literal"><span class="pre">Waiting</span> <span class="pre">on</span> <span class="pre">Trade</span></code>, or <code class="docutils literal"><span class="pre">Waste</span> <span class="pre">Chain</span></code>.</li>
@@ -742,13 +709,19 @@ un-paginated.</li>
 <code class="docutils literal"><span class="pre">Intelligence</span></code>, <code class="docutils literal"><span class="pre">Mining</span></code>, <code class="docutils literal"><span class="pre">Trade</span></code>, <code class="docutils literal"><span class="pre">War</span></code></li>
 </ul>
 </li>
-<li><strong>sort -- A string to specify what to sort the results on.</strong> (<em>-</em>) &#8211; <ul>
-<li>Valid options: <code class="docutils literal"><span class="pre">combat</span></code>, <code class="docutils literal"><span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">speed</span></code>, <code class="docutils literal"><span class="pre">stealth</span></code>,
-<code class="docutils literal"><span class="pre">task</span></code>, <code class="docutils literal"><span class="pre">type</span></code>.</li>
-<li>Defaults to <code class="docutils literal"><span class="pre">type</span></code>.</li>
+<li><strong>sort</strong> (<em>string</em>) &#8211; specify what to sort the results on.  Valid options are: <code class="docutils literal"><span class="pre">combat</span></code>,
+<code class="docutils literal"><span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">speed</span></code>, <code class="docutils literal"><span class="pre">stealth</span></code>, <code class="docutils literal"><span class="pre">task</span></code>, <code class="docutils literal"><span class="pre">type</span></code>.  Defaults to <code class="docutils literal"><span class="pre">type</span></code>.</li>
 </ul>
-</li>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><ul class="simple">
+<li>ships (lacuna.ship.ExistingShip): list of objects.</li>
+<li>number_of_ships (int): is the total number that result from your filter, ignoring your pagin</li>
 </ul>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple</p>
 </td>
 </tr>
 </tbody>

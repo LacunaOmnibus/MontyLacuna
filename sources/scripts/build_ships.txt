@@ -30,8 +30,9 @@ To only build 60 total ships on shipyards of level 30::
     >>> python bin/build_ships.py --num 60 --level 30 Earth sweeper
 
 You can also just top off your ships, to make sure you've always got a certain 
-number in stock.  The following will build however many excavators it takes to 
-get to a total of 20, and will just quit if you've already got 20 or more::
+number already built.  The following will build however many excavators it 
+takes to get to a total of 20, and will just quit if you've already got 20 or 
+more::
 
     >>> python bin/build_ships.py --num 20 --level 30 --topoff Earth excavator
 

@@ -191,12 +191,12 @@ written in Perl.</p>
 <li>Install Python 3<ul>
 <li><a class="reference internal" href="#inst-python-windows"><span>Windows</span></a></li>
 <li><a class="reference internal" href="#inst-python-nonwindows"><span>Non-Windows</span></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#inst-monty"><span>Install MontyLacuna</span></a></li>
 <li><a class="reference internal" href="#inst-pip"><span>Install pip and Prerequisite Libraries</span></a></li>
 <li><a class="reference internal" href="#create-config-file"><span>Create A Config File</span></a></li>
 <li><a class="reference internal" href="#run-test-script"><span>Ready to Test</span></a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="install-python-3">
@@ -292,8 +292,11 @@ the root MontyLacuna folder -  the one you just extracted in the previous step
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">pip</span></code> is now installed.</p>
-<p><strong>On a Mac</strong>, pip did get installed, but it was named <code class="docutils literal"><span class="pre">pip3</span></code>.  So actually
-type <code class="docutils literal"><span class="pre">pip3</span></code> instead of <code class="docutils literal"><span class="pre">pip</span></code> for the module installs below.</p>
+<p><strong>On a Mac</strong>, pip did get installed, but it may have been named <code class="docutils literal"><span class="pre">pip3</span></code>
+rather than just <code class="docutils literal"><span class="pre">pip</span></code>.  Typing <code class="docutils literal"><span class="pre">pip</span> <span class="pre">-V</span></code> (that&#8217;s a capital V) will tell
+you which version of python your pip will update.  If your pip is set to
+update your python2 installation, then check if you have a <code class="docutils literal"><span class="pre">pip3</span></code> and use
+that instead.</p>
 <p>There are only two Python libraries to install, <code class="docutils literal"><span class="pre">requests</span></code> and <code class="docutils literal"><span class="pre">beaker</span></code>,
 and you install both of them using <code class="docutils literal"><span class="pre">pip</span></code> by typing these two commands one at
 a time:</p>
