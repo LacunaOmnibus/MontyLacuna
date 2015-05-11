@@ -30,21 +30,7 @@ how to run the various available scripts.  You can ignore everything else.
    getting_started_writing
    tle_modules/index
    tests/index
-
-   bc
-   caching
-   clients
-   exceptions
-   glyph
-   logging
-   my_validate_email
-   plan
-   recycling
-   resource
-   ship
-   spy
-   trading
-   types
+   other_modules
 
 Indices and tables
 ==================
