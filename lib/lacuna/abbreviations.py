@@ -120,9 +120,9 @@ class Abbreviations():
             KeyError: If the abbrv passed in is neither a set abbreviation nor 
             a valid body name.
         """
-        if self.mydict['abbrv'][ abbrv ]:
+        if abbrv in self.mydict['abbrv']:
             return self.mydict['abbrv'][abbrv]
-        elif abbrv in self.client.planet_names.keys():
+        elif abbrv in self.client.empire.planet_names.keys():
             return abbrv
         else:
             raise KeyError( "{} is neither an assigned abbreviation nor a body name.".format(abbrv) )
