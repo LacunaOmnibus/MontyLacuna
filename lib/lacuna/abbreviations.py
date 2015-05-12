@@ -2,12 +2,18 @@
 import os, pickle, pydoc, sys
 
 class Abbreviations():
+    """ Saves personal abbreviations for often-long body names.
+
+    Arguments:
+        client (lacuna.clients.Member): The client we're currently connected as.
+    """
 
     ### Assumes that the script calling us lives in INSTALL/bin/
     bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
     vardir = os.path.abspath(bindir + "/../var")
 
     mydict = { 
+        'version': '1.0',
         'abbrv': {}, 
         'name': {}
     }
@@ -22,7 +28,14 @@ class Abbreviations():
         fh = open( self.statefile, "rb" )
         self.mydict = pickle.load(fh)
 
-    def _put_data( self, mydict:dict ):
+    def _read_statefile( self ):
+        """ Sets self.mydict equal to whatever is currently stored in the 
+        statefile.  Must be called after _set_statefile().
+        """
+        fh = open( self.statefile, "rb" )
+        self.mydict = pickle.load(fh)
+
+    def _save_dict( self, mydict:dict ):
         """ Puts data in mydict into the statefile.
 
         Arguments:
@@ -35,13 +48,6 @@ class Abbreviations():
         fh = open( self.statefile, "wb" )
         pickle.dump( mydict, fh )
 
-    def _read_statefile( self ):
-        """ Sets self.mydict equal to whatever is currently stored in the 
-        statefile.  Must be called after _set_statefile().
-        """
-        fh = open( self.statefile, "rb" )
-        self.mydict = pickle.load(fh)
-
     def _set_statefile( self ):
         """ Get the path to the statefile based on the current empire name.  If 
         the statefile doesn't exist yet, this creates and initializes it.
@@ -52,7 +58,7 @@ class Abbreviations():
         fn = self.client.empire.name + "_bodyabbrv.pkl"
         self.statefile = os.path.join(self.vardir, fn)
         if not os.path.isfile(self.statefile):
-            self._put_data( Abbreviations.mydict )   # initialize statefile as pickle file with empty dict
+            self._save_dict( Abbreviations.mydict )   # initialize statefile as pickle file with empty dict
 
     def delete( self, name ):
         """ Deletes an abbreviation assignment, given the assignment's full name.
@@ -68,7 +74,7 @@ class Abbreviations():
                 del self.mydict['abbrv'][existing_abbrv]
             if self.mydict['name'][name]:
                 del self.mydict['name'][name]
-        self._put_data(self.mydict)
+        self._save_dict(self.mydict)
 
     def get_abbrv( self, name ):
         """ Gets the abbreviation for a full name.
@@ -123,7 +129,7 @@ class Abbreviations():
             raise KeyError( "Don't use 'all' when setting an abbreviation, silly." )
         self.mydict['abbrv'][ abbrv ]   = name
         self.mydict['name'][ name ]     = abbrv
-        self._put_data(self.mydict)
+        self._save_dict(self.mydict)
 
     def show_all(self):
         """ Produces a report on all currently-stored abbreviations.
