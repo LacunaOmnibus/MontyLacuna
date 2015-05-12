@@ -16,4 +16,5 @@ import lacuna.map
 import lacuna.ship
 import lacuna.stats
 import lacuna.types
+import lacuna.utils
 

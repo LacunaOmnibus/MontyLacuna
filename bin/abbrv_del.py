@@ -9,8 +9,9 @@ import logging, lacuna
 import lacuna.exceptions as err
 import lacuna.binutils.libabbrv as lib
 
-da = lib.DelBodyAbbrv()
+da  = lib.DelBodyAbbrv()
+ute = lacuna.utils.Utils()
 
-da.abbrv.delete( da.args.name )
+ute.mytry( da.abbrv.delete, da.args.name )
 print( "The abbreviation for {} has been removed.".format(da.args.name) )
 

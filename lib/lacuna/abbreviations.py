@@ -1,5 +1,6 @@
 
 import os, pickle, pydoc, sys
+import lacuna
 
 class Abbreviations():
     """ Saves personal abbreviations for often-long body names.
@@ -21,6 +22,7 @@ class Abbreviations():
     def __init__(self, client):
         self.client     = client
         self.statefile  = None
+        self.utils      = lacuna.utils.Utils()
         self._set_statefile()
         self._read_statefile()
 
@@ -62,6 +64,12 @@ class Abbreviations():
 
     def delete( self, name ):
         """ Deletes an abbreviation assignment, given the assignment's full name.
+
+        Arguments:
+            name (str): Full name of a body; its abbreviation will be removed.
+
+        Raises:
+            KeyError: If no abbreviation exists for ``name``.
         """
         if name == 'all':
             yn = input("I'm about to delete all of your abbreviations - is that what you want [y/N]?")
@@ -69,11 +77,12 @@ class Abbreviations():
                 print( "OK, bailing!" )
                 quit()
         else:
-            existing_abbrv = self.mydict['name'][ name ]
-            if existing_abbrv:
-                del self.mydict['abbrv'][existing_abbrv]
-            if self.mydict['name'][name]:
+            if name in self.mydict['name']:
+                abbrv = self.mydict['name'][ name ]
+                del self.mydict['abbrv'][abbrv]
                 del self.mydict['name'][name]
+            else:
+                raise KeyError("No abbreviation exists for {}.".format(name))
         self._save_dict(self.mydict)
 
     def get_abbrv( self, name ):
@@ -138,7 +147,7 @@ class Abbreviations():
         if self.mydict['name'].keys():
             output += "{:<50} {}\n".format("FULL NAME", "ABBREVIATION")
             for name in sorted(self.mydict['name'].keys(), key=lambda s: s.lower()):
-                showname = self.summarize( name, 50 )
+                showname = self.utils.summarize( name, 50 )
                 output += "{:<50} {}\n".format(showname, self.get_abbrv(name))
         else:
             print( "You don't have any abbreviations set up yet." )
@@ -154,25 +163,4 @@ class Abbreviations():
             print( "{} is abbreviated as '{}'.".format(name, self.get_abbrv(name)) )
         else:
             print( "No abbreviation is currently set for {}".format(name) )
-
-
-    def summarize( self, string:str, mymax:int ):
-        """ Summarizes a string, usually for inclusion in a report section 
-        with a fixed width.
-
-        Arguments:
-            string (str): String to summarize
-            max (int): Max length of the string.  Must be greater than 3.
-
-        If the string is "abcdefghijk" and the max is 6, this will return 
-        "abc..."
-
-        Returns the summarized string, or the original string if it was shorter 
-        than max.
-        """
-        mymax = 4 if mymax < 4 else mymax
-        if len(string) > mymax:
-            submax = mymax - 3
-            string = string[0:submax] + "..."
-        return string
 

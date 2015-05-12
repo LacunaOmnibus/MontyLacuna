@@ -159,6 +159,9 @@ Incite Mutiny                   mutiny
 Incite Rebellion                rebellion, rebel
 =============================== =================================================
 
+Module Documentation
+--------------------
+
 .. automodule:: lacuna.types
    :members:
    :show-inheritance:
