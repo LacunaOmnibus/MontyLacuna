@@ -83,3 +83,27 @@ CREATING A NEW GUI ELEMENT {#{{{
     
 }#}}}
 
+NOTES ON INDIVIDUAL BITS OF THE GUI {#{{{
+    
+    Abbreviation Table Sizing {#{{{
+        The width of the two columns is based on the width of the whole table.  
+        The Name column gets 75% and the Abbrv column gets 25% of the overall 
+        width.
+
+        However, this table appears on the third tab, and the login button is 
+        on the first tab.  Clicking the login button creates the table with 
+        its contents.
+
+        If the user doesn't view that third tab containing the table before 
+        they log in (and why would they?), then the table's width will be 100, 
+        regardless of the size of the rest of the app.  Since the widget the 
+        table lives in hasn't been viewed yet, it takes on that 100 as a 
+        default width.
+
+        This is why there's a tab_changed() method hooked up to the tab 
+        widget.  As soon as the user clicks on the tab containing that abbrv 
+        table, it gets resized properly.
+    }#}}}
+
+}#}}}
+

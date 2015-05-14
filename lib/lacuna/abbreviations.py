@@ -7,9 +7,10 @@ class Abbreviations():
 
     Arguments:
         client (lacuna.clients.Member): The client we're currently connected as.
+        vardir (str): The path to the Monty var/ directory.  Defaults to 
+        ``CALLING_SCRIPT/../var/``.
     """
 
-    ### Assumes that the script calling us lives in INSTALL/bin/
     bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
     vardir = os.path.abspath(bindir + "/../var")
 
@@ -19,10 +20,13 @@ class Abbreviations():
         'name': {}
     }
 
-    def __init__(self, client):
+    def __init__(self, client, vardir = None):
         self.client     = client
         self.statefile  = None
         self.utils      = lacuna.utils.Utils()
+        if vardir and os.path.isdir(vardir):
+            self.vardir = vardir
+
         self._set_statefile()
         self._read_statefile()
 
@@ -126,6 +130,20 @@ class Abbreviations():
             return abbrv
         else:
             raise KeyError( "{} is neither an assigned abbreviation nor a body name.".format(abbrv) )
+
+    def list_abbrvs( self ):
+        """ Get a list of currently-set abbreviations
+
+        Returns (str): Alpha-sorted list of abbreviations
+        """
+        return sorted( self.mydict['abbrv'].keys() )
+
+    def list_names( self ):
+        """ Get a list of full body names for which there are abbreviations set
+
+        Returns (str): Alpha-sorted list of names
+        """
+        return sorted( self.mydict['name'].keys() )
 
     def save( self, name, abbrv ):
         """ Saves an abbreviation assignment.

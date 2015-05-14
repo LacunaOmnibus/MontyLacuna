@@ -25,7 +25,7 @@ QPushButton:focus {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -34,7 +34,7 @@ QPushButton:focus {
          <enum>Qt::ClickFocus</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_1">
          <attribute name="title">
@@ -53,6 +53,32 @@ QPushButton:focus {
               </property>
               <property name="text">
                <string>Log in</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_logout">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Log out</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_check_status">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Check login status</string>
               </property>
              </widget>
             </item>
@@ -109,7 +135,7 @@ QPushButton:focus {
          <attribute name="title">
           <string>Empire Status</string>
          </attribute>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
@@ -133,6 +159,38 @@ QPushButton:focus {
               <property name="tabChangesFocus">
                <bool>false</bool>
               </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>Abbreviations</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QTableWidget" name="tbl_abbrv">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <property name="columnCount">
+               <number>2</number>
+              </property>
+              <column/>
+              <column/>
              </widget>
             </item>
            </layout>
@@ -231,7 +289,11 @@ QPushButton:focus {
   </action>
  </widget>
  <tabstops>
+  <tabstop>btn_login</tabstop>
+  <tabstop>btn_logout</tabstop>
+  <tabstop>btn_check_status</tabstop>
   <tabstop>btn_quit</tabstop>
+  <tabstop>btn_get_empire_status</tabstop>
  </tabstops>
  <resources/>
  <connections>

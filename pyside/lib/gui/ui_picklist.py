@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/picklist.ui'
 #
-# Created: Thu May 14 15:37:18 2015
+# Created: Thu May 14 18:03:23 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -36,6 +36,7 @@ class Ui_PickList(object):
         self.retranslateUi(PickList)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), PickList.accept)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), PickList.reject)
+        QtCore.QObject.connect(self.listWidget, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), PickList.accept)
         QtCore.QMetaObject.connectSlotsByName(PickList)
 
     def retranslateUi(self, PickList):
