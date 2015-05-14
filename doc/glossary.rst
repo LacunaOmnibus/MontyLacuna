@@ -26,7 +26,9 @@ Standard Search String
 
 .. _gloss_target:
 
-**Standard Target Dict**
+Standard Target Dict
+--------------------
+
     Many :class:`lacuna.buildings.callable.spaceport` methods accept a 
     ``target`` argument to specify where you want to send ships to.  This will 
     always be a dict, in one of the following formats::
@@ -37,7 +39,10 @@ Standard Search String
         { "star_id" : "id-goes-here" }
         { "x" : 4, "y" : -3 }
 
-**TLE date format**
+.. _glosss_date:
+
+TLE date format
+---------------
     Many methods include dates as part of their returns.  TLE dates are in the 
     format ``01 31 2010 13:09:05 +0000``.
 
@@ -54,6 +59,3 @@ Standard Search String
                 .format(dt.day, dt.month, dt.year, dt.hour, dt.minute, dt.second)
             )
             
-
-
-

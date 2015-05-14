@@ -354,12 +354,11 @@ class SendExcavs(lacuna.binutils.libbin.Script):
         """ Finds a single excavator to be sent to target.
 
         Arguments:
-            - target -- Standard target dict
+            target (dict): :ref:`gloss_target`
 
         Returns
-            - excavator -- Either a single lacuna.ship.ExistingShip object 
-              representing an excavator, or False if no available excavators 
-              could be found.
+            excavator (lacuna.ship.ExistingShip): Excavator ready to send to
+            the target, or False if no available excavators could be found.
         """
         avail = self.sp.get_task_ships_for( target, 'available' )
         for s in avail:
