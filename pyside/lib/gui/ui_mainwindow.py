@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created: Thu May 14 18:03:23 2015
+# Created: Thu May 14 19:27:09 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -160,6 +160,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.actionQuit, QtCore.SIGNAL("activated()"), MainWindow.close)
         QtCore.QObject.connect(self.btn_quit, QtCore.SIGNAL("clicked()"), MainWindow.close)
+        QtCore.QObject.connect(MainWindow, QtCore.SIGNAL("destroyed()"), MainWindow.close)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.btn_login, self.btn_logout)
         MainWindow.setTabOrder(self.btn_logout, self.btn_check_status)

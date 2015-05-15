@@ -1,4 +1,10 @@
 
+QtCore docs:
+    https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtCore/
+
+QtGui (individual widget) docs:
+    https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtGui/
+
 STRUCTURE {#{{{
     
     bin/

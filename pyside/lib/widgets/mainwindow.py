@@ -4,6 +4,7 @@
 import configparser, os, sys
 import lacuna, lacuna.exceptions as err
 from lacuna.abbreviations import Abbreviations
+from lacuna.utils import Utils
 ### I may just end up with "import *" below.
 from PySide.QtGui import QApplication, QFileDialog, QMainWindow, QTableWidgetItem
 from PySide.QtCore import *
@@ -18,6 +19,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.config_file    = config_file
         self.config_section = 'sitter'
         self.is_logged_in   = False
+        self.utils          = Utils()
         self.vardir         = os.path.abspath(sys.argv[0] + "/../../../var")
 
         super(MainWindow, self).__init__(parent)
@@ -68,17 +70,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if num == 2:
             self.resize_abbrv_table()
         
-    def chose_config_file(self):
-        ### CHECK - this is nasty.
-        ### assumes we're in MONTY/pyside/lib/widgets
-        dir = os.path.dirname(os.path.realpath(__file__)) + "/../../../etc"
+    def find_vardir(self):
+        """ Finds the MontyLacuna var/ dir, provided it's a sibilng or 
+        grand-cousin of the directory containing this file (which it 
+        should be).
 
-        ### The filter rv below is just the same filter ("Config Files..." 
-        ### that we passed to getOpenFileName().  I dunno why we're getting it 
-        ### back again.)
-        ### The file rv is the full path to the chosen file.
-        ### If the user cancels the file choser, the file rv is an empty 
-        ### string.
+        Returns (str): Canonical path to the var/ directory
+
+        Raises (SystemError): If the var/ directory could not be found.
+        """
+        dir = os.path.dirname(os.path.realpath(__file__))
+        while(1):
+            cand = os.path.dirname(os.path.realpath(dir))
+            if cand == os.path.dirname(os.path.realpath('/')):
+                raise SystemError("Cannot find MontyLacuna's var/ directory.")
+            cand += "/var"
+            if os.path.isdir( cand ):
+                return cand
+            else:
+                dir += "/.."
+
+    def chose_config_file(self):
+        config_dir = self.utils.mytry( self.find_vardir )
+
         file, filter = QFileDialog.getOpenFileName( self, "Open Image", dir, "Config Files (*.cfg)" )
         if file:
             self.config_file = file
