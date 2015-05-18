@@ -134,7 +134,7 @@ at a time::
     >>> pip install pyside
     >>> pip install requests
 
-If either of those ``pip`` commands produced errors, see the 
+If any of those ``pip`` commands produced errors, see the 
 :ref:`troubleshoot_pip_install` docs.
 
 After pip and the prerequisite libraries are installed, leave that CMD window 
