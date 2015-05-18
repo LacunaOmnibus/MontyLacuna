@@ -89,6 +89,47 @@ CREATING A NEW GUI ELEMENT {#{{{
       examples for how to use widgets (search for "ConfBox")
     
 }#}}}
+ADDING IMAGES {#{{{
+    QUICK INSTRUCTIONS {#{{{
+        - Find the image you want to add (under media/images/coolicons/png/)
+        - Edit ui/coolicons.qrc.  Add an alias and the path to the file, 
+          following existing examples.
+            - The paths must be relative to the location of the coolicons.qrc 
+              file.
+        - Re-run bin/make_ui.sh
+        - Your new image is now available to the program.
+    }#}}}
+    ADDING A NEW ICON PACK {#{{{
+        - Download it and put it somewhere intelligent under media/.
+        - Create a new .qrc file in ui/
+            - Best bet is to copy coolicons.qrc and modify it
+        - Edit bin/make_ui.sh
+            - Add your new pack's filename, minus the ".qrc" extension, to 
+              IMAGE_PIECES.
+        - Run bin/make_ui.sh
+        - Edit lib/gui/__init__.py
+            - Add "import gui.img_YOUR_NEW_PACKNAME"
+            - the "img_" got stuck on the front by bin/make_ui.sh.
+        
+
+        If you're planning on adding a new icon pack with essentially the same 
+        icons provided by coolicons.qrc, to allow for "skinning", I think 
+        we're going to need to use different aliases for each image 
+        (ci_close.png for "coolicon close", op_close.png for "otherpack 
+        close", etc).  It looks like the aliases are being brought in as 
+        globals.
+
+        You could give each icon the same alias, and then control which icon 
+        pack gets loaded by only having one pack imported by 
+        lib/gui/__init__.py, but that wouldn't allow the user to pick his skin 
+        while the program is running.
+
+        If each pack has its own hungarian notation on the front of each 
+        alias, we could change the images used based on a user choice (if we 
+        really wanted to bother with that).
+
+    }#}}}
+}#}}}
 
 NOTES ON INDIVIDUAL BITS OF THE GUI {#{{{
     

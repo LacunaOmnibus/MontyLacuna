@@ -235,6 +235,7 @@ QPushButton:focus {
     <addaction name="actionConfig_File_Status"/>
     <addaction name="separator"/>
     <addaction name="actionLog_In"/>
+    <addaction name="actionLog_Out"/>
     <addaction name="separator"/>
     <addaction name="actionTest"/>
    </widget>
@@ -297,6 +298,11 @@ QPushButton:focus {
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionLog_Out">
+   <property name="text">
+    <string>Log Out</string>
    </property>
   </action>
  </widget>

@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+<file alias="close.png">../media/images/coolicons/png/close22.png</file>
+<file alias="coffee.png">../media/images/coolicons/png/coffee39.png</file>
+<file alias="file.png">../media/images/coolicons/png/file37.png</file>
+<file alias="login.png">../media/images/coolicons/png/smiling8.png</file>
+<file alias="logout.png">../media/images/coolicons/png/sad12.png</file>
+<file alias="question.png">../media/images/coolicons/png/question37.png</file>
+<file alias="section.png">../media/images/coolicons/png/list46.png</file>
+</qresource>
+</RCC>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created: Mon May 18 16:43:01 2015
+# Created: Mon May 18 18:36:20 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -149,6 +149,8 @@ class Ui_MainWindow(object):
         self.actionConfig_File_Status.setObjectName("actionConfig_File_Status")
         self.actionAbout = QtGui.QAction(MainWindow)
         self.actionAbout.setObjectName("actionAbout")
+        self.actionLog_Out = QtGui.QAction(MainWindow)
+        self.actionLog_Out.setObjectName("actionLog_Out")
         self.menuFile.addAction(self.actionQuit)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionChose_Config_File)
@@ -156,6 +158,7 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionConfig_File_Status)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionLog_In)
+        self.menuFile.addAction(self.actionLog_Out)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionTest)
         self.menuHelp.addAction(self.actionAbout)
@@ -195,4 +198,5 @@ class Ui_MainWindow(object):
         self.actionLog_In.setText(QtGui.QApplication.translate("MainWindow", "Log In", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConfig_File_Status.setText(QtGui.QApplication.translate("MainWindow", "Config File Status", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionLog_Out.setText(QtGui.QApplication.translate("MainWindow", "Log Out", None, QtGui.QApplication.UnicodeUTF8))
 

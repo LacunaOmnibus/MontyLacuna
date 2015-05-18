@@ -15,7 +15,6 @@ FILE_PIECES="
     errbox
     picklist
 "
-
 for piece in $FILE_PIECES
 do
     if [ -e lib/gui/ui_${piece}.py ]
@@ -24,5 +23,19 @@ do
     fi
     pyside-uic ui/${piece}.ui -o lib/gui/ui_${piece}.py
     chmod 444 lib/gui/ui_${piece}.py
+done
+
+
+IMAGE_PIECES="
+    coolicons
+"
+for piece in $IMAGE_PIECES
+do
+    if [ -e lib/gui/img_${piece}.py ]
+    then
+        chmod 644 lib/gui/img_${piece}.py
+    fi
+    pyside-rcc -py3 ui/${piece}.qrc -o lib/gui/img_${piece}.py
+    chmod 444 lib/gui/img_${piece}.py
 done
 

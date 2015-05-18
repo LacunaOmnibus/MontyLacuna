@@ -1,4 +1,5 @@
 
+import gui.img_coolicons
 from gui.ui_about import Ui_About
 from gui.ui_confbox import Ui_ConfBox
 from gui.ui_errbox import Ui_ErrBox

@@ -6,10 +6,13 @@ import lacuna, lacuna.exceptions as err
 from lacuna.abbreviations import Abbreviations
 from lacuna.utils import Utils
 ### I may just end up with "import *" below.
-from PySide.QtGui import QApplication, QFileDialog, QMainWindow, QTableWidgetItem
+from PySide.QtGui import QApplication, QFileDialog, QIcon, QMainWindow, QTableWidgetItem
 from PySide.QtCore import *
+import gui
 from gui import Ui_MainWindow
 import widgets
+
+import platform
 
 class MainWindow(QMainWindow, Ui_MainWindow):
 
@@ -20,10 +23,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+        self.setWindowTitle( self.app.name )
         self.set_events()
 
+        self.add_graphical_toolbars()
         self.setup_abbrv_table()
         self.btn_get_empire_status.setEnabled(False)
+
+    def add_graphical_toolbars(self):
+        ### This is mostly just for testing multiple toolbars.  I certainly 
+        ### don't need a toolbar for the About window.
+        file_toolbar = self.addToolBar('File')
+        self.actionChose_Config_File.setIcon( QIcon(":/file.png") )
+        self.actionChose_Config_Section.setIcon( QIcon(":/section.png") )
+        self.actionConfig_File_Status.setIcon( QIcon(":/question.png") )
+        self.actionLog_In.setIcon( QIcon(":/login.png") )
+        self.actionLog_Out.setIcon( QIcon(":/logout.png") )
+        self.actionQuit.setIcon( QIcon(":/close.png") )
+        file_toolbar.addAction(self.actionChose_Config_File)
+        file_toolbar.addAction(self.actionChose_Config_Section)
+        file_toolbar.addAction(self.actionConfig_File_Status)
+        file_toolbar.addAction(self.actionLog_In)
+        file_toolbar.addAction(self.actionLog_Out)
+        file_toolbar.addAction(self.actionQuit)
+
+        help_toolbar = self.addToolBar('Help')
+        self.actionAbout.setIcon( QIcon(":/coffee.png") )
+        help_toolbar.addAction(self.actionAbout)
 
     def test(self, text="foo"):
         #print( self.app.popconf(self, "flurble?") )
@@ -43,6 +69,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionConfig_File_Status.activated.connect( self.update_config_status )
         self.actionConfig_File_Status.activated.connect( self.update_config_status )
         self.actionLog_In.activated.connect( self.do_login )
+        self.actionLog_Out.activated.connect( self.do_logout )
         self.actionTest.activated.connect( self.test )
 
     def resizeEvent(self, event):
@@ -73,7 +100,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.app.poperr(self, "'{}' is not a valid config file; please choose one first.".format(self.app.config_file))
             return
         self.do_logout();
-        #mylist = [i for i in sorted(cp)]
         mylist = [i for i in sorted(cp) if i is not 'DEFAULT']
         pick = widgets.PickList( self )
         pick.add( mylist )
