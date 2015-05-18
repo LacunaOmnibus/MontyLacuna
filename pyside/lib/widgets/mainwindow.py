@@ -20,12 +20,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.config_section = 'sitter'
         self.is_logged_in   = False
         self.utils          = Utils()
-        self.vardir         = os.path.abspath(sys.argv[0] + "/../../../var")
+
+        self.instdir = self.utils.mytry( self.find_installdir )
 
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         self.set_events()
 
+        self.setup_abbrv_table()
         self.btn_get_empire_status.setEnabled(False)
 
     def test(self, text="foo"):
@@ -70,30 +72,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if num == 2:
             self.resize_abbrv_table()
         
-    def find_vardir(self):
-        """ Finds the MontyLacuna var/ dir, provided it's a sibilng or 
-        grand-cousin of the directory containing this file (which it 
-        should be).
+    def find_installdir(self):
+        """ Finds the MontyLacuna install dir, provided it's a parent 
+        of the directory containing this file (which it should be).
 
-        Returns (str): Canonical path to the var/ directory
+        Returns (str): Canonical path to the install directory.
 
-        Raises (SystemError): If the var/ directory could not be found.
+        Raises (SystemError): If the install directory could not be found.
         """
         dir = os.path.dirname(os.path.realpath(__file__))
         while(1):
             cand = os.path.dirname(os.path.realpath(dir))
             if cand == os.path.dirname(os.path.realpath('/')):
-                raise SystemError("Cannot find MontyLacuna's var/ directory.")
-            cand += "/var"
-            if os.path.isdir( cand ):
+                raise SystemError("Cannot find MontyLacuna's install directory.")
+            cand1 = cand + "/bin"
+            cand2 = cand + "/doc"
+            cand3 = cand + "/etc"
+            cand4 = cand + "/pyside"
+            if os.path.isdir(cand1) and os.path.isdir(cand2) and os.path.isdir(cand3) and os.path.isdir(cand4):
                 return cand
             else:
                 dir += "/.."
 
     def chose_config_file(self):
-        config_dir = self.utils.mytry( self.find_vardir )
-
-        file, filter = QFileDialog.getOpenFileName( self, "Open Image", dir, "Config Files (*.cfg)" )
+        file, filter = QFileDialog.getOpenFileName( self, "Open Image", self.instdir + "/etc", "Config Files (*.cfg)" )
         if file:
             self.config_file = file
         self.logout();
@@ -133,7 +135,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             config_file     = self.config_file,
             config_section  = self.config_section,
         )
-        self.abbrv = Abbreviations(self.client, vardir = self.vardir)
+        self.abbrv = Abbreviations(self.client, vardir = self.instdir + "/var")
         self.setup_abbrv_table()
         self.btn_login.setEnabled(False)
         self.btn_logout.setEnabled( True ) 
@@ -143,12 +145,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def logout(self):
         self.is_logged_in   = False
         self.abbrv          = None
+        self.client         = None
         self.reset_gui()
+        self.update_config_status()
 
     def resize_abbrv_table(self):
-        ### The "-50" accounts for the line number column on the left.
-        tbl_w   = self.tbl_abbrv.width() - 50
-        name_w  = int(tbl_w * .75)
+        tbl_w   = self.tbl_abbrv.width()
+        if self.client:
+            ### Subtract 50 to account for the line number column on the left, 
+            ### which will only be shown if the user is logged in.
+            tbl_w -= 50
+        name_w  = int(tbl_w * .60)
         abbrv_w = tbl_w - name_w
         self.tbl_abbrv.setColumnWidth(0, name_w)
         self.tbl_abbrv.setColumnWidth(1, abbrv_w)
@@ -158,20 +165,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         row = 0
         self.tbl_abbrv.setSortingEnabled(False)
 
-        for n in sorted(self.client.empire.planet_names):
-            itm_name = QTableWidgetItem(n)
-            try:
-                itm_abbrv = QTableWidgetItem(self.abbrv.get_abbrv(n))
-            except KeyError as e:
-                itm_abbrv = QTableWidgetItem("<None>")
+        if self.client:
+            for n in sorted(self.client.empire.planet_names):
+                itm_name = QTableWidgetItem(n)
+                try:
+                    itm_abbrv = QTableWidgetItem(self.abbrv.get_abbrv(n))
+                except KeyError as e:
+                    itm_abbrv = QTableWidgetItem("<None>")
 
-            fl = itm_name.flags()
-            fl &= ~Qt.ItemIsEditable
-            itm_name.setFlags(fl)
-            self.tbl_abbrv.insertRow(row)
-            self.tbl_abbrv.setItem( row, 0, itm_name )
-            self.tbl_abbrv.setItem( row, 1, itm_abbrv )
-            row += 1
+                fl = itm_name.flags()
+                fl &= ~Qt.ItemIsEditable
+                itm_name.setFlags(fl)
+                self.tbl_abbrv.insertRow(row)
+                self.tbl_abbrv.setItem( row, 0, itm_name )
+                self.tbl_abbrv.setItem( row, 1, itm_abbrv )
+                row += 1
 
         self.resize_abbrv_table()
         self.tbl_abbrv.setSortingEnabled(True)
@@ -197,9 +205,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def update_config_status(self):
         if self.client:
-            self.statusbar.showMessage("Logged in as {} from config file section {}." .format(self.client.empire.name, self.config_section))
+            self.statusbar.showMessage("Logged in as '{}' from config file section '{}'." .format(self.client.empire.name, self.config_section))
         else:
-            self.statusbar.showMessage("Using config file section {}.  Not currently logged in." .format(self.config_section))
+            self.statusbar.showMessage("Using config file section '{}'.  Not currently logged in." .format(self.config_section))
 
     def get_empire_status(self):
         if not self.client:
