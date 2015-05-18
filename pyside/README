@@ -43,9 +43,10 @@ CREATING A NEW GUI ELEMENT {#{{{
               FILE_PIECES array will be "myelement".
         - Run bin/make_ui.sh to create lib/gui/ui_FILENAME.py
 
-    - Update the gui package to add your new element
+    - Add your new element to the gui and widgets packages.
         - lib/gui/__init__.py
-        - Follow existing examples
+        - lib/widgets/__init__.py
+            - Follow existing examples for both of these files.
 
     - Create custom code for your design
         - Create lib/widgets/FILENAME.py

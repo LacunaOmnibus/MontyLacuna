@@ -9,6 +9,7 @@
 
 FILE_PIECES="
     mainwindow
+    about
     confbox
     msgbox
     errbox
@@ -17,7 +18,10 @@ FILE_PIECES="
 
 for piece in $FILE_PIECES
 do
-    chmod 644 lib/gui/ui_${piece}.py
+    if [ -e lib/gui/ui_${piece}.py ]
+    then
+        chmod 644 lib/gui/ui_${piece}.py
+    fi
     pyside-uic ui/${piece}.ui -o lib/gui/ui_${piece}.py
     chmod 444 lib/gui/ui_${piece}.py
 done

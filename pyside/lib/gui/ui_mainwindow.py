@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created: Thu May 14 19:27:09 2015
+# Created: Mon May 18 15:38:36 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -126,6 +126,8 @@ class Ui_MainWindow(object):
         self.menuFile.setMouseTracking(True)
         self.menuFile.setAcceptDrops(True)
         self.menuFile.setObjectName("menuFile")
+        self.menuHelp = QtGui.QMenu(self.menubar)
+        self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setCursor(QtCore.Qt.ArrowCursor)
@@ -145,6 +147,8 @@ class Ui_MainWindow(object):
         self.actionLog_In.setObjectName("actionLog_In")
         self.actionConfig_File_Status = QtGui.QAction(MainWindow)
         self.actionConfig_File_Status.setObjectName("actionConfig_File_Status")
+        self.actionAbout = QtGui.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
         self.menuFile.addAction(self.actionQuit)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionChose_Config_File)
@@ -154,7 +158,9 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionLog_In)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionTest)
+        self.menuHelp.addAction(self.actionAbout)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
@@ -179,6 +185,7 @@ class Ui_MainWindow(object):
         self.tbl_abbrv.setSortingEnabled(True)
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("MainWindow", "Abbreviations", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
         self.statusbar.setToolTip(QtGui.QApplication.translate("MainWindow", "status tt", None, QtGui.QApplication.UnicodeUTF8))
         self.statusbar.setStatusTip(QtGui.QApplication.translate("MainWindow", "status st", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
@@ -187,4 +194,5 @@ class Ui_MainWindow(object):
         self.actionTest.setText(QtGui.QApplication.translate("MainWindow", "Test", None, QtGui.QApplication.UnicodeUTF8))
         self.actionLog_In.setText(QtGui.QApplication.translate("MainWindow", "Log In", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConfig_File_Status.setText(QtGui.QApplication.translate("MainWindow", "Config File Status", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -11,6 +11,9 @@ from PySide.QtCore import *
 from gui import Ui_MainWindow
 import widgets
 
+
+
+
 class MainWindow(QMainWindow, Ui_MainWindow):
 
     def __init__(self, parent=None, config_file=None):
@@ -45,6 +48,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         dialog = widgets.MsgBox(self)
         dialog.set_message( text )
 
+    def show_about_dialog(self):
+        dialog = widgets.About(self)
+
     def set_events(self):
         self.btn_login.clicked.connect( self.login )
         self.btn_logout.clicked.connect( self.logout )
@@ -52,6 +58,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_get_empire_status.clicked.connect( self.get_empire_status )
         self.tabWidget.currentChanged.connect( self.tab_changed )
         self.btn_check_status.clicked.connect( self.update_config_status )
+        self.actionAbout.activated.connect( self.show_about_dialog )
         self.actionChose_Config_File.activated.connect( self.chose_config_file )
         self.actionChose_Config_Section.activated.connect( self.chose_config_section )
         self.actionConfig_File_Status.activated.connect( self.update_config_status )
@@ -162,17 +169,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def setup_abbrv_table(self):
         self.tbl_abbrv.setHorizontalHeaderLabels( ('Name', 'Abbreviation') )
-        row = 0
-        self.tbl_abbrv.setSortingEnabled(False)
 
         if self.client:
+            ### Turn off sorting while we add items, then turn it back on 
+            ### again when we're finished.
+            self.tbl_abbrv.setSortingEnabled(False)
+            row = 0
             for n in sorted(self.client.empire.planet_names):
                 itm_name = QTableWidgetItem(n)
                 try:
                     itm_abbrv = QTableWidgetItem(self.abbrv.get_abbrv(n))
                 except KeyError as e:
                     itm_abbrv = QTableWidgetItem("<None>")
-
                 fl = itm_name.flags()
                 fl &= ~Qt.ItemIsEditable
                 itm_name.setFlags(fl)
@@ -180,9 +188,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.tbl_abbrv.setItem( row, 0, itm_name )
                 self.tbl_abbrv.setItem( row, 1, itm_abbrv )
                 row += 1
+            self.tbl_abbrv.setSortingEnabled(True)
 
         self.resize_abbrv_table()
-        self.tbl_abbrv.setSortingEnabled(True)
         self.tbl_abbrv.itemChanged.connect( self.update_abbrv )
 
     def update_abbrv(self, itm_abbrv):
