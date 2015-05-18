@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/about.ui'
 #
-# Created: Mon May 18 15:38:36 2015
+# Created: Mon May 18 16:43:01 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -36,7 +36,7 @@ class Ui_About(object):
         self.verticalLayout_2.addLayout(self.verticalLayout)
         self.buttonBox = QtGui.QDialogButtonBox(About)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.verticalLayout_2.addWidget(self.buttonBox)
 
@@ -47,8 +47,8 @@ class Ui_About(object):
 
     def retranslateUi(self, About):
         About.setWindowTitle(QtGui.QApplication.translate("About", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
-        self.lbl_appname.setText(QtGui.QApplication.translate("About", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
-        self.lbl_pyside_ver.setText(QtGui.QApplication.translate("About", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
-        self.lbl_qt_ver.setText(QtGui.QApplication.translate("About", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
-        self.lbl_copyright.setText(QtGui.QApplication.translate("About", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
+        self.lbl_appname.setText(QtGui.QApplication.translate("About", "App Name and Version", None, QtGui.QApplication.UnicodeUTF8))
+        self.lbl_pyside_ver.setText(QtGui.QApplication.translate("About", "PySide Version", None, QtGui.QApplication.UnicodeUTF8))
+        self.lbl_qt_ver.setText(QtGui.QApplication.translate("About", "QtCore Version", None, QtGui.QApplication.UnicodeUTF8))
+        self.lbl_copyright.setText(QtGui.QApplication.translate("About", "Copyright", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -11,20 +11,12 @@ from PySide.QtCore import *
 from gui import Ui_MainWindow
 import widgets
 
-
-
-
 class MainWindow(QMainWindow, Ui_MainWindow):
 
-    def __init__(self, parent=None, config_file=None):
-        self.abbrv          = None
-        self.client         = None
-        self.config_file    = config_file
-        self.config_section = 'sitter'
+    def __init__(self, parent=None):
+        self.app            = QCoreApplication.instance()
         self.is_logged_in   = False
         self.utils          = Utils()
-
-        self.instdir = self.utils.mytry( self.find_installdir )
 
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
@@ -34,26 +26,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_get_empire_status.setEnabled(False)
 
     def test(self, text="foo"):
-        print( self.popconf("flurble?") )
-
-    def popconf(self, text):
-        dialog = widgets.ConfBox(self)
-        return dialog.set_message( text )
-
-    def poperr(self, text):
-        dialog = widgets.ErrBox(self)
-        dialog.set_message( text )
-
-    def popmsg(self, text):
-        dialog = widgets.MsgBox(self)
-        dialog.set_message( text )
-
-    def show_about_dialog(self):
-        dialog = widgets.About(self)
+        #print( self.app.popconf(self, "flurble?") )
+        #self.app.poperr(self, "flurble!")
+        self.app.popmsg(self, "flurble.")
 
     def set_events(self):
-        self.btn_login.clicked.connect( self.login )
-        self.btn_logout.clicked.connect( self.logout )
+        self.btn_login.clicked.connect( self.do_login )
+        self.btn_logout.clicked.connect( self.do_logout )
         self.btn_logout.setEnabled( False ) 
         self.btn_get_empire_status.clicked.connect( self.get_empire_status )
         self.tabWidget.currentChanged.connect( self.tab_changed )
@@ -63,7 +42,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionChose_Config_Section.activated.connect( self.chose_config_section )
         self.actionConfig_File_Status.activated.connect( self.update_config_status )
         self.actionConfig_File_Status.activated.connect( self.update_config_status )
-        self.actionLog_In.activated.connect( self.login )
+        self.actionLog_In.activated.connect( self.do_login )
         self.actionTest.activated.connect( self.test )
 
     def resizeEvent(self, event):
@@ -79,86 +58,54 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if num == 2:
             self.resize_abbrv_table()
         
-    def find_installdir(self):
-        """ Finds the MontyLacuna install dir, provided it's a parent 
-        of the directory containing this file (which it should be).
-
-        Returns (str): Canonical path to the install directory.
-
-        Raises (SystemError): If the install directory could not be found.
-        """
-        dir = os.path.dirname(os.path.realpath(__file__))
-        while(1):
-            cand = os.path.dirname(os.path.realpath(dir))
-            if cand == os.path.dirname(os.path.realpath('/')):
-                raise SystemError("Cannot find MontyLacuna's install directory.")
-            cand1 = cand + "/bin"
-            cand2 = cand + "/doc"
-            cand3 = cand + "/etc"
-            cand4 = cand + "/pyside"
-            if os.path.isdir(cand1) and os.path.isdir(cand2) and os.path.isdir(cand3) and os.path.isdir(cand4):
-                return cand
-            else:
-                dir += "/.."
-
     def chose_config_file(self):
-        file, filter = QFileDialog.getOpenFileName( self, "Open Image", self.instdir + "/etc", "Config Files (*.cfg)" )
+        file, filter = QFileDialog.getOpenFileName( self, "Open Image", self.app.instdir + "/etc", "Config Files (*.cfg)" )
         if file:
-            self.config_file = file
-        self.logout();
+            self.app.config_file = file
+        self.do_logout();
 
     def chose_config_section(self):
-        ### Make sure self.config_file is an existing file
-        if not os.path.isfile( self.config_file ):
-            self.popmsg("Chose a config file first.")
-            return
-
-        ### Try to parse it as a config file
-        cp = configparser.ConfigParser( interpolation = None )
+        """ Opens a list widget containing available sections of the current config file.
+        """
         try:
-            cp.read( self.config_file )
-        except configparser.MissingSectionHeaderError as e:
-            self.poperr("{} is not a valid config file.".format(self.config_file))
+            cp = self.app.readconfig()
+        except IOError as e:
+            self.app.poperr(self, "'{}' is not a valid config file; please choose one first.".format(self.app.config_file))
             return
-        self.logout();
-
-        ### Display list of available sections
-        mylist = [i for i in sorted(cp)]
+        self.do_logout();
+        #mylist = [i for i in sorted(cp)]
+        mylist = [i for i in sorted(cp) if i is not 'DEFAULT']
         pick = widgets.PickList( self )
         pick.add( mylist )
         rv = pick.pickone() # -sitter-, -real-, etc, but might also be None if user didn't pick anything.
         if rv:
-            if rv != self.config_section:
-                self.client = None
-            self.config_section = rv
-
+            if rv != self.app.config_section:
+                self.do_logout()
+            self.app.config_section = rv
         self.update_config_status()
 
-    def login(self):
-        self.is_logged_in = True
+    def do_login(self):
+        """ Logs in to TLE, then updates the GUI to reflect that logged-in status.
+        """
+        self.app.login()
         self.statusbar.showMessage("Logging in...")
         self.statusbar.repaint()
-        self.client = lacuna.clients.Member( # don't catch the exception if it happens
-            config_file     = self.config_file,
-            config_section  = self.config_section,
-        )
-        self.abbrv = Abbreviations(self.client, vardir = self.instdir + "/var")
         self.setup_abbrv_table()
         self.btn_login.setEnabled(False)
         self.btn_logout.setEnabled( True ) 
         self.btn_get_empire_status.setEnabled(True)
         self.update_config_status()
 
-    def logout(self):
-        self.is_logged_in   = False
-        self.abbrv          = None
-        self.client         = None
+    def do_logout(self):
+        """ Logs out of TLE, then updates the GUI to reflect that logged-out status.
+        """
+        self.app.logout()
         self.reset_gui()
         self.update_config_status()
 
     def resize_abbrv_table(self):
         tbl_w   = self.tbl_abbrv.width()
-        if self.client:
+        if self.app.is_logged_in:
             ### Subtract 50 to account for the line number column on the left, 
             ### which will only be shown if the user is logged in.
             tbl_w -= 50
@@ -170,15 +117,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def setup_abbrv_table(self):
         self.tbl_abbrv.setHorizontalHeaderLabels( ('Name', 'Abbreviation') )
 
-        if self.client:
+        if self.app.is_logged_in:
             ### Turn off sorting while we add items, then turn it back on 
             ### again when we're finished.
             self.tbl_abbrv.setSortingEnabled(False)
             row = 0
-            for n in sorted(self.client.empire.planet_names):
+            for n in sorted(self.app.client.empire.planet_names):
                 itm_name = QTableWidgetItem(n)
                 try:
-                    itm_abbrv = QTableWidgetItem(self.abbrv.get_abbrv(n))
+                    itm_abbrv = QTableWidgetItem(self.app.abbrv.get_abbrv(n))
                 except KeyError as e:
                     itm_abbrv = QTableWidgetItem("<None>")
                 fl = itm_name.flags()
@@ -195,7 +142,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def update_abbrv(self, itm_abbrv):
         itm_name = self.tbl_abbrv.item( itm_abbrv.row(), 0 )
-        self.abbrv.save( itm_name.text(), itm_abbrv.text() )
+        self.app.abbrv.save( itm_name.text(), itm_abbrv.text() )
 
     def reset_gui(self, is_loggedout:bool = True):
         """ Resets all GUI elements.
@@ -212,28 +159,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.txt_status.setPlainText( "" )
 
     def update_config_status(self):
-        if self.client:
-            self.statusbar.showMessage("Logged in as '{}' from config file section '{}'." .format(self.client.empire.name, self.config_section))
+        if self.app.is_logged_in:
+            self.statusbar.showMessage("Logged in as '{}' from config file section '{}'." .format(self.app.client.empire.name, self.app.config_section))
         else:
-            self.statusbar.showMessage("Using config file section '{}'.  Not currently logged in." .format(self.config_section))
+            self.statusbar.showMessage("Using config file section '{}'.  Not currently logged in." .format(self.app.config_section))
 
     def get_empire_status(self):
-        if not self.client:
-            self.poperr("You must log in first.")
+        if not self.app.is_logged_in:
+            self.app.poperr(self, "You must log in first.")
             return
         out = []
-        if int(self.client.empire.self_destruct_active) > 0:
+        if int(self.app.client.empire.self_destruct_active) > 0:
             out.append("*** SELF DESTRUCT IS ACTIVE! ***")
             out.append("")
-        out.append("ID: " + self.client.empire.id )
-        out.append("RPC Usage: " + str(self.client.empire.rpc_count) )
-        out.append("Status Message: " + self.client.empire.status_message )
-        out.append("New Mail Messages: " + str(self.client.empire.has_new_messages) )
-        out.append("Essentia: " + str(self.client.empire.essentia) )
-        out.append("Tech Level: " + str(self.client.empire.tech_level) )
+        out.append("ID: " + self.app.client.empire.id )
+        out.append("RPC Usage: " + str(self.app.client.empire.rpc_count) )
+        out.append("Status Message: " + self.app.client.empire.status_message )
+        out.append("New Mail Messages: " + str(self.app.client.empire.has_new_messages) )
+        out.append("Essentia: " + str(self.app.client.empire.essentia) )
+        out.append("Tech Level: " + str(self.app.client.empire.tech_level) )
         out.append("")
         out.append("Planets: ")
-        for p in sorted( self.client.empire.colony_names.keys() ):
+        for p in sorted( self.app.client.empire.colony_names.keys() ):
             out.append("\t" + p)
         self.txt_status.setPlainText( "\n".join(out) )
+
+    def show_about_dialog(self):
+        """ Displays the About dialog.
+
+        Arguments:
+            parent (QWidget): The dialog's parent.
+        """
+        dialog = widgets.About(self)
+        dialog.show()
 
