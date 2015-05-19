@@ -126,7 +126,6 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         ### If the user didn't specify where the spies should be located, he 
         ### means those located at their home planets.
         if self.args.on:
-            #self.on = self.args.on
             self.on = self.abbrv.get_name( self.args.on )
         else:
             self.on = pname
