@@ -130,6 +130,41 @@ ADDING IMAGES {#{{{
 
     }#}}}
 }#}}}
+CYTHONIZE A MODULE {#{{{
+
+    DO NOT DO THIS FOR GUI WIDGET MODULES.
+    
+    I did this with the About window, but that's the only GUI module it works 
+    for.  All the others end up producing "maximum recursion depth exceeded" 
+    exceptions.  
+    
+    And since I don't really need my About window to be FASTAR, I'm no longer 
+    bothering to cythonize it.  No need to complicate things for no benefit.
+
+    But the fact that it worked for the About window means to me that it 
+    should work for any non-gui class files I might have lying around.  If 
+    there's compute-intensive code anywhere, put it in its own class in a 
+    separate file and cythonize it.
+
+
+
+    $ cd lib/widgets/
+    $ mv FILE.py FILE.pyx
+    - Edit __init__.py to add the two "pyximport" lines
+        - Adding these pyximport lines are really all that needs to change in 
+          the rest of the code.
+    - Edit setup.py
+        - This is the standard cython setup.py script - see my cython notes 
+          for a copy/paste.
+            - the cythonize() call in that copy accepts either a single file 
+              or a list of files.
+        - Add your new FILE.pyx to the list of files being cythonized and 
+          re-run that setup.py script
+            $ py setup.py build_ext --inplace
+
+    That should be in; your module is now written in C.
+
+}#}}}
 
 NOTES ON INDIVIDUAL BITS OF THE GUI {#{{{
     

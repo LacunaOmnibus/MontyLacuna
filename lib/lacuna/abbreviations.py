@@ -6,9 +6,10 @@ class Abbreviations():
     """ Saves personal abbreviations for often-long body names.
 
     Arguments:
-        client (lacuna.clients.Member): The client we're currently connected as.
-        vardir (str): The path to the Monty var/ directory.  Defaults to 
-        ``CALLING_SCRIPT/../var/``.
+        client (lacuna.clients.Member): The client we're currently connected
+                                        as.
+        vardir (str): The path to the Monty var/ directory.  Defaults to
+                      ``CALLING_SCRIPT/../var/``.
     """
 
     bindir = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -99,7 +100,7 @@ class Abbreviations():
             abbrv (str): The abbreviation set for that body
 
         Raises:
-            KeyError if no abbreviation is set for the given body.
+            KeyError: if no abbreviation is set for ``name``.
         """
         if self.mydict['name'][ name ]:
             return self.mydict['name'][name]
@@ -110,19 +111,22 @@ class Abbreviations():
         """ Gets the full name for an abbreviation
 
         Arguments:
-            abbrv_or_name (str): Either a pre-set abbreviation or a body full 
-            name.  If the given string is not found in the abbreviations 
-            database, it's assumed to be a full body name and returned as-is.
+            abbrv_or_name (str): Either a pre-set abbreviation or a body full
+                                 name.  If the given string is not found in 
+                                 the abbreviations database, it's assumed to 
+                                 be a full body name and returned as-is.
 
         Returns:
-            full_name (str): If the abbrv passed in was a set abbreviation, 
-            returns the full unabbreviated name.  If the abbrv was not a 
-            set abbreviation, but matches a body name (either colony or 
-            space station), that string is returned as passed in.
+            full_name (str): If the argument was a set abbreviation, returns
+                             the full unabbreviated name.  If the argument was 
+                             not a set abbreviation, but matches a body name 
+                             (either colony or space station), that argument 
+                             is returned as passed in.
 
         Raises:
-            KeyError: If the abbrv passed in is neither a set abbreviation nor 
-            a valid body name.
+            KeyError: If the abbrv passed in is neither a set abbreviation nor
+                      a valid body name.
+
         """
         if abbrv in self.mydict['abbrv']:
             return self.mydict['abbrv'][abbrv]
@@ -134,14 +138,16 @@ class Abbreviations():
     def list_abbrvs( self ):
         """ Get a list of currently-set abbreviations
 
-        Returns (str): Alpha-sorted list of abbreviations
+        Returns:
+            list (list of str): Alpha-sorted list of abbreviations
         """
         return sorted( self.mydict['abbrv'].keys() )
 
     def list_names( self ):
         """ Get a list of full body names for which there are abbreviations set
 
-        Returns (str): Alpha-sorted list of names
+        Returns:
+            list (list of str): Alpha-sorted list of names
         """
         return sorted( self.mydict['name'].keys() )
 
@@ -160,6 +166,8 @@ class Abbreviations():
 
     def show_all(self):
         """ Produces a report on all currently-stored abbreviations.
+
+        The report is displayed on STDOUT via a pager.
         """
         output = "\n"
         if self.mydict['name'].keys():
@@ -173,6 +181,9 @@ class Abbreviations():
 
     def show( self, name ):
         """ Produces a report on a single stored abbreviation.
+
+        The report is displayed on STDOUT.  If we're reporting on 'all' 
+        abbreviations, the report is displayed via a pager.
         """
         self._get_data()
         if name == 'all':

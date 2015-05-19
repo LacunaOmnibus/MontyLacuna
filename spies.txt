@@ -1,0 +1,68 @@
+
+bugouts coming back to 1.1 and 07 - send them all to 1.7 when they arrive.
+
+
+bmots rof 1.1
+-------------
+  Assignments:
+    Counter Espionage                                                68
+    Idle                                                             22
+  Locations:
+    184926  (  106,   33) - bmots rof 1.1                            46
+    454476  (  107,    6) - SASS Astraeus                            24
+    473076  (  114,    1) - SASS AY                                  10
+    491837  (  114,   12) - SASS Origins                             10
+
+bmots rof 1.2 (sent - 4:04)
+-------------
+  Assignments:
+    Counter Espionage                                                30
+    Idle                                                             60
+  Locations:
+    15656   ( 1314,-1460) - SASS bmots 05                             5
+    478857  (  110,   33) - bmots rof 1.2                            78
+    604255  (  116,    8) - bmots rof 1.7                             7
+
+bmots rof 1.4 (sent - 4:05)
+-------------
+  Assignments:
+    Counter Espionage                                                45
+    Idle                                                             45
+  Locations:
+    473071  (  109,   30) - bmots rof 1.4                            90
+
+bmots rof 1.5 (sent - 4:07)
+-------------
+  Assignments:
+    Counter Espionage                                                20
+    Idle                                                             70
+  Locations:
+    470140  (  107,   30) - bmots rof 1.5                            90
+
+bmots rof 1.6 (sent - 4:10)
+-------------
+  Assignments:
+    Counter Espionage                                                33
+    Idle                                                             57
+  Locations:
+    470141  (  106,   31) - bmots rof 1.6                            90
+
+bmots08
+-------
+  Assignments:
+    Counter Espionage                                                61
+    Idle                                                             29
+  Locations:
+    468709  (  107,   34) - SASS bmots 01                            30
+    844994  (  109,   34) - bmots08                                  60
+
+bmots07
+-------
+  Assignments:
+    Counter Espionage                                                51
+    Idle                                                             34
+    Mayhem Training                                                   5
+  Locations:
+    360565  (  106,   23) - bmots07                                  39
+    471874  (   99,    7) - Cylon GG                                 51
+
