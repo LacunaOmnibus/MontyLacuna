@@ -6,7 +6,6 @@ import lacuna.spy
 import lacuna.plan
 import lacuna.glyph
 
-
 class TradeBldg(lacuna.building.MyBuilding):
     """ Base class for trade and transporter buildings.  """
 
@@ -21,10 +20,11 @@ class TradeBldg(lacuna.building.MyBuilding):
         that are available *as* cargo - these ships can be traded, but can't 
         necessarily carry a trade.
 
-        Returns a tuple:
-            - ships -- List of :class:`lacuna.ship.TradeableShip` objects.
-            - space_used -- Amount of cargo space used by each ship.  Always 
-              10000.
+        Returns:
+            ship_details (tuple):
+                - ships (list): of :class:`lacuna.ship.TradeableShip` objects.
+                - space_used (int): Amount of cargo space used by each ship.  Always 
+                  10000.
         """
         mylist = []
         for i in kwargs['rslt']['ships']:
@@ -38,10 +38,11 @@ class TradeBldg(lacuna.building.MyBuilding):
     def get_prisoners( self, *args, **kwargs ):
         """ Get prisoners available to be added to a trade as merchandise.
 
-        Returns a tuple:
-            - prisoners -- List of :class:`lacuna.spy.Prisoner` objects.
-            - space_used -- Amount of cargo space used by each prisoner.  
-              Always 350.
+        Returns:
+            prisoner_details (tuple):
+                - prisoners -- List of :class:`lacuna.spy.Prisoner` objects.
+                - space_used -- Amount of cargo space used by each prisoner.  
+                  Always 350.
         """
         mylist = []
         for i in kwargs['rslt']['prisoners']:
@@ -55,10 +56,11 @@ class TradeBldg(lacuna.building.MyBuilding):
     def get_plan_summary( self, *args, **kwargs ):
         """ Get plans available to be added to a trade as merchandise.
 
-        Returns a tuple:
-            - plans -- List of :class:`lacuna.plan.OwnedPlan` objects.
-            - space_used -- Amount of cargo space used by each prisoner.  
-              Always 10000.
+        Returns:
+            plans_summary (tuple):
+                - plans -- List of :class:`lacuna.plan.OwnedPlan` objects.
+                - space_used -- Amount of cargo space used by each prisoner.  
+                  Always 10000.
         """
         mylist = []
         for i in kwargs['rslt']['plans']:
@@ -162,9 +164,10 @@ class TradeBldg(lacuna.building.MyBuilding):
         an additional 1 E processing cost is automatically charged in addition
         to the 'ask' price displayed for the trade.
 
-        Requires captcha.
+        Arguments:
+            trade_id (int): ID of the trade to purchase.
 
-        Requires 'trade_id', integer ID of the trade to purchase.
+        Requires captcha.
         """
         pass
 
@@ -173,7 +176,8 @@ class TradeBldg(lacuna.building.MyBuilding):
     def get_stored_resources( self, *args, **kwargs ):
         """ Get resources stored onsite and available for trading.
 
-        Returns a :class:`lacuna.resource.StoredResources` object.
+        Returns:
+            resources (lacuna.resource.StoredResources):
         """
         return lacuna.resource.StoredResources(self.client, kwargs['rslt']['resources'])
 
