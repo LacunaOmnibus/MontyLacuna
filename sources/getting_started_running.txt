@@ -126,14 +126,15 @@ you which version of python your pip will update.  If your pip is set to
 update your python2 installation, then check if you have a ``pip3`` and use 
 that instead.
 
-There are only two Python libraries to install, ``requests`` and ``beaker``, 
-and you install both of them using ``pip`` by typing these two commands one at 
-a time::
+There are only three Python libraries to install, ``beaker``, ``pyside``, and 
+``requests``, and you install them using ``pip`` by typing these commands one 
+at a time::
 
-    >>> pip install requests
     >>> pip install beaker
+    >>> pip install pyside
+    >>> pip install requests
 
-If either of those ``pip`` commands produced errors, see the 
+If any of those ``pip`` commands produced errors, see the 
 :ref:`troubleshoot_pip_install` docs.
 
 After pip and the prerequisite libraries are installed, leave that CMD window 

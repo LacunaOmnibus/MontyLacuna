@@ -5,6 +5,7 @@ Other Modules
 .. toctree::
    :maxdepth: 2
 
+   abbreviations
    bc
    caching
    clients
@@ -19,3 +20,5 @@ Other Modules
    spy
    trading
    types
+   utils
+

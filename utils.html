@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glyph &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Utilities &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -34,8 +34,7 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
         <link rel="up" title="Other Modules" href="other_modules.html"/>
-        <link rel="next" title="logging" href="logging.html"/>
-        <link rel="prev" title="exceptions" href="exceptions.html"/> 
+        <link rel="prev" title="types" href="types.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -127,7 +126,7 @@
 <li class="toctree-l2"><a class="reference internal" href="caching.html">caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">glyph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html">logging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plan.html">plan</a></li>
@@ -137,7 +136,7 @@
 <li class="toctree-l2"><a class="reference internal" href="spy.html">spy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trading.html">trading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="types.html">types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">Utilities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Utilities</a></li>
 </ul>
 </li>
 </ul>
@@ -166,10 +165,10 @@
       
           <li><a href="other_modules.html">Other Modules</a> &raquo;</li>
       
-    <li>glyph</li>
+    <li>Utilities</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="sources/glyph.txt" rel="nofollow"> View page source</a>
+          <a href="sources/utils.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -177,44 +176,93 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="module-lacuna.glyph">
-<span id="glyph"></span><h1>glyph<a class="headerlink" href="#module-lacuna.glyph" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="utilities">
+<span id="utils"></span><h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<p>These are general wheel-type utilities that&#8217;ll be useful in multiple places.</p>
+<div class="section" id="module-lacuna.utils">
+<span id="module-documentation"></span><h2>Module Documentation<a class="headerlink" href="#module-lacuna.utils" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="lacuna.glyph.AssembledArtifact">
-<em class="property">class </em><code class="descclassname">lacuna.glyph.</code><code class="descname">AssembledArtifact</code><span class="sig-paren">(</span><em>client</em>, <em>name: str</em>, <em>quan: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.glyph.AssembledArtifact" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.glyph.Glyph" title="lacuna.glyph.Glyph"><code class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.Glyph</span></code></a></p>
-<p>One or more artifacts created by assembling glyphs.</p>
-<p>Object Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>item_name   &quot;Halls of Vrbansk&quot;
-quantity    10
-</pre></div>
+<dt id="lacuna.utils.Utils">
+<em class="property">class </em><code class="descclassname">lacuna.utils.</code><code class="descname">Utils</code><a class="headerlink" href="#lacuna.utils.Utils" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Various useful utility methods that don&#8217;t require a client.</p>
+<dl class="method">
+<dt id="lacuna.utils.Utils.mytry">
+<code class="descname">mytry</code><span class="sig-paren">(</span><em>function</em>, <em>args: list=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.utils.Utils.mytry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls a function or method.  If that function raises an exception,
+this prints out the exception message ONLY, instead of printing the
+entire trace, making it easier for the user to see what the problem
+was.</p>
+<p>This is only to be used in the case where you meant for execution to
+halt in the case of an exception.  If you&#8217;re planning on dealing with
+an exception, re-throwing, whatever, you need to handle it yourself.
+This method exists only to deal nicely with any caught exceptions,
+which includes halting execution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>function</strong> (<em>function</em>) &#8211; The function or method to call</li>
+<li><strong>args</strong> (<em>list</em>) &#8211; Any arguments that need to be passed to the function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>retval</strong> &#8211;
+whatever <code class="docutils literal"><span class="pre">function</span></code> would have returned.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">varies</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="n">ute</span> <span class="o">=</span> <span class="n">lacuna</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">Utils</span><span class="p">()</span>
+
+<span class="hll"><span class="n">retval</span> <span class="o">=</span> <span class="n">ute</span><span class="o">.</span><span class="n">mytry</span><span class="p">(</span> <span class="n">somefunc</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span> <span class="p">)</span>
+</span><span class="c">### Or...</span>
+<span class="hll"><span class="n">retval</span> <span class="o">=</span> <span class="n">ute</span><span class="o">.</span><span class="n">mytry</span><span class="p">(</span> <span class="n">someobj</span><span class="o">.</span><span class="n">somemeth</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span> <span class="p">)</span>
+</span></pre></div>
+</td></tr></table></div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If the function you&#8217;re attempting to call takes a list argument,
+and you pass an empty list, the function will end up getting
+called with no arguments at all.  This feels like an edge case
+that won&#8217;t be encountered often, but it&#8217;s possible.</p>
 </div>
 </dd></dl>
 
-<dl class="class">
-<dt id="lacuna.glyph.Glyph">
-<em class="property">class </em><code class="descclassname">lacuna.glyph.</code><code class="descname">Glyph</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.glyph.Glyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
-<p>Glyph base class</p>
+<dl class="method">
+<dt id="lacuna.utils.Utils.summarize">
+<code class="descname">summarize</code><span class="sig-paren">(</span><em>string: str</em>, <em>mymax: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.utils.Utils.summarize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Summarizes a string, usually for inclusion in a report section
+with a fixed width.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>string</strong> (<em>str</em>) &#8211; String to summarize</li>
+<li><strong>max</strong> (<em>int</em>) &#8211; Max length of the string.  Must be greater than 3.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the string is <code class="docutils literal"><span class="pre">abcdefghijk</span></code> and the max is 6, this will return
+<code class="docutils literal"><span class="pre">abc...</span></code></p>
+<p>Returns the summarized string, or the original string if it was shorter
+than max.</p>
 </dd></dl>
 
-<dl class="class">
-<dt id="lacuna.glyph.OwnedGlyph">
-<em class="property">class </em><code class="descclassname">lacuna.glyph.</code><code class="descname">OwnedGlyph</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.glyph.OwnedGlyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.glyph.Glyph" title="lacuna.glyph.Glyph"><code class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.Glyph</span></code></a></p>
-<p>A single specific glyph on your planet.</p>
-<p>Object Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id          12345,
-name        &quot;bauxite&quot;
-type        &quot;bauxite&quot;
-quantity    23
-</pre></div>
+</dd></dl>
+
 </div>
-<p>name and type are always the same.  There&#8217;s no longer such a thing as an
-individual glyph, only types of glyphs, which is why we have both an ID
-and a quantity.</p>
-</dd></dl>
-
 </div>
 
 
@@ -223,10 +271,8 @@ and a quantity.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="logging.html" class="btn btn-neutral float-right" title="logging">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="exceptions.html" class="btn btn-neutral" title="exceptions"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="types.html" class="btn btn-neutral" title="types"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

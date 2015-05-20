@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glyph &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Abbreviations &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -34,8 +34,8 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="index.html"/>
         <link rel="up" title="Other Modules" href="other_modules.html"/>
-        <link rel="next" title="logging" href="logging.html"/>
-        <link rel="prev" title="exceptions" href="exceptions.html"/> 
+        <link rel="next" title="bc" href="bc.html"/>
+        <link rel="prev" title="Other Modules" href="other_modules.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -122,12 +122,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="other_modules.html">Other Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="abbreviations.html">Abbreviations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Abbreviations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bc.html">bc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="caching.html">caching</a></li>
 <li class="toctree-l2"><a class="reference internal" href="clients.html">clients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exceptions.html">exceptions</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">glyph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyph.html">glyph</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logging.html">logging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="my_validate_email.html">my_validate_email</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plan.html">plan</a></li>
@@ -166,10 +166,10 @@
       
           <li><a href="other_modules.html">Other Modules</a> &raquo;</li>
       
-    <li>glyph</li>
+    <li>Abbreviations</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="sources/glyph.txt" rel="nofollow"> View page source</a>
+          <a href="sources/abbreviations.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -177,44 +177,171 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="module-lacuna.glyph">
-<span id="glyph"></span><h1>glyph<a class="headerlink" href="#module-lacuna.glyph" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="abbreviations">
+<span id="abbreviations-module"></span><h1>Abbreviations<a class="headerlink" href="#abbreviations" title="Permalink to this headline">¶</a></h1>
+<p>Usage of abbreviations in scripts is covered here: <a class="reference internal" href="scripts/abbreviations.html#abbrvs"><span>Body Abbreviations</span></a>.  This
+document covers the module itself.</p>
+<div class="section" id="module-lacuna.abbreviations">
+<span id="module-documentation"></span><h2>Module Documentation<a class="headerlink" href="#module-lacuna.abbreviations" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="lacuna.glyph.AssembledArtifact">
-<em class="property">class </em><code class="descclassname">lacuna.glyph.</code><code class="descname">AssembledArtifact</code><span class="sig-paren">(</span><em>client</em>, <em>name: str</em>, <em>quan: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.glyph.AssembledArtifact" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.glyph.Glyph" title="lacuna.glyph.Glyph"><code class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.Glyph</span></code></a></p>
-<p>One or more artifacts created by assembling glyphs.</p>
-<p>Object Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>item_name   &quot;Halls of Vrbansk&quot;
-quantity    10
-</pre></div>
+<dt id="lacuna.abbreviations.Abbreviations">
+<em class="property">class </em><code class="descclassname">lacuna.abbreviations.</code><code class="descname">Abbreviations</code><span class="sig-paren">(</span><em>client</em>, <em>vardir=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Saves personal abbreviations for often-long body names.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client</strong> (<a class="reference internal" href="clients.html#lacuna.clients.Member" title="lacuna.clients.Member"><em>lacuna.clients.Member</em></a>) &#8211; The client we&#8217;re currently connected
+as.</li>
+<li><strong>vardir</strong> (<em>str</em>) &#8211; The path to the Monty var/ directory.  Defaults to
+<code class="docutils literal"><span class="pre">CALLING_SCRIPT/../var/</span></code>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes an abbreviation assignment, given the assignment&#8217;s full name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Full name of a body; its abbreviation will be removed.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">KeyError</span></code> &#8211;
+If no abbreviation exists for <code class="docutils literal"><span class="pre">name</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.get_abbrv">
+<code class="descname">get_abbrv</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.get_abbrv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the abbreviation for a full name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Full name of a body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>abbrv</strong> &#8211;
+The abbreviation set for that body</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">KeyError</span></code> &#8211;
+if no abbreviation is set for <code class="docutils literal"><span class="pre">name</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><em>abbrv</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the full name for an abbreviation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>abbrv_or_name</strong> (<em>str</em>) &#8211; Either a pre-set abbreviation or a body full
+name.  If the given string is not found in
+the abbreviations database, it&#8217;s assumed to
+be a full body name and returned as-is.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>full_name</strong> &#8211;
+If the argument was a set abbreviation, returns<blockquote>
+<div>the full unabbreviated name.  If the argument was
+not a set abbreviation, but matches a body name
+(either colony or space station), that argument
+is returned as passed in.</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">KeyError</span></code> &#8211;
+If the abbrv passed in is neither a set abbreviation nor
+a valid body name.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.list_abbrvs">
+<code class="descname">list_abbrvs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.list_abbrvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of currently-set abbreviations</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>list</strong> &#8211;
+Alpha-sorted list of abbreviations</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.list_names">
+<code class="descname">list_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.list_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of full body names for which there are abbreviations set</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>list</strong> &#8211;
+Alpha-sorted list of names</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>name</em>, <em>abbrv</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves an abbreviation assignment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; The full name</li>
+<li><strong>abbrv</strong> (<em>str</em>) &#8211; The abbreviation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.show">
+<code class="descname">show</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces a report on a single stored abbreviation.</p>
+<p>The report is displayed on STDOUT.  If we&#8217;re reporting on &#8216;all&#8217;
+abbreviations, the report is displayed via a pager.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.abbreviations.Abbreviations.show_all">
+<code class="descname">show_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.abbreviations.Abbreviations.show_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces a report on all currently-stored abbreviations.</p>
+<p>The report is displayed on STDOUT via a pager.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-</dd></dl>
-
-<dl class="class">
-<dt id="lacuna.glyph.Glyph">
-<em class="property">class </em><code class="descclassname">lacuna.glyph.</code><code class="descname">Glyph</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.glyph.Glyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
-<p>Glyph base class</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="lacuna.glyph.OwnedGlyph">
-<em class="property">class </em><code class="descclassname">lacuna.glyph.</code><code class="descname">OwnedGlyph</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.glyph.OwnedGlyph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#lacuna.glyph.Glyph" title="lacuna.glyph.Glyph"><code class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.Glyph</span></code></a></p>
-<p>A single specific glyph on your planet.</p>
-<p>Object Attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>id          12345,
-name        &quot;bauxite&quot;
-type        &quot;bauxite&quot;
-quantity    23
-</pre></div>
-</div>
-<p>name and type are always the same.  There&#8217;s no longer such a thing as an
-individual glyph, only types of glyphs, which is why we have both an ID
-and a quantity.</p>
-</dd></dl>
-
 </div>
 
 
@@ -223,10 +350,10 @@ and a quantity.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="logging.html" class="btn btn-neutral float-right" title="logging">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="bc.html" class="btn btn-neutral float-right" title="bc">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="exceptions.html" class="btn btn-neutral" title="exceptions"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="other_modules.html" class="btn btn-neutral" title="Other Modules"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
