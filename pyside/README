@@ -92,7 +92,7 @@ CREATING A NEW GUI ELEMENT {#{{{
 ADDING IMAGES {#{{{
     QUICK INSTRUCTIONS {#{{{
         - Find the image you want to add (under media/images/coolicons/png/)
-        - Edit ui/coolicons.qrc.  Add an alias and the path to the file, 
+        - Edit ui/menu_icons.qrc.  Add an alias and the path to the file, 
           following existing examples.
             - The paths must be relative to the location of the coolicons.qrc 
               file.
@@ -101,10 +101,10 @@ ADDING IMAGES {#{{{
     }#}}}
     ADDING A NEW ICON PACK {#{{{
         - Download it and put it somewhere intelligent under media/.
-        - Create a new .qrc file in ui/
-            - Best bet is to copy coolicons.qrc and modify it
-        - Edit bin/make_ui.sh
-            - Add your new pack's filename, minus the ".qrc" extension, to 
+        - Either edit the existing ui/menu_icons.qrc file (for toolbar icons), 
+          or create a new .qrc file as makes sense.
+        - If you created a new .qrc file, edit bin/make_ui.sh
+            - Add your new file's name, minus the ".qrc" extension, to 
               IMAGE_PIECES.
         - Run bin/make_ui.sh
         - Edit lib/gui/__init__.py
@@ -129,6 +129,12 @@ ADDING IMAGES {#{{{
         really wanted to bother with that).
 
     }#}}}
+    CONVERT SVG TO PNG {#{{{
+        $ sudo apt-get install librsvg2-bin
+        $ rsvg-open FILE.svg -f png -o FILE.png
+
+        Conversion is almost instant.
+    }#}}}
 }#}}}
 CYTHONIZE A MODULE {#{{{
 
@@ -145,7 +151,6 @@ CYTHONIZE A MODULE {#{{{
     should work for any non-gui class files I might have lying around.  If 
     there's compute-intensive code anywhere, put it in its own class in a 
     separate file and cythonize it.
-
 
 
     $ cd lib/widgets/

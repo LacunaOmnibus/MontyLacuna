@@ -48,7 +48,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         file_toolbar.addAction(self.actionQuit)
 
         help_toolbar = self.addToolBar('Help')
-        self.actionAbout.setIcon( QIcon(":/coffee.png") )
+        self.actionAbout.setIcon( QIcon(":/about.png") )
         help_toolbar.addAction(self.actionAbout)
 
     def test(self, text="foo"):

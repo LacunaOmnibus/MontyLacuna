@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+<file alias="close.png">../media/images/flatwoken/actions/cancel.png</file>
+<file alias="about.png">../media/images/flatwoken/status/application-running.png</file>
+<file alias="file.png">../media/images/flatwoken/actions/filenew.png</file>
+<file alias="login.png">../media/images/flatwoken/status/account-logged-in.png</file>
+<file alias="logout.png">../media/images/flatwoken/status/error.png</file>
+<file alias="question.png">../media/images/flatwoken/status/dialog-question.png</file>
+<file alias="section.png">../media/images/flatwoken/places/network-server.png</file>
+</qresource>
+</RCC>

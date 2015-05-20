@@ -27,7 +27,7 @@ done
 
 
 IMAGE_PIECES="
-    coolicons
+    menu_icons
 "
 for piece in $IMAGE_PIECES
 do
