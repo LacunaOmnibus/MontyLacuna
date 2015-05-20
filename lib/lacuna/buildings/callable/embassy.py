@@ -13,9 +13,10 @@ class embassy(lacuna.building.MyBuilding):
         """ Create a new alliance.
 
         Arguments:
-            - alliance_name -- String name of the new alliance.
+            alliance_name (str): String name of the new alliance.
 
-        Returns an :class:`lacuna.buildings.callable.embassy.AllianceData` object.
+        Returns:
+            alliance (lacuna.buildings.callable.embassy.AllianceData):
         """
         return AllianceData(self.client, kwargs['rslt']['alliance'])
 
@@ -33,10 +34,11 @@ class embassy(lacuna.building.MyBuilding):
     def leave_alliance( self, **kwargs ):
         """ Leaves the current alliance.
 
-        Raises :class:`lacuna.exceptions.ServerError` 1010 if you are the 
-        leader of the alliance.  In that case, you cannot leave.  Instead, you 
-        must either turn membership over to another member or dissolve the 
-        alliance.
+        Raises:
+            (lacuna.exceptions.ServerError) 1010 if you are the leader of the 
+            alliance.  In that case, you cannot leave.  Instead, you must 
+            either turn membership over to another member or dissolve the 
+            alliance.
         """
         pass
 
@@ -44,7 +46,8 @@ class embassy(lacuna.building.MyBuilding):
     def get_alliance_status( self, **kwargs ):
         """ Gets status of your alliance.
 
-        Returns an :class:`lacuna.buildings.callable.empire.AllianceData` object.
+        Returns:
+            status (AllianceData):
         """
         return AllianceData(self.client, kwargs['rslt']['alliance'])
 
@@ -54,11 +57,14 @@ class embassy(lacuna.building.MyBuilding):
         """ Invites a player, by ID, to your alliance.
 
         Arguments:
-            - invite_id -- Integer ID of the player to invite.  
+            invite_id (int): ID of the player to invite.  
 
-        Raises :class:`lacuna.exceptions.ServerError` 1010 if the invitee is 
-        already a member of your alliance.  The invite is sent in the form of an 
-        in-game mail message.  It will appear in your mailbox's Sent tab.
+        Raises:
+            Error (:class:`lacuna.exceptions.ServerError`): 1010 if
+                                                            the invitee is already a member of your 
+                                                            alliance.  The invite is sent in the 
+                                                            form of an in-game mail message.  It 
+                                                            will appear in your mailbox's Sent tab.
         """
         pass
 
@@ -66,7 +72,8 @@ class embassy(lacuna.building.MyBuilding):
     def get_pending_invites( self, **kwargs ):
         """ Get list of sent, but not yet accepted, invites.
 
-        Returns a list of InvitedGuest objects.
+        Returns:
+            invites (InvitedGuest): list of objects.
         """
         mylist = []
         for i in kwargs['rslt']['invites']:
@@ -79,11 +86,11 @@ class embassy(lacuna.building.MyBuilding):
         """ Withdraws a pending alliance invite.
 
         Arguments:
-            - invite_id -- Integer ID of the invitation to withdraw.  
-            - message -- Optional string message that will be sent to the user 
-              explaining why their invite was withdrawn.
-              See :py:meth:`get_my_invites`
+            invite_id (int): ID of the invitation to withdraw.
+            message (str): message that will be sent to the user explaining why their invite was
+                           withdrawn.
 
+        See also :py:meth:`get_my_invites`
         """
         pass
 
@@ -91,7 +98,8 @@ class embassy(lacuna.building.MyBuilding):
     def get_my_invites( self, **kwargs ):
         """ Gets list of alliance invitations received by your empire.
 
-        Returns a list of AllianceInvited objects.
+        Returns:
+            invites (AllianceInvited): list of objects
         """
         mylist = []
         for i in kwargs['rslt']['invites']:
@@ -103,10 +111,11 @@ class embassy(lacuna.building.MyBuilding):
         """ Accepts an alliance invitation.
 
         Arguments:
-            - invite_id -- Integer ID of the invitation to accept.  
-              See :py:meth:`get_my_invites`
+            invite_id (int): ID of the invitation to accept.  See
+                             :py:meth:`get_my_invites`
 
-        Returns a :class:`lacuna.buildings.callable.embassy.AllianceData` object.
+        Returns:
+            alliance (AllianceData):
         """
         return AllianceData(self.client, kwargs['rslt']['alliance'])
 
@@ -116,9 +125,9 @@ class embassy(lacuna.building.MyBuilding):
         """ Rejects an alliance invitation.
 
         Arguments:
-            - invite_id -- Integer ID of the invitation to reject.
-            - message -- Optional string message to be sent to the alliance 
-              leader about why you're rejecting the invitation.
+            invite_id (int): ID of the invitation to reject.
+            message (str): message to be sent to the alliance leader about why you're rejecting the
+                           invitation.
 
         This sends a mail back to the inviting empire letting them know that 
         you're not interested.
@@ -131,10 +140,10 @@ class embassy(lacuna.building.MyBuilding):
         called by the current alliance leader.
 
         Arguments:
-            - empire_id -- Integer ID of the empire that should become the new 
-              leader.
+            empire_id (int): ID of the empire that should become the new leader.
 
-        Returns an :class:`lacuna.buildings.callable.embassy.AllianceData` object.
+        Returns:
+            alliance (AllianceData):
         """
         return AllianceData(self.client, kwargs['rslt']['alliance'])
 
@@ -143,12 +152,10 @@ class embassy(lacuna.building.MyBuilding):
         """ Updates some settings for your alliance.  Can only be called by the 
         alliance leader.
 
-        Requires a single dict of arguments:
-            - forum_uri -- 'http://www.example.com',
-            - description -- 'This is a public description',
-            - announcements -- 'This is only visible to alliance members',
-
-        Returns an :class:`lacuna.buildings.callable.embassy.AllianceData` object.
+        Arguments:
+            args (dict): Containing the keys ``forum_uri``, ``description``, and ``annonucements``.
+        Returns:
+            alliance (AllianceData):
         """
         return AllianceData(self.client, kwargs['rslt']['alliance'])
 
@@ -159,9 +166,8 @@ class embassy(lacuna.building.MyBuilding):
         alliance leader.
 
         Arguments:
-            - empire_id -- Integer ID of the empire to expel.
-            - message -- Optional string message about why the member is being 
-              removed from the alliance.
+            empire_id (int): ID of the empire to expel.
+            message (str): message about why the member is being removed from the alliance.
         """
         pass
 
@@ -169,7 +175,8 @@ class embassy(lacuna.building.MyBuilding):
     def view_stash( self, **kwargs ):
         """ Shows what resources are in the alliance stash.
 
-        Returns an :class:`lacuna.buildings.callable.embassy.Stash` object.
+        Returns:
+            stash (Stash):
         """
         return Stash(self.client, kwargs['rslt'])
 
@@ -178,8 +185,14 @@ class embassy(lacuna.building.MyBuilding):
         """ Donate items to the alliance stash.
 
         Arguments:
-            - donation -- Dict of items to donate:
-                ``{ 'apple': 10, 'burger': 20, ... }``
+            donation (dict): items to donate.  Key is the string name of the item, value is the
+                             integer quantity to donate.
+        Returns:
+            stash (Stash):
+        Raises:
+            Error (:class:`lacuna.exceptions.ServerError`): 1009 if the donation would increase the
+                                                            stash to more than 500,000 resource 
+                                                            units.
 
         Waste cannot be donated.
 
@@ -187,11 +200,6 @@ class embassy(lacuna.building.MyBuilding):
         in any combination.  Once the stash has 500,000 resources in it, 
         donation is no longer possible.  At that point, all additions to and 
         removals from the stash must be done by :py:meth:`exchange_with_stash`.
-
-        Returns an :class:`lacuna.buildings.callable.embassy.Stash` object.
-
-        Raises :class:`lacuna.exceptions.ServerError` 1009 if the donation 
-        would increase the stash to more than 500,000 resource units.
         """
         return Stash(self.client, kwargs['rslt'])
 
@@ -201,13 +209,20 @@ class embassy(lacuna.building.MyBuilding):
         in the stash.
 
         Arguments:
-            - donation -- Dict of items to donate.
-              ``{ 'apple': 10, 'burger': 20 }``
-            - request -- Dict of items to request.
-              ``{ 'wheat': 30 }``
+            donation (dict): ``str name => int quantity`` (to donate)
+            request (dict): ``str name => int quantity`` (to receive)
+        Returns:
+            stash (Stash):
+        Raises:
+            1009 (:class:`lacuna.exceptions.ServerError`): if the donation and request quantities do
+                                                           not match, or if you do not have enough 
+                                                           resources on hand to cover your specified 
+                                                           donation.
+            1010 (:class:`lacuna.exceptions.ServerError`): if the stash does not contain the
+                                                           requested res.
 
-        The total quantity of resources you wish to donate much exactly match the 
-        number of resources you request:
+        The total quantity of resources you wish to donate much exactly match the number of 
+        resources you request:
 
         This is fine:
             - ``donation = { 'apple': 10, 'burger': 10 }``
@@ -217,21 +232,13 @@ class embassy(lacuna.building.MyBuilding):
             - ``donation = { 'apple': 10, 'burger': 10 }``
             - ``request  = { 'bean': 19 }``
 
-        Returns an :class:`lacuna.buildings.callable.embassy.Stash` object.
-
-        Raises :class:`lacuna.exceptions.ServerError` 1009 if the donation and 
-        request quantities do not match, or if you do not have enough resources 
-        on hand to cover your specified donation.
-
-        Raises :class:`lacuna.exceptions.ServerError` 1010 if the stash does not 
-        contain the requested res.
         """
         return Stash(self.client, kwargs['rslt'])
 
 
 class AllianceData(lacuna.bc.SubClass):
     """
-    Attributes::
+    Object Attributes::
 
         announcements   None,
         date_created    '21 10 2014 21:56:34 +0000',
@@ -246,41 +253,39 @@ class AllianceData(lacuna.bc.SubClass):
 class InvitedGuest(lacuna.bc.SubClass):
     """ This is an invite your alliance sends out to an empire.
 
-    Attributes::
+    Object Attributes::
 
-        id          5810                ID of the invite itself
-        empire_id   1234                ID of the invited empire
-        name        Invitee One         Name of the invited empire
+        id          Integer ID of the invite itself
+        empire_id   Integer ID of the invited empire
+        name        Name of the invited empire
     """
 
 class AllianceInvited(lacuna.bc.SubClass):
     """ This is an invitation your empire has received from an alliance.
 
-    Attributes::
+    Object Attributes::
 
-        id              5810                ID of the invite itself
-        alliance_id     1234                ID of the invited empire
-        name            United Alliance     Name of the inviting alliance
+        id              Integer ID of the invite itself
+        alliance_id     Integer ID of the invited empire
+        name            Name of the inviting alliance
     """
 
 class Stash():
     """ The current contents of the alliance stash.
 
-    Attributes::
+    Object Attributes::
 
-        stash                       Dict of items currently in the stash
-                                        {   "gold" : 4500,
-                                            "water" : 1000,
-                                            ...     }
-        stored                      Dict of items currently stored on your planet; these
-                                        items can be exchanged with the stash
-                                            {   "bauxite" : 5500,
-                                                "energy" : 9000,
-                                    ...     }
-        max_exchange_size           Integer limit you may include in a single 
+        stash                       Dict of items currently in the stash.  Key
+                                    is item name ("gold", "water", etc), value 
+                                    is integer quantity stored.
+        stored                      Dict of items currently stored on your
+                                    planet that can be exchanged with the 
+                                    stash.  ``Item_name => quantity``.
+        max_exchange_size           Integer limit you may include in a single
                                     exchange
         exchanges_remaining_today   Integer number of exchanges you have left 
                                     for the day.
+
     """
 
     def __init__( self, client:object, mydict:dict ):

@@ -6,6 +6,7 @@ import lacuna.spy
 import lacuna.plan
 import lacuna.glyph
 
+
 class TradeBldg(lacuna.building.MyBuilding):
     """ Base class for trade and transporter buildings.  """
 
@@ -71,10 +72,11 @@ class TradeBldg(lacuna.building.MyBuilding):
     def get_glyph_summary( self, *args, **kwargs ):
         """ Get glyphs available to be added to a trade as merchandise.
 
-        Returns a tuple:
-            - glyphs -- List of :class:`lacuna.glyph.OwnedGlyph` objects.
-            - space_used -- Amount of cargo space used by each prisoner.  
-              Always 10000.
+        Returns:
+            glyphs (tuple):
+                - glyphs -- List of :class:`lacuna.glyph.OwnedGlyph` objects.
+                - space_used -- Amount of cargo space used by each prisoner.  
+                  Always 10000.
         """
         mylist = []
         for i in kwargs['rslt']['glyphs']:
@@ -89,15 +91,14 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Shows the trades you currently have offered.
 
         Args:
-            page_number (optional int): page number to view.  25 trades 
-                shown per page.  Defaults to 1. 
+            page_number (int): page number to view.  25 trades 
+                               shown per page.  Defaults to 1. 
         Returns:
-            tuple: representing your trades::
-
+            trades_details (tuple):
                 - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
                 - count -- Total number of trades you have up
                 - page_number -- The page that the "trades" list appeared on.  
-                    Same value that you passed as an argument, or 1.
+                  Same value that you passed as an argument, or 1.
         """
         mylist = []
         for i in kwargs['rslt']['trades']:
@@ -124,18 +125,15 @@ class TradeBldg(lacuna.building.MyBuilding):
         """ Shows the trades you currently have offered.
 
         Args:
-            page_number (optional int): page number to view.  25 trades 
-                shown per page.  Defaults to 1.i
-            filter (optional str): narrow down the types of trades 
-                returned.
+            page_number (int): page number to view.  25 trades shown per page.  Defaults to 1.
+            filter (str): narrow down the types of trades returned.
         Returns:
-            tuple: Trades on the market::
-
+            trades (tuple):
                 - trades -- List of :class:`lacuna.trading.ExistingTrade` objects
                 - count -- Total number of trades you have up
                 - page_number -- The page that the "trades" list appeared on.  
-                    Same value that you passed as an argument, or 1.
-              
+                  Same value that you passed as an argument, or 1.
+
         - Valid values for the ``filter`` argument:
             - energy
             - food

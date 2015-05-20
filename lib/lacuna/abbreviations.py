@@ -117,11 +117,10 @@ class Abbreviations():
                                  be a full body name and returned as-is.
 
         Returns:
-            full_name (str): If the argument was a set abbreviation, returns
-                             the full unabbreviated name.  If the argument was 
-                             not a set abbreviation, but matches a body name 
-                             (either colony or space station), that argument 
-                             is returned as passed in.
+            full_name (str): If the argument was a set abbreviation, returns 
+            the full unabbreviated name.  If the was not a set abbreviation, 
+            but matches a body name (either colony or space station), that 
+            argument is returned as passed in.
 
         Raises:
             KeyError: If the abbrv passed in is neither a set abbreviation nor
