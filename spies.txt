@@ -1,0 +1,78 @@
+bmots rof 1.1
+-------------
+  Assignments:
+    Idle                                                             69
+    Mayhem Training                                                   5
+    Security Sweep                                                   16
+  Locations:
+    184926  (  106,   33) - bmots rof 1.1                             1
+    604255  (   97,   14) - bmots rof 1.7                            89
+
+bmots rof 1.2
+-------------
+  Assignments:
+    Counter Espionage                                                11
+    Idle                                                             69
+    Mayhem Training                                                   5
+    Training                                                          5
+  Locations:
+    15656   ( 1299,-1159) - SASS tmt bmots 05                         5
+    336895  (  107,   24) - SASS Majestic                            27
+    478857  (  110,   33) - bmots rof 1.2                            46
+    604255  (   97,   14) - bmots rof 1.7                            12
+
+bmots rof 1.4
+-------------
+  Assignments:
+    Idle                                                             82
+    Mayhem Training                                                   5
+    Training                                                          3
+  Locations:
+    473071  (  109,   30) - bmots rof 1.4                            85
+    604255  (   97,   14) - bmots rof 1.7                             5
+
+bmots rof 1.5
+-------------
+  Assignments:
+    Idle                                                             65
+    Mayhem Training                                                   1
+    Training                                                         24
+  Locations:
+    470140  (  107,   30) - bmots rof 1.5                            89
+    604255  (   97,   14) - bmots rof 1.7                             1
+
+bmots rof 1.6
+-------------
+  Assignments:
+    Idle                                                             77
+    Training                                                         13
+  Locations:
+    470141  (  106,   31) - bmots rof 1.6                            90
+
+bmots rof 1.7
+-------------
+  Assignments:
+    Counter Espionage                                                90
+  Locations:
+    604255  (   97,   14) - bmots rof 1.7                            90
+
+bmots07
+-------
+  Assignments:
+    Idle                                                             80
+    Mayhem Training                                                   5
+    Politics Training                                                 5
+  Locations:
+    360565  (  106,   23) - bmots07                                  85
+    604255  (   97,   14) - bmots rof 1.7                             5
+
+bmots08
+-------
+  Assignments:
+    Counter Espionage                                                30
+    Idle                                                             14
+    Training                                                         46
+  Locations:
+    468709  (  107,   34) - SASS tmt bmots 01                        30
+    844994  (  109,   34) - bmots08                                  60
+

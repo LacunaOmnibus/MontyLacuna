@@ -10,6 +10,12 @@
     <height>531</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="focusPolicy">
    <enum>Qt::TabFocus</enum>
   </property>
@@ -36,102 +42,56 @@ QPushButton:focus {
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab_1">
+        <widget class="QWidget" name="tab_ships">
          <attribute name="title">
-          <string>Login</string>
+          <string>Ships</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="QPushButton" name="btn_login">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QComboBox" name="cmb_planets">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_get_ships">
+                <property name="text">
+                 <string>Get ships on this planet</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tbl_ships">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
               </property>
-              <property name="text">
-               <string>Log in</string>
+              <property name="sortingEnabled">
+               <bool>false</bool>
               </property>
+              <property name="columnCount">
+               <number>4</number>
+              </property>
+              <column/>
+              <column/>
+              <column/>
+              <column/>
              </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btn_logout">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Log out</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btn_check_status">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Check login status</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Minimum</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btn_quit">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Quit</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_2">
+        <widget class="QWidget" name="tab_status">
          <attribute name="title">
           <string>Empire Status</string>
          </attribute>
@@ -165,7 +125,7 @@ QPushButton:focus {
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="tab_3">
+        <widget class="QWidget" name="tab_abbrv">
          <attribute name="title">
           <string>Abbreviations</string>
          </attribute>
@@ -292,7 +252,7 @@ QPushButton:focus {
   </action>
   <action name="actionConfig_File_Status">
    <property name="text">
-    <string>Config File Status</string>
+    <string>Connection Status</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -307,10 +267,6 @@ QPushButton:focus {
   </action>
  </widget>
  <tabstops>
-  <tabstop>btn_login</tabstop>
-  <tabstop>btn_logout</tabstop>
-  <tabstop>btn_check_status</tabstop>
-  <tabstop>btn_quit</tabstop>
   <tabstop>btn_get_empire_status</tabstop>
  </tabstops>
  <resources/>
@@ -324,22 +280,6 @@ QPushButton:focus {
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>225</x>
-     <y>263</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btn_quit</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>64</x>
-     <y>312</y>
     </hint>
     <hint type="destinationlabel">
      <x>225</x>
