@@ -1,5 +1,8 @@
 
 
+When making long requests (eg getting ships for a planet) I really need to be 
+doing that in a thread to not block the UI.
+
 
 Closure problem with the buttons in the ships table explained here:
     http://docs.python-guide.org/en/latest/writing/gotchas/
