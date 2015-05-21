@@ -1,4 +1,14 @@
 
+
+
+Closure problem with the buttons in the ships table explained here:
+    http://docs.python-guide.org/en/latest/writing/gotchas/
+
+    See "Late Binding Closures".
+
+
+
+
 QtCore docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtCore/
 
