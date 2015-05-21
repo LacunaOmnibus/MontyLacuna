@@ -1,5 +1,6 @@
 
-import configparser, os, sys, textwrap
+import configparser, os, sys, textwrap, time
+from PySide.QtCore import *
 from PySide.QtGui import QApplication
 import lacuna, widgets
 from lacuna.abbreviations import Abbreviations
@@ -65,10 +66,8 @@ class MyApp(QApplication):
         """ Logs in to TLE using the credentials stored in our currently-set 
         config file and section.
         """
-        self.client = lacuna.clients.Member( # don't catch the exception if it happens
-            config_file     = self.config_file,
-            config_section  = self.config_section,
-        )
+        client_getter = GetClient(self, self.config_file, self.config_section)
+        self.client = client_getter.request()
         self.is_logged_in = True
         self.abbrv = Abbreviations(self.client, vardir = self.instdir + "/var")
 
@@ -122,6 +121,7 @@ class MyApp(QApplication):
         text = "\n".join( textwrap.wrap(text, width) )
         dialog.set_message( text )
         dialog.show()
+        self.processEvents()
 
     def readconfig(self):
         """ Reads and returns the current config file.
@@ -140,4 +140,34 @@ class MyApp(QApplication):
         except configparser.MissingSectionHeaderError as e:
             raise IOError("{} is not a valid config file.".format(self.config_file))
         return cp
+
+
+
+###########################
+# Threaded TLE requestors #
+###########################
+
+class GetClient(QThread):
+    dataReady = Signal(object)
+
+    def __init__(self, app, config_file, config_section, parent = None):
+        QThread.__init__(self, parent)
+        self.app            = app
+        self.config_file    = config_file
+        self.config_section = config_section
+        self.client         = None
+
+    def request(self):
+        self.start()
+        while(self.isRunning()):
+            self.app.processEvents()
+            time.sleep(0.1)
+        return self.client
+
+    def run(self):
+        self.client = lacuna.clients.Member( # don't catch the exception if it happens
+            config_file     = self.config_file,
+            config_section  = self.config_section,
+        )
+        self.dataReady.emit(self.client) 
 

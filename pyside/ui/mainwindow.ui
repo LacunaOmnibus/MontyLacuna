@@ -204,6 +204,7 @@ QPushButton:focus {
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionClear_All_Caches"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -234,15 +235,24 @@ QPushButton:focus {
    <property name="text">
     <string>Chose Config File</string>
    </property>
+   <property name="statusTip">
+    <string>Select a non-default config file</string>
+   </property>
   </action>
   <action name="actionChose_Config_Section">
    <property name="text">
     <string>Chose Config Section</string>
    </property>
+   <property name="statusTip">
+    <string>Log in using a different account</string>
+   </property>
   </action>
   <action name="actionTest">
    <property name="text">
     <string>Test</string>
+   </property>
+   <property name="statusTip">
+    <string>Whoops.  I should have removed this.</string>
    </property>
   </action>
   <action name="actionLog_In">
@@ -254,15 +264,32 @@ QPushButton:focus {
    <property name="text">
     <string>Connection Status</string>
    </property>
+   <property name="statusTip">
+    <string/>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
    </property>
+   <property name="statusTip">
+    <string>App details and version information</string>
+   </property>
   </action>
   <action name="actionLog_Out">
    <property name="text">
     <string>Log Out</string>
+   </property>
+  </action>
+  <action name="actionClear_All_Caches">
+   <property name="text">
+    <string>Clear All Caches</string>
+   </property>
+   <property name="toolTip">
+    <string>Click if you're getting old data.</string>
+   </property>
+   <property name="statusTip">
+    <string>Click if you're getting old data.</string>
    </property>
   </action>
  </widget>

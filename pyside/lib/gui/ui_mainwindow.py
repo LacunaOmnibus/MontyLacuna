@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created: Wed May 20 18:39:15 2015
+# Created: Thu May 21 18:57:03 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -136,11 +136,14 @@ class Ui_MainWindow(object):
         self.actionLog_In = QtGui.QAction(MainWindow)
         self.actionLog_In.setObjectName("actionLog_In")
         self.actionConfig_File_Status = QtGui.QAction(MainWindow)
+        self.actionConfig_File_Status.setStatusTip("")
         self.actionConfig_File_Status.setObjectName("actionConfig_File_Status")
         self.actionAbout = QtGui.QAction(MainWindow)
         self.actionAbout.setObjectName("actionAbout")
         self.actionLog_Out = QtGui.QAction(MainWindow)
         self.actionLog_Out.setObjectName("actionLog_Out")
+        self.actionClear_All_Caches = QtGui.QAction(MainWindow)
+        self.actionClear_All_Caches.setObjectName("actionClear_All_Caches")
         self.menuFile.addAction(self.actionQuit)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionChose_Config_File)
@@ -152,6 +155,7 @@ class Ui_MainWindow(object):
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionTest)
         self.menuHelp.addAction(self.actionAbout)
+        self.menuHelp.addAction(self.actionClear_All_Caches)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
@@ -176,10 +180,17 @@ class Ui_MainWindow(object):
         self.statusbar.setStatusTip(QtGui.QApplication.translate("MainWindow", "status st", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionChose_Config_File.setText(QtGui.QApplication.translate("MainWindow", "Chose Config File", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionChose_Config_File.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select a non-default config file", None, QtGui.QApplication.UnicodeUTF8))
         self.actionChose_Config_Section.setText(QtGui.QApplication.translate("MainWindow", "Chose Config Section", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionChose_Config_Section.setStatusTip(QtGui.QApplication.translate("MainWindow", "Log in using a different account", None, QtGui.QApplication.UnicodeUTF8))
         self.actionTest.setText(QtGui.QApplication.translate("MainWindow", "Test", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionTest.setStatusTip(QtGui.QApplication.translate("MainWindow", "Whoops.  I should have removed this.", None, QtGui.QApplication.UnicodeUTF8))
         self.actionLog_In.setText(QtGui.QApplication.translate("MainWindow", "Log In", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConfig_File_Status.setText(QtGui.QApplication.translate("MainWindow", "Connection Status", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAbout.setStatusTip(QtGui.QApplication.translate("MainWindow", "App details and version information", None, QtGui.QApplication.UnicodeUTF8))
         self.actionLog_Out.setText(QtGui.QApplication.translate("MainWindow", "Log Out", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClear_All_Caches.setText(QtGui.QApplication.translate("MainWindow", "Clear All Caches", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClear_All_Caches.setToolTip(QtGui.QApplication.translate("MainWindow", "Click if you\'re getting old data.", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionClear_All_Caches.setStatusTip(QtGui.QApplication.translate("MainWindow", "Click if you\'re getting old data.", None, QtGui.QApplication.UnicodeUTF8))
 

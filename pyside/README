@@ -183,6 +183,82 @@ CYTHONIZE A MODULE {#{{{
     That should be in; your module is now written in C.
 
 }#}}}
+THREADED TLE REQUEST CLASSES {#{{{
+
+The two main forum threads (hehe - humorous wordplay) where I got the info to 
+create this stuff are:
+    http://stackoverflow.com/questions/2823112/communication-between-threads-in-pyside
+    http://www.matteomattei.com/pyside-signals-and-slots-with-qthread-example/
+
+
+
+There are a bunch of these down at the bottom of mainwindow.py, and at least 
+one at the bottom of myapp.py.  Look for this section:
+                    ###########################
+                    # Threaded TLE requestors #
+                    ###########################
+
+
+The getter objects have a request() method that starts the thread, waits for 
+it to finish, constantly updates the UI for you so it doesn't freeze up, and 
+returns the main value::
+    planet_getter = GetPlanet( self.parent.app, pname )
+    planet = planet_getter.request()
+    print( "We got the planet", planet.name )
+
+That 'planet' return value is also, after the request() call, an attribute of 
+the getter itself:
+    print( "We got the planet", planet_getter.planet.name )
+
+
+
+If you need more control over the threads than request() gives you, you could 
+do something like this:
+
+    def get_data(self, data):
+        print( "get_data got back this:", data )
+
+    scuttler_thread = MassShipScuttler( app, sp, ids_to_delete )
+    scuttler_thread.dataReady.connect(self.get_data, Qt.QueuedConnection)
+    scuttler_thread.start()
+    while scuttler_thread.isRunning():
+        sys.stdout.write('.')
+        sys.stdout.flush()
+        app.processEvents()
+        time.sleep(0.1)
+
+    print( "\nNow we're done." )
+
+There's nothing magical about "dataReady" -- it's just a signal that each of 
+my threaded TLE getters implements and emits (see the code for examples).
+
+
+
+HOWEVER, be aware that this simply does not work:
+
+    def get_data(self, data):
+        print ( "in get_data, I have this data:", data )
+        self.mydata = data
+
+    thread = ThreadedClass( )
+    thread.dataReady.connect(self.get_data, Qt.QueuedConnection)
+    thread.start()
+    while thread.isRunning():
+        app.processEvents()
+        time.sleep(0.1)
+
+    print( self.mydata )        # GONG!
+
+
+What I'm trying to do here is have the thread return some data (which it 
+does), and then set that data into an attribute in my current object (which it 
+does not).
+
+The print line in get_data() works just fine.  But when we get back to the 
+GONG line, we do NOT have 'mydata' set in self.  I still don't quite 
+understand Python objects completely, I guess.
+
+}#}}}
 
 NOTES ON INDIVIDUAL BITS OF THE GUI {#{{{
     
