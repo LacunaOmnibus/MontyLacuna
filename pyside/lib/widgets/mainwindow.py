@@ -366,7 +366,7 @@ class ShipsDeleteTable():
             btn_go.clicked.connect( functools.partial(self.scuttle, row) )
 
             itm_type        = QTableWidgetItem(type)
-            itm_num_avail   = QTableWidgetItem(str(ships[type]))
+            itm_num_avail   = QTableWidgetItem("{:,}".format(ships[type]))
             self.widget.insertRow(row)
             self.widget.setItem(row, 0, itm_type)
             self.widget.setItem(row, 1, itm_num_avail)
