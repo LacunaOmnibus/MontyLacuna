@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/msgbox.ui'
 #
-# Created: Thu May 21 18:57:03 2015
+# Created: Fri May 22 15:06:18 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

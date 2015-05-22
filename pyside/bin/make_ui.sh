@@ -27,6 +27,7 @@ done
 
 
 IMAGE_PIECES="
+    lacuna
     menu_icons
 "
 for piece in $IMAGE_PIECES

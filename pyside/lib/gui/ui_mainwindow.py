@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created: Thu May 21 18:57:03 2015
+# Created: Fri May 22 15:06:18 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -56,9 +56,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout)
         self.tbl_ships = QtGui.QTableWidget(self.tab_ships)
         self.tbl_ships.setAlternatingRowColors(True)
-        self.tbl_ships.setColumnCount(4)
+        self.tbl_ships.setColumnCount(5)
         self.tbl_ships.setObjectName("tbl_ships")
-        self.tbl_ships.setColumnCount(4)
+        self.tbl_ships.setColumnCount(5)
         self.tbl_ships.setRowCount(0)
         self.verticalLayout_4.addWidget(self.tbl_ships)
         self.verticalLayout_6.addLayout(self.verticalLayout_4)
