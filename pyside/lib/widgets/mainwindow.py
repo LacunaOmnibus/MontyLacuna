@@ -203,12 +203,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if int(self.app.client.empire.self_destruct_active) > 0:
             out.append("*** SELF DESTRUCT IS ACTIVE! ***")
             out.append("")
-        out.append("ID: " + self.app.client.empire.id )
-        out.append("RPC Usage: " + str(self.app.client.empire.rpc_count) )
-        out.append("Status Message: " + self.app.client.empire.status_message )
-        out.append("New Mail Messages: " + str(self.app.client.empire.has_new_messages) )
-        out.append("Essentia: " + str(self.app.client.empire.essentia) )
-        out.append("Tech Level: " + str(self.app.client.empire.tech_level) )
+        out.append("ID: {}".format(self.app.client.empire.id) )
+        out.append("RPC Usage: {}".format(self.app.client.empire.rpc_count) )
+        out.append("Status Message: {}".format(self.app.client.empire.status_message) )
+        out.append("New Mail Messages: {}".format(self.app.client.empire.has_new_messages) )
+        out.append("Essentia: {}".format(self.app.client.empire.essentia) )
+        out.append("Tech Level: {}".format(self.app.client.empire.tech_level) )
         out.append("")
         out.append("Planets: ")
         for p in sorted( self.app.client.empire.colony_names.keys() ):
