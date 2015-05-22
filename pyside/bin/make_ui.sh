@@ -7,7 +7,7 @@
 ### generated, and any hand-edits you make will be overwritten the next time 
 ### this gets run.
 
-FILE_PIECES="
+WIDGET_PIECES="
     mainwindow
     about
     confbox
@@ -15,7 +15,7 @@ FILE_PIECES="
     errbox
     picklist
 "
-for piece in $FILE_PIECES
+for piece in $WIDGET_PIECES
 do
     if [ -e lib/gui/ui_${piece}.py ]
     then
@@ -26,11 +26,12 @@ do
 done
 
 
-IMAGE_PIECES="
+MEDIA_PIECES="
     lacuna
     menu_icons
+    treksounds
 "
-for piece in $IMAGE_PIECES
+for piece in $MEDIA_PIECES
 do
     if [ -e lib/gui/img_${piece}.py ]
     then

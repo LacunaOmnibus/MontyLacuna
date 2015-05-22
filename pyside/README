@@ -1,17 +1,4 @@
 
-
-When making long requests (eg getting ships for a planet) I really need to be 
-doing that in a thread to not block the UI.
-
-
-Closure problem with the buttons in the ships table explained here:
-    http://docs.python-guide.org/en/latest/writing/gotchas/
-
-    See "Late Binding Closures".
-
-
-
-
 QtCore docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtCore/
 
@@ -106,7 +93,7 @@ ADDING IMAGES {#{{{
 
     Icon packs often come with hundreds of images, of which I only use a 
     handful, and I don't want to force the users to have to download all those 
-    unused icons.
+    unused images.
 
     So I'm storing media packs in ~/work/Media/, which is a github repo.  When 
     I find an image (or sound or whatever) that I want to include in Monty, 

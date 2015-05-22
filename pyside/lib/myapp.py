@@ -1,5 +1,6 @@
 
 import configparser, os, sys, textwrap, time
+from PySide.phonon import Phonon
 from PySide.QtCore import *
 from PySide.QtGui import QApplication
 import lacuna, widgets
@@ -77,6 +78,25 @@ class MyApp(QApplication):
         self.is_logged_in   = False
         self.abbrv          = None
         self.client         = None
+
+    def play_sound(self, alias):
+        """ Plays a sound
+
+        Arguments:
+            alias (str): The name of a sound file alias as specified in a .qrc
+                         file, eg "mysound.wav"
+        """
+        speakers = Phonon.AudioOutput(Phonon.MusicCategory, self)
+        media   = Phonon.MediaObject(self)
+        speakers.setVolume(0.5)
+        Phonon.createPath(media, speakers)
+        media.setCurrentSource( ":/{}".format(alias) )
+        ### If we let the media file play all the way through, we get a nasty 
+        ### static squelch at the end.  Set it to stop playing 30 milliseconds 
+        ### before the end.
+        media.setPrefinishMark(30)
+        media.prefinishMarkReached.connect( media.stop )
+        media.play()
 
     def popconf(self, parent, text, width:int = 60):
         """ Pops up a yes/no question in a new dialog, along with "Yes" and "No"

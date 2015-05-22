@@ -16,6 +16,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         self.app            = QCoreApplication.instance()
         self.is_logged_in   = False
+        self.play_sounds    = True
         self.utils          = Utils()
 
         super(MainWindow, self).__init__(parent)
@@ -30,6 +31,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionClear_All_Caches.setEnabled(False)
 
         self.add_graphical_toolbars()
+        self.soundon()
     
         self.obj_cmb_colonies_scuttle = BodiesComboBox( self.cmb_planets, self )
         self.obj_tbl_abbrv = AbbreviationsTable( self.tbl_abbrv, self )
@@ -59,12 +61,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionChose_Config_File.activated.connect( self.chose_config_file )
         self.actionChose_Config_Section.activated.connect( self.chose_config_section )
         self.actionConfig_File_Status.activated.connect( self.update_config_status_throb )
+        self.actionMute.activated.connect( self.soundoff )
+        self.actionUnmute.activated.connect( self.soundon )
         self.actionLog_In.activated.connect( self.do_login )
         self.actionLog_Out.activated.connect( self.do_logout )
         self.actionTest.activated.connect( self.test )
 
         self.actionAbout.activated.connect( self.show_about_dialog )
         self.actionClear_All_Caches.activated.connect( self.clear_caches )
+
+    def soundon(self):
+        self.play_sounds = True
+        self.actionMute.setEnabled(True)
+        self.actionUnmute.setEnabled(False)
+
+    def soundoff(self):
+        self.play_sounds = False
+        self.actionMute.setEnabled(False)
+        self.actionUnmute.setEnabled(True)
 
     def clear_caches(self):
         if self.app.is_logged_in:
@@ -129,6 +143,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.status("Logging in...")
         self.app.login()
+        if self.play_sounds:
+            self.app.play_sound('door.wav')
         self.reset_gui(True)
         self.statusbar.repaint()
         self.obj_tbl_abbrv.reset()
@@ -138,6 +154,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Logs out of TLE, then updates the GUI to reflect that logged-out status.
         """
         self.app.logout()
+        if self.play_sounds:
+            self.app.play_sound('livelong.wav')
         self.reset_gui(False)
         self.update_config_status()
 
@@ -172,6 +190,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def update_config_status_throb(self):
         self.update_config_status(True);
+        if self.play_sounds:
+            self.app.play_sound('intercom.wav')
 
     def update_config_status(self, show_throbber:bool = False):
         """ Displays login status on the statusbar.
@@ -465,9 +485,9 @@ class ShipsDeleteTable():
             row (int): Data from this table row (zero-indexed) will be pulled 
                        and the corresponding ships will be scuttled.
         """
-        lbl_type    = self.widget.item(row, 0)
-        lbl_ttl     = self.widget.item(row, 1)
-        spin_del    = self.widget.cellWidget(row, 2)
+        lbl_type    = self.widget.item(row, 1)
+        lbl_ttl     = self.widget.item(row, 2)
+        spin_del    = self.widget.cellWidget(row, 3)
 
         self.parent.status("Getting planet...")
         pname = self.parent.obj_cmb_colonies_scuttle.currentText()
@@ -492,7 +512,9 @@ class ShipsDeleteTable():
             delete_these.append( ships[i].id )
         ships_scuttler = MassShipScuttler( self.parent.app, sp, delete_these )
         ships_scuttler.request()
-        #sp.mass_scuttle_ship( delete_these )
+        if self.parent.play_sounds:
+            self.parent.app.play_sound('photon.wav')
+        sp.mass_scuttle_ship( delete_these )
         self.parent.app.client.cache_clear('my_ships')
         self.parent.app.popmsg(self.parent, "I just scuttled {} ships of type {}."
             .format( len(delete_these), lbl_type.text() )
