@@ -92,5 +92,5 @@ class ExcavsReport(lacuna.binutils.libbin.Script):
             for b in bodies:
                 if b.name == self.planet.name:
                     b.surface_type = "p3"
-                print( self.tmpl.format(self.summarize(b.name, 30), b.distance, b.surface_type) )
+                print( self.tmpl.format(self.summarize(str(b.name), 30), b.distance, b.surface_type) )
 

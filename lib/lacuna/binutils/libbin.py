@@ -209,9 +209,7 @@ class Script:
 
         ### The update script uses a Guest client, not a Member client, and a 
         ### Guest client can't have abbreviations.
-        if isinstance(self.client, lacuna.clients.Guest):
-            pass
-        else:
+        if isinstance(self.client, lacuna.clients.Member):
             self.abbrv = Abbreviations(self.client)
 
         ### Set log level
@@ -293,7 +291,7 @@ class Script:
         than max.
         """
         mymax = 4 if mymax < 4 else mymax
-        if len(string) > mymax:
+        if len(str(string)) > mymax:
             submax = mymax - 3
             string = string[0:submax] + "..."
         return string
