@@ -207,7 +207,12 @@ class Script:
             self.args = parser.parse_args()
             self.connect()
 
-        self.abbrv = Abbreviations(self.client)
+        ### The update script uses a Guest client, not a Member client, and a 
+        ### Guest client can't have abbreviations.
+        if isinstance(self.client, lacuna.clients.Guest):
+            pass
+        else:
+            self.abbrv = Abbreviations(self.client)
 
         ### Set log level
         if not self.args.quiet:
