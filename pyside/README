@@ -1,17 +1,4 @@
 
-
-When making long requests (eg getting ships for a planet) I really need to be 
-doing that in a thread to not block the UI.
-
-
-Closure problem with the buttons in the ships table explained here:
-    http://docs.python-guide.org/en/latest/writing/gotchas/
-
-    See "Late Binding Closures".
-
-
-
-
 QtCore docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtCore/
 
@@ -103,12 +90,25 @@ CREATING A NEW GUI ELEMENT {#{{{
     
 }#}}}
 ADDING IMAGES {#{{{
+
+    Icon packs often come with hundreds of images, of which I only use a 
+    handful, and I don't want to force the users to have to download all those 
+    unused images.
+
+    So I'm storing media packs in ~/work/Media/, which is a github repo.  When 
+    I find an image (or sound or whatever) that I want to include in Monty, 
+    I'll copy it over here then.
+
     QUICK INSTRUCTIONS {#{{{
-        - Find the image you want to add (under media/images/coolicons/png/)
+        - Copy the image you want to use from that Media repo into a directory 
+          that makes sense under MONTYINSTALL/pyside/media/images/
+            - Convert it to a png if it's something else.
         - Edit ui/menu_icons.qrc.  Add an alias and the path to the file, 
           following existing examples.
             - The paths must be relative to the location of the coolicons.qrc 
               file.
+            - Feel free to create a new .qrc file if it makes sense to do so, 
+              but edit bin/make_ui.sh and lib/gui/__init__.py if you do.
         - Re-run bin/make_ui.sh
         - Your new image is now available to the program.
     }#}}}

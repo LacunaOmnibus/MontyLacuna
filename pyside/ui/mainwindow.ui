@@ -79,8 +79,9 @@ QPushButton:focus {
                <bool>false</bool>
               </property>
               <property name="columnCount">
-               <number>4</number>
+               <number>5</number>
               </property>
+              <column/>
               <column/>
               <column/>
               <column/>
@@ -206,7 +207,15 @@ QPushButton:focus {
     <addaction name="actionAbout"/>
     <addaction name="actionClear_All_Caches"/>
    </widget>
+   <widget class="QMenu" name="menuMedia">
+    <property name="title">
+     <string>Media</string>
+    </property>
+    <addaction name="actionMute"/>
+    <addaction name="actionUnmute"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuMedia"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
@@ -290,6 +299,16 @@ QPushButton:focus {
    </property>
    <property name="statusTip">
     <string>Click if you're getting old data.</string>
+   </property>
+  </action>
+  <action name="actionMute">
+   <property name="text">
+    <string>Mute</string>
+   </property>
+  </action>
+  <action name="actionUnmute">
+   <property name="text">
+    <string>Unmute</string>
    </property>
   </action>
  </widget>

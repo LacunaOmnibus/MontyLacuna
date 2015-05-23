@@ -16,7 +16,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         self.app            = QCoreApplication.instance()
         self.is_logged_in   = False
-        self.ships_listed   = 0
+        self.play_sounds    = True
         self.utils          = Utils()
 
         super(MainWindow, self).__init__(parent)
@@ -31,6 +31,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionClear_All_Caches.setEnabled(False)
 
         self.add_graphical_toolbars()
+        self.soundon()
     
         self.obj_cmb_colonies_scuttle = BodiesComboBox( self.cmb_planets, self )
         self.obj_tbl_abbrv = AbbreviationsTable( self.tbl_abbrv, self )
@@ -60,12 +61,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionChose_Config_File.activated.connect( self.chose_config_file )
         self.actionChose_Config_Section.activated.connect( self.chose_config_section )
         self.actionConfig_File_Status.activated.connect( self.update_config_status_throb )
+        self.actionMute.activated.connect( self.soundoff )
+        self.actionUnmute.activated.connect( self.soundon )
         self.actionLog_In.activated.connect( self.do_login )
         self.actionLog_Out.activated.connect( self.do_logout )
         self.actionTest.activated.connect( self.test )
 
         self.actionAbout.activated.connect( self.show_about_dialog )
         self.actionClear_All_Caches.activated.connect( self.clear_caches )
+
+    def soundon(self):
+        self.play_sounds = True
+        self.actionMute.setEnabled(True)
+        self.actionUnmute.setEnabled(False)
+
+    def soundoff(self):
+        self.play_sounds = False
+        self.actionMute.setEnabled(False)
+        self.actionUnmute.setEnabled(True)
 
     def clear_caches(self):
         if self.app.is_logged_in:
@@ -87,7 +100,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         every time the x/y changes, just at the end of the event.
         """
         self.obj_tbl_abbrv.resize()
-        self.obj_tbl_scuttle.resize(self.ships_listed)
+        self.obj_tbl_scuttle.resize()
 
     def tab_changed(self, num):
         """ Called when the user switches to the third tab to force the table 
@@ -130,6 +143,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.status("Logging in...")
         self.app.login()
+        if self.play_sounds:
+            self.app.play_sound('door.wav')
         self.reset_gui(True)
         self.statusbar.repaint()
         self.obj_tbl_abbrv.reset()
@@ -139,6 +154,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Logs out of TLE, then updates the GUI to reflect that logged-out status.
         """
         self.app.logout()
+        if self.play_sounds:
+            self.app.play_sound('livelong.wav')
         self.reset_gui(False)
         self.update_config_status()
 
@@ -173,6 +190,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def update_config_status_throb(self):
         self.update_config_status(True);
+        if self.play_sounds:
+            self.app.play_sound('intercom.wav')
 
     def update_config_status(self, show_throbber:bool = False):
         """ Displays login status on the statusbar.
@@ -295,6 +314,12 @@ class ShipsDeleteTable():
         parent (QWidget): The widget that owns the table widget.
     """
 
+    ### Listing both, but the originals are square and I'm maintaining aspect 
+    ### ratio, so whichever one is smaller will pertain to both.  So just set 
+    ### them both to the save value.
+    img_w = 30
+    img_h = 30
+
     main_stats = {
         "combat": [ 
             'bleeder', 'drone', 'fighter', 'observatory_seeker', 
@@ -344,20 +369,31 @@ class ShipsDeleteTable():
         self.parent.update_config_status();
 
     def add_ships(self, ships:dict):
-        """ Adds ships to the table.
+        """ Adds ships from a dict to the table.
 
         Arguments:
             ships (dict): ``ship type (str) => quantity``
 
         This does *not* clear any existing entries before adding more ships. 
         If you want to pass an exhaustive dict, be sure to call ``reset`` first.
+
+        You generally want ``add_ships_for`` instead of this.
         """
         row = 0
         delete_buttons = {}
         for type in sorted( ships.keys() ):
+            ### Image
+            lbl_icon = QLabel()
+            img_ship = QPixmap(":/" + type + ".png").scaled(self.img_w, self.img_w, Qt.KeepAspectRatio)
+            lbl_icon.setPixmap(img_ship)
+            ### Type and Quantity
+            itm_type        = QTableWidgetItem(type)
+            itm_num_avail   = QTableWidgetItem("{:,}".format(ships[type]))
+            ### Num to delete spinner
             del_spinner = QSpinBox()
             del_spinner.setMinimum(0)
             del_spinner.setMaximum(ships[type])
+            ### Do Eet button
             btn_go = QPushButton("Go")
 
             ### functools.partial locks the arg's current value to the method.  
@@ -365,16 +401,14 @@ class ShipsDeleteTable():
             ### clicks would indicate the same (last) row.
             btn_go.clicked.connect( functools.partial(self.scuttle, row) )
 
-            itm_type        = QTableWidgetItem(type)
-            itm_num_avail   = QTableWidgetItem("{:,}".format(ships[type]))
             self.widget.insertRow(row)
-            self.widget.setItem(row, 0, itm_type)
-            self.widget.setItem(row, 1, itm_num_avail)
-            self.widget.setCellWidget(row, 2, del_spinner)
-            self.widget.setCellWidget(row, 3, btn_go)
+            self.widget.setCellWidget(row, 0, lbl_icon)
+            self.widget.setItem(row, 1, itm_type)
+            self.widget.setItem(row, 2, itm_num_avail)
+            self.widget.setCellWidget(row, 3, del_spinner)
+            self.widget.setCellWidget(row, 4, btn_go)
             row +=1
-        self.ships_listed = row
-        self.resize(row)
+        self.resize()
 
     def clear(self):
         """ Clears the table
@@ -411,34 +445,38 @@ class ShipsDeleteTable():
     def reset(self):
         """ Resets the table contents to the correct size and headers
         """
-        self.widget.setHorizontalHeaderLabels( ('Ship Type', 'Quantity', 'Num', 'Scuttle') )
+        self.widget.setHorizontalHeaderLabels( ('', 'Ship Type', 'Quantity', 'Num', 'Scuttle') )
         self.widget.setRowCount(0)
         self.resize()
 
-    def resize(self, count = 0):
+    def resize(self):
         """ Resizes the table.
-
-        Arguments:
-            count (int): The number of rows in the table.
         """
-        tbl_w   = self.widget.width()
-        if count == 0:
-            tbl_w -= 2                          # No number column, but borders.
-        elif count < 10:
-            tbl_w -= 20                         # Single-digit left number column
-        elif count >= 10:
-            pass                                # Double-digit left number column
-            tbl_w -= 41
+        numrows = self.widget.rowCount()
+        orig_tbl_w = self.widget.width()
+        if numrows == 0:
+            tbl_w = orig_tbl_w - 2                  # No number column, but borders.
+        elif numrows < 10:
+            tbl_w = orig_tbl_w - 20                 # Single-digit left number column
+        elif numrows >= 10:
+            tbl_w = orig_tbl_w - 41                 # Double-digit left number column
         if tbl_w > self.parent.width():
-            tbl_w = self.parent.width() - 42    # This happens during initial app display
-        type_w  = int(tbl_w * .35)
-        quan_w  = int(tbl_w * .25)
+            ### During initial app display, the table widget's width is not 
+            ### properly set.  At that point, the borders/margins between it 
+            ### and the parent are 42 pixels.  I believe this only happens 
+            ### when the table is displayed at app start (meaning that it's on 
+            ### the tab that displays by default)
+            tbl_w = self.parent.width() - 42
+        icon_w  = self.img_w + 4
+        type_w  = int(tbl_w * .30)
+        quan_w  = int(tbl_w * .30)
         del_w   = int(tbl_w * .15)
-        btn_w   = tbl_w - (type_w + quan_w + del_w)
-        self.widget.setColumnWidth(0, type_w)
-        self.widget.setColumnWidth(1, quan_w)
-        self.widget.setColumnWidth(2, del_w)
-        self.widget.setColumnWidth(3, btn_w)
+        btn_w   = tbl_w - (icon_w + type_w + quan_w + del_w)
+        self.widget.setColumnWidth(0, icon_w)
+        self.widget.setColumnWidth(1, type_w)
+        self.widget.setColumnWidth(2, quan_w)
+        self.widget.setColumnWidth(3, del_w)
+        self.widget.setColumnWidth(4, btn_w)
 
     def scuttle(self, row:int):
         """ Scuttles the ships indicated by the settings on the indicated row.
@@ -447,9 +485,9 @@ class ShipsDeleteTable():
             row (int): Data from this table row (zero-indexed) will be pulled 
                        and the corresponding ships will be scuttled.
         """
-        lbl_type    = self.widget.item(row, 0)
-        lbl_ttl     = self.widget.item(row, 1)
-        spin_del    = self.widget.cellWidget(row, 2)
+        lbl_type    = self.widget.item(row, 1)
+        lbl_ttl     = self.widget.item(row, 2)
+        spin_del    = self.widget.cellWidget(row, 3)
 
         self.parent.status("Getting planet...")
         pname = self.parent.obj_cmb_colonies_scuttle.currentText()
@@ -474,7 +512,9 @@ class ShipsDeleteTable():
             delete_these.append( ships[i].id )
         ships_scuttler = MassShipScuttler( self.parent.app, sp, delete_these )
         ships_scuttler.request()
-        #sp.mass_scuttle_ship( delete_these )
+        if self.parent.play_sounds:
+            self.parent.app.play_sound('photon.wav')
+        sp.mass_scuttle_ship( delete_these )
         self.parent.app.client.cache_clear('my_ships')
         self.parent.app.popmsg(self.parent, "I just scuttled {} ships of type {}."
             .format( len(delete_these), lbl_type.text() )

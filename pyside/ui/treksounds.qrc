@@ -1,0 +1,12 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+<file alias="ayesir.wav">../media/sounds/trek/Scotty_ayesir.wav</file>
+<file alias="fascinating.wav">../media/sounds/trek/Spock_Fascinating.wav</file>
+<file alias="illogical.wav">../media/sounds/trek/Spock_Illogical.wav</file>
+<file alias="livelong.wav">../media/sounds/trek/Spock_Livelong.wav</file>
+<file alias="intercom.wav">../media/sounds/trek/tos-intercom.wav</file>
+<file alias="photon.wav">../media/sounds/trek/tos-photon-torpedo-1.wav</file>
+<file alias="redalert.wav">../media/sounds/trek/tos-redalert.wav</file>
+<file alias="door.wav">../media/sounds/trek/tos-turboliftdoor.wav</file>
+</qresource>
+</RCC>

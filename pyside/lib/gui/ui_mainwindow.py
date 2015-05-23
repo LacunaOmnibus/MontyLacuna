@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created: Thu May 21 18:57:03 2015
+# Created: Fri May 22 17:04:27 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -56,9 +56,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout)
         self.tbl_ships = QtGui.QTableWidget(self.tab_ships)
         self.tbl_ships.setAlternatingRowColors(True)
-        self.tbl_ships.setColumnCount(4)
+        self.tbl_ships.setColumnCount(5)
         self.tbl_ships.setObjectName("tbl_ships")
-        self.tbl_ships.setColumnCount(4)
+        self.tbl_ships.setColumnCount(5)
         self.tbl_ships.setRowCount(0)
         self.verticalLayout_4.addWidget(self.tbl_ships)
         self.verticalLayout_6.addLayout(self.verticalLayout_4)
@@ -118,6 +118,8 @@ class Ui_MainWindow(object):
         self.menuFile.setObjectName("menuFile")
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
+        self.menuMedia = QtGui.QMenu(self.menubar)
+        self.menuMedia.setObjectName("menuMedia")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setCursor(QtCore.Qt.ArrowCursor)
@@ -144,6 +146,10 @@ class Ui_MainWindow(object):
         self.actionLog_Out.setObjectName("actionLog_Out")
         self.actionClear_All_Caches = QtGui.QAction(MainWindow)
         self.actionClear_All_Caches.setObjectName("actionClear_All_Caches")
+        self.actionMute = QtGui.QAction(MainWindow)
+        self.actionMute.setObjectName("actionMute")
+        self.actionUnmute = QtGui.QAction(MainWindow)
+        self.actionUnmute.setObjectName("actionUnmute")
         self.menuFile.addAction(self.actionQuit)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionChose_Config_File)
@@ -156,7 +162,10 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionTest)
         self.menuHelp.addAction(self.actionAbout)
         self.menuHelp.addAction(self.actionClear_All_Caches)
+        self.menuMedia.addAction(self.actionMute)
+        self.menuMedia.addAction(self.actionUnmute)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuMedia.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -176,6 +185,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_abbrv), QtGui.QApplication.translate("MainWindow", "Abbreviations", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuMedia.setTitle(QtGui.QApplication.translate("MainWindow", "Media", None, QtGui.QApplication.UnicodeUTF8))
         self.statusbar.setToolTip(QtGui.QApplication.translate("MainWindow", "status tt", None, QtGui.QApplication.UnicodeUTF8))
         self.statusbar.setStatusTip(QtGui.QApplication.translate("MainWindow", "status st", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
@@ -193,4 +203,6 @@ class Ui_MainWindow(object):
         self.actionClear_All_Caches.setText(QtGui.QApplication.translate("MainWindow", "Clear All Caches", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClear_All_Caches.setToolTip(QtGui.QApplication.translate("MainWindow", "Click if you\'re getting old data.", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClear_All_Caches.setStatusTip(QtGui.QApplication.translate("MainWindow", "Click if you\'re getting old data.", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionMute.setText(QtGui.QApplication.translate("MainWindow", "Mute", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionUnmute.setText(QtGui.QApplication.translate("MainWindow", "Unmute", None, QtGui.QApplication.UnicodeUTF8))
 
