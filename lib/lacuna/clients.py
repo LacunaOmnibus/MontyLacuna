@@ -449,9 +449,11 @@ class Guest(lacuna.bc.SubClass):
 
             if error.code == 1010 and re.match('Slow down', error.text) and self.sleep_after_error:
                 self.request_logger.warning("60 RPC per minute limit exceeded.", extra=log_opts)
+                sleepsecs = self.get_sleeptime()
                 if self.warn_on_sleep:
-                    self.request_logger.warning("Sleeping for one minute.", extra=log_opts)
-                time.sleep( 61 )
+                    self.request_logger.warning("Turning off cache and sleeping for {} seconds.".format(sleepsecs), extra=log_opts)
+                self.cache_off()
+                time.sleep( sleepsecs )
                 thingy = self.send( path, method, params, depth )
             elif error.code == 1006 and error.text == 'Session expired.':
                 ### Probably the user's config file had a session_id recorded, 
@@ -496,12 +498,30 @@ class Guest(lacuna.bc.SubClass):
         else:
             return thingy
 
+    def get_sleeptime(self):
+        """ Get the number of seconds left in the current minute, plus one.
+
+        Returns:
+            seconds (int): The number of seconds until the next wallclock
+                           minute begins.
+
+        When we hit the 60 RPC/min limit, we can't use any more RPCs this 
+        minute.  Instead of sleeping for a full 60 seconds, we only need to 
+        wait out the remainder of this current minute, so this method returns 
+        the number of seconds left in the current minute.
+
+        One second is added to the time returned to ensure we're comfortably 
+        in the next minute.
+        """
+        lt = time.localtime()
+        return( 61 - lt.tm_sec )
+
     def strsquish(self, string:str):
         """ Squish a string, removing all non-word characters.
 
         Args:
             string (str): The string to squish
-        Returns
+        Returns:
             str: the squished string.
 
         >>> new = self.strsquish( "foo bar & baz" )
