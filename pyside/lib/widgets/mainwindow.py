@@ -66,7 +66,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionLog_In.activated.connect( self.do_login )
         self.actionLog_Out.activated.connect( self.do_logout )
         self.actionTest.activated.connect( self.test )
-
         self.actionAbout.activated.connect( self.show_about_dialog )
         self.actionClear_All_Caches.activated.connect( self.clear_caches )
 
@@ -185,8 +184,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.txt_status.setPlainText( "" )
 
     def status(self, message:str):
+        """ Display a message in the status bar.
+
+        Arguments:
+            message (str): The message to display.
+        Returns:
+            prev_msg (str): The message that your new message replaced.  Might be the 
+                            empty string.
+        """
+        msg = self.statusbar.currentMessage()
         self.statusbar.showMessage(message)
         self.statusbar.repaint()
+        return msg
 
     def update_config_status_throb(self):
         self.update_config_status(True);
@@ -212,7 +221,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.status("Logged in as '{}' from config file section '{}'." .format(self.app.client.empire.name, self.app.config_section))
         else:
             self.status("Using config file section '{}'.  Not currently logged in." .format(self.app.config_section))
-        self.statusbar.repaint()
 
     def get_empire_status(self):
         if not self.app.is_logged_in:
