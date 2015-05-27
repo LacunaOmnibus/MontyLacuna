@@ -22,5 +22,7 @@ var/*.zip
 var/*.pkl
 
 ### Private directory
+### You can keep your own personal shell scripts/batch files/output 
+### files/whatever in here and they won't get added to git on a commit.
 private/
 
