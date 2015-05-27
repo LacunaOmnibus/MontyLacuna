@@ -85,7 +85,9 @@ class Update(lacuna.binutils.libbin.Script):
         """
         replace_path = re.escape( os.path.join("tmp", "MontyLacuna-master") )
         pat = re.compile( replace_path )
-        return pat.sub( "", path )
+        newpath = pat.sub( "", path )
+        newpath = re.sub( "//", "/", newpath ) # I'm getting double slashes.
+        return newpath
 
     def hash_file( self, filepath ):
         """ Returns the hash digest of a file as a string.
