@@ -146,6 +146,14 @@ class Update(lacuna.binutils.libbin.Script):
         live_path   = self.get_live_path( tmp_path )
         tmp_file    = os.path.join( tmp_path, name )
         live_file   = os.path.join( live_path, name )
+
+        if not os.path.isdir(live_path):
+            try:
+                os.mkdir( live_path )
+            except FileExistsError as e:
+                print( "I need to create the directory '{}', but can't because there's already a file by that name.".format(live_path) )
+                quit()
+
         if( os.path.isfile(live_file) ):
             tmp_hash    = self.hash_file( tmp_file )
             live_hash   = self.hash_file( live_file )
