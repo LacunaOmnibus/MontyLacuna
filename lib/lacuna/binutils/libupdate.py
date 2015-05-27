@@ -149,7 +149,7 @@ class Update(lacuna.binutils.libbin.Script):
 
         if not os.path.isdir(live_path):
             try:
-                os.mkdir( live_path )
+                os.makedirs( live_path )
             except FileExistsError as e:
                 print( "I need to create the directory '{}', but can't because there's already a file by that name.".format(live_path) )
                 quit()
