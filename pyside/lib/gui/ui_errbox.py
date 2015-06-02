@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/errbox.ui'
 #
-# Created: Fri May 22 17:04:27 2015
+# Created: Tue Jun  2 17:50:27 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

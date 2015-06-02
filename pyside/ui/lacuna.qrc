@@ -1,5 +1,17 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
+
+<!--
+    The more resources get added in here, the longer bin/make_ui.sh takes.
+
+    Also, the first run of the actual program takes quite a while when there 
+    are lots of resources.  After that first run, startup is way faster, I 
+    assume because of a __pycache__/ directory, but I'd still rather keep the 
+    resources included in here down to only what is really needed.
+-->
+
+<!-- Ships -->
+<!-- We do need all of these -->
 <file alias="barge.png">../media/images/lacuna/ships/barge.png</file>
 <file alias="bleeder.png">../media/images/lacuna/ships/bleeder.png</file>
 <file alias="cargo_ship.png">../media/images/lacuna/ships/cargo_ship.png</file>
@@ -51,5 +63,19 @@
 <file alias="terraforming_platform_ship.png">../media/images/lacuna/ships/terraforming_platform_ship.png</file>
 <file alias="thud.png">../media/images/lacuna/ships/thud.png</file>
 <file alias="unknown.png">../media/images/lacuna/ships/unknown.png</file>
+
+<!-- Buildings -->
+<!-- Right now we're only using the shipyard icons, so no need to include everything else. -->
+<file alias="shipyard0.png">../media/images/lacuna/buildings/shipyard0.png</file>
+<file alias="shipyard1.png">../media/images/lacuna/buildings/shipyard1.png</file>
+<file alias="shipyard2.png">../media/images/lacuna/buildings/shipyard2.png</file>
+<file alias="shipyard3.png">../media/images/lacuna/buildings/shipyard3.png</file>
+<file alias="shipyard4.png">../media/images/lacuna/buildings/shipyard4.png</file>
+<file alias="shipyard5.png">../media/images/lacuna/buildings/shipyard5.png</file>
+<file alias="shipyard6.png">../media/images/lacuna/buildings/shipyard6.png</file>
+<file alias="shipyard7.png">../media/images/lacuna/buildings/shipyard7.png</file>
+<file alias="shipyard8.png">../media/images/lacuna/buildings/shipyard8.png</file>
+<file alias="shipyard9.png">../media/images/lacuna/buildings/shipyard9.png</file>
+
 </qresource>
 </RCC>

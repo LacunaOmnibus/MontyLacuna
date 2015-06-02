@@ -1,4 +1,11 @@
 
+
+ack for CHECK
+
+
+
+
+
 QtCore docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtCore/
 
@@ -191,8 +198,9 @@ The two main forum threads where I got the info to create this stuff are:
 
 
 
-There are a bunch of these classes down at the bottom of mainwindow.py, and at 
-least one at the bottom of myapp.py.  Look for this section:
+There are a bunch of these classes in appthread.py, and at least one at the 
+bottom of myapp.py (CHECK which should get moved to appthread.py).  Look for 
+this section:
                     ###########################
                     # Threaded TLE requestors #
                     ###########################

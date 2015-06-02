@@ -31,7 +31,7 @@ QPushButton:focus {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QVBoxLayout" name="verticalLayout_8">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -42,9 +42,64 @@ QPushButton:focus {
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab_ships">
+        <widget class="QWidget" name="tab_build_ships">
          <attribute name="title">
-          <string>Ships</string>
+          <string>Build Ships</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QComboBox" name="cmb_planets_build"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_get_shipyards_build">
+                <property name="text">
+                 <string>Get shipyards on this planet</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_build_ports_available">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tbl_shipyards_build">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <property name="columnCount">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tbl_ships_build"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_build_ships">
+              <property name="text">
+               <string>Build!</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_scuttle_ships">
+         <attribute name="title">
+          <string>Scuttle Ships</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
@@ -52,7 +107,7 @@ QPushButton:focus {
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <widget class="QComboBox" name="cmb_planets">
+               <widget class="QComboBox" name="cmb_planets_scuttle">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -62,7 +117,7 @@ QPushButton:focus {
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="btn_get_ships">
+               <widget class="QPushButton" name="btn_get_ships_scuttle">
                 <property name="text">
                  <string>Get ships on this planet</string>
                 </property>
@@ -71,7 +126,7 @@ QPushButton:focus {
              </layout>
             </item>
             <item>
-             <widget class="QTableWidget" name="tbl_ships">
+             <widget class="QTableWidget" name="tbl_ships_scuttle">
               <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
