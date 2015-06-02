@@ -116,7 +116,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         file, filter = QFileDialog.getOpenFileName( self, "Open Image", self.app.instdir + "/etc", "Config Files (*.cfg)" )
         if file:
             self.app.config_file = file
-        self.do_logout();
+            self.do_logout();
+        else:
+            ### If file comes back false, the user hit Cancel on the file 
+            ### chooser dialog, in which case we don't do anything.
+            pass
 
     def chose_config_section(self):
         """ Opens a list widget containing available sections of the current config file.
@@ -126,7 +130,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except IOError as e:
             self.app.poperr(self, "'{}' is not a valid config file; please choose one first.".format(self.app.config_file))
             return
-        self.do_logout();
         mylist = [i for i in sorted(cp) if i is not 'DEFAULT']
         pick = widgets.PickList( self )
         pick.add( mylist )
