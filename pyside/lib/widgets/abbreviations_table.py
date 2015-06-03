@@ -27,12 +27,44 @@ class AbbreviationsTable():
     def __init__(self, table:QTableWidget, parent:QMainWindow):
         self.widget = table
         self.parent = parent
-        self.reset()
+        self.clear()
+        #self.reset()
 
     def clear(self):
         self.widget.clear()
         self.widget.setRowCount(0)
         self.widget.setColumnCount(0)
+
+    def init_for_data(self):
+        self.clear()
+        self.widget.setRowCount(0)
+        self.widget.setColumnCount(2)
+        self.widget.setHorizontalHeaderLabels( ('Name', 'Abbreviation') )
+
+    def set_abbreviations(self, empire):
+        """ Clears the abbreviations table, then adds the abbreviations for the current 
+        empire to it.
+
+        Arguments:
+            empire (lacuna.empire.MyEmpire): The empire whose abbreviations we'll show.
+        """
+        self.init_for_data()
+        self.widget.setSortingEnabled(False)
+        row = 0
+        for n in sorted(empire.planet_names):
+            itm_name = QTableWidgetItem(n)
+            try:
+                itm_abbrv = QTableWidgetItem(self.parent.app.abbrv.get_abbrv(n))
+            except KeyError as e:
+                itm_abbrv = QTableWidgetItem("<None>")
+            fl = itm_name.flags()
+            fl &= ~Qt.ItemIsEditable
+            itm_name.setFlags(fl)
+            self.widget.insertRow(row)
+            self.widget.setItem( row, 0, itm_name )
+            self.widget.setItem( row, 1, itm_abbrv )
+            row += 1
+        self.widget.setSortingEnabled(True)
 
     def reset(self):
         """ Resets the table contents to the correct size and headers, whether 

@@ -1,5 +1,11 @@
 
 ### Search on CHECK
+###
+### I think that the abbreviations table code should probably work now, but 
+### the server's down so I can't test.
+###
+### Make sure that works, debug, and get rid of any commented-out 
+### abbreviations-related code in both here and abbreviations_table.py.
 
 import configparser, copy, functools, os, sys, time
 
@@ -189,7 +195,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.app.play_sound('door.wav')
         self.reset_gui(True)
         self.statusbar.repaint()
-        self.obj_tbl_abbrv.reset()
+        #self.obj_tbl_abbrv.reset()
+        self.obj_tbl_abbrv.set_abbreviations( self.app.client.empire )
         self.update_config_status()
 
     def do_logout(self):
@@ -230,7 +237,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.obj_tbl_sy_build.clear()
             self.obj_tbl_scuttle.clear()
             self.obj_tbl_buildable_ships.clear()
-        self.obj_tbl_abbrv.reset()      ### CHECK this needs to move
+            self.obj_tbl_abbrv.clear()
+        #self.obj_tbl_abbrv.reset()      ### CHECK this needs to move
         self.txt_status.setPlainText( "" )
 
     def status(self, message:str):
