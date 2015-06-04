@@ -29,6 +29,40 @@ class ShipyardsTable():
         self.shipyards  = []
         self.clear()
 
+    def get_cell(self, row:int, col:int, is_widget:bool = False):
+        """ Gets the cell contents at (row, col).  The header rows do _not_ 
+        count as a row or a column, and offsets start at 0, so the row marked 
+        as '1' is row 0 for the purposes of this method.
+
+        Arguments:
+            row (int): The row count
+            col (int): The column count
+            is_widget (bool): Whether or not the contained item is a widget.
+                              Defaults to False.
+        Returns:
+            item (QTableWidgetItem or QWidget): If ``is_widget`` is false,
+                                                returns a QTableWidgetItem, 
+                                                else returns a QWidget.
+        """
+        if is_widget:
+            itm = self.widget.cellWidget(row, col)
+        else:
+            itm = self.widget.item(row, col)
+        return itm
+
+    def columnCount(self):
+        return self.widget.columnCount()
+
+    def rowCount(self):
+        return self.widget.rowCount()
+
+    def get_included_shipyards(self):
+        """ HERE
+        """
+        if not self.planet:
+            return
+        print( self.planet.name )
+
     def setVisible(self, toggle:bool = True):
         self.widget.setVisible(toggle)
 
@@ -43,10 +77,10 @@ class ShipyardsTable():
         """
         self.parent.status("Getting planet...")
         planet_getter = GetPlanet( self.parent.app, pname )
-        planet = planet_getter.request()
+        self.planet = planet_getter.request()
 
         self.parent.status("Getting shipyards...")
-        bldg_getter = GetAllWorkingBuildings( self.parent.app, planet, 'shipyard' )
+        bldg_getter = GetAllWorkingBuildings( self.parent.app, self.planet, 'shipyard' )
         self.shipyards   = bldg_getter.request()
 
         self.init_for_data()
@@ -67,6 +101,7 @@ class ShipyardsTable():
             lbl_icon.setPixmap(img_bldg)
             ### Type and Quantity
             itm_level       = QTableWidgetItem(str(bldg.level))
+            itm_id          = QTableWidgetItem(str(bldg.id))
             itm_x           = QTableWidgetItem(str(bldg.x))
             itm_y           = QTableWidgetItem(str(bldg.y))
             ### Should this SY be included?  Default to "no"
@@ -76,9 +111,10 @@ class ShipyardsTable():
             self.widget.insertRow(row)
             self.widget.setCellWidget(row, 0, lbl_icon)
             self.widget.setItem(row, 1, itm_level)
-            self.widget.setItem(row, 2, itm_x)
-            self.widget.setItem(row, 3, itm_y)
-            self.widget.setCellWidget(row, 4, checkbox)
+            self.widget.setItem(row, 2, itm_id)
+            self.widget.setItem(row, 3, itm_x)
+            self.widget.setItem(row, 4, itm_y)
+            self.widget.setCellWidget(row, 5, checkbox)
             row +=1
         self.resize()
 
@@ -94,8 +130,8 @@ class ShipyardsTable():
         """
         self.clear()
         self.widget.setRowCount(0)
-        self.widget.setColumnCount(5)
-        self.widget.setHorizontalHeaderLabels( ('', 'Level', 'X', 'Y', 'Include?') )
+        self.widget.setColumnCount(6)
+        self.widget.setHorizontalHeaderLabels( ('', 'Level', 'ID', 'X', 'Y', 'Include?') )
 
     def resize(self):
         """ Resizes the table.
@@ -105,12 +141,14 @@ class ShipyardsTable():
         hh_w    = self.widget.horizontalHeader().width()
         icon_w  = self.img_w + 4
         level_w = int(hh_w * .20)
+        id_w    = int(hh_w * .20)
         x_w     = int(hh_w * .10)
         y_w     = int(hh_w * .10)
-        chk_w   = hh_w - (icon_w + level_w + x_w + y_w)
+        chk_w   = hh_w - (icon_w + level_w + id_w + x_w + y_w)
         self.widget.setColumnWidth(0, icon_w)
         self.widget.setColumnWidth(1, level_w)
-        self.widget.setColumnWidth(2, x_w)
-        self.widget.setColumnWidth(3, y_w)
-        self.widget.setColumnWidth(4, chk_w)
+        self.widget.setColumnWidth(2, id_w)
+        self.widget.setColumnWidth(3, x_w)
+        self.widget.setColumnWidth(4, y_w)
+        self.widget.setColumnWidth(5, chk_w)
 

@@ -70,6 +70,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.app.popmsg(self, "flurble.")
 
     def set_events(self):
+        self.btn_build_ships.clicked.connect( self.build_ships )
         self.btn_get_empire_status.clicked.connect( self.get_empire_status )
         self.btn_get_ships_scuttle.clicked.connect( self.get_ships_for_scuttle )
         self.btn_get_shipyards_build.clicked.connect( self.get_shipyards_for_build )
@@ -84,6 +85,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionTest.activated.connect( self.test )
         self.actionAbout.activated.connect( self.show_about_dialog )
         self.actionClear_All_Caches.activated.connect( self.clear_caches )
+
+    def build_ships(self):
+        ### I should probably add a shipyards_tab.py to contain all of this 
+        ### stuff.
+        ###
+        ### Get active shipyards and their levels from obj_tbl_sy_build
+        self.obj_tbl_sy_build.get_included_shipyards()
+
+        ### 
+        ### Get types and numbers to build from obj_tbl_buildable_ships
+        ###
+        ### In a thread, start building those ships at those shipyards.
+        ###
+        ### The thread should be able to report:
+        ###     - How many of what type have completed building
+        ###     - How many of what type are in the queues now
+        ###     - How many of what type are still left to build
+        ### And it should respond to a "cancel all queues" request.
+        ###     - This won't stop any ships that are actually in the process 
+        ###       of being built in a shipyard right now, but it should clear 
+        ###       out the thread's queue of ships that would be sent to a 
+        ###       shipyard to be built in the future.
 
     def soundon(self):
         self.play_sounds = True
