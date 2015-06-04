@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created: Tue Jun  2 17:50:27 2015
+# Created: Thu Jun  4 15:32:51 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -113,11 +113,11 @@ class Ui_MainWindow(object):
         self.btn_get_empire_status.setSizePolicy(sizePolicy)
         self.btn_get_empire_status.setObjectName("btn_get_empire_status")
         self.verticalLayout_3.addWidget(self.btn_get_empire_status)
-        self.txt_status = QtGui.QPlainTextEdit(self.tab_status)
-        self.txt_status.setFocusPolicy(QtCore.Qt.ClickFocus)
-        self.txt_status.setTabChangesFocus(False)
-        self.txt_status.setObjectName("txt_status")
-        self.verticalLayout_3.addWidget(self.txt_status)
+        self.txt_empire_status = QtGui.QPlainTextEdit(self.tab_status)
+        self.txt_empire_status.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.txt_empire_status.setTabChangesFocus(False)
+        self.txt_empire_status.setObjectName("txt_empire_status")
+        self.verticalLayout_3.addWidget(self.txt_empire_status)
         self.verticalLayout_7.addLayout(self.verticalLayout_3)
         self.tabWidget.addTab(self.tab_status, "")
         self.tab_abbrv = QtGui.QWidget()

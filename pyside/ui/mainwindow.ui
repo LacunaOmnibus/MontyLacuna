@@ -168,7 +168,7 @@ QPushButton:focus {
              </widget>
             </item>
             <item>
-             <widget class="QPlainTextEdit" name="txt_status">
+             <widget class="QPlainTextEdit" name="txt_empire_status">
               <property name="focusPolicy">
                <enum>Qt::ClickFocus</enum>
               </property>

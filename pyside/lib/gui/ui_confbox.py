@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/confbox.ui'
 #
-# Created: Tue Jun  2 17:50:27 2015
+# Created: Thu Jun  4 15:32:51 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

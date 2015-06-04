@@ -235,7 +235,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.obj_tbl_scuttle.clear()
             self.obj_tbl_buildable_ships.clear()
             self.obj_tbl_abbrv.clear()
-        self.txt_status.setPlainText( "" )
+            self.txt_empire_status.setPlainText( "" )
 
     def status(self, message:str):
         """ Display a message in the status bar.
@@ -294,7 +294,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         out.append("Planets: ")
         for p in sorted( self.app.client.empire.colony_names.keys() ):
             out.append("\t" + p)
-        self.txt_status.setPlainText( "\n".join(out) )
+        self.txt_empire_status.setPlainText( "\n".join(out) )
 
     def show_about_dialog(self):
         """ Displays the About dialog.
