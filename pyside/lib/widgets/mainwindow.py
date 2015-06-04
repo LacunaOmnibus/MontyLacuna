@@ -193,7 +193,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.app.play_sound('door.wav')
         self.reset_gui(True)
         self.statusbar.repaint()
-        #self.obj_tbl_abbrv.reset()
         self.obj_tbl_abbrv.set_abbreviations( self.app.client.empire )
         self.update_config_status()
 

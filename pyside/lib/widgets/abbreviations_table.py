@@ -17,7 +17,6 @@ class AbbreviationsTable():
         self.widget = table
         self.parent = parent
         self.clear()
-        #self.reset()
 
     def clear(self):
         self.widget.clear()
@@ -54,41 +53,8 @@ class AbbreviationsTable():
             self.widget.setItem( row, 1, itm_abbrv )
             row += 1
         self.widget.setSortingEnabled(True)
-
-    def reset(self):
-        """ Resets the table contents to the correct size and headers, whether 
-        we're logged in or not.
-
-        CHECK
-        This is a mess.  This reset() needs to become init_for_data(), and the 
-        resetting we're doing in here now needs to end up somewhere else.  See 
-        one of the other _table.py modules for example.
-
-        """
-        self.widget.setHorizontalHeaderLabels( ('Name', 'Abbreviation') )
-        if self.parent.app.is_logged_in:
-            ### Turn off sorting while we add items, then turn it back on 
-            ### again when we're finished.
-            self.widget.setSortingEnabled(False)
-            row = 0
-            for n in sorted(self.parent.app.client.empire.planet_names):
-                itm_name = QTableWidgetItem(n)
-                try:
-                    itm_abbrv = QTableWidgetItem(self.parent.app.abbrv.get_abbrv(n))
-                except KeyError as e:
-                    itm_abbrv = QTableWidgetItem("<None>")
-                fl = itm_name.flags()
-                fl &= ~Qt.ItemIsEditable
-                itm_name.setFlags(fl)
-                self.widget.insertRow(row)
-                self.widget.setItem( row, 0, itm_name )
-                self.widget.setItem( row, 1, itm_abbrv )
-                row += 1
-            self.widget.setSortingEnabled(True)
-        else:
-            self.widget.setRowCount(0)
-        self.resize()
         self.widget.itemChanged.connect( self.update )
+        self.resize()
 
     def resize(self):
         self.widget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -102,5 +68,4 @@ class AbbreviationsTable():
     def update(self, itm_abbrv):
         itm_name = self.widget.item( itm_abbrv.row(), 0 )
         self.parent.app.abbrv.save( itm_name.text(), itm_abbrv.text() )
-
 
