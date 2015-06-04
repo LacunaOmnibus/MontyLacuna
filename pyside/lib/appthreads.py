@@ -167,7 +167,6 @@ class GetShipyardBuildable(QThread):
         self.dataReady.emit(self.ships) 
 
 
-
 class GetSPView(QThread):
     dataReady = Signal(object)
 

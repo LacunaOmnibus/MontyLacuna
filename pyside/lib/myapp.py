@@ -84,16 +84,6 @@ class MyApp(QApplication):
     def play_sound(self, alias):
         """ Plays a sound
         
-        CHECK
-        When exporting sound over HDMI, the first time the first sound is 
-        played, the beginning of it gets cut off.
-
-        It might be worth including a 1 millisecond silent .wave and playing 
-        it with the volume turned to 0 on app load (init_sound() or some 
-        such), to ensure the sound system has been initialized.  Or something.  
-
-        This doesn't seem to happen when the sound is local.
-
         Arguments:
             alias (str): The name of a sound file alias as specified in a .qrc
                          file, eg "mysound.wav"
