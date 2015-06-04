@@ -87,15 +87,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionClear_All_Caches.activated.connect( self.clear_caches )
 
     def build_ships(self):
+        ###
         ### I should probably add a shipyards_tab.py to contain all of this 
         ### stuff.
         ###
-        ### Get active shipyards and their levels from obj_tbl_sy_build
-        self.obj_tbl_sy_build.get_included_shipyards()
 
-        ### 
+        ### Get active shipyards from obj_tbl_sy_build
+        shipyards = self.obj_tbl_sy_build.get_included_shipyards()
+
         ### Get types and numbers to build from obj_tbl_buildable_ships
-        ###
+        ships_dict, num_left_to_build = self.obj_tbl_buildable_ships.get_ships_to_build()
+
         ### In a thread, start building those ships at those shipyards.
         ###
         ### The thread should be able to report:

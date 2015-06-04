@@ -57,11 +57,23 @@ class ShipyardsTable():
         return self.widget.rowCount()
 
     def get_included_shipyards(self):
-        """ HERE
+        """ Returns the shipyards whose checkboxes are checked.
+
+        Returns:
+            shipyards (list): :class:`lacuna.buildings.callable.shipyard.shipyard`
         """
         if not self.planet:
             return
-        print( self.planet.name )
+        shipyards = []
+        for row in range(0, self.widget.rowCount()):
+            chk = self.get_cell(row, 5, True)
+            if chk.isChecked():
+                id = self.get_cell(row, 2).text()
+                bldg_getter = GetBuildingById( self.parent.app, self.planet, id, 'shipyard' )
+                sy = bldg_getter.request()
+                shipyards.append( sy )
+        return shipyards
+
 
     def setVisible(self, toggle:bool = True):
         self.widget.setVisible(toggle)

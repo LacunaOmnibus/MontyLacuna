@@ -3,6 +3,11 @@
 ack through ./ for CHECK
 
 
+LEFT OFF
+    mainwindow.py build_ships(), which is calling appthreads.py 
+    BuildShipsInYard() (see the notes at the bottom of that class's run() 
+    method.).
+
 
 
 

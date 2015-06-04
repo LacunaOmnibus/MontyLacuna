@@ -70,8 +70,6 @@ class BuildableShipsTable():
             ### Num to build
             build_spinner = QSpinBox()
             build_spinner.setMinimum(0)
-            #build_spinner.setMaximum()
-
             self.widget.insertRow(row)
             self.widget.setCellWidget(row, 0, lbl_icon)
             self.widget.setItem(row, 1, itm_type)
@@ -85,6 +83,50 @@ class BuildableShipsTable():
         self.widget.setRowCount(0)
         self.widget.setColumnCount(0)
         self.parent.btn_build_ships.setEnabled(False)
+
+    def get_cell(self, row:int, col:int, is_widget:bool = False):
+        """ Gets the cell contents at (row, col).  The header rows do _not_ 
+        count as a row or a column, and offsets start at 0, so the row marked 
+        as '1' is row 0 for the purposes of this method.
+
+        Arguments:
+            row (int): The row count
+            col (int): The column count
+            is_widget (bool): Whether or not the contained item is a widget.
+                              Defaults to False.
+        Returns:
+            item (QTableWidgetItem or QWidget): If ``is_widget`` is false,
+                                                returns a QTableWidgetItem, 
+                                                else returns a QWidget.
+        """
+        if is_widget:
+            itm = self.widget.cellWidget(row, col)
+        else:
+            itm = self.widget.item(row, col)
+        return itm
+
+    def columnCount(self):
+        return self.widget.columnCount()
+
+    def rowCount(self):
+        return self.widget.rowCount()
+
+    def get_ships_to_build(self):
+        """ Gets the types and numbers of ships to build.
+
+        Returns:
+            ships (dict): "shiptype": num_to_build
+            total (int): Total number of ships to build across all types
+        """
+        ships   = {}
+        ttl     = 0
+        for row in range(0, self.widget.rowCount()):
+            spin = self.get_cell(row, 2, True)
+            if spin.value() > 0:
+                ships[ self.get_cell(row, 1).text() ] = spin.value()
+                ttl += spin.value()
+        return ships, ttl
+
 
     def init_for_data(self):
         """ Clears out the table and then prepares it for receiving records
