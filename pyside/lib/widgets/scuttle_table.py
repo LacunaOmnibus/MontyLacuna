@@ -157,17 +157,14 @@ class ShipsDeleteTable():
     def resize(self):
         """ Resizes the table.
         """
-        numrows = self.widget.rowCount()
-        orig_tbl_w = self.widget.width()
-        if numrows < 10:
-            tbl_w = orig_tbl_w - 20                 # Single-digit left number column
-        elif numrows >= 10:
-            tbl_w = orig_tbl_w - 41                 # Double-digit left number column
+        self.widget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        hh_w    = self.widget.horizontalHeader().width()
         icon_w  = self.img_w + 4
-        type_w  = int(tbl_w * .30)
-        quan_w  = int(tbl_w * .30)
-        del_w   = int(tbl_w * .15)
-        btn_w   = tbl_w - (icon_w + type_w + quan_w + del_w)
+        type_w  = int(hh_w * .30)
+        quan_w  = int(hh_w * .30)
+        del_w   = int(hh_w * .15)
+        btn_w   = hh_w - (icon_w + type_w + quan_w + del_w)
         self.widget.setColumnWidth(0, icon_w)
         self.widget.setColumnWidth(1, type_w)
         self.widget.setColumnWidth(2, quan_w)

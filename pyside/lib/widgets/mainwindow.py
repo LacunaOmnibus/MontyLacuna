@@ -1,6 +1,4 @@
 
-### Search on CHECK
-###
 ### I think that the abbreviations table code should probably work now, but 
 ### the server's down so I can't test.
 ###
@@ -148,11 +146,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         By forcing a resize() call when the table's tab is clicked, the table 
         always just looks right to the user.
         """
-        if num == 1:
+        if num == 0:
             self.obj_tbl_sy_build.resize()
-        elif num == 2:
+        elif num == 1:
             self.obj_tbl_scuttle.resize()
-        elif num == 4:
+        elif num == 3:
             self.obj_tbl_abbrv.resize()
         
     def chose_config_file(self):
@@ -238,7 +236,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.obj_tbl_scuttle.clear()
             self.obj_tbl_buildable_ships.clear()
             self.obj_tbl_abbrv.clear()
-        #self.obj_tbl_abbrv.reset()      ### CHECK this needs to move
         self.txt_status.setPlainText( "" )
 
     def status(self, message:str):

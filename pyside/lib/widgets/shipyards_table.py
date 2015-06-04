@@ -1,7 +1,7 @@
 
 import operator
 
-from PySide.QtGui import QMainWindow, QCheckBox, QLabel, QPixmap, QTableWidget, QTableWidgetItem
+from PySide.QtGui import *
 from PySide.QtCore import *
 
 import widgets
@@ -100,24 +100,14 @@ class ShipyardsTable():
     def resize(self):
         """ Resizes the table.
         """
-        numrows = self.widget.rowCount()
-        orig_tbl_w = self.widget.width()
-        if numrows < 10:
-            tbl_w = orig_tbl_w - 20                 # Single-digit left number column
-        elif numrows >= 10:
-            tbl_w = orig_tbl_w - 41                 # Double-digit left number column
-        if tbl_w > self.parent.width():
-            ### During initial app display, the table widget's width is not 
-            ### properly set.  At that point, the borders/margins between it 
-            ### and the parent are 42 pixels.  I believe this only happens 
-            ### when the table is displayed at app start (meaning that it's on 
-            ### the tab that displays by default)
-            tbl_w = self.parent.width() - 42
-        icon_w      = self.img_w + 4
-        level_w     = int(tbl_w * .20)
-        x_w         = int(tbl_w * .10)
-        y_w         = int(tbl_w * .10)
-        chk_w       = tbl_w - (icon_w + level_w + x_w + y_w)
+        self.widget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        hh_w    = self.widget.horizontalHeader().width()
+        icon_w  = self.img_w + 4
+        level_w = int(hh_w * .20)
+        x_w     = int(hh_w * .10)
+        y_w     = int(hh_w * .10)
+        chk_w   = hh_w - (icon_w + level_w + x_w + y_w)
         self.widget.setColumnWidth(0, icon_w)
         self.widget.setColumnWidth(1, level_w)
         self.widget.setColumnWidth(2, x_w)

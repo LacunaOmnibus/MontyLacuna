@@ -5,17 +5,6 @@ from PySide.QtCore import *
 import widgets
 from appthreads import *
 
-
-### CHECK
-### If this tab doesn't have focus on login, the columns are not resizing 
-### properly.  The user has to force a window resize to get the table to 
-### display.
-###
-### On reset, the table should be cleared completely.  Don't leave just the 
-### header row - that means we have to fart around trying to size it correctly 
-### when it has no contents, which is silly.
-
-
 class AbbreviationsTable():
     """ Manages the table that handles body abbreviations.
 
@@ -102,14 +91,11 @@ class AbbreviationsTable():
         self.widget.itemChanged.connect( self.update )
 
     def resize(self):
-        tbl_w   = self.widget.width()
-        ### Have to modify the width a hair to avoid scrollbars.
-        if self.parent.app.is_logged_in:
-            tbl_w -= 50 # deals with left number column
-        else:
-            tbl_w -= 2  # deals with borders
-        name_w  = int(tbl_w * .60)
-        abbrv_w = tbl_w - name_w
+        self.widget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        hh_w    = self.widget.horizontalHeader().width()
+        name_w  = int(hh_w * .60)
+        abbrv_w = hh_w - name_w
         self.widget.setColumnWidth(0, name_w)
         self.widget.setColumnWidth(1, abbrv_w)
 
