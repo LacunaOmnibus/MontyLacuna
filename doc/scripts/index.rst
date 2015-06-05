@@ -65,6 +65,7 @@ Scripts that do stuff
    assign_spies
    build_ships
    excavs_report
+   glyph_repair
    post_starter_kit
    recall_all_ships
    recall_all_spies
