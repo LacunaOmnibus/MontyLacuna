@@ -1,5 +1,5 @@
 
-import sys
+import re, sys
 
 class Utils():
     """
@@ -58,6 +58,22 @@ class Utils():
                 quit()
             else:
                 return rv
+
+    def squish( self, string:str, lc:bool = False ):
+        """ Squish a string, optionally lowercasing it in the process.
+
+        Arguments:
+            string (str): The string to squish.
+            lc_flag (bool): Whether or not to also lowercase the string.  Defaults to False.
+        Returns:
+            squished_string (str): The squished string.
+        """
+        pat = re.compile("\W")
+        new = re.sub(pat, "", string)
+        if lc:
+            new = new.lower()
+        return new
+
 
     def summarize( self, string:str, mymax:int ):
         """ Summarizes a string, usually for inclusion in a report section 
