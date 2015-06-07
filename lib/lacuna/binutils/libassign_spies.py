@@ -123,10 +123,17 @@ class AssignSpies(lacuna.binutils.libbin.Script):
         self.client.cache_off()
         self._set_intmin( )
         self._gather_spy_data( )
-        ### If the user didn't specify where the spies should be located, he 
-        ### means those located at their home planets.
+        ### I want "--on" to respect abbreviations, since most of the time 
+        ### we'll be dealing with spies "on" one of our own planets.  OTOH, 
+        ### spies will sometimes be "on" foreign planets, for which we won't 
+        ### have abbreviations.
         if self.args.on:
-            self.on = self.abbrv.get_name( self.args.on )
+            try:
+                self.on = self.abbrv.get_name( self.args.on )
+            except KeyError as e:
+                ### "No abbreviation found", so assume that --on was the 
+                ### actual planet name, most likely of a foreign planet.
+                self.on = self.args.on
         else:
             self.on = pname
         self.max = 90           # gotta reset in case the last planet mangled this.
