@@ -69,7 +69,9 @@ class ShipyardsTable():
             chk = self.get_cell(row, 5, True)
             if chk.isChecked():
                 id = self.get_cell(row, 2).text()
-                bldg_getter = GetBuildingById( self.parent.app, self.planet, id, 'shipyard' )
+                ### We absolutely need a fresh shipyard rather than a cached 
+                ### one here - can't call methods on a cached SY.
+                bldg_getter = GetBuildingById( self.parent.app, self.planet, id, 'shipyard', fresh = True )
                 sy = bldg_getter.request()
                 shipyards.append( sy )
         return shipyards

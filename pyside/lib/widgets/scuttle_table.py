@@ -202,7 +202,10 @@ class ShipsDeleteTable():
 
         delete_these = []
         for i in range(0, spin_del.value() ):
-            delete_these.append( ships[i].id )
+            try:
+                delete_these.append( ships[i].id )
+            except IndexError as e:
+                print( "We're trying to scuttle a ship that doesn't exist; ignoring." )
         ships_scuttler = MassShipScuttler( self.parent.app, sp, delete_these )
         ships_scuttler.request()
         if self.parent.play_sounds:

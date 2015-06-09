@@ -1,8 +1,5 @@
 
 
-ack through ./ for CHECK
-
-
 LEFT OFF
     mainwindow.py build_ships(), which is calling appthreads.py 
     BuildShipsInYard() (see the notes at the bottom of that class's run() 
@@ -16,6 +13,18 @@ QtCore docs:
 
 QtGui (individual widget) docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtGui/
+
+
+
+TBD:
+    - Scuttling ships needs to clear the cache containing port counts ('my_buildings')
+    - After user clicks "Get shipyards on this planet", disable that button 
+      until shipyards and ships have been retrieved, then re-enable it.
+        - Same deal with the scuttler's Get ships on this planet button.
+    - Also, the "Get shipyards on this planet" button should clear both of the 
+      tables first thing it does.
+
+
 
 STRUCTURE {#{{{
     

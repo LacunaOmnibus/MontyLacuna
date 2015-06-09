@@ -10,22 +10,51 @@ class BuildShipsInYards(QThread):
     ### CHECK
     ### I'm currently not using the unchecked shipyard slots at all.  I'll 
     ### eventually need to collect those unchecked shipyards and count their 
-    ### slots and add those slots to the active SYs
+    ### slots and add those slots to the active SYs.
+    ### 
+    ### CHECK
+    ### Need to emit a message if the user didn't click any shipyards in the 
+    ### previous table (hey dummy tell me which yards to use)
+    ###
+    ### It's possible to have more ships than ports, and we need to deal with 
+    ### that (right now, we're ignoring the possibility).
+    ### The easiest way to force this is:
+    ###     - Fill all your ports
+    ###     - Have some spies bugout
+    ### The spies each build a bugout ship, which does occupy a port while 
+    ### it's en route.
 
     def __init__(self, app, yards:list, ships_to_build:dict, parent = None):
+        """
+        Arguments:
+            yards (list): :class:`lacuna.buildings.callable.shipyard`
+            build (dict): "shiptype (str)": num_to_build (int)
+        Returns:
+            recall (datetime.datetime): The time that the first of our shipyards comes
+                                        available again.  When this time comes, the 
+                                        main thread should re-call us to add more ships
+                                        to the queues.
+                                        IF there are no more ships left to build, we're 
+                                        done, so ``recall`` will be None.
+                                        This is a naive datetime object.  Its value will 
+                                        be in UTC, but the object itself will be unaware.
+        """
         QThread.__init__(self, parent)
         self.app                    = app
-        self.earliest_recall_time   = None     # datetime.datetime
+        self.earliest_recall_time   = None      # datetime.datetime
         self.yards                  = yards
         self.ships                  = ships_to_build
-        self.built                  = {}
+        self.built                  = {}        # shiptype(str) => num_built(int)
 
     def request(self):
         self.start()    # Automatically calls run()
         while(self.isRunning()):
             self.app.processEvents()
             time.sleep(0.1)
-        return self.num_built
+        retval = None
+        if self.ships:
+            retval = self.earliest_recall_time
+        return retval
 
     def get_yard_slots(self, yard):
         _, num_building_now, _ = yard.view_build_queue()
@@ -35,14 +64,18 @@ class BuildShipsInYards(QThread):
         for yard in self.yards:
             slots = self.get_yard_slots(yard)
 
+            print( "Starting out, I need to build this:" )
+            print( self.ships )
+
             for shiptype in self.ships.keys():
-                ttl_to_build = ships[shiptype]
+                ttl_to_build = self.ships[shiptype]
                 num_to_build = ttl_to_build
                 if num_to_build > slots:
                     num_to_build = slots
                     self.ships[shiptype] -= num_to_build
                 else:
-                    del self.ships[shiptype]
+                    self.ships[shiptype] = 0
+                slots -= num_to_build
                 yard.build_ship( shiptype, num_to_build )
 
                 if shiptype in self.built:
@@ -50,11 +83,25 @@ class BuildShipsInYards(QThread):
                 else:
                     self.built[shiptype] = num_to_build
 
+                if slots <= 0:
+                    break
+
+            print( "Before fixing the zeroes, I need to build this:" )
+            print( self.ships )
+
+            ### Remove any shiptypes from our "to build" dict if the number 
+            ### left to build is 0.
+            self.ships = {k:self.ships[k] for k in self.ships if self.ships[k] > 0}
+
+            print( "I still need to build this:" )
+            print( self.ships )
+
             if self.earliest_recall_time:
-                if yard.end_dt < self.earliest_recall_time:
-                    self.earliest_recall_time = yard.end_dt
+                if yard.work.end_dt < self.earliest_recall_time:
+                    self.earliest_recall_time = yard.work.end_dt
             else:
-                self.earliest_recall_time = yard.end_dt
+                self.earliest_recall_time = yard.work.end_dt
+
 
         ### CHECK
         ### What I really want to do here is to re-call myself at the 
@@ -82,10 +129,10 @@ class GetPlanet(QThread):
         return self.planet
 
     def run(self):
-        if self.fresh:
-            self.app.client.cache_clear('my_planets')
-        self.app.client.cache_on('my_planets', 3600)
+        if not self.fresh:
+            self.app.client.cache_on('my_planets', 3600)
         self.planet = self.app.client.get_body_byname( self.pname )
+        self.app.client.cache_off()
         self.dataReady.emit(self.planet) 
 
 
@@ -108,11 +155,11 @@ class GetSingleBuilding(QThread):
         return self.bldg
 
     def run(self):
-        if self.fresh:
-            self.app.client.cache_clear('my_buildings')
-        self.app.client.cache_on('my_buildings', 3600)
+        if not self.fresh:
+            self.app.client.cache_on('my_buildings', 3600)
         try:
             self.bldg = self.planet.get_buildings_bytype( self.btype, 1, 1, 100 )[0]
+            self.app.client.cache_off()
         except err.NoSuchBuildingError as e:
             self.app.poperr( self.parent, "You don't have a working {}.".format(self.btype) )
             return
@@ -139,11 +186,11 @@ class GetBuildingById(QThread):
         return self.bldg
 
     def run(self):
-        if self.fresh:
-            self.app.client.cache_clear('my_buildings')
-        self.app.client.cache_on('my_buildings', 3600)
+        if not self.fresh:
+            self.app.client.cache_on('my_buildings', 3600)
         try:
             self.bldg = self.planet.get_building_id( self.type, self.id )
+            self.app.client.cache_off()
         except err.NoSuchBuildingError as e:
             self.app.poperr( self.parent, "You don't have a working {}.".format(self.btype) )
             return
@@ -169,9 +216,9 @@ class GetAllWorkingBuildings(QThread):
         return self.bldgs
 
     def run(self):
-        if self.fresh:
-            self.app.client.cache_clear('my_buildings')
-        self.app.client.cache_on('my_buildings', 3600)
+        if not self.fresh:
+            self.app.client.cache_on('my_buildings', 3600)
+            self.app.client.cache_off()
         try:
             self.bldgs = self.planet.get_buildings_bytype( self.btype, 1, 0, 100 )
         except err.NoSuchBuildingError as e:
@@ -204,10 +251,10 @@ class GetAllShipsView(QThread):
         return self.ships
 
     def run(self):
-        if self.fresh:
-            self.app.client.cache_clear('my_ships')
-        self.app.client.cache_on('my_ships', 3600)
+        if not self.fresh:
+            self.app.client.cache_on('my_ships', 3600)
         self.ships, cnt = self.sp.view_all_ships(self.paging, self.filter, self.sort)
+        self.app.client.cache_off()
         self.dataReady.emit(self.ships) 
 
 
@@ -253,10 +300,10 @@ class GetShipyardBuildable(QThread):
         return self.ships
 
     def run(self):
-        if self.fresh:
-            self.app.client.cache_clear('my_ships')
-        self.app.client.cache_on('my_ships', 3600)
+        if not self.fresh:
+            self.app.client.cache_on('my_ships', 3600)
         self.ships, self.docks, self.bq_max, self.bq_used = self.sy.get_buildable()
+        self.app.client.cache_off()
         self.dataReady.emit(self.ships) 
 
 
@@ -281,8 +328,7 @@ class GetSPView(QThread):
 
     def run(self):
         if self.fresh:
-            self.app.client.cache_clear('my_ships')
-        self.app.client.cache_on('my_ships', 3600)
+            self.app.client.cache_on('my_ships', 3600)
         self.ships, self.docks_free, self.docks_max = self.sp.view()
         self.dataReady.emit(self.ships) 
 

@@ -1,7 +1,7 @@
 
 ### search on CHECK
 
-import configparser, os, sys, textwrap, time
+import configparser, datetime, os, pytz, sys, textwrap, time
 from PySide.phonon import Phonon
 from PySide.QtCore import *
 from PySide.QtGui import QApplication
@@ -64,6 +64,94 @@ class MyApp(QApplication):
                 return cand
             else:
                 dir += "/.."
+
+    def my_xor(self, a, b):
+        """ Logical xor that accepts different types.
+
+        Arguments:
+            a: A value that can evaluate to a boolean
+            b: A value that can evaluate to a boolean
+        Returns:
+            xor (bool): True if the arguments xor, False if they do not.
+        """
+        if (a and not b) or (b and not a):
+            return True
+        return False
+
+    def get_ms_between(self, start:datetime, end:datetime):
+        """ Returns the number of milliseconds between two dates.
+
+        Order of the dates doesn't matter; the earlier date may be either the 
+        first or second argument.
+
+        If one of the dates is naive (timezone-unaware) but the other is 
+        timezone-aware, the naive date will be localized to the timezone-aware 
+        one.  It's very likely that this is going to return results you didn't 
+        want.  Imagine:
+
+            now = current datetime aware that it's in the America/New_York tz
+            future = datetime in the future.  Its value is in UTC, but that
+                     UTC tz is not set on the datetime object for whatever 
+                     reason, so the object is naive.
+
+        Localizing that future object to America/New_York will work, but it 
+        will still be four or five hours in the future, since it was naive in 
+        the first place and didn't recognize that it was in UTC, so its value 
+        couldn't be changed accurately.
+
+        TL;DR - either send both objects aware of their timezone, and set to 
+        the same timezone, or send them both as unaware (naive) objects whose 
+        values are both in the same timezone.
+
+        Arguments:
+            date_one (datetime.datetime): The first date
+            date_two (datetime.datetime): The second date
+        Returns:
+            milliseconds (int)
+        """
+        s_tz = start.tzinfo
+        e_tz = end.tzinfo
+
+        if self.my_xor(s_tz, e_tz):
+            ### Ugly and probably wrong from the user's perspective, but we 
+            ### can't compare a naive datetime to an aware one.  So it's 
+            ### either make them both aware or bail.
+            if s_tz:
+                end = s_tz.localize(end)
+            else:
+                start = e_tz.localize(start)
+
+        if start > end:
+            (start, end) = (end, start)
+        delta = end - start
+        return int(delta.total_seconds() * 1000)
+
+    def get_ms_until(self, future:datetime):
+        """ Returns the number of milliseconds from now until a specified date.
+
+        If the specified date is in the past, milliseconds returned will still 
+        be a positive integer, since we're simply returning the number of ms 
+        between the two dates.
+
+        The future datetime argument is allowed to be timezone-unaware, but if 
+        it is you'll probably get goofy results.  You should really be sure 
+        that it's timezone-aware before calling this.
+
+        If that future datetime *is* timezone-aware, it doesn't matter what 
+        timezone it's in.  The TZ will be determined, and the correct result 
+        will get returned.
+
+        Arguments:
+            future (datetime.datetime): The future date.
+        Returns:
+            milliseconds (int)
+        """
+        tz = future.tzinfo
+        if tz:
+            now = datetime.datetime.now(tz)
+        else:
+            now = datetime.datetime.now()
+        return self.get_ms_between( now, future )
 
     def login(self):
         """ Logs in to TLE using the credentials stored in our currently-set 

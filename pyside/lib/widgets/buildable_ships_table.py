@@ -112,7 +112,7 @@ class BuildableShipsTable():
         return self.widget.rowCount()
 
     def get_ships_to_build(self):
-        """ Gets the types and numbers of ships to build.
+        """ Gets the types and numbers of ships the user wants to build.
 
         Returns:
             ships (dict): "shiptype": num_to_build
