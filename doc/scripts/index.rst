@@ -76,3 +76,22 @@ Scripts that do stuff
    turnkey
    update
 
+GUI Scripts
+-----------
+These are scripts that start up a graphical program, the same general idea as 
+LacunaWax, except started from a script instead of from an executable you have 
+to install.
+
+This is still in the early stages, so any GUI scripts may not function 
+properly or completely yet, and any information in this section may change 
+drastically and frequently.
+
+GUI scripts are kept in the ``pyside/`` directory under the main Monty 
+directory.  The scripts themselves are then in ``pyside/bin/``.
+
+To run the GUI script::
+
+    open a CMD window and change into the directory where you installed Monty
+    >>> cd pyside
+    >>> python3 bin/rungui.py
+

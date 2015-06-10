@@ -6,11 +6,6 @@ LEFT OFF
     method.).
 
 
-Looks like I need to add pytz to the list of prereqs - it's not core.
-bah.
-
-
-
 QtCore docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtCore/
 
