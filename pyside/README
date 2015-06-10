@@ -6,6 +6,9 @@ LEFT OFF
     method.).
 
 
+Looks like I need to add pytz to the list of prereqs - it's not core.
+bah.
+
 
 
 QtCore docs:
