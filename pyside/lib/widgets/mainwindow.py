@@ -21,31 +21,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.is_logged_in   = False
         self.play_sounds    = True
         self.utils          = Utils()
-        ### UI initialization
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        ### UI customization
+        self._init_ui()
+        self.tab_build_ships            = widgets.tabs.BuildShipsTab( self.tabWidget, self )
+        self.obj_cmb_colonies_scuttle   = widgets.BodiesComboBox( self.cmb_planets_scuttle, self )
+        self.obj_tbl_abbrv              = widgets.AbbreviationsTable( self.tbl_abbrv, self )
+        self.obj_tbl_scuttle            = widgets.ShipsDeleteTable( self.tbl_ships_scuttle, self )
+        self._set_events()
+
+    def _init_ui(self):
         self.setWindowTitle( self.app.name )
         self.actionLog_In.setEnabled(True)
         self.actionLog_Out.setEnabled(False)
-        self.btn_build_ships.setEnabled(False)
         self.btn_get_empire_status.setEnabled(False)
         self.btn_get_ships_scuttle.setEnabled(False)
         self.btn_get_shipyards_build.setEnabled(False)
         self.actionClear_All_Caches.setEnabled(False)
-        self.add_graphical_toolbars()
+        self._add_graphical_toolbars()
         self.soundon()
-        ### Set up more complex widgets
-        self.obj_cmb_colonies_scuttle   = widgets.BodiesComboBox( self.cmb_planets_scuttle, self )
-        self.obj_cmb_colonies_build     = widgets.BodiesComboBox( self.cmb_planets_build, self )
-        self.obj_tbl_abbrv              = widgets.AbbreviationsTable( self.tbl_abbrv, self )
-        self.obj_tbl_sy_build           = widgets.ShipyardsTable( self.tbl_shipyards_build, self )
-        self.obj_tbl_buildable_ships    = widgets.BuildableShipsTable( self.tbl_ships_build, self )
-        self.obj_tbl_scuttle            = widgets.ShipsDeleteTable( self.tbl_ships_scuttle, self )
-        ### Set events on all of the widgets
-        self.set_events()
 
-    def add_graphical_toolbars(self):
+    def _add_graphical_toolbars(self):
         file_toolbar = self.addToolBar('File')
         self.actionConfig_File_Status.setIcon( QIcon(":/question.png") )
         self.actionLog_In.setIcon( QIcon(":/login.png") )
@@ -57,16 +53,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         file_toolbar.addSeparator()
         file_toolbar.addAction(self.actionQuit)
 
-    def test(self, text="foo"):
-        #print( self.app.popconf(self, "flurble?") )
-        #self.app.poperr(self, "flurble!")
-        self.app.popmsg(self, "flurble.")
-
-    def set_events(self):
-        self.btn_build_ships.clicked.connect( self.build_ships )
+    def _set_events(self):
         self.btn_get_empire_status.clicked.connect( self.get_empire_status )
         self.btn_get_ships_scuttle.clicked.connect( self.get_ships_for_scuttle )
-        self.btn_get_shipyards_build.clicked.connect( self.get_shipyards_for_build )
         self.tabWidget.currentChanged.connect( self.tab_changed )
         self.actionChose_Config_File.activated.connect( self.chose_config_file )
         self.actionChose_Config_Section.activated.connect( self.chose_config_section )
@@ -79,94 +68,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionAbout.activated.connect( self.show_about_dialog )
         self.actionClear_All_Caches.activated.connect( self.clear_caches )
 
-    def timertest(self):
-        print( "in timertest" )
+    def test(self, text="foo"):
+        #print( self.app.popconf(self, "flurble?") )
+        #self.app.poperr(self, "flurble!")
+        self.app.popmsg(self, "flurble.")
 
-    def get_shipyards_for_build(self):
-        """ Modifies two tables - the list of shipyards on the planet, and the 
-        list of buildable ships (based on what the first shipyard is able to 
-        build).
-        """
-        pname = self.obj_cmb_colonies_build.currentText()
-
-        ### Get number of available ports
-        ###     List in lbl_build_ports_available
-
-        ### Get SY objects
-        ###     List in obj_tbl_sy_build
-        self.obj_tbl_sy_build.add_shipyards_for(pname)
-
-        ### Get buildable ships
-        self.obj_tbl_buildable_ships.add_ships( self.obj_tbl_sy_build.shipyards )
-
-    def build_ships(self):
-        ###
-        ### I should probably add a shipyards_tab.py to contain all of this 
-        ### stuff.
-        ###
-
-        ### Get active shipyards from obj_tbl_sy_build
-        shipyards = self.obj_tbl_sy_build.get_included_shipyards()
-
-        ### Get types and numbers to build from obj_tbl_buildable_ships
-        ships_dict, num_left_to_build = self.obj_tbl_buildable_ships.get_ships_to_build()
-
-        ### In a thread, start building those ships at those shipyards.
-        ### 
-        ### This currently works - build 31 barges and 2 cargo ships on 
-        ### bmots01 (with one SY), and it builds 30, sleeps the correct amount 
-        ### of time, then builds one more barge and the 2 cargos.
-        ### 
-        ### TBD CHECK
-        ###
-        ### DON'T DO ANY OF THIS YET.  First, move all code relating to the 
-        ### Build Ships tab off to its own module.  This one is getting messy.
-        ###  
-        ### - If the user doesn't click any SY checkboxes before clicking the 
-        ###   Build! button, poperr() and bail.
-        ###
-        ### - should respond to a "cancel all queues" request.
-        ###     - Maybe we just set ship_builder.quit to a true value, and 
-        ###       have the thread check for that just before it runs, and end 
-        ###       itself if it sees that.  Not sure yet.
-        ###
-        ### - After a ship_builder is created for a given planet, that builder 
-        ###   should get cached in a dict somewhere, keyed of the planet name 
-        ###   (or ID probably).  When the Build Ships tab is brought up for a 
-        ###   specific planet, if there's an existing ship_builder for that 
-        ###   planet, the entire interface should be greyed out.
-        ###
-        ### - There's a label on that Build Ships tab just under the select 
-        ###   box and Get shipyards button (it has no text now).  For planets 
-        ###   that are not currently building anything, it should show 
-        ###   available/maxed docks counts (spaceport.view()).  For planets 
-        ###   that _are_ currently building, it should show the number and 
-        ###   type left in the queue.
-        ### 
-        ### - Count up the number of ships the user's trying to build.  If 
-        ###   it's greater than the number of available docs, just poperr() 
-        ###   and don't build anything so they can fix their numbers.
-        ### 
-        ### - Once a builder is finished, it should close down.  I'm currently 
-        ###   leaving the thread open.
-        ###
-        self.status("Adding ships to your build queues...")
-        ship_builder = BuildShipsInYards( self.app, shipyards, ships_dict )
-        self._set_shipbuild_thread( ship_builder )
-
-        #print( ship_builder.ships ) # works 
-        self.update_config_status()
-
-    def _set_shipbuild_thread(self, builder):
-        recall_time = builder.request()    # datetime.datetime
-        if recall_time:
-            recall_time = recall_time.replace(tzinfo=pytz.UTC)
-            sleeptime_ms = self.app.get_ms_until(recall_time)
-            timer = QTimer(self)
-            timer.setSingleShot(True)
-            timer.timeout.connect( lambda: self._set_shipbuild_thread(builder) )
-            timer.start(sleeptime_ms)
-            
     def soundon(self):
         self.play_sounds = True
         self.actionMute.setEnabled(True)
@@ -178,6 +84,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionUnmute.setEnabled(True)
 
     def clear_caches(self):
+        """ Clear out 'all' of the caches.
+
+        CHECK
+        'all' is just the cache names hardcoded below.  I'm starting to lean towards keeping
+        a dict of caches or some such that we could iterate through here.  Trying to remember
+        to add a cache name below any time a new cache name is used anywhere in the program
+        is fraught.
+        """
         if self.app.is_logged_in:
             self.app.client.cache_clear('my_planets')
             self.app.client.cache_clear('my_buildings')
@@ -198,8 +112,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.obj_tbl_abbrv.resize()
         self.obj_tbl_scuttle.resize()
-        self.obj_tbl_sy_build.resize()
-        self.obj_tbl_buildable_ships.resize()
+        self.tab_build_ships.resize()
 
     def tab_changed(self, num):
         """ Resizes a tab's contents when a user clicks on it.
@@ -212,7 +125,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         always just looks right to the user.
         """
         if num == 0:
-            self.obj_tbl_sy_build.resize()
+            self.tab_build_ships.resize()
         elif num == 1:
             self.obj_tbl_scuttle.resize()
         elif num == 3:
@@ -285,9 +198,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.actionLog_Out.setEnabled(True)
             self.actionClear_All_Caches.setEnabled(True)
             self.obj_cmb_colonies_scuttle.add_colonies()
-            self.obj_cmb_colonies_build.add_colonies()
+            self.tab_build_ships.adjust_gui_login()
         else:
-            self.btn_build_ships.setEnabled(False)
             self.btn_get_empire_status.setEnabled(False)
             self.btn_get_ships_scuttle.setEnabled(False)
             self.btn_get_shipyards_build.setEnabled(False)
@@ -295,12 +207,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.actionLog_Out.setEnabled(False)
             self.actionClear_All_Caches.setEnabled(False)
             self.obj_cmb_colonies_scuttle.clear()
-            self.obj_cmb_colonies_build.clear()
-            self.obj_tbl_sy_build.clear()
             self.obj_tbl_scuttle.clear()
-            self.obj_tbl_buildable_ships.clear()
             self.obj_tbl_abbrv.clear()
             self.txt_empire_status.setPlainText( "" )
+            self.tab_build_ships.adjust_gui_logout()
 
     def status(self, message:str):
         """ Display a message in the status bar.
