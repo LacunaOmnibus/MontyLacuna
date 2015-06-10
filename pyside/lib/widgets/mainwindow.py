@@ -36,7 +36,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionLog_Out.setEnabled(False)
         self.btn_get_empire_status.setEnabled(False)
         self.btn_get_ships_scuttle.setEnabled(False)
-        self.btn_get_shipyards_build.setEnabled(False)
         self.actionClear_All_Caches.setEnabled(False)
         self._add_graphical_toolbars()
         self.soundon()
@@ -193,7 +192,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if is_loggedin:
             self.btn_get_empire_status.setEnabled(True)
             self.btn_get_ships_scuttle.setEnabled(True)
-            self.btn_get_shipyards_build.setEnabled(True)
             self.actionLog_In.setEnabled(False)
             self.actionLog_Out.setEnabled(True)
             self.actionClear_All_Caches.setEnabled(True)
@@ -202,7 +200,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.btn_get_empire_status.setEnabled(False)
             self.btn_get_ships_scuttle.setEnabled(False)
-            self.btn_get_shipyards_build.setEnabled(False)
             self.actionLog_In.setEnabled(True)
             self.actionLog_Out.setEnabled(False)
             self.actionClear_All_Caches.setEnabled(False)

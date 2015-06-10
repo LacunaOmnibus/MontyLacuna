@@ -137,6 +137,13 @@ class GetPlanet(QThread):
 
 
 class GetSingleBuilding(QThread):
+    """ Gets a single random building of a specific type.  Any level building may be 
+    returned, but will only return buildings at 100% health.
+
+    Example:
+        bldg_getter = GetSingleBuilding( self.app, self.planet, 'spaceport' )
+        sp = bldg_getter.request()
+    """
     dataReady = Signal(object)
 
     def __init__(self, app, planet, btype, fresh = False, parent = None):
@@ -330,5 +337,6 @@ class GetSPView(QThread):
         if self.fresh:
             self.app.client.cache_on('my_ships', 3600)
         self.ships, self.docks_free, self.docks_max = self.sp.view()
+        self.app.client.cache_off()
         self.dataReady.emit(self.ships) 
 

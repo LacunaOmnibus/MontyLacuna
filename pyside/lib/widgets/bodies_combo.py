@@ -30,4 +30,6 @@ class BodiesComboBox():
         """
         self.widget.clear()
 
+    def setEnabled(self, flag:bool):
+        self.widget.setEnabled(flag)
 

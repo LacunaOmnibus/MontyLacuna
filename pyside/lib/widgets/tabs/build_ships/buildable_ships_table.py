@@ -23,9 +23,10 @@ class BuildableShipsTable():
     img_h = 30
 
     def __init__(self, table:QTableWidget, parent:QMainWindow ):
-        self.widget     = table
-        self.parent     = parent
-        self.ships      = []
+        self.widget             = table
+        self.parent             = parent
+        self.available_docks    = None      # unknown until set externally.
+        self.ships              = []
         self.clear()
 
     def add_ships(self, shipyards:str):
@@ -41,16 +42,13 @@ class BuildableShipsTable():
         """
         self.shipyards = shipyards
 
-        self.parent.status("Getting buildable ships...")
         sorted_shipyards    = sorted( self.shipyards, key=operator.attrgetter('level'), reverse=True )
         buildable_getter    = GetShipyardBuildable( self.parent.app, sorted_shipyards[0], fresh = True )
         self.ships          = buildable_getter.request()
-
         self.init_for_data()
         self._add_my_ships()
         self.parent.btn_build_ships.setEnabled(True)
         self.resize()
-        self.parent.update_config_status();
 
     def _add_my_ships(self):
         """ Adds shipyards from a dict to the table.
@@ -70,11 +68,25 @@ class BuildableShipsTable():
             ### Num to build
             build_spinner = QSpinBox()
             build_spinner.setMinimum(0)
+            build_spinner.valueChanged.connect( self._spinner_updated )
             self.widget.insertRow(row)
             self.widget.setCellWidget(row, 0, lbl_icon)
             self.widget.setItem(row, 1, itm_type)
             self.widget.setCellWidget(row, 2, build_spinner)
             row +=1
+
+    def _spinner_updated(self):
+        if self.available_docks is not None:
+            user_specified_num = 0
+            for row in range(0, self.widget.rowCount()):
+                spin = self.get_cell(row, 2, True)
+                user_specified_num += spin.value()
+            if user_specified_num > self.available_docks:
+                self.parent.app.poperr(
+                    self.parent,
+                    "You're trying to build more ships than you have available docks.  You'll need to adjust your counts."
+                        .format(self.available_docks) 
+                )
 
     def clear(self):
         """ Clears the table
@@ -83,6 +95,18 @@ class BuildableShipsTable():
         self.widget.setRowCount(0)
         self.widget.setColumnCount(0)
         self.parent.btn_build_ships.setEnabled(False)
+
+    def set_available_docks(self, num):
+        """ Sets the number of available docks, and limits the spinners' maximum 
+        values to that number.
+
+        This class can't determine this information itself, we don't have a 
+        spaceport here, so this needs to be passed in from the outside.
+        """
+        self.available_docks = num
+        for row in range(0, self.widget.rowCount()):
+            spin = self.get_cell(row, 2, True)
+            spin.setMaximum( self.available_docks )
 
     def get_cell(self, row:int, col:int, is_widget:bool = False):
         """ Gets the cell contents at (row, col).  The header rows do _not_ 
@@ -110,6 +134,9 @@ class BuildableShipsTable():
 
     def rowCount(self):
         return self.widget.rowCount()
+
+    def setEnabled(self, flag:bool):
+        self.widget.setEnabled(flag)
 
     def get_ships_to_build(self):
         """ Gets the types and numbers of ships the user wants to build.

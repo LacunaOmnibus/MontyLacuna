@@ -56,6 +56,9 @@ class ShipyardsTable():
     def rowCount(self):
         return self.widget.rowCount()
 
+    def setEnabled(self, flag:bool):
+        self.widget.setEnabled(flag)
+
     def get_included_shipyards(self):
         """ Returns the shipyards whose checkboxes are checked.
 
@@ -89,17 +92,12 @@ class ShipyardsTable():
         This *does* clear the table before adding the shipyards, since the list 
         it adds is complete for the requested planet.
         """
-        self.parent.status("Getting planet...")
         planet_getter = GetPlanet( self.parent.app, pname )
         self.planet = planet_getter.request()
-
-        self.parent.status("Getting shipyards...")
         bldg_getter = GetAllWorkingBuildings( self.parent.app, self.planet, 'shipyard' )
         self.shipyards   = bldg_getter.request()
-
         self.init_for_data()
         self._add_shipyards()
-        self.parent.update_config_status();
 
     def _add_shipyards(self):
         """ Adds shipyards from a dict to the table.
