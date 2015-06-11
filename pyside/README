@@ -5,16 +5,6 @@ QtCore docs:
 QtGui (individual widget) docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtGui/
 
-
-
-TBD:
-    - After user clicks "Get ship on this planet" on the Scuttle tab, disable 
-      the tab's entire UI until shipyards and ships have been retrieved, then 
-      re-enable it.
-        - see disable_ui() and enable_ui() in tabs/build_ships/main.py
-
-
-
 STRUCTURE {#{{{
     
     bin/

@@ -187,10 +187,10 @@ class ShipsDeleteTable():
         lbl_type    = self.widget.item(row, 1)
         lbl_ttl     = self.widget.item(row, 2)
         spin_del    = self.widget.cellWidget(row, 3)
-
         if spin_del.value() == 0:
             self.parent.app.poperr( self.parent, "You can't scuttle zero ships, Einstein." )
             return
+        self.tabclass.disable_ui()
 
         self.parent.status("Getting planet...")
         pname = self.tabclass.cmb_colonies.currentText()
@@ -226,4 +226,5 @@ class ShipsDeleteTable():
             .format( len(delete_these), lbl_type.text() )
         )
         self.add_ships_for(pname)
+        self.tabclass.enable_ui()
 
