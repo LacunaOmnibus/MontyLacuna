@@ -13,6 +13,8 @@ class ShipsDeleteTable():
     Arguments:
         table (QTableWidget): The actual table widget.
         parent (QWidget): The widget that owns the table widget.
+        tabclass (widgets.tabs.scuttle_ships.main.ScuttleShipsTab): The tab class where
+                                                                    this table appears.
     """
 
     ### Listing both, but the originals are square and I'm maintaining aspect 
@@ -36,11 +38,15 @@ class ShipsDeleteTable():
         ]
     }
 
-    def __init__(self, table:QTableWidget, parent:QMainWindow):
-        self.widget = table
-        self.parent = parent
-        self.planet = None
+    def __init__(self, table:QTableWidget, parent:QMainWindow, tabclass):
+        self.widget     = table
+        self.parent     = parent
+        self.tabclass   = tabclass
+        self.planet     = None
         self.clear()
+
+    def setEnabled(self, flag:bool):
+        self.widget.setEnabled(flag)
 
     def add_ships_for(self, pname:str):
         """ Adds ship summaries to the table for a given planet name.
@@ -182,8 +188,12 @@ class ShipsDeleteTable():
         lbl_ttl     = self.widget.item(row, 2)
         spin_del    = self.widget.cellWidget(row, 3)
 
+        if spin_del.value() == 0:
+            self.parent.app.poperr( self.parent, "You can't scuttle zero ships, Einstein." )
+            return
+
         self.parent.status("Getting planet...")
-        pname = self.parent.obj_cmb_colonies_scuttle.currentText()
+        pname = self.tabclass.cmb_colonies.currentText()
         planet_getter = GetPlanet( self.parent.app, pname )
         planet = planet_getter.request()
 

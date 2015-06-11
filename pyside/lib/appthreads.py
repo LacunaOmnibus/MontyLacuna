@@ -290,7 +290,9 @@ class MassShipScuttler(QThread):
         return self.ids
 
     def run(self):
-        self.sp.mass_scuttle_ship( self.ids )
+        if self.ids:
+            self.sp.mass_scuttle_ship( self.ids )
+            self.app.client.cache_clear('my_buildings')
         self.dataReady.emit(True) 
 
 

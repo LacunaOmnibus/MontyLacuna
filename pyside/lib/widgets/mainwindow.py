@@ -25,9 +25,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self._init_ui()
         self.tab_build_ships            = widgets.tabs.BuildShipsTab( self.tabWidget, self )
-        self.obj_cmb_colonies_scuttle   = widgets.BodiesComboBox( self.cmb_planets_scuttle, self )
+        self.tab_scuttle_ships          = widgets.tabs.ScuttleShipsTab( self.tabWidget, self )
+        #self.obj_cmb_colonies_scuttle   = widgets.BodiesComboBox( self.cmb_planets_scuttle, self )
+        #self.obj_tbl_scuttle            = widgets.ShipsDeleteTable( self.tbl_ships_scuttle, self )
         self.obj_tbl_abbrv              = widgets.AbbreviationsTable( self.tbl_abbrv, self )
-        self.obj_tbl_scuttle            = widgets.ShipsDeleteTable( self.tbl_ships_scuttle, self )
         self._set_events()
 
     def _init_ui(self):
@@ -35,7 +36,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionLog_In.setEnabled(True)
         self.actionLog_Out.setEnabled(False)
         self.btn_get_empire_status.setEnabled(False)
-        self.btn_get_ships_scuttle.setEnabled(False)
+        #self.btn_get_ships_scuttle.setEnabled(False)
         self.actionClear_All_Caches.setEnabled(False)
         self._add_graphical_toolbars()
         self.soundon()
@@ -54,7 +55,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def _set_events(self):
         self.btn_get_empire_status.clicked.connect( self.get_empire_status )
-        self.btn_get_ships_scuttle.clicked.connect( self.get_ships_for_scuttle )
+        #self.btn_get_ships_scuttle.clicked.connect( self.get_ships_for_scuttle )
         self.tabWidget.currentChanged.connect( self.tab_changed )
         self.actionChose_Config_File.activated.connect( self.chose_config_file )
         self.actionChose_Config_Section.activated.connect( self.chose_config_section )
@@ -97,9 +98,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.app.client.cache_clear('my_ships')
             self.app.popmsg(self, "All caches have been cleared.")
 
-    def get_ships_for_scuttle(self):
-        pname = self.obj_cmb_colonies_scuttle.currentText()
-        self.obj_tbl_scuttle.add_ships_for(pname)
+#    def get_ships_for_scuttle(self):
+#        pname = self.obj_cmb_colonies_scuttle.currentText()
+#        self.obj_tbl_scuttle.add_ships_for(pname)
 
     def resizeEvent(self, event):
         """ Called automatically when the app initializes, and then again any 
@@ -110,8 +111,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         every time the x/y changes, just at the end of the event.
         """
         self.obj_tbl_abbrv.resize()
-        self.obj_tbl_scuttle.resize()
+        #self.obj_tbl_scuttle.resize()
         self.tab_build_ships.resize()
+        self.tab_scuttle_ships.resize()
 
     def tab_changed(self, num):
         """ Resizes a tab's contents when a user clicks on it.
@@ -126,7 +128,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if num == 0:
             self.tab_build_ships.resize()
         elif num == 1:
-            self.obj_tbl_scuttle.resize()
+            #self.obj_tbl_scuttle.resize()
+            self.tab_scuttle_ships.resize()
         elif num == 3:
             self.obj_tbl_abbrv.resize()
         
@@ -191,23 +194,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         if is_loggedin:
             self.btn_get_empire_status.setEnabled(True)
-            self.btn_get_ships_scuttle.setEnabled(True)
+            #self.btn_get_ships_scuttle.setEnabled(True)
             self.actionLog_In.setEnabled(False)
             self.actionLog_Out.setEnabled(True)
             self.actionClear_All_Caches.setEnabled(True)
-            self.obj_cmb_colonies_scuttle.add_colonies()
+            #self.obj_cmb_colonies_scuttle.add_colonies()
             self.tab_build_ships.adjust_gui_login()
+            self.tab_scuttle_ships.adjust_gui_login()
         else:
             self.btn_get_empire_status.setEnabled(False)
-            self.btn_get_ships_scuttle.setEnabled(False)
+            #self.btn_get_ships_scuttle.setEnabled(False)
             self.actionLog_In.setEnabled(True)
             self.actionLog_Out.setEnabled(False)
             self.actionClear_All_Caches.setEnabled(False)
-            self.obj_cmb_colonies_scuttle.clear()
-            self.obj_tbl_scuttle.clear()
+            #self.obj_cmb_colonies_scuttle.clear()
+            #self.obj_tbl_scuttle.clear()
             self.obj_tbl_abbrv.clear()
             self.txt_empire_status.setPlainText( "" )
             self.tab_build_ships.adjust_gui_logout()
+            self.tab_scuttle_ships.adjust_gui_logout()
 
     def status(self, message:str):
         """ Display a message in the status bar.
