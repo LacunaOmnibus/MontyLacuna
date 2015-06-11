@@ -104,9 +104,10 @@ class BuildableShipsTable():
         spaceport here, so this needs to be passed in from the outside.
         """
         self.available_docks = num
-        for row in range(0, self.widget.rowCount()):
-            spin = self.get_cell(row, 2, True)
-            spin.setMaximum( self.available_docks )
+        if self.available_docks is not None:
+            for row in range(0, self.widget.rowCount()):
+                spin = self.get_cell(row, 2, True)
+                spin.setMaximum( self.available_docks )
 
     def get_cell(self, row:int, col:int, is_widget:bool = False):
         """ Gets the cell contents at (row, col).  The header rows do _not_ 

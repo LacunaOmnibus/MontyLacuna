@@ -16,6 +16,8 @@ QtGui (individual widget) docs:
 
 TBD:
     - Scuttling ships needs to clear the cache containing port counts ('my_buildings')
+    - Scuttler should not bother trying to scuttle ships if the combo box is 
+      0.
     - After user clicks "Get ship on this planet" on the Scuttle tab, disable 
       the tab's entire UI until shipyards and ships have been retrieved, then 
       re-enable it.

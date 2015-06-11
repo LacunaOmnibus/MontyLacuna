@@ -25,7 +25,7 @@ class ShipyardsTable():
     def __init__(self, table:QTableWidget, parent:QMainWindow):
         self.widget     = table
         self.parent     = parent
-        self.planet     = None
+        self.planet     = None  # lacuna planet object
         self.shipyards  = []
         self.clear()
 
@@ -83,17 +83,16 @@ class ShipyardsTable():
     def setVisible(self, toggle:bool = True):
         self.widget.setVisible(toggle)
 
-    def add_shipyards_for(self, pname:str):
+    def add_shipyards_for(self, planet):
         """ Lists the shipyards on the selected planet
 
         Arguments:
-            pname (str): The planet name
+            planet (lacuna.body.MyBody): The planet object
 
         This *does* clear the table before adding the shipyards, since the list 
         it adds is complete for the requested planet.
         """
-        planet_getter = GetPlanet( self.parent.app, pname )
-        self.planet = planet_getter.request()
+        self.planet = planet
         bldg_getter = GetAllWorkingBuildings( self.parent.app, self.planet, 'shipyard' )
         self.shipyards   = bldg_getter.request()
         self.init_for_data()

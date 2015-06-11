@@ -1,4 +1,6 @@
 
+import pytz
+
 from PySide.QtGui import *
 from PySide.QtCore import *
 
@@ -17,8 +19,11 @@ class BuildShipsTab():
     """
 
     def __init__( self, tab_holder:QTabWidget, main_window:QMainWindow ):
-        self.tab_holder     = tab_holder
         self.mw             = main_window
+        self.tab_holder     = tab_holder
+
+        self.builders       = {}    # planet_id => BuildShipsInYards() objects; filled by build_ships()
+        self.planet         = None  # lacuna body object; filled by get_shipyards_for_build
         self.sp             = None  # spaceport; filled by get_shipyards_for_build
         self.view_getter    = None  # spaceport view() thread; filled by get_shipyards_for_build
 
@@ -77,10 +82,7 @@ class BuildShipsTab():
         self.obj_tbl_buildable_ships.resize()
 
     def build_ships(self):
-        ###
-        ### I should probably add a shipyards_tab.py to contain all of this 
-        ### stuff.
-        ###
+        self.disable_ui()
 
         ### Get active shipyards from obj_tbl_sy_build
         shipyards = self.obj_tbl_sy_build.get_included_shipyards()
@@ -130,32 +132,68 @@ class BuildShipsTab():
         ###   leaving the thread open.
         ###
         self.mw.status("Adding ships to your build queues...")
-        ship_builder = BuildShipsInYards( self.mw.app, shipyards, ships_dict )
-        self._set_shipbuild_thread( ship_builder )
+        if not self.planet.name in self.builders:
+            self.builders[self.planet.id] = BuildShipsInYards( self.mw.app, self.planet.id, shipyards, ships_dict )
+            self.builders[self.planet.id].sig_empty.connect( self._build_thread_isempty )
+        self._set_shipbuild_thread( self.builders[self.planet.id] )
         self.mw.update_config_status()
+        ui_should_be_enabled = self.update_docks_label()
+        if ui_should_be_enabled:
+            self.enable_ui()
+
+    def _build_thread_isempty(self, planet_id ):
+        if planet_id in self.builders:
+            del(self.builders[planet_id])
+
+        ### Doing this would re-enable the UI when any build thread ends, 
+        ### regardles of what planet's shipyards we're currently looking at, 
+        ### so don't do this.
+        #self.enable_ui()
+        ### Once the UI has been disabled because a build thread is in 
+        ### progress, I'm going to decide that the user has to refresh that 
+        ### planet's view to get the UI back rather than having it be 
+        ### automatic.
+
 
     def _set_shipbuild_thread(self, builder):
         recall_time = builder.request()    # datetime.datetime
         if recall_time:
             recall_time = recall_time.replace(tzinfo=pytz.UTC)
             sleeptime_ms = self.mw.app.get_ms_until(recall_time)
-            timer = QTimer(self)
+            timer = QTimer(self.mw)
             timer.setSingleShot(True)
             timer.timeout.connect( lambda: self._set_shipbuild_thread(builder) )
             timer.start(sleeptime_ms)
 
     def update_docks_label(self):
+        """ Updates the QLabel with either the number of available docks, or a note 
+        stating that a build thread is currently active.
+
+        Returns:
+            ui_should_become_enabled (bool): Whether or not we should re-enable the UI.
+                                             If a build thread is currently active, this 
+                                             will return False.
+        """
+        ui_should_become_enabled = True
         ### CHECK
         ### This eventually should be able to know whether we've got a build 
         ### ships thread working or not.  If we do, this should display how 
         ### many ships are left in our queue (not in the actual shipyard queue 
         ### in-game, how many are left to be added to that shipyard queue).
+        if self.planet:
+            if self.planet.id in self.builders:
+                if self.builders[self.planet.id]:
+                    self.mw.lbl_build_ports_available.setText( "This planet currently has a build already scheduled." )
+                    ui_should_become_enabled = False
+                    return ui_should_become_enabled
+
         if self.view_getter:
             self.view_getter.request()
             self.mw.lbl_build_ports_available.setText(
                 "{} of {} docks are available."
                 .format(self.view_getter.docks_free, self.view_getter.docks_max)
             )
+        return ui_should_become_enabled
 
     def get_shipyards_for_build(self):
         """ Modifies two tables - the list of shipyards on the planet, and the 
@@ -165,21 +203,24 @@ class BuildShipsTab():
         self.disable_ui()
         pname = self.obj_cmb_colonies_build.currentText()
 
-        self.mw.status("Getting shipyards...")
-        self.obj_tbl_sy_build.add_shipyards_for(pname)
+        self.mw.status("Getting planet...")
+        planet_getter = GetPlanet( self.mw.app, pname )
+        self.planet = planet_getter.request()
 
-        ### Must be called after add_shipyards_for(), which is what populates 
-        ### .planet.
+        self.mw.status("Getting shipyards...")
+        self.obj_tbl_sy_build.add_shipyards_for( self.planet )
+
         self.mw.status("Getting available port counts...")
-        bldg_getter = GetSingleBuilding( self.mw.app, self.obj_tbl_sy_build.planet, 'spaceport', fresh = True )
+        bldg_getter = GetSingleBuilding( self.mw.app, self.planet, 'spaceport', fresh = True )
         self.sp = bldg_getter.request()
         self.view_getter = GetSPView( self.mw.app, self.sp, fresh = True )
-        self.update_docks_label()
+        ui_should_be_enabled = self.update_docks_label()
 
         self.mw.status("Getting buildable ships...")
         self.obj_tbl_buildable_ships.add_ships( self.obj_tbl_sy_build.shipyards )
         self.obj_tbl_buildable_ships.set_available_docks(self.view_getter.docks_free)
 
-        self.enable_ui()
+        if ui_should_be_enabled:
+            self.enable_ui()
         self.mw.update_config_status();
 

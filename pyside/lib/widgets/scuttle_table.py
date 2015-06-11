@@ -63,7 +63,7 @@ class ShipsDeleteTable():
         sp = bldg_getter.request()
 
         self.parent.status("Getting ships...")
-        spviewer = GetSPView( self.parent.app, sp )
+        spviewer = GetSPView( self.parent.app, sp, fresh = True )
         docked_ships = spviewer.request()
         self.init_for_data()    # clear it before adding more ships.
         self.add_ships( docked_ships )
