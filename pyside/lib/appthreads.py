@@ -1,12 +1,11 @@
 
-import datetime, time
+import datetime, functools, time
 from PySide.QtCore import *
 
 
 
 class BuildShipsInYards(QThread):
     sig_empty   = Signal(object)
-    sig_done    = Signal(object)
 
     ### CHECK
     ### I'm currently not using the unchecked shipyard slots at all.  I'll 
@@ -26,7 +25,12 @@ class BuildShipsInYards(QThread):
     ### it's en route.
 
     def __init__(self, app, p_id, yards:list, ships_to_build:dict, parent = None):
-        """
+        """ Builds ships.
+
+        Emits sig_empty when there are no more ships left to queue up.  
+        sig_empty will contain a single argument, the ID of the planet whose 
+        builder has completed.
+
         Arguments:
             yards (list): :class:`lacuna.buildings.callable.shipyard`
             build (dict): "shiptype (str)": num_to_build (int)
@@ -49,6 +53,16 @@ class BuildShipsInYards(QThread):
         self.built                  = {}        # shiptype(str) => num_built(int)
 
     def request(self):
+        """ Adds ships to the planet's shipyard build queues.
+
+        Returns:
+            recall_time (datetime.datetime): This is the first time that a
+                                             shipyard's queue ends, and 
+                                             request() should be called again 
+                                             to re-fill the queues.  If there 
+                                             are no ships left to build, this 
+                                             will be None.
+        """
         self.start()    # Automatically calls run()
         while(self.isRunning()):
             self.app.processEvents()
@@ -77,7 +91,9 @@ class BuildShipsInYards(QThread):
                 else:
                     self.ships[shiptype] = 0
                 slots -= num_to_build
-                yard.build_ship( shiptype, num_to_build )
+                #print( "adding {} {} to the shipyard.".format(num_to_build, shiptype) )
+                if num_to_build > 0:
+                    yard.build_ship( shiptype, num_to_build )
 
                 if shiptype in self.built:
                     self.built[shiptype] += num_to_build
@@ -87,8 +103,7 @@ class BuildShipsInYards(QThread):
                 if slots <= 0:
                     break
 
-            ### Remove any shiptypes from our "to build" dict if the number 
-            ### left to build is 0.
+            ### Remove shiptypes if the number left to build is 0.
             self.ships = {k:self.ships[k] for k in self.ships if self.ships[k] > 0}
 
             if self.earliest_recall_time:
@@ -96,6 +111,10 @@ class BuildShipsInYards(QThread):
                     self.earliest_recall_time = yard.work.end_dt
             else:
                 self.earliest_recall_time = yard.work.end_dt
+
+    def ships_left(self):
+        return functools.reduce( (lambda x, y: x + y), self.ships.values() )
+
 
 class GetPlanet(QThread):
     dataReady = Signal(object)
