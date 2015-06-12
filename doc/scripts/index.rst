@@ -45,6 +45,28 @@ if your arguments contain spaces, you have to quote them::
 When you're running MontyLacuna scripts, don't forget that you can set up and 
 use :ref:`abbrvs` for your colony and space station names.
 
+GUI Scripts
+-----------
+These are scripts that start up a graphical program, the same general idea as 
+LacunaWax, except started from a script instead of from an executable you have 
+to install.
+
+This is still in the early stages, so any GUI scripts may not function 
+properly or completely yet, and any information in this section may change 
+drastically and frequently.
+
+GUI scripts are kept in the ``gui`` directory under the main Monty directory.  
+
+*If you've had MontyLacuna installed for a while*, note that the instructions 
+you followed probably told you to install two Python prerequisites.  To get 
+these GUI programs to run, you're going to need to install two more, but doing 
+this can't be much easier::
+
+    >>> pip install pyside
+    >>> pip install pytz
+
+And now you should be all set to run the Monty GUI programs.
+
 Scripts that tell you about stuff
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. toctree::
@@ -76,22 +98,11 @@ Scripts that do stuff
    turnkey
    update
 
-GUI Scripts
------------
-These are scripts that start up a graphical program, the same general idea as 
-LacunaWax, except started from a script instead of from an executable you have 
-to install.
+GUI scripts
+~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
 
-This is still in the early stages, so any GUI scripts may not function 
-properly or completely yet, and any information in this section may change 
-drastically and frequently.
-
-GUI scripts are kept in the ``pyside/`` directory under the main Monty 
-directory.  The scripts themselves are then in ``pyside/bin/``.
-
-To run the GUI script::
-
-    open a CMD window and change into the directory where you installed Monty
-    >>> cd pyside
-    >>> python3 bin/rungui.py
+   gui/abbreviations
+   gui/ships
 
