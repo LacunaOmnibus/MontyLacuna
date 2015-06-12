@@ -20,6 +20,11 @@ template!
 
 
 
+Investigate; I think this sets the size of the main window:
+    self.setGeometry( 150, 150, 650, 350)
+
+
+
 STRUCTURE {#{{{
     
     bin/
