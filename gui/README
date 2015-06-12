@@ -5,6 +5,21 @@ QtCore docs:
 QtGui (individual widget) docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtGui/
 
+
+
+Right now, both ships/ and abbreviations/ have their own media/ 
+subdirectories.  I'm thinking about making a single media/ directory as a 
+subdirectory of gui/ (so sibling to ships/ and abbreviations/).
+
+This would keep us from having duplicate media files in the repo, one for each 
+gui program.
+
+IF YOU DO THIS KEEP IN MIND that I already deleted the lacuna images from 
+under abbreviations/media/!   Use ships/media/, which is complete, as your 
+template!
+
+
+
 STRUCTURE {#{{{
     
     bin/
@@ -257,30 +272,6 @@ not).
 The print line in get_data() works just fine.  But when we get back to the 
 GONG line, we do NOT have 'mydata' set in self.  I still don't quite 
 understand Python objects completely, I guess.
-
-}#}}}
-
-NOTES ON INDIVIDUAL BITS OF THE GUI {#{{{
-    
-    Abbreviation Table Sizing {#{{{
-        The width of the two columns is based on the width of the whole table.  
-        The Name column gets 75% and the Abbrv column gets 25% of the overall 
-        width.
-
-        However, this table appears on the third tab, and the login button is 
-        on the first tab.  Clicking the login button creates the table with 
-        its contents.
-
-        If the user doesn't view that third tab containing the table before 
-        they log in (and why would they?), then the table's width will be 100, 
-        regardless of the size of the rest of the app.  Since the widget the 
-        table lives in hasn't been viewed yet, it takes on that 100 as a 
-        default width.
-
-        This is why there's a tab_changed() method hooked up to the tab 
-        widget.  As soon as the user clicks on the tab containing that abbrv 
-        table, it gets resized properly.
-    }#}}}
 
 }#}}}
 
