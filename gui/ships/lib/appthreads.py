@@ -91,7 +91,11 @@ class BuildShipsInYards(QThread):
                 else:
                     self.ships[shiptype] = 0
                 slots -= num_to_build
-                #print( "adding {} {} to the shipyard.".format(num_to_build, shiptype) )
+                ### CHECK
+                print( 
+                    "adding {} {} to the shipyard at ({}, {})."
+                    .format(num_to_build, shiptype, yard.x, yard.y) 
+                )
                 if num_to_build > 0:
                     yard.build_ship( shiptype, num_to_build )
 
