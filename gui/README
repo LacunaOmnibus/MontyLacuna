@@ -23,6 +23,12 @@ template!
 Investigate; I think this sets the size of the main window:
     self.setGeometry( 150, 150, 650, 350)
 
+TBD:
+    - scuttle ships tab needs a 'select all' button.
+    - On the builder, after having added builds from lots of planets, there's 
+      a long lag (10 or more seconds) between clicking the Build button and 
+      the UI being disabled.  This could lead to multiple Build button clicks 
+      - see what's going on.
 
 
 STRUCTURE {#{{{
