@@ -1,5 +1,5 @@
 
-import datetime, functools, time
+import datetime, functools, pytz, time
 from PySide.QtCore import *
 
 
@@ -87,7 +87,9 @@ class BuildShipsInYards(QThread):
 
     def run(self):
         for yard in self.yards:
-            slots = self.get_yard_slots(yard)
+            ### CHECK setting to 2 for testing only.
+            #slots = self.get_yard_slots(yard)
+            slots = 2
 
             for shiptype in self.ships.keys():
                 ttl_to_build = self.ships[shiptype]
@@ -101,8 +103,13 @@ class BuildShipsInYards(QThread):
                 ### CHECK
                 print( 
                     "{}: {} is adding {} {} to the shipyard at ({}, {})."
-                    .format(datetime.datetime.now(), self.p_id, num_to_build, shiptype, yard.x, yard.y) 
+                    .format(
+                        datetime.datetime.now(tz=pytz.UTC), 
+                        self.app.client.empire.colonies[str(self.p_id)],
+                        num_to_build, shiptype, yard.x, yard.y
+                    ) 
                 )
+
                 if num_to_build > 0:
                     yard.build_ship( shiptype, num_to_build )
 
@@ -117,6 +124,8 @@ class BuildShipsInYards(QThread):
             ### Remove shiptypes if the number left to build is 0.
             self.ships = {k:self.ships[k] for k in self.ships if self.ships[k] > 0}
 
+            ### CHECK print
+            print( "{}, {} ERT is {}".format(yard.x, yard.y, yard.work.end_dt) )
             if self.earliest_recall_time:
                 if yard.work.end_dt < self.earliest_recall_time:
                     self.earliest_recall_time = yard.work.end_dt
