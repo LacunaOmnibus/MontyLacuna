@@ -9,13 +9,25 @@ class parliament(lacuna.building.MyBuilding):
     def __init__( self, client, body_id:int = 0, building_id:int = 0 ):
         super().__init__( client, body_id, building_id )
 
+    @lacuna.building.MyBuilding.call_returning_meth
+    def allow_bhg_by_alliance( self, ally_id:int, *args, **kwargs ):
+        """ Allows a friendly alliance to use their BHG in the jurisdiction of this 
+        station even if BHG restriction laws are on.
+
+        Arguments:
+            ally_id (int): The ID of the alliance to allow through.
+        Returns:
+            prop (Proposition): The submitted proposition.
+        """
+        return Proposition(self.client, kwargs['rslt']['proposition']) 
+
     @lacuna.bc.LacunaObject.call_returning_body_meth
     def view_laws( self, body_id:int, *args, **kwargs ):
         """ Show laws passed by this parliament building
 
         Arguments:
-            - body_id -- Integer ID of the Space Station (not of the parliament 
-              building.)
+            body_id (int): ID of the Space Station (not of the parliament 
+                           building).
 
         This method can be called against either the Parliament building or the 
         station itself.  Allowing it to be called against the station means that 

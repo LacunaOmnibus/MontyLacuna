@@ -84,6 +84,7 @@ Scripts that do stuff
 .. toctree::
    :maxdepth: 1
 
+   allow_friendly_bhg
    assign_spies
    build_ships
    excavs_report
