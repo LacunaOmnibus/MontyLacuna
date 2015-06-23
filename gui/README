@@ -1,4 +1,13 @@
 
+
+Left off testing the shipbuilder.  Use 1.1 on PT - I've lowered a couple of 
+the SYs there.
+
+See CHECK in appthreads.py
+
+
+
+
 QtCore docs:
     https://deptinfo-ensip.univ-poitiers.fr/ENS/pyside-docs/PySide/QtCore/
 
@@ -20,9 +29,14 @@ template!
 
 
 
-Investigate; I think this sets the size of the main window:
-    self.setGeometry( 150, 150, 650, 350)
 
+
+TBD:
+    - If ship build threads are running and the mainwindow closes down, there 
+      needs to be an onShutdown (or some such) event in mainwindow that knows 
+      enough to join and exit all of those builder threads.
+    - Investigate; I think this sets the size of the main window:
+        self.setGeometry( 150, 150, 650, 350)
 
 
 STRUCTURE {#{{{
