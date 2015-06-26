@@ -68,6 +68,13 @@ released or executed separately.  This means that if you have 100 prisoners,
 the process will use 100 RPCs and take 100 seconds.  Time your actions 
 accordingly.
 
+Caching
+-------
+When dealing with prisoners, you generally want up-to-the-minute information.  
+So only your planets list and the prison (Police Station or Security Ministry, 
+as the case may be) building itself will be cached.  Information on spies and 
+prisoners will be fetched fresh each time.
+
 Full Documentation
 ------------------
 For complete help, see the script's help documentation:

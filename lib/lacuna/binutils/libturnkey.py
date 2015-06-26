@@ -70,7 +70,6 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self._set_dispatch()
 
 
-
     def _set_body( self, pname:str ):
         """ Sets the current working planet by name.
 
@@ -81,7 +80,6 @@ class Turnkey(lacuna.binutils.libbin.Script):
         self.client.cache_on( 'my_colonies', 3600 )
         self.body = self.client.get_body_byname( pname )
         self.client.cache_off()
-
 
     def _set_prison( self ):
         """ Finds either the Security Ministry or Police Station on the current 
@@ -129,9 +127,12 @@ class Turnkey(lacuna.binutils.libbin.Script):
         working forward.
         """
         if self.args.page == 0:
+            ### We really just need the total prisoner count here.  This is 
+            ### included on each page view, so it doesn't matter what page we 
+            ### look at.  But be sure to turn cache off first.
             num, pris = self.prison.view_prisoners( 1 )
             pages = self.get_pages_for( num );
-            self.client.user_logger.debug( "Displaying all results, paginated." )
+            self.client.user_logger.debug( "Working on {} pages.".format(pages) )
             for page in reversed( range(0, self.get_pages_for(num)) ):
                 num = callback( page )
         else:
@@ -177,7 +178,6 @@ class Turnkey(lacuna.binutils.libbin.Script):
         ### Make sure the cache is off.  The user might start a multi-page 
         ### run, interrupt it, then come back here.  In which case he'll end 
         ### up trying to execute already-dead prisoners on the >1st run.
-        self.client.cache_off();
         num, pris = self.prison.view_prisoners( page )
         for p in pris:
             if p.level > self.args.level:
@@ -189,7 +189,6 @@ class Turnkey(lacuna.binutils.libbin.Script):
 
     def _release_prisoners_page( self, page ):
         self.client.user_logger.info( "Releasing prisoners.".format(self.args.page) )
-        self.client.cache_off();    # see comment in _execute_prisoners_page()
         num, pris = self.prison.view_prisoners( page )
         for p in pris:
             ### I've never actually run this, but since it's essentially 
@@ -204,9 +203,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
 
     def _view_foreign_spies_page( self, page ):
         self.client.user_logger.info( "Viewing foreign spies.".format(self.args.page) )
-        self.client.cache_on('prisoners')   # don't change this
         pris = self.prison.view_foreign_spies( page )
-        self.client.cache_off();
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
         print( "Displaying foreign spies page {}.".format(page) )
         print( tmpl.format('Name', 'Level', 'Task', 'Next Mission') )
@@ -219,9 +216,7 @@ class Turnkey(lacuna.binutils.libbin.Script):
 
     def _view_prisoners_page( self, page ):
         self.client.user_logger.info( "Viewing prisoners.".format(self.args.page) )
-        self.client.cache_on('prisoners')
         num, pris = self.prison.view_prisoners( page )
-        self.client.cache_off();
         tmpl = "{:<20}    {:0>2}    {:<10}    {}"
         print( "Displaying prisoners page {}.".format(page) )
         print( tmpl.format('Name', 'Level', 'Task', 'Sentence Expires') )
