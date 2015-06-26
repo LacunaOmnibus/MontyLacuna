@@ -38,6 +38,10 @@ for pname in bs.planets:
         l.warning( "Skipping {} because:".format(bs.planet.name) )
         l.warning( "\t{}:".format(e) )
         continue
+    except err.ServerError as e:
+        if e.code == 1013:
+            l.warning( "Skipping {} because the shipyard is offline.".format(bs.planet.name) )
+            continue
 
     if num_to_build <= 0:
         continue

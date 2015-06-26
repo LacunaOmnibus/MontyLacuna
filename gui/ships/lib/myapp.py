@@ -249,6 +249,9 @@ class MyApp(QApplication):
             raise IOError("{} is not a valid config file.".format(self.config_file))
         return cp
 
+    def Yield(self, sleeptime:float = 0.0):
+        self.processEvents()
+        time.sleep( sleeptime )
 
 
 ###########################

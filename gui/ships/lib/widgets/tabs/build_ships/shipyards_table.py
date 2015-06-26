@@ -117,7 +117,7 @@ class ShipyardsTable():
             itm_y           = QTableWidgetItem(str(bldg.y))
             ### Should this SY be included?  Default to "no"
             checkbox = QCheckBox()
-            checkbox.setCheckState(Qt.Unchecked)
+            checkbox.setCheckState(Qt.Checked)
 
             self.widget.insertRow(row)
             self.widget.setCellWidget(row, 0, lbl_icon)

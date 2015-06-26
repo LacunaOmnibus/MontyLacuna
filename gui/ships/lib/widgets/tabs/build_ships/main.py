@@ -61,15 +61,42 @@ class BuildShipsTab():
         self.sp             = None
         self.view_getter    = None
 
-    def disable_ui(self):
-        """ Disables all widgets on the tab.
+    def disable_ui_full(self):
+        """ Disables the entire UI.
+        """
+        self.disable_ui_top();
+        self.disable_ui_work();
+
+    def enable_ui_full(self):
+        """ Enables the entire UI.
+        """
+        self.enable_ui_top();
+        self.enable_ui_work();
+
+    def disable_ui_top(self):
+        """ Disables the planet choser combo and get shipyards button.
+        """
+        self.mw.btn_get_shipyards_build.setEnabled(False)
+        self.cmb_bodies.setEnabled(False)
+
+    def enable_ui_top(self):
+        """ Re-enables the planet choser combo and get shipyards button.
+        """
+        self.mw.btn_get_shipyards_build.setEnabled(True)
+        self.cmb_bodies.setEnabled(True)
+
+    def disable_ui_work(self):
+        """ Disables the shipyards and build tables, and the build button.  As long as 
+        a thread is building ships for this planet, this part of the UI should remain 
+        disabled.
         """
         self.mw.btn_build_ships.setEnabled(False)
         self.tbl_shipyards.setEnabled(False)
         self.tbl_build_ships.setEnabled(False)
+        self.mw.app.Yield(0.1)
 
-    def enable_ui(self):
-        """ Enables all widgets on the tab.
+    def enable_ui_work(self):
+        """ Reverses the disabled UI caused by disable_ui_work().
         """
         self.cmb_bodies.setEnabled(True)
         self.mw.btn_get_shipyards_build.setEnabled(True)
@@ -77,6 +104,7 @@ class BuildShipsTab():
         self.mw.btn_build_ships.setEnabled(True)
         self.tbl_shipyards.setEnabled(True)
         self.tbl_build_ships.setEnabled(True)
+        self.mw.app.Yield(0.1)
 
     def resize(self):
         """ To be called after a mainwindow resize event
@@ -88,11 +116,15 @@ class BuildShipsTab():
         """ Called when the user clicks the Build! button.  Builds the 
         specified ships in a separate thread.
         """
+        self.disable_ui_full()
+
         shipyards = self.tbl_shipyards.get_included_shipyards()
         if not shipyards:
             self.mw.app.poperr(self.mw, "You must select the shipyard or yards at which to build ships by checking their checkboxes first.")
+            self.enable_ui_work()
             return
         ships_dict, num_left_to_build = self.tbl_build_ships.get_ships_to_build()
+        print( "{} has {} ships to build.".format(self.planet.name, num_left_to_build) )
         if self.tbl_build_ships.available_docks is not None:
             if num_left_to_build > self.tbl_build_ships.available_docks:
                 ### With 10 SY slots left, the user could try to build 9 of 
@@ -102,8 +134,8 @@ class BuildShipsTab():
                 self.mw.app.poperr(self.mw, 
                     "You're trying to build more ships than you have available docks!"
                 )
+                self.enable_ui_full()
                 return
-        self.disable_ui()
 
         self.mw.status("Adding ships to your build queues...")
         if not self.planet.name in self.builders:
@@ -113,7 +145,9 @@ class BuildShipsTab():
         self.mw.update_config_status()
         ui_should_be_enabled = self.update_docks_label()
         if ui_should_be_enabled:
-            self.enable_ui()
+            self.enable_ui_full()
+        else:
+            self.enable_ui_top()
 
         if self.planet.id in self.builders:
             if self.builders[self.planet.id].ships_left():
@@ -139,9 +173,9 @@ class BuildShipsTab():
     def _set_shipbuild_thread(self, builder):
         recall_time = builder.request()     # datetime.datetime
         if recall_time:
-            recall_time = recall_time.replace(tzinfo=pytz.UTC)
-            sleeptime_ms = self.mw.app.get_ms_until(recall_time)
-            sleeptime_ms += 5000            # add 5 second buffer
+            recall_time     = recall_time.replace(tzinfo=pytz.UTC)
+            sleeptime_ms    = self.mw.app.get_ms_until(recall_time)
+            sleeptime_ms    += 10000            # add 10 second buffer
             timer = QTimer(self.mw)
             timer.setSingleShot(True)
             timer.timeout.connect( lambda: self._set_shipbuild_thread(builder) )
@@ -182,7 +216,7 @@ class BuildShipsTab():
         list of buildable ships (based on what the first shipyard is able to 
         build).
         """
-        self.disable_ui()
+        self.disable_ui_work()
         self.tbl_shipyards.clear()
         self.tbl_build_ships.clear()
         self.mw.lbl_build_ports_available.setText('')
@@ -207,6 +241,6 @@ class BuildShipsTab():
         self.tbl_build_ships.set_available_docks(self.view_getter.docks_free)
 
         if ui_should_be_enabled:
-            self.enable_ui()
+            self.enable_ui_work()
         self.mw.update_config_status();
 

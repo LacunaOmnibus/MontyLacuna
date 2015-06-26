@@ -72,8 +72,9 @@ class BuildShipsInYards(QThread):
         """
         self.start()    # Automatically calls run()
         while(self.isRunning()):
-            self.app.processEvents()
-            time.sleep(0.1)
+            #self.app.processEvents()
+            #time.sleep(0.1)
+            self.app.Yield(0.5)
         retval = None
         if self.ships:
             retval = self.earliest_recall_time
@@ -87,9 +88,8 @@ class BuildShipsInYards(QThread):
 
     def run(self):
         for yard in self.yards:
-            ### CHECK setting to 2 for testing only.
-            #slots = self.get_yard_slots(yard)
-            slots = 2
+            slots = self.get_yard_slots(yard)
+            #slots = 2  # testing
 
             for shiptype in self.ships.keys():
                 ttl_to_build = self.ships[shiptype]
@@ -112,6 +112,7 @@ class BuildShipsInYards(QThread):
 
                 if num_to_build > 0:
                     yard.build_ship( shiptype, num_to_build )
+                    self.app.Yield(0.5)
 
                 if shiptype in self.built:
                     self.built[shiptype] += num_to_build

@@ -1,0 +1,340 @@
+-= Minas Anor =-
+----------------
+  Assignments:
+    Counter Espionage                                                 4
+    Idle                                                             75
+    Intel Training                                                    2
+    Mayhem Training                                                   1
+    Politics Training                                                 6
+    Theft Training                                                    2
+  Locations:
+    293268  (  -24, -994) - -= Minas Anor =-                         90
+
+-= Minas Tirith =-
+------------------
+  Assignments:
+    Idle                                                             61
+    Intel Training                                                    1
+    Mayhem Training                                                   3
+    Politics Training                                                 2
+    Theft Training                                                    2
+  Locations:
+    262722  (  -26, -998) - -= Minas Tirith =-                       69
+
+-= Spirit's Eyrie =-
+--------------------
+  Assignments:
+    Counter Espionage                                                 3
+    Idle                                                             82
+    Mayhem Training                                                   2
+    Politics Training                                                 1
+    Theft Training                                                    2
+  Locations:
+    799630  (  748, -501) - -= Spirit's Eyrie =-                     90
+
+-= The Shire =-
+---------------
+  Assignments:
+    Counter Espionage                                                 1
+    Idle                                                             79
+    Intel Training                                                    3
+    Mayhem Training                                                   3
+    Politics Training                                                 2
+    Theft Training                                                    2
+  Locations:
+    112023  (  -27, -995) - -= The Shire =-                          87
+    150300  (  -27, -997) - Petrocarb                                 2
+    336740  (  746, -501) - SASS Petrons Gift                         1
+
+Dunstonia
+---------
+  Assignments:
+    Counter Espionage                                                 7
+    Idle                                                             67
+    Intel Training                                                    5
+    Mayhem Training                                                   5
+    Politics Training                                                 2
+    Theft Training                                                    2
+  Locations:
+    174883  (  114,   -8) - SASS Petron                               9
+    213789  (   80,  -27) - Dunstonia                                77
+    479001  (   99,   16) - Petrons QB                                2
+
+Edwardius
+---------
+  Assignments:
+    Counter Espionage                                                28
+    Idle                                                             55
+    Intel Training                                                    2
+    Mayhem Training                                                   1
+    Theft Training                                                    4
+  Locations:
+    291935  (  752, -497) - New Petron                                1
+    293268  (  -24, -994) - -= Minas Anor =-                          2
+    319154  (  106,    5) - Edwardius                                62
+    438682  (   92,   24) - SASS Adventurous                          3
+    454476  (  107,    6) - SASS Astraeus                            18
+    620802  (   94,   24) - SASS Adventure                            4
+
+Elmer Fudd
+----------
+  Assignments:
+    Counter Espionage                                                14
+    Idle                                                             62
+    Intel Training                                                    1
+    Mayhem Training                                                   7
+    Politics Training                                                 1
+    Theft Training                                                    5
+  Locations:
+    293268  (  -24, -994) - -= Minas Anor =-                          1
+    303434  (   65,    4) - Petrons Saben                             2
+    503710  (  507,  250) - SASS Aeck Daecoo                          2
+    503717  (  505,  250) - SASS Dodge                                2
+    521065  (  504,  249) - Elmer Fudd                               83
+
+Georgianos
+----------
+  Assignments:
+    Counter Espionage                                                 8
+    Idle                                                             69
+    Intel Training                                                    4
+    Mayhem Training                                                   3
+    Politics Training                                                 3
+    Theft Training                                                    3
+  Locations:
+    223905  (  374, -682) - Georgianos                               78
+    303434  (   65,    4) - Petrons Saben                             5
+    479001  (   99,   16) - Petrons QB                                5
+    500536  (  113,   -9) - Ministaire                                2
+
+Janus1
+------
+  Assignments:
+    Counter Espionage                                                 7
+    Idle                                                             69
+    Intel Training                                                    4
+    Mayhem Training                                                   4
+    Politics Training                                                 3
+    Theft Training                                                    3
+  Locations:
+    223902  (  374, -680) - Janus1                                   90
+
+Lauren
+------
+  Assignments:
+    Counter Espionage                                                69
+    Idle                                                             15
+    Intel Training                                                    1
+    Mayhem Training                                                   2
+    Politics Training                                                 2
+    Theft Training                                                    1
+  Locations:
+    174883  (  114,   -8) - SASS Petron                              10
+    293268  (  -24, -994) - -= Minas Anor =-                          2
+    303434  (   65,    4) - Petrons Saben                             2
+    323480  (   62,    1) - Lauren                                   70
+    336895  (  107,   24) - SASS Majestic                             2
+    479001  (   99,   16) - Petrons QB                                4
+
+Ministaire
+----------
+  Assignments:
+    Counter Espionage                                                18
+    Idle                                                             50
+    Intel Training                                                    3
+    Mayhem Training                                                   4
+    Politics Training                                                11
+    Theft Training                                                    3
+  Locations:
+    144584  (  -26, -994) - SASS Quatch                               3
+    150300  (  -27, -997) - Petrocarb                                 1
+    454476  (  107,    6) - SASS Astraeus                             9
+    479001  (   99,   16) - Petrons QB                                8
+    500536  (  113,   -9) - Ministaire                               68
+
+New Petron
+----------
+  Assignments:
+    Counter Espionage                                                12
+    Idle                                                             63
+    Intel Training                                                    4
+    Mayhem Training                                                   3
+    Politics Training                                                 4
+    Theft Training                                                    4
+  Locations:
+    286075  (  753, -496) - SASS POMPEY                               4
+    291935  (  752, -497) - New Petron                               83
+    293275  (  755, -500) - 11.Zion                                   1
+    303434  (   65,    4) - Petrons Saben                             1
+    336740  (  746, -501) - SASS Petrons Gift                         1
+
+NovaPetron
+----------
+  Assignments:
+    Counter Espionage                                                 6
+    Idle                                                             76
+    Intel Training                                                    2
+    Mayhem Training                                                   1
+    Politics Training                                                 2
+    Theft Training                                                    3
+  Locations:
+    294814  (  755, -496) - NovaPetron                               88
+    303434  (   65,    4) - Petrons Saben                             1
+    86085   (  706, -387) - SASS A Hard Place                         1
+
+Petrocarb
+---------
+  Assignments:
+    Counter Espionage                                                 9
+    Idle                                                             39
+    Intel Training                                                    4
+    Mayhem Training                                                   4
+    Politics Training                                                 5
+    Theft Training                                                    4
+    Training                                                         25
+  Locations:
+    150300  (  -27, -997) - Petrocarb                                90
+
+Petron's GG
+-----------
+  Assignments:
+    Counter Espionage                                                25
+    Idle                                                             48
+    Intel Training                                                    4
+    Mayhem Training                                                   6
+    Politics Training                                                 4
+    Theft Training                                                    2
+  Locations:
+    317721  (   61,    2) - Petron's GG                              82
+    319155  (   84,   28) - Petronius1                                2
+    372199  ( -297, -206) - SASS Sleazy Does it every time            5
+
+Petron's Home
+-------------
+  Assignments:
+    Idle                                                             27
+  Locations:
+    416578  ( -797,  -51) - Petron's Home                            27
+
+Petron's Kai
+------------
+  Assignments:
+    Counter Espionage                                                 7
+    Idle                                                             70
+    Intel Training                                                    3
+    Mayhem Training                                                   3
+    Politics Training                                                 3
+    Theft Training                                                    4
+  Locations:
+    303434  (   65,    4) - Petrons Saben                             2
+    331939  (  749, -502) - Petron's Kai                             88
+
+Petron's clayton
+----------------
+  Assignments:
+    Counter Espionage                                                 8
+    Idle                                                             71
+    Intel Training                                                    3
+    Mayhem Training                                                   2
+    Politics Training                                                 3
+    Theft Training                                                    3
+  Locations:
+    293268  (  -24, -994) - -= Minas Anor =-                          1
+    323297  (  108, -364) - SASS Peppi 04                             1
+    327624  (  107, -365) - Petron's clayton                         87
+    335313  (  108, -368) - SASS Peppi 02                             1
+
+Petronius 7
+-----------
+  Assignments:
+    Captured                                                          1
+    Counter Espionage                                                 4
+    Idle                                                             77
+    Intel Training                                                    3
+    Mayhem Training                                                   2
+    Politics Training                                                 2
+    Theft Training                                                    1
+  Locations:
+    196494  (   53,  -11) - Petronius 7                              77
+    203671  (   53,  -13) - Cals Ranch                                2
+    220958  (   56,  -10) - SASS Pitt                                 5
+    226802  (   54,  -10) - SASS Wipe                                 5
+    526392  (   31,  -76) - Burn                                      1
+
+Petronius1
+----------
+  Assignments:
+    Counter Espionage                                                 5
+    Idle                                                             67
+    Intel Training                                                    2
+    Mayhem Training                                                   6
+    Politics Training                                                 5
+    Theft Training                                                    5
+  Locations:
+    319155  (   84,   28) - Petronius1                               89
+    479001  (   99,   16) - Petrons QB                                1
+
+Petronius2
+----------
+  Assignments:
+    Counter Espionage                                                 5
+    Idle                                                             71
+    Intel Training                                                    4
+    Mayhem Training                                                   1
+    Politics Training                                                 5
+    Theft Training                                                    3
+  Locations:
+    225331  (  101,   16) - Petronius2                               70
+    546502  (  112,   13) - Erathia                                  19
+
+Petrons QB
+----------
+  Assignments:
+    Counter Espionage                                                13
+    Idle                                                             62
+    Intel Training                                                    2
+    Mayhem Training                                                   3
+    Politics Training                                                 3
+    Theft Training                                                    6
+    Travelling                                                        1
+  Locations:
+    174883  (  114,   -8) - SASS Petron                              31
+    451704  (   99,   20) - SASS 3                                    3
+    454476  (  107,    6) - SASS Astraeus                             5
+    479001  (   99,   16) - Petrons QB                               45
+    546502  (  112,   13) - Erathia                                   2
+    799630  (  748, -501) - -= Spirit's Eyrie =-                      4
+
+Petrons Saben
+-------------
+  Assignments:
+    Counter Espionage                                                 4
+    Idle                                                             76
+    Intel Training                                                    1
+    Mayhem Training                                                   6
+    Politics Training                                                 2
+    Theft Training                                                    1
+  Locations:
+    15656   ( 1299,-1159) - SASS tmt bmots 05                         8
+    303434  (   65,    4) - Petrons Saben                            82
+
+Petros
+------
+  Assignments:
+    Counter Espionage                                                14
+    Idle                                                             67
+    Intel Training                                                    2
+    Mayhem Training                                                   3
+    Politics Training                                                 2
+    Theft Training                                                    2
+  Locations:
+    225328  (  102,   17) - Petros                                   80
+    546502  (  112,   13) - Erathia                                  10
+
+Pompey Magnus
+-------------
+  Assignments:
+    Idle                                                             48
+  Locations:
+    492952  ( -924,  211) - Pompey Magnus                            48
+
