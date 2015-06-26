@@ -30,10 +30,12 @@ maximum of 25 prisoners/spies per page.  If you want to look at page 3::
 
     >>> python bin/turnkey.py --page 3 ISS view_spies
 
-...or, if you want to look at all pages (this will take some time and is 
-likely to scroll off your screen)::
+...or, if you want to look at all pages::
 
     >>> python bin/turnkey.py --page 0 Earth view_prisoners
+
+Performing an action over all pages can take some time.  Also note that we'll 
+go through the pages backwards, not forwards.  This is expected.
 
 Executing and Releasing
 -----------------------
@@ -51,6 +53,11 @@ To release all of the prisoners on the first page of results::
 To execute all of the prisoners on the third page of results::
 
     >>> python bin/turnkey.py --page 3 Earth execute
+
+To execute all of the prisoners of level 50 or higher on the third page of 
+results::
+
+    >>> python bin/turnkey.py --level 50 --page 3 Earth execute
 
 To execute everybody (you monster!)::
 

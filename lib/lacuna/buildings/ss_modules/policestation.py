@@ -82,12 +82,14 @@ class policestation(lacuna.building.MyBuilding):
         Arguments:
             - page_number -- Optional page of results to view.  Defaults to 1.
 
-        Returns a list of :class:`lacuna.spy.Prisoner` objects.
+        Returns:
+            captured_count (int): number of prisoners in jail
+            prisoners(list): :class:`lacuna.spy.Prisoner` objects.
         """
         mylist = []
         for i in kwargs['rslt']['prisoners']:
             mylist.append( lacuna.spy.Prisoner(self.client, i) )
-        return mylist
+        return ( kwargs['rslt']['captured_count'], mylist )
 
 
     @lacuna.building.MyBuilding.call_returning_meth
