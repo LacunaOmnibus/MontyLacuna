@@ -92,6 +92,10 @@ class SubClass():
         Returns:
             datetime.datetime: A `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_ object
         """
+        ### No, I don't know why this is here rather than in utils.py.  This 
+        ### is where I originally put it and it's being called from here.  
+        ### When you get motivated, find the calls and fix them to use utils 
+        ### and then remove this from here.
         m = re.match("^(\d\d) (\d\d) (\d{4}) (\d\d):(\d\d):(\d\d)", tle_time)
         if m:
             return datetime.datetime(

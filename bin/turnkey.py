@@ -16,5 +16,3 @@ l  = tk.client.user_logger
 
 tk.perform_chosen_task()
 
-#l.info( "{} spies from {} have been tk to {}.".format(count, p, tk.task) )
-

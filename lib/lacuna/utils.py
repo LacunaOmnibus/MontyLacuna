@@ -1,5 +1,5 @@
 
-import re, sys
+import datetime, re, sys
 
 class Utils():
     """
@@ -94,4 +94,31 @@ class Utils():
             submax = mymax - 3
             string = string[0:submax] + "..."
         return string
+
+    def tle2time(self, tle_time:str):
+        """ Converts a TLE datetime string into a datetime object.
+
+        Args:
+            tle_datetime (str): eg ``30 11 2014 21:40:31 +0000``.
+                The "+0000" is meant to be the timezone, but in TLE 
+                datetime strings this is always "+0000" (UTC), so 
+                this method is ignoring it, and it could actually 
+                be omitted from the passed-in string.
+
+        Returns:
+            datetime.datetime: A `datetime.datetime <https://docs.python.org/3.4/library/datetime.html>`_ object
+        """
+        m = re.match("^(\d\d) (\d\d) (\d{4}) (\d\d):(\d\d):(\d\d)", tle_time)
+        if m:
+            return datetime.datetime(
+                int(m.group(3)),    # year
+                int(m.group(2)),    # month
+                int(m.group(1)),    # day
+                int(m.group(4)),    # hour
+                int(m.group(5)),    # minute
+                int(m.group(6)),    # second
+            )
+        else:
+            raise AttributeError( "{} isn't a TLE datetime string.".format(tle_time) )
+
 
