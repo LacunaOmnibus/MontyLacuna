@@ -18,9 +18,13 @@ l   = mc.client.user_logger
 """
 The report, especially the output of any tables, could stand to be prettified up a bit.
 
-But this works.
+But this works:
+    $ py bin/mail_compile.py --tag Attack attack > jontest.txt
 
-$ py bin/mail_compile.py --tag Attack attack > jontest.txt
+
+
+Also, there's zero documentation for this.
+
 
 """
 
