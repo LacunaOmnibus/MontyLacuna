@@ -14,6 +14,7 @@ enact this law.
 
 This script is going to issue a proposition, so you'll need to be logged in 
 using your real password, not your sitter::
+
     >>> python bin/allow_friendly_bhg.py --section real "My Station Name" "Friendly Ally Name"
 
 Station and Alliance Names
