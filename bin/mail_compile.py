@@ -33,7 +33,9 @@ Also, there's zero documentation for this.
 
 l.info( "Looking for matching messages..." )
 date_summaries = mc.get_dated_summaries()
+l.debug( "found {} messages within our date range.".format(len(date_summaries)) )
 summaries      = mc.get_matching_summaries( date_summaries )
+l.debug( "found {} messages within our date range that match our subject." .format(len(summaries)) )
 
 if len(summaries):
     l.info( "Found {} matching messages; compiling report...".format(len(summaries)) )

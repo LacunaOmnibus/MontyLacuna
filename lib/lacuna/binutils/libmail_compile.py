@@ -12,13 +12,13 @@ class MailCompile(lacuna.binutils.libbin.Script):
         self.utils      = lacuna.utils.Utils()
 
         parser = argparse.ArgumentParser(
-            description = 'This will build as many of a single type of ship as you want, up to the maximum that can be built across all shipyards on your planet.  If there are already ships in your build queue, this will figure that out and only build what it can.',
+            description = 'Combines all mail messages within a date range matching a single subject, into a single report.  Good for compiling attack messages.',
             epilog      = "Full docs can be found at http://tmtowtdi.github.io/MontyLacuna/scripts/build_ships.html",
         )
         parser.add_argument( 'subject', 
             metavar     = '<subject>',
             action      = 'store',
-            help        = 'Messages matching this subject will be compiled.'
+            help        = "Messages whose subjects match this string, in whole or in part, will be compiled.  To compile all attack summaries, this can just be 'summary'.  Case INsensitive",
         )
         parser.add_argument( '--tag', 
             metavar     = '<tag>',
@@ -30,28 +30,28 @@ class MailCompile(lacuna.binutils.libbin.Script):
                 'Intelligence', 'Medal', 'Mission', 'Parliament', 'Probe', 'Spies', 'Trade', 
                 'Tutorial'
             ],
-            help        = "Defaults to no tag."
+            help        = "Matches only messages marked with this tag.  Tags are found in the dropdown box in the in-game mail system.  Defaults to no tag (searches entire inbox).  Case sensitive."
         )
         parser.add_argument( '--day', 
             metavar     = '<day>',
             action      = 'store',
             type        = int,
             default     = self.now.day,
-            help        = ""
+            help        = "The integer day your messages are stamped as.  Defaults to today."
         )
         parser.add_argument( '--month', 
             metavar     = '<month>',
             action      = 'store',
             type        = int,
             default     = self.now.month,
-            help        = ""
+            help        = "The integer month your messages are stamped as.  Defaults to this month."
         )
         parser.add_argument( '--year', 
             metavar     = '<year>',
             action      = 'store',
             type        = int,
             default     = self.now.year,
-            help        = ""
+            help        = "The four-digit year your messages are stamped as.  Defaults to this year."
         )
         super().__init__(parser)
         self.client.cache_on("my_inbox")
@@ -85,7 +85,12 @@ class MailCompile(lacuna.binutils.libbin.Script):
                 last_id = m.id
             else:
                 return last_id
-        return None
+        if last_id:
+            ### We reached the end of our set of messages without changing to 
+            ### a different day.  The last message we saw is our last one.
+            return last_id
+        else:
+            return None
 
     def get_dated_summaries( self ):
         """ Returns the summaries of the messages that fall on our requested date.
@@ -111,6 +116,8 @@ class MailCompile(lacuna.binutils.libbin.Script):
             all_messages += page_messages
             if start_id and end_id:
                 break
+
+        self.client.user_logger.debug( "{}, {}".format(start_id, end_id) )
 
         ### If the requested date goes past the first 10 pages, we're going to 
         ### punt and still only return messages that appear on those first 10 
@@ -153,13 +160,18 @@ class MailCompile(lacuna.binutils.libbin.Script):
         msgs    = []
         for s in summaries:
             message = self.inbox.read_message( s.id )
-            mbody   = message.body
+            mbody   = "========== BEGIN TRANSMISSION ==========\n"
+            mbody   += "Subject: " + message.subject + "\n"
+            mbody   += "Date: " + message.date + "\n\n"
+            mbody   += message.body
             if 'table' in message.attachments:
-                mbody += "\n\nTABLE FOLLOWS:\n"
+                mbody += "\n\nTHIS MESSAGE CONTAINS A TABLE:\n"
+                mbody += "------------------------------\n"
                 for row in message.attachments['table']:
                     strrow = [str(i) for i in row]
                     mbody += ','.join(strrow) + "\n"
+            mbody   += "========== END TRANSMISSION ==========\n"
             msgs.append(mbody)
-        report = "\n\n===================\n\n".join(msgs)
+        report = "\n\n".join(msgs)
         return report
 
