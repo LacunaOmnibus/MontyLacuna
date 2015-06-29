@@ -52,9 +52,11 @@ class TrainableSpies():
 
 class Location():
     """
+    Contains the spies and training buildings at a given planet.
+
     Attributes::
 
-        coll    TrainableSpies object
+        coll    TrainableSpies (collection) object
         bldgs   Dict.
                 { 'intel': {
                                 'obj': inteltraining object if the building exists on this colony,
@@ -81,6 +83,7 @@ class Location():
         if skill in self.bldgs:
             return self.bldgs[skill]['num']
         else:
+            self.client.user_logger.debug( "{} is not an allowable skill.".format(skill) )
             return 0
 
 
@@ -209,7 +212,6 @@ class TrainSpies(lacuna.binutils.libbin.Script):
             except err.NoSuchBuildingError as e:
                 self.client.user_logger.info( "...Nope." )
                 continue
-
         self.client.cache_off()
         if bldgs:
             self.locations[pname] = Location( bldgs )
