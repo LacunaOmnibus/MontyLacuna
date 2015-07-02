@@ -19,7 +19,7 @@ class ssla(MyBuilding):
 
         costs_list = []
         for i in rv['make_plan']['level_costs']:
-            costs_list.append( LevelCosts(self.client, i) )
+            costs_list.append( lacuna.plan.LevelCosts(self.client, i) )
 
         making = 'None'
         if 'making' in rv['make_plan']:
@@ -42,7 +42,7 @@ class ssla(MyBuilding):
 
         Returns a tuple:
             - plans -- List of :class:`lacuna.plan.PotentialSSPlan` objects
-            - costs -- List of LevelCosts objects
+            - costs -- List of lacuna.plan.LevelCosts objects
             - sub_cost -- Integer cost to subsidize a plan (always 2)
             - making -- Name of plan currently being made.  "None" if no plan is in the works.
         """
@@ -69,7 +69,7 @@ class ssla(MyBuilding):
 
         Returns a tuple:
             - plans -- List of :class:`lacuna.plan.PotentialSSPlan` objects
-            - costs -- List of LevelCosts objects
+            - costs -- List of lacuna.plan.LevelCosts objects
             - sub_cost -- Integer cost to subsidize a plan (always 2)
             - making -- Name of plan currently being made.  "None" if no plan is in the works.
         """
