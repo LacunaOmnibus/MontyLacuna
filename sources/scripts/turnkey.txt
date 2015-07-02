@@ -30,10 +30,12 @@ maximum of 25 prisoners/spies per page.  If you want to look at page 3::
 
     >>> python bin/turnkey.py --page 3 ISS view_spies
 
-...or, if you want to look at all pages (this will take some time and is 
-likely to scroll off your screen)::
+...or, if you want to look at all pages::
 
     >>> python bin/turnkey.py --page 0 Earth view_prisoners
+
+Performing an action over all pages can take some time.  Also note that we'll 
+go through the pages backwards, not forwards.  This is expected.
 
 Executing and Releasing
 -----------------------
@@ -52,6 +54,11 @@ To execute all of the prisoners on the third page of results::
 
     >>> python bin/turnkey.py --page 3 Earth execute
 
+To execute all of the prisoners of level 50 or higher on the third page of 
+results::
+
+    >>> python bin/turnkey.py --level 50 --page 3 Earth execute
+
 To execute everybody (you monster!)::
 
     >>> python bin/turnkey.py --page 0 Earth execute
@@ -60,6 +67,13 @@ When releasing or executing prisoners, each individual prisoner must be
 released or executed separately.  This means that if you have 100 prisoners, 
 the process will use 100 RPCs and take 100 seconds.  Time your actions 
 accordingly.
+
+Caching
+-------
+When dealing with prisoners, you generally want up-to-the-minute information.  
+So only your planets list and the prison (Police Station or Security Ministry, 
+as the case may be) building itself will be cached.  Information on spies and 
+prisoners will be fetched fresh each time.
 
 Full Documentation
 ------------------

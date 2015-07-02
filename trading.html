@@ -251,53 +251,78 @@ empire_name     Name of the sending empire
 <dd><p>Accepts a trade from the market.  When buying from the SST market,
 an additional 1 E processing cost is automatically charged in addition
 to the &#8216;ask&#8217; price displayed for the trade.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>trade_id</strong> (<em>int</em>) &#8211; ID of the trade to purchase.</td>
+</tr>
+</tbody>
+</table>
 <p>Requires captcha.</p>
-<p>Requires &#8216;trade_id&#8217;, integer ID of the trade to purchase.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.trading.TradeBldg.get_glyph_summary">
 <code class="descname">get_glyph_summary</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.trading.TradeBldg.get_glyph_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get glyphs available to be added to a trade as merchandise.</p>
-<dl class="docutils">
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>glyphs</strong> &#8211;<ul class="simple">
 <li>glyphs &#8211; List of <a class="reference internal" href="glyph.html#lacuna.glyph.OwnedGlyph" title="lacuna.glyph.OwnedGlyph"><code class="xref py py-class docutils literal"><span class="pre">lacuna.glyph.OwnedGlyph</span></code></a> objects.</li>
 <li>space_used &#8211; Amount of cargo space used by each prisoner.
 Always 10000.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.trading.TradeBldg.get_plan_summary">
 <code class="descname">get_plan_summary</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.trading.TradeBldg.get_plan_summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get plans available to be added to a trade as merchandise.</p>
-<dl class="docutils">
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>plans_summary</strong> &#8211;<ul class="simple">
 <li>plans &#8211; List of <a class="reference internal" href="plan.html#lacuna.plan.OwnedPlan" title="lacuna.plan.OwnedPlan"><code class="xref py py-class docutils literal"><span class="pre">lacuna.plan.OwnedPlan</span></code></a> objects.</li>
 <li>space_used &#8211; Amount of cargo space used by each prisoner.
 Always 10000.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.trading.TradeBldg.get_prisoners">
 <code class="descname">get_prisoners</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.trading.TradeBldg.get_prisoners" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get prisoners available to be added to a trade as merchandise.</p>
-<dl class="docutils">
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>prisoner_details</strong> &#8211;<ul class="simple">
 <li>prisoners &#8211; List of <a class="reference internal" href="spy.html#lacuna.spy.Prisoner" title="lacuna.spy.Prisoner"><code class="xref py py-class docutils literal"><span class="pre">lacuna.spy.Prisoner</span></code></a> objects.</li>
 <li>space_used &#8211; Amount of cargo space used by each prisoner.
 Always 350.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -307,22 +332,37 @@ Always 350.</li>
 <p>These are <em>not</em> ships available to carry trade cargo.  These are ships
 that are available <em>as</em> cargo - these ships can be traded, but can&#8217;t
 necessarily carry a trade.</p>
-<dl class="docutils">
-<dt>Returns a tuple:</dt>
-<dd><ul class="first last simple">
-<li>ships &#8211; List of <a class="reference internal" href="ship.html#lacuna.ship.TradeableShip" title="lacuna.ship.TradeableShip"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TradeableShip</span></code></a> objects.</li>
-<li>space_used &#8211; Amount of cargo space used by each ship.  Always
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>ship_details</strong> &#8211;<ul class="simple">
+<li>ships (list): of <a class="reference internal" href="ship.html#lacuna.ship.TradeableShip" title="lacuna.ship.TradeableShip"><code class="xref py py-class docutils literal"><span class="pre">lacuna.ship.TradeableShip</span></code></a> objects.</li>
+<li>space_used (int): Amount of cargo space used by each ship.  Always
 10000.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.trading.TradeBldg.get_stored_resources">
 <code class="descname">get_stored_resources</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.trading.TradeBldg.get_stored_resources" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get resources stored onsite and available for trading.</p>
-<p>Returns a <a class="reference internal" href="resource.html#lacuna.resource.StoredResources" title="lacuna.resource.StoredResources"><code class="xref py py-class docutils literal"><span class="pre">lacuna.resource.StoredResources</span></code></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>resources</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="resource.html#lacuna.resource.StoredResources" title="lacuna.resource.StoredResources">lacuna.resource.StoredResources</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -334,22 +374,18 @@ necessarily carry a trade.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>page_number</strong> (<em>optional int</em>) &#8211; page number to view.  25 trades
-shown per page.  Defaults to 1.i</li>
-<li><strong>filter</strong> (<em>optional str</em>) &#8211; narrow down the types of trades
-returned.</li>
+<li><strong>page_number</strong> (<em>int</em>) &#8211; page number to view.  25 trades shown per page.  Defaults to 1.</li>
+<li><strong>filter</strong> (<em>str</em>) &#8211; narrow down the types of trades returned.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>Trades on the market:</p>
-<div class="highlight-python"><div class="highlight"><pre>- trades -- List of :class:`lacuna.trading.ExistingTrade` objects
-- count -- Total number of trades you have up
-- page_number -- The page that the &quot;trades&quot; list appeared on.
-</pre></div>
-</div>
-<blockquote>
-<div><p>Same value that you passed as an argument, or 1.</p>
-</div></blockquote>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p><strong>trades</strong> &#8211;</p>
+<ul class="simple">
+<li>trades &#8211; List of <a class="reference internal" href="#lacuna.trading.ExistingTrade" title="lacuna.trading.ExistingTrade"><code class="xref py py-class docutils literal"><span class="pre">lacuna.trading.ExistingTrade</span></code></a> objects</li>
+<li>count &#8211; Total number of trades you have up</li>
+<li>page_number &#8211; The page that the &#8220;trades&#8221; list appeared on.
+Same value that you passed as an argument, or 1.</li>
+</ul>
 </p>
 </td>
 </tr>
@@ -386,16 +422,15 @@ returned.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>page_number</strong> (<em>optional int</em>) &#8211; page number to view.  25 trades
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>page_number</strong> (<em>int</em>) &#8211; page number to view.  25 trades
 shown per page.  Defaults to 1.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">representing your trades:<div class="highlight-python"><div class="highlight"><pre>- trades -- List of :class:`lacuna.trading.ExistingTrade` objects
-- count -- Total number of trades you have up
-- page_number -- The page that the &quot;trades&quot; list appeared on.
-</pre></div>
-</div>
-<blockquote>
-<div>Same value that you passed as an argument, or 1.</div></blockquote>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>trades_details</strong> &#8211;<ul class="simple">
+<li>trades &#8211; List of <a class="reference internal" href="#lacuna.trading.ExistingTrade" title="lacuna.trading.ExistingTrade"><code class="xref py py-class docutils literal"><span class="pre">lacuna.trading.ExistingTrade</span></code></a> objects</li>
+<li>count &#8211; Total number of trades you have up</li>
+<li>page_number &#8211; The page that the &#8220;trades&#8221; list appeared on.
+Same value that you passed as an argument, or 1.</li>
+</ul>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>

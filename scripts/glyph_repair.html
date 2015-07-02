@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Turnkey (Prisoner Management) &mdash; Monty Lacuna 0.1 documentation</title>
+  <title>Glyph Repair &mdash; Monty Lacuna 0.1 documentation</title>
   
 
   
@@ -34,8 +34,8 @@
   
     <link rel="top" title="Monty Lacuna 0.1 documentation" href="../index.html"/>
         <link rel="up" title="MontyLacuna Scripts" href="index.html"/>
-        <link rel="next" title="Update MontyLacuna" href="update.html"/>
-        <link rel="prev" title="Train Spies" href="train_spies.html"/> 
+        <link rel="next" title="Post Starter Kit" href="post_starter_kit.html"/>
+        <link rel="prev" title="Excavators Report" href="excavs_report.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -167,10 +167,10 @@
       
           <li><a href="index.html">MontyLacuna Scripts</a> &raquo;</li>
       
-    <li>Turnkey (Prisoner Management)</li>
+    <li>Glyph Repair</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../sources/scripts/turnkey.txt" rel="nofollow"> View page source</a>
+          <a href="../sources/scripts/glyph_repair.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -178,136 +178,61 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="turnkey-prisoner-management">
-<span id="turnkey"></span><h1>Turnkey (Prisoner Management)<a class="headerlink" href="#turnkey-prisoner-management" title="Permalink to this headline">¶</a></h1>
-<p>Displays, releases, or executes foreign spies in either a Security Ministry
-(on a colony) or a Police Station (on a space station).</p>
-<div class="section" id="viewing-spies-and-prisoners">
-<h2>Viewing Spies and Prisoners<a class="headerlink" href="#viewing-spies-and-prisoners" title="Permalink to this headline">¶</a></h2>
-<p>View the prisoners in a Security Ministry&#8217;s prison:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">view_prisoners</span>
+  <div class="section" id="glyph-repair">
+<span id="id1"></span><h1>Glyph Repair<a class="headerlink" href="#glyph-repair" title="Permalink to this headline">¶</a></h1>
+<p>Repairs any damaged glyph buildings on a given planet:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">glyph_repair</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span>
 </pre></div>
 </div>
-<p>It works the same way on a Police Station&#8217;s prison:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="n">ISS</span> <span class="n">view_prisoners</span>
+<p>Or on all of your planets:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">glyph_repair</span><span class="o">.</span><span class="n">py</span> <span class="nb">all</span>
 </pre></div>
 </div>
-<p>The script will figure out that <code class="docutils literal"><span class="pre">Earth</span></code> is a colony and that <code class="docutils literal"><span class="pre">ISS</span></code> is a
-space station, so you don&#8217;t have to specify whether you&#8217;re dealing with a
-Security Ministry or Police Station.</p>
-<p>Viewing foreign spies works the same way to display all free foreign spies
-whose level is lower than the Security Ministry&#8217;s or Police Station&#8217;s level:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="n">ISS</span> <span class="n">view_spies</span>
+<p>If you&#8217;ve run this or any other MontyLacuna script recently and you just now
+took damage, this script may not notice the damage because the previous planet
+state is cached, but you need those glyph buildings back up now now now:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">glyph_repair</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">fresh</span> <span class="nb">all</span>
 </pre></div>
 </div>
-<p>Each of the above will show you the prisoners or spies on page one, with a
-maximum of 25 prisoners/spies per page.  If you want to look at page 3:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">page</span> <span class="mi">3</span> <span class="n">ISS</span> <span class="n">view_spies</span>
-</pre></div>
-</div>
-<p>...or, if you want to look at all pages:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">page</span> <span class="mi">0</span> <span class="n">Earth</span> <span class="n">view_prisoners</span>
-</pre></div>
-</div>
-<p>Performing an action over all pages can take some time.  Also note that we&#8217;ll
-go through the pages backwards, not forwards.  This is expected.</p>
-</div>
-<div class="section" id="executing-and-releasing">
-<h2>Executing and Releasing<a class="headerlink" href="#executing-and-releasing" title="Permalink to this headline">¶</a></h2>
-<p>You can&#8217;t release or execute foreign spies until they&#8217;re in prison.  So if
-<code class="docutils literal"><span class="pre">view_spies</span></code> showed that there are Bad Dudes around, you&#8217;ll need to run
-security sweeps to catch them so that they become prisoners.  See
-<a class="reference internal" href="assign_spies.html#assign-spies"><span>Assign Spies</span></a> for that.</p>
-<p>To release all of the prisoners on the first page of results:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="n">Earth</span> <span class="n">release</span>
-<span class="go">Page 1 is the default, so there&#39;s no need to pass the &#39;--page&#39; argument</span>
-<span class="go">here.</span>
-</pre></div>
-</div>
-<p>To execute all of the prisoners on the third page of results:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">page</span> <span class="mi">3</span> <span class="n">Earth</span> <span class="n">execute</span>
-</pre></div>
-</div>
-<p>To execute all of the prisoners of level 50 or higher on the third page of
-results:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">level</span> <span class="mi">50</span> <span class="o">--</span><span class="n">page</span> <span class="mi">3</span> <span class="n">Earth</span> <span class="n">execute</span>
-</pre></div>
-</div>
-<p>To execute everybody (you monster!):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">turnkey</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">page</span> <span class="mi">0</span> <span class="n">Earth</span> <span class="n">execute</span>
-</pre></div>
-</div>
-<p>When releasing or executing prisoners, each individual prisoner must be
-released or executed separately.  This means that if you have 100 prisoners,
-the process will use 100 RPCs and take 100 seconds.  Time your actions
-accordingly.</p>
-</div>
-<div class="section" id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
-<p>When dealing with prisoners, you generally want up-to-the-minute information.
-So only your planets list and the prison (Police Station or Security Ministry,
-as the case may be) building itself will be cached.  Information on spies and
-prisoners will be fetched fresh each time.</p>
+<div class="section" id="but-what-about-the-non-glyph-buildings">
+<h2>&#8220;But what about the non-glyph buildings?&#8221;<a class="headerlink" href="#but-what-about-the-non-glyph-buildings" title="Permalink to this headline">¶</a></h2>
+<p>Those might get added later.  But for now, this script can safely be run on a
+schedule, because glyph building repairs are free and won&#8217;t use up any of your
+resources.</p>
 </div>
 <div class="section" id="full-documentation">
 <h2>Full Documentation<a class="headerlink" href="#full-documentation" title="Permalink to this headline">¶</a></h2>
 <p>For complete help, see the script&#8217;s help documentation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">build_ships</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="nb">bin</span><span class="o">/</span><span class="n">glyph_repair</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
 <dl class="class">
-<dt id="lacuna.binutils.libturnkey.Turnkey">
-<em class="property">class </em><code class="descclassname">lacuna.binutils.libturnkey.</code><code class="descname">Turnkey</code><a class="headerlink" href="#lacuna.binutils.libturnkey.Turnkey" title="Permalink to this definition">¶</a></dt>
+<dt id="lacuna.binutils.libglyph_repair.GlyphRepair">
+<em class="property">class </em><code class="descclassname">lacuna.binutils.libglyph_repair.</code><code class="descname">GlyphRepair</code><a class="headerlink" href="#lacuna.binutils.libglyph_repair.GlyphRepair" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../getting_started_writing.html#lacuna.binutils.libbin.Script" title="lacuna.binutils.libbin.Script"><code class="xref py py-class docutils literal"><span class="pre">lacuna.binutils.libbin.Script</span></code></a></p>
-<p>Manages prisoners in either a Security Ministry or Police Station jail.</p>
 <dl class="method">
-<dt id="lacuna.binutils.libturnkey.Turnkey.execute_prisoners">
-<code class="descname">execute_prisoners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libturnkey.Turnkey.execute_prisoners" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute the prisoners on the selected page.</p>
+<dt id="lacuna.binutils.libglyph_repair.GlyphRepair.do_repairs">
+<code class="descname">do_repairs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libglyph_repair.GlyphRepair.do_repairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Repairs all glyph buildings found to be damaged on the current planet.</p>
+<p>You <strong>MUST</strong> call <code class="docutils literal"><span class="pre">set_current_planet</span></code> before calling this.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="lacuna.binutils.libturnkey.Turnkey.get_pages_for">
-<code class="descname">get_pages_for</code><span class="sig-paren">(</span><em>num_spies: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libturnkey.Turnkey.get_pages_for" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of pages needed to contain a certain number of spies.</p>
+<dt id="lacuna.binutils.libglyph_repair.GlyphRepair.find_damage">
+<code class="descname">find_damage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libglyph_repair.GlyphRepair.find_damage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the current planet has damaged glyph buildings.</p>
+<p>You <strong>MUST</strong> call <code class="docutils literal"><span class="pre">set_current_planet</span></code> before calling this.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_spies</strong> (<em>int</em>) &#8211; The number of spies onsite</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>num</strong> &#8211;
+The number of damaged glyph buildings.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>pages</strong> &#8211;
-The number of pages needed to cover that many spies.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="method">
-<dt id="lacuna.binutils.libturnkey.Turnkey.perform_chosen_task">
-<code class="descname">perform_chosen_task</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libturnkey.Turnkey.perform_chosen_task" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call the method indicated by the &#8216;task&#8217; option.  If &#8216;&#8211;page&#8217; is 0,
-calls that method once for each page of results.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lacuna.binutils.libturnkey.Turnkey.release_prisoners">
-<code class="descname">release_prisoners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libturnkey.Turnkey.release_prisoners" title="Permalink to this definition">¶</a></dt>
-<dd><p>Release the prisoners on the selected page.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lacuna.binutils.libturnkey.Turnkey.view_foreign_spies">
-<code class="descname">view_foreign_spies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libturnkey.Turnkey.view_foreign_spies" title="Permalink to this definition">¶</a></dt>
-<dd><p>View un-captured foreign spies on the selected page.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lacuna.binutils.libturnkey.Turnkey.view_prisoners">
-<code class="descname">view_prisoners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.binutils.libturnkey.Turnkey.view_prisoners" title="Permalink to this definition">¶</a></dt>
-<dd><p>View the prisoners on the selected page.</p>
 </dd></dl>
 
 </dd></dl>
@@ -321,10 +246,10 @@ calls that method once for each page of results.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="update.html" class="btn btn-neutral float-right" title="Update MontyLacuna">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="post_starter_kit.html" class="btn btn-neutral float-right" title="Post Starter Kit">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="train_spies.html" class="btn btn-neutral" title="Train Spies"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="excavs_report.html" class="btn btn-neutral" title="Excavators Report"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

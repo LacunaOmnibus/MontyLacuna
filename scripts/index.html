@@ -78,6 +78,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">MontyLacuna Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#starter-scripts">Starter Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#regular-scripts">Regular Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gui-scripts">GUI Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="abbreviations.html">Body Abbreviations</a><ul>
@@ -212,6 +213,25 @@ if your arguments contain spaces, you have to quote them:</p>
 </div>
 <p>When you&#8217;re running MontyLacuna scripts, don&#8217;t forget that you can set up and
 use <a class="reference internal" href="abbreviations.html#abbrvs"><span>Body Abbreviations</span></a> for your colony and space station names.</p>
+</div>
+<div class="section" id="gui-scripts">
+<h2>GUI Scripts<a class="headerlink" href="#gui-scripts" title="Permalink to this headline">¶</a></h2>
+<p>These are scripts that start up a graphical program, the same general idea as
+LacunaWax, except started from a script instead of from an executable you have
+to install.</p>
+<p>This is still in the early stages, so any GUI scripts may not function
+properly or completely yet, and any information in this section may change
+drastically and frequently.</p>
+<p>GUI scripts are kept in the <code class="docutils literal"><span class="pre">gui</span></code> directory under the main Monty directory.</p>
+<p><em>If you&#8217;ve had MontyLacuna installed for a while</em>, note that the instructions
+you followed probably told you to install two Python prerequisites.  To get
+these GUI programs to run, you&#8217;re going to need to install two more, but doing
+this can&#8217;t be much easier:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyside</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytz</span>
+</pre></div>
+</div>
+<p>And now you should be all set to run the Monty GUI programs.</p>
 <div class="section" id="scripts-that-tell-you-about-stuff">
 <h3>Scripts that tell you about stuff<a class="headerlink" href="#scripts-that-tell-you-about-stuff" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
@@ -228,18 +248,30 @@ use <a class="reference internal" href="abbreviations.html#abbrvs"><span>Body Ab
 <h3>Scripts that do stuff<a class="headerlink" href="#scripts-that-do-stuff" title="Permalink to this headline">¶</a></h3>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="allow_friendly_bhg.html">Allow Friendly BHG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assign_spies.html">Assign Spies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_ships.html">Build Ships</a></li>
 <li class="toctree-l1"><a class="reference internal" href="excavs_report.html">Excavators Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glyph_repair.html">Glyph Repair</a></li>
 <li class="toctree-l1"><a class="reference internal" href="post_starter_kit.html">Post Starter Kit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recall_all_ships.html">Recall All Ships</a></li>
 <li class="toctree-l1"><a class="reference internal" href="recall_all_spies.html">Recall All Spies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scuttle_ships.html">Scuttle Ships</a></li>
 <li class="toctree-l1"><a class="reference internal" href="send_excavs.html">Send excavs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="search_archmin.html">Search Archaeology Ministry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ss_lab.html">SS Lab</a></li>
 <li class="toctree-l1"><a class="reference internal" href="train_spies.html">Train Spies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="turnkey.html">Turnkey (Prisoner Management)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="update.html">Update MontyLacuna</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>GUI scripts<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gui/abbreviations.html">Abbreviations GUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gui/ships.html">Ship GUI</a></li>
 </ul>
 </div>
 </div>

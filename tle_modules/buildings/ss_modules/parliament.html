@@ -79,6 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../scripts/index.html">MontyLacuna Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../scripts/index.html#starter-scripts">Starter Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../scripts/index.html#regular-scripts">Regular Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../scripts/index.html#gui-scripts">GUI Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../scripts/abbreviations.html">Body Abbreviations</a><ul>
@@ -319,6 +320,26 @@ element 0 being &#8220;today&#8221;.</p>
 <dt id="lacuna.buildings.ss_modules.parliament.parliament">
 <em class="property">class </em><code class="descclassname">lacuna.buildings.ss_modules.parliament.</code><code class="descname">parliament</code><span class="sig-paren">(</span><em>client</em>, <em>body_id: int=0</em>, <em>building_id: int=0</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../building.html#lacuna.building.MyBuilding" title="lacuna.building.MyBuilding"><code class="xref py py-class docutils literal"><span class="pre">lacuna.building.MyBuilding</span></code></a></p>
+<dl class="method">
+<dt id="lacuna.buildings.ss_modules.parliament.parliament.allow_bhg_by_alliance">
+<code class="descname">allow_bhg_by_alliance</code><span class="sig-paren">(</span><em>ally_id: int</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.allow_bhg_by_alliance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows a friendly alliance to use their BHG in the jurisdiction of this
+station even if BHG restriction laws are on.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ally_id</strong> (<em>int</em>) &#8211; The ID of the alliance to allow through.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>prop</strong> &#8211;
+The submitted proposition.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.ss_modules.parliament.Proposition" title="lacuna.buildings.ss_modules.parliament.Proposition">Proposition</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="lacuna.buildings.ss_modules.parliament.parliament.cast_vote">
 <code class="descname">cast_vote</code><span class="sig-paren">(</span><em>prop_id: int</em>, <em>vote_id: int=1</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.ss_modules.parliament.parliament.cast_vote" title="Permalink to this definition">¶</a></dt>
@@ -682,7 +703,8 @@ just doesn&#8217;t do anything.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>body_id -- Integer ID of the Space Station (not of the parliament</strong> (<em>-</em>) &#8211; building.)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>body_id</strong> (<em>int</em>) &#8211; ID of the Space Station (not of the parliament
+building).</td>
 </tr>
 </tbody>
 </table>

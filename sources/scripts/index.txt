@@ -45,6 +45,28 @@ if your arguments contain spaces, you have to quote them::
 When you're running MontyLacuna scripts, don't forget that you can set up and 
 use :ref:`abbrvs` for your colony and space station names.
 
+GUI Scripts
+-----------
+These are scripts that start up a graphical program, the same general idea as 
+LacunaWax, except started from a script instead of from an executable you have 
+to install.
+
+This is still in the early stages, so any GUI scripts may not function 
+properly or completely yet, and any information in this section may change 
+drastically and frequently.
+
+GUI scripts are kept in the ``gui`` directory under the main Monty directory.  
+
+*If you've had MontyLacuna installed for a while*, note that the instructions 
+you followed probably told you to install two Python prerequisites.  To get 
+these GUI programs to run, you're going to need to install two more, but doing 
+this can't be much easier::
+
+    >>> pip install pyside
+    >>> pip install pytz
+
+And now you should be all set to run the Monty GUI programs.
+
 Scripts that tell you about stuff
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. toctree::
@@ -62,16 +84,27 @@ Scripts that do stuff
 .. toctree::
    :maxdepth: 1
 
+   allow_friendly_bhg
    assign_spies
    build_ships
    excavs_report
+   glyph_repair
    post_starter_kit
    recall_all_ships
    recall_all_spies
    scuttle_ships
    send_excavs
    search_archmin
+   ss_lab
    train_spies
    turnkey
    update
+
+GUI scripts
+~~~~~~~~~~~
+.. toctree::
+   :maxdepth: 1
+
+   gui/abbreviations
+   gui/ships
 

@@ -239,6 +239,31 @@ file.</p>
 <p>If a config_file and config_section are passed in, the values in that config
 file take precedence over any other values, including passed-in values.</p>
 <dl class="method">
+<dt id="lacuna.clients.Guest.get_sleeptime">
+<code class="descname">get_sleeptime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.get_sleeptime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the number of seconds left in the current minute, plus one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>seconds</strong> &#8211;
+The number of seconds until the next wallclock<blockquote>
+<div>minute begins.</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+<p>When we hit the 60 RPC/min limit, we can&#8217;t use any more RPCs this
+minute.  Instead of sleeping for a full 60 seconds, we only need to
+wait out the remainder of this current minute, so this method returns
+the number of seconds left in the current minute.</p>
+<p>One second is added to the time returned to ensure we&#8217;re comfortably
+in the next minute.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="lacuna.clients.Guest.get_stats">
 <code class="descname">get_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.clients.Guest.get_stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a <code class="xref py py-class docutils literal"><span class="pre">lacuna.Stats</span></code> object</p>

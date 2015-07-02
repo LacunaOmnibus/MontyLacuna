@@ -187,48 +187,17 @@
 <dt id="lacuna.buildings.callable.embassy.AllianceData">
 <em class="property">class </em><code class="descclassname">lacuna.buildings.callable.embassy.</code><code class="descname">AllianceData</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.AllianceData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
-<dl class="attribute">
-<dt>
-<code class="descname">announcements   None,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">date_created    '21 10 2014 21</code></dt>
-<dd><p>56:34 +0000&#8217;,</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">description     None,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">forum_uri       None,</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">id              '1606',</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">leader_id       '23598',</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">members         [{'empire_id'</code></dt>
-<dd><p>&#8216;23598&#8217;, &#8216;name&#8217;: &#8216;tmtowtdi&#8217;}],</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">name            'Test Alliance'     },</code></dt>
-<dd></dd></dl>
-
+<p>Object Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>announcements   None,
+date_created    &#39;21 10 2014 21:56:34 +0000&#39;,
+description     None,
+forum_uri       None,
+id              &#39;1606&#39;,
+leader_id       &#39;23598&#39;,
+members         [{&#39;empire_id&#39;: &#39;23598&#39;, &#39;name&#39;: &#39;tmtowtdi&#39;}],
+name            &#39;Test Alliance&#39;     },
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
@@ -236,21 +205,12 @@
 <em class="property">class </em><code class="descclassname">lacuna.buildings.callable.embassy.</code><code class="descname">AllianceInvited</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.AllianceInvited" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>This is an invitation your empire has received from an alliance.</p>
-<dl class="attribute">
-<dt>
-<code class="descname">id              5810                ID of the invite itself</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">alliance_id     1234                ID of the invited empire</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">name            United Alliance     Name of the inviting alliance</code></dt>
-<dd></dd></dl>
-
+<p>Object Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id              Integer ID of the invite itself
+alliance_id     Integer ID of the invited empire
+name            Name of the inviting alliance
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
@@ -258,21 +218,12 @@
 <em class="property">class </em><code class="descclassname">lacuna.buildings.callable.embassy.</code><code class="descname">InvitedGuest</code><span class="sig-paren">(</span><em>client</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.InvitedGuest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../bc.html#lacuna.bc.SubClass" title="lacuna.bc.SubClass"><code class="xref py py-class docutils literal"><span class="pre">lacuna.bc.SubClass</span></code></a></p>
 <p>This is an invite your alliance sends out to an empire.</p>
-<dl class="attribute">
-<dt>
-<code class="descname">id          5810                ID of the invite itself</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">empire_id   1234                ID of the invited empire</code></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">name        Invitee One         Name of the invited empire</code></dt>
-<dd></dd></dl>
-
+<p>Object Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>id          Integer ID of the invite itself
+empire_id   Integer ID of the invited empire
+name        Name of the invited empire
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
@@ -280,44 +231,19 @@
 <em class="property">class </em><code class="descclassname">lacuna.buildings.callable.embassy.</code><code class="descname">Stash</code><span class="sig-paren">(</span><em>client: object</em>, <em>mydict: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.Stash" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>The current contents of the alliance stash.</p>
-<dl class="attribute">
-<dt>
-<code class="descname">stash                       Dict of items currently in the stash</code></dt>
-<dd><dl class="docutils">
-<dt>{   &#8220;gold&#8221; <span class="classifier-delimiter">:</span> <span class="classifier">4500,</span></dt>
-<dd>&#8220;water&#8221; : 1000,
-...     }</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">stored                      Dict of items currently stored on your planet; these</code></dt>
-<dd><blockquote>
-<div><dl class="docutils">
-<dt>items can be exchanged with the stash</dt>
-<dd><dl class="first last docutils">
-<dt>{   &#8220;bauxite&#8221; <span class="classifier-delimiter">:</span> <span class="classifier">5500,</span></dt>
-<dd>&#8220;energy&#8221; : 9000,</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
-<p>...     }</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">max_exchange_size           Integer limit you may include in a single</code></dt>
-<dd><p>exchange</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt>
-<code class="descname">exchanges_remaining_today   Integer number of exchanges you have left</code></dt>
-<dd><p>for the day.</p>
-</dd></dl>
-
+<p>Object Attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>stash                       Dict of items currently in the stash.  Key
+                            is item name (&quot;gold&quot;, &quot;water&quot;, etc), value
+                            is integer quantity stored.
+stored                      Dict of items currently stored on your
+                            planet that can be exchanged with the
+                            stash.  ``Item_name =&gt; quantity``.
+max_exchange_size           Integer limit you may include in a single
+                            exchange
+exchanges_remaining_today   Integer number of exchanges you have left
+                            for the day.
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="class">
@@ -332,11 +258,15 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>invite_id -- Integer ID of the invitation to accept.</strong> (<em>-</em>) &#8211; See <a class="reference internal" href="#lacuna.buildings.callable.embassy.embassy.get_my_invites" title="lacuna.buildings.callable.embassy.embassy.get_my_invites"><code class="xref py py-meth docutils literal"><span class="pre">get_my_invites()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>invite_id</strong> (<em>int</em>) &#8211; ID of the invitation to accept.  See
+<a class="reference internal" href="#lacuna.buildings.callable.embassy.embassy.get_my_invites" title="lacuna.buildings.callable.embassy.embassy.get_my_invites"><code class="xref py py-meth docutils literal"><span class="pre">get_my_invites()</span></code></a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>alliance</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData">AllianceData</a></td>
 </tr>
 </tbody>
 </table>
-<p>Returns a <a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.embassy.AllianceData</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -348,11 +278,14 @@ called by the current alliance leader.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>empire_id -- Integer ID of the empire that should become the new</strong> (<em>-</em>) &#8211; leader.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>empire_id</strong> (<em>int</em>) &#8211; ID of the empire that should become the new leader.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>alliance</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData">AllianceData</a></td>
 </tr>
 </tbody>
 </table>
-<p>Returns an <a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.embassy.AllianceData</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -363,11 +296,14 @@ called by the current alliance leader.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alliance_name -- String name of the new alliance.</strong> (<em>-</em>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alliance_name</strong> (<em>str</em>) &#8211; String name of the new alliance.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>alliance</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData">lacuna.buildings.callable.embassy.AllianceData</a></td>
 </tr>
 </tbody>
 </table>
-<p>Returns an <a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.embassy.AllianceData</span></code></a> object.</p>
 </dd></dl>
 
 <dl class="method">
@@ -386,7 +322,17 @@ be converted to asteroids.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>donation -- Dict of items to donate</strong> (<em>-</em>) &#8211; <code class="docutils literal"><span class="pre">{</span> <span class="pre">'apple':</span> <span class="pre">10,</span> <span class="pre">'burger':</span> <span class="pre">20,</span> <span class="pre">...</span> <span class="pre">}</span></code></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>donation</strong> (<em>dict</em>) &#8211; items to donate.  Key is the string name of the item, value is the
+integer quantity to donate.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>stash</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.Stash" title="lacuna.buildings.callable.embassy.Stash">Stash</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">Error</span></code> (<a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a>) &#8211;
+1009 if the donation would increase the
+stash to more than 500,000 resource
+units.</td>
 </tr>
 </tbody>
 </table>
@@ -395,9 +341,6 @@ be converted to asteroids.</p>
 in any combination.  Once the stash has 500,000 resources in it,
 donation is no longer possible.  At that point, all additions to and
 removals from the stash must be done by <a class="reference internal" href="#lacuna.buildings.callable.embassy.embassy.exchange_with_stash" title="lacuna.buildings.callable.embassy.embassy.exchange_with_stash"><code class="xref py py-meth docutils literal"><span class="pre">exchange_with_stash()</span></code></a>.</p>
-<p>Returns an <a class="reference internal" href="#lacuna.buildings.callable.embassy.Stash" title="lacuna.buildings.callable.embassy.Stash"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.embassy.Stash</span></code></a> object.</p>
-<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> 1009 if the donation
-would increase the stash to more than 500,000 resource units.</p>
 </dd></dl>
 
 <dl class="method">
@@ -409,16 +352,34 @@ in the stash.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>donation -- Dict of items to donate.</strong> (<em>-</em>) &#8211; <code class="docutils literal"><span class="pre">{</span> <span class="pre">'apple':</span> <span class="pre">10,</span> <span class="pre">'burger':</span> <span class="pre">20</span> <span class="pre">}</span></code></li>
-<li><strong>request -- Dict of items to request.</strong> (<em>-</em>) &#8211; <code class="docutils literal"><span class="pre">{</span> <span class="pre">'wheat':</span> <span class="pre">30</span> <span class="pre">}</span></code></li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>donation</strong> (<em>dict</em>) &#8211; <code class="docutils literal"><span class="pre">str</span> <span class="pre">name</span> <span class="pre">=&gt;</span> <span class="pre">int</span> <span class="pre">quantity</span></code> (to donate)</li>
+<li><strong>request</strong> (<em>dict</em>) &#8211; <code class="docutils literal"><span class="pre">str</span> <span class="pre">name</span> <span class="pre">=&gt;</span> <span class="pre">int</span> <span class="pre">quantity</span></code> (to receive)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>stash</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><a class="reference internal" href="#lacuna.buildings.callable.embassy.Stash" title="lacuna.buildings.callable.embassy.Stash">Stash</a></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">1009</span></code> (<a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a>) &#8211;
+if the donation and request quantities do
+not match, or if you do not have enough
+resources on hand to cover your specified
+donation.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">1010</span></code> (<a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a>) &#8211;
+if the stash does not contain the
+requested res.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>The total quantity of resources you wish to donate much exactly match the
-number of resources you request:</p>
+<p>The total quantity of resources you wish to donate much exactly match the number of
+resources you request:</p>
 <dl class="docutils">
 <dt>This is fine:</dt>
 <dd><ul class="first last simple">
@@ -433,12 +394,6 @@ number of resources you request:</p>
 </ul>
 </dd>
 </dl>
-<p>Returns an <a class="reference internal" href="#lacuna.buildings.callable.embassy.Stash" title="lacuna.buildings.callable.embassy.Stash"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.embassy.Stash</span></code></a> object.</p>
-<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> 1009 if the donation and
-request quantities do not match, or if you do not have enough resources
-on hand to cover your specified donation.</p>
-<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> 1010 if the stash does not
-contain the requested res.</p>
 </dd></dl>
 
 <dl class="method">
@@ -451,8 +406,8 @@ alliance leader.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>empire_id -- Integer ID of the empire to expel.</strong> (<em>-</em>) &#8211; </li>
-<li><strong>message -- Optional string message about why the member is being</strong> (<em>-</em>) &#8211; removed from the alliance.</li>
+<li><strong>empire_id</strong> (<em>int</em>) &#8211; ID of the empire to expel.</li>
+<li><strong>message</strong> (<em>str</em>) &#8211; message about why the member is being removed from the alliance.</li>
 </ul>
 </td>
 </tr>
@@ -464,31 +419,70 @@ alliance leader.</p>
 <dt id="lacuna.buildings.callable.embassy.embassy.get_alliance_status">
 <code class="descname">get_alliance_status</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.embassy.get_alliance_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets status of your alliance.</p>
-<p>Returns an <code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.empire.AllianceData</span></code> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>status</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData">AllianceData</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.embassy.embassy.get_my_invites">
 <code class="descname">get_my_invites</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.embassy.get_my_invites" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets list of alliance invitations received by your empire.</p>
-<p>Returns a list of AllianceInvited objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>invites</strong> &#8211;
+list of objects</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceInvited" title="lacuna.buildings.callable.embassy.AllianceInvited">AllianceInvited</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.embassy.embassy.get_pending_invites">
 <code class="descname">get_pending_invites</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.embassy.get_pending_invites" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get list of sent, but not yet accepted, invites.</p>
-<p>Returns a list of InvitedGuest objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>invites</strong> &#8211;
+list of objects.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.InvitedGuest" title="lacuna.buildings.callable.embassy.InvitedGuest">InvitedGuest</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.embassy.embassy.leave_alliance">
 <code class="descname">leave_alliance</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.embassy.leave_alliance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Leaves the current alliance.</p>
-<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> 1010 if you are the
-leader of the alliance.  In that case, you cannot leave.  Instead, you
-must either turn membership over to another member or dissolve the
-alliance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>(lacuna.exceptions.ServerError) 1010 if you are the leader of the</strong> &#8211;</li>
+<li><strong>alliance.  In that case, you cannot leave.  Instead, you must</strong> &#8211;</li>
+<li><strong>either turn membership over to another member or dissolve the</strong> &#8211;</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">alliance.</span></code> &#8211;</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -505,8 +499,9 @@ alliance.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>invite_id -- Integer ID of the invitation to reject.</strong> (<em>-</em>) &#8211; </li>
-<li><strong>message -- Optional string message to be sent to the alliance</strong> (<em>-</em>) &#8211; leader about why you&#8217;re rejecting the invitation.</li>
+<li><strong>invite_id</strong> (<em>int</em>) &#8211; ID of the invitation to reject.</li>
+<li><strong>message</strong> (<em>str</em>) &#8211; message to be sent to the alliance leader about why you&#8217;re rejecting the
+invitation.</li>
 </ul>
 </td>
 </tr>
@@ -524,13 +519,17 @@ you&#8217;re not interested.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>invite_id -- Integer ID of the player to invite.</strong> (<em>-</em>) &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>invite_id</strong> (<em>int</em>) &#8211; ID of the player to invite.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal"><span class="pre">Error</span></code> (<a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a>) &#8211;
+1010 if
+the invitee is already a member of your
+alliance.  The invite is sent in the
+form of an in-game mail message.  It
+will appear in your mailbox&#8217;s Sent tab.</td>
 </tr>
 </tbody>
 </table>
-<p>Raises <a class="reference internal" href="../../../exceptions.html#lacuna.exceptions.ServerError" title="lacuna.exceptions.ServerError"><code class="xref py py-class docutils literal"><span class="pre">lacuna.exceptions.ServerError</span></code></a> 1010 if the invitee is
-already a member of your alliance.  The invite is sent in the form of an
-in-game mail message.  It will appear in your mailbox&#8217;s Sent tab.</p>
 </dd></dl>
 
 <dl class="method">
@@ -538,23 +537,34 @@ in-game mail message.  It will appear in your mailbox&#8217;s Sent tab.</p>
 <code class="descname">update_alliance</code><span class="sig-paren">(</span><em>named_args: dict</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.embassy.update_alliance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates some settings for your alliance.  Can only be called by the
 alliance leader.</p>
-<dl class="docutils">
-<dt>Requires a single dict of arguments:</dt>
-<dd><ul class="first last simple">
-<li>forum_uri &#8211; &#8216;<a class="reference external" href="http://www.example.com">http://www.example.com</a>&#8216;,</li>
-<li>description &#8211; &#8216;This is a public description&#8217;,</li>
-<li>announcements &#8211; &#8216;This is only visible to alliance members&#8217;,</li>
-</ul>
-</dd>
-</dl>
-<p>Returns an <a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.embassy.AllianceData</span></code></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<em>dict</em>) &#8211; Containing the keys <code class="docutils literal"><span class="pre">forum_uri</span></code>, <code class="docutils literal"><span class="pre">description</span></code>, and <code class="docutils literal"><span class="pre">annonucements</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>alliance</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.AllianceData" title="lacuna.buildings.callable.embassy.AllianceData">AllianceData</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="lacuna.buildings.callable.embassy.embassy.view_stash">
 <code class="descname">view_stash</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.buildings.callable.embassy.embassy.view_stash" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows what resources are in the alliance stash.</p>
-<p>Returns an <a class="reference internal" href="#lacuna.buildings.callable.embassy.Stash" title="lacuna.buildings.callable.embassy.Stash"><code class="xref py py-class docutils literal"><span class="pre">lacuna.buildings.callable.embassy.Stash</span></code></a> object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>stash</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#lacuna.buildings.callable.embassy.Stash" title="lacuna.buildings.callable.embassy.Stash">Stash</a></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -566,14 +576,15 @@ alliance leader.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>invite_id -- Integer ID of the invitation to withdraw.</strong> (<em>-</em>) &#8211; </li>
-<li><strong>message -- Optional string message that will be sent to the user</strong> (<em>-</em>) &#8211; explaining why their invite was withdrawn.
-See <a class="reference internal" href="#lacuna.buildings.callable.embassy.embassy.get_my_invites" title="lacuna.buildings.callable.embassy.embassy.get_my_invites"><code class="xref py py-meth docutils literal"><span class="pre">get_my_invites()</span></code></a></li>
+<li><strong>invite_id</strong> (<em>int</em>) &#8211; ID of the invitation to withdraw.</li>
+<li><strong>message</strong> (<em>str</em>) &#8211; message that will be sent to the user explaining why their invite was
+withdrawn.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p>See also <a class="reference internal" href="#lacuna.buildings.callable.embassy.embassy.get_my_invites" title="lacuna.buildings.callable.embassy.embassy.get_my_invites"><code class="xref py py-meth docutils literal"><span class="pre">get_my_invites()</span></code></a></p>
 </dd></dl>
 
 </dd></dl>

@@ -78,6 +78,7 @@
 <li class="toctree-l1"><a class="reference internal" href="scripts/index.html">MontyLacuna Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="scripts/index.html#starter-scripts">Starter Scripts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scripts/index.html#regular-scripts">Regular Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts/index.html#gui-scripts">GUI Scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scripts/abbreviations.html">Body Abbreviations</a><ul>
@@ -238,6 +239,31 @@ that won&#8217;t be encountered often, but it&#8217;s possible.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="lacuna.utils.Utils.squish">
+<code class="descname">squish</code><span class="sig-paren">(</span><em>string: str</em>, <em>lc: bool=False</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.utils.Utils.squish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Squish a string, optionally lowercasing it in the process.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> (<em>str</em>) &#8211; The string to squish.</li>
+<li><strong>lc_flag</strong> (<em>bool</em>) &#8211; Whether or not to also lowercase the string.  Defaults to False.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>squished_string</strong> &#8211;
+The squished string.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="lacuna.utils.Utils.summarize">
 <code class="descname">summarize</code><span class="sig-paren">(</span><em>string: str</em>, <em>mymax: int</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.utils.Utils.summarize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Summarizes a string, usually for inclusion in a report section
@@ -258,6 +284,28 @@ with a fixed width.</p>
 <code class="docutils literal"><span class="pre">abc...</span></code></p>
 <p>Returns the summarized string, or the original string if it was shorter
 than max.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lacuna.utils.Utils.tle2time">
+<code class="descname">tle2time</code><span class="sig-paren">(</span><em>tle_time: str</em><span class="sig-paren">)</span><a class="headerlink" href="#lacuna.utils.Utils.tle2time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a TLE datetime string into a datetime object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tle_datetime</strong> (<em>str</em>) &#8211; eg <code class="docutils literal"><span class="pre">30</span> <span class="pre">11</span> <span class="pre">2014</span> <span class="pre">21:40:31</span> <span class="pre">+0000</span></code>.
+The &#8220;+0000&#8221; is meant to be the timezone, but in TLE
+datetime strings this is always &#8220;+0000&#8221; (UTC), so
+this method is ignoring it, and it could actually
+be omitted from the passed-in string.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A <a class="reference external" href="https://docs.python.org/3.4/library/datetime.html">datetime.datetime</a> object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">datetime.datetime</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
