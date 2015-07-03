@@ -96,10 +96,6 @@ class PlanetSpyData():
             row = [ s.id, s.name, s.based_from.name, s.assignment, s.level, s.politics, s.mayhem,
                 s.theft, s.intel, s.offense_rating, s.defense_rating, s.available_on, s.seconds_remaining,
                 s.assigned_to.id, s.assigned_to.name, s.assigned_to.x, s.assigned_to.y,     ]
-            if hasattr(s, "to"):
-                row.append( s.to.name )
-            else:
-                row.append( '' )
             writer.writerow( row )
         
 
