@@ -18,7 +18,6 @@ class Utils():
         This method exists only to deal nicely with any caught exceptions, 
         which includes halting execution.
 
-
         Arguments:
             function (function): The function or method to call
             args (list): Any arguments that need to be passed to the function.

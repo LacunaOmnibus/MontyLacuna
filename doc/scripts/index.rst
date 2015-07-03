@@ -95,6 +95,7 @@ Scripts that do stuff
    scuttle_ships
    send_excavs
    search_archmin
+   ss_lab
    train_spies
    turnkey
    update

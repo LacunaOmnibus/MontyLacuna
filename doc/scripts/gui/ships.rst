@@ -4,6 +4,16 @@ Ship GUI
 
 Builds and scuttles ships.
 
+This script is a work in progress.  Ship scuttling works just fine.  Ship 
+building works fine if you're not building a lot.
+
+But the ship builder is supposed to be able to keep your build queues full, 
+continually building more ships until the total number you requested has been 
+built.  This part is still not exactly working correctly.
+
+Since the scuttler works, and is useful, the script has been added to Monty, 
+but please keep in mind that the builder isn't quite ready yet.
+
 Building Ships
 --------------
 The shipbuilder will build as many ships as you want, up to the number of 
