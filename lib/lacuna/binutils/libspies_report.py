@@ -87,14 +87,16 @@ class PlanetSpyData():
 
         if not sr.header_written:
             row = [ "ID", "Name", "Home Planet Name", "Assignment", "Level", "Politics", "Mayhem",
-                "Theft", "Intel", "Offense", "Defense", "Available On", "Seconds Remaining",
-                "Location Planet ID", "Location Planet Name", "Location Planet X", "Location Planet Y",     ]
+                "Theft", "Intel", "Offense", "Defense", "Offensive Missions", "Defensive Missions",
+                "Available On", "Seconds Remaining", "Location Planet ID", "Location Planet Name", 
+                "Location Planet X", "Location Planet Y",     ]
             writer.writerow( row )
             sr.header_written = True
 
         for s in self.spies:
             row = [ s.id, s.name, s.based_from.name, s.assignment, s.level, s.politics, s.mayhem,
-                s.theft, s.intel, s.offense_rating, s.defense_rating, s.available_on, s.seconds_remaining,
+                s.theft, s.intel, s.offense_rating, s.defense_rating, s.mission_count.offensive, 
+                s.mission_count.defensive, s.available_on, s.seconds_remaining,
                 s.assigned_to.id, s.assigned_to.name, s.assigned_to.x, s.assigned_to.y,     ]
             writer.writerow( row )
         

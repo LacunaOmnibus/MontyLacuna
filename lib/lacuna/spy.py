@@ -24,6 +24,7 @@ class Spy(lacuna.bc.SubClass):
         seconds_remaining      45,
         assigned_to            SpyBody object
         based_from             SpyBody object
+        mission_count          MissionCount object
 
     - :class:`lacuna.spy.Assignment`
     - :class:`lacuna.spy.SpyBody`
