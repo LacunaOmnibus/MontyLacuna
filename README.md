@@ -8,6 +8,17 @@ A Python Client for The Lacuna Expanse.
 This is essentially a port of the Perl Games::Lacuna::Client module to Python.  
 
 ## TBD
+- GET RID of update.py.  I'm tired of babysitting it.  The user can install 
+  git and learn to "git clone" and "git pull origin master" or they can just 
+  update by re-installing by hand each time.  Trying to replicate "git pull 
+  origin master" with a Python script because the user can't be arsed to 
+  install git is stupid.
+    - The other option is to back up their config files (etc/lacuna.cfg and 
+      var/*.bodyabbrv.pkl) somewhere, pull down all of master, extract it 
+      somewhere new, put the config files into that new dir, and then direct 
+      the user to go there, letting them know they can blow away the old monty 
+      dir.  Use "your old stuff is over there --> along with your old log 
+      files" as an excuse.
 - build_ships.py blows up with an exception if a SY is out of commission 
   (damaged).  
 - ships_report.py doesn't appear to be reporting on fighters that have been 
