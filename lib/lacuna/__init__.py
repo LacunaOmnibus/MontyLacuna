@@ -1,5 +1,5 @@
 
-version_info = ("0", "4", "1")
+version_info = ("0", "4", "2")
 version = '.'.join( version_info )
 
 import lacuna.alliance
