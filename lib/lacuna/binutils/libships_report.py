@@ -41,7 +41,7 @@ class PlanetShipData():
 
         for s in self.ships_detail:
             row = [ self.pname, s.id, s.name, s.type, s.task, s. speed, s.hold_size, 
-                s.berth_level, s.date_available, s.max_occupants, ]
+                s.berth_level, s.date_available, s.max_occupants ]
             if hasattr(s, "to"):
                 row.append( s.to.name )
             else:
