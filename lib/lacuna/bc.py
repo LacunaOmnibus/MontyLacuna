@@ -197,9 +197,6 @@ class LacunaObject(SubClass):
 
     def write_empire_status(self, mydict:dict):
         if 'rpc_count' in mydict and hasattr(self.client.empire, 'rpc_count'):
-            ### What the fuck, git?  I've updated this next line, it's not on 
-            ### github, but git is telling me "up to date".  Hopefully this 
-            ### comment will trigger the update.
             if int(mydict['rpc_count']) <= int(self.client.empire.rpc_count):
                 ### Our result came from the cache rather than a fresh request 
                 ### to the server, so don't update anything.
