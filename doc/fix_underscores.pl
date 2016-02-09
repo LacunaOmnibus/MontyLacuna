@@ -15,6 +15,13 @@ File::Copy::mv( '_build/html/_sources', '_build/html/sources' );
 File::Copy::mv( '_build/html/_static',  '_build/html/static'  );
 File::Copy::mv( '_build/html/_images',  '_build/html/images'  );
 
+### The contents of ./_build/html/ is going to end up completely replacing the 
+### contents of the gh-pages branch.  We need that CNAME file to remain in 
+### place so github knows what to do with incoming requests to 
+### montylacuna.tmtowtdi.online.  "make html" does not copy that file in, so 
+### we'll just do it ourselves.
+File::Copy::copy( 'CNAME',  '_build/html/CNAME'  );
+
 my $files_fixed = 0;
 find( \&wanted, '_build/html' );
 

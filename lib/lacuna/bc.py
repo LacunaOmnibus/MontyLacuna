@@ -197,7 +197,7 @@ class LacunaObject(SubClass):
 
     def write_empire_status(self, mydict:dict):
         if 'rpc_count' in mydict and hasattr(self.client.empire, 'rpc_count'):
-            if mydict['rpc_count'] <= self.client.empire.rpc_count:
+            if int(mydict['rpc_count']) <= int(self.client.empire.rpc_count):
                 ### Our result came from the cache rather than a fresh request 
                 ### to the server, so don't update anything.
                 return

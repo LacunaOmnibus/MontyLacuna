@@ -72,6 +72,7 @@ Scripts that tell you about stuff
 .. toctree::
    :maxdepth: 1
 
+   abbreviations
    ships_report
    show_laws
    spies_report

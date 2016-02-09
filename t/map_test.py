@@ -13,7 +13,6 @@ pp = pprint.PrettyPrinter( indent = 4 )
 glc = lac.clients.Member(
     config_file = bindir + "/../etc/lacuna.cfg",
     config_section = 'sitter',
-    #config_section = 'play_test',
 )
 
 
@@ -68,11 +67,11 @@ mymap = glc.get_map();
 
 ### View all stars in a chunk of space using positional arguments
 ###
-#stars = mymap.get_stars( -1500, -1470, -1470, -1500 )
-#for s in stars[0:5]:
-#    print( "{} ({}, {}) is {} and, as far as my probes can tell, is orbited by {} bodies."
-#        .format(s.name, s.x, s.y, s.color, len(s.bodies))
-#    )
+stars = mymap.get_stars( -1500, -1470, -1470, -1500 )
+for s in stars[0:5]:
+    print( "{} ({}, {}) is {} and, as far as my probes can tell, is orbited by {} bodies."
+        .format(s.name, s.x, s.y, s.color, len(s.bodies))
+    )
 
 
 ### Check on whether you've got a probe headed towards a given star and, if 
